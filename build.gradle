@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.1'
+    }
+}
+
+allprojects {
+
+    ext {
+        appName = 'Touhou Pixel Dungeon: Reloaded'
+        appPackageName = 'com.touhoupixel.touhoupixeldungeonreloaded'
+
+        appVersionCode = 650
+        appVersionName = '1.0.1'
+
+        appJavaCompatibility = JavaVersion.VERSION_1_8
+
+        appAndroidCompileSDK = 31
+        appAndroidMinSDK = 14
+        appAndroidTargetSDK = 31
+
+        gdxVersion = '1.11.0'
+        gdxControllersVersion = '2.2.2'
+        robovmVersion = '2.3.16'
+    }
+    version = appVersionName
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+
+}

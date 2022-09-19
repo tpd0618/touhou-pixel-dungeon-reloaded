@@ -1,0 +1,106 @@
+--- desktop/build.gradle	(revision 926fb3368ebe5af1b6eac59347af4ede6461650e)
++++ desktop/build.gradle	(revision 91f27cd1b942d006c9c8a763b644dd1b119d93ef)
+@@ -1,37 +1,75 @@
+-buildscript {
+-    repositories {
+-        google()
+-        mavenCentral()
++apply plugin: "java"
++
++[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
++sourceCompatibility = targetCompatibility = appJavaCompatibility
++
++ext.appMainClass = "com.touhoupixel.touhoupixeldungeon.desktop.DesktopLauncher"
++processResources {
++    from new File(project(':core').projectDir, "/src/main/assets")
++    from new File(project(':desktop').projectDir,"/src/main/assets")
++}
++
++sourceSets {
++    debug
++    release
++}
++
++task debug(dependsOn: classes, type: JavaExec) {
++    classpath = sourceSets.debug.runtimeClasspath + sourceSets.main.runtimeClasspath
++    ignoreExitValue = true
++
++    main = appMainClass
++    systemProperty 'Specification-Title', appName
++    systemProperty 'Specification-Version', appVersionName + "-TOUHOU"
++    systemProperty 'Implementation-Version', appVersionCode
++
++    dependencies {
++        debugImplementation project(':services:updates:debugUpdates')
++        debugImplementation project(':services:news:debugNews')
+     }
++}
++
++//need a separate task to compile dependencies first, seeing as we're setting them up in an odd way
++task compileForRelease(dependsOn: classes, type: JavaCompile){
++    classpath = sourceSets.release.runtimeClasspath + sourceSets.main.runtimeClasspath
++}
++
++task release(dependsOn: compileForRelease, type: Jar) {
++    //FIXME this is now needed as of gradle 7.0, due to our weird sourceSets setup. Should see if there's a better way to do this
++    setDuplicatesStrategy(DuplicatesStrategy.INCLUDE)
++    from sourceSets.main.output
++    from { sourceSets.release.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) } }
++    from { configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) } }
++
++    manifest {
++        attributes 'Main-Class': appMainClass
++        attributes 'Specification-Title': appName
++        attributes 'Specification-Version': appVersionName
++        attributes 'Implementation-Version': appVersionCode
++    }
++
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:7.0.3'
+-        classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.13'
++        releaseImplementation project(':services:updates:githubUpdates')
++        releaseImplementation project(':services:news:touhouNews')
+     }
+ }
+ 
+-allprojects {
+-
+-    ext {
+-        appName = 'Touhou Pixel Dungeon'
+-        appPackageName = 'com.touhoupixel.touhoupixeldungeon'
++dependencies {
++    implementation project(':core')
+ 
+-        appVersionCode = 654
+-        appVersionName = '1.5.4'
++    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
++    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
++    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
++    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+ 
+-        appJavaCompatibility = JavaVersion.VERSION_1_8
++    //we use LWJGL tinyFD directly to display crash messages and (for now) single-line text input
++    implementation "org.lwjgl:lwjgl-tinyfd:3.2.3"
++    implementation "org.lwjgl:lwjgl-tinyfd:3.2.3:natives-windows"
++    implementation "org.lwjgl:lwjgl-tinyfd:3.2.3:natives-macos"
++    implementation "org.lwjgl:lwjgl-tinyfd:3.2.3:natives-linux"
+ 
+-        appAndroidCompileSDK = 31
+-        appAndroidMinSDK = 14
+-        appAndroidTargetSDK = 31
+-
+-        gdxVersion = '1.10.0'
+-        robovmVersion = '2.3.14'
+-    }
+-    version = appVersionName
+-
+-    repositories {
+-        google()
+-        mavenCentral()
+-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+-    }
++    //Need these at compile time to prevent errors there.
++    // The actual dependency used at runtime will vary based on source set.
++    compileOnly project(':services:updates:debugUpdates')
++    compileOnly project(':services:news:debugNews')
+ }
