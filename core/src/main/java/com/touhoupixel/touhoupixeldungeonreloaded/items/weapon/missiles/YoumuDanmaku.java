@@ -23,6 +23,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -38,7 +40,7 @@ public class YoumuDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return (2 + curUser.lvl/10) * tier +
+		return (2 + Dungeon.energy/5) * tier +
 				(tier) * lvl;
 	}
 }
