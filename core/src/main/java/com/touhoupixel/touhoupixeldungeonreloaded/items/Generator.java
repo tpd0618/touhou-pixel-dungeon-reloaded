@@ -173,7 +173,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallYingYa
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.GoldenExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShinmyomaruNeedle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.AyaDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KunaiDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MedicineDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MerlinDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ReisenDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ScaleDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.EikiDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.StarDanmaku;
@@ -183,11 +187,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileW
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.CircleDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.FlameDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KomachiDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.TewiDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.RiceDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ReimuTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.InvertDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.CirnoDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YoumuDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YuukaDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Blindweed;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Dreamfoil;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Earthroot;
@@ -491,35 +498,42 @@ public class Generator {
 					ReimuTailsman.class,
 					ThrowingKnife.class
 			};
-			MIS_T1.probs = new float[]{ 6, 5 };
+			MIS_T1.probs = new float[]{ 5, 5 };
 
 			MIS_T2.classes = new Class<?>[]{
-					ScaleDanmaku.class,
+					CircleDanmaku.class,
 					FlameDanmaku.class,
-					CircleDanmaku.class
+					KunaiDanmaku.class,
+					RiceDanmaku.class,
+					ScaleDanmaku.class
 			};
-			MIS_T2.probs = new float[]{ 6, 5, 4 };
+			MIS_T2.probs = new float[]{ 5, 5, 5, 5, 5 };
 
 			MIS_T3.classes = new Class<?>[]{
-					RiceDanmaku.class,
+					BulletDanmaku.class,
+					CirnoDanmaku.class,
+					MerlinDanmaku.class,
 					ShardDanmaku.class,
-					KunaiDanmaku.class
+					YoumuDanmaku.class
 			};
-			MIS_T3.probs = new float[]{ 6, 5, 4 };
+			MIS_T3.probs = new float[]{ 5, 5, 5, 5, 5 };
 
 			MIS_T4.classes = new Class<?>[]{
-					BulletDanmaku.class,
+					AyaDanmaku.class,
 					InvertDanmaku.class,
-					StarDanmaku.class
+					ReisenDanmaku.class,
+					StarDanmaku.class,
+					YuukaDanmaku.class
 			};
-			MIS_T4.probs = new float[]{ 6, 5, 4 };
+			MIS_T4.probs = new float[]{ 5, 5, 5, 5, 5 };
 
 			MIS_T5.classes = new Class<?>[]{
-					CirnoDanmaku.class,
+					EikiDanmaku.class,
 					KomachiDanmaku.class,
-					EikiDanmaku.class
+					MedicineDanmaku.class,
+					TewiDanmaku.class
 			};
-			MIS_T5.probs = new float[]{ 6, 5, 4 };
+			MIS_T5.probs = new float[]{ 5, 5, 5, 5 };
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,

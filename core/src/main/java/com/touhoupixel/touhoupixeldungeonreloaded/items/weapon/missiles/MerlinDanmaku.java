@@ -36,7 +36,7 @@ public class MerlinDanmaku extends MissileWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.9f;
 		
-		tier = 4;
+		tier = 3;
 	}
 
 	@Override

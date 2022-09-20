@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.SpellcardCaster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
@@ -79,6 +80,9 @@ public enum HeroClass {
 
 		Waterskin waterskin = new Waterskin();
 		waterskin.collect();
+
+		LifeSpellcardChecker lifespellcardchecker = new LifeSpellcardChecker();
+		lifespellcardchecker.collect();
 
 		//test//
 

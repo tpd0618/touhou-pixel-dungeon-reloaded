@@ -31,7 +31,7 @@ public class YuukaDanmaku extends MissileWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.9f;
 		
-		tier = 3;
+		tier = 4;
 	}
 	//see hero.attackSkill
 }

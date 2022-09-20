@@ -92,6 +92,7 @@ public class ItemSpriteSheet {
 	public static final int SPELLCARD_CASTER       = UNCOLLECTIBLE+8;
 	public static final int TENGU_BOMB      = UNCOLLECTIBLE+9;
 	public static final int TENGU_SHOCKER   = UNCOLLECTIBLE+10;
+	public static final int LIFESPELLCARD_CHECKER       = UNCOLLECTIBLE+11;
 	static{
 		assignItemRect(GOLD,        12, 12);
 		assignItemRect(DEWDROP,     10, 10);
@@ -105,6 +106,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SPELLCARD_CASTER,   16, 16);
 		assignItemRect(TENGU_BOMB,      10, 10);
 		assignItemRect(TENGU_SHOCKER,   10, 10);
+		assignItemRect(LIFESPELLCARD_CHECKER,   13, 16);
 	}
 
 	private static final int CONTAINERS     =                               xy(1, 3);   //16 slots
