@@ -25,7 +25,7 @@ public class Sakuya extends Mob {
 
         baseSpeed = 3f;
 
-        loot = new Swiftthistle();
+        loot = new Swiftthistle.Seed();
         lootChance = 0.15f;
     }
 

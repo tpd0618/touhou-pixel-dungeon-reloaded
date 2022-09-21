@@ -47,7 +47,7 @@ public class Shion extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(5) == 0 && hero instanceof Hero) {
+        if (Random.Int(5) == 0 && enemy instanceof Hero) {
             if (Dungeon.gold > 800) {
                 Dungeon.gold -= 800;
                 Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);

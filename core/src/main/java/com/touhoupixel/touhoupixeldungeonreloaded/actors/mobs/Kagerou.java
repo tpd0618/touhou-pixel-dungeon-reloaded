@@ -132,33 +132,4 @@ public class Kagerou extends Mob implements Callback {
     public void call() {
         next();
     }
-
-    @Override
-    public Item createLoot(){
-
-        // 1/6 chance for healing, scaling to 0 over 8 drops
-        if (Random.Int(3) == 0 && Random.Int(8) > Dungeon.LimitedDrops.WARLOCK_HP.count ){
-            Dungeon.LimitedDrops.WARLOCK_HP.count++;
-            return new PotionOfHealing();
-        } else {
-            Item i = Generator.randomUsingDefaults(Generator.Category.POTION);
-            int healingTried = 0;
-            while (i instanceof PotionOfHealing){
-                healingTried++;
-                i = Generator.randomUsingDefaults(Generator.Category.POTION);
-            }
-
-            //return the attempted healing potion drops to the pool
-            if (healingTried > 0){
-                for (int j = 0; j < Generator.Category.POTION.classes.length; j++){
-                    if (Generator.Category.POTION.classes[j] == PotionOfHealing.class){
-                        Generator.Category.POTION.probs[j] += healingTried;
-                    }
-                }
-            }
-
-            return i;
-        }
-
-    }
 }

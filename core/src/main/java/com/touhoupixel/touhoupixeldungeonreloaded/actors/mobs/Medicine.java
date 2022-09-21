@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MedicineSprite;
 import com.watabou.utils.Bundle;
@@ -117,6 +118,9 @@ public class Medicine extends Mob {
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
+		if (Random.Int(2) == 0) {
+			new PoisonDartTrap().set(enemy.pos).activate();
+		}
 		if (enemy instanceof Mob) {
 			((Mob)enemy).aggro( this );
 		}

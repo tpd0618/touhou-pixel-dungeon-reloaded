@@ -14,7 +14,7 @@ public class HalveTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && ch.HP > 1) {
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && ch.HP > 3) {
             ch.HP /= 2;
         }
     }

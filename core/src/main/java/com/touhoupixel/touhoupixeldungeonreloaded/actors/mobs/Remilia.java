@@ -45,8 +45,8 @@ public class Remilia extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(3) == 0) {
-            Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
+        if (Random.Int(5) == 0) {
+            Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION/2f);
         }
         return damage;
     }

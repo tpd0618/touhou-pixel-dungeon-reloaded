@@ -22,23 +22,37 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.CavesPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GatewayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TrainingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
@@ -105,21 +119,26 @@ public class RainbowDragonCaveLevel extends RegularLevel {
 	public String waterTex() {
 		return Assets.Environment.WATER_13;
 	}
-	
+
 	@Override
 	protected Class<?>[] trapClasses() {
-		return new Class[]{
-				BurningTrap.class, PoisonDartTrap.class, FrostTrap.class, StormTrap.class, CorrosionTrap.class,
-				GrippingTrap.class, RockfallTrap.class,
-				ConfusionTrap.class, SummoningTrap.class, WarpingTrap.class, PitfallTrap.class, GatewayTrap.class, GeyserTrap.class };
+		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+				new Class<?>[]{
+						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
+						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,
+						FlashingTrap.class, TrainingTrap.class}:
+				new Class<?>[]{
+						RockfallTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, ConfusionTrap.class, DespairTrap.class,
+						PitfallTrap.class, BlazingTrap.class, SlowTrap.class, WarpingTrap.class, CursingTrap.class,
+						GrippingTrap.class, TrainingTrap.class};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				4, 4, 4, 4, 4,
-				2, 2,
-				1, 1, 1, 1, 1, 1 };
+				3, 3, 3, 3, 3, 3,
+				2, 2, 2, 2, 2,
+				1, 1};
 	}
 	
 	@Override

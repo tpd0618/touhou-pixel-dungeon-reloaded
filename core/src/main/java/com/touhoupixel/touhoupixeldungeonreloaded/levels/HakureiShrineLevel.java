@@ -143,7 +143,7 @@ public class HakureiShrineLevel extends RegularLevel {
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, WornDartTrap.class,
 						AlarmTrap.class, BurningTrap.class, SlowTrap.class, TeleportationTrap.class, OozeTrap.class,
 						TriplespeedTrap.class, TrainingTrap.class};
-}
+	}
 
 	@Override
 	protected float[] trapChances() {

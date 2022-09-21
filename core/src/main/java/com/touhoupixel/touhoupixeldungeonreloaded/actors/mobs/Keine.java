@@ -34,12 +34,5 @@ public class Keine extends Mob {
         return Random.NormalIntRange(0, 2);
     }
 
-    @Override
-    public int attackProc( Char hero, int damage ) {
-        damage = super.attackProc( enemy, damage );
-        if (Random.Int(4) == 0) {
-            EXP = 0;
-        }
-        return damage;
-    }
+    //reduce EXP 10 is the special ability
 }

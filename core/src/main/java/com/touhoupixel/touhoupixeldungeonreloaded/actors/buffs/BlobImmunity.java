@@ -80,8 +80,6 @@ public class BlobImmunity extends FlavourBuff {
 		immunities.add( StormCloud.class );
 		immunities.add( ToxicGas.class );
 		immunities.add( Web.class );
-
-		immunities.add(BossAya.FireAbility.FireBlob.class);
 	}
 
 	@Override

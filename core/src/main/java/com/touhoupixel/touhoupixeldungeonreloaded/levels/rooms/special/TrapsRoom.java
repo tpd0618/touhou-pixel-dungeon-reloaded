@@ -40,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
@@ -146,16 +147,16 @@ public class TrapsRoom extends SpecialRoom {
 
 	@SuppressWarnings("unchecked")
 	private static Class<?extends Trap>[][] levelTraps = new Class[][]{
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
+			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
 			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
 			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
 			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},

@@ -192,7 +192,7 @@ public class Hero extends Char {
 
 	public HeroClass heroClass = HeroClass.PLAYERKOISHI;
 
-	private int attackSkill = 10;
+	private int attackSkill = 10; //test ver. 100, original ver. 10
 	private int defenseSkill = 5;
 
 	public boolean ready = false;
@@ -235,7 +235,7 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		HT = 50 + 5*(lvl-1) + HTBoost; //test ver. 3000, original ver. 50
+		HT = 50 + 5*(lvl-1) + HTBoost; //test ver. 5000, original ver. 50
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 

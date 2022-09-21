@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
@@ -29,15 +30,31 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.SewerPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GatewayTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TrainingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WornDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -105,25 +122,26 @@ public class MoriyaShrineLevel extends RegularLevel {
 	public String waterTex() {
 		return Assets.Environment.WATER_11;
 	}
-	
+
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.depth == 1 ?
-				new Class<?>[]{ WornDartTrap.class } :
+		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
 				new Class<?>[]{
-						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, WornDartTrap.class,
-						AlarmTrap.class, OozeTrap.class,
-						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class };
-}
+						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
+						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,
+						FlashingTrap.class, TrainingTrap.class}:
+				new Class<?>[]{
+						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, ConfusionTrap.class, DespairTrap.class,
+						PitfallTrap.class, BlazingTrap.class, SlowTrap.class, WarpingTrap.class, CursingTrap.class,
+						GrippingTrap.class, TrainingTrap.class};
+	}
 
 	@Override
 	protected float[] trapChances() {
-		return Dungeon.depth == 1 ?
-				new float[]{1} :
-				new float[]{
-						4, 4, 4, 4,
-						2, 2,
-						1, 1, 1, 1, 1};
+		return new float[]{
+				3, 3, 3, 3, 3, 3,
+				2, 2, 2, 2, 2,
+				1, 1};
 	}
 	
 	@Override

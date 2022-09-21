@@ -347,6 +347,7 @@ public class Assets {
 		public static final String SHAMAN = "sprites/shaman.png";
 		public static final String MARISA = "sprites/marisa.png";
 		public static final String BOSSMARISA = "sprites/bossmarisa.png";
+		public static final String BOSSKAGEROU = "sprites/bosskagerou.png";
 		public static final String SUIKA = "sprites/suika.png";
 		public static final String SHEEP = "sprites/sheep.png";
 		public static final String KEEPER = "sprites/shopkeeper.png";

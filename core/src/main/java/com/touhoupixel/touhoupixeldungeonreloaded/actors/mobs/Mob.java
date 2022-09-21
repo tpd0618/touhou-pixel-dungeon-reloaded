@@ -618,18 +618,18 @@ public abstract class Mob extends Char {
 			damage += 1+Statistics.upgradesUsed;
 		}
 
-		for (int i : PathFinder.NEIGHBOURS8) {
-			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-				if (this instanceof Miko && this.pos == this.pos + i) {
-					damage *= 1.5;
-				}
-			}
-		}
-
 		for (int i : PathFinder.NEIGHBOURS4) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (this instanceof Meiling && enemy.pos == this.pos + i) {
 					Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+				}
+			}
+		}
+
+		for (int i : PathFinder.NEIGHBOURS8) {
+			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
+				if (this instanceof Miko && this.pos == this.pos + i) {
+					damage *= 1.3;
 				}
 			}
 		}

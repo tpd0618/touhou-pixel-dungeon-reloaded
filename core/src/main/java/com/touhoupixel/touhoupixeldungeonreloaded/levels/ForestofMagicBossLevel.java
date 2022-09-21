@@ -145,7 +145,7 @@ public class ForestofMagicBossLevel extends Level {
 		super.seal();
 
 		set( 448, Terrain.EMPTY );
-		GameScene.updateMap( 404 );
+		GameScene.updateMap( 448 );
 
 		BossMarisa boss = new BossMarisa();
 		boss.state = boss.WANDERING;

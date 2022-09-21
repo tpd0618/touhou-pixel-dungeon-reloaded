@@ -40,7 +40,9 @@ public class Hatate extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        new FlashingTrap().set(this.pos).activate();
+        if (Random.Int(2) == 0) {
+            new FlashingTrap().set(enemy.pos).activate();
+        }
         return damage;
     }
 }

@@ -90,7 +90,7 @@ public class Food extends Item {
 			Badges.validateFoodEaten();
 
 			if (Dungeon.isChallenged(Challenges.KAGUYA_FULL_MEAL)) {
-				Buff.prolong(hero, ExtremeConfusion.class, ExtremeConfusion.DURATION/2f);
+				Buff.prolong(hero, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
 			}
 
 			if (Statistics.card61){
