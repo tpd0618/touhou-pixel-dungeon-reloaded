@@ -620,10 +620,6 @@ public abstract class Mob extends Char {
 			damage += 1+Statistics.upgradesUsed;
 		}
 
-		if (this instanceof Keine && enemy instanceof Hero && !(Dungeon.hero.belongings.weapon.isIdentified()) || !(Dungeon.hero.belongings.armor.isIdentified()) || !(Dungeon.hero.belongings.ring.isIdentified())){
-			damage *= 2.5;
-		}
-
 		for (int i : PathFinder.NEIGHBOURS4) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (this instanceof Meiling && enemy.pos == this.pos + i) {
