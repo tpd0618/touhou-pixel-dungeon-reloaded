@@ -12,7 +12,7 @@ public class Keine extends Mob {
 
         HP = HT = 106;
         defenseSkill = 22;
-        EXP = -10;
+        EXP = 6;
         maxLvl = 30;
 
         loot = new ScrollOfSirensSong();
@@ -34,5 +34,5 @@ public class Keine extends Mob {
         return Random.NormalIntRange(0, 2);
     }
 
-    //reduce EXP 10 is the special ability
+    //see Mob.attackproc
 }

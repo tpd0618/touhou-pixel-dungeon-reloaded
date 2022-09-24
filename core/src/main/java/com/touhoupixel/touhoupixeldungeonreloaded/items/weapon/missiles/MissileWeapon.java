@@ -89,7 +89,7 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	public int STRReq(int lvl){
-		return STRReq(tier, lvl) - 1; //1 less str than normal for their tier
+		return Math.max(1,(5 + Math.round(tier * 5)) - lvl);
 	}
 
 	@Override
@@ -191,10 +191,10 @@ abstract public class MissileWeapon extends Weapon {
 	public Item random() {
 		if (!stackable) return this;
 
-		//2: 66.67% (2/3)
-		//3: 26.67% (4/15)
-		//4: 6.67%  (1/15)
-		quantity = 2;
+		//3: 66.67% (2/3)
+		//4: 26.67% (4/15)
+		//5: 6.67%  (1/15)
+		quantity = 3;
 		if (Random.Int(3) == 0) {
 			quantity++;
 			if (Random.Int(5) == 0) {

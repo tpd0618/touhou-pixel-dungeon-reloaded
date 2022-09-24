@@ -317,22 +317,22 @@ public class WndJournal extends WndTabbed {
 					return new ItemSprite( new ScrollOfIdentify() );
 				case "Food":
 					return new ItemSprite( ItemSpriteSheet.PASTY );
-				case "Dieing":
-					return new ItemSprite( ItemSpriteSheet.TOMB );
+				case "Ability_Cards":
+					return new ItemSprite( ItemSpriteSheet.CARDS52 );
 				case Document.GUIDE_SEARCHING:
-					return Icons.get(Icons.MAGNIFY);
+					return new ItemSprite( ItemSpriteSheet.KOMACHI_DANMAKU );
 				case "Strength":
 					return new ItemSprite( ItemSpriteSheet.SEIRANHAMMER);
 				case "Upgrades":
-					return new ItemSprite( ItemSpriteSheet.RING_EMERALD );
-				case "Looting":
-					return new ItemSprite( ItemSpriteSheet.CRYSTAL_KEY );
+					return new ItemSprite( ItemSpriteSheet.KOGASA_HAMMER );
+				case "Item_Use":
+					return new ItemSprite( ItemSpriteSheet.REIMU_TAILSMAN );
 				case "Levelling":
 					return Icons.get(Icons.TALENT);
 				case "Positioning":
-					return new ItemSprite( ItemSpriteSheet.SPIRIT_BOW );
+					return new ItemSprite( ItemSpriteSheet.LIFE );
 				case "Magic":
-					return new ItemSprite( ItemSpriteSheet.WAND_FIREBOLT );
+					return new ItemSprite( ItemSpriteSheet.SPELLCARD );
 			}
 		}
 

@@ -983,7 +983,7 @@ public class Hero extends Char {
 							protected void onSelect(int index) {
 								if (index == 0){
 									Buff.affect(Hero.this, AscensionChallenge.class);
-									Statistics.highestAscent = 25;
+									Statistics.highestAscent = 98;
 									actTransition(action);
 								}
 							}

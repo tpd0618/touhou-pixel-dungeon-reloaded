@@ -46,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
@@ -68,6 +69,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
@@ -616,6 +618,10 @@ public abstract class Mob extends Char {
 
 		if (this instanceof Koakuma){
 			damage += 1+Statistics.upgradesUsed;
+		}
+
+		if (this instanceof Keine && enemy instanceof Hero && !(Dungeon.hero.belongings.weapon.isIdentified()) || !(Dungeon.hero.belongings.armor.isIdentified()) || !(Dungeon.hero.belongings.ring.isIdentified())){
+			damage *= 2.5;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {

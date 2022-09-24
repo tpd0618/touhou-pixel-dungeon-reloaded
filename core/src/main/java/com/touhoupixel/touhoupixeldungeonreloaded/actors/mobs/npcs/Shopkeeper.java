@@ -128,7 +128,7 @@ public class Shopkeeper extends NPC {
 		if (item instanceof ActiveCards)                                    return false;
 		if (item instanceof EquipmentCards)                                 return false;
 		if (item instanceof PassiveCards)                                   return false;
-		if (item.level() > 0)                                               return false;
+		if (item.isIdentified() && item.level() > 0)                        return false;
 		if (item instanceof PotionOfStrength)                               return false;
 		if (item instanceof ScrollOfUpgrade)                                return false;
 		if (item instanceof ScrollOfEnchantWeapon)                          return false;

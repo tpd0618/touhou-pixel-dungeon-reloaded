@@ -75,9 +75,7 @@ public class Tewi extends Mob {
     @Override
     public void die(Object cause) {
         super.die(cause);
-        if (enemy.HP == enemy.HT){
-            new GrimTrap().set(enemy.pos).activate();
-        } else switch (Random.Int(37)) {
+        switch (Random.Int(36)) {
             case 0:
             default:
                 new AlarmTrap().set(enemy.pos).activate();
@@ -186,9 +184,6 @@ public class Tewi extends Mob {
                 break;
             case 35:
                 new WeakeningTrap().set(enemy.pos).activate();
-                break;
-            case 36:
-                new WornDartTrap().set(enemy.pos).activate();
                 break;
         }
     }

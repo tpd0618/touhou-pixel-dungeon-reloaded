@@ -42,7 +42,6 @@ public class SeiranHammer extends MeleeWeapon {
 
 	@Override
 	public int STRReq(int lvl) {
-		return STRReq(tier+1, lvl); //20 base strength req, up from 18
+		return STRReq(tier+1, lvl);
 	}
-
 }

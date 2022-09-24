@@ -130,7 +130,7 @@ public enum Document {
 	public static final String GUIDE_SURPRISE_ATKS  = "Surprise_Attacks";
 	public static final String GUIDE_IDING          = "Identifying";
 	public static final String GUIDE_FOOD           = "Food";
-	public static final String GUIDE_DIEING         = "Dieing";
+	public static final String GUIDE_ABILITY_CARDS = "Ability_Cards";
 	public static final String GUIDE_SEARCHING      = "Searching";
 
 	//pages and default states
@@ -142,23 +142,23 @@ public enum Document {
 		ADVENTURERS_GUIDE.pagesStates.put(GUIDE_SURPRISE_ATKS,  debug ? READ : FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put(GUIDE_IDING,          debug ? READ : FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put(GUIDE_FOOD,           debug ? READ : FOUND);
-		ADVENTURERS_GUIDE.pagesStates.put(GUIDE_DIEING,         debug ? READ : FOUND);
-		//given in sewers
+		ADVENTURERS_GUIDE.pagesStates.put(GUIDE_ABILITY_CARDS,  debug ? READ : FOUND);
+		//given in hakurei shrine
 		ADVENTURERS_GUIDE.pagesStates.put(GUIDE_SEARCHING,      debug ? READ : NOT_FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put("Strength",           debug ? READ : NOT_FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put("Upgrades",           debug ? READ : NOT_FOUND);
-		ADVENTURERS_GUIDE.pagesStates.put("Looting",            debug ? READ : NOT_FOUND);
+		ADVENTURERS_GUIDE.pagesStates.put("Item_Use",           debug ? READ : NOT_FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put("Levelling",          debug ? READ : NOT_FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put("Positioning",        debug ? READ : NOT_FOUND);
 		ADVENTURERS_GUIDE.pagesStates.put("Magic",              debug ? READ : NOT_FOUND);
 		
-		//given in sewers
+		//given in hakurei shrine
 		ALCHEMY_GUIDE.pagesStates.put("Potions",              debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Stones",               debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Energy_Food",          debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Exotic_Potions",       debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Exotic_Scrolls",       debug ? READ : NOT_FOUND);
-		//given in prison
+		//given in human village
 		ALCHEMY_GUIDE.pagesStates.put("Bombs",                debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Weapons",              debug ? READ : NOT_FOUND);
 		ALCHEMY_GUIDE.pagesStates.put("Catalysts",            debug ? READ : NOT_FOUND);
@@ -190,21 +190,21 @@ public enum Document {
 		
 	}
 	
-	public static void restore( Bundle bundle ){
-		
-		if (!bundle.contains( DOCUMENTS )){
+	public static void restore( Bundle bundle ) {
+
+		if (!bundle.contains(DOCUMENTS)) {
 			return;
 		}
-		
-		Bundle docsBundle = bundle.getBundle( DOCUMENTS );
-		
-		for ( Document doc : values()){
-			if (docsBundle.contains(doc.name())){
+
+		Bundle docsBundle = bundle.getBundle(DOCUMENTS);
+
+		for (Document doc : values()) {
+			if (docsBundle.contains(doc.name())) {
 				Bundle pagesBundle = docsBundle.getBundle(doc.name());
 
 				//compatibility with pre-1.0.0 saves
 				if (pagesBundle.isNull()) {
-					for (String page : docsBundle.getStringArray(doc.name())){
+					for (String page : docsBundle.getStringArray(doc.name())) {
 						if (doc.pagesStates.containsKey(page)) {
 							doc.pagesStates.put(page, READ);
 						}
@@ -220,5 +220,4 @@ public enum Document {
 			}
 		}
 	}
-	
 }

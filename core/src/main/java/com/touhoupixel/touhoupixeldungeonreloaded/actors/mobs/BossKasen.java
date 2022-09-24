@@ -3,12 +3,25 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DestroyArmorTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KasenSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.LarvaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RemiliaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -16,15 +29,15 @@ import com.watabou.utils.Random;
 public class BossKasen extends Mob {
 
     {
-        spriteClass = AunnSprite.class;
+        spriteClass = KasenSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = 600;
+        defenseSkill = 40;
+        EXP = 0;
+        maxLvl = 99;
 
-        loot = new LifeFragement();
-        lootChance = 0.04f;
+        loot = new Spellcard();
+        lootChance = 1f;
     }
 
     @Override
@@ -37,12 +50,12 @@ public class BossKasen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(21, 28);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 45;
     }
 
     @Override
@@ -61,12 +74,12 @@ public class BossKasen extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            }
+        if (Dungeon.hero.belongings.armor != null && Random.Int(3) == 0) {
+            new DestroyArmorTrap().set(target).activate();
+        }
+        if (Dungeon.hero.belongings.armor == null) {
+            Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
+            Buff.prolong(this, Hisou.class, Hisou.DURATION);
         }
         return damage;
     }

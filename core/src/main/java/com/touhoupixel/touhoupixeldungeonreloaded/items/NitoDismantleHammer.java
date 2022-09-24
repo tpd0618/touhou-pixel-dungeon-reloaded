@@ -1,32 +1,30 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfNitori;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
 import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;
 
-public class TenshiCard extends Item {
+public class NitoDismantleHammer extends Item {
 
     private static final String AC_DRINK = "DRINK";
 
     {
-        image = ItemSpriteSheet.THREE_STAR_TICKET;
+        image = ItemSpriteSheet.KOGASA_HAMMER;
 
-        defaultAction = AC_DRINK;
+        defaultAction = AC_DISMANTLE;
 
         stackable = true;
         unique = true;
@@ -35,7 +33,9 @@ public class TenshiCard extends Item {
     @Override
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions(hero);
-        actions.add(AC_DRINK);
+        actions.remove(AC_DROP);
+        actions.remove(AC_THROW);
+        actions.add(AC_DISMANTLE);
         return actions;
     }
 
@@ -44,7 +44,7 @@ public class TenshiCard extends Item {
 
         super.execute(hero, action);
 
-        if (action.equals(AC_DRINK)) {
+        if (action.equals(AC_DISMANTLE)) {
             GameScene.selectItem(itemSelector);
         }
     }
@@ -63,14 +63,13 @@ public class TenshiCard extends Item {
 
         @Override
         public String textPrompt() {
-            return Messages.get(TenshiCard.class, "prompt");
+            return Messages.get(NitoDismantleHammer.class, "prompt");
         }
 
         @Override
         public boolean itemSelectable(Item item) {
-            return
-                    (item instanceof MeleeWeapon && !((MeleeWeapon) item).masteryPotionBonus)
-                            || (item instanceof Armor && !((Armor) item).masteryPotionBonus);
+            return item instanceof Weapon && item.level() > 0 && !item.isEquipped(curUser) && isIdentified() ||
+                    item instanceof Armor && ((Armor) item).checkSeal() == null && item.level() > 0 && !item.isEquipped(curUser) && isIdentified();
         }
 
         @Override
@@ -79,7 +78,7 @@ public class TenshiCard extends Item {
             if (item == null) {
                 GameScene.show(new WndOptions(new ItemSprite(curItem),
                         Messages.titleCase(name()),
-                        Messages.get(TenshiCard.class, "think"),
+                        Messages.get(NitoDismantleHammer.class, "think"),
                         Messages.get(ExoticPotion.class, "yes"),
                         Messages.get(ExoticPotion.class, "no")) {
                     @Override
@@ -98,25 +97,13 @@ public class TenshiCard extends Item {
                     }
                 });
             } else if (item != null) {
-
-                if (item instanceof Weapon) {
-                    ((Weapon) item).masteryPotionBonus = true;
-                    GLog.p(Messages.get(TenshiCard.class, "weapon_easier"));
-                } else if (item instanceof Armor) {
-                    ((Armor) item).masteryPotionBonus = true;
-                    GLog.p(Messages.get(TenshiCard.class, "armor_easier"));
-                }
+                item.detach(curUser.belongings.backpack);
+                Dungeon.level.drop(new ScrollOfUpgrade().quantity(item.level()), curUser.pos).sprite.drop();
                 updateQuickslot();
 
                 Sample.INSTANCE.play(Assets.Sounds.DRINK);
                 curUser.sprite.operate(curUser.pos);
-                curItem.detach(curUser.belongings.backpack);
             }
         }
     };
-
-    @Override
-    public int value() {
-        return 100 * quantity;
-    }
 }

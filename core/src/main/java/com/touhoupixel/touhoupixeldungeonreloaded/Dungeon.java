@@ -614,7 +614,7 @@ public class Dungeon {
 	}
 
 	public static boolean posNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.STRENGTH_POTIONS.count - (depth / 5));
+		int asLeftThisSet = 2 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 2);
 		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
 
 		int floorThisSet = (depth % 5);

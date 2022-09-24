@@ -29,9 +29,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.SpellcardCaster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
@@ -55,7 +55,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagge
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SanaeExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.TewiDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ReimuTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -83,6 +82,9 @@ public enum HeroClass {
 
 		LifeSpellcardChecker lifespellcardchecker = new LifeSpellcardChecker();
 		lifespellcardchecker.collect();
+
+		NitoDismantleHammer nitofusion = new NitoDismantleHammer();
+		nitofusion.collect();
 
 		//test//
 

@@ -25,17 +25,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class ReimuTailsman extends MissileWeapon {
-	
+
 	{
 		image = ItemSpriteSheet.REIMU_TAILSMAN;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
-		
+
 		tier = 1;
-	}
-	
-	@Override
-	public int value() {
-		return super.value()/2; //half normal value
 	}
 }

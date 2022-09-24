@@ -68,7 +68,25 @@ public class DestroyArmorTrap extends Trap {
 			Hero hero = Dungeon.hero;
 			Armor armor = hero.belongings.armor;
 
-			if (armor != null && !armor.cursed && hero.belongings.armor.level() < 3 && !(Dungeon.hero.heroClass == HeroClass.PLAYERREIMU)) {
+			if (armor != null && !armor.cursed && hero.belongings.armor.level() < 3 && ((Armor) armor).checkSeal() == null) {
+
+				int cell;
+				int tries = 20;
+				do {
+					cell = Dungeon.level.randomRespawnCell(null);
+					if (tries-- < 0 && cell != -1) break;
+
+					PathFinder.buildDistanceMap(pos, Dungeon.level.passable);
+				} while (cell == -1 || PathFinder.distance[cell] < 10 || PathFinder.distance[cell] > 20);
+
+				hero.belongings.armor = null;
+				Dungeon.quickslot.clearItem(armor);
+				armor.updateQuickslot();
+
+				Sample.INSTANCE.play(Assets.Sounds.CURSED);
+				CellEmitter.get(pos).burst(Speck.factory(Speck.DUST), 4);
+				GLog.w(Messages.get(this, "disarm"));
+			} else if (armor != null && !armor.cursed && hero.belongings.armor.level() < 5 && Dungeon.depth == 40 && ((Armor) armor).checkSeal() == null) {
 
 				int cell;
 				int tries = 20;

@@ -565,9 +565,9 @@ public class GameScene extends PixelScene {
 
 		}
 
-		if (Rankings.INSTANCE.totalNumber > 0 && !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_DIEING)) {
+		if (Rankings.INSTANCE.totalNumber > 0 && !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_ABILITY_CARDS)) {
 			GLog.p(Messages.get(Guidebook.class, "hint"));
-			GameScene.flashForDocument(Document.GUIDE_DIEING);
+			GameScene.flashForDocument(Document.GUIDE_ABILITY_CARDS);
 		}
 
 		if (!invVisible) toggleInvPane();

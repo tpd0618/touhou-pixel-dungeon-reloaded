@@ -112,13 +112,10 @@ public class HakureiShrineLevel extends RegularLevel {
 
 	@Override
 	public void create() {
-		itemsToSpawn.add( new Spellcard() );
-		itemsToSpawn.add( Generator.random(Generator.wepTiers[1]));
-		itemsToSpawn.add( Generator.random(Generator.armorTiers[1]));
-		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
-		itemsToSpawn.add( Generator.random(Generator.misTiers[1]).quantity(3));
-		itemsToSpawn.add( Generator.random(Generator.Category.TAILSMAN));
 		itemsToSpawn.add( new Bomb() );
+		itemsToSpawn.add( new Spellcard() );
+		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
+		itemsToSpawn.add( Generator.random(Generator.Category.TAILSMAN));
 		super.create();
 	}
 	

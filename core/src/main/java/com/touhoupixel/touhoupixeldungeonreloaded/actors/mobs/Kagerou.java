@@ -106,7 +106,7 @@ public class Kagerou extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && Random.Int( 2 ) == 0) {
+            if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int( 2 ) == 0) {
                 new AlarmTrap().set(enemy.pos).activate();
             }
 
