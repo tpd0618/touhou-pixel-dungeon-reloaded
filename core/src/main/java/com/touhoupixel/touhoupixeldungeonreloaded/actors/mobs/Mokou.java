@@ -6,7 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MokouSprite;
 import com.watabou.utils.Random;
 
@@ -20,7 +20,7 @@ public class Mokou extends Mob {
         EXP = 6;
         maxLvl = 30;
 
-        loot = new LifeFragement();
+        loot = new LifeFragment();
         lootChance = 0.05f;
 
         immunities.add( Fire.class );

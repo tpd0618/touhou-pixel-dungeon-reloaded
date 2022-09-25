@@ -1,7 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KoakumaSprite;
 import com.watabou.utils.Random;
 
@@ -17,7 +17,7 @@ public class Koakuma extends Mob {
 
         baseSpeed = 2f;
 
-        loot = new SpellcardFragement();
+        loot = new SpellcardFragment();
         lootChance = 0.04f;
     }
 

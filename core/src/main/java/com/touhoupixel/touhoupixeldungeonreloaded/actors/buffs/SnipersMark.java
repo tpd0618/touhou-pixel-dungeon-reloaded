@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -102,7 +102,7 @@ public class SnipersMark extends FlavourBuff implements ActionIndicator.Action {
 	
 	@Override
 	public String actionName() {
-		SpiritBow bow = Dungeon.hero.belongings.getItem(SpiritBow.class);
+		Miracle bow = Dungeon.hero.belongings.getItem(Miracle.class);
 
 		if (bow == null) return null;
 
@@ -127,10 +127,10 @@ public class SnipersMark extends FlavourBuff implements ActionIndicator.Action {
 		Hero hero = Dungeon.hero;
 		if (hero == null) return;
 		
-		SpiritBow bow = hero.belongings.getItem(SpiritBow.class);
+		Miracle bow = hero.belongings.getItem(Miracle.class);
 		if (bow == null) return;
 		
-		SpiritBow.SpiritArrow arrow = bow.knockArrow();
+		Miracle.SpiritArrow arrow = bow.knockArrow();
 		if (arrow == null) return;
 		
 		Char ch = (Char) Actor.findById(object);

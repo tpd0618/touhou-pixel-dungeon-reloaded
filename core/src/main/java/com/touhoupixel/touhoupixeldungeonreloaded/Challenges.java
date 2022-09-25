@@ -39,8 +39,8 @@ public class Challenges {
 	public static final int EIRIN_UNHOLY_HEAL 	     = 1024;
 	public static final int KAGUYA_FULL_MEAL 	     = 2048;
 	public static final int FLANDRE_GAZE             = 4096;
-	public static final int JUNKO_PURE_HELL          = 8192;
-	public static final int CURSED_HOURAI_ELIXIR     = 16384;
+	public static final int FATEFUL                  = 8192;
+	public static final int JUNKO_PURE_HELL          = 16384;
 
 	public static final int MAX_VALUE                = 32767;
 
@@ -58,8 +58,8 @@ public class Challenges {
 			"eirin_unholy_heal",
 			"kaguya_full_meal",
 			"flandre_gaze",
-			"junko_pure_hell",
-			"cursed_hourai_elixir"
+			"fateful",
+			"junko_pure_hell"
 	};
 
 	public static final int[] MASKS = {
@@ -67,7 +67,7 @@ public class Challenges {
 			REISEN_ILLUSION, TENSHI_EARTHQUAKE, KEIKI_BORDER,
 			RINGING_BLOOM, NITORI_KAPPA_KEY, SPRECHCHOR,
 			TIME_EATER, EIRIN_UNHOLY_HEAL, KAGUYA_FULL_MEAL,
-			FLANDRE_GAZE, JUNKO_PURE_HELL, CURSED_HOURAI_ELIXIR
+			FLANDRE_GAZE, FATEFUL, JUNKO_PURE_HELL
 	};
 
 	public static int activeChallenges(){

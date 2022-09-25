@@ -1,25 +1,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KosuzuSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class BossKosuzu extends Mob {

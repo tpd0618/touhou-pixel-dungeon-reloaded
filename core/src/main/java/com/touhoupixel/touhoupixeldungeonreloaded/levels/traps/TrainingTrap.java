@@ -35,7 +35,7 @@ public class TrainingTrap extends Trap {
 
 	{
 		color = GREY;
-		shape = LARGE_DOT;
+		shape = DIAMOND;
 
 		avoidsHallways = false;
 		canBeHidden = false;
@@ -50,7 +50,7 @@ public class TrainingTrap extends Trap {
 			} else c.HP = 1;
 		}
 
-			GLog.w(Messages.get(this, "alarm"));
+			GLog.w(Messages.get(this, "train"));
 			GameScene.flash(0x80FFFFFF);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}

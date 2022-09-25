@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.InventoryScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -65,7 +65,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 	}
 
 	public static boolean enchantable( Item item ){
-		return (item instanceof MeleeWeapon || item instanceof SpiritBow || item instanceof Armor);
+		return (item instanceof MeleeWeapon || item instanceof Miracle || item instanceof Armor);
 	}
 
 	private void confirmCancelation() {

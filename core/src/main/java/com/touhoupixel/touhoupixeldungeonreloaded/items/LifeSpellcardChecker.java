@@ -68,6 +68,7 @@ public class LifeSpellcardChecker extends Item {
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats3", Statistics.lifefragment);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats4", Statistics.spellcard);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats5", Statistics.spellcardfragment);
+		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats6", Statistics.playercorruption);
 
 		return info;
 	}

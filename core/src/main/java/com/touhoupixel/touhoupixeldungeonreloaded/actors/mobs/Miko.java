@@ -3,7 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MikoSprite;
 import com.watabou.utils.Random;
 
@@ -17,7 +17,7 @@ public class Miko extends Mob {
         EXP = 9;
         maxLvl = 50;
 
-        loot = new LifeFragement();
+        loot = new LifeFragment();
         lootChance = 0.05f;
     }
 

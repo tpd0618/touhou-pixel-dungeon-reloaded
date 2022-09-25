@@ -614,19 +614,33 @@ public class Dungeon {
 	}
 
 	public static boolean posNeeded() {
-		int asLeftThisSet = 2 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 2);
-		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
+		//2 POS each floor set
+		int posLeftThisSet = 2 - (LimitedDrops.STRENGTH_POTIONS.count - (depth / 5) * 2);
+		if (posLeftThisSet <= 0 || Dungeon.depth > 90) return false;
 
 		int floorThisSet = (depth % 5);
-		return Random.Int(5 - floorThisSet) < asLeftThisSet;
+
+		//pos drops every two floors, (numbers 1-2, and 3-4) with a 50% chance for the earlier one each time.
+		int targetPOSLeft = 2 - floorThisSet/2;
+		if (floorThisSet % 2 == 1 && Random.Int(2) == 0) targetPOSLeft --;
+
+		if (targetPOSLeft < posLeftThisSet) return true;
+		else return false;
+
 	}
 
 	public static boolean souNeeded() {
 		int souLeftThisSet;
-		souLeftThisSet = 3 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 3);
+		//3 SOU each floor set, 1.5 (rounded) on forbidden runes challenge
+		if (isChallenged(Challenges.FATEFUL)){
+			souLeftThisSet = Math.round(1.5f - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 1.5f));
+		} else {
+			souLeftThisSet = 3 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 3);
+		}
 		if (souLeftThisSet <= 0 || Dungeon.depth > 90) return false;
 
 		int floorThisSet = (depth % 5);
+		//chance is floors left / scrolls left
 		return Random.Int(5 - floorThisSet) < souLeftThisSet;
 	}
 

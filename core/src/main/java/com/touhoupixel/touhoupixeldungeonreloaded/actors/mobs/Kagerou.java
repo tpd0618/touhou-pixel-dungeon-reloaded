@@ -21,26 +21,16 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragement;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KagerouSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MokouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
@@ -56,7 +46,7 @@ public class Kagerou extends Mob implements Callback {
         EXP = 6;
         maxLvl = 30;
 
-        loot = new SpellcardFragement();
+        loot = new SpellcardFragment();
         lootChance = 0.05f;
     }
 

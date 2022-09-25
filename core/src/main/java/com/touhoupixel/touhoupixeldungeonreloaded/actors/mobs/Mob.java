@@ -46,7 +46,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
@@ -60,7 +59,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Value;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
@@ -68,8 +66,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
@@ -671,7 +668,7 @@ public abstract class Mob extends Char {
 			Statistics.sneakAttacks++;
 			//TODO this is somewhat messy, it would be nicer to not have to manually handle delays here
 			// playing the strong hit sound might work best as another property of weapon?
-			if (Dungeon.hero.belongings.weapon() instanceof SpiritBow.SpiritArrow
+			if (Dungeon.hero.belongings.weapon() instanceof Miracle.SpiritArrow
 					|| Dungeon.hero.belongings.weapon() instanceof Dart){
 				Sample.INSTANCE.playDelayed(Assets.Sounds.HIT_STRONG, 0.125f);
 			} else {
@@ -777,13 +774,13 @@ public abstract class Mob extends Char {
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			if (Random.Int(2) == 0) {
-				Dungeon.level.drop(new Value(), pos).sprite.drop();
+				Statistics.value += 1;
 			}
 			if (Random.Int(2) == 0) {
-				Dungeon.level.drop(new Value(), pos).sprite.drop();
+				Statistics.value += 1;;
 			}
 			if (Random.Int(2) == 0) {
-				Dungeon.level.drop(new Value(), pos).sprite.drop();
+				Statistics.value += 1;
 			}
 		}
 

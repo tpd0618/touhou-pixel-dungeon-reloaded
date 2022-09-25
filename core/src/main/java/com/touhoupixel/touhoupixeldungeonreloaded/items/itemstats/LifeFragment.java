@@ -32,19 +32,19 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class SpellcardFragement extends Item {
+public class LifeFragment extends Item {
 
 	private static final String TXT_VALUE	= "%+d";
 
 	{
-		image = ItemSpriteSheet.SPELLCARD_FRAGMENT;
+		image = ItemSpriteSheet.LIFE_FRAGMENT;
 	}
 
-	public SpellcardFragement() {
+	public LifeFragment() {
 		this( 1 );
 	}
 
-	public SpellcardFragement(int value ) {
+	public LifeFragment(int value ) {
 		this.quantity = value;
 	}
 	
@@ -56,7 +56,7 @@ public class SpellcardFragement extends Item {
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
 
-		Statistics.spellcardfragment += 1;
+		Statistics.lifefragment += 1;
 
 		GameScene.pickUp( this, pos );
 		hero.spendAndNext( TIME_TO_PICK_UP );

@@ -24,10 +24,9 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
@@ -51,7 +50,7 @@ public class Aunn extends Mob {
         WANDERING = new Wandering();
         state = SLEEPING;
 
-        loot = SpellcardFragement.class;
+        loot = SpellcardFragment.class;
         lootChance = 0.1f;
     }
 

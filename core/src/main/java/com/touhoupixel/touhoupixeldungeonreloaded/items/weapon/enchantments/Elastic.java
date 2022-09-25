@@ -23,7 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -51,7 +51,7 @@ public class Elastic extends Weapon.Enchantment {
 			WandOfBlastWave.throwChar(defender,
 					trajectory,
 					2,
-					!(weapon instanceof MissileWeapon || weapon instanceof SpiritBow),
+					!(weapon instanceof MissileWeapon || weapon instanceof Miracle),
 					true,
 					getClass());
 		}

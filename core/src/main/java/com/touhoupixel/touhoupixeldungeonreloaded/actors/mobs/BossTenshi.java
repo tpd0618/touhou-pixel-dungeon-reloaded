@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
@@ -23,7 +23,7 @@ public class BossTenshi extends Mob {
         EXP = 14;
         maxLvl = 30;
 
-        loot = new LifeFragement();
+        loot = new LifeFragment();
         lootChance = 0.04f;
     }
 

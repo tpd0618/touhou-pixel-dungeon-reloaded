@@ -45,7 +45,7 @@ public class Mystia extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(5) == 0 && enemy instanceof Hero) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             BArray.setFalse(Dungeon.level.visited);
             BArray.setFalse(Dungeon.level.mapped);

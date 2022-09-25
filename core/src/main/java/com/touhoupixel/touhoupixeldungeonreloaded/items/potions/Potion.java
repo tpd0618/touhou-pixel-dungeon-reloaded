@@ -271,16 +271,6 @@ public class Potion extends Item {
 				if (Dungeon.isChallenged(Challenges.JUNKO_PURE_HELL)) {
 					new HecatiaTrap().set(hero.pos).activate();
 				}
-
-				for (int i : PathFinder.NEIGHBOURS9) {
-					for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-						if (Dungeon.isChallenged(Challenges.CURSED_HOURAI_ELIXIR) && mob.pos == hero.pos + i) {
-							Statistics.playercorruption += 1;
-							Sample.INSTANCE.play( Assets.Sounds.CURSED );
-							GLog.w(Messages.get(this, "corruption"));
-						}
-					}
-				}
 			}
 		}
 	}

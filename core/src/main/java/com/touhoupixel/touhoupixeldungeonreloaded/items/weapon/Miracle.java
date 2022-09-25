@@ -49,7 +49,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class SpiritBow extends Weapon {
+public class Miracle extends Weapon {
 
 	public static final String AC_SHOOT		= "SHOOT";
 
@@ -118,7 +118,7 @@ public class SpiritBow extends Weapon {
 	public String info() {
 		String info = desc();
 
-		info += "\n\n" + Messages.get( SpiritBow.class, "stats",
+		info += "\n\n" + Messages.get( Miracle.class, "stats",
 				Math.round(augment.damageFactor(min())),
 				Math.round(augment.damageFactor(max())),
 				STRReq());
@@ -164,17 +164,17 @@ public class SpiritBow extends Weapon {
 
 	@Override
 	public int min(int lvl) {
-		int dmg = 1 + Dungeon.hero.lvl/5
+		int dmg = 1 + 2*Dungeon.hero.lvl
 				+ RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
-				+ (curseInfusionBonus ? 1 + Dungeon.hero.lvl/30 : 0);
+				+ (curseInfusionBonus ? 1 + 2*Dungeon.hero.lvl/5 : 0);
 		return Math.max(0, dmg);
 	}
 
 	@Override
 	public int max(int lvl) {
-		int dmg = 6 + (int)(Dungeon.hero.lvl/2.5f)
+		int dmg = 6 + Dungeon.hero.lvl
 				+ 2*RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
-				+ (curseInfusionBonus ? 2 + Dungeon.hero.lvl/15 : 0);
+				+ (curseInfusionBonus ? 2 + 2*Dungeon.hero.lvl/3 : 0);
 		return Math.max(0, dmg);
 	}
 
@@ -286,27 +286,27 @@ public class SpiritBow extends Weapon {
 
 		@Override
 		public int damageRoll(Char owner) {
-			return SpiritBow.this.damageRoll(owner);
+			return Miracle.this.damageRoll(owner);
 		}
 
 		@Override
 		public boolean hasEnchant(Class<? extends Enchantment> type, Char owner) {
-			return SpiritBow.this.hasEnchant(type, owner);
+			return Miracle.this.hasEnchant(type, owner);
 		}
 
 		@Override
 		public int proc(Char attacker, Char defender, int damage) {
-			return SpiritBow.this.proc(attacker, defender, damage);
+			return Miracle.this.proc(attacker, defender, damage);
 		}
 
 		@Override
 		public float delayFactor(Char user) {
-			return SpiritBow.this.delayFactor(user);
+			return Miracle.this.delayFactor(user);
 		}
 
 		@Override
 		public float accuracyFactor(Char owner) {
-			if (sniperSpecial && SpiritBow.this.augment == Augment.DAMAGE){
+			if (sniperSpecial && Miracle.this.augment == Augment.DAMAGE){
 				return Float.POSITIVE_INFINITY;
 			} else {
 				return super.accuracyFactor(owner);
@@ -315,7 +315,7 @@ public class SpiritBow extends Weapon {
 
 		@Override
 		public int STRReq(int lvl) {
-			return SpiritBow.this.STRReq(lvl);
+			return Miracle.this.STRReq(lvl);
 		}
 
 		@Override
@@ -328,7 +328,7 @@ public class SpiritBow extends Weapon {
 				if (!curUser.shoot( enemy, this )) {
 					Splash.at(cell, 0xCC99FFFF, 1);
 				}
-				if (sniperSpecial && SpiritBow.this.augment != Augment.SPEED) sniperSpecial = false;
+				if (sniperSpecial && Miracle.this.augment != Augment.SPEED) sniperSpecial = false;
 			}
 		}
 
@@ -342,8 +342,8 @@ public class SpiritBow extends Weapon {
 		@Override
 		public void cast(final Hero user, final int dst) {
 			final int cell = throwPos( user, dst );
-			SpiritBow.this.targetPos = cell;
-			if (sniperSpecial && SpiritBow.this.augment == Augment.SPEED){
+			Miracle.this.targetPos = cell;
+			if (sniperSpecial && Miracle.this.augment == Augment.SPEED){
 				if (flurryCount == -1) flurryCount = 3;
 
 				final Char enemy = Actor.findChar( cell );
@@ -407,7 +407,7 @@ public class SpiritBow extends Weapon {
 		}
 		@Override
 		public String prompt() {
-			return Messages.get(SpiritBow.class, "prompt");
+			return Messages.get(Miracle.class, "prompt");
 		}
 	};
 }

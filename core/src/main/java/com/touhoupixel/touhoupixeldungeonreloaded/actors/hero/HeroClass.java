@@ -31,7 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.SpellcardCaster;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
@@ -50,7 +49,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantH
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SanaeExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
@@ -179,7 +178,7 @@ public enum HeroClass {
 	private static void initSanae( Hero hero ) {
 
 		(hero.belongings.weapon = new SanaeExorcismRod()).identify();
-		SpiritBow bow = new SpiritBow();
+		Miracle bow = new Miracle();
 		bow.identify().collect();
 
 		Dungeon.quickslot.setSlot(0, bow);

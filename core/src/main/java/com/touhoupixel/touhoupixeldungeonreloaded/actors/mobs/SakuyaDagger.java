@@ -1,12 +1,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakuyaDaggerSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -42,22 +41,9 @@ public class SakuyaDagger extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy.HP > 1){
-            switch (Random.Int(3)) {
-                case 0:
-                default:
-                    enemy.damage(4, this);
-                    break;
-                case 1:
-                    enemy.damage(5, this);
-                    break;
-                case 2:
-                    enemy.damage(6, this);
-                    break;
-            }
-        }
-        super.die(this);
-        Statistics.enemiesSlain -= 1;
+        Buff.affect(enemy, Bleeding.class).set(3);
+        destroy();
+        sprite.die();
         Sample.INSTANCE.play( Assets.Sounds.BLAST );
         return damage;
     }

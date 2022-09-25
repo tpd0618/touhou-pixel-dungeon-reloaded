@@ -4,7 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -19,7 +19,7 @@ public class Yuugi extends Mob {
         EXP = 14;
         maxLvl = 30;
 
-        loot = new LifeFragement();
+        loot = new LifeFragment();
         lootChance = 0.04f;
     }
 

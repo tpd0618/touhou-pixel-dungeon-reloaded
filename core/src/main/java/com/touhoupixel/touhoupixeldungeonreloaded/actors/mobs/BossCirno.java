@@ -1,21 +1,15 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CirnoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class BossCirno extends Mob {

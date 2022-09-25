@@ -1,16 +1,9 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SakuyaDaggerTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakuyaSprite;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Sakuya extends Mob {

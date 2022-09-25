@@ -1334,8 +1334,8 @@ public class Hero extends Char {
 		}
 
 		if (Statistics.card47) {
-			Statistics.power -= damage / 3;
-		} else Statistics.power -= damage / 2;
+			Statistics.power -= belongings.armor().proc( enemy, this, damage ) / 3;
+		} else Statistics.power -= belongings.armor().proc( enemy, this, damage ) / 2;
 
 		if (belongings.armor() != null) {
 			damage = belongings.armor().proc( enemy, this, damage );

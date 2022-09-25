@@ -27,7 +27,7 @@ public class Reisen extends Mob {
 
     @Override
     public int defenseSkill( Char enemy ) {
-        if (Random.Int(4) == 0 && enemy instanceof Hero) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.prolong( enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/10f);
             BArray.setFalse(Dungeon.level.visited);
             BArray.setFalse(Dungeon.level.mapped);

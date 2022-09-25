@@ -1,17 +1,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragement;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.LarvaSprite;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Larva extends Mob {
@@ -48,8 +42,8 @@ public class Larva extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(5) == 0) {
-            Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION/5f);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
+            Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION/2f);
         }
         return damage;
     }

@@ -46,7 +46,7 @@ public class Joon extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int( 5 ) == 0 && enemy instanceof Hero) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             if (Dungeon.gold > 10000) {
                 Dungeon.gold -= 10000;
                 PotionOfHealing poh = new PotionOfHealing();

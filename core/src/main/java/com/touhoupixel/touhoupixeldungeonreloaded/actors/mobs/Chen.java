@@ -4,7 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragement;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChenSprite;
 import com.watabou.utils.Random;
 
@@ -27,7 +27,7 @@ public class Chen extends Mob {
         harmfulBuffs.add( Chill.class );
         harmfulBuffs.add( Frost.class );
 
-        loot = new SpellcardFragement();
+        loot = new SpellcardFragment();
         lootChance = 0.125f;
     }
 

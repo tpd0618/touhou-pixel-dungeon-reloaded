@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.MetalShard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.SpiritBow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
@@ -58,7 +58,7 @@ public class CurseInfusion extends InventorySpell {
 		Sample.INSTANCE.play(Assets.Sounds.CURSED);
 		
 		item.cursed = true;
-		if (item instanceof MeleeWeapon || item instanceof SpiritBow) {
+		if (item instanceof MeleeWeapon || item instanceof Miracle) {
 			Weapon w = (Weapon) item;
 			if (w.enchantment != null) {
 				w.enchant(Weapon.Enchantment.randomCurse(w.enchantment.getClass()));

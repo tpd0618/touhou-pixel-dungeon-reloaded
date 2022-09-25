@@ -1,5 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DestroyArmorTrap;
@@ -38,7 +39,7 @@ public class Kasen extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(3) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             new DestroyArmorTrap().set(target).activate();
         }
         return damage;
