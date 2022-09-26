@@ -268,9 +268,6 @@ public class Potion extends Item {
 					
 				} else {
 					drink( hero );
-				if (Dungeon.isChallenged(Challenges.JUNKO_PURE_HELL)) {
-					new HecatiaTrap().set(hero.pos).activate();
-				}
 			}
 		}
 	}

@@ -40,7 +40,7 @@ public class Hijiri extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(3) == 0) {
-            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/2f);
+            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/4f);
         }
         return damage;
     }

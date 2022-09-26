@@ -56,7 +56,7 @@ public class MarisaSprite extends MobSprite {
 		run.frames( frames, 5, 6 );
 
 		attack = new Animation( 8, false );
-		attack.frames( frames, 4, 3 );
+		attack.frames( frames, 3, 4 );
 		zap = attack.clone();
 
 		die = new Animation( 8, false );

@@ -179,6 +179,7 @@ public class Shou extends Mob {
 					CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
 					Dungeon.gold /= 2;
 					Dungeon.energy /= 2;
+					GLog.w(Messages.get(this, "halve"));
 				}
 
 				if (Dungeon.level.heroFOV[pos]) {

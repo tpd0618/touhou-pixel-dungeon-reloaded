@@ -103,7 +103,7 @@ public class Ichirin extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && Random.Int( 2 ) == 0) {
+            if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int( 2 ) == 0) {
                 Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
                 //trim it to just be the part that goes past them
                 trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);

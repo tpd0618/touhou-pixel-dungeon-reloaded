@@ -182,11 +182,7 @@ public abstract class Scroll extends Item {
 				curUser = hero;
 				curItem = detach( hero.belongings.backpack );
 				doRead();
-				if (Dungeon.isChallenged(Challenges.JUNKO_PURE_HELL)) {
-					new HecatiaTrap().set(hero.pos).activate();
-				}
 			}
-			
 		}
 	}
 	

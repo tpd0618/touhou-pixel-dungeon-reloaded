@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,34 +22,63 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Ichirin;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Kagerou;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 
 public class IchirinSprite extends MobSprite {
 
 	public IchirinSprite() {
 		super();
-		
+
 		texture( Assets.Sprites.ICHIRIN );
 
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
-		
-		idle = new Animation( 15, true );
-		idle.frames( frames, 0, 1, 2, 3, 4, 5 );
-		
-		run = new Animation( 15, true );
-		run.frames( frames, 0, 1, 2, 3, 4, 5 );
-		
-		attack = new Animation( 20, false );
-		attack.frames( frames, 6, 7, 8, 9 );
-		
-		die = new Animation( 15, false );
-		die.frames( frames, 10, 11, 12, 13, 14 );
-		
+
+		idle = new MovieClip.Animation( 2, true );
+		idle.frames( frames, 0, 0, 0, 1, 0, 0, 1, 1 );
+
+		run = new MovieClip.Animation( 15, true );
+		run.frames( frames, 0, 2, 3, 4 );
+
+		attack = new MovieClip.Animation( 12, false );
+		attack.frames( frames, 0, 5, 6 );
+
+		zap = attack.clone();
+
+		die = new MovieClip.Animation( 15, false );
+		die.frames( frames, 0, 7, 8, 8, 9, 10 );
+
 		play( idle );
 	}
-	
+
+	public void zap( int cell ) {
+
+		turnTo( ch.pos , cell );
+		play( zap );
+
+		MagicMissile.boltFromChar( parent,
+				MagicMissile.SHADOW,
+				this,
+				cell,
+				new Callback() {
+					@Override
+					public void call() {
+						((Ichirin)ch).onZapComplete();
+					}
+				} );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
+	}
+
 	@Override
-	public int blood() {
-		return 0xFF8BA077;
+	public void onComplete( MovieClip.Animation anim ) {
+		if (anim == zap) {
+			idle();
+		}
+		super.onComplete( anim );
 	}
 }

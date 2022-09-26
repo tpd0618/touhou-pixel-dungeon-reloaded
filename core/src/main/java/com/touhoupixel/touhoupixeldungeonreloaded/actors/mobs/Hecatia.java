@@ -45,12 +45,6 @@ public class Hecatia extends Mob {
 
 		EXP = 0;
 		maxLvl = 99;
-
-		loot = new ScrollOfChallenge();
-		lootChance = 0.01f;
-
-		properties.add(Property.GOD);
-		properties.add(Property.WARP);
 	}
 
 	@Override

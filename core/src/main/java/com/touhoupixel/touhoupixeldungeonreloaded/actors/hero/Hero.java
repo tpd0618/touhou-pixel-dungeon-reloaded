@@ -47,14 +47,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
@@ -86,14 +84,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap.Type;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.HecatiaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KirakiraBandArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MorfonicaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.NitoriArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SharkArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ToyohimeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YorihimeArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Brimstone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Viscosity;
@@ -1127,13 +1123,13 @@ public class Hero extends Char {
 			Statistics.timetrackbuff += 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_KAPPA_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, MoveDetect.class, MoveDetect.DURATION*2f);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KAPPA_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, Silence.class, Silence.DURATION);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KAPPA_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, OneDamage.class, OneDamage.DURATION*5f);
 		}
 

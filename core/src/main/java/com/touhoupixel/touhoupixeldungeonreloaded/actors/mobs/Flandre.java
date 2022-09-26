@@ -1,12 +1,15 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.FlandreSprite;
-import com.watabou.noosa.audio.Sample;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HijiriSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakiSprite;
 import com.watabou.utils.Random;
 
 public class Flandre extends Mob {
@@ -14,23 +17,23 @@ public class Flandre extends Mob {
     {
         spriteClass = FlandreSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = 175;
+        defenseSkill = 42;
+        EXP = 9;
+        maxLvl = 50;
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        loot = new PotionOfHealing();
+        lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(20, 24);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 47;
     }
 
     @Override
@@ -41,11 +44,10 @@ public class Flandre extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            if (Dungeon.hero.lvl != 99 && hero.HT > 3 && hero.HP > 3 && Random.Int(4) == 0) {
+                hero.HT /= 2;
+                hero.HP /= 2;
             }
         }
         return damage;

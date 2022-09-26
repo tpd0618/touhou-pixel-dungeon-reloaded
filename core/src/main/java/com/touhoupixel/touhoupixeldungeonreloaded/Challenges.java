@@ -33,7 +33,7 @@ public class Challenges {
 	public static final int TENSHI_EARTHQUAKE		 = 16;
 	public static final int KEIKI_BORDER             = 32;
 	public static final int RINGING_BLOOM 		     = 64;
-	public static final int NITORI_KAPPA_KEY         = 128;
+	public static final int NITORI_SHINY_KEY         = 128;
 	public static final int SPRECHCHOR               = 256;
 	public static final int TIME_EATER 	             = 512;
 	public static final int EIRIN_UNHOLY_HEAL 	     = 1024;
@@ -52,7 +52,7 @@ public class Challenges {
 			"tenshi_earthquake",
 			"keiki_border",
 			"ringing_bloom",
-			"nitori_kappa_key",
+			"nitori_shiny_key",
 			"sprechchor",
 			"time_eater",
 			"eirin_unholy_heal",
@@ -65,7 +65,7 @@ public class Challenges {
 	public static final int[] MASKS = {
 			YUYUKO_DEADLY_TRAP, REBIRTH_DAY, EIKI_JUDGEMENT,
 			REISEN_ILLUSION, TENSHI_EARTHQUAKE, KEIKI_BORDER,
-			RINGING_BLOOM, NITORI_KAPPA_KEY, SPRECHCHOR,
+			RINGING_BLOOM, NITORI_SHINY_KEY, SPRECHCHOR,
 			TIME_EATER, EIRIN_UNHOLY_HEAL, KAGUYA_FULL_MEAL,
 			FLANDRE_GAZE, FATEFUL, JUNKO_PURE_HELL
 	};

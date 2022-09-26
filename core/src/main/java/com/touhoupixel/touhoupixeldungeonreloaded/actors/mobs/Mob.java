@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreMark;
@@ -600,7 +601,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Random.Int(2) == 0 && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
+		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Random.Int(3) == 0 && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10000f);
 		}
 		return Messages.get(this, "def_verb");
@@ -638,14 +639,13 @@ public abstract class Mob extends Char {
 			Buff.prolong(this, FlandreMark.class, FlandreMark.DURATION);
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_KAPPA_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
-			Buff.prolong(this, Might.class, Might.DURATION);
-			Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
+			Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KAPPA_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0) {
+		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0) {
 			Buff.prolong(this, Hisou.class, Hisou.DURATION);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KAPPA_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
 			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
 		}
 

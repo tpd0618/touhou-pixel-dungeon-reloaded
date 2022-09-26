@@ -631,7 +631,7 @@ public class Dungeon {
 
 	public static boolean souNeeded() {
 		int souLeftThisSet;
-		//3 SOU each floor set, 1.5 (rounded) on forbidden runes challenge
+		//3 SOU each floor set, 1.5 (rounded) on fateful... challenge
 		if (isChallenged(Challenges.FATEFUL)){
 			souLeftThisSet = Math.round(1.5f - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 1.5f));
 		} else {

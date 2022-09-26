@@ -85,7 +85,7 @@ public class NitoDismantleHammer extends Item {
                     protected void onSelect(int index) {
                         switch (index) {
                             case 0:
-                                curUser.spendAndNext(1f);
+                                curUser.spendAndNext(0f);
                                 break;
                             case 1:
                                 GameScene.selectItem(itemSelector);
