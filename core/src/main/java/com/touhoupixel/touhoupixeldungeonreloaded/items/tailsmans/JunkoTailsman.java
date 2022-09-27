@@ -3,6 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -17,7 +18,7 @@ public class JunkoTailsman extends Tailsman {
         Char ch = Actor.findChar( cell );
 
         if (ch != null){
-            Buff.prolong( ch, OneDefDamage.class, OneDefDamage.DURATION/4f );
+            Buff.prolong( ch, HighStress.class, HighStress.DURATION );
         }
     }
 }

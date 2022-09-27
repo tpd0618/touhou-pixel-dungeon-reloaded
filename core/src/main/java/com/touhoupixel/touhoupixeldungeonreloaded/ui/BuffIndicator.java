@@ -107,11 +107,15 @@ public class BuffIndicator extends Component {
 	public static final int HISOU       = 60;
 	public static final int HIGHSTRESS  = 61;
 	public static final int ANTIHEAL    = 63;
+	public static final int DANMAKU_DAMAGE_INCREASE    = 65;
 	public static final int MOVEDETECT    = 66;
 	public static final int ANTISNEAKATTACK    = 67;
 	public static final int YUUKARAGE         = 72;
 	public static final int ONEDAMAGE         = 74;
 	public static final int ONEDEFDAMAGE         = 75;
+	public static final int FLAME_POWER         = 77;
+	public static final int FROST_POWER         = 78;
+	public static final int REACH_INCREASE         = 79;
 	public static final int DOUBLERAINBOW         = 82;
 	public static final int POTION_FREEZE = 83;
 	public static final int REBIRTH         = 91;

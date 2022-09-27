@@ -187,7 +187,9 @@ abstract public class MissileWeapon extends Weapon {
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		if (Dungeon.isChallenged(Challenges.JUNKO_PURE_HELL)) {
-			new HecatiaTrap().set(attacker.pos).activate();
+			if (!(Dungeon.depth == 5 || Dungeon.depth == 10 || Dungeon.depth == 15 || Dungeon.depth == 20 || Dungeon.depth == 25 || Dungeon.depth == 30 || Dungeon.depth == 35 || Dungeon.depth == 40 || Dungeon.depth == 45 || Dungeon.depth == 50 || Dungeon.depth == 55 || Dungeon.depth == 60 || Dungeon.depth == 65 || Dungeon.depth == 70 || Dungeon.depth == 75 || Dungeon.depth == 80 || Dungeon.depth == 85 || Dungeon.depth == 90 || Dungeon.depth == 94 || Dungeon.depth == 98)){
+				new HecatiaTrap().set(attacker.pos).activate();
+			}
 		}
 		return super.proc(attacker, defender, damage);
 	}

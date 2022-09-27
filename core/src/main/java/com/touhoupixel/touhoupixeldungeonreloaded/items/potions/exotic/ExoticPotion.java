@@ -25,22 +25,30 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCirno;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanDamageIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFlamePower;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrostPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightReverse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReach;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
@@ -102,6 +110,30 @@ public class ExoticPotion extends Potion {
 
 		regToExo.put(PotionOfLightHealing.class, PotionOfChimata.class);
 		exoToReg.put(PotionOfChimata.class, PotionOfLightHealing.class);
+
+		regToExo.put(PotionOfCursedBlow.class, PotionOfExtremeConfusion.class);
+		exoToReg.put(PotionOfExtremeConfusion.class, PotionOfCursedBlow.class);
+
+		regToExo.put(PotionOfYingYang.class, PotionOfReverseYingYang.class);
+		exoToReg.put(PotionOfReverseYingYang.class, PotionOfYingYang.class);
+
+		regToExo.put(PotionOfFlamePower.class, PotionOfEnhanceFlame.class);
+		exoToReg.put(PotionOfEnhanceFlame.class, PotionOfFlamePower.class);
+
+		regToExo.put(PotionOfFrostPower.class, PotionOfEnhanceFrost.class);
+		exoToReg.put(PotionOfEnhanceFrost.class, PotionOfFrostPower.class);
+
+		regToExo.put(PotionOfReach.class, PotionOfMokou.class);
+		exoToReg.put(PotionOfMokou.class, PotionOfReach.class);
+
+		regToExo.put(PotionOfDanDamageIncrease.class, PotionOfHisou.class);
+		exoToReg.put(PotionOfHisou.class, PotionOfDanDamageIncrease.class);
+
+		regToExo.put(PotionOfCirno.class, PotionOfDoubleRainbow.class);
+		exoToReg.put(PotionOfDoubleRainbow.class, PotionOfCirno.class);
+
+		regToExo.put(PotionOfLightReverse.class, PotionOfMaxSpeed.class);
+		exoToReg.put(PotionOfMaxSpeed.class, PotionOfLightReverse.class);
 	}
 	
 	@Override

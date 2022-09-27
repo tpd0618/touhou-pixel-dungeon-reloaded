@@ -24,16 +24,14 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Stylus;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRation;
@@ -43,7 +41,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMap
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.TippedDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -236,7 +233,7 @@ public class ShopRoom extends SpecialRoom {
 				rare = Generator.random( Generator.Category.ARTIFACT );
 				break;
 			default:
-				rare = new Stylus();
+				rare = new PatchouliCard();
 		}
 		rare.cursed = false;
 		rare.cursedKnown = true;

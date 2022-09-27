@@ -41,13 +41,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.TailsmanHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCirno;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightReverse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReach;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfReverseYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.JunkoTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
@@ -89,9 +97,9 @@ public enum HeroClass {
 
 		//test//
 
-		PotionOfHealing poh = new PotionOfHealing();
-		poh.quantity(5).collect();
-		Dungeon.quickslot.setSlot(2, poh);
+		PotionOfLightHealing polh = new PotionOfLightHealing();
+		polh.collect();
+		Dungeon.quickslot.setSlot(2, polh);
 
 		SpellcardCaster spellcardcaster = new SpellcardCaster();
 		spellcardcaster.collect();
@@ -104,7 +112,7 @@ public enum HeroClass {
 		new VelvetPouch().collect();
 		new CardHolder().collect();
 
-		new PotionOfHealing().identify();
+		new PotionOfLightHealing().identify();
 		new PotionOfStrength().identify();
 		new ScrollOfUpgrade().identify();
 		new ScrollOfEnchantWeapon().identify();

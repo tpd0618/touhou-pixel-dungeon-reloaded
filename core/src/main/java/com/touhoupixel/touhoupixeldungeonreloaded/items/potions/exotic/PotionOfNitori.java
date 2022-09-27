@@ -51,7 +51,7 @@ public class PotionOfNitori extends ExoticPotion {
 
 		Statistics.power += 100;
 		Statistics.lifefragment += 1;
-		Buff.prolong(hero, Invisibility.class, Invisibility.DURATION);
+		Buff.prolong(hero, Invisibility.class, Invisibility.DURATION/4f);
 		Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
 	}
 }

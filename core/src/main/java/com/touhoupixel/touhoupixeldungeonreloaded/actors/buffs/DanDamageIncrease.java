@@ -19,24 +19,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class PotionOfTriplespeed extends ExoticPotion {
-	
+public class DanDamageIncrease extends FlavourBuff {
+
 	{
-		icon = ItemSpriteSheet.Icons.POTION_TRIPLESPEED;
+		type = buffType.POSITIVE;
+		announced = true;
+	}
+
+	public static final float DURATION = 50f;
+
+	@Override
+	public int icon() {
+		return BuffIndicator.DANMAKU_DAMAGE_INCREASE;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
 	}
 	
-	@Override
-	public void apply(Hero hero) {
-		identify();
-		Buff.affect(hero, Triplespeed.class, Triplespeed.DURATION);
-	}
 }

@@ -19,37 +19,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Random;
 
-public class PotionOfLightHealing extends Potion {
-
+public class PotionOfMokou extends ExoticPotion {
+	
 	{
-		icon = ItemSpriteSheet.Icons.POTION_LIGHTHEALING;
-
-		bones = true;
+		icon = ItemSpriteSheet.Icons.POTION_TRIPLESPEED;
 	}
-
+	
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		if (hero.buff(AntiHeal.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-		} else hero.HP = Math.min(hero.HP + 50, hero.HT);
-		if (hero.buff(AntiHeal.class) == null) {
-			GLog.p(Messages.get(this, "lightheal"));
-		}
-	}
-
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		if (Random.Int(2) == 0) {
+			Statistics.life += 1;
+		} else Statistics.lifefragment += 4;
+		GLog.p(Messages.get(this, "mokou"));
 	}
 }

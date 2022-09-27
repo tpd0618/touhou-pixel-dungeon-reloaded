@@ -2,6 +2,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlamePower;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
@@ -11,6 +15,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
 import com.watabou.noosa.audio.Sample;
@@ -45,7 +50,9 @@ public class NitoDismantleHammer extends Item {
         super.execute(hero, action);
 
         if (action.equals(AC_DISMANTLE)) {
-            GameScene.selectItem(itemSelector);
+            if (hero.buff(Degrade.class) != null || hero.buff(SuperDegrade.class) != null) {
+                GLog.i( Messages.get(this, "degrade") );
+            } else GameScene.selectItem(itemSelector);
         }
     }
 

@@ -110,6 +110,22 @@ public class Potion extends Item {
 			put("yellow",ItemSpriteSheet.POTION_YELLOW);
 			put("spectral",ItemSpriteSheet.POTION_SPECTRAL);
 			put("green",ItemSpriteSheet.POTION_GREEN);
+			put("greentea_crimson",ItemSpriteSheet.GREENTEA_POTION_CRIMSON);
+			put("greentea_amber",ItemSpriteSheet.GREENTEA_POTION_AMBER);
+			put("greentea_golden",ItemSpriteSheet.GREENTEA_POTION_GOLDEN);
+			put("greentea_jade",ItemSpriteSheet.GREENTEA_POTION_JADE);
+			put("greentea_turquoise",ItemSpriteSheet.GREENTEA_POTION_TURQUOISE);
+			put("greentea_azure",ItemSpriteSheet.GREENTEA_POTION_AZURE);
+			put("greentea_indigo",ItemSpriteSheet.GREENTEA_POTION_INDIGO);
+			put("greentea_magenta",ItemSpriteSheet.GREENTEA_POTION_MAGENTA);
+			//put("greentea_bistre",ItemSpriteSheet.GREENTEA_POTION_BISTRE);
+			//put("greentea_charcoal",ItemSpriteSheet.GREENTEA_POTION_CHARCOAL);
+			//put("greentea_silver",ItemSpriteSheet.GREENTEA_POTION_SILVER);
+			//put("greentea_ivory",ItemSpriteSheet.GREENTEA_POTION_IVORY);
+			//put("ggreentea_pink",ItemSpriteSheet.GREENTEA_POTION_PINK);
+			//put("greentea_yellow",ItemSpriteSheet.GREENTEA_POTION_YELLOW);
+			//put("greentea_spectral",ItemSpriteSheet.GREENTEA_POTION_SPECTRAL);
+			//put("greentea_green",ItemSpriteSheet.GREENTEA_POTION_GREEN);
 		}
 	};
 	
@@ -248,7 +264,7 @@ public class Potion extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(PotionFreeze.class) != null) {
 				GLog.w(Messages.get(this, "potionfreeze"));
-			} else if (Dungeon.isChallenged(Challenges.SPRECHCHOR) && hero.HT/4 < hero.HP){
+			} else if (Dungeon.isChallenged(Challenges.SPRECHCHOR) && hero.HT/2 < hero.HP){
 				GLog.w(Messages.get(this, "catastrophebanquet"));
 			} else if (isKnown() && mustThrowPots.contains(getClass())) {
 				

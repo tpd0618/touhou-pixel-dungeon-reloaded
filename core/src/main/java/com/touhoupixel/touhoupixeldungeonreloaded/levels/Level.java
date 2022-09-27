@@ -50,7 +50,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.WindParticle
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Stylus;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
@@ -198,7 +198,7 @@ public abstract class Level implements Bundlable {
 				Dungeon.LimitedDrops.UPGRADE_SCROLLS.count++;
 			}
 			if (Dungeon.asNeeded()) {
-				addItemToSpawn( new Stylus() );
+				addItemToSpawn( new PatchouliCard() );
 				Dungeon.LimitedDrops.ARCANE_STYLI.count++;
 			}
 

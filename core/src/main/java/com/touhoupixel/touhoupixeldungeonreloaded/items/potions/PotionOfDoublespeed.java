@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -37,7 +38,7 @@ public class PotionOfDoublespeed extends Potion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Buff.affect(hero, Doublespeed.class, Doublespeed.DURATION);
+		Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION);
 	}
 
 	@Override

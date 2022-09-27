@@ -1121,6 +1121,50 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 16);
 	}
 
+	private static final int GREENTEA_POTIONS        =                               xy(1, 41);  //17 slots
+	public static final int GREENTEA_POTION_CRIMSON  = GREENTEA_POTIONS+0;
+	public static final int GREENTEA_POTION_AMBER    = GREENTEA_POTIONS+1;
+	public static final int GREENTEA_POTION_GOLDEN   = GREENTEA_POTIONS+2;
+	public static final int GREENTEA_POTION_JADE     = GREENTEA_POTIONS+3;
+	public static final int GREENTEA_POTION_TURQUOISE= GREENTEA_POTIONS+4;
+	public static final int GREENTEA_POTION_AZURE    = GREENTEA_POTIONS+5;
+	public static final int GREENTEA_POTION_INDIGO   = GREENTEA_POTIONS+6;
+	public static final int GREENTEA_POTION_MAGENTA  = GREENTEA_POTIONS+7;
+	public static final int GREENTEA_POTION_BISTRE   = GREENTEA_POTIONS+8;
+	public static final int GREENTEA_POTION_CHARCOAL = GREENTEA_POTIONS+9;
+	public static final int GREENTEA_POTION_SILVER   = GREENTEA_POTIONS+10;
+	public static final int GREENTEA_POTION_IVORY    = GREENTEA_POTIONS+11;
+	public static final int GREENTEA_POTION_PINK     = GREENTEA_POTIONS+12;
+	public static final int GREENTEA_POTION_YELLOW   = GREENTEA_POTIONS+13;
+	public static final int GREENTEA_POTION_SPECTRAL = GREENTEA_POTIONS+14;
+	public static final int GREENTEA_POTION_GREEN    = GREENTEA_POTIONS+15;
+	static {
+		for (int i = GREENTEA_POTIONS; i < GREENTEA_POTIONS+16; i++)
+			assignItemRect(i, 10, 15);
+	}
+
+	private static final int GREENTEA_EXOTIC_POTIONS =                               xy(1, 42);  //17 slots
+	public static final int GREENTEA_EXOTIC_CRIMSON  = GREENTEA_EXOTIC_POTIONS+0;
+	public static final int GREENTEA_EXOTIC_AMBER    = GREENTEA_EXOTIC_POTIONS+1;
+	public static final int GREENTEA_EXOTIC_GOLDEN   = GREENTEA_EXOTIC_POTIONS+2;
+	public static final int GREENTEA_EXOTIC_JADE     = GREENTEA_EXOTIC_POTIONS+3;
+	public static final int GREENTEA_EXOTIC_TURQUOISE= GREENTEA_EXOTIC_POTIONS+4;
+	public static final int GREENTEA_EXOTIC_AZURE    = GREENTEA_EXOTIC_POTIONS+5;
+	public static final int GREENTEA_EXOTIC_INDIGO   = GREENTEA_EXOTIC_POTIONS+6;
+	public static final int GREENTEA_EXOTIC_MAGENTA  = GREENTEA_EXOTIC_POTIONS+7;
+	public static final int GREENTEA_EXOTIC_BISTRE   = GREENTEA_EXOTIC_POTIONS+8;
+	public static final int GREENTEA_EXOTIC_CHARCOAL = GREENTEA_EXOTIC_POTIONS+9;
+	public static final int GREENTEA_EXOTIC_SILVER   = GREENTEA_EXOTIC_POTIONS+10;
+	public static final int GREENTEA_EXOTIC_IVORY    = GREENTEA_EXOTIC_POTIONS+11;
+	public static final int GREENTEA_EXOTIC_PINK     = GREENTEA_EXOTIC_POTIONS+12;
+	public static final int GREENTEA_EXOTIC_YELLOW   = GREENTEA_EXOTIC_POTIONS+13;
+	public static final int GREENTEA_EXOTIC_SPECTRAL = GREENTEA_EXOTIC_POTIONS+14;
+	public static final int GREENTEA_EXOTIC_GREEN    = GREENTEA_EXOTIC_POTIONS+15;
+	static {
+		for (int i = GREENTEA_EXOTIC_POTIONS; i < GREENTEA_EXOTIC_POTIONS+16; i++)
+			assignItemRect(i, 10, 15);
+	}
+
 	//for smaller 8x8 icons that often accompany an item sprite
 	public static class Icons {
 

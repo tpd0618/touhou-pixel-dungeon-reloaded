@@ -634,9 +634,13 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.FLANDRE_GAZE) && !(this.HP == this.HT) && buff(FlandreMark.class) == null) {
-			this.HP = Math.min(this.HP + damage*10, this.HT);
-			Buff.prolong(this, FlandreMark.class, FlandreMark.DURATION);
+		for (int i : PathFinder.NEIGHBOURS4) {
+			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
+				if (Dungeon.isChallenged(Challenges.FLANDRE_GAZE) && !(this.HP == this.HT) && buff(FlandreMark.class) == null && enemy.pos == this.pos + i) {
+					this.HP = Math.min(this.HP + damage * 10, this.HT);
+					Buff.prolong(this, FlandreMark.class, FlandreMark.DURATION);
+				}
+			}
 		}
 
 		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
@@ -784,7 +788,7 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		for (int i : PathFinder.NEIGHBOURS4) {
+		for (int i : PathFinder.NEIGHBOURS8) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (Dungeon.isChallenged(Challenges.KEIKI_BORDER) && mob.pos == this.pos + i) {
 					Buff.prolong(mob, OneDefDamage.class, OneDefDamage.DURATION/10f);

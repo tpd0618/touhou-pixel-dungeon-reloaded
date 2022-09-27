@@ -44,6 +44,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
@@ -1105,6 +1106,10 @@ public class Hero extends Char {
 
 		if (buff(SupernaturalBorder.class) == null) {
 			Statistics.bordercount += 1;
+		}
+
+		if (buff(DanDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+			damage *= 1.4f;
 		}
 
 		if (Dungeon.hero.belongings.armor() instanceof YorihimeArmor && (Random.Int(75) == 0)){

@@ -37,7 +37,7 @@ import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;
 
-public class Stylus extends Item {
+public class PatchouliCard extends Item {
 	
 	private static final float TIME_TO_INSCRIBE = 2;
 	
@@ -117,7 +117,7 @@ public class Stylus extends Item {
 
 		@Override
 		public String textPrompt() {
-			return Messages.get(Stylus.class, "prompt");
+			return Messages.get(PatchouliCard.class, "prompt");
 		}
 
 		@Override
@@ -133,7 +133,7 @@ public class Stylus extends Item {
 		@Override
 		public void onSelect( Item item ) {
 			if (item != null) {
-				Stylus.this.inscribe( (Armor)item );
+				PatchouliCard.this.inscribe( (Armor)item );
 			}
 		}
 	};

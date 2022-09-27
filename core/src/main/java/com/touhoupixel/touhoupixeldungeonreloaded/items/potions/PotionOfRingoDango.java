@@ -32,7 +32,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class PotionOfRingoDango extends Potion {
 
@@ -45,7 +47,8 @@ public class PotionOfRingoDango extends Potion {
 	@Override
 	public void apply( Hero hero ) {
 		identify();
-		Statistics.power += 200;
+		Statistics.power += 100;
+		GLog.p(Messages.get(this, "ringo"));
 	}
 	
 	@Override

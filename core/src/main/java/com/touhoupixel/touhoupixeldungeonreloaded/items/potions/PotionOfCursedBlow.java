@@ -21,31 +21,24 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfLightHealing extends Potion {
+public class PotionOfCursedBlow extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_LIGHTHEALING;
-
-		bones = true;
+		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
 	}
 
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		if (hero.buff(AntiHeal.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-		} else hero.HP = Math.min(hero.HP + 50, hero.HT);
-		if (hero.buff(AntiHeal.class) == null) {
-			GLog.p(Messages.get(this, "lightheal"));
-		}
+		Buff.prolong( hero, CursedBlow.class, CursedBlow.DURATION);
 	}
 
 	@Override

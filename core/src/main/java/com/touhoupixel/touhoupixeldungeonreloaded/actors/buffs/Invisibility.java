@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class Invisibility extends FlavourBuff {
 
-	public static final float DURATION	= 20f;
+	public static final float DURATION	= 40f;
 
 	{
 		type = buffType.POSITIVE;

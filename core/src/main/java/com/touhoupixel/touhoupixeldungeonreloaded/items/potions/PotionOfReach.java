@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,35 +21,34 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfLightHealing extends Potion {
+public class PotionOfReach extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_LIGHTHEALING;
+		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
 
 		bones = true;
 	}
-
+	
 	@Override
-	public void apply(Hero hero) {
+	public void apply( Hero hero ) {
 		identify();
-		if (hero.buff(AntiHeal.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-		} else hero.HP = Math.min(hero.HP + 50, hero.HT);
-		if (hero.buff(AntiHeal.class) == null) {
-			GLog.p(Messages.get(this, "lightheal"));
-		}
+		Buff.prolong( hero, ReachIncrease.class, ReachIncrease.DURATION);
+	}
+	
+	@Override
+	public int value() {
+		return isKnown() ? 50 * quantity : super.value();
 	}
 
 	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+	public int energyVal() {
+		return isKnown() ? 8 * quantity : super.energyVal();
 	}
 }

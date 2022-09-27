@@ -31,17 +31,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlamePower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostImbue;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Fury;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
@@ -65,6 +69,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Fireball;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
@@ -72,8 +77,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
@@ -377,11 +384,15 @@ public abstract class Char extends Actor {
         float acuRoll = Random.Float( acuStat );
         if (attacker.buff(Bless.class) != null) acuRoll *= 1.25f;
         if (attacker.buff(Doublerainbow.class) != null) acuRoll *= 1.45f;
+        if (attacker.buff(FlamePower.class) != null && attacker.buff(Burning.class) != null) acuRoll *= 1.85f;
+        if (attacker.buff(FrostPower.class) != null && attacker.buff(Chill.class) != null) acuRoll *= 1.85f;
         if (attacker.buff(Hex.class) != null) acuRoll *= 0.8f;
 
         float defRoll = Random.Float( defStat );
         if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
         if (defender.buff(Doublerainbow.class) != null) defRoll *= 1.45f;
+        if (defender.buff(FlamePower.class) != null && defender.buff(Burning.class) != null) acuRoll *= 1.85f;
+        if (defender.buff(FrostPower.class) != null && defender.buff(Chill.class) != null) acuRoll *= 1.85f;
         if (defender.buff(Hex.class) != null) defRoll *= 0.8f;
 
         return (acuRoll * accMulti) >= defRoll;
@@ -472,6 +483,14 @@ public abstract class Char extends Actor {
         }
 
         if (buff(OneDefDamage.class) != null ) {
+            dmg = 1;
+        }
+
+        if (buff(FlamePower.class) != null && buff(Burning.class) != null) {
+            dmg = 1;
+        }
+
+        if (buff(FrostPower.class) != null && buff(Chill.class) != null) {
             dmg = 1;
         }
 

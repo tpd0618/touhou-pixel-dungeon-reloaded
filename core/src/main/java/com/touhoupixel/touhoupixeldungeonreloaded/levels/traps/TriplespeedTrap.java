@@ -48,7 +48,7 @@ public class TriplespeedTrap extends Trap {
 			Buff.prolong( c, Triplespeed.class, Triplespeed.DURATION/2f );
 		}
 
-			GLog.w(Messages.get(this, "alarm"));
+			GLog.w(Messages.get(this, "triplespeed"));
 			GameScene.flash(0x80FFFFFF);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}

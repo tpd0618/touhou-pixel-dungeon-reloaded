@@ -43,7 +43,7 @@ public class PotionOfInvisibility extends Potion {
 	public void apply( Hero hero ) {
 		identify();
 		if (hero.buff(NoInvisibility.class) == null) {
-			Buff.affect(hero, Invisibility.class, Invisibility.DURATION);
+			Buff.affect(hero, Invisibility.class, Invisibility.DURATION/2f);
 			GLog.i(Messages.get(this, "invisible"));
 			Sample.INSTANCE.play(Assets.Sounds.MELD);
 		}

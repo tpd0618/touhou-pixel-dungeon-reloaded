@@ -38,6 +38,6 @@ public class PotionOfMarisa extends ExoticPotion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Statistics.spellcardfragment += 4;
+		Statistics.spellcardfragment += 6;
 	}
 }
