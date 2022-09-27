@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArtifactRecharge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -38,6 +39,7 @@ public class PotionOfMarisa extends ExoticPotion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Statistics.spellcardfragment += 6;
+		Statistics.spellcard += 1;
+		Buff.affect(curUser, ArtifactRecharge.class).set( 15 ).ignoreHornOfPlenty = false;
 	}
 }

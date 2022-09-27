@@ -55,7 +55,6 @@ public abstract class AllyBuff extends Buff{
 		if (enemy.buff(buffCls) != null){
 			if (droppingLoot) enemy.rollToDropLoot();
 			Statistics.enemiesSlain++;
-			Badges.validateMonstersSlain();
 			Statistics.qualifiedForNoKilling = false;
 			if (enemy.EXP > 0 && hero.lvl <= enemy.maxLvl) {
 				hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", enemy.EXP));
@@ -63,8 +62,6 @@ public abstract class AllyBuff extends Buff{
 			} else {
 				hero.earnExp(0, enemy.getClass());
 			}
-			if (droppingLoot) AscensionChallenge.processEnemyKill(enemy);
 		}
 	}
-
 }

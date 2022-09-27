@@ -23,26 +23,21 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yukari;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
-import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DistortionTrap extends Trap{
+public class YukariTrap extends Trap{
 
-	private static final float DELAY = 2f;
+	private static final float DELAY = 1f;
 
 	{
 		color = TEAL;
@@ -55,13 +50,7 @@ public class DistortionTrap extends Trap{
 	@Override
 	public void activate() {
 
-		int nMobs = 3;
-		if (Random.Int( 2 ) == 0) {
-			nMobs++;
-			if (Random.Int( 2 ) == 0) {
-				nMobs++;
-			}
-		}
+		int nMobs = 1;
 
 		ArrayList<Integer> candidates = new ArrayList<>();
 
@@ -88,31 +77,8 @@ public class DistortionTrap extends Trap{
 			summoned++;
 			Mob mob;
 			switch (summoned){
-				case 1: case 3: case 5 : default:
-					int floor;
-					do {
-						floor = Random.Int(25);
-					} while( Dungeon.bossLevel(floor));
-					mob = Reflection.newInstance(Bestiary.getMobRotation(floor).get(0));
-					break;
-				case 2:
-					switch (Random.Int(4)){
-						case 0: default:
-							Wraith.spawnAt(point);
-							continue; //wraiths spawn themselves, no need to do more
-						case 1:
-							//yes it's intended that these are likely to die right away
-							mob = new Murasa();
-							break;
-						case 2:
-							mob = Mimic.spawnAt(point, new ArrayList<>());
-							((Mimic)mob).stopHiding();
-							mob.alignment = Char.Alignment.ENEMY;
-							break;
-					}
-					break;
-				case 4:
-					mob = Reflection.newInstance(Random.element(RARE));
+				case 1: case 2: default:
+					mob = new Yukari();
 					break;
 			}
 

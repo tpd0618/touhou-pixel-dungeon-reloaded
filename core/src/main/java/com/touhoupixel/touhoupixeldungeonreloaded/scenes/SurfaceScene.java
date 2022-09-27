@@ -213,8 +213,6 @@ public class SurfaceScene extends PixelScene {
 		gameOver.setPos( frame.x + FRAME_MARGIN_X * 2, frame.y + frame.height + 4 );
 		add( gameOver );
 
-		Badges.validateHappyEnd();
-
 		fadeIn();
 	}
 

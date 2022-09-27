@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
@@ -31,20 +30,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreMark;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
@@ -628,8 +622,8 @@ public abstract class Mob extends Char {
 
 		for (int i : PathFinder.NEIGHBOURS8) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-				if (this instanceof Miko && this.pos == this.pos + i) {
-					damage *= 1.3;
+				if (this instanceof Miko && enemy.pos == this.pos + i) {
+					damage *= 1.2;
 				}
 			}
 		}
@@ -643,13 +637,13 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
 			Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0) {
 			Buff.prolong(this, Hisou.class, Hisou.DURATION);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
 			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
 		}
 
@@ -693,7 +687,10 @@ public abstract class Mob extends Char {
 
 	@Override
 	public float speed() {
-		return super.speed() * AscensionChallenge.enemySpeedModifier(this);
+		if (Statistics.amuletObtained){
+			return super.speed()*2f;
+		}
+		return super.speed();
 	}
 
 	public final boolean surprisedBy( Char enemy ){
@@ -727,6 +724,20 @@ public abstract class Mob extends Char {
 			alerted = true;
 		}
 
+		if (Statistics.amuletObtained){
+			if (Dungeon.depth > 80){
+				dmg *= 0.9f;
+			} else if (Dungeon.depth > 60){
+				dmg *= 0.8f;
+			} else if (Dungeon.depth > 40){
+				dmg *= 0.7f;
+			} else if (Dungeon.depth > 20){
+				dmg *= 0.6f;
+			} else if (Dungeon.depth > 0){
+				dmg *= 0.5f;
+			}
+		}
+
 		super.damage( dmg, src );
 	}
 
@@ -747,10 +758,7 @@ public abstract class Mob extends Char {
 
 			if (alignment == Alignment.ENEMY) {
 				Statistics.enemiesSlain++;
-				Badges.validateMonstersSlain();
 				Statistics.qualifiedForNoKilling = false;
-
-				AscensionChallenge.processEnemyKill(this);
 
 				int exp = Dungeon.hero.lvl <= maxLvl ? EXP : 0;
 				if (exp > 0) {
@@ -764,37 +772,14 @@ public abstract class Mob extends Char {
 	@Override
 	public void die( Object cause ) {
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			Statistics.power += 2;
+			Statistics.power += 5;
 			if (Statistics.card35){
 				Dungeon.gold += 10*Dungeon.depth;
-			}
-			if (Random.Int(2) == 0) {
-				Statistics.power += 1;
-			}
-			if (Random.Int(2) == 0) {
-				Statistics.power += 1;
 			}
 		}
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			if (Random.Int(2) == 0) {
-				Statistics.value += 1;
-			}
-			if (Random.Int(2) == 0) {
-				Statistics.value += 1;;
-			}
-			if (Random.Int(2) == 0) {
-				Statistics.value += 1;
-			}
-		}
-
-		for (int i : PathFinder.NEIGHBOURS8) {
-			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-				if (Dungeon.isChallenged(Challenges.KEIKI_BORDER) && mob.pos == this.pos + i) {
-					Buff.prolong(mob, OneDefDamage.class, OneDefDamage.DURATION/10f);
-					Buff.prolong(mob, Haste.class, Haste.DURATION);
-				}
-			}
+			Statistics.value += 1;
 		}
 
 		if (buff(ReBirth.class) != null && !(cause == Chasm.class) && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){

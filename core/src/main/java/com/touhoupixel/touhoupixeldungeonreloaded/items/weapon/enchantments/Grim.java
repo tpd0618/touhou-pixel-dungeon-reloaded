@@ -57,7 +57,6 @@ public class Grim extends Weapon.Enchantment {
 			if (!defender.isAlive() && attacker instanceof Hero
 				//this prevents unstable from triggering grim achievement
 				&& weapon.hasEnchant(Grim.class, attacker)) {
-				Badges.validateGrimWeapon();
 			}
 			
 		}

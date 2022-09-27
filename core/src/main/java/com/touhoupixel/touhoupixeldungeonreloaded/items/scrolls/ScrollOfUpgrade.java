@@ -107,10 +107,8 @@ public class ScrollOfUpgrade extends InventoryScroll {
 		} else {
 			item.upgrade();
 		}
-		
-		Badges.validateItemLevelAquired( item );
+
 		Statistics.upgradesUsed++;
-		Badges.validateMarisaUnlock();
 	}
 	
 	public static void upgrade( Hero hero ) {

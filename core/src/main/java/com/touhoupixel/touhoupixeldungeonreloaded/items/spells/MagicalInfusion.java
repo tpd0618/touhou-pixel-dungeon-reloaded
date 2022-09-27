@@ -62,7 +62,6 @@ public class MagicalInfusion extends InventorySpell {
 		}
 		
 		GLog.p( Messages.get(this, "infuse", item.name()) );
-		Badges.validateItemLevelAquired(item);
 
 		Statistics.upgradesUsed++;
 	}

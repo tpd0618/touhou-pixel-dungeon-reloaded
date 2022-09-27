@@ -116,7 +116,7 @@ public class WndStartGame extends Window {
 		start.setRect(0, HEIGHT - 20, WIDTH, 20);
 		add(start);
 
-		if (DeviceCompat.isDebug() || Badges.isUnlocked(Badges.Badge.HAPPY_END)) {
+		if (DeviceCompat.isDebug() && !DeviceCompat.isDebug()) {
 			IconButton challengeButton = new IconButton(
 					Icons.get(SPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF)) {
 				@Override
@@ -199,11 +199,7 @@ public class WndStartGame extends Window {
 		protected void onClick() {
 			super.onClick();
 
-			if (!cl.isUnlocked()) {
-				ShatteredPixelDungeon.scene().addToFront(new WndMessage(cl.unlockMsg()));
-			} else {
-				GamesInProgress.selectedClass = cl;
-			}
+			GamesInProgress.selectedClass = cl;
 		}
 	}
 

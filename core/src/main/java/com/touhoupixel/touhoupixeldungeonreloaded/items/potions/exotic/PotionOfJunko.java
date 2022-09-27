@@ -23,14 +23,17 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
 
-public class PotionOfMokou extends ExoticPotion {
+public class PotionOfJunko extends ExoticPotion {
 	
 	{
 		icon = ItemSpriteSheet.Icons.POTION_TRIPLESPEED;
@@ -39,9 +42,8 @@ public class PotionOfMokou extends ExoticPotion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		if (Random.Int(2) == 0) {
-			Statistics.life += 1;
-		} else Statistics.lifefragment += 4;
-		GLog.p(Messages.get(this, "mokou"));
+		Buff.prolong( hero, ReachIncrease.class, ReachIncrease.DURATION/2f);
+		Buff.prolong( hero, MindVision.class, MindVision.DURATION/2f);
+		Buff.prolong( hero, Haste.class, Haste.DURATION/2f);
 	}
 }

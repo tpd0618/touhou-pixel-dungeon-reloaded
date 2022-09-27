@@ -42,4 +42,5 @@ public class Miko extends Mob {
         Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
         return damage;
     }
+    //also see Mob.attackproc
 }

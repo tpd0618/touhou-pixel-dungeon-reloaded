@@ -20,7 +20,7 @@ public class Kyouko extends Mob {
         maxLvl = 50;
 
         loot = new ScrollOfSirensSong();
-        lootChance = 0.125f;
+        lootChance = 0.1f;
     }
 
     @Override

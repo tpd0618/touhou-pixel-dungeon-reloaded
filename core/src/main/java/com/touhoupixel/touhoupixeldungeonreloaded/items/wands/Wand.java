@@ -345,7 +345,6 @@ public abstract class Wand extends Item {
 			if (usesLeftToID <= 0) {
 				identify();
 				GLog.p( Messages.get(Wand.class, "identify") );
-				Badges.validateItemLevelAquired( this );
 			}
 		}
 		

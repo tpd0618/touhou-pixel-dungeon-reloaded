@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -191,6 +192,9 @@ abstract public class MissileWeapon extends Weapon {
 				new HecatiaTrap().set(attacker.pos).activate();
 			}
 		}
+		if (Statistics.card47) {
+			Statistics.power -= 25;
+		} else Statistics.power -= 50;
 		return super.proc(attacker, defender, damage);
 	}
 

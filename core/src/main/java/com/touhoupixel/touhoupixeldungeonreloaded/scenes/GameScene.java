@@ -453,7 +453,6 @@ public class GameScene extends PixelScene {
 						break;
 				}
 				if (Dungeon.hero.isAlive()) {
-					Badges.validateNoKilling();
 				}
 				break;
 		}

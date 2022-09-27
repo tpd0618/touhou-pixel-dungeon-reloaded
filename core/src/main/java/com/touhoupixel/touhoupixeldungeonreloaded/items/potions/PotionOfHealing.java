@@ -21,8 +21,10 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
@@ -46,6 +48,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class PotionOfHealing extends Potion {
 
@@ -62,15 +65,15 @@ public class PotionOfHealing extends Potion {
 		heal( hero );
 	}
 
-	public static void heal( Char ch ){
-			if (ch.buff(AntiHeal.class) != null) {
-				ch.damage(ch.HT / 2, ch);
-			} else Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
-			if (ch == Dungeon.hero){
-				GLog.p( Messages.get(PotionOfHealing.class, "heal") );
-				if (Dungeon.isChallenged(Challenges.EIRIN_UNHOLY_HEAL)) {
-					Buff.prolong(curUser, Paralysis.class, Paralysis.DURATION/2f);
-				}
+	public static void heal( Char ch ) {
+		if (ch.buff(AntiHeal.class) != null) {
+			ch.damage(ch.HT / 2, ch);
+		} else Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
+		if (ch == Dungeon.hero) {
+			GLog.p(Messages.get(PotionOfHealing.class, "heal"));
+			if (Dungeon.isChallenged(Challenges.EIRIN_UNHOLY_HEAL)) {
+				Buff.prolong(curUser, Paralysis.class, Paralysis.DURATION / 2f);
+			}
 		}
 	}
 	

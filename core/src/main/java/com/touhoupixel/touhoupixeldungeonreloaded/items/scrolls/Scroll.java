@@ -172,8 +172,6 @@ public abstract class Scroll extends Item {
 				GLog.w( Messages.get(this, "blinded") );
 			} else if (hero.buff( Silence.class ) != null) {
 				GLog.w(Messages.get(this, "silence"));
-			} else if (Dungeon.isChallenged(Challenges.SPRECHCHOR) && hero.HT/2 < hero.HP){
-				GLog.w(Messages.get(this, "catastrophebanquet"));
 			} else if (hero.buff(UnstableSpellbook.bookRecharge.class) != null
 					&& hero.buff(UnstableSpellbook.bookRecharge.class).isCursed()
 					&& !(this instanceof ScrollOfRemoveCurse || this instanceof ScrollOfAntiMagic)){

@@ -282,23 +282,18 @@ public class Belongings implements Iterable<Item> {
 	public void observe() {
 		if (weapon() != null) {
 			weapon().identify();
-			Badges.validateItemLevelAquired(weapon());
 		}
 		if (armor() != null) {
 			armor().identify();
-			Badges.validateItemLevelAquired(armor());
 		}
 		if (artifact() != null) {
 			artifact().identify();
-			Badges.validateItemLevelAquired(artifact());
 		}
 		if (misc() != null) {
 			misc().identify();
-			Badges.validateItemLevelAquired(misc());
 		}
 		if (ring() != null) {
 			ring().identify();
-			Badges.validateItemLevelAquired(ring());
 		}
 		for (Item item : backpack) {
 			if (item instanceof EquipableItem || item instanceof Wand) {

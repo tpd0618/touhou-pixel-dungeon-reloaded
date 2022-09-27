@@ -40,7 +40,6 @@ public class PotionOfConfusionHeal extends ExoticPotion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-
 		Buff.prolong(hero, ExtremeConfusion.class, ExtremeConfusion.DURATION);
 		Buff.prolong(hero, Vertigo.class, Vertigo.DURATION);
 		if (hero.buff(AntiHeal.class) != null) {

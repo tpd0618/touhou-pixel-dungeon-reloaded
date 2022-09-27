@@ -202,9 +202,7 @@ public class ShopRoom extends SpecialRoom {
 				break;
 		}
 
-		if (!Dungeon.isChallenged(Challenges.KAGUYA_FULL_MEAL)) {
-			itemsToSpawn.add(new StoneOfAugmentation());
-		}
+		itemsToSpawn.add(new StoneOfAugmentation());
 
 		TimekeepersHourglass hourglass = Dungeon.hero.belongings.getItem(TimekeepersHourglass.class);
 		if (hourglass != null && hourglass.isIdentified() && !hourglass.cursed){

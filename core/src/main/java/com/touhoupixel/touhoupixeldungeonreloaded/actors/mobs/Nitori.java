@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NoInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
@@ -113,7 +112,6 @@ public class Nitori extends Mob implements Callback {
             }
 
             int dmg = Random.NormalIntRange( 20, 25 );
-            dmg = Math.round(dmg * AscensionChallenge.statModifier(this));
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

@@ -28,7 +28,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class ScrollOfReduceCorruption extends ExoticScroll {
 
@@ -38,7 +40,8 @@ public class ScrollOfReduceCorruption extends ExoticScroll {
 
 	@Override
 	public void doRead() {
-		Statistics.playercorruption -= 2;
+		Statistics.playercorruption -= 1;
+		GLog.p(Messages.get(this, "reduce"));
 
 		identify();
 		readAnimation();

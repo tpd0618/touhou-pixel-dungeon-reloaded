@@ -441,7 +441,6 @@ public class AlchemyScene extends PixelScene {
 			}
 
 			Statistics.itemsCrafted++;
-			Badges.validateItemsCrafted();
 			
 			try {
 				Dungeon.saveAll();

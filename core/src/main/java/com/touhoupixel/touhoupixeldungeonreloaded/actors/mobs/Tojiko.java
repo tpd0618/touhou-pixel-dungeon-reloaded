@@ -21,10 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SparkParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -89,7 +87,6 @@ public class Tojiko extends Mob implements Callback {
 
 			if (hit( this, enemy, true )) {
 				int dmg = Random.NormalIntRange(3, 10);
-				dmg = Math.round(dmg * AscensionChallenge.statModifier(this));
 				enemy.damage( dmg, new LightningBolt() );
 
 				if (enemy.sprite.visible) {

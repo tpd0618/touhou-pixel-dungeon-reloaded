@@ -214,7 +214,6 @@ public class Item implements Bundlable {
 					item.merge( this );
 					item.updateQuickslot();
 					if (Dungeon.hero != null && Dungeon.hero.isAlive()) {
-						Badges.validateItemLevelAquired( this );
 						if (isIdentified()) Catalog.setSeen(getClass());
 					}
 					return true;
@@ -223,7 +222,6 @@ public class Item implements Bundlable {
 		}
 
 		if (Dungeon.hero != null && Dungeon.hero.isAlive()) {
-			Badges.validateItemLevelAquired( this );
 			if (isIdentified()) Catalog.setSeen(getClass());
 		}
 

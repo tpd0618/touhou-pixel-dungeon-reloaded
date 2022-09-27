@@ -36,7 +36,7 @@ import java.util.Arrays;
 
 public class HecatiaTrap extends Trap{
 
-	private static final float DELAY = 2f;
+	private static final float DELAY = 1f;
 
 	{
 		color = TEAL;

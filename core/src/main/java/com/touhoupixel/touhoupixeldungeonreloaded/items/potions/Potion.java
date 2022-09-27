@@ -264,8 +264,6 @@ public class Potion extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(PotionFreeze.class) != null) {
 				GLog.w(Messages.get(this, "potionfreeze"));
-			} else if (Dungeon.isChallenged(Challenges.SPRECHCHOR) && hero.HT/2 < hero.HP){
-				GLog.w(Messages.get(this, "catastrophebanquet"));
 			} else if (isKnown() && mustThrowPots.contains(getClass())) {
 				
 					GameScene.show(

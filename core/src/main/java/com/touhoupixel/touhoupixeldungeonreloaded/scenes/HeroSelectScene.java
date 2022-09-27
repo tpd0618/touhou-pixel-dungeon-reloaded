@@ -350,9 +350,7 @@ public class HeroSelectScene extends PixelScene {
 		protected void onClick() {
 			super.onClick();
 
-			if( !cl.isUnlocked() ){
-				ShatteredPixelDungeon.scene().addToFront( new WndMessage(cl.unlockMsg()));
-			} else if (GamesInProgress.selectedClass == cl) {
+			if (GamesInProgress.selectedClass == cl) {
 				ShatteredPixelDungeon.scene().add(new WndHeroInfo(cl));
 			} else {
 				setSelectedHero(cl);

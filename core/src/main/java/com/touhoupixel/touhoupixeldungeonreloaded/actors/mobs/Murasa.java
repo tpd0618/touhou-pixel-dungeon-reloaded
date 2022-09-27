@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -104,8 +103,7 @@ public class Murasa extends Mob {
 	public void die( Object cause ) {
 		super.die( cause );
 		
-		Statistics.piranhasKilled++;
-		Badges.validatePiranhasKilled();
+		Statistics.murasasKilled++;
 	}
 
 	@Override

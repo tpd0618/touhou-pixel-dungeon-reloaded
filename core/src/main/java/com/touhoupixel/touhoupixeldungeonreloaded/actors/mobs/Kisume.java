@@ -23,15 +23,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KagerouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KisumeSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
@@ -104,7 +101,6 @@ public class Kisume extends Mob implements Callback {
             }
 
             int dmg = Random.NormalIntRange( 13, 18 );
-            dmg = Math.round(dmg * AscensionChallenge.statModifier(this));
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

@@ -87,11 +87,6 @@ public class Food extends Item {
 			hero.spend( eatingTime() );
 
 			Statistics.foodEaten++;
-			Badges.validateFoodEaten();
-
-			if (Dungeon.isChallenged(Challenges.KAGUYA_FULL_MEAL)) {
-				Buff.prolong(hero, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
-			}
 
 			if (Statistics.card61){
 				Buff.affect(hero, WellFed.class).reset();

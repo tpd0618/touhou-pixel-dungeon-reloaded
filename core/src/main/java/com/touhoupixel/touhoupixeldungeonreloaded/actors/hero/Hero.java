@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Bones;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
@@ -35,7 +34,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
@@ -67,6 +65,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
@@ -136,6 +135,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.HecatiaTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
@@ -148,15 +148,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.scenes.InterlevelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.SurfaceScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.AttackIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndMessage;
-import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndTradeItem;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
@@ -384,12 +381,26 @@ public class Hero extends Char {
 			accuracy *= 5f;
 		}
 
+		if (Statistics.amuletObtained){
+			if (Dungeon.depth > 80){
+				accuracy *= 0.95f;
+			} else if (Dungeon.depth > 60){
+				accuracy *= 0.9f;
+			} else if (Dungeon.depth > 40){
+				accuracy *= 0.85f;
+			} else if (Dungeon.depth > 20){
+				accuracy *= 0.8f;
+			} else if (Dungeon.depth > 0){
+				accuracy *= 0.75f;
+			}
+		}
+
 		if (Statistics.power == 400){
-			accuracy *= 1.1f;
+			accuracy *= 1.075f;
 		} else if (Statistics.power >= 300){
-			accuracy *= 1.066f;
+			accuracy *= 1.05f;
 		} else if (Statistics.power >= 200) {
-			accuracy *= 1.033f;
+			accuracy *= 1.025f;
 		}
 
 		if (wep instanceof MissileWeapon){
@@ -425,6 +436,20 @@ public class Hero extends Char {
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (Statistics.card28 && enemy.pos == this.pos+i && (Random.Int(5) == 0)){
 				return INFINITE_EVASION;
+			}
+		}
+
+		if (Statistics.amuletObtained){
+			if (Dungeon.depth > 80){
+				evasion *= 0.95;
+			} else if (Dungeon.depth > 60){
+				evasion *= 0.9;
+			} else if (Dungeon.depth > 40){
+				evasion *= 0.85;
+			} else if (Dungeon.depth > 20){
+				evasion *= 0.8;
+			} else if (Dungeon.depth > 0){
+				evasion *= 0.75;
 			}
 		}
 
@@ -511,8 +536,6 @@ public class Hero extends Char {
 		}
 
 		((HeroSprite)sprite).sprint( 1f );
-
-		speed = AscensionChallenge.modifyHeroSpeed(speed);
 
 		return speed;
 
@@ -957,37 +980,10 @@ public class Hero extends Char {
 					ready();
 				} else {
 					Statistics.ascended = true;
-					Badges.silentValidateHappyEnd();
 					Dungeon.win( Amulet.class );
 					Dungeon.deleteGame( GamesInProgress.curSlot, true );
 					Game.switchScene( SurfaceScene.class );
 				}
-
-			} else if (transition.type == LevelTransition.Type.REGULAR_ENTRANCE
-					&& Dungeon.depth == 98
-					&& belongings.getItem(Amulet.class) != null
-					&& buff(AscensionChallenge.class) == null) {
-
-				Game.runOnRenderThread(new Callback() {
-					@Override
-					public void call() {
-						GameScene.show( new WndOptions( new ItemSprite(ItemSpriteSheet.AMULET),
-								Messages.get(Amulet.class, "ascent_title"),
-								Messages.get(Amulet.class, "ascent_desc"),
-								Messages.get(Amulet.class, "ascent_yes"),
-								Messages.get(Amulet.class, "ascent_no")){
-							@Override
-							protected void onSelect(int index) {
-								if (index == 0){
-									Buff.affect(Hero.this, AscensionChallenge.class);
-									Statistics.highestAscent = 98;
-									actTransition(action);
-								}
-							}
-						} );
-					}
-				});
-				ready();
 
 			} else {
 
@@ -1108,6 +1104,12 @@ public class Hero extends Char {
 			Statistics.bordercount += 1;
 		}
 
+		if (Dungeon.isChallenged(Challenges.MURASA_SANCTUARY) && Dungeon.level.map[enemy.pos] == Terrain.WATER) {
+			Buff.prolong(enemy, OneDefDamage.class, OneDefDamage.DURATION/4f);
+			Level.set( enemy.pos, Terrain.EMPTY );
+			GameScene.updateMap( enemy.pos );
+		}
+
 		if (buff(DanDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			damage *= 1.4f;
 		}
@@ -1128,22 +1130,22 @@ public class Hero extends Char {
 			Statistics.timetrackbuff += 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, MoveDetect.class, MoveDetect.DURATION*2f);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, Silence.class, Silence.DURATION);
 		}
-		if (Dungeon.isChallenged(Challenges.NITORI_SHINY_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, OneDamage.class, OneDamage.DURATION*5f);
 		}
 
 		if (Statistics.power == 400){
-			damage *= 2f;
+			damage *= 1.3f;
 		} else if (Statistics.power >= 300){
-			damage *= 1.666f;
+			damage *= 1.2f;
 		} else if (Statistics.power >= 200){
-			damage *= 1.333f;
+			damage *= 1.1f;
 		}
 
 		if (Statistics.card59){
@@ -1285,7 +1287,7 @@ public class Hero extends Char {
 		}
 
 		if (Statistics.card56 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
-			Statistics.power += 25;
+			Dungeon.energy += 1;
 		}
 
 		if (Statistics.card57){
@@ -1314,6 +1316,20 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
+		if (Statistics.amuletObtained){
+			if (Dungeon.depth > 80){
+				damage *= 2f;
+			} else if (Dungeon.depth > 60){
+				damage *= 4f;
+			} else if (Dungeon.depth > 40){
+				damage *= 6f;
+			} else if (Dungeon.depth > 20){
+				damage *= 8f;
+			} else if (Dungeon.depth > 0){
+				damage *= 10f;
+			}
+		}
+
 		if (buff(HighStress.class) != null){
 			HP = 1;
 		}
@@ -1328,15 +1344,16 @@ public class Hero extends Char {
 			}
 		}
 
+		if (Dungeon.isChallenged(Challenges.IKU_AIR_READING) && Dungeon.level.map[this.pos] == Terrain.EMPTY){
+			damage *= 1.2f;
+			Buff.prolong(this, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
+		}
+
 		if (buff(SupernaturalBorder.class) != null){
 			damage *= 0f;
 			Buff.detach(this, SupernaturalBorder.class);
 			Sample.INSTANCE.play( Assets.Sounds.EVOKE );
 		}
-
-		if (Statistics.card47) {
-			Statistics.power -= belongings.armor().proc( enemy, this, damage ) / 3;
-		} else Statistics.power -= belongings.armor().proc( enemy, this, damage ) / 2;
 
 		if (belongings.armor() != null) {
 			damage = belongings.armor().proc( enemy, this, damage );
@@ -1713,8 +1730,6 @@ public class Hero extends Char {
 			}
 
 			Item.updateQuickslot();
-
-			Badges.validateLevelReached();
 		}
 	}
 
@@ -2106,8 +2121,12 @@ public class Hero extends Char {
 			Statistics.boss20 = true;
 		}
 
-		if (Dungeon.isChallenged(Challenges.TENSHI_EARTHQUAKE)) {
+		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT) || Statistics.amuletObtained){
 			if (Statistics.tenshiEarthquake > 98) {
+				if (Statistics.amuletObtained){
+					//new YukariTrap().set(this.pos).activate(); TBA
+					new HecatiaTrap().set(this.pos).activate();
+				}
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
 				if (!this.flying) {

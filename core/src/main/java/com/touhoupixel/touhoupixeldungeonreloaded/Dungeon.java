@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AscensionChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSight;
@@ -537,11 +536,7 @@ public class Dungeon {
 	//value used for scaling of damage values and other effects.
 	//is usually the dungeon depth, but can be set to 99 when ascending
 	public static int scalingDepth(){
-		if (Dungeon.hero != null && Dungeon.hero.buff(AscensionChallenge.class) != null){
-			return 99;
-		} else {
-			return depth;
-		}
+		return depth;
 	}
 
 	public static boolean interfloorTeleportAllowed(){
@@ -566,10 +561,6 @@ public class Dungeon {
 
 		Dungeon.level = level;
 		hero.pos = pos;
-
-		if (hero.buff(AscensionChallenge.class) != null){
-			hero.buff(AscensionChallenge.class).onLevelSwitch();
-		}
 
 		Mob.restoreAllies( level, pos );
 

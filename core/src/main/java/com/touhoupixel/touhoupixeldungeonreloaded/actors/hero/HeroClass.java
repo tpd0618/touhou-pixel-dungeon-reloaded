@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
@@ -226,69 +227,8 @@ public enum HeroClass {
 		}
 	}
 
-	public String[] perks() {
-		switch (this) {
-			case PLAYERREIMU: default:
-				return new String[]{
-						Messages.get(HeroClass.class, "playerreimu_perk1"),
-						Messages.get(HeroClass.class, "playerreimu_perk2"),
-						Messages.get(HeroClass.class, "playerreimu_perk3"),
-						Messages.get(HeroClass.class, "playerreimu_perk4"),
-						Messages.get(HeroClass.class, "playerreimu_perk5"),
-				};
-			case PLAYERMARISA:
-				return new String[]{
-						Messages.get(HeroClass.class, "playermarisa_perk1"),
-						Messages.get(HeroClass.class, "playermarisa_perk2"),
-						Messages.get(HeroClass.class, "playermarisa_perk3"),
-						Messages.get(HeroClass.class, "playermarisa_perk4"),
-						Messages.get(HeroClass.class, "playermarisa_perk5"),
-				};
-			case PLAYERKOISHI:
-				return new String[]{
-						Messages.get(HeroClass.class, "playerkoishi_perk1"),
-						Messages.get(HeroClass.class, "playerkoishi_perk2"),
-						Messages.get(HeroClass.class, "playerkoishi_perk3"),
-						Messages.get(HeroClass.class, "playerkoishi_perk4"),
-						Messages.get(HeroClass.class, "playerkoishi_perk5"),
-				};
-			case PLAYERSANAE:
-				return new String[]{
-						Messages.get(HeroClass.class, "playersanae_perk1"),
-						Messages.get(HeroClass.class, "playersanae_perk2"),
-						Messages.get(HeroClass.class, "playersanae_perk3"),
-						Messages.get(HeroClass.class, "playersanae_perk4"),
-						Messages.get(HeroClass.class, "playersanae_perk5"),
-				};
-		}
-	}
-
 	public boolean isUnlocked(){
-		//always unlock on debug builds
-		if (DeviceCompat.isDebug()) return true;
-
-		switch (this){
-			case PLAYERREIMU: default:
-				return true;
-			case PLAYERMARISA:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_MARISA);
-			case PLAYERKOISHI:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_KOISHI);
-			case PLAYERSANAE:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_SANAE);
-		}
-	}
-
-	public String unlockMsg() {
-		switch (this){
-			case PLAYERREIMU: default:
-				return "";
-			case PLAYERMARISA:
-				return Messages.get(HeroClass.class, "marisa_unlock");
-			case PLAYERKOISHI:
-				return Messages.get(HeroClass.class, "koishi_unlock");
-			case PLAYERSANAE:
-				return Messages.get(HeroClass.class, "sanae_unlock");
-		}
+		//no unlock system in TPD:reloaded!
+		return true;
 	}
 }

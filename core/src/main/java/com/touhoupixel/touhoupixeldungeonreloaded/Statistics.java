@@ -34,7 +34,7 @@ public class Statistics {
 	public static int foodEaten;
 	public static int potionsCooked;
 	public static int itemsCrafted;
-	public static int piranhasKilled;
+	public static int murasasKilled;
 	public static int toyohimesKilled;
 	public static int yorihimesKilled;
 	public static int kisumesKilled;
@@ -249,7 +249,7 @@ public class Statistics {
 		foodEaten		= 0;
 		potionsCooked	= 0;
 		itemsCrafted    = 0;
-		piranhasKilled	= 0;
+		murasasKilled = 0;
 		toyohimesKilled = 0;
 		yorihimesKilled = 0;
 		kisumesKilled   = 0;
@@ -461,7 +461,7 @@ public class Statistics {
 	private static final String YORIHIMES	= "yorihimeskilled";
 	private static final String KISUMES	    = "kisumeskilled";
 	private static final String SHOPKEEPERS	= "shopkeeperskilled";
-	private static final String PIRANHAS	= "priranhas";
+	private static final String MURASAS = "priranhas";
 	private static final String ANKHS		= "ankhsUsed";
 
 	private static final String PROG_SCORE	    = "prog_score";
@@ -664,7 +664,7 @@ public class Statistics {
 		bundle.put( SLAIN,		enemiesSlain );
 		bundle.put( FOOD,		foodEaten );
 		bundle.put( ALCHEMY,    itemsCrafted );
-		bundle.put( PIRANHAS,	piranhasKilled );
+		bundle.put( MURASAS, murasasKilled);
 		bundle.put( TOYOHIMES,	toyohimesKilled );
 		bundle.put( YORIHIMES,	yorihimesKilled );
 		bundle.put( SHOPKEEPERS,shopkeepersKilled);
@@ -880,7 +880,7 @@ public class Statistics {
 		yorihimesKilled	= bundle.getInt( YORIHIMES );
 		kisumesKilled	= bundle.getInt( KISUMES );
 		shopkeepersKilled	= bundle.getInt( SHOPKEEPERS );
-		piranhasKilled	= bundle.getInt( PIRANHAS );
+		murasasKilled = bundle.getInt(MURASAS);
 		ankhsUsed		= bundle.getInt( ANKHS );
 
 		progressScore   = bundle.getInt( PROG_SCORE );

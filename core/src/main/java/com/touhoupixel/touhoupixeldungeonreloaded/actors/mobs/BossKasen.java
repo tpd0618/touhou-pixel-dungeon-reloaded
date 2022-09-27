@@ -5,6 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DestroyArmorTrap;
@@ -33,6 +34,8 @@ public class BossKasen extends Mob {
         super.die(cause);
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
+
+        Dungeon.level.drop(new Amulet(), pos ).sprite.drop();
     }
 
     @Override

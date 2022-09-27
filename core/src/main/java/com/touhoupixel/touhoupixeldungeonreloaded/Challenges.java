@@ -30,14 +30,14 @@ public class Challenges {
 	public static final int REBIRTH_DAY		         = 2;
 	public static final int EIKI_JUDGEMENT 	         = 4;
 	public static final int REISEN_ILLUSION			 = 8;
-	public static final int TENSHI_EARTHQUAKE		 = 16;
-	public static final int KEIKI_BORDER             = 32;
+	public static final int TENSHI_PUNISHMENT = 16;
+	public static final int MURASA_SANCTUARY = 32;
 	public static final int RINGING_BLOOM 		     = 64;
-	public static final int NITORI_SHINY_KEY         = 128;
-	public static final int SPRECHCHOR               = 256;
+	public static final int NITORI_KEY = 128;
+	public static final int IKU_AIR_READING = 256;
 	public static final int TIME_EATER 	             = 512;
 	public static final int EIRIN_UNHOLY_HEAL 	     = 1024;
-	public static final int KAGUYA_FULL_MEAL 	     = 2048;
+	public static final int HUNDREDTH_BLACK_MARKET = 2048;
 	public static final int FLANDRE_GAZE             = 4096;
 	public static final int FATEFUL                  = 8192;
 	public static final int JUNKO_PURE_HELL          = 16384;
@@ -49,14 +49,14 @@ public class Challenges {
 			"rebirth_day",
 			"eiki_judgement",
 			"reisen_illusion",
-			"tenshi_earthquake",
-			"keiki_border",
+			"tenshi_punishment",
+			"murasa_sanctuary",
 			"ringing_bloom",
-			"nitori_shiny_key",
-			"sprechchor",
+			"nitori_key",
+			"iku_air_reading",
 			"time_eater",
 			"eirin_unholy_heal",
-			"kaguya_full_meal",
+			"hundredth_black_market",
 			"flandre_gaze",
 			"fateful",
 			"junko_pure_hell"
@@ -64,9 +64,9 @@ public class Challenges {
 
 	public static final int[] MASKS = {
 			YUYUKO_DEADLY_TRAP, REBIRTH_DAY, EIKI_JUDGEMENT,
-			REISEN_ILLUSION, TENSHI_EARTHQUAKE, KEIKI_BORDER,
-			RINGING_BLOOM, NITORI_SHINY_KEY, SPRECHCHOR,
-			TIME_EATER, EIRIN_UNHOLY_HEAL, KAGUYA_FULL_MEAL,
+			REISEN_ILLUSION, TENSHI_PUNISHMENT, MURASA_SANCTUARY,
+			RINGING_BLOOM, NITORI_KEY, IKU_AIR_READING,
+			TIME_EATER, EIRIN_UNHOLY_HEAL, HUNDREDTH_BLACK_MARKET,
 			FLANDRE_GAZE, FATEFUL, JUNKO_PURE_HELL
 	};
 

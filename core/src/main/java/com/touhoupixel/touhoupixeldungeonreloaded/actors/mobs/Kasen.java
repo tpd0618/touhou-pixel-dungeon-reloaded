@@ -3,6 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReach;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DestroyArmorTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KasenSprite;
 import com.watabou.utils.Random;
@@ -17,8 +18,8 @@ public class Kasen extends Mob {
         EXP = 8;
         maxLvl = 45;
 
-        loot = new PotionOfMight();
-        lootChance = 0.125f;
+        loot = new PotionOfReach();
+        lootChance = 0.1f;
     }
 
     @Override

@@ -23,8 +23,8 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix ".indev"
-            versionNameSuffix '-INDEV'
+            applicationIdSuffix ""
+            versionNameSuffix ''
             dependencies {
                 debugImplementation project(':services:updates:debugUpdates')
                 debugImplementation project(':services:news:debugNews')

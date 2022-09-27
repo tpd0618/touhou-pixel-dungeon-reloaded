@@ -52,9 +52,7 @@ public class StoneOfAugmentation extends InventoryStone {
 
 	@Override
 	protected void onItemSelected(Item item) {
-		if (!Dungeon.isChallenged(Challenges.KAGUYA_FULL_MEAL)) {
-			GameScene.show(new WndAugment(item));
-		}
+		GameScene.show(new WndAugment(item));
 	}
 	
 	public void apply( Weapon weapon, Weapon.Augment augment ) {

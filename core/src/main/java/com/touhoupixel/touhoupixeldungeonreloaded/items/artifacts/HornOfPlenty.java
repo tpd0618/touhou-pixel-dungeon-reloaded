@@ -115,8 +115,6 @@ public class HornOfPlenty extends Artifact {
 
 				hero.spend(Food.TIME_TO_EAT);
 
-				Badges.validateFoodEaten();
-
 				int oldImage = image;
 				if (charge >= 15)       image = ItemSpriteSheet.ARTIFACT_HORN4;
 				else if (charge >= 10)  image = ItemSpriteSheet.ARTIFACT_HORN3;

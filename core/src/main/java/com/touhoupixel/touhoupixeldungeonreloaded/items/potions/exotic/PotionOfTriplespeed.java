@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class PotionOfTriplespeed extends ExoticPotion {
 	
@@ -38,5 +44,8 @@ public class PotionOfTriplespeed extends ExoticPotion {
 	public void apply(Hero hero) {
 		identify();
 		Buff.affect(hero, Triplespeed.class, Triplespeed.DURATION);
+		Statistics.playercorruption += 2;
+		Sample.INSTANCE.play(Assets.Sounds.CURSED);
+		GLog.w(Messages.get(Potion.class, "corruption"));
 	}
 }

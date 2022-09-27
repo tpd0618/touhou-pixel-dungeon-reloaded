@@ -31,7 +31,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class PotionOfChimata extends ExoticPotion {
 
@@ -43,6 +45,6 @@ public class PotionOfChimata extends ExoticPotion {
 	public void apply(Hero hero) {
 		identify();
 		Statistics.playercorruption -= 1;
-		Buff.affect(hero, Doublerainbow.class, Doublerainbow.DURATION);
+		GLog.p(Messages.get(this, "reduce"));
 	}
 }

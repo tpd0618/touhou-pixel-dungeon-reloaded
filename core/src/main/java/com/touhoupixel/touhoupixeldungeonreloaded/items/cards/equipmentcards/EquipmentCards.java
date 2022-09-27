@@ -21,14 +21,21 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -69,6 +76,13 @@ abstract public class EquipmentCards extends Item {
     @Override
     public boolean doPickUp(Hero hero, int pos) {
         parent = null;
+
+        if (Dungeon.isChallenged(Challenges.HUNDREDTH_BLACK_MARKET)) {
+            Statistics.playercorruption += 4;
+            Sample.INSTANCE.play(Assets.Sounds.CURSED);
+            GLog.w(Messages.get(Potion.class, "corruption"));
+        }
+
         Shopkeeper shopkeeper = new Shopkeeper();
         if (Statistics.card66 && Random.Int(4) == 0) {
             GameScene.flash(0x80FFFFFF);

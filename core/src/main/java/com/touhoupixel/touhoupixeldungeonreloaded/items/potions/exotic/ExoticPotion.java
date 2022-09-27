@@ -123,8 +123,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfFrostPower.class, PotionOfEnhanceFrost.class);
 		exoToReg.put(PotionOfEnhanceFrost.class, PotionOfFrostPower.class);
 
-		regToExo.put(PotionOfReach.class, PotionOfMokou.class);
-		exoToReg.put(PotionOfMokou.class, PotionOfReach.class);
+		regToExo.put(PotionOfReach.class, PotionOfJunko.class);
+		exoToReg.put(PotionOfJunko.class, PotionOfReach.class);
 
 		regToExo.put(PotionOfDanDamageIncrease.class, PotionOfHisou.class);
 		exoToReg.put(PotionOfHisou.class, PotionOfDanDamageIncrease.class);

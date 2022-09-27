@@ -292,7 +292,6 @@ public class Ring extends KindofMisc {
 		if (levelsToID <= 0){
 			identify();
 			GLog.p( Messages.get(Ring.class, "identify", toString()) );
-			Badges.validateItemLevelAquired( this );
 		}
 	}
 

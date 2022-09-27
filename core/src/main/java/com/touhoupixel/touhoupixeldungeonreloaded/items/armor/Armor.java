@@ -227,7 +227,6 @@ public class Armor extends EquipableItem {
 			//doesn't trigger upgrading logic such as affecting curses/glyphs
 			int newLevel = trueLevel()+1;
 			level(newLevel);
-			Badges.validateItemLevelAquired(this);
 		}
 		if (seal.getGlyph() != null){
 			inscribe(seal.getGlyph());
@@ -407,7 +406,6 @@ public class Armor extends EquipableItem {
 			if (usesLeftToID <= 0) {
 				identify();
 				GLog.p( Messages.get(Armor.class, "identify") );
-				Badges.validateItemLevelAquired( this );
 			}
 		}
 		
