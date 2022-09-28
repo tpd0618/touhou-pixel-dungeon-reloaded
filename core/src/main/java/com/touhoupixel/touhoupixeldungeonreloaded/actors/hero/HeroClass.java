@@ -57,6 +57,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantW
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.JunkoTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SevenDaysTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;

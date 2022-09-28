@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
@@ -39,8 +40,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.HecatiaTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
@@ -130,9 +134,9 @@ public class TrapsRoom extends SpecialRoom {
 		//1 floor set higher in probability, never cursed
 		do {
 			if (Random.Int(2) == 0) {
-				prize = Generator.randomWeapon((Dungeon.depth / 5) + 1);
+				prize = Generator.randomWeapon(Math.min(5,(Dungeon.depth / 10)));
 			} else {
-				prize = Generator.randomArmor((Dungeon.depth / 5) + 1);
+				prize = Generator.randomArmor(Math.min(5,(Dungeon.depth / 10)));
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;
@@ -147,25 +151,25 @@ public class TrapsRoom extends SpecialRoom {
 
 	@SuppressWarnings("unchecked")
 	private static Class<?extends Trap>[][] levelTraps = new Class[][]{
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, RockfallTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
-			{AntiHealTrap.class, DespairTrap.class, ExConfusionTrap.class, DisintegrationTrap.class, PoisonDartTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+			{HecatiaTrap.class, PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
 	};
 }

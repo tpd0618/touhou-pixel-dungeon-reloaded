@@ -33,7 +33,7 @@ public class BossKasen extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
+        //WIP Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
 
         Dungeon.level.drop(new Amulet(), pos ).sprite.drop();
     }

@@ -127,7 +127,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.BindTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.BlowawayTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ChaosTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SevenDaysTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DebilitationTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DecoyTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ExplosionTailsman;
@@ -385,7 +385,7 @@ public class Generator {
 			TAILSMAN.classes = new Class<?>[]{
 					BindTailsman.class,
 					BlowawayTailsman.class,
-					ChaosTailsman.class,
+					SevenDaysTailsman.class,
 					DecoyTailsman.class,
 					ExplosionTailsman.class,
 					FogpurgeTailsman.class,

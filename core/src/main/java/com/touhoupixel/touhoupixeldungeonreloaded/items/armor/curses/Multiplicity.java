@@ -91,7 +91,7 @@ public class Multiplicity extends Armor.Glyph {
 
 				if (m != null) {
 
-					if (Char.hasProp(m, Char.Property.ELIXIR)){
+					if (Char.hasProp(m, Char.Property.NONE)){
 						for ( int i : spawnPoints.toArray(new Integer[0])){
 							if (!Dungeon.level.openSpace[i]){
 								//remove the value, not at the index

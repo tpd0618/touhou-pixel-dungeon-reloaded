@@ -415,7 +415,7 @@ public abstract class Mob extends Char {
 
 			if (Actor.findChar( target ) == null
 					&& (Dungeon.level.passable[target] || (flying && Dungeon.level.avoid[target]))
-					&& (!Char.hasProp(this, Property.ELIXIR) || Dungeon.level.openSpace[target])) {
+					&& (!Char.hasProp(this, Property.NONE) || Dungeon.level.openSpace[target])) {
 				step = target;
 			}
 
@@ -471,7 +471,7 @@ public abstract class Mob extends Char {
 				int nextCell = path.removeFirst();
 				if (!Dungeon.level.passable[nextCell]
 						|| (!flying && Dungeon.level.avoid[nextCell])
-						|| (Char.hasProp(this, Property.ELIXIR) && !Dungeon.level.openSpace[nextCell])
+						|| (Char.hasProp(this, Property.NONE) && !Dungeon.level.openSpace[nextCell])
 						|| Actor.findChar(nextCell) != null) {
 
 					newPath = true;
@@ -481,7 +481,7 @@ public abstract class Mob extends Char {
 							if (Dungeon.level.adjacent(pos, nextCell + i) && Dungeon.level.adjacent(nextCell + i, path.getFirst())) {
 								if (Dungeon.level.passable[nextCell+i]
 										&& (flying || !Dungeon.level.avoid[nextCell+i])
-										&& (!Char.hasProp(this, Property.ELIXIR) || Dungeon.level.openSpace[nextCell+i])
+										&& (!Char.hasProp(this, Property.NONE) || Dungeon.level.openSpace[nextCell+i])
 										&& Actor.findChar(nextCell+i) == null){
 									path.addFirst(nextCell+i);
 									newPath = false;
@@ -510,7 +510,7 @@ public abstract class Mob extends Char {
 						path = ignoreChars;
 						if (!Dungeon.level.passable[ignoreChars.getFirst()]
 								|| (!flying && Dungeon.level.avoid[ignoreChars.getFirst()])
-								|| (Char.hasProp(this, Property.ELIXIR) && !Dungeon.level.openSpace[ignoreChars.getFirst()])
+								|| (Char.hasProp(this, Property.NONE) && !Dungeon.level.openSpace[ignoreChars.getFirst()])
 								|| Actor.findChar(ignoreChars.getFirst()) != null) {
 							return false;
 						}

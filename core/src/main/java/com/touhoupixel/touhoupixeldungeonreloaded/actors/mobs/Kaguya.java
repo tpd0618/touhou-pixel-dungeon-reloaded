@@ -19,6 +19,8 @@ public class Kaguya extends Mob {
         EXP = 14;
         maxLvl = 30;
 
+        properties.add(Property.ELIXIR);
+
         loot = new LifeFragment();
         lootChance = 0.04f;
     }

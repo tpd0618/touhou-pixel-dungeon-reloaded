@@ -23,6 +23,8 @@ public class Mokou extends Mob {
         loot = new LifeFragment();
         lootChance = 0.05f;
 
+        properties.add(Property.ELIXIR);
+
         immunities.add( Fire.class );
     }
 

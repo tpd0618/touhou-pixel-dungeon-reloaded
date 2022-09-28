@@ -35,7 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
@@ -69,7 +68,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Fireball;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
@@ -77,10 +75,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
@@ -741,7 +737,7 @@ public abstract class Char extends Actor {
             sprite.interruptMotion();
             int newPos = pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
             if (!(Dungeon.level.passable[newPos] || Dungeon.level.avoid[newPos])
-                    || (properties().contains(Property.ELIXIR) && !Dungeon.level.openSpace[newPos])
+                    || (properties().contains(Property.NONE) && !Dungeon.level.openSpace[newPos])
                     || Actor.findChar( newPos ) != null)
                 return;
             else {
@@ -845,6 +841,7 @@ public abstract class Char extends Actor {
         FLOAT,
         ANIMAL,
         GOD,
+        NONE,
         ELIXIR,
         FIRE,
         COLD,

@@ -19,7 +19,7 @@ public class Keine extends Mob {
     {
         spriteClass = KeineSprite.class;
 
-        HP = HT = 106;
+        HP = HT = 107;
         defenseSkill = 22;
         EXP = 6;
         maxLvl = 30;

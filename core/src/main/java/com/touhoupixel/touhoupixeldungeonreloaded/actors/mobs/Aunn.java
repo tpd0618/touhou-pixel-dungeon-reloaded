@@ -105,7 +105,7 @@ public class Aunn extends Mob {
             for (int n : neighbours) {
                 if (Dungeon.level.passable[n]
                         && Actor.findChar( n ) == null
-                        && (!Char.hasProp(this, Property.ELIXIR) || Dungeon.level.openSpace[n])) {
+                        && (!Char.hasProp(this, Property.NONE) || Dungeon.level.openSpace[n])) {
                     candidates.add( n );
                 }
             }
@@ -228,7 +228,7 @@ public class Aunn extends Mob {
                         int cell = ghoul.pos + n;
                         if (Dungeon.level.passable[cell]
                                 && Actor.findChar( cell ) == null
-                                && (!Char.hasProp(ghoul, Property.ELIXIR) || Dungeon.level.openSpace[cell])) {
+                                && (!Char.hasProp(ghoul, Property.NONE) || Dungeon.level.openSpace[cell])) {
                             candidates.add( cell );
                         }
                     }

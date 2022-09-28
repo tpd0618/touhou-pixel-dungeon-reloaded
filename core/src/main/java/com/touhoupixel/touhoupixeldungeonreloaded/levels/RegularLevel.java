@@ -279,7 +279,7 @@ public abstract class RegularLevel extends Level {
 					&& Actor.findChar( cell ) == null
 					&& passable[cell]
 					&& !solid[cell]
-					&& (!Char.hasProp(ch, Char.Property.ELIXIR) || openSpace[cell])
+					&& (!Char.hasProp(ch, Char.Property.NONE) || openSpace[cell])
 					&& room.canPlaceCharacter(cellToPoint(cell), this)
 					&& cell != exit) {
 				return cell;
