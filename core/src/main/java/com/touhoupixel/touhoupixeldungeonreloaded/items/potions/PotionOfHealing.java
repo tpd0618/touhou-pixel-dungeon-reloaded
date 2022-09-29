@@ -72,7 +72,7 @@ public class PotionOfHealing extends Potion {
 		if (ch == Dungeon.hero) {
 			GLog.p(Messages.get(PotionOfHealing.class, "heal"));
 			if (Dungeon.isChallenged(Challenges.EIRIN_UNHOLY_HEAL)) {
-				Buff.prolong(curUser, Paralysis.class, Paralysis.DURATION / 2f);
+				Buff.prolong(curUser, Paralysis.class, Paralysis.DURATION/5f);
 			}
 		}
 	}

@@ -24,18 +24,18 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class TailsmanChallenge extends FlavourBuff {
+public class FlandreCooldown extends FlavourBuff {
 	
-	public static final float DURATION = 10000f;
+	public static final float DURATION = 10f;
 	
 	{
-		type = buffType.NEUTRAL;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.TAILSMAN_CHALLENGE;
+		return BuffIndicator.FLANDRE_COOLDOWN;
 	}
 
 	@Override
@@ -46,11 +46,6 @@ public class TailsmanChallenge extends FlavourBuff {
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
-	}
-	
-	@Override
-	public String heroMessage() {
-		return Messages.get(this, "heromsg");
 	}
 	
 	@Override

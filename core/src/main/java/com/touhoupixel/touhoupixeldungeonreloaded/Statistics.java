@@ -72,7 +72,7 @@ public class Statistics {
 	public static int tenshiEarthquake;
 	public static int bordercount;
 
-	public static int deepdwarfHTdown;
+	public static int yukariCount;
 
 	public static int extraSTRcheck;
 	public static int extraSTRcheck2;
@@ -284,7 +284,7 @@ public class Statistics {
 		tenshiEarthquake = 0;
 		bordercount = 0;
 
-		deepdwarfHTdown   = 0;
+		yukariCount = 0;
 
 		extraSTRcheck   = 0;
 		extraSTRcheck2   = 0;
@@ -492,7 +492,7 @@ public class Statistics {
 	private static final String TENSHIEARTHQUAKE		= "tenshiearthquake";
 	private static final String BORDERCOUNT		= "bordercount";
 
-	private static final String DEEPDWARFHTDOWN		= "deepdwarfhtdown";
+	private static final String YUKARICOUNT		= "yukaricount";
 
 	private static final String EXTRASTRCHECK		= "extraSTRcheck";
 	private static final String EXTRASTRCHECK2		= "extraSTRcheck2";
@@ -703,7 +703,7 @@ public class Statistics {
 		bundle.put( TENSHIEARTHQUAKE,		tenshiEarthquake );
 		bundle.put( BORDERCOUNT,		bordercount );
 
-		bundle.put( DEEPDWARFHTDOWN,	deepdwarfHTdown );
+		bundle.put( YUKARICOUNT, yukariCount);
 
 		bundle.put( EXTRASTRCHECK,	extraSTRcheck );
 		bundle.put( EXTRASTRCHECK2,	extraSTRcheck2 );
@@ -918,7 +918,7 @@ public class Statistics {
 		tenshiEarthquake   = bundle.getInt( TENSHIEARTHQUAKE );
 		bordercount   = bundle.getInt( BORDERCOUNT );
 
-		deepdwarfHTdown   = bundle.getInt( DEEPDWARFHTDOWN );
+		yukariCount = bundle.getInt( YUKARICOUNT );
 
 		extraSTRcheck   = bundle.getInt( EXTRASTRCHECK );
 		extraSTRcheck2   = bundle.getInt( EXTRASTRCHECK2 );

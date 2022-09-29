@@ -54,6 +54,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LifeLink;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
@@ -434,6 +435,9 @@ public abstract class Char extends Actor {
                 damage *= 2.5f;
             } else damage *= 1.5f;
         }
+        if (buff(NitoriKeyPower.class) != null){
+            damage *= 1.4f;
+        }
         if (buff(YuukaRage.class) != null){
             damage += 100;
         }
@@ -623,6 +627,9 @@ public abstract class Char extends Actor {
         }
         if (buff( Doublespeed.class ) != null) {
             timeScale *= 2.0f;
+        }
+        if (buff( NitoriKeyPower.class ) != null) {
+            timeScale *= 2.5f;
         }
         if (buff( Triplespeed.class ) != null) {
             timeScale *= 3.0f;

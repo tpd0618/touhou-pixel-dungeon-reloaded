@@ -43,7 +43,7 @@ import java.util.LinkedHashMap;
 public class BuffIndicator extends Component {
 
 	//transparent icon
-	public static final int NONE    = 107;
+	public static final int NONE    = 109;
 
 	//FIXME this is becoming a mess, should do a big cleaning pass on all of these
 	//and think about tinting options
@@ -89,6 +89,7 @@ public class BuffIndicator extends Component {
 	public static final int SACRIFICE   = 39;
 	public static final int BERSERK     = 40;
 	public static final int HASTE       = 41;
+	public static final int NITORI_KEY_POWER = 42;
 	public static final int WELL_FED    = 43;
 	public static final int HEALING     = 44;
 	public static final int WEAPON      = 45;
@@ -122,13 +123,13 @@ public class BuffIndicator extends Component {
 	public static final int REBIRTH_DONE         = 92;
 	public static final int WAND_ZERODAMAGE         = 94;
 	public static final int EXTREME_CONFUSION         = 99;
-	public static final int TAILSMAN_CHALLENGE         = 100;
 	public static final int CURSED_BLOW         = 101;
 	public static final int NO_INVISIBILITY         = 102;
 	public static final int FLANDRE_MARK         = 103;
 	public static final int ACTIVE_COOLDOWN         = 104;
 	public static final int SUPERNATURAL_BORDER         = 105;
 	public static final int REMILIA_FATE         = 106;
+	public static final int FLANDRE_COOLDOWN         = 107;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

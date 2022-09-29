@@ -1326,7 +1326,7 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_PARAGAS,     7, 7 );
 			assignIconRect( POTION_PURITY,      5, 7 );
 			assignIconRect( POTION_EXP,         7, 7 );
-			assignIconRect( POTION_RINGODANGO,       7, 7 );
+			assignIconRect( POTION_RINGODANGO,       3, 7 );
 			assignIconRect( POTION_MIGHT,       7, 7 );
 			assignIconRect( POTION_DOUBLESPEED,       7, 7 );
 			assignIconRect( POTION_LIGHTHEALING,       6, 7 );
@@ -1344,11 +1344,11 @@ public class ItemSpriteSheet {
 		public static final int POTION_STRMCLOUD= EXOTIC_POTIONS+8;
 		public static final int POTION_EARTHARMR= EXOTIC_POTIONS+9;
 		public static final int POTION_CLEANSE  = EXOTIC_POTIONS+10;
-		public static final int POTION_CHIMATA   = EXOTIC_POTIONS+11;
+		public static final int POTION_CONFUSIONHEAL   = EXOTIC_POTIONS+11;
 		public static final int POTION_PHILOSOPHER = EXOTIC_POTIONS+12;
 		public static final int POTION_INVULNERABILITY = EXOTIC_POTIONS+13;
 		public static final int POTION_TRIPLESPEED = EXOTIC_POTIONS+14;
-		public static final int POTION_CONFUSIONHEAL = EXOTIC_POTIONS+15;
+		public static final int POTION_CHIMATA = EXOTIC_POTIONS+15;
 		static {
 			assignIconRect( POTION_NITORI,     7, 7 );
 			assignIconRect( POTION_SHIELDING,   6, 6 );
@@ -1361,11 +1361,11 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_STRMCLOUD,   7, 7 );
 			assignIconRect( POTION_EARTHARMR,   6, 6 );
 			assignIconRect( POTION_CLEANSE,     7, 7 );
-			assignIconRect( POTION_CHIMATA,      7, 7 );
+			assignIconRect( POTION_CONFUSIONHEAL,      6, 7 );
 			assignIconRect( POTION_PHILOSOPHER,   7, 7 );
 			assignIconRect( POTION_INVULNERABILITY,   5, 7 );
 			assignIconRect( POTION_TRIPLESPEED,   7, 7 );
-			assignIconRect( POTION_CONFUSIONHEAL,   6, 7 );
+			assignIconRect( POTION_CHIMATA,   7, 7 );
 		}
 	}
 }

@@ -312,6 +312,7 @@ public class Generator {
 					PotionOfLevitation.class,
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
+					PotionOfExperience.class,
 					PotionOfRingoDango.class,
 					PotionOfMight.class,
 					PotionOfDoublespeed.class,
@@ -323,9 +324,8 @@ public class Generator {
 					PotionOfFrostPower.class,
 					PotionOfLightReverse.class,
 					PotionOfReach.class,
-					PotionOfYingYang.class,
-					PotionOfExperience.class};
-			POTION.defaultProbs = new float[]{ 0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 };
+					PotionOfYingYang.class};
+			POTION.defaultProbs = new float[]{ 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 };
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{

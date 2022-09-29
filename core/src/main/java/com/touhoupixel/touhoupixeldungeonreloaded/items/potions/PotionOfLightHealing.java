@@ -42,8 +42,8 @@ public class PotionOfLightHealing extends Potion {
 		identify();
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);
-		} else hero.HP = Math.min(hero.HP + 50, hero.HT);
-		if (hero.buff(AntiHeal.class) == null) {
+		} else {
+			hero.HP = Math.min(hero.HP + 50, hero.HT);
 			GLog.p(Messages.get(this, "lightheal"));
 		}
 	}

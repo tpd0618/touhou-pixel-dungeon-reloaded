@@ -40,10 +40,10 @@ public class PotionOfYingYang extends Potion {
 	public void apply(Hero hero) {
 		identify();
 		if (hero.HP % 2 == 1) {
-			if (hero.buff(AntiHeal.class) != null) {
+			if (hero.buff(AntiHeal.class) != null && hero.HP % 2 == 1) {
 				hero.damage(hero.HT / 2, hero);
-			} else hero.HP = Math.min(hero.HP + 150, hero.HT);
-			if (hero.buff(AntiHeal.class) == null) {
+			} else {
+				hero.HP = Math.min(hero.HP + 150, hero.HT);
 				GLog.p(Messages.get(this, "yingyangheal"));
 			}
 		} else Buff.affect( hero, Drowsy.class );

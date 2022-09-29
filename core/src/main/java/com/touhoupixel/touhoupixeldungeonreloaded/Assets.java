@@ -375,8 +375,8 @@ public class Assets {
 		public static final String REMILIA = "sprites/remilia.png";
 		public static final String FLANDRE = "sprites/flandre.png";
 		public static final String YOUMU = "sprites/youmu.png";
-		public static final String RIPPER = "sprites/ripper.png";
 		public static final String TOJIKO = "sprites/tojiko.png";
+		public static final String MAMIZOU = "sprites/mamizou.png";
 		public static final String PYLON = "sprites/pylon.png";
 		public static final String KANAKO = "sprites/kanako.png";
 		public static final String AKYUU = "sprites/akyuu.png";

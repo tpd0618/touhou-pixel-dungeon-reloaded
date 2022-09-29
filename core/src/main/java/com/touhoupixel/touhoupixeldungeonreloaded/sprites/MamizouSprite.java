@@ -24,12 +24,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.watabou.noosa.TextureFilm;
 
-public class AyaSprite extends MobSprite {
+public class MamizouSprite extends MobSprite {
 
-	public AyaSprite() {
+	public MamizouSprite() {
 		super();
 
-		texture( Assets.Sprites.AYA );
+		texture( Assets.Sprites.MAMIZOU );
 
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 

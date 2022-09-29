@@ -1,22 +1,18 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
-public class BossFlandre extends Mob {
+public class Mamizou extends Mob {
 
     {
-        spriteClass = AunnSprite.class;
+        spriteClass = AyaSprite.class;
 
         HP = HT = 200;
         defenseSkill = 30;
@@ -25,14 +21,6 @@ public class BossFlandre extends Mob {
 
         loot = new LifeFragment();
         lootChance = 0.04f;
-    }
-
-    @Override
-    public void die(Object cause) {
-        GameScene.bossSlain();
-        super.die(cause);
-        Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(50), pos ).sprite.drop();
     }
 
     @Override
@@ -48,14 +36,6 @@ public class BossFlandre extends Mob {
     @Override
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
-    }
-
-    @Override
-    public void notice() {
-        super.notice();
-        if (!BossHealthBar.isAssigned()) {
-            BossHealthBar.assignBoss(this);
-        }
     }
 
     @Override

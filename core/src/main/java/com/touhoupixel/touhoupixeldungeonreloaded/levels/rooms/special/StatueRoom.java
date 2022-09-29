@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossLarva;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Flandre;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -63,7 +65,11 @@ public class StatueRoom extends SpecialRoom {
 			
 			Painter.fill( level, left + 1, top + 1, width() - 2, 1 , Terrain.STATUE );
 			cy = top + 2;
-			
+
 		}
+
+		Flandre flandre = new Flandre();
+		flandre.pos = cx + cy * level.width();
+		level.mobs.add( flandre );
 	}
 }

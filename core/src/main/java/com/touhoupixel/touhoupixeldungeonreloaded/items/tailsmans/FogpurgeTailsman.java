@@ -12,10 +12,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.TailsmanChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -30,13 +30,14 @@ public class FogpurgeTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null && ch.buff(TailsmanChallenge.class) == null){
+        if (ch != null){
             Buff.detach(ch, Adrenaline.class);
             Buff.detach(ch, Bless.class);
             Buff.detach(ch, Doublerainbow.class);
             Buff.detach(ch, Might.class);
             Buff.detach(ch, Hisou.class);
             Buff.detach(ch, Doublespeed.class);
+            Buff.detach(ch, NitoriKeyPower.class);
             Buff.detach(ch, Triplespeed.class);
             Buff.detach(ch, Haste.class);
             Buff.detach(ch, Stamina.class);

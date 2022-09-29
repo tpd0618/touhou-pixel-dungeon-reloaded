@@ -34,16 +34,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreMark;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
@@ -67,6 +66,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileW
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
@@ -595,8 +595,10 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Random.Int(3) == 0 && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
+		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Dungeon.level.map[enemy.pos] == Terrain.WATER && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10000f);
+			Level.set( enemy.pos, Terrain.EMPTY );
+			GameScene.updateMap( enemy.pos );
 		}
 		return Messages.get(this, "def_verb");
 	}
@@ -606,6 +608,12 @@ public abstract class Mob extends Char {
 
 		if (this instanceof Nazrin && Dungeon.gold > 200){
 			damage += 1;
+		}
+
+		if (Statistics.amuletObtained && Dungeon.hero.belongings.armor() != null){
+			damage += Math.max(1, 50-Dungeon.depth-Dungeon.hero.belongings.armor.DRMin());
+		} else if (Statistics.amuletObtained && Dungeon.hero.belongings.armor() == null){
+			damage += Math.max(1, 50-Dungeon.depth);
 		}
 
 		if (this instanceof Koakuma){
@@ -623,7 +631,7 @@ public abstract class Mob extends Char {
 		for (int i : PathFinder.NEIGHBOURS8) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (this instanceof Miko && enemy.pos == this.pos + i) {
-					damage *= 1.2;
+					damage *= 1.2f;
 				}
 			}
 		}
@@ -637,20 +645,14 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
-			Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
-		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0) {
-			Buff.prolong(this, Hisou.class, Hisou.DURATION);
-		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+			Buff.prolong(this, NitoriKeyPower.class, NitoriKeyPower.DURATION);
 		}
 
 		damage += Statistics.timetrackstrup/48;
 
 		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)) {
-			damage += Statistics.goldPickedup/50 + Statistics.enemiesSlain/100;
+			damage += Statistics.playercorruption + Statistics.enemiesSlain/100;
 		}
 		return damage;
 	}
@@ -725,16 +727,20 @@ public abstract class Mob extends Char {
 		}
 
 		if (Statistics.amuletObtained){
-			if (Dungeon.depth > 80){
+			if (Dungeon.depth < 100){
 				dmg *= 0.9f;
-			} else if (Dungeon.depth > 60){
-				dmg *= 0.8f;
-			} else if (Dungeon.depth > 40){
-				dmg *= 0.7f;
-			} else if (Dungeon.depth > 20){
-				dmg *= 0.6f;
-			} else if (Dungeon.depth > 0){
-				dmg *= 0.5f;
+			}
+			if (Dungeon.depth < 80){
+				dmg *= 0.9f;
+			}
+			if (Dungeon.depth < 60){
+				dmg *= 0.9f;
+			}
+			if (Dungeon.depth < 40){
+				dmg *= 0.9f;
+			}
+			if (Dungeon.depth < 20){
+				dmg *= 0.9f;
 			}
 		}
 
@@ -771,6 +777,15 @@ public abstract class Mob extends Char {
 
 	@Override
 	public void die( Object cause ) {
+
+		if (Dungeon.isChallenged(Challenges.JUNKO_SANCTUARY)) {
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+					Buff.prolong(mob, OneDefDamage.class, OneDefDamage.DURATION/10f);
+				}
+			}
+		}
+
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			Statistics.power += 5;
 			if (Statistics.card35){

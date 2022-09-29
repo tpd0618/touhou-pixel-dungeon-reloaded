@@ -382,16 +382,20 @@ public class Hero extends Char {
 		}
 
 		if (Statistics.amuletObtained){
-			if (Dungeon.depth > 80){
-				accuracy *= 0.95f;
-			} else if (Dungeon.depth > 60){
+			if (Dungeon.depth < 100){
 				accuracy *= 0.9f;
-			} else if (Dungeon.depth > 40){
-				accuracy *= 0.85f;
-			} else if (Dungeon.depth > 20){
-				accuracy *= 0.8f;
-			} else if (Dungeon.depth > 0){
-				accuracy *= 0.75f;
+			}
+			if (Dungeon.depth < 80){
+				accuracy *= 0.9f;
+			}
+			if (Dungeon.depth < 60){
+				accuracy *= 0.9f;
+			}
+			if (Dungeon.depth < 40){
+				accuracy *= 0.9f;
+			}
+			if (Dungeon.depth < 20){
+				accuracy *= 0.9f;
 			}
 		}
 
@@ -440,16 +444,20 @@ public class Hero extends Char {
 		}
 
 		if (Statistics.amuletObtained){
-			if (Dungeon.depth > 80){
-				evasion *= 0.95;
-			} else if (Dungeon.depth > 60){
+			if (Dungeon.depth < 100){
 				evasion *= 0.9;
-			} else if (Dungeon.depth > 40){
-				evasion *= 0.85;
-			} else if (Dungeon.depth > 20){
-				evasion *= 0.8;
-			} else if (Dungeon.depth > 0){
-				evasion *= 0.75;
+			}
+			if (Dungeon.depth < 80){
+				evasion *= 0.9;
+			}
+			if (Dungeon.depth < 60){
+				evasion *= 0.9;
+			}
+			if (Dungeon.depth < 40){
+				evasion *= 0.9;
+			}
+			if (Dungeon.depth < 20){
+				evasion *= 0.9;
 			}
 		}
 
@@ -1104,10 +1112,8 @@ public class Hero extends Char {
 			Statistics.bordercount += 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.MURASA_SANCTUARY) && Dungeon.level.map[enemy.pos] == Terrain.WATER) {
-			Buff.prolong(enemy, OneDefDamage.class, OneDefDamage.DURATION/4f);
-			Level.set( enemy.pos, Terrain.EMPTY );
-			GameScene.updateMap( enemy.pos );
+		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
+			Statistics.timetrackbuff += 1;
 		}
 
 		if (buff(DanDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
@@ -1126,25 +1132,13 @@ public class Hero extends Char {
 			CursedWand.cursedEffect(null, this, enemy);
 		}
 
-		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
-			Statistics.timetrackbuff += 1;
-		}
-
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
-			Buff.prolong(this, MoveDetect.class, MoveDetect.DURATION*2f);
-		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
-			Buff.prolong(this, Silence.class, Silence.DURATION);
-		}
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
-			Buff.prolong(this, OneDamage.class, OneDamage.DURATION*5f);
-		}
-
 		if (Statistics.power == 400){
-			damage *= 1.3f;
-		} else if (Statistics.power >= 300){
-			damage *= 1.2f;
-		} else if (Statistics.power >= 200){
+			damage *= 1.1f;
+		}
+		if (Statistics.power >= 300){
+			damage *= 1.1f;
+		}
+		if (Statistics.power >= 200){
 			damage *= 1.1f;
 		}
 
@@ -1315,20 +1309,6 @@ public class Hero extends Char {
 
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
-
-		if (Statistics.amuletObtained){
-			if (Dungeon.depth > 80){
-				damage *= 2f;
-			} else if (Dungeon.depth > 60){
-				damage *= 4f;
-			} else if (Dungeon.depth > 40){
-				damage *= 6f;
-			} else if (Dungeon.depth > 20){
-				damage *= 8f;
-			} else if (Dungeon.depth > 0){
-				damage *= 10f;
-			}
-		}
 
 		if (buff(HighStress.class) != null){
 			HP = 1;
@@ -2121,12 +2101,8 @@ public class Hero extends Char {
 			Statistics.boss20 = true;
 		}
 
-		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT) || Statistics.amuletObtained){
+		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
 			if (Statistics.tenshiEarthquake > 98) {
-				if (Statistics.amuletObtained){
-					//new YukariTrap().set(this.pos).activate(); TBA
-					new HecatiaTrap().set(this.pos).activate();
-				}
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
 				if (!this.flying) {
@@ -2137,6 +2113,15 @@ public class Hero extends Char {
 				}
 				Sample.INSTANCE.play(Assets.Sounds.BLAST);
 			} else Statistics.tenshiEarthquake += 1;
+		}
+
+		if (Statistics.amuletObtained) {
+			if (Statistics.yukariCount > 98) {
+				Statistics.yukariCount = 0;
+				Camera.main.shake(5, 1f);
+				//new YukariTrap().set(this.pos).activate(); TBA
+				new HecatiaTrap().set(this.pos).activate();
+			} else Statistics.yukariCount += 1;
 		}
 
 		if (buff(MoveDetect.class) != null) {

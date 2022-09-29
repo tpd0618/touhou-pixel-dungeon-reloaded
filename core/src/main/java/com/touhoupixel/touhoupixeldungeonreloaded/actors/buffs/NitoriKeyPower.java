@@ -19,37 +19,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.watabou.noosa.TextureFilm;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class AyaSprite extends MobSprite {
-
-	public AyaSprite() {
-		super();
-
-		texture( Assets.Sprites.AYA );
-
-		TextureFilm frames = new TextureFilm( texture, 12, 15 );
-
-		idle = new Animation( 15, true );
-		idle.frames( frames, 0, 1, 2, 3, 4, 5 );
-
-		run = new Animation( 15, true );
-		run.frames( frames, 0, 1, 2, 3, 4, 5 );
-
-		attack = new Animation( 20, false );
-		attack.frames( frames, 6, 7, 8, 9 );
-
-		die = new Animation( 15, false );
-		die.frames( frames, 10, 11, 12, 13, 14 );
-
-		play( idle );
+public class NitoriKeyPower extends FlavourBuff {
+	
+	public static final float DURATION = 10f;
+	
+	{
+		type = buffType.POSITIVE;
+		announced = true;
+	}
+	
+	@Override
+	public int icon() {
+		return BuffIndicator.NITORI_KEY_POWER;
 	}
 
 	@Override
-	public int blood() {
-		return 0xFF8BA077;
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+	
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+	
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
 	}
 }

@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
@@ -69,6 +70,12 @@ public class LifeSpellcardChecker extends Item {
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats4", Statistics.spellcard);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats5", Statistics.spellcardfragment);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats6", Statistics.playercorruption);
+		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
+			info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats7", Statistics.tenshiEarthquake);
+		}
+		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
+			info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats8", Statistics.timetrackbuff);
+		}
 
 		return info;
 	}
