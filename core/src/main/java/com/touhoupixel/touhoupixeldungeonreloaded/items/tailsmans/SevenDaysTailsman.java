@@ -8,6 +8,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
@@ -36,33 +37,35 @@ public class SevenDaysTailsman extends Tailsman {
         Char ch = Actor.findChar(cell);
 
         if (ch != null && !ch.properties().contains(Char.Property.BOSS)) {
-            switch (Random.Int(7)) {
-                case 0:
-                default:
-                    Buff.affect(ch, Poison.class).set(Dungeon.depth);
-                    break;
-                case 1:
-                    Buff.prolong(ch, Vertigo.class, Vertigo.DURATION);
-                    break;
-                case 2:
-                    Buff.prolong(ch, Slow.class, Slow.DURATION);
-                    break;
-                case 3:
-                    Buff.affect(ch, Drowsy.class);
-                    break;
-                case 4:
-                    new ExplosiveTrap().set(cell).activate();
-                    break;
-                case 5:
-                    ScrollOfTeleportation.teleportChar(ch);
-                    break;
-                case 6:
-                    GameScene.flash(0x80FFFFFF);
-                    Sample.INSTANCE.play(Assets.Sounds.BLAST);
-                    ch.die(null);
-                    if (ch.properties().contains(Char.Property.ELIXIR)) {
-                        Dungeon.level.drop(new PotionOfJunko(), ch.pos).sprite.drop();
-                    } else Dungeon.level.drop(new PotionOfCirno(), ch.pos).sprite.drop();
+            if (Dungeon.hero.buff(Pure.class) == null) {
+                switch (Random.Int(7)) {
+                    case 0:
+                    default:
+                        Buff.affect(ch, Poison.class).set(Dungeon.depth);
+                        break;
+                    case 1:
+                        Buff.prolong(ch, Vertigo.class, Vertigo.DURATION);
+                        break;
+                    case 2:
+                        Buff.prolong(ch, Slow.class, Slow.DURATION);
+                        break;
+                    case 3:
+                        Buff.affect(ch, Drowsy.class);
+                        break;
+                    case 4:
+                        new ExplosiveTrap().set(cell).activate();
+                        break;
+                    case 5:
+                        ScrollOfTeleportation.teleportChar(ch);
+                        break;
+                    case 6:
+                        GameScene.flash(0x80FFFFFF);
+                        Sample.INSTANCE.play(Assets.Sounds.BLAST);
+                        ch.die(null);
+                        if (ch.properties().contains(Char.Property.ELIXIR)) {
+                            Dungeon.level.drop(new PotionOfJunko(), ch.pos).sprite.drop();
+                        } else Dungeon.level.drop(new PotionOfCirno(), ch.pos).sprite.drop();
+                }
             }
         }
     }

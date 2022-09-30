@@ -25,6 +25,8 @@ public class BossAya extends Mob {
 
 		flying = true;
 
+		properties.add(Property.BOSS);
+
 		loot = new Life();
 		lootChance = 1f;
 	}

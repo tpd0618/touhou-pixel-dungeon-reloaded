@@ -20,7 +20,7 @@ public class Shion extends Mob {
     {
         spriteClass = ShionSprite.class;
 
-        HP = HT = 168;
+        HP = HT = 188;
         defenseSkill = 37;
         EXP = 7;
         maxLvl = 45;

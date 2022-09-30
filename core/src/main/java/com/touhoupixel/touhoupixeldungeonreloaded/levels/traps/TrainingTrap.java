@@ -35,7 +35,7 @@ public class TrainingTrap extends Trap {
 
 	{
 		color = GREY;
-		shape = DIAMOND;
+		shape = STARS;
 
 		avoidsHallways = false;
 		canBeHidden = false;

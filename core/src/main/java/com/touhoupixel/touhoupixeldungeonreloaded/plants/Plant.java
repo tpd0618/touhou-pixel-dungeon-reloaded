@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.plants;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -85,6 +86,12 @@ public abstract class Plant implements Bundlable {
 			if (seedClass != null && seedClass != Rotberry.Seed.class) {
 				Dungeon.level.drop(Reflection.newInstance(seedClass), pos).sprite.drop();
 			}
+		}
+
+		Char ch = Actor.findChar(pos);
+
+		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+			Statistics.mood += 1;
 		}
 
 	}

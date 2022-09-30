@@ -33,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
@@ -40,24 +41,33 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
@@ -537,6 +547,10 @@ public class Hero extends Char {
 			speed *= 2;
 		}
 
+		if (Dungeon.hero.buff(Happy.class) != null){
+			speed /= 2;
+		}
+
 		speed *= RingOfHaste.speedMultiplier(this);
 
 		if (belongings.armor() != null) {
@@ -552,8 +566,9 @@ public class Hero extends Char {
 	public boolean canSurpriseAttack(){
 		if (belongings.weapon() == null || !(belongings.weapon() instanceof Weapon))    return true;
 		if (STR() < ((Weapon)belongings.weapon()).STRReq())                             return false;
-		if (buff(AntiSneakattack.class) != null)                                        return false;
-		if (belongings.weapon() instanceof CirnoWing) return false;
+		if (Dungeon.hero.buff(AntiSneakattack.class) != null)                                        return false;
+		if (belongings.weapon() instanceof CirnoWing)                                   return false;
+		if (Dungeon.hero.buff(Powerful.class) != null)                                  return false;
 		if (Statistics.card45) return false;
 
 		return true;
@@ -613,6 +628,10 @@ public class Hero extends Char {
 		busy();
 		spend( time );
 		next();
+		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
+			Statistics.mood += 1;
+			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/5f);
+		}
 	}
 
 	@Override
@@ -901,9 +920,7 @@ public class Hero extends Char {
 					default:
 						Sample.INSTANCE.play( Assets.Sounds.UNLOCK );
 				}
-
 				sprite.operate( dst );
-
 			} else {
 				ready();
 			}
@@ -949,7 +966,6 @@ public class Hero extends Char {
 				sprite.operate( doorCell );
 
 				Sample.INSTANCE.play( Assets.Sounds.UNLOCK );
-
 			} else {
 				GLog.w( Messages.get(this, "locked_door") );
 				ready();
@@ -1066,6 +1082,45 @@ public class Hero extends Char {
 	@Override
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
+
+		if (Dungeon.hero.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null){
+			damage *= 0;
+		}
+		if (Dungeon.hero.buff(Cool.class) != null && enemy.buff(Cool.class) != null){
+			damage *= 0;
+		}
+		if (Dungeon.hero.buff(Pure.class) != null && enemy.buff(Pure.class) != null){
+			damage *= 0;
+		}
+		if (Dungeon.hero.buff(Happy.class) != null && enemy.buff(Happy.class) != null){
+			damage *= 0;
+		}
+
+		if (Dungeon.hero.buff(Powerful.class) != null && Dungeon.level.map[enemy.pos] == Terrain.EMPTY || Dungeon.level.map[enemy.pos] == Terrain.EMPTY_SP){
+			damage *= 0.5f;
+		}
+		if (Dungeon.hero.buff(Cool.class) != null && Dungeon.level.map[enemy.pos] == Terrain.WATER){
+			damage *= 0.5f;
+		}
+		if (Dungeon.hero.buff(Pure.class) != null && Dungeon.level.map[enemy.pos] == Terrain.GRASS || Dungeon.level.map[enemy.pos] == Terrain.HIGH_GRASS || Dungeon.level.map[enemy.pos] == Terrain.FURROWED_GRASS){
+			damage *= 0.5f;
+		}
+		if (Dungeon.hero.buff(Happy.class) != null && Dungeon.level.map[enemy.pos] == Terrain.OPEN_DOOR){
+			damage *= 0;
+		}
+
+		if (Dungeon.hero.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
+			Buff.prolong(enemy, Might.class, Might.DURATION/2f);
+		}
+		if (Dungeon.hero.buff(Cool.class) != null && enemy.HT/2 > enemy.HP){
+			Buff.prolong(enemy, Hisou.class, Hisou.DURATION/2f);
+		}
+		if (Dungeon.hero.buff(Pure.class) != null && enemy.HT/2 > enemy.HP){
+			Buff.prolong(enemy, Doublespeed.class, Doublespeed.DURATION/2f);
+		}
+		if (Dungeon.hero.buff(Happy.class) != null && enemy.HT/2 > enemy.HP){
+			Buff.prolong(enemy, Doublerainbow.class, Doublerainbow.DURATION/4f);
+		}
 
 		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0)){
 			damage *= 0;
@@ -1914,6 +1969,52 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isAlive() {
+		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+			if (Statistics.mood == 0) {
+				Buff.prolong(this, Powerful.class, Powerful.DURATION);
+				Buff.detach( this, Cool.class);
+				Buff.detach( this, Pure.class);
+				Buff.detach( this, Happy.class);
+			}
+			if (Statistics.mood == 1) {
+				Buff.prolong(this, Cool.class, Cool.DURATION);
+				Buff.detach( this, Powerful.class);
+				Buff.detach( this, Pure.class);
+				Buff.detach( this, Happy.class);
+			}
+			if (Statistics.mood == 2) {
+				Buff.prolong(this, Pure.class, Pure.DURATION);
+				Buff.detach( this, Cool.class);
+				Buff.detach( this, Powerful.class);
+				Buff.detach( this, Happy.class);
+			}
+			if (Statistics.mood == 3) {
+				Buff.prolong(this, Happy.class, Happy.DURATION);
+				Buff.detach( this, Cool.class);
+				Buff.detach( this, Powerful.class);
+				Buff.detach( this, Pure.class);
+			}
+		}
+
+		if (Statistics.mood == -1){
+			Statistics.mood = 3;
+		}
+		if (Statistics.mood == -2){
+			Statistics.mood = 2;
+		}
+		if (Statistics.mood == -3){
+			Statistics.mood = 1;
+		}
+		if (Statistics.mood == 4){
+			Statistics.mood = 0;
+		}
+		if (Statistics.mood == 5){
+			Statistics.mood = 1;
+		}
+		if (Statistics.mood == 6){
+			Statistics.mood = 2;
+		}
+
 		if (Statistics.bordercount == 50){
 			Statistics.bordercount = 0;
 			GLog.n(Messages.get(this, "border"));

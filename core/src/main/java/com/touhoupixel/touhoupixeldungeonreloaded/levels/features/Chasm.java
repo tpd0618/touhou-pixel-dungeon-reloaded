@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.features;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
@@ -131,12 +132,16 @@ public class Chasm implements Hero.Doom {
 			Buff.prolong(hero, Cripple.class, Cripple.DURATION);
 		}
 
+		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+			Statistics.mood += 1;
+		}
+
 		//The lower the hero's HP, the more bleed and the less upfront damage.
 		//Hero has a 50% chance to bleed out at 66% HP, and begins to risk instant-death at 25%
 		if (!Statistics.card32) {
 			Buff.affect(hero, FallBleed.class).set(Math.round(hero.HT / (6f + (6f * (hero.HP / (float) hero.HT)))));
-			hero.damage(Math.max(hero.HP / 2, Random.NormalIntRange(hero.HP / 2, hero.HT / 4)), new Chasm());
 		}
+		hero.damage(Math.max(hero.HP / 2, Random.NormalIntRange(hero.HP / 2, hero.HT / 4)), new Chasm());
 	}
 
 	public static void mobFall( Mob mob ) {

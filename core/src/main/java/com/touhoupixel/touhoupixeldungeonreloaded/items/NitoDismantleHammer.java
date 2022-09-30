@@ -1,7 +1,9 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlamePower;
@@ -106,6 +108,9 @@ public class NitoDismantleHammer extends Item {
             } else if (item != null) {
                 item.detach(curUser.belongings.backpack);
                 Dungeon.level.drop(new ScrollOfUpgrade().quantity(item.level()), curUser.pos).sprite.drop();
+                if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+                    Statistics.mood += 1;
+                }
                 updateQuickslot();
 
                 Sample.INSTANCE.play(Assets.Sounds.DRINK);

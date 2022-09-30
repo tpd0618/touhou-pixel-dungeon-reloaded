@@ -135,7 +135,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FlandreTailsma
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FogpurgeTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ImpedeTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.JudgementTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.JunkoTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.OkinaTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.MurasaTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.Tailsman;
@@ -395,7 +395,7 @@ public class Generator {
 					JudgementTailsman.class,
 					FlandreTailsman.class,
 					MurasaTailsman.class,
-					JunkoTailsman.class,
+					OkinaTailsman.class,
 					HalveTailsman.class
 			};
 			TAILSMAN.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };

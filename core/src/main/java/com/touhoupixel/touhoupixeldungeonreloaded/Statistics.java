@@ -109,7 +109,7 @@ public class Statistics {
 
 	public static int nextvalue;
 
-	public static int lilysleepcount;
+	public static int mood;
 	public static int centipedecount;
 
 	public static int lifefragmentkill;
@@ -322,7 +322,7 @@ public class Statistics {
 
 		nextvalue = 500;
 
-		lilysleepcount = 0;
+		mood = 0;
 		centipedecount = 0;
 
 		lifefragmentkill = 0;
@@ -529,7 +529,7 @@ public class Statistics {
 
 	private static final String NEXTVALUE	= "nextvalue";
 
-	private static final String LILYSLEEPCOUNT	= "lilysleepcount";
+	private static final String MOOD	= "mood";
 	private static final String CENTIPEDECOUNT	= "centipedecount";
 
 	private static final String LIFEFRAGMENTKILL	= "lifefragmentkill";
@@ -853,7 +853,7 @@ public class Statistics {
 
 		bundle.put( NEXTVALUE,	nextvalue );
 
-		bundle.put( LILYSLEEPCOUNT,	lilysleepcount );
+		bundle.put( MOOD, mood);
 		bundle.put( CENTIPEDECOUNT,	centipedecount );
 
 		bundle.put( LIFEFRAGMENTKILL,	lifefragmentkill );
@@ -955,7 +955,7 @@ public class Statistics {
 
 		nextvalue		= bundle.getInt( NEXTVALUE );
 
-		lilysleepcount		= bundle.getInt( LILYSLEEPCOUNT );
+		mood = bundle.getInt( MOOD );
 		centipedecount		= bundle.getInt( CENTIPEDECOUNT );
 
 		lifefragmentkill		= bundle.getInt( LIFEFRAGMENTKILL );

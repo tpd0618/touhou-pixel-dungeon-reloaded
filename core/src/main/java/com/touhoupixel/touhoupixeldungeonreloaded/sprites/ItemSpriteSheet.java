@@ -236,7 +236,7 @@ public class ItemSpriteSheet {
 	public static final int FLANDRE      = TAILSMANS+12;
 	public static final int MURASA      = TAILSMANS+13;
 	public static final int AYA      = TAILSMANS+14;
-	public static final int JUNKO      = TAILSMANS+15;
+	public static final int OKINA = TAILSMANS+15;
 
 	static {
 		for (int i = TAILSMANS; i < TAILSMANS+16; i++)
@@ -361,7 +361,7 @@ public class ItemSpriteSheet {
 	public static final int BLAZING_STAR        = WEP_TIER5+370;
 	public static final int WOODEN_BAT        = WEP_TIER5+371;
 	public static final int HOSHIGUMA_HORN        = WEP_TIER5+372;
-	public static final int ARISA_KEYBOARD        = WEP_TIER5+373;
+
 	public static final int TURNABOUT_CLOAK        = WEP_TIER5+374;
 	public static final int DOUBLE_SWORD        = WEP_TIER5+375;
 	public static final int YACHIE_HORN        = WEP_TIER5+376;
@@ -408,7 +408,7 @@ public class ItemSpriteSheet {
 		assignItemRect(BLAZING_STAR,      13, 13);
 		assignItemRect(WOODEN_BAT,      13, 13);
 		assignItemRect(HOSHIGUMA_HORN,      13, 13);
-		assignItemRect(ARISA_KEYBOARD,      13, 13);
+
 		assignItemRect(TURNABOUT_CLOAK,      14, 14);
 		assignItemRect(DOUBLE_SWORD,      13, 13);
 		assignItemRect(YACHIE_HORN,      13, 13);
@@ -967,6 +967,8 @@ public class ItemSpriteSheet {
 	public static final int HELLKEYBOARD   = XYZ_WEAPON+4;
 	public static final int HELLMIC   = XYZ_WEAPON+5;
 	public static final int RANDOM_STAR   = XYZ_WEAPON+6;
+	public static final int EVE_KEYBOARD   = XYZ_WEAPON+7;
+	public static final int ARISA_KEYBOARD   = XYZ_WEAPON+8;
 	static{
 		assignItemRect(FIREBRAND2, 13, 13);
 		assignItemRect(FROSTBRAND2,    13, 13);
@@ -975,6 +977,8 @@ public class ItemSpriteSheet {
 		assignItemRect(HELLKEYBOARD,    13, 13);
 		assignItemRect(HELLMIC,    13, 13);
 		assignItemRect(RANDOM_STAR,    15, 15);
+		assignItemRect(EVE_KEYBOARD,    10, 15);
+		assignItemRect(ARISA_KEYBOARD,    13, 13);
 	}
 
 	private static final int WEP_TIER5_PART2   =                               xy(1, 35);   //8 slots

@@ -282,6 +282,9 @@ public class Potion extends Item {
 					
 				} else {
 					drink( hero );
+				if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+					Statistics.mood += 1;
+				}
 			}
 		}
 	}

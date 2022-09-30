@@ -22,6 +22,9 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.keys;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
@@ -53,6 +56,9 @@ public abstract class Key extends Item {
 		Notes.add(this);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
 		hero.spendAndNext( TIME_TO_PICK_UP );
+		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+			Statistics.mood += 1;
+		}
 		GameScene.updateKeyDisplay();
 		return true;
 	}

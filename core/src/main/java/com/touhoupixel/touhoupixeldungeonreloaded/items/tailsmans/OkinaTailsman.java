@@ -4,11 +4,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class HalveTailsman extends Tailsman {
+public class OkinaTailsman extends Tailsman {
     {
-        image = ItemSpriteSheet.HALVE;
+        image = ItemSpriteSheet.OKINA;
     }
 
     @Override
@@ -16,9 +17,9 @@ public class HalveTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && ch.HP > 3) {
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && ch.pos == Terrain.OPEN_DOOR){
             if (Dungeon.hero.buff(Pure.class) == null) {
-                ch.HP /= 2;
+                ch.die(null);
             }
         }
     }

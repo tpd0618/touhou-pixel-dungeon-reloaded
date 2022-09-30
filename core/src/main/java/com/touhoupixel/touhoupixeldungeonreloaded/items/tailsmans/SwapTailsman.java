@@ -1,7 +1,9 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -26,14 +28,16 @@ public class SwapTailsman extends Tailsman {
         Char ch = Actor.findChar(cell);
 
         if (ch != null) {
-            cell = throwPath.path.get(throwPath.dist);
-            throwPath = null;
-            super.onThrow(cell);
+            if (Dungeon.hero.buff(Pure.class) == null) {
+                cell = throwPath.path.get(throwPath.dist);
+                throwPath = null;
+                super.onThrow(cell);
 
-            ch.move(curUser.pos);
-            ch.sprite.move(cell, curUser.pos);
+                ch.move(curUser.pos);
+                ch.sprite.move(cell, curUser.pos);
 
-            ScrollOfTeleportation.teleportToLocation(curUser, cell);
+                ScrollOfTeleportation.teleportToLocation(curUser, cell);
+            }
         }
     }
 }

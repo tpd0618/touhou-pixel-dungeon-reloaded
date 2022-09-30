@@ -23,6 +23,8 @@ public class BossHijiri extends Mob {
         EXP = 14;
         maxLvl = 30;
 
+        properties.add(Property.BOSS);
+
         loot = new LifeFragment();
         lootChance = 0.04f;
     }

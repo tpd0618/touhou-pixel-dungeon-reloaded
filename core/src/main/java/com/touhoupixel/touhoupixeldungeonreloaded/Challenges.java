@@ -40,9 +40,10 @@ public class Challenges {
 	public static final int HUNDREDTH_BLACK_MARKET = 2048;
 	public static final int FLANDRE_GAZE             = 4096;
 	public static final int FATEFUL                  = 8192;
-	public static final int JUNKO_PURE_HELL          = 16384;
+	public static final int KOKORO_MIND_CONTROL = 16384;
+	public static final int HECATIA_CHESS = 32768;
 
-	public static final int MAX_VALUE                = 32767;
+	public static final int MAX_VALUE                = 65535;
 
 	public static final String[] NAME_IDS = {
 			"yuyuko_deadly_trap",
@@ -59,7 +60,8 @@ public class Challenges {
 			"hundredth_black_market",
 			"flandre_gaze",
 			"fateful",
-			"junko_pure_hell"
+			"kokoro_mind_control",
+			"hecatia_chess"
 	};
 
 	public static final int[] MASKS = {
@@ -67,7 +69,7 @@ public class Challenges {
 			REISEN_ILLUSION, TENSHI_PUNISHMENT, JUNKO_SANCTUARY,
 			RINGING_BLOOM, NITORI_KEY, IKU_AIR_READING,
 			TIME_EATER, EIRIN_UNHOLY_HEAL, HUNDREDTH_BLACK_MARKET,
-			FLANDRE_GAZE, FATEFUL, JUNKO_PURE_HELL
+			FLANDRE_GAZE, FATEFUL, KOKORO_MIND_CONTROL, HECATIA_CHESS
 	};
 
 	public static int activeChallenges(){

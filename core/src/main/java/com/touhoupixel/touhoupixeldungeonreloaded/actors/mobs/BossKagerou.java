@@ -48,6 +48,8 @@ public class BossKagerou extends Mob implements Callback {
         EXP = 0;
         maxLvl = 99;
 
+        properties.add(Property.BOSS);
+
         loot = new Life();
         lootChance = 1f;
     }

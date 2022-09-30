@@ -32,17 +32,26 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreMark;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
@@ -193,6 +202,24 @@ public abstract class Mob extends Char {
 
 	@Override
 	protected boolean act() {
+
+		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS)){
+			switch (Random.Int(4)) {
+				case 0:
+				default:
+					Buff.prolong(this, Powerful.class, Powerful.DURATION*10000f);
+					break;
+				case 1:
+					Buff.prolong(this, Cool.class, Cool.DURATION*10000f);
+					break;
+				case 2:
+					Buff.prolong(this, Pure.class, Pure.DURATION*10000f);
+					break;
+				case 3:
+					Buff.prolong(this, Happy.class, Happy.DURATION*10000f);
+					break;
+			}
+		}
 
 		super.act();
 
@@ -645,7 +672,7 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0){
 			Buff.prolong(this, NitoriKeyPower.class, NitoriKeyPower.DURATION);
 		}
 
@@ -778,6 +805,10 @@ public abstract class Mob extends Char {
 	@Override
 	public void die( Object cause ) {
 
+		if (cause instanceof Hero && Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+			Statistics.mood += 1;
+		}
+
 		if (Dungeon.isChallenged(Challenges.JUNKO_SANCTUARY)) {
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
@@ -787,14 +818,18 @@ public abstract class Mob extends Char {
 		}
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			Statistics.power += 5;
-			if (Statistics.card35){
-				Dungeon.gold += 10*Dungeon.depth;
+			if (Dungeon.hero.buff(Powerful.class) == null) {
+				Statistics.power += 5;
+				if (Statistics.card35) {
+					Dungeon.gold += 10 * Dungeon.depth;
+				}
 			}
 		}
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			Statistics.value += 1;
+			if (Dungeon.hero.buff(Powerful.class) == null) {
+				Statistics.value += 1;
+			}
 		}
 
 		if (buff(ReBirth.class) != null && !(cause == Chasm.class) && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
