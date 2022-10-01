@@ -21,15 +21,13 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NoInvisibility;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class CleanHerb extends Herb {
+public class HeavenHerb extends Herb {
 
 	{
 		image = ItemSpriteSheet.HERB;
@@ -40,7 +38,6 @@ public class CleanHerb extends Herb {
 
 		super.execute(hero, action);
 
-		PotionOfHealing.cure( hero );
-		Buff.detach( hero, AntiHeal.class);
+		Buff.prolong(hero, Hisou.class, Hisou.DURATION/2f);
 	}
 }

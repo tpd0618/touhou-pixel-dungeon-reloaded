@@ -806,11 +806,6 @@ public abstract class Mob extends Char {
 
 	@Override
 	public void die( Object cause ) {
-
-		if (cause instanceof Hero && Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
-			Statistics.mood += 1;
-		}
-
 		if (Dungeon.isChallenged(Challenges.JUNKO_SANCTUARY)) {
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {

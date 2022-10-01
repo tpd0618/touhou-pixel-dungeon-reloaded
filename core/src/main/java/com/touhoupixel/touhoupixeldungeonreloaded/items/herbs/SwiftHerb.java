@@ -39,6 +39,6 @@ public class SwiftHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION/2f);
+		Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
 	}
 }

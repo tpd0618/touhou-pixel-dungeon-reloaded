@@ -65,8 +65,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HealHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.LevitationHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.MasterHealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.NavigationHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.PurityHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.ReachHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SkyHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeavenHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.StrengthHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SuperHardHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
@@ -579,12 +581,14 @@ public class Generator {
 					LevitationHerb.class,
 					MasterHealHerb.class,
 					ReachHerb.class,
-					SkyHerb.class,
+					HeavenHerb.class,
 					StrengthHerb.class,
 					SuperHardHerb.class,
 					SwiftHerb.class,
+					NavigationHerb.class,
+					PurityHerb.class,
 					UndoHerb.class };
-			HERB.probs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			HERB.probs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 
 			RING.classes = new Class<?>[]{
 					RingOfAccuracy.class,

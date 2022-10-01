@@ -1092,19 +1092,6 @@ public class Hero extends Char {
 			damage *= 0;
 		}
 
-		if (Dungeon.hero.buff(Powerful.class) != null && Dungeon.level.map[enemy.pos] == Terrain.EMPTY || Dungeon.level.map[enemy.pos] == Terrain.EMPTY_SP){
-			damage *= 0.5f;
-		}
-		if (Dungeon.hero.buff(Cool.class) != null && Dungeon.level.map[enemy.pos] == Terrain.WATER){
-			damage *= 0.5f;
-		}
-		if (Dungeon.hero.buff(Pure.class) != null && Dungeon.level.map[enemy.pos] == Terrain.GRASS || Dungeon.level.map[enemy.pos] == Terrain.HIGH_GRASS || Dungeon.level.map[enemy.pos] == Terrain.FURROWED_GRASS){
-			damage *= 0.5f;
-		}
-		if (Dungeon.hero.buff(Happy.class) != null && Dungeon.level.map[enemy.pos] == Terrain.OPEN_DOOR){
-			damage *= 0;
-		}
-
 		if (Dungeon.hero.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
 			Buff.prolong(enemy, Might.class, Might.DURATION/2f);
 		}

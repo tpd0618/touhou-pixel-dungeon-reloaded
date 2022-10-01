@@ -21,13 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class SkyHerb extends Herb {
+public class NavigationHerb extends Herb {
 
 	{
 		image = ItemSpriteSheet.HERB;
@@ -38,6 +40,6 @@ public class SkyHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong(hero, Hisou.class, Hisou.DURATION/2f);
+		Buff.prolong(hero, Foresight.class, Foresight.DURATION/40f);
 	}
 }
