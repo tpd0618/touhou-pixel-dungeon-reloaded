@@ -19,36 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class CardHolder extends Bag {
+public class PotionOfReisen extends Potion {
 
 	{
-		image = ItemSpriteSheet.HAKUREIHOLD;
+		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
 	}
 
 	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof ActiveCards || item instanceof EquipmentCards || item instanceof PassiveCards){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
-	}
-
-	public int capacity(){
-		return 19;
+	public void apply(Hero hero) {
+		identify();
+		Buff.prolong( hero, DanDamageIncrease.class, DanDamageIncrease.DURATION);
 	}
 
 	@Override
 	public int value() {
-		return 40;
+		return isKnown() ? 30 * quantity : super.value();
 	}
-
 }

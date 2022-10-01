@@ -34,7 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.TailsmanHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -456,7 +456,7 @@ public class InventoryPane extends Component {
 			return Icons.get( Icons.WAND_HOLSTER );
 		} else if (bag instanceof PotionBandolier) {
 			return Icons.get( Icons.POTION_BANDOLIER );
-		} else if (bag instanceof TailsmanHolder) {
+		} else if (bag instanceof HakureiHolder) {
 			return Icons.get( Icons.TAILSMAN_HOLDER );
 		} else if (bag instanceof CardHolder) {
 			return Icons.get( Icons.CARD_HOLDER );

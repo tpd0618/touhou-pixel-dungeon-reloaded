@@ -19,36 +19,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class CardHolder extends Bag {
+public class StrengthHerb extends Herb {
 
 	{
-		image = ItemSpriteSheet.HAKUREIHOLD;
+		image = ItemSpriteSheet.HERB;
 	}
 
 	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof ActiveCards || item instanceof EquipmentCards || item instanceof PassiveCards){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
-	}
+	public void execute(Hero hero, String action) {
 
-	public int capacity(){
-		return 19;
-	}
+		super.execute(hero, action);
 
-	@Override
-	public int value() {
-		return 40;
+		hero.STR++;
+		GLog.p( Messages.get(PotionOfStrength.class, "msg_2") );
 	}
-
 }

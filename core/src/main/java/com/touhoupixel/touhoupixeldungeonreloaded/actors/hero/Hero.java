@@ -547,10 +547,6 @@ public class Hero extends Char {
 			speed *= 2;
 		}
 
-		if (Dungeon.hero.buff(Happy.class) != null){
-			speed /= 2;
-		}
-
 		speed *= RingOfHaste.speedMultiplier(this);
 
 		if (belongings.armor() != null) {
@@ -630,7 +626,7 @@ public class Hero extends Char {
 		next();
 		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
 			Statistics.mood += 1;
-			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/5f);
+			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
 		}
 	}
 

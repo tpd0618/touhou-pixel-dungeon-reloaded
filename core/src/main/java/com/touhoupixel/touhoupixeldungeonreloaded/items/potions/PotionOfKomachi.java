@@ -19,36 +19,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class CardHolder extends Bag {
+public class PotionOfKomachi extends Potion {
 
 	{
-		image = ItemSpriteSheet.HAKUREIHOLD;
-	}
+		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
 
+		bones = true;
+	}
+	
 	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof ActiveCards || item instanceof EquipmentCards || item instanceof PassiveCards){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
+	public void apply( Hero hero ) {
+		identify();
+		Buff.prolong( hero, ReachIncrease.class, ReachIncrease.DURATION);
 	}
-
-	public int capacity(){
-		return 19;
-	}
-
+	
 	@Override
 	public int value() {
-		return 40;
+		return isKnown() ? 50 * quantity : super.value();
 	}
 
+	@Override
+	public int energyVal() {
+		return isKnown() ? 8 * quantity : super.energyVal();
+	}
 }

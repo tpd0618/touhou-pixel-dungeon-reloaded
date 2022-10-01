@@ -19,32 +19,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfDanDamageIncrease extends Potion {
+public class CleanHerb extends Herb {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		image = ItemSpriteSheet.HERB;
 	}
 
 	@Override
-	public void apply(Hero hero) {
-		identify();
-		Buff.prolong( hero, DanDamageIncrease.class, DanDamageIncrease.DURATION);
-	}
+	public void execute(Hero hero, String action) {
 
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		super.execute(hero, action);
+
+		PotionOfHealing.cure( hero );
 	}
 }

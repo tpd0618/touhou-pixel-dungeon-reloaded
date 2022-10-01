@@ -58,9 +58,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.UnstableSpellb
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Pasty;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CamouflageHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleanHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.LevitationHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.MasterHealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.ReachHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SkyHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.StrengthHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SuperHardHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.UndoHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHina;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReisen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCirno;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
@@ -78,7 +91,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReach;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
@@ -253,6 +266,7 @@ public class Generator {
 		ARTIFACT( 0, 1, Artifact.class),
 
 		FOOD	( 0, 0, Food.class ),
+		HERB	( 0, 0, Herb.class ),
 
 		POTION	( 8, 8, Potion.class ),
 		SEED	( 1, 1, Plant.Seed.class ),
@@ -318,12 +332,12 @@ public class Generator {
 					PotionOfDoublespeed.class,
 					PotionOfLightHealing.class,
 					PotionOfCirno.class,
-					PotionOfCursedBlow.class,
-					PotionOfDanDamageIncrease.class,
+					PotionOfHina.class,
+					PotionOfReisen.class,
 					PotionOfFlamePower.class,
 					PotionOfFrostPower.class,
 					PotionOfLightReverse.class,
-					PotionOfReach.class,
+					PotionOfKomachi.class,
 					PotionOfYingYang.class};
 			POTION.defaultProbs = new float[]{ 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 };
 			POTION.probs = POTION.defaultProbs.clone();
@@ -556,6 +570,21 @@ public class Generator {
 					Pasty.class,
 					MysteryMeat.class };
 			FOOD.probs = new float[]{ 4, 1, 0 };
+
+			HERB.classes = new Class<?>[]{
+					CamouflageHerb.class,
+					CleanHerb.class,
+					DragonHerb.class,
+					HealHerb.class,
+					LevitationHerb.class,
+					MasterHealHerb.class,
+					ReachHerb.class,
+					SkyHerb.class,
+					StrengthHerb.class,
+					SuperHardHerb.class,
+					SwiftHerb.class,
+					UndoHerb.class };
+			HERB.probs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 
 			RING.classes = new Class<?>[]{
 					RingOfAccuracy.class,

@@ -19,19 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.food;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WellFed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
@@ -40,24 +35,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class Food extends Item {
+public class Herb extends Item {
 
-	public static final float TIME_TO_EAT	= 3f;
+	public static final float TIME_TO_EAT	= 1f;
 
 	public static final String AC_EAT	= "EAT";
 
-	public float energy = Hunger.HUNGRY;
-
 	{
 		stackable = true;
-		image = ItemSpriteSheet.RATION;
-
-		defaultAction = AC_EAT;
 
 		bones = true;
+
+		defaultAction = AC_EAT;
 	}
 
 	@Override
@@ -74,36 +67,23 @@ public class Food extends Item {
 
 		if (action.equals( AC_EAT )) {
 
-			detach( hero.belongings.backpack );
+			detach(hero.belongings.backpack);
 
-			satisfy(hero);
-			GLog.i( Messages.get(this, "eat_msg") );
-
-			hero.sprite.operate( hero.pos );
+			hero.sprite.operate(hero.pos);
 			hero.busy();
-			SpellSprite.show( hero, SpellSprite.FOOD );
-			Sample.INSTANCE.play( Assets.Sounds.EAT );
+			SpellSprite.show(hero, SpellSprite.FOOD);
+			Sample.INSTANCE.play(Assets.Sounds.EAT);
 
 			if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
 				Statistics.mood += 1;
 			}
 
-			hero.spend( eatingTime() );
-
-			Statistics.foodEaten++;
-
-			if (Statistics.card61){
-				Buff.affect(hero, WellFed.class).reset();
-			}
+			hero.spend(eatingTime());
 		}
 	}
 
 	protected float eatingTime(){
 		return TIME_TO_EAT;
-	}
-
-	protected void satisfy( Hero hero ){
-		Buff.affect(hero, Hunger.class).satisfy(energy);
 	}
 
 	@Override

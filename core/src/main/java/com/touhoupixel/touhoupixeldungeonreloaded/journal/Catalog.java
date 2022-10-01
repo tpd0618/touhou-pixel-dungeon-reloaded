@@ -120,8 +120,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.SootCoveredUchiwa;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.StimulatingScales;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.UnleashGuardianHounds;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHina;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReisen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCirno;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
@@ -139,7 +139,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReach;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
@@ -433,12 +433,12 @@ public enum Catalog {
 		POTIONS.seen.put( PotionOfDoublespeed.class,        true);
 		POTIONS.seen.put( PotionOfLightHealing.class,       true);
 		POTIONS.seen.put( PotionOfCirno.class,              true);
-		POTIONS.seen.put( PotionOfCursedBlow.class,           true);
-		POTIONS.seen.put( PotionOfDanDamageIncrease.class,        true);
+		POTIONS.seen.put( PotionOfHina.class,           true);
+		POTIONS.seen.put( PotionOfReisen.class,        true);
 		POTIONS.seen.put( PotionOfFlamePower.class,             true);
 		POTIONS.seen.put( PotionOfFrostPower.class,         true);
 		POTIONS.seen.put( PotionOfLightReverse.class,         true);
-		POTIONS.seen.put( PotionOfReach.class,              true);
+		POTIONS.seen.put( PotionOfKomachi.class,              true);
 		POTIONS.seen.put( PotionOfYingYang.class,       true);
 
 		SCROLLS.seen.put( ScrollOfIdentify.class,           true);

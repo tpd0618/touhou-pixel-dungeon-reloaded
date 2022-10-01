@@ -271,10 +271,10 @@ public class Assets {
 		public static final String ITEMS = "sprites/items.png";
 		public static final String ITEM_ICONS = "sprites/item_icons.png";
 
-		public static final String PLAYERREIMU = "sprites/playerreimu.png";
-		public static final String PLAYERMARISA = "sprites/playermarisa.png";
-		public static final String PLAYERKOISHI = "sprites/playerkoishi.png";
-		public static final String PLAYERSANAE = "sprites/playersanae.png";
+		public static final String PLAYERREIMU = "sprites/players/playerreimu.png";
+		public static final String PLAYERMARISA = "sprites/players/playermarisa.png";
+		public static final String PLAYERKOISHI = "sprites/players/playerkoishi.png";
+		public static final String PLAYERSANAE = "sprites/players/playersanae.png";
 		public static final String AVATARS = "sprites/avatars.png";
 		public static final String PET = "sprites/pet.png";
 		public static final String AMULET = "sprites/itemamulet.png";

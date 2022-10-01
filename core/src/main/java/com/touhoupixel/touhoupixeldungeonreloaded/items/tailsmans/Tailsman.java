@@ -21,18 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.TailsmanHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -65,7 +59,7 @@ abstract public class Tailsman extends Item {
 
     @Override
     public boolean collect(Bag container) {
-        if (container instanceof TailsmanHolder) holster = true;
+        if (container instanceof HakureiHolder) holster = true;
         return super.collect(container);
     }
 
@@ -125,7 +119,7 @@ abstract public class Tailsman extends Item {
     public static class PlaceHolder extends Tailsman {
 
         {
-            image = ItemSpriteSheet.TAILSMANHOLD;
+            image = ItemSpriteSheet.HAKUREIHOLD;
         }
 
         @Override

@@ -37,18 +37,27 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.TailsmanHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CamouflageHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleanHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.LevitationHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.MasterHealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.ReachHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SkyHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.StrengthHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SuperHardHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.UndoHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.OkinaTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SevenDaysTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
@@ -89,9 +98,9 @@ public enum HeroClass {
 
 		//test//
 
-		PotionOfLightHealing polh = new PotionOfLightHealing();
-		polh.collect();
-		Dungeon.quickslot.setSlot(2, polh);
+		HealHerb healherb = new HealHerb();
+		healherb.collect();
+		Dungeon.quickslot.setSlot(2, healherb);
 
 		SpellcardCaster spellcardcaster = new SpellcardCaster();
 		spellcardcaster.collect();
@@ -100,17 +109,9 @@ public enum HeroClass {
 		new MagicalHolster().collect();
 		new PotionBandolier().collect();
 		new ScrollHolder().collect();
-		new TailsmanHolder().collect();
+		new HakureiHolder().collect();
 		new VelvetPouch().collect();
 		new CardHolder().collect();
-
-		new PotionOfLightHealing().identify();
-		new PotionOfStrength().identify();
-		new ScrollOfUpgrade().identify();
-		new ScrollOfEnchantWeapon().identify();
-		new ScrollOfEnchantArmor().identify();
-		new ScrollOfEnchantHakkero().identify();
-		new ScrollOfEnchantDanmaku().identify();
 
 		switch (this) {
 			case PLAYERREIMU:

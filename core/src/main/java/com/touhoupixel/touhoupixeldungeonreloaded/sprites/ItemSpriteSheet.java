@@ -630,6 +630,7 @@ public class ItemSpriteSheet {
 	public static final int ARCANE_RESIN    = OTHERS+1;
 	public static final int POTION_CATALYST = OTHERS+2;
 	public static final int LIQUID_METAL    = OTHERS+3;
+	public static final int HERB    = OTHERS+4;
 	static {
 		for (int i = OTHERS; i < OTHERS + 16; i++)
 			assignItemRect(i, 11, 15);
@@ -637,6 +638,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ARCANE_RESIN, 12, 11);
 		assignItemRect(POTION_CATALYST, 10, 15);
 		assignItemRect(LIQUID_METAL, 16, 16);
+		assignItemRect(HERB, 11, 14);
 	}
 
 	private static final int SCROLLS        =                               xy(1, 19);  //16 slots
@@ -938,7 +940,7 @@ public class ItemSpriteSheet {
 	public static final int PRAYER       = BAGS+7;
 	public static final int FOODHOLD       = BAGS+8;
 	public static final int ARTIHOLD       = BAGS+9;
-	public static final int TAILSMANHOLD       = BAGS+10;
+	public static final int HAKUREIHOLD = BAGS+10;
 	public static final int KOGASAPRAYER       = BAGS+11;
 	public static final int YUKARIMEMO       = BAGS+12;
 	public static final int RENKOMEMO       = BAGS+13;
@@ -953,7 +955,7 @@ public class ItemSpriteSheet {
 		assignItemRect(PRAYER,       13, 13);
 		assignItemRect(FOODHOLD,       14, 15);
 		assignItemRect(ARTIHOLD,       14, 15);
-		assignItemRect(TAILSMANHOLD,       14, 15);
+		assignItemRect(HAKUREIHOLD,       14, 15);
 		assignItemRect(KOGASAPRAYER,       7, 13);
 		assignItemRect(YUKARIMEMO,       13, 16);
 		assignItemRect(RENKOMEMO,       13, 16);
@@ -1134,14 +1136,14 @@ public class ItemSpriteSheet {
 	public static final int GREENTEA_POTION_AZURE    = GREENTEA_POTIONS+5;
 	public static final int GREENTEA_POTION_INDIGO   = GREENTEA_POTIONS+6;
 	public static final int GREENTEA_POTION_MAGENTA  = GREENTEA_POTIONS+7;
-	public static final int GREENTEA_POTION_BISTRE   = GREENTEA_POTIONS+8;
-	public static final int GREENTEA_POTION_CHARCOAL = GREENTEA_POTIONS+9;
-	public static final int GREENTEA_POTION_SILVER   = GREENTEA_POTIONS+10;
-	public static final int GREENTEA_POTION_IVORY    = GREENTEA_POTIONS+11;
-	public static final int GREENTEA_POTION_PINK     = GREENTEA_POTIONS+12;
-	public static final int GREENTEA_POTION_YELLOW   = GREENTEA_POTIONS+13;
-	public static final int GREENTEA_POTION_SPECTRAL = GREENTEA_POTIONS+14;
-	public static final int GREENTEA_POTION_GREEN    = GREENTEA_POTIONS+15;
+	//public static final int GREENTEA_POTION_BISTRE   = GREENTEA_POTIONS+8;
+	//public static final int GREENTEA_POTION_CHARCOAL = GREENTEA_POTIONS+9;
+	//public static final int GREENTEA_POTION_SILVER   = GREENTEA_POTIONS+10;
+	//public static final int GREENTEA_POTION_IVORY    = GREENTEA_POTIONS+11;
+	//public static final int GREENTEA_POTION_PINK     = GREENTEA_POTIONS+12;
+	//public static final int GREENTEA_POTION_YELLOW   = GREENTEA_POTIONS+13;
+	//public static final int GREENTEA_POTION_SPECTRAL = GREENTEA_POTIONS+14;
+	//public static final int GREENTEA_POTION_GREEN    = GREENTEA_POTIONS+15;
 	static {
 		for (int i = GREENTEA_POTIONS; i < GREENTEA_POTIONS+16; i++)
 			assignItemRect(i, 10, 15);
@@ -1156,14 +1158,14 @@ public class ItemSpriteSheet {
 	public static final int GREENTEA_EXOTIC_AZURE    = GREENTEA_EXOTIC_POTIONS+5;
 	public static final int GREENTEA_EXOTIC_INDIGO   = GREENTEA_EXOTIC_POTIONS+6;
 	public static final int GREENTEA_EXOTIC_MAGENTA  = GREENTEA_EXOTIC_POTIONS+7;
-	public static final int GREENTEA_EXOTIC_BISTRE   = GREENTEA_EXOTIC_POTIONS+8;
-	public static final int GREENTEA_EXOTIC_CHARCOAL = GREENTEA_EXOTIC_POTIONS+9;
-	public static final int GREENTEA_EXOTIC_SILVER   = GREENTEA_EXOTIC_POTIONS+10;
-	public static final int GREENTEA_EXOTIC_IVORY    = GREENTEA_EXOTIC_POTIONS+11;
-	public static final int GREENTEA_EXOTIC_PINK     = GREENTEA_EXOTIC_POTIONS+12;
-	public static final int GREENTEA_EXOTIC_YELLOW   = GREENTEA_EXOTIC_POTIONS+13;
-	public static final int GREENTEA_EXOTIC_SPECTRAL = GREENTEA_EXOTIC_POTIONS+14;
-	public static final int GREENTEA_EXOTIC_GREEN    = GREENTEA_EXOTIC_POTIONS+15;
+	//public static final int GREENTEA_EXOTIC_BISTRE   = GREENTEA_EXOTIC_POTIONS+8;
+	//public static final int GREENTEA_EXOTIC_CHARCOAL = GREENTEA_EXOTIC_POTIONS+9;
+	//public static final int GREENTEA_EXOTIC_SILVER   = GREENTEA_EXOTIC_POTIONS+10;
+	//public static final int GREENTEA_EXOTIC_IVORY    = GREENTEA_EXOTIC_POTIONS+11;
+	//public static final int GREENTEA_EXOTIC_PINK     = GREENTEA_EXOTIC_POTIONS+12;
+	//public static final int GREENTEA_EXOTIC_YELLOW   = GREENTEA_EXOTIC_POTIONS+13;
+	//public static final int GREENTEA_EXOTIC_SPECTRAL = GREENTEA_EXOTIC_POTIONS+14;
+	//public static final int GREENTEA_EXOTIC_GREEN    = GREENTEA_EXOTIC_POTIONS+15;
 	static {
 		for (int i = GREENTEA_EXOTIC_POTIONS; i < GREENTEA_EXOTIC_POTIONS+16; i++)
 			assignItemRect(i, 10, 15);

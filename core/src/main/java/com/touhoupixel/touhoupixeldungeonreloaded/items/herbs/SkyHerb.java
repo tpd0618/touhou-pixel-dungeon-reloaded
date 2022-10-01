@@ -19,36 +19,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class PotionOfReach extends Potion {
+public class SkyHerb extends Herb {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
-
-		bones = true;
-	}
-	
-	@Override
-	public void apply( Hero hero ) {
-		identify();
-		Buff.prolong( hero, ReachIncrease.class, ReachIncrease.DURATION);
-	}
-	
-	@Override
-	public int value() {
-		return isKnown() ? 50 * quantity : super.value();
+		image = ItemSpriteSheet.HERB;
 	}
 
 	@Override
-	public int energyVal() {
-		return isKnown() ? 8 * quantity : super.energyVal();
+	public void execute(Hero hero, String action) {
+
+		super.execute(hero, action);
+
+		Buff.prolong(hero, Hisou.class, Hisou.DURATION/2f);
 	}
 }

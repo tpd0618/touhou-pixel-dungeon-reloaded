@@ -19,34 +19,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.Tailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class TailsmanHolder extends Bag {
+public class MasterHealHerb extends Herb {
 
 	{
-		image = ItemSpriteSheet.TAILSMANHOLD;
+		image = ItemSpriteSheet.HERB;
 	}
 
 	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof Tailsman){
-			return super.canHold(item);
+	public void execute(Hero hero, String action) {
+
+		super.execute(hero, action);
+
+		if (hero.buff(AntiHeal.class) != null) {
+			hero.damage(hero.HT / 2, hero);
 		} else {
-			return false;
+			hero.HP = Math.min(hero.HP + 100000, hero.HT);
 		}
 	}
-
-	public int capacity(){
-		return 19;
-	}
-	
-	@Override
-	public int value() {
-		return 30;
-	}
-
 }

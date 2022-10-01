@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,30 +19,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class PotionOfCursedBlow extends Potion {
+public class SuperHardHerb extends Herb {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		image = ItemSpriteSheet.HERB;
 	}
 
 	@Override
-	public void apply(Hero hero) {
-		identify();
-		Buff.prolong( hero, CursedBlow.class, CursedBlow.DURATION);
-	}
+	public void execute(Hero hero, String action) {
 
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		super.execute(hero, action);
+
+		Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION/2f);
 	}
 }

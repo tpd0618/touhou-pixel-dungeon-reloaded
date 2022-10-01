@@ -624,8 +624,8 @@ public abstract class Mob extends Char {
 	public String defenseVerb() {
 		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Dungeon.level.map[enemy.pos] == Terrain.WATER && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10000f);
-			Level.set( enemy.pos, Terrain.EMPTY );
-			GameScene.updateMap( enemy.pos );
+			Level.set( this.pos, Terrain.EMPTY );
+			GameScene.updateMap( this.pos );
 		}
 		return Messages.get(this, "def_verb");
 	}
@@ -672,7 +672,9 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0){
+		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 ||
+				Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 ||
+				Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0){
 			Buff.prolong(this, NitoriKeyPower.class, NitoriKeyPower.DURATION);
 		}
 

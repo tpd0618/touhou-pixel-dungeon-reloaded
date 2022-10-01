@@ -22,12 +22,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.Tailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class CardHolder extends Bag {
+public class HakureiHolder extends Bag {
 
 	{
 		image = ItemSpriteSheet.HAKUREIHOLD;
@@ -35,7 +34,7 @@ public class CardHolder extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof ActiveCards || item instanceof EquipmentCards || item instanceof PassiveCards){
+		if (item instanceof Tailsman || item instanceof Herb){
 			return super.canHold(item);
 		} else {
 			return false;
@@ -45,10 +44,10 @@ public class CardHolder extends Bag {
 	public int capacity(){
 		return 19;
 	}
-
+	
 	@Override
 	public int value() {
-		return 40;
+		return 30;
 	}
 
 }

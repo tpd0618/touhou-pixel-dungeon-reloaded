@@ -78,7 +78,7 @@ public class StoneOfIntuition extends InventoryStone {
 	public class WndGuess extends Window {
 		
 		private static final int WIDTH = 120;
-		private static final int BTN_SIZE = 20;
+		private static final int BTN_SIZE = 10;
 		
 		public WndGuess(final Item item){
 			
@@ -186,7 +186,7 @@ public class StoneOfIntuition extends InventoryStone {
 				};
 				Image im = new Image(Assets.Sprites.ITEM_ICONS);
 				im.frame(ItemSpriteSheet.Icons.film.get(Reflection.newInstance(i).icon));
-				im.scale.set(2f);
+				im.scale.set(1.2f);
 				btn.icon(im);
 				btn.setRect(left + placed*BTN_SIZE, top, BTN_SIZE, BTN_SIZE);
 				add(btn);
