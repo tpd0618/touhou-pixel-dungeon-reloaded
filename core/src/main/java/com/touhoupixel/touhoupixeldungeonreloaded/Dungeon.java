@@ -942,14 +942,11 @@ public class Dungeon {
 
 	public static void fail( Class cause ) {
 		updateLevelExplored();
-		Statistics.gameWon = false;
 		Rankings.INSTANCE.submit( false, cause );
 	}
 
 	public static void win( Class cause ) {
-
 		updateLevelExplored();
-		Statistics.gameWon = true;
 
 		hero.belongings.identify();
 

@@ -21,9 +21,13 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class MasterHealHerb extends Herb {
 
@@ -36,10 +40,16 @@ public class MasterHealHerb extends Herb {
 
 		super.execute(hero, action);
 
-		if (hero.buff(AntiHeal.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-		} else {
-			hero.HP = Math.min(hero.HP + 100000, hero.HT);
+		if (action.equals( AC_EAT )) {
+			if (hero.buff(AntiHeal.class) != null) {
+				hero.damage(hero.HT / 2, hero);
+				if (hero == Dungeon.hero && !hero.isAlive()) {
+					Dungeon.fail(AntiHealTrap.class);
+					GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+				}
+			} else {
+				hero.HP = Math.min(hero.HP + 100000, hero.HT);
+			}
 		}
 	}
 }

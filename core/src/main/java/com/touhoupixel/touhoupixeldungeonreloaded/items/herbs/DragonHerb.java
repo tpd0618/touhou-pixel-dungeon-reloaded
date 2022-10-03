@@ -43,12 +43,14 @@ public class DragonHerb extends Herb {
 
 		super.execute(hero, action);
 
-		GameScene.flash(-65536);
-		Sample.INSTANCE.play( Assets.Sounds.BLAST );
+		if (action.equals( AC_EAT )) {
+			GameScene.flash(-65536);
+			Sample.INSTANCE.play(Assets.Sounds.BLAST);
 
-		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-				mob.damage(5*Dungeon.depth, hero);
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+					mob.damage(5 * Dungeon.depth, hero);
+				}
 			}
 		}
 	}

@@ -37,6 +37,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Toolbar;
+import com.watabou.noosa.Game;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
@@ -49,13 +50,13 @@ import java.util.LinkedHashMap;
 import java.util.UUID;
 
 public enum Rankings {
-	
+
 	INSTANCE;
-	
+
 	public static final int TABLE_SIZE	= 11;
-	
+
 	public static final String RANKINGS_FILE = "rankings.dat";
-	
+
 	public ArrayList<Record> records;
 	public int lastRecord;
 	public int totalNumber;
@@ -71,9 +72,9 @@ public enum Rankings {
 	public void submit( boolean win, Class cause ) {
 
 		load();
-		
+
 		Record rec = new Record();
-		
+
 		rec.cause = cause;
 		rec.win		= win;
 		rec.heroClass	= Dungeon.hero.heroClass;
@@ -89,7 +90,7 @@ public enum Rankings {
 		rec.score       = calculateScore();
 		rec.customSeed  = Dungeon.customSeedText;
 		rec.daily       = Dungeon.daily;
-		
+
 		INSTANCE.saveGameData(rec);
 
 		rec.gameID = UUID.randomUUID().toString();
@@ -102,9 +103,9 @@ public enum Rankings {
 		}
 
 		records.add( rec );
-		
+
 		Collections.sort( records, scoreComparator );
-		
+
 		lastRecord = records.indexOf( rec );
 		int size = records.size();
 		while (size > TABLE_SIZE) {
@@ -125,7 +126,7 @@ public enum Rankings {
 				wonNumber++;
 			}
 		}
-		
+
 		save();
 	}
 
@@ -136,21 +137,11 @@ public enum Rankings {
 	//assumes a ranking is loaded, or game is ending
 	public int calculateScore(){
 
-		if (Dungeon.initialVersion > ShatteredPixelDungeon.v1_2_3){
-			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 65;
+			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 6;
 			Statistics.progressScore = Math.min(Statistics.progressScore, 50_000);
 
-			if (Statistics.heldItemValue == 0) {
-				for (Item i : Dungeon.hero.belongings) {
-					Statistics.heldItemValue += i.value();
-					if (i instanceof CorpseDust && Statistics.deepestFloor >= 10){
-						// in case player kept the corpse dust, for a necromancer run
-						Statistics.questScores[1] = 2000;
-					}
-				}
-			}
 			Statistics.treasureScore = Statistics.goldCollected + Statistics.heldItemValue;
-			Statistics.treasureScore = Math.min(Statistics.treasureScore, 20_000);
+			Statistics.treasureScore = Math.min(Statistics.treasureScore, 100_000);
 
 			Statistics.exploreScore = 0;
 			int scorePerFloor = Statistics.floorsExplored.size * 50;
@@ -169,29 +160,14 @@ public enum Rankings {
 			}
 
 			Statistics.winMultiplier = 1f;
-			if (Statistics.gameWon)         Statistics.winMultiplier += 1f;
-			if (Statistics.ascended)        Statistics.winMultiplier += 0.5f;
 
-		//pre v1.3.0 runs have different score calculations
-		//only progress and treasure score, and they are each up to 50% bigger
-		//win multiplier is a simple 2x if run was a win, challenge multi is the same as 1.3.0
-		} else {
-			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 100;
-			Statistics.treasureScore = Math.min(Statistics.goldCollected, 30_000);
-
-			Statistics.exploreScore = Statistics.totalBossScore = Statistics.totalQuestScore = 0;
-
-			Statistics.winMultiplier = Statistics.gameWon ? 2 : 1;
-
-		}
-
-		Statistics.chalMultiplier = (float)Math.pow(1.25, Challenges.activeChallenges());
+		Statistics.chalMultiplier = (float)Math.pow(1.1, Challenges.activeChallenges());
 		Statistics.chalMultiplier = Math.round(Statistics.chalMultiplier*20f)/20f;
 
 		Statistics.totalScore = Statistics.progressScore + Statistics.treasureScore + Statistics.exploreScore
-					+ Statistics.totalBossScore + Statistics.totalQuestScore;
+				+ Statistics.totalBossScore + Statistics.totalQuestScore;
 
-		Statistics.totalScore *= Statistics.winMultiplier * Statistics.chalMultiplier;
+		Statistics.totalScore *= Statistics.chalMultiplier;
 
 		return Statistics.totalScore;
 	}
@@ -254,7 +230,7 @@ public enum Rankings {
 
 		//restore items now that we're done saving
 		belongings.backpack.items = allItems;
-		
+
 		//save challenges
 		rec.gameData.put( CHALLENGES, Dungeon.challenges );
 
@@ -287,7 +263,7 @@ public enum Rankings {
 		Dungeon.hero = (Hero)data.get(HERO);
 
 		Statistics.restoreFromBundle(data.getBundle(STATS));
-		
+
 		Dungeon.challenges = data.getInt(CHALLENGES);
 
 		Dungeon.initialVersion = data.getInt(GAME_VERSION);
@@ -307,7 +283,7 @@ public enum Rankings {
 			Dungeon.daily = false;
 		}
 	}
-	
+
 	private static final String RECORDS	= "records";
 	private static final String LATEST	= "latest";
 	private static final String TOTAL	= "total";
@@ -344,23 +320,23 @@ public enum Rankings {
 		}
 
 	}
-	
+
 	public void load() {
-		
+
 		if (records != null) {
 			return;
 		}
-		
+
 		records = new ArrayList<>();
-		
+
 		try {
 			Bundle bundle = FileUtils.bundleFromFile( RANKINGS_FILE );
-			
+
 			for (Bundlable record : bundle.getCollection( RECORDS )) {
 				records.add( (Record)record );
 			}
 			lastRecord = bundle.getInt( LATEST );
-			
+
 			totalNumber = bundle.getInt( TOTAL );
 			if (totalNumber == 0) {
 				totalNumber = records.size();
@@ -395,7 +371,7 @@ public enum Rankings {
 		} catch (IOException e) {
 		}
 	}
-	
+
 	public static class Record implements Bundlable {
 
 		private static final String CAUSE   = "cause";
@@ -447,16 +423,16 @@ public enum Rankings {
 				}
 			}
 		}
-		
+
 		@Override
 		public void restoreFromBundle( Bundle bundle ) {
-			
+
 			if (bundle.contains( CAUSE )) {
 				cause   = bundle.getClass( CAUSE );
 			} else {
 				cause = null;
 			}
-			
+
 			win		    = bundle.getBoolean( WIN );
 			score	    = bundle.getInt( SCORE );
 			customSeed  = bundle.getString( SEED );
@@ -470,14 +446,14 @@ public enum Rankings {
 
 			if (bundle.contains(DATA))  gameData = bundle.getBundle(DATA);
 			if (bundle.contains(ID))   gameID = bundle.getString(ID);
-			
+
 			if (gameID == null) gameID = UUID.randomUUID().toString();
 
 		}
-		
+
 		@Override
 		public void storeInBundle( Bundle bundle ) {
-			
+
 			if (cause != null) bundle.put( CAUSE, cause );
 
 			bundle.put( WIN, win );

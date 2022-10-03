@@ -29,7 +29,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class PotionOfConfusionHeal extends ExoticPotion {
 	
@@ -44,6 +47,10 @@ public class PotionOfConfusionHeal extends ExoticPotion {
 		Buff.prolong(hero, Vertigo.class, Vertigo.DURATION);
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);
+			if (hero == Dungeon.hero && !hero.isAlive()) {
+				Dungeon.fail(AntiHealTrap.class);
+				GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+			}
 		} else hero.HP = Math.min(hero.HP + 10000, hero.HT);
 	}
 }

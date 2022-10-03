@@ -27,8 +27,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barrier;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -79,6 +82,10 @@ public class Dewdrop extends Item {
 		if (effect > 0 || shield > 0) {
 			if (hero.buff(AntiHeal.class) != null) {
 				hero.damage(hero.HT / 2, hero);
+				if (hero == Dungeon.hero && !hero.isAlive()) {
+					Dungeon.fail(AntiHealTrap.class);
+					GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+				}
 			} else hero.HP += effect;
 			if (shield > 0) Buff.affect(hero, Barrier.class).incShield(shield);
 			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);

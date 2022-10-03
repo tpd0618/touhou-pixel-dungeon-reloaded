@@ -43,6 +43,10 @@ public class Hecatia extends Mob {
 		HP = HT = Dungeon.depth*5;
 		defenseSkill = Dungeon.depth;
 
+		flying = true;
+
+		state = WANDERING;
+
 		EXP = 0;
 		maxLvl = 99;
 	}
@@ -66,7 +70,7 @@ public class Hecatia extends Mob {
 	public int attackProc(Char hero, int damage) {
 		damage = super.attackProc(enemy, damage);
 		if (!(Dungeon.hero.belongings.armor() instanceof HecatiaArmor)) {
-			if (Random.Int(3) == 0) {
+			if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
 				Sample.INSTANCE.play(Assets.Sounds.READ);
 				CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {

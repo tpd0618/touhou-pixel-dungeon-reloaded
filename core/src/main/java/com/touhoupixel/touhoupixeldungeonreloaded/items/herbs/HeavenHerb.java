@@ -38,6 +38,8 @@ public class HeavenHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong(hero, Hisou.class, Hisou.DURATION/2f);
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, Hisou.class, Hisou.DURATION / 2f);
+		}
 	}
 }

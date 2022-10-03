@@ -38,6 +38,8 @@ public class SuperHardHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION/2f);
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION / 2f);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ReclaimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
@@ -75,116 +76,118 @@ public class Tewi extends Mob {
     @Override
     public void die(Object cause) {
         super.die(cause);
-        switch (Random.Int(36)) {
-            case 0:
-            default:
-                new AlarmTrap().set(enemy.pos).activate();
-                break;
-            case 1:
-                new AntiHealTrap().set(enemy.pos).activate();
-                break;
-            case 2:
-                new BlazingTrap().set(enemy.pos).activate();
-                break;
-            case 3:
-                new BurningTrap().set(enemy.pos).activate();
-                break;
-            case 4:
-                new ChillingTrap().set(enemy.pos).activate();
-                break;
-            case 5:
-                new ConfusionTrap().set(enemy.pos).activate();
-                break;
-            case 6:
-                new CorrosionTrap().set(enemy.pos).activate();
-                break;
-            case 7:
-                new CursingTrap().set(enemy.pos).activate();
-                break;
-            case 8:
-                new DegradeTrap().set(enemy.pos).activate();
-                break;
-            case 9:
-                new DespairTrap().set(enemy.pos).activate();
-                break;
-            case 10:
-                new DestroyArmorTrap().set(enemy.pos).activate();
-                break;
-            case 11:
-                new DisarmingTrap().set(enemy.pos).activate();
-                break;
-            case 12:
-                new DisintegrationTrap().set(enemy.pos).activate();
-                break;
-            case 13:
-                new DoublespeedTrap().set(enemy.pos).activate();
-                break;
-            case 14:
-                new ExConfusionTrap().set(enemy.pos).activate();
-                break;
-            case 15:
-                new ExplosiveTrap().set(enemy.pos).activate();
-                break;
-            case 16:
-                new FlashingTrap().set(enemy.pos).activate();
-                break;
-            case 17:
-                new FlockTrap().set(enemy.pos).activate();
-                break;
-            case 18:
-                new FrostTrap().set(enemy.pos).activate();
-                break;
-            case 19:
-                new GatewayTrap().set(enemy.pos).activate();
-                break;
-            case 20:
-                new GeyserTrap().set(enemy.pos).activate();
-                break;
-            case 21:
-                new GrippingTrap().set(enemy.pos).activate();
-                break;
-            case 22:
-                new HecatiaTrap().set(enemy.pos).activate();
-                break;
-            case 23:
-                new OozeTrap().set(enemy.pos).activate();
-                break;
-            case 24:
-                new PitfallTrap().set(enemy.pos).activate();
-                break;
-            case 25:
-                new PoisonDartTrap().set(enemy.pos).activate();
-                break;
-            case 26:
-                new RockfallTrap().set(enemy.pos).activate();
-                break;
-            case 27:
-                new ShockingTrap().set(enemy.pos).activate();
-                break;
-            case 28:
-                new SlowTrap().set(enemy.pos).activate();
-                break;
-            case 29:
-                new StormTrap().set(enemy.pos).activate();
-                break;
-            case 30:
-                new SummoningTrap().set(enemy.pos).activate();
-                break;
-            case 31:
-                new TeleportationTrap().set(enemy.pos).activate();
-                break;
-            case 32:
-                new ToxicTrap().set(enemy.pos).activate();
-                break;
-            case 33:
-                new TriplespeedTrap().set(enemy.pos).activate();
-                break;
-            case 34:
-                new WarpingTrap().set(enemy.pos).activate();
-                break;
-            case 35:
-                new WeakeningTrap().set(enemy.pos).activate();
-                break;
+        if (cause == Dungeon.hero) {
+            switch (Random.Int(36)) {
+                case 0:
+                default:
+                    new AlarmTrap().set(enemy.pos).activate();
+                    break;
+                case 1:
+                    new AntiHealTrap().set(enemy.pos).activate();
+                    break;
+                case 2:
+                    new BlazingTrap().set(enemy.pos).activate();
+                    break;
+                case 3:
+                    new BurningTrap().set(enemy.pos).activate();
+                    break;
+                case 4:
+                    new ChillingTrap().set(enemy.pos).activate();
+                    break;
+                case 5:
+                    new ConfusionTrap().set(enemy.pos).activate();
+                    break;
+                case 6:
+                    new CorrosionTrap().set(enemy.pos).activate();
+                    break;
+                case 7:
+                    new CursingTrap().set(enemy.pos).activate();
+                    break;
+                case 8:
+                    new DegradeTrap().set(enemy.pos).activate();
+                    break;
+                case 9:
+                    new DespairTrap().set(enemy.pos).activate();
+                    break;
+                case 10:
+                    new DestroyArmorTrap().set(enemy.pos).activate();
+                    break;
+                case 11:
+                    new DisarmingTrap().set(enemy.pos).activate();
+                    break;
+                case 12:
+                    new DisintegrationTrap().set(enemy.pos).activate();
+                    break;
+                case 13:
+                    new DoublespeedTrap().set(enemy.pos).activate();
+                    break;
+                case 14:
+                    new ExConfusionTrap().set(enemy.pos).activate();
+                    break;
+                case 15:
+                    new ExplosiveTrap().set(enemy.pos).activate();
+                    break;
+                case 16:
+                    new FlashingTrap().set(enemy.pos).activate();
+                    break;
+                case 17:
+                    new FlockTrap().set(enemy.pos).activate();
+                    break;
+                case 18:
+                    new FrostTrap().set(enemy.pos).activate();
+                    break;
+                case 19:
+                    new GatewayTrap().set(enemy.pos).activate();
+                    break;
+                case 20:
+                    new GeyserTrap().set(enemy.pos).activate();
+                    break;
+                case 21:
+                    new GrippingTrap().set(enemy.pos).activate();
+                    break;
+                case 22:
+                    new HecatiaTrap().set(enemy.pos).activate();
+                    break;
+                case 23:
+                    new OozeTrap().set(enemy.pos).activate();
+                    break;
+                case 24:
+                    new PitfallTrap().set(enemy.pos).activate();
+                    break;
+                case 25:
+                    new PoisonDartTrap().set(enemy.pos).activate();
+                    break;
+                case 26:
+                    new RockfallTrap().set(enemy.pos).activate();
+                    break;
+                case 27:
+                    new ShockingTrap().set(enemy.pos).activate();
+                    break;
+                case 28:
+                    new SlowTrap().set(enemy.pos).activate();
+                    break;
+                case 29:
+                    new StormTrap().set(enemy.pos).activate();
+                    break;
+                case 30:
+                    new SummoningTrap().set(enemy.pos).activate();
+                    break;
+                case 31:
+                    new TeleportationTrap().set(enemy.pos).activate();
+                    break;
+                case 32:
+                    new ToxicTrap().set(enemy.pos).activate();
+                    break;
+                case 33:
+                    new TriplespeedTrap().set(enemy.pos).activate();
+                    break;
+                case 34:
+                    new WarpingTrap().set(enemy.pos).activate();
+                    break;
+                case 35:
+                    new WeakeningTrap().set(enemy.pos).activate();
+                    break;
+            }
         }
     }
 }

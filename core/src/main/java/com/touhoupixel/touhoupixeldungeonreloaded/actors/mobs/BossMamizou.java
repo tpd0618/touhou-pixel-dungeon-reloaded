@@ -9,6 +9,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MamizouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -16,7 +17,7 @@ import com.watabou.utils.Random;
 public class BossMamizou extends Mob {
 
     {
-        spriteClass = AunnSprite.class;
+        spriteClass = MamizouSprite.class;
 
         HP = HT = 200;
         defenseSkill = 30;

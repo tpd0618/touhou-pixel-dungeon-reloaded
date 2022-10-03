@@ -34,7 +34,7 @@ import com.watabou.utils.Random;
 public class TrainingTrap extends Trap {
 
 	{
-		color = GREY;
+		color = RED;
 		shape = STARS;
 
 		avoidsHallways = false;

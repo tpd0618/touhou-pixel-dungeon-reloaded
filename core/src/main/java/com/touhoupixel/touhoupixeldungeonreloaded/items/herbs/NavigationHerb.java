@@ -40,6 +40,8 @@ public class NavigationHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong(hero, Foresight.class, Foresight.DURATION/40f);
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, Foresight.class, Foresight.DURATION / 40f);
+		}
 	}
 }

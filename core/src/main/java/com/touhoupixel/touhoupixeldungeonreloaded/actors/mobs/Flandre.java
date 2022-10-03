@@ -36,6 +36,8 @@ public class Flandre extends Mob {
 
         state = PASSIVE;
 
+        flying = true;
+
         EXP = 0;
         maxLvl = 99;
     }

@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
@@ -39,16 +40,15 @@ public class AntiHealTrap extends Trap {
 
 		avoidsHallways = false;
 	}
-	
+
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null) {
-			Buff.prolong( c, AntiHeal.class, AntiHeal.DURATION );
+		if (c != null && c == Dungeon.hero) {
+			Buff.prolong(c, AntiHeal.class, AntiHeal.DURATION);
 		}
-
-			GLog.w(Messages.get(this, "antiheal"));
-			GameScene.flash(0x80FFFFFF);
-			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-		}
+		GLog.w(Messages.get(this, "antiheal"));
+		GameScene.flash(0x80FFFFFF);
+		Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 	}
+}

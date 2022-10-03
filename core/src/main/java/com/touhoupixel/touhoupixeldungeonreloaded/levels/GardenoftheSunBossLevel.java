@@ -114,7 +114,7 @@ public class GardenoftheSunBossLevel extends Level {
 			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
 			W, W, e, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, e, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
 	};
 
 	private void buildLevel(){
@@ -158,12 +158,6 @@ public class GardenoftheSunBossLevel extends Level {
 		boss.pos = 287;
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
-
-		Hatate hatate = new Hatate();
-		hatate.state = hatate.WANDERING;
-		hatate.pos = 288;
-		GameScene.add( hatate );
-		hatate.beckon(Dungeon.hero.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();

@@ -37,6 +37,8 @@ public class ReachHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong( hero, ReachIncrease.class, ReachIncrease.DURATION/5f);
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, ReachIncrease.class, ReachIncrease.DURATION / 5f);
+		}
 	}
 }

@@ -40,7 +40,9 @@ public class StrengthHerb extends Herb {
 
 		super.execute(hero, action);
 
-		hero.STR++;
-		GLog.p( Messages.get(PotionOfStrength.class, "msg_2") );
+		if (action.equals( AC_EAT )) {
+			hero.STR++;
+			GLog.p(Messages.get(PotionOfStrength.class, "msg_2"));
+		}
 	}
 }

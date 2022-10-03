@@ -36,8 +36,10 @@ public class UndoHerb extends Herb {
 
 		super.execute(hero, action);
 
-		if (hero.HT/5 > hero.HP){
-			Statistics.life += 1;
+		if (action.equals( AC_EAT )) {
+			if (hero.HT / 5 > hero.HP) {
+				Statistics.life += 1;
+			}
 		}
 	}
 }

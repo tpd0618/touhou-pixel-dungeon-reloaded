@@ -40,7 +40,9 @@ public class CleanHerb extends Herb {
 
 		super.execute(hero, action);
 
-		PotionOfHealing.cure( hero );
-		Buff.detach( hero, AntiHeal.class);
+		if (action.equals( AC_EAT )) {
+			PotionOfHealing.cure(hero);
+			Buff.detach(hero, AntiHeal.class);
+		}
 	}
 }

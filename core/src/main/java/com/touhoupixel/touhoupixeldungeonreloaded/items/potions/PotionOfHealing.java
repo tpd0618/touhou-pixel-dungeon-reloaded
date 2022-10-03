@@ -45,6 +45,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -68,6 +69,10 @@ public class PotionOfHealing extends Potion {
 	public static void heal( Char ch ) {
 		if (ch.buff(AntiHeal.class) != null) {
 			ch.damage(ch.HT / 2, ch);
+			if (ch == Dungeon.hero && !ch.isAlive()) {
+				Dungeon.fail(AntiHealTrap.class);
+				GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+			}
 		} else Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
 		if (ch == Dungeon.hero) {
 			GLog.p(Messages.get(PotionOfHealing.class, "heal"));

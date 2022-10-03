@@ -1127,7 +1127,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 16);
 	}
 
-	private static final int GREENTEA_POTIONS        =                               xy(1, 41);  //17 slots
+	private static final int GREENTEA_POTIONS        =                               xy(1, 42);  //17 slots
 	public static final int GREENTEA_POTION_CRIMSON  = GREENTEA_POTIONS+0;
 	public static final int GREENTEA_POTION_AMBER    = GREENTEA_POTIONS+1;
 	public static final int GREENTEA_POTION_GOLDEN   = GREENTEA_POTIONS+2;
@@ -1149,7 +1149,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 10, 15);
 	}
 
-	private static final int GREENTEA_EXOTIC_POTIONS =                               xy(1, 42);  //17 slots
+	private static final int GREENTEA_EXOTIC_POTIONS =                               xy(1, 43);  //17 slots
 	public static final int GREENTEA_EXOTIC_CRIMSON  = GREENTEA_EXOTIC_POTIONS+0;
 	public static final int GREENTEA_EXOTIC_AMBER    = GREENTEA_EXOTIC_POTIONS+1;
 	public static final int GREENTEA_EXOTIC_GOLDEN   = GREENTEA_EXOTIC_POTIONS+2;

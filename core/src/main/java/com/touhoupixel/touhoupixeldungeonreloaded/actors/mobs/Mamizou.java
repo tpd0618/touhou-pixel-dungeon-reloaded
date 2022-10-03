@@ -6,13 +6,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MamizouSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Mamizou extends Mob {
 
     {
-        spriteClass = AyaSprite.class;
+        spriteClass = MamizouSprite.class;
 
         HP = HT = 200;
         defenseSkill = 30;

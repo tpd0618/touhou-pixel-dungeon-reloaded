@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
@@ -35,7 +36,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.food.FrozenCarpaccio;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Pasty;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.StewedMeat;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
@@ -52,10 +56,16 @@ public class HealHerb extends Herb {
 
 		super.execute(hero, action);
 
-		if (hero.buff(AntiHeal.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-		} else {
-			hero.HP = Math.min(hero.HP + 100, hero.HT);
+		if (action.equals( AC_EAT )) {
+			if (hero.buff(AntiHeal.class) != null) {
+				hero.damage(hero.HT / 2, hero);
+				if (hero == Dungeon.hero && !hero.isAlive()) {
+					Dungeon.fail(AntiHealTrap.class);
+					GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+				}
+			} else {
+				hero.HP = Math.min(hero.HP + 100, hero.HT);
+			}
 		}
 	}
 }

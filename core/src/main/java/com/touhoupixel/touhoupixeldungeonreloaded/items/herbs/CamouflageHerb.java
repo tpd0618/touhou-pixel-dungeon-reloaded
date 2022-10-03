@@ -38,6 +38,8 @@ public class CamouflageHerb extends Herb {
 
 		super.execute(hero, action);
 
-		Buff.prolong(hero, Invisibility.class, Invisibility.DURATION/4f);
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, Invisibility.class, Invisibility.DURATION / 4f);
+		}
 	}
 }

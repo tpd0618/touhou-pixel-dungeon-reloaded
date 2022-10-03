@@ -24,13 +24,19 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Aya;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hatate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Momiji;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Nitori;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Takane;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yukari;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +51,7 @@ public class YukariTrap extends Trap{
 	}
 
 	private static final ArrayList<Class<?extends Mob>> RARE = new ArrayList<>(Arrays.asList(
-			Hecatia.class));
+			Nitori.class, Takane.class, Momiji.class, Hatate.class, Aya.class));
 
 	@Override
 	public void activate() {
@@ -78,7 +84,7 @@ public class YukariTrap extends Trap{
 			Mob mob;
 			switch (summoned){
 				case 1: case 2: default:
-					mob = new Yukari();
+					mob = Reflection.newInstance(Random.element(RARE));
 					break;
 			}
 

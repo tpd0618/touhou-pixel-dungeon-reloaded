@@ -47,9 +47,9 @@ public class Amulet extends Item {
 
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
-		if (!Statistics.amuletObtained) {
-			Statistics.amuletObtained = true;
-		}
+		Statistics.amuletObtained = true;
+		Statistics.yukariCount = 0;
+		Statistics.tenshiEarthquake = 0;
 		return super.doPickUp(hero, pos);
 	}
 
