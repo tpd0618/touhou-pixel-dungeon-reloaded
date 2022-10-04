@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Bones;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -394,16 +393,6 @@ public abstract class RegularLevel extends Level {
 		//use a separate generator for this to prevent held items, meta progress, and talents from affecting levelgen
 		//we can use a random long for the seed as it will be the same long every time
 		Random.pushGenerator( Random.Long() );
-
-		Item item = Bones.get();
-		if (item != null) {
-			int cell = randomDropCell();
-			if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
-				map[cell] = Terrain.GRASS;
-				losBlocking[cell] = false;
-			}
-			drop( item, cell ).setHauntedIfCursed().type = Heap.Type.REMAINS;
-		}
 
 		//guide pages
 		Collection<String> allPages = Document.ADVENTURERS_GUIDE.pageNames();

@@ -19,7 +19,7 @@ public class Nemuno extends Mob {
 
         HP = HT = 156;
         defenseSkill = 37;
-        EXP = 8;
+        EXP = 13;
         maxLvl = 45;
 
         loot = Generator.Category.MIS_T5;

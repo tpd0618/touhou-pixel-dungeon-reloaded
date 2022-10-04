@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Bones;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
@@ -103,14 +102,6 @@ public class MoriyaShrineBossLevel extends HakureiShrineLevel {
 	
 	@Override
 	protected void createItems() {
-		Item item = Bones.get();
-		if (item != null) {
-			int pos;
-			do {
-				pos = pointToCell(roomEntrance.random());
-			} while (pos == entrance || solid[pos]);
-			drop( item, pos ).setHauntedIfCursed().type = Heap.Type.REMAINS;
-		}
 	}
 
 	@Override

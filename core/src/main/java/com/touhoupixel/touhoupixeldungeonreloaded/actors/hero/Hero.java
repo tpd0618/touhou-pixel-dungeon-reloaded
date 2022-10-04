@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Bones;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.GamesInProgress;
@@ -60,15 +59,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
@@ -78,10 +75,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Medicine;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Nazrin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
@@ -89,7 +83,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yukari;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
@@ -149,12 +142,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileW
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YuukaDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.HecatiaTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
@@ -401,32 +392,6 @@ public class Hero extends Char {
 			accuracy *= 5f;
 		}
 
-		if (Statistics.amuletObtained){
-			if (Dungeon.depth < 100){
-				accuracy *= 0.9f;
-			}
-			if (Dungeon.depth < 80){
-				accuracy *= 0.9f;
-			}
-			if (Dungeon.depth < 60){
-				accuracy *= 0.9f;
-			}
-			if (Dungeon.depth < 40){
-				accuracy *= 0.9f;
-			}
-			if (Dungeon.depth < 20){
-				accuracy *= 0.9f;
-			}
-		}
-
-		if (Statistics.power == 400){
-			accuracy *= 1.075f;
-		} else if (Statistics.power >= 300){
-			accuracy *= 1.05f;
-		} else if (Statistics.power >= 200) {
-			accuracy *= 1.025f;
-		}
-
 		if (wep instanceof MissileWeapon){
 			if (Dungeon.level.adjacent( pos, target.pos ) && !(Statistics.card27) && !(wep instanceof BulletDanmaku)) {
 				accuracy *= 0.5f;
@@ -460,24 +425,6 @@ public class Hero extends Char {
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (Statistics.card28 && enemy.pos == this.pos+i && (Random.Int(5) == 0)){
 				return INFINITE_EVASION;
-			}
-		}
-
-		if (Statistics.amuletObtained){
-			if (Dungeon.depth < 100){
-				evasion *= 0.9;
-			}
-			if (Dungeon.depth < 80){
-				evasion *= 0.9;
-			}
-			if (Dungeon.depth < 60){
-				evasion *= 0.9;
-			}
-			if (Dungeon.depth < 40){
-				evasion *= 0.9;
-			}
-			if (Dungeon.depth < 20){
-				evasion *= 0.9;
 			}
 		}
 
@@ -627,6 +574,100 @@ public class Hero extends Char {
 			return;
 		}
 
+		if (Statistics.amuletObtained) {
+			if (Statistics.yukariCount > 98) {
+				Statistics.yukariCount = 0;
+
+				Camera.main.shake( 5, 1f );
+
+				int newPos = pos;
+
+				if (Actor.findChar(pos) != null) {
+					ArrayList<Integer> candidates = new ArrayList<>();
+
+					for (int n : PathFinder.NEIGHBOURS8) {
+						int c = pos + n;
+						if (!Dungeon.level.solid[c] && Actor.findChar(c) == null) {
+							candidates.add(c);
+						}
+					}
+
+					newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
+				}
+
+				if (newPos != -1) {
+					Hecatia hecatia = new Hecatia();
+					hecatia.HP = hecatia.HT;
+					hecatia.pos = newPos;
+
+					GameScene.add(hecatia);
+
+					hecatia.sprite.alpha(0);
+					hecatia.sprite.parent.add(new AlphaTweener(hecatia.sprite, 1, 0.15f));
+				}
+
+				if (Actor.findChar(pos) != null) {
+					ArrayList<Integer> candidates = new ArrayList<>();
+
+					for (int n : PathFinder.NEIGHBOURS8) {
+						int c = pos + n;
+						if (!Dungeon.level.solid[c] && Actor.findChar(c) == null) {
+							candidates.add(c);
+						}
+					}
+
+					newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
+				}
+
+				if (newPos != -1) {
+					Yukari yukari = new Yukari();
+					yukari.HP = yukari.HT;
+					yukari.pos = newPos;
+
+					GameScene.add(yukari);
+
+					yukari.sprite.alpha(0);
+					yukari.sprite.parent.add(new AlphaTweener(yukari.sprite, 1, 0.15f));
+				}
+			} else Statistics.yukariCount += 1;
+		}
+
+		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
+			if (Statistics.tenshiEarthquake > 98) {
+				Statistics.tenshiEarthquake = 0;
+				Camera.main.shake( 5, 1f );
+				if (!this.flying) {
+					this.damage(Dungeon.depth/2+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Tenshi.class);
+						GLog.n( Messages.get(Tenshi.class, "ondeath") );
+					}
+				}
+				Sample.INSTANCE.play(Assets.Sounds.BLAST);
+			} else Statistics.tenshiEarthquake += 1;
+		}
+
+		if (Statistics.nighttimecount > 998){
+			if (buff(NightTime.class) == null) {
+				Statistics.nighttimecount = 0;
+				GameScene.flash(0x80FFFFFF);
+				Buff.prolong(this, NightTime.class, NightTime.DURATION);
+				Sample.INSTANCE.play(Assets.Sounds.LULLABY);
+				GLog.p(Messages.get(NightTime.class, "night"));
+			} else if (buff(NightTime.class) != null) {
+				Statistics.nighttimecount = 0;
+				GameScene.flash(0x80FFFFFF);
+				Buff.detach(this, NightTime.class);
+				Sample.INSTANCE.play(Assets.Sounds.LULLABY);
+				GLog.p(Messages.get(NightTime.class, "day"));
+			}
+		} else Statistics.nighttimecount += 1;
+
+		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
+			Statistics.mood += 1;
+			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
+		}
+
 		super.spend(time);
 	}
 
@@ -634,10 +675,6 @@ public class Hero extends Char {
 		busy();
 		spend( time );
 		next();
-		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
-			Statistics.mood += 1;
-			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
-		}
 	}
 
 	@Override
@@ -1087,8 +1124,6 @@ public class Hero extends Char {
 	@Override
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
-
-		damage *= 0+1;
 
 		if (Dungeon.hero.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null){
 			damage *= 0;
@@ -1909,8 +1944,6 @@ public class Hero extends Char {
 			}
 		}
 
-		Bones.leave();
-
 		Dungeon.observe();
 		GameScene.updateFog();
 
@@ -1990,23 +2023,8 @@ public class Hero extends Char {
 			}
 		}
 
-		if (Statistics.mood == -1){
-			Statistics.mood = 3;
-		}
-		if (Statistics.mood == -2){
-			Statistics.mood = 2;
-		}
-		if (Statistics.mood == -3){
-			Statistics.mood = 1;
-		}
 		if (Statistics.mood == 4){
 			Statistics.mood = 0;
-		}
-		if (Statistics.mood == 5){
-			Statistics.mood = 1;
-		}
-		if (Statistics.mood == 6){
-			Statistics.mood = 2;
 		}
 
 		if (Statistics.bordercount == 50){
@@ -2253,79 +2271,6 @@ public class Hero extends Char {
 	@Override
 	public void onMotionComplete() {
 		GameScene.checkKeyHold();
-
-		if (Statistics.amuletObtained) {
-			if (Statistics.yukariCount > 98) {
-				Statistics.yukariCount = 0;
-
-				Camera.main.shake( 5, 1f );
-
-				int newPos = pos;
-
-				if (Actor.findChar(pos) != null) {
-					ArrayList<Integer> candidates = new ArrayList<>();
-
-					for (int n : PathFinder.NEIGHBOURS8) {
-						int c = pos + n;
-						if (!Dungeon.level.solid[c] && Actor.findChar(c) == null) {
-							candidates.add(c);
-						}
-					}
-
-					newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
-				}
-
-				if (newPos != -1) {
-					Hecatia hecatia = new Hecatia();
-					hecatia.HP = hecatia.HT;
-					hecatia.pos = newPos;
-
-					GameScene.add(hecatia);
-
-					hecatia.sprite.alpha(0);
-					hecatia.sprite.parent.add(new AlphaTweener(hecatia.sprite, 1, 0.15f));
-				}
-
-				if (Actor.findChar(pos) != null) {
-					ArrayList<Integer> candidates = new ArrayList<>();
-
-					for (int n : PathFinder.NEIGHBOURS8) {
-						int c = pos + n;
-						if (!Dungeon.level.solid[c] && Actor.findChar(c) == null) {
-							candidates.add(c);
-						}
-					}
-
-					newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
-				}
-
-				if (newPos != -1) {
-					Yukari yukari = new Yukari();
-					yukari.HP = yukari.HT;
-					yukari.pos = newPos;
-
-					GameScene.add(yukari);
-
-					yukari.sprite.alpha(0);
-					yukari.sprite.parent.add(new AlphaTweener(yukari.sprite, 1, 0.15f));
-				}
-			} else Statistics.yukariCount += 1;
-		}
-
-		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
-			if (Statistics.tenshiEarthquake > 98) {
-				Statistics.tenshiEarthquake = 0;
-				Camera.main.shake( 5, 1f );
-				if (!this.flying) {
-					this.damage(Dungeon.depth/2+1, this);
-					if (this == Dungeon.hero && !this.isAlive()) {
-						Dungeon.fail(Tenshi.class);
-						GLog.n( Messages.get(Tenshi.class, "ondeath") );
-					}
-				}
-				Sample.INSTANCE.play(Assets.Sounds.BLAST);
-			} else Statistics.tenshiEarthquake += 1;
-		}
 	}
 
 	@Override

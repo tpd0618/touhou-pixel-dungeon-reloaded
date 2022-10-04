@@ -36,7 +36,7 @@ public class SevenDaysTailsman extends Tailsman {
 
         Char ch = Actor.findChar(cell);
 
-        if (ch != null && !ch.properties().contains(Char.Property.BOSS)) {
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)) {
             if (Dungeon.hero.buff(Pure.class) == null) {
                 switch (Random.Int(7)) {
                     case 0:

@@ -14,7 +14,7 @@ public class Hatate extends Mob {
 
         HP = HT = 131;
         defenseSkill = 32;
-        EXP = 7;
+        EXP = 12;
         maxLvl = 40;
 
         flying = true;

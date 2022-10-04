@@ -12,7 +12,7 @@ public class Koakuma extends Mob {
 
         HP = HT = 124;
         defenseSkill = 27;
-        EXP = 6;
+        EXP = 9;
         maxLvl = 35;
 
         baseSpeed = 2f;

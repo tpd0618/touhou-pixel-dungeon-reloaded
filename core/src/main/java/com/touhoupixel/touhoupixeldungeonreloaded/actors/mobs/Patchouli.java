@@ -13,7 +13,7 @@ public class Patchouli extends Mob {
 
         HP = HT = 107;
         defenseSkill = 27;
-        EXP = 6;
+        EXP = 9;
         maxLvl = 35;
 
         loot = new Bomb();

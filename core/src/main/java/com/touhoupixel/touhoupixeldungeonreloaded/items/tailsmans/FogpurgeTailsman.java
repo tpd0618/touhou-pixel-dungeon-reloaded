@@ -32,7 +32,7 @@ public class FogpurgeTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null){
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)){
             if (Dungeon.hero.buff(Pure.class) == null) {
                 Buff.detach(ch, Adrenaline.class);
                 Buff.detach(ch, Bless.class);

@@ -22,7 +22,7 @@ public class Shion extends Mob {
 
         HP = HT = 188;
         defenseSkill = 37;
-        EXP = 7;
+        EXP = 13;
         maxLvl = 45;
 
         loot = Gold.class;
@@ -48,8 +48,8 @@ public class Shion extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
-            if (Dungeon.gold > 800) {
-                Dungeon.gold -= 800;
+            if (Dungeon.gold > 100) {
+                Dungeon.gold -= 100;
                 Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);

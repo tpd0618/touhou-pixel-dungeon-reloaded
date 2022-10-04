@@ -18,7 +18,7 @@ public class JudgementTailsman extends Tailsman {
 
         if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && ch.HP < ch.HT/4) {
             if (Dungeon.hero.buff(Pure.class) == null) {
-                ch.die(null);
+                ch.damage(ch.HT, this);
             }
         }
     }

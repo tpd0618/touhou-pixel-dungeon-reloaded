@@ -134,6 +134,7 @@ public class BuffIndicator extends Component {
 	public static final int COOL         = 109;
 	public static final int PURE         = 110;
 	public static final int HAPPY         = 111;
+	public static final int NIGHTTIME         = 112;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

@@ -14,7 +14,7 @@ public class Kasen extends Mob {
 
         HP = HT = 173;
         defenseSkill = 37;
-        EXP = 8;
+        EXP = 14;
         maxLvl = 45;
 
         loot = new PotionOfKomachi();

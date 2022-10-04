@@ -22,9 +22,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GatewayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.HecatiaTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
@@ -40,7 +38,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TriplespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WeakeningTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WornDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TewiSprite;
 import com.watabou.utils.Random;
 
@@ -51,7 +48,7 @@ public class Tewi extends Mob {
 
         HP = HT = 83;
         defenseSkill = 22;
-        EXP = 5;
+        EXP = 8;
         maxLvl = 30;
 
         loot = new ReclaimTrap();
@@ -77,7 +74,7 @@ public class Tewi extends Mob {
     public void die(Object cause) {
         super.die(cause);
         if (cause == Dungeon.hero) {
-            switch (Random.Int(36)) {
+            switch (Random.Int(35)) {
                 case 0:
                 default:
                     new AlarmTrap().set(enemy.pos).activate();
@@ -137,7 +134,7 @@ public class Tewi extends Mob {
                     new FrostTrap().set(enemy.pos).activate();
                     break;
                 case 19:
-                    new GatewayTrap().set(enemy.pos).activate();
+                    new WeakeningTrap().set(enemy.pos).activate();
                     break;
                 case 20:
                     new GeyserTrap().set(enemy.pos).activate();
@@ -183,9 +180,6 @@ public class Tewi extends Mob {
                     break;
                 case 34:
                     new WarpingTrap().set(enemy.pos).activate();
-                    break;
-                case 35:
-                    new WeakeningTrap().set(enemy.pos).activate();
                     break;
             }
         }

@@ -42,7 +42,7 @@ public class Kagerou extends Mob implements Callback {
 
         HP = HT = 86;
         defenseSkill = 22;
-        EXP = 6;
+        EXP = 9;
         maxLvl = 30;
 
         loot = new SpellcardFragment();

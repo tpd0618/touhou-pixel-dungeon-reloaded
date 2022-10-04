@@ -22,8 +22,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -39,16 +41,15 @@ public class DegradeTrap extends Trap {
 
 		avoidsHallways = false;
 	}
-	
+
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null) {
-			Buff.prolong( c, Degrade.class, Degrade.DURATION );
+		if (c != null && c == Dungeon.hero) {
+			Buff.prolong(c, Degrade.class, Degrade.DURATION);
 		}
-
-			GLog.w(Messages.get(this, "degrade"));
-			GameScene.flash(0x80FFFFFF);
-			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-		}
+		GLog.w(Messages.get(this, "degrade"));
+		GameScene.flash(0x80FFFFFF);
+		Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 	}
+}

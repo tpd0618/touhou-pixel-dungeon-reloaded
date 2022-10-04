@@ -17,9 +17,9 @@ public class OkinaTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && ch.pos == Terrain.OPEN_DOOR){
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && Dungeon.level.map[ch.pos] == Terrain.OPEN_DOOR){
             if (Dungeon.hero.buff(Pure.class) == null) {
-                ch.die(null);
+                ch.damage(ch.HT, this);
             }
         }
     }

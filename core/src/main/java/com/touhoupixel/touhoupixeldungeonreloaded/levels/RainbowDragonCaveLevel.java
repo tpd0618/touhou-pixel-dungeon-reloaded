@@ -30,8 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.CavesPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
@@ -40,12 +38,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GatewayTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
@@ -105,7 +100,6 @@ public class RainbowDragonCaveLevel extends RegularLevel {
 	@Override
 	public void create() {
 		itemsToSpawn.add( new Bomb() );
-		itemsToSpawn.add( new Torch() );
 		itemsToSpawn.add( new Torch() );
 		super.create();
 	}

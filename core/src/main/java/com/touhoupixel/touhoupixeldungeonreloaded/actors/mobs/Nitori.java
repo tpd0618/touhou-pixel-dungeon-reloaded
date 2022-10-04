@@ -51,7 +51,7 @@ public class Nitori extends Mob implements Callback {
 
         HP = HT = 124;
         defenseSkill = 32;
-        EXP = 6;
+        EXP = 11;
         maxLvl = 40;
 
         flying = true;

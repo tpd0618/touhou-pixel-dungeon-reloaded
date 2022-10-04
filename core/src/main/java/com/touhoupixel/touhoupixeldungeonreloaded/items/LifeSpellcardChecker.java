@@ -70,6 +70,7 @@ public class LifeSpellcardChecker extends Item {
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats4", Statistics.spellcard);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats5", Statistics.spellcardfragment);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats6", Statistics.playercorruption);
+		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "statsdaynight", Statistics.nighttimecount);
 		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
 			info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats7", Statistics.tenshiEarthquake);
 		}

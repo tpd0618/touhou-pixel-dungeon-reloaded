@@ -111,7 +111,6 @@ public class LunarCapitalLevel extends RegularLevel {
 	public void create() {
 		itemsToSpawn.add( new Bomb() );
 		itemsToSpawn.add( new Torch() );
-		itemsToSpawn.add( new Torch() );
 		super.create();
 	}
 

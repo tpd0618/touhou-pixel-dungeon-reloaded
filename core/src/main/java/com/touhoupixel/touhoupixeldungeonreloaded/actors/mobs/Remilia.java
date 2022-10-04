@@ -15,7 +15,7 @@ public class Remilia extends Mob {
 
         HP = HT = 89;
         defenseSkill = 27;
-        EXP = 6;
+        EXP = 10;
         maxLvl = 35;
 
         loot = new LifeFragment();

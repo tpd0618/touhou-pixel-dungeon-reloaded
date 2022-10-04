@@ -28,44 +28,25 @@ import com.watabou.noosa.TextureFilm;
 
 public class AunnSprite extends MobSprite {
 
-	private MovieClip.Animation crumple;
-
 	public AunnSprite() {
 		super();
 
 		texture( Assets.Sprites.AUNN );
 
-		TextureFilm frames = new TextureFilm( texture, 12, 14 );
+		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 
-		idle = new MovieClip.Animation( 2, true );
+		idle = new Animation( 2, true );
 		idle.frames( frames, 0, 0, 0, 0 );
 
-		run = new MovieClip.Animation( 12, true );
-		run.frames( frames, 2, 3, 4, 5, 6, 7 );
+		run = new Animation( 10, true );
+		run.frames( frames, 6, 7, 8, 9, 10 );
 
-		attack = new MovieClip.Animation( 12, false );
-		attack.frames( frames, 0, 8, 9 );
+		attack = new Animation( 15, false );
+		attack.frames( frames, 2, 3, 4, 5, 6 );
 
-		crumple = new MovieClip.Animation( 15, false);
-		crumple.frames( frames, 1, 1, 1, 1 );
-
-		die = new MovieClip.Animation( 15, false );
-		die.frames( frames, 0, 10, 11, 12, 13 );
+		die = new Animation( 10, false );
+		die.frames( frames, 11, 12, 13, 14 );
 
 		play( idle );
-	}
-
-	public void crumple(){
-		hideEmo();
-		play(crumple);
-	}
-
-	@Override
-	public void die() {
-		if (curAnim == crumple){
-			//causes the sprite to not rise then fall again when dieing.
-			die.frames[0] = die.frames[1] = die.frames[2] = die.frames[3];
-		}
-		super.die();
 	}
 }

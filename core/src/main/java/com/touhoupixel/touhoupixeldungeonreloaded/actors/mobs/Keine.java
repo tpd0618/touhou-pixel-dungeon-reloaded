@@ -21,7 +21,7 @@ public class Keine extends Mob {
 
         HP = HT = 107;
         defenseSkill = 22;
-        EXP = 6;
+        EXP = 9;
         maxLvl = 30;
 
         loot = new ScrollOfSirensSong();

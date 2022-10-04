@@ -18,7 +18,7 @@ public class BlowawayTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null){
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)){
             if (Dungeon.hero.buff(Pure.class) == null) {
                 Ballistica trajectory = new Ballistica(curUser.pos, ch.pos, Ballistica.STOP_TARGET);
                 //trim it to just be the part that goes past them

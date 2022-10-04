@@ -151,7 +151,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FogpurgeTailsm
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ImpedeTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.JudgementTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.OkinaTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.MurasaTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.MystiaTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.Tailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.HalveTailsman;
@@ -410,7 +410,7 @@ public class Generator {
 					DebilitationTailsman.class,
 					JudgementTailsman.class,
 					FlandreTailsman.class,
-					MurasaTailsman.class,
+					MystiaTailsman.class,
 					OkinaTailsman.class,
 					HalveTailsman.class
 			};

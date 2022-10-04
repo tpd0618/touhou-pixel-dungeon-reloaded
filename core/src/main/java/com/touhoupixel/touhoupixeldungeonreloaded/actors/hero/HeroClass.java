@@ -25,16 +25,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.SpellcardCaster;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
@@ -42,14 +42,20 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CamouflageHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.StrengthHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.MystiaTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.OkinaTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SanaeExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
@@ -84,7 +90,14 @@ public enum HeroClass {
 		nitofusion.collect();
 
 		//test//
+		RandomStar randomstar = new RandomStar();
+		randomstar.identify().collect();
 
+		EveKeyboard randomsta2r = new EveKeyboard();
+		randomsta2r.identify().collect();
+
+		ArisaKeyboard randomstar3 = new ArisaKeyboard();
+		randomstar3.identify().collect();
 		//test//
 
 		HealHerb healherb = new HealHerb();

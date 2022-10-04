@@ -12,7 +12,7 @@ public class Momiji extends Mob {
 
         HP = HT = 147;
         defenseSkill = 32;
-        EXP = 6;
+        EXP = 11;
         maxLvl = 40;
 
         viewDistance = 10000;

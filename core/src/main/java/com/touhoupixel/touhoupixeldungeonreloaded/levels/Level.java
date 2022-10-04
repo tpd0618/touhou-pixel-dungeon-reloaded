@@ -35,12 +35,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.WellWater;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSight;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Shadows;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
@@ -191,6 +194,8 @@ public abstract class Level implements Bundlable {
 
 			addItemToSpawn(Generator.random(Generator.Category.HERB));
 			addItemToSpawn(Generator.random(Generator.Category.HERB));
+
+			addItemToSpawn(new Torch());
 
 			if (Dungeon.posNeeded()) {
 				addItemToSpawn( new PotionOfStrength() );
@@ -662,9 +667,7 @@ public abstract class Level implements Bundlable {
 	}
 
 	public float respawnCooldown(){
-		if (Statistics.amuletObtained){
-			return Math.round(GameMath.gate( TIME_TO_RESPAWN/10f, Dungeon.level.mobCount() * (TIME_TO_RESPAWN / 10f), TIME_TO_RESPAWN / 2f));
-		} else if (Dungeon.level.feeling == Feeling.DARK){
+		if (Dungeon.level.feeling == Feeling.DARK){
 			return 2*TIME_TO_RESPAWN/3f;
 		} else {
 			return TIME_TO_RESPAWN;
@@ -1158,6 +1161,10 @@ public abstract class Level implements Bundlable {
 			int viewDist = c.viewDistance;
 			if (c instanceof Hero){
 				viewDist *= 1f;
+			}
+
+			if (c.buff( NightTime.class ) != null && c.buff( Light.class ) == null){
+				viewDist = 1;
 			}
 
 			ShadowCaster.castShadow( cx, cy, fieldOfView, blocking, viewDist );

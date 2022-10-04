@@ -40,7 +40,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
@@ -633,18 +635,16 @@ public abstract class Mob extends Char {
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 
+		if (Dungeon.hero.buff( NightTime.class ) != null && Dungeon.hero.buff( Light.class ) == null){
+			damage *= 2;
+		}
+
 		if (this instanceof Nazrin && Dungeon.gold > 200){
 			damage += 1;
 		}
 
-		if (Statistics.amuletObtained && Dungeon.hero.belongings.armor() != null){
-			damage += Math.max(1, 50-Dungeon.depth-Dungeon.hero.belongings.armor.DRMin());
-		} else if (Statistics.amuletObtained && Dungeon.hero.belongings.armor() == null){
-			damage += Math.max(1, 50-Dungeon.depth);
-		}
-
 		if (this instanceof Koakuma){
-			damage += 1+Statistics.upgradesUsed;
+			damage += Statistics.upgradesUsed;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
@@ -755,27 +755,8 @@ public abstract class Mob extends Char {
 			alerted = true;
 		}
 
-		if (Statistics.amuletObtained){
-			if (Dungeon.depth < 100){
-				dmg *= 0.9f;
-			}
-			if (Dungeon.depth < 80){
-				dmg *= 0.9f;
-			}
-			if (Dungeon.depth < 60){
-				dmg *= 0.9f;
-			}
-			if (Dungeon.depth < 40){
-				dmg *= 0.9f;
-			}
-			if (Dungeon.depth < 20){
-				dmg *= 0.9f;
-			}
-		}
-
 		super.damage( dmg, src );
 	}
-
 
 	@Override
 	public void destroy() {

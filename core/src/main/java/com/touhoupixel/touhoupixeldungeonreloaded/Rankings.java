@@ -138,10 +138,8 @@ public enum Rankings {
 	public int calculateScore(){
 
 			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 6;
-			Statistics.progressScore = Math.min(Statistics.progressScore, 50_000);
 
 			Statistics.treasureScore = Statistics.goldCollected + Statistics.heldItemValue;
-			Statistics.treasureScore = Math.min(Statistics.treasureScore, 100_000);
 
 			Statistics.exploreScore = 0;
 			int scorePerFloor = Statistics.floorsExplored.size * 50;
@@ -149,23 +147,10 @@ public enum Rankings {
 				if (b) Statistics.exploreScore += scorePerFloor;
 			}
 
-			Statistics.totalBossScore = 0;
-			for (int i : Statistics.bossScores){
-				if (i > 0) Statistics.totalBossScore += i;
-			}
-
-			Statistics.totalQuestScore = 0;
-			for (int i : Statistics.questScores){
-				if (i > 0) Statistics.totalQuestScore += i;
-			}
-
-			Statistics.winMultiplier = 1f;
-
-		Statistics.chalMultiplier = (float)Math.pow(1.1, Challenges.activeChallenges());
+		Statistics.chalMultiplier = (float)Math.pow(1.15, Challenges.activeChallenges());
 		Statistics.chalMultiplier = Math.round(Statistics.chalMultiplier*20f)/20f;
 
-		Statistics.totalScore = Statistics.progressScore + Statistics.treasureScore + Statistics.exploreScore
-				+ Statistics.totalBossScore + Statistics.totalQuestScore;
+		Statistics.totalScore = Statistics.progressScore + Statistics.treasureScore + Statistics.exploreScore;
 
 		Statistics.totalScore *= Statistics.chalMultiplier;
 
@@ -268,9 +253,6 @@ public enum Rankings {
 
 		Dungeon.initialVersion = data.getInt(GAME_VERSION);
 
-		if (Dungeon.initialVersion <= ShatteredPixelDungeon.v1_2_3){
-			Statistics.gameWon = rec.win;
-		}
 		rec.score = calculateScore();
 
 		if (rec.gameData.contains(SEED)){

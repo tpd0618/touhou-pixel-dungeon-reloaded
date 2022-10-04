@@ -17,7 +17,7 @@ public class Mokou extends Mob {
 
         HP = HT = 93;
         defenseSkill = 22;
-        EXP = 6;
+        EXP = 9;
         maxLvl = 30;
 
         loot = new LifeFragment();

@@ -18,7 +18,7 @@ public class Reisen extends Mob {
 
         HP = HT = 87;
         defenseSkill = 0;
-        EXP = 5;
+        EXP = 8;
         maxLvl = 30;
 
         loot = new ScrollOfMagicMapping();

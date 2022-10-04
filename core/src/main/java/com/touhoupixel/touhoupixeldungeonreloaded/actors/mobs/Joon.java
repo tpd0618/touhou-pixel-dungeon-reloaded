@@ -21,7 +21,7 @@ public class Joon extends Mob {
 
         HP = HT = 188;
         defenseSkill = 37;
-        EXP = 7;
+        EXP = 13;
         maxLvl = 45;
 
         loot = Gold.class;
@@ -47,13 +47,13 @@ public class Joon extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
-            if (Dungeon.gold > 10000) {
-                Dungeon.gold -= 10000;
+            if (Dungeon.gold > 2000) {
+                Dungeon.gold -= 2000;
                 PotionOfHealing poh = new PotionOfHealing();
                 poh.collect();
                 Sample.INSTANCE.play(Assets.Sounds.GOLD);
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-                GLog.w(Messages.get(this, "wastemoney"));
+                GLog.w(Messages.get(this, "losemoney"));
             }
         }
         return damage;

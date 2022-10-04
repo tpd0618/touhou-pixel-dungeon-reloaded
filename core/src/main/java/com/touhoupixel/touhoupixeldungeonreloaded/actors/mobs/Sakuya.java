@@ -13,7 +13,7 @@ public class Sakuya extends Mob {
 
         HP = HT = 99;
         defenseSkill = 27;
-        EXP = 7;
+        EXP = 10;
         maxLvl = 35;
 
         baseSpeed = 3f;

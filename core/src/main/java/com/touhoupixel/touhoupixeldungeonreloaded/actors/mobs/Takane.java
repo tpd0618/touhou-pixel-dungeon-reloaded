@@ -13,7 +13,7 @@ public class Takane extends Mob {
 
         HP = HT = 124;
         defenseSkill = 32;
-        EXP = 6;
+        EXP = 11;
         maxLvl = 40;
 
         loot = Generator.Category.POTION;

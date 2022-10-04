@@ -56,7 +56,7 @@ public class YukariTrap extends Trap{
 	@Override
 	public void activate() {
 
-		int nMobs = 1;
+		int nMobs = 8;
 
 		ArrayList<Integer> candidates = new ArrayList<>();
 

@@ -118,8 +118,10 @@ public class Medicine extends Mob {
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
-		if (Random.Int(2) == 0) {
-			new PoisonDartTrap().set(enemy.pos).activate();
+		if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !enemy.properties().contains(Char.Property.BOSS)) {
+			if (Random.Int(4) == 0) {
+				new PoisonDartTrap().set(enemy.pos).activate();
+			}
 		}
 		if (enemy instanceof Mob) {
 			((Mob)enemy).aggro( this );

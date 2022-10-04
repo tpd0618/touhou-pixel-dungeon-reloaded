@@ -18,7 +18,7 @@ public class DecoyTailsman extends Tailsman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null){
+        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)){
             if (Dungeon.hero.buff(Pure.class) == null) {
                 Buff.prolong(ch, Amok.class, 20);
             }

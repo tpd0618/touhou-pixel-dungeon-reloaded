@@ -12,7 +12,7 @@ public class Meiling extends Mob {
 
         HP = HT = 112;
         defenseSkill = 27;
-        EXP = 6;
+        EXP = 9;
         maxLvl = 35;
 
         loot = new PotionOfMight();

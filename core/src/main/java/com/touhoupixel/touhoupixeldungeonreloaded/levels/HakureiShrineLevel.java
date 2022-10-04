@@ -28,28 +28,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.SewerPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DoublespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GatewayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
@@ -58,7 +52,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TrainingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TriplespeedTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WeakeningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WornDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -134,7 +127,7 @@ public class HakureiShrineLevel extends RegularLevel {
 		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class,
-						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, GatewayTrap.class, CursingTrap.class,
+						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, DegradeTrap.class, CursingTrap.class,
 						DoublespeedTrap.class, TrainingTrap.class}:
 				new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, WornDartTrap.class,
