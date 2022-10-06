@@ -28,20 +28,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfNewEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfNewEnchantDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfNewEnchantHakkero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfNewEnchantWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -131,14 +124,7 @@ public class Shopkeeper extends NPC {
 		if (item.isIdentified() && item.level() > 0)                        return false;
 		if (item instanceof PotionOfStrength)                               return false;
 		if (item instanceof ScrollOfUpgrade)                                return false;
-		if (item instanceof ScrollOfEnchantWeapon)                          return false;
-		if (item instanceof ScrollOfEnchantArmor)                           return false;
-		if (item instanceof ScrollOfEnchantHakkero)                         return false;
-		if (item instanceof ScrollOfEnchantDanmaku)                         return false;
-		if (item instanceof ScrollOfNewEnchantWeapon)                       return false;
-		if (item instanceof ScrollOfNewEnchantArmor)                        return false;
-		if (item instanceof ScrollOfNewEnchantHakkero)                      return false;
-		if (item instanceof ScrollOfNewEnchantDanmaku)                      return false;
+		if (item instanceof Torch)                                          return false;
 		return true;
 	}
 

@@ -29,6 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Random;
 
 public class ScrollOfIdentify extends InventoryScroll {
 
@@ -46,10 +47,12 @@ public class ScrollOfIdentify extends InventoryScroll {
 	@Override
 	protected void onItemSelected( Item item ) {
 
-		curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
+		if (!(Dungeon.isChallenged(Challenges.FATEFUL) && Random.Int(2) == 0)) {
+			curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
 
-		item.identify();
-		GLog.i(Messages.get(this, "it_is", item));
+			item.identify();
+			GLog.i(Messages.get(this, "it_is", item));
+		} else GLog.i(Messages.get(this, "fateful", item));
 	}
 	
 	@Override

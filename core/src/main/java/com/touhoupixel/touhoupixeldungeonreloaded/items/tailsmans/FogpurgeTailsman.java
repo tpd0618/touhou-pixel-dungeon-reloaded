@@ -13,7 +13,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriAdvent;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
@@ -40,7 +40,7 @@ public class FogpurgeTailsman extends Tailsman {
                 Buff.detach(ch, Might.class);
                 Buff.detach(ch, Hisou.class);
                 Buff.detach(ch, Doublespeed.class);
-                Buff.detach(ch, NitoriKeyPower.class);
+                Buff.detach(ch, NitoriAdvent.class);
                 Buff.detach(ch, Triplespeed.class);
                 Buff.detach(ch, Haste.class);
                 Buff.detach(ch, Stamina.class);

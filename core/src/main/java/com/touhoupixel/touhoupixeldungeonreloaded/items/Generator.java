@@ -69,10 +69,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.NavigationHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.PurityHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.ReachHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeavenHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.StrengthHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SuperHardHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CalmHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.NightHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.UndoHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HomingHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHina;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReisen;
@@ -111,10 +111,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshootin
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -242,14 +238,14 @@ import java.util.LinkedHashMap;
 public class Generator {
 
 	public enum Category {
-		WEAPON	( 2, 2, MeleeWeapon.class),
+		WEAPON	( 3, 3, MeleeWeapon.class),
 		WEP_T1	( 0, 0, MeleeWeapon.class),
 		WEP_T2	( 0, 0, MeleeWeapon.class),
 		WEP_T3	( 0, 0, MeleeWeapon.class),
 		WEP_T4	( 0, 0, MeleeWeapon.class),
 		WEP_T5	( 0, 0, MeleeWeapon.class),
 
-		ARMOR	    ( 3, 2, Armor.class ),
+		ARMOR	    ( 3, 3, Armor.class ),
 		ARMOR_T1	( 0, 0, Armor.class ),
 		ARMOR_T2	( 0, 0, Armor.class ),
 		ARMOR_T3	( 0, 0, Armor.class ),
@@ -341,7 +337,7 @@ public class Generator {
 					PotionOfLightReverse.class,
 					PotionOfKomachi.class,
 					PotionOfYingYang.class};
-			POTION.defaultProbs = new float[]{ 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 };
+			POTION.defaultProbs = new float[]{ 0, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 };
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -372,13 +368,9 @@ public class Generator {
 					ScrollOfRage.class,
 					ScrollOfRetribution.class,
 					ScrollOfTerror.class,
-					ScrollOfEnchantWeapon.class,
-					ScrollOfEnchantArmor.class,
-					ScrollOfEnchantHakkero.class,
-					ScrollOfEnchantDanmaku.class,
 					ScrollOfTransmutation.class
 			};
-			SCROLL.defaultProbs = new float[]{ 0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 0, 0, 0, 0, 1 };
+			SCROLL.defaultProbs = new float[]{ 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
@@ -582,12 +574,12 @@ public class Generator {
 					MasterHealHerb.class,
 					ReachHerb.class,
 					HeavenHerb.class,
-					StrengthHerb.class,
-					SuperHardHerb.class,
+					CalmHerb.class,
+					NightHerb.class,
 					SwiftHerb.class,
 					NavigationHerb.class,
 					PurityHerb.class,
-					UndoHerb.class };
+					HomingHerb.class };
 			HERB.probs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 
 			RING.classes = new Class<?>[]{

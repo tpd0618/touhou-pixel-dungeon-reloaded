@@ -52,7 +52,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
@@ -62,7 +64,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
@@ -142,7 +143,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileW
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YuukaDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
@@ -240,7 +240,7 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		HT = 50 + 5*(lvl-1) + HTBoost; //test ver. 5000, original ver. 50
+		HT = 50+ 5*(lvl-1) + HTBoost; //test ver. 5000, original ver. 50
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 
@@ -389,7 +389,11 @@ public class Hero extends Char {
 		accuracy *= RingOfAccuracy.accuracyMultiplier( this );
 
 		if (Statistics.card16 && enemy instanceof Wraith){
-			accuracy *= 5f;
+			return INFINITE_ACCURACY;
+		}
+
+		if (buff(HomingBlade.class) != null) {
+			return INFINITE_ACCURACY;
 		}
 
 		if (wep instanceof MissileWeapon){
@@ -400,10 +404,6 @@ public class Hero extends Char {
 			} else {
 				accuracy *= 1.1f;
 			}
-		}
-
-		if (Statistics.card33){
-			accuracy *= 1.08f;
 		}
 
 		if (Statistics.card37 && wep instanceof MeleeWeapon){
@@ -568,6 +568,10 @@ public class Hero extends Char {
 			return;
 		}
 
+		if (buff(Calm.class) != null) {
+			this.HP = Math.min(this.HP + 1, this.HT);
+		}
+
 		Swiftthistle.TimeBubble bubble = buff(Swiftthistle.TimeBubble.class);
 		if (bubble != null){
 			bubble.processTime(time);
@@ -632,7 +636,7 @@ public class Hero extends Char {
 			} else Statistics.yukariCount += 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
+		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT) && !Statistics.amuletObtained){
 			if (Statistics.tenshiEarthquake > 98) {
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
@@ -663,11 +667,6 @@ public class Hero extends Char {
 			}
 		} else Statistics.nighttimecount += 1;
 
-		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
-			Statistics.mood += 1;
-			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
-		}
-
 		super.spend(time);
 	}
 
@@ -675,6 +674,11 @@ public class Hero extends Char {
 		busy();
 		spend( time );
 		next();
+
+		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
+			Statistics.mood += 1;
+			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
+		}
 	}
 
 	@Override
@@ -1996,7 +2000,7 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isAlive() {
-		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
 			if (Statistics.mood == 0) {
 				Buff.prolong(this, Powerful.class, Powerful.DURATION);
 				Buff.detach( this, Cool.class);
@@ -2259,6 +2263,8 @@ public class Hero extends Char {
 		AttackIndicator.target(enemy);
 
 		boolean hit = attack( enemy );
+
+		Buff.detach( this, Calm.class);
 
 		Invisibility.dispel();
 		spend( attackDelay() );

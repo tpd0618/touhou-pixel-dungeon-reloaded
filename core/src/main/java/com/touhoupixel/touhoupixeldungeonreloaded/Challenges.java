@@ -40,7 +40,7 @@ public class Challenges {
 	public static final int HUNDREDTH_BLACK_MARKET = 2048;
 	public static final int FLANDRE_GAZE             = 4096;
 	public static final int FATEFUL                  = 8192;
-	public static final int KOKORO_MIND_CONTROL = 16384;
+	public static final int KOKORO_MINDGAME = 16384;
 	public static final int HECATIA_CHESS = 32768;
 
 	public static final int MAX_VALUE                = 65535;
@@ -53,14 +53,14 @@ public class Challenges {
 			"tenshi_punishment",
 			"junko_sanctuary",
 			"ringing_bloom",
-			"nitori_key",
+			"nitori_advent",
 			"iku_air_reading",
 			"time_eater",
 			"eirin_unholy_heal",
 			"hundredth_black_market",
 			"flandre_gaze",
 			"fateful",
-			"kokoro_mind_control",
+			"kokoro_mindgame",
 			"hecatia_chess"
 	};
 
@@ -69,7 +69,7 @@ public class Challenges {
 			REISEN_ILLUSION, TENSHI_PUNISHMENT, JUNKO_SANCTUARY,
 			RINGING_BLOOM, NITORI_KEY, IKU_AIR_READING,
 			TIME_EATER, EIRIN_UNHOLY_HEAL, HUNDREDTH_BLACK_MARKET,
-			FLANDRE_GAZE, FATEFUL, KOKORO_MIND_CONTROL, HECATIA_CHESS
+			FLANDRE_GAZE, FATEFUL, KOKORO_MINDGAME, HECATIA_CHESS
 	};
 
 	public static int activeChallenges(){

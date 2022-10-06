@@ -85,11 +85,11 @@ public class BuffIndicator extends Component {
 	public static final int LOCKED_FLOOR= 35;
 	public static final int CORRUPT     = 36;
 	public static final int BLESS       = 37;
-	public static final int RAGE        = 38;
+	public static final int HOMING_BLADE        = 38;
 	public static final int SACRIFICE   = 39;
 	public static final int BERSERK     = 40;
 	public static final int HASTE       = 41;
-	public static final int NITORI_KEY_POWER = 42;
+	public static final int NITORI_ADVENT = 42;
 	public static final int WELL_FED    = 43;
 	public static final int HEALING     = 44;
 	public static final int WEAPON      = 45;
@@ -98,6 +98,7 @@ public class BuffIndicator extends Component {
 	public static final int DEGRADE     = 48;
 	public static final int PINCUSHION  = 49;
 	public static final int UPGRADE     = 50;
+	public static final int CALM        = 51;
 	public static final int ANKH        = 52;
 	public static final int NOINV       = 53;
 	public static final int MIGHT       = 54;
@@ -107,6 +108,7 @@ public class BuffIndicator extends Component {
 	public static final int SILENCE     = 59;
 	public static final int HISOU       = 60;
 	public static final int HIGHSTRESS  = 61;
+	public static final int EQUIPMENT_IDENTIFY  = 62;
 	public static final int ANTIHEAL    = 63;
 	public static final int DANMAKU_DAMAGE_INCREASE    = 65;
 	public static final int MOVEDETECT    = 66;

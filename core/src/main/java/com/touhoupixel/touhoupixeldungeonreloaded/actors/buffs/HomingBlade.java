@@ -22,11 +22,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class NitoriKeyPower extends FlavourBuff {
+public class HomingBlade extends FlavourBuff {
 	
-	public static final float DURATION = 10f;
+	public static final float DURATION = 50f;
 	
 	{
 		type = buffType.POSITIVE;
@@ -35,7 +36,7 @@ public class NitoriKeyPower extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.NITORI_KEY_POWER;
+		return BuffIndicator.HOMING_BLADE;
 	}
 
 	@Override

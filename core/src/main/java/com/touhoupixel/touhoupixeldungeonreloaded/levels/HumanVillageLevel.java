@@ -107,7 +107,6 @@ public class HumanVillageLevel extends RegularLevel {
 	public void create() {
 		itemsToSpawn.add( new Bomb() );
 		itemsToSpawn.add( new Spellcard() );
-		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
 		itemsToSpawn.add( Generator.random(Generator.Category.TAILSMAN));
 		super.create();
 	}

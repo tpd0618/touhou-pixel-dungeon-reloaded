@@ -213,8 +213,8 @@ abstract public class MissileWeapon extends Weapon {
 		}
 
 		if (Statistics.card47) {
-			Statistics.power -= 5;
-		} else Statistics.power -= 10;
+			Statistics.power -= 15;
+		} else Statistics.power -= 30;
 		return super.proc(attacker, defender, damage);
 	}
 

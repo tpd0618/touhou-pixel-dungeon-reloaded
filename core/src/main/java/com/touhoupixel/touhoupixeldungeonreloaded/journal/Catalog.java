@@ -144,10 +144,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDan
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfAccuracy;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEvasion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfForce;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfFuror;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfHaste;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshooting;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -199,27 +206,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallYingYa
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.GoldenExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShinmyomaruNeedle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.AyaDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.BulletDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.CircleDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.CirnoDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.EikiDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.FlameDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.InvertDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KomachiDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KunaiDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MedicineDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MerlinDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ReimuTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ReisenDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.RiceDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ScaleDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ShardDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.StarDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.TewiDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ThrowingKnife;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YoumuDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YuukaDanmaku;
 import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
@@ -234,7 +220,7 @@ public enum Catalog {
 	ARMORS,
 	WANDS,
 	CARDS,
-	DANMAKUS,
+	RINGS,
 	POTIONS,
 	SCROLLS;
 
@@ -394,27 +380,17 @@ public enum Catalog {
 		CARDS.seen.put( StimulatingScales.class,               true);
 		CARDS.seen.put( UnleashGuardianHounds.class,               true);
 
-		DANMAKUS.seen.put( ReimuTailsman.class,         true);
-		DANMAKUS.seen.put( ThrowingKnife.class,         true);
-		DANMAKUS.seen.put( AyaDanmaku.class,            true);
-		DANMAKUS.seen.put( BulletDanmaku.class,           true);
-		DANMAKUS.seen.put( CircleDanmaku.class,        true);
-		DANMAKUS.seen.put( CirnoDanmaku.class,        true);
-		DANMAKUS.seen.put( EikiDanmaku.class,              true);
-		DANMAKUS.seen.put( FlameDanmaku.class,           true);
-		DANMAKUS.seen.put( InvertDanmaku.class,       true);
-		DANMAKUS.seen.put( KomachiDanmaku.class,             true);
-		DANMAKUS.seen.put( KunaiDanmaku.class,         true);
-		DANMAKUS.seen.put( MedicineDanmaku.class,         true);
-		DANMAKUS.seen.put( MerlinDanmaku.class,       true);
-		DANMAKUS.seen.put( ReisenDanmaku.class,              true);
-		DANMAKUS.seen.put( RiceDanmaku.class,         true);
-		DANMAKUS.seen.put( ScaleDanmaku.class,              true);
-		DANMAKUS.seen.put( ShardDanmaku.class,        true);
-		DANMAKUS.seen.put( StarDanmaku.class,       true);
-		DANMAKUS.seen.put( TewiDanmaku.class,       true);
-		DANMAKUS.seen.put( YoumuDanmaku.class,       true);
-		DANMAKUS.seen.put( YuukaDanmaku.class,       true);
+		RINGS.seen.put( RingOfAccuracy.class,         true);
+		RINGS.seen.put( RingOfElements.class,         true);
+		RINGS.seen.put( RingOfEnergy.class,         true);
+		RINGS.seen.put( RingOfEvasion.class,         true);
+		RINGS.seen.put( RingOfForce.class,         true);
+		RINGS.seen.put( RingOfFuror.class,         true);
+		RINGS.seen.put( RingOfHaste.class,         true);
+		RINGS.seen.put( RingOfMight.class,         true);
+		RINGS.seen.put( RingOfSharpshooting.class,         true);
+		RINGS.seen.put( RingOfTenacity.class,         true);
+		RINGS.seen.put( RingOfWealth.class,         true);
 
 		POTIONS.seen.put( PotionOfHealing.class,            true);
 		POTIONS.seen.put( PotionOfStrength.class,           true);
@@ -453,10 +429,6 @@ public enum Catalog {
 		SCROLLS.seen.put( ScrollOfRage.class,               true);
 		SCROLLS.seen.put( ScrollOfRetribution.class,        true);
 		SCROLLS.seen.put( ScrollOfTransmutation.class,      true);
-		SCROLLS.seen.put( ScrollOfEnchantWeapon.class,      true);
-		SCROLLS.seen.put( ScrollOfEnchantArmor.class,       true);
-		SCROLLS.seen.put( ScrollOfEnchantHakkero.class,     true);
-		SCROLLS.seen.put( ScrollOfEnchantDanmaku.class,     true);
 	}
 
 	public static boolean isSeen(Class<? extends Item> itemClass){

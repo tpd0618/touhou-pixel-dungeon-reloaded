@@ -44,7 +44,6 @@ public class PotionOfTriplespeed extends ExoticPotion {
 	public void apply(Hero hero) {
 		identify();
 		Buff.affect(hero, Triplespeed.class, Triplespeed.DURATION);
-		Statistics.playercorruption += 2;
 		Sample.INSTANCE.play(Assets.Sounds.CURSED);
 		GLog.w(Messages.get(Potion.class, "corruption"));
 	}

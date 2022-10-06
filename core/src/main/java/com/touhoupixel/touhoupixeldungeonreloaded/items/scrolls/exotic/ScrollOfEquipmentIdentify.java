@@ -21,28 +21,25 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArtifactRecharge;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.watabou.noosa.audio.Sample;
 
-public class ScrollOfNewEnchantWeapon extends ExoticScroll {
+public class ScrollOfEquipmentIdentify extends ExoticScroll {
 	
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_NEWEAPON;
+		icon = ItemSpriteSheet.Icons.SCROLL_EQUIPMENT_IDENTIFY;
 	}
 	
 	@Override
 	public void doRead() {
-		Buff.prolong(curUser, Might.class, Might.DURATION/5f);
-		ScrollOfEnchantWeapon soew = new ScrollOfEnchantWeapon();
-		soew.collect();
+		Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION);
+
 		identify();
 		readAnimation();
 	}

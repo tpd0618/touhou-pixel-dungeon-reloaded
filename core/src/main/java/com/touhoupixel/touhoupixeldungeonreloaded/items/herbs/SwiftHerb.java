@@ -40,7 +40,7 @@ public class SwiftHerb extends Herb {
 		super.execute(hero, action);
 
 		if (action.equals( AC_EAT )) {
-			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
+			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
 		}
 	}
 }

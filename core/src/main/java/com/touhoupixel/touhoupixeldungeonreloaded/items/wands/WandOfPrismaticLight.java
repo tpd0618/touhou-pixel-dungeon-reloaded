@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
@@ -66,10 +65,6 @@ public class WandOfPrismaticLight extends DamageWand {
 	@Override
 	public void onZap(Ballistica beam) {
 		affectMap(beam);
-		
-		if (Dungeon.level.viewDistance < 6 ){
-			Buff.prolong( curUser, Light.class, 10f+buffedLvl()*5);
-		}
 		
 		Char ch = Actor.findChar(beam.collisionPos);
 		if (ch != null){

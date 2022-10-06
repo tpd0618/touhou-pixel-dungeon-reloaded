@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
@@ -220,7 +221,7 @@ abstract public class Weapon extends KindOfWeapon {
 
 	@Override
 	public int reachFactor(Char owner) {
-		if (owner.buff(ReachIncrease.class) != null){
+		if (owner.buff(ReachIncrease.class) != null || Statistics.card33){
 			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
 		} else return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;
 	}

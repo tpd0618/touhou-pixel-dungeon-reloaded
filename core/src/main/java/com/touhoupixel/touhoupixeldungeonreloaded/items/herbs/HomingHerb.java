@@ -19,27 +19,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class ScrollOfNewEnchantDanmaku extends ExoticScroll {
-	
+public class HomingHerb extends Herb {
+
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_NEDANMAKU;
+		image = ItemSpriteSheet.HERB;
 	}
-	
+
 	@Override
-	public void doRead() {
-		Buff.prolong(curUser, Hisou.class, Hisou.DURATION/10f);
-		ScrollOfEnchantDanmaku soed = new ScrollOfEnchantDanmaku();
-		soed.collect();
-		identify();
-		readAnimation();
+	public void execute(Hero hero, String action) {
+
+		super.execute(hero, action);
+
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, HomingBlade.class, HomingBlade.DURATION/2f);
+		}
 	}
 }

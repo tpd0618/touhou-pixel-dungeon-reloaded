@@ -46,6 +46,14 @@ public class Bag extends Item implements Iterable<Item> {
 
 		unique = true;
 	}
+
+	@Override
+	public ArrayList<String> actions( Hero hero ) {
+		ArrayList<String> actions = super.actions( hero );
+		actions.remove(AC_DROP);
+		actions.remove(AC_THROW);
+		return actions;
+	}
 	
 	public Char owner;
 	

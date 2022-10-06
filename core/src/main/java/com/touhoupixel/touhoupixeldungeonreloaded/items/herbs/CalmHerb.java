@@ -19,31 +19,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class ScrollOfEnchantDanmaku extends InventoryScroll {
+public class CalmHerb extends Herb {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_EDANMAKU;
-		preferredBag = Belongings.Backpack.class;
-
-		unique = true;
+		image = ItemSpriteSheet.HERB;
 	}
 
 	@Override
-	protected boolean usableOnItem(Item item) {
-		return item instanceof MissileWeapon;
-	}
+	public void execute(Hero hero, String action) {
 
-	@Override
-	protected void onItemSelected(Item item) {
-		ScrollOfUpgrade.upgrade(curUser);
-		item.upgrade();
+		super.execute(hero, action);
+
+		if (action.equals( AC_EAT )) {
+			Buff.prolong(hero, Calm.class, Calm.DURATION);
+		}
 	}
 }

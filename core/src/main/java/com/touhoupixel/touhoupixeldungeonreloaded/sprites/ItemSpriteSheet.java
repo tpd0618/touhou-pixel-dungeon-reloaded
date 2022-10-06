@@ -1276,7 +1276,7 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_CHALLENGE= EXOTIC_SCROLLS+8;
 		public static final int SCROLL_PSIBLAST = EXOTIC_SCROLLS+9;
 		public static final int SCROLL_DREAD    = EXOTIC_SCROLLS+10;
-		public static final int SCROLL_REMILIA_NIGHT = EXOTIC_SCROLLS+11;
+		public static final int SCROLL_EQUIPMENT_IDENTIFY = EXOTIC_SCROLLS+11;
 		public static final int SCROLL_NEWEAPON  = EXOTIC_SCROLLS+12;
 		public static final int SCROLL_NEARMOR = EXOTIC_SCROLLS+13;
 		public static final int SCROLL_NEHAKKERO = EXOTIC_SCROLLS+14;
@@ -1293,7 +1293,7 @@ public class ItemSpriteSheet {
 			assignIconRect( SCROLL_CHALLENGE,   7, 7 );
 			assignIconRect( SCROLL_PSIBLAST,    5, 6 );
 			assignIconRect( SCROLL_DREAD,       5, 7 );
-			assignIconRect( SCROLL_REMILIA_NIGHT,   5, 6 );
+			assignIconRect(SCROLL_EQUIPMENT_IDENTIFY,   5, 6 );
 			assignIconRect( SCROLL_NEWEAPON,    7, 7 );
 			assignIconRect( SCROLL_NEARMOR,     7, 7 );
 			assignIconRect( SCROLL_NEHAKKERO,   7, 7 );

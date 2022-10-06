@@ -24,10 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -84,20 +80,8 @@ public abstract class ExoticScroll extends Scroll {
 		regToExo.put(ScrollOfMirrorImage.class, ScrollOfPrismaticImage.class);
 		exoToReg.put(ScrollOfPrismaticImage.class, ScrollOfMirrorImage.class);
 		
-		regToExo.put(ScrollOfTransmutation.class, ScrollOfRemiliaNightmare.class);
-		exoToReg.put(ScrollOfRemiliaNightmare.class, ScrollOfTransmutation.class);
-
-		regToExo.put(ScrollOfEnchantWeapon.class, ScrollOfNewEnchantWeapon.class);
-		exoToReg.put(ScrollOfNewEnchantWeapon.class, ScrollOfEnchantWeapon.class);
-
-		regToExo.put(ScrollOfEnchantArmor.class, ScrollOfNewEnchantArmor.class);
-		exoToReg.put(ScrollOfNewEnchantArmor.class, ScrollOfEnchantArmor.class);
-
-		regToExo.put(ScrollOfEnchantHakkero.class, ScrollOfNewEnchantHakkero.class);
-		exoToReg.put(ScrollOfNewEnchantHakkero.class, ScrollOfEnchantHakkero.class);
-
-		regToExo.put(ScrollOfEnchantDanmaku.class, ScrollOfNewEnchantDanmaku.class);
-		exoToReg.put(ScrollOfNewEnchantDanmaku.class, ScrollOfEnchantDanmaku.class);
+		regToExo.put(ScrollOfTransmutation.class, ScrollOfEquipmentIdentify.class);
+		exoToReg.put(ScrollOfEquipmentIdentify.class, ScrollOfTransmutation.class);
 	}
 	
 	@Override

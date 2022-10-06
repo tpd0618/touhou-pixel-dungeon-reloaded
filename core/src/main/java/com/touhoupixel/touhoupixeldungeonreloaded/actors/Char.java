@@ -40,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlamePower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
@@ -56,7 +57,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriKeyPower;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriAdvent;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
@@ -440,7 +441,7 @@ public abstract class Char extends Actor {
                 damage *= 2.5f;
             } else damage *= 1.5f;
         }
-        if (buff(NitoriKeyPower.class) != null){
+        if (buff(NitoriAdvent.class) != null){
             damage *= 1.4f;
         }
         if (buff(YuukaRage.class) != null){
@@ -630,13 +631,13 @@ public abstract class Char extends Actor {
         } else if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
         }
-        if (buff( Doublespeed.class ) != null) {
+        if (buff( Doublespeed.class ) != null && buff( EquipmentIdentify.class ) == null && buff( Triplespeed.class ) == null) {
             timeScale *= 2.0f;
         }
-        if (buff( NitoriKeyPower.class ) != null) {
+        if (buff( NitoriAdvent.class ) != null && buff( EquipmentIdentify.class ) == null) {
             timeScale *= 2.5f;
         }
-        if (buff( Triplespeed.class ) != null) {
+        if (buff( Triplespeed.class ) != null && buff( EquipmentIdentify.class ) == null) {
             timeScale *= 3.0f;
         }
 
@@ -845,7 +846,7 @@ public abstract class Char extends Actor {
     }
 
     public enum Property{
-        BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class)),
+        BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Paralysis.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class)),
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
         MINIBOSS ( new HashSet<Class>(),
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),

@@ -600,11 +600,11 @@ public class WndJournal extends WndTabbed {
 		private static final int ARMOR_IDX  = 1;
 		private static final int WAND_IDX   = 2;
 		private static final int CARD_IDX   = 3;
-		private static final int DANMAKU_IDX  = 4;
+		private static final int RING_IDX = 4;
 		private static final int POTION_IDX = 5;
 		private static final int SCROLL_IDX = 6;
 
-		private static final int spriteIndexes[] = {1, 2, 4, 11, 3, 9, 11};
+		private static final int spriteIndexes[] = {1, 2, 4, 11, 5, 9, 11};
 
 		private ScrollPane list;
 
@@ -687,9 +687,9 @@ public class WndJournal extends WndTabbed {
 			} else if (currentItemIdx == CARD_IDX){
 				itemClasses = new ArrayList<>(Catalog.CARDS.items());
 				for (Class<? extends Item> cls : itemClasses) known.put(cls, true);
-			} else if (currentItemIdx == DANMAKU_IDX){
-				itemClasses = new ArrayList<>(Catalog.DANMAKUS.items());
-				for (Class<? extends Item> cls : itemClasses) known.put(cls, true);
+			} else if (currentItemIdx == RING_IDX){
+				itemClasses = new ArrayList<>(Catalog.RINGS.items());
+				for (Class<? extends Item> cls : itemClasses) known.put(cls, Ring.getKnown().contains(cls));
 			} else if (currentItemIdx == POTION_IDX){
 				itemClasses = new ArrayList<>(Catalog.POTIONS.items());
 				for (Class<? extends Item> cls : itemClasses) known.put(cls, Potion.getKnown().contains(cls));

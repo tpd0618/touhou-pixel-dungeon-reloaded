@@ -38,6 +38,8 @@ public class Flandre extends Mob {
 
         flying = true;
 
+        properties.add(Property.BOSS);
+
         EXP = 0;
         maxLvl = 99;
     }
@@ -68,19 +70,8 @@ public class Flandre extends Mob {
         Dungeon.level.drop(new Spellcard(), pos ).sprite.drop();
         Dungeon.level.drop(new PotionOfHealing(), pos ).sprite.drop();
 
-        if (Dungeon.depth < 10) {
-            Dungeon.level.drop((Weapon) Generator.random(Generator.Category.WEP_T2), pos).sprite.drop();
-            Dungeon.level.drop((Armor) Generator.random(Generator.Category.ARMOR_T2), pos).sprite.drop();
-        } else if (Dungeon.depth < 30) {
-            Dungeon.level.drop((Weapon) Generator.random(Generator.Category.WEP_T3), pos).sprite.drop();
-            Dungeon.level.drop((Armor) Generator.random(Generator.Category.ARMOR_T3), pos).sprite.drop();
-        } else if (Dungeon.depth < 50) {
-            Dungeon.level.drop((Weapon) Generator.random(Generator.Category.WEP_T4), pos).sprite.drop();
-            Dungeon.level.drop((Armor) Generator.random(Generator.Category.ARMOR_T4), pos).sprite.drop();
-        } else {
-            Dungeon.level.drop((Weapon) Generator.random(Generator.Category.WEP_T5), pos).sprite.drop();
-            Dungeon.level.drop((Armor) Generator.random(Generator.Category.ARMOR_T5), pos).sprite.drop();
-        }
+        Dungeon.level.drop((Weapon) Generator.random(Generator.Category.WEP_T5), pos).sprite.drop();
+        Dungeon.level.drop((Armor) Generator.random(Generator.Category.ARMOR_T5), pos).sprite.drop();
         super.die( cause );
     }
 

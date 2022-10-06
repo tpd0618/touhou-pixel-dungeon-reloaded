@@ -643,38 +643,6 @@ public class Dungeon {
 		return Random.Int(5 - floorThisSet) < asLeftThisSet;
 	}
 
-	public static boolean weaponNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.WEAPON.count - (depth / 5));
-		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
-
-		int floorThisSet = (depth % 5);
-		return Random.Int(5 - floorThisSet) < asLeftThisSet;
-	}
-
-	public static boolean armorNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.ARMOR.count - (depth / 5));
-		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
-
-		int floorThisSet = (depth % 5);
-		return Random.Int(5 - floorThisSet) < asLeftThisSet;
-	}
-
-	public static boolean hakkeroNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.HAKKERO.count - (depth / 5));
-		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
-
-		int floorThisSet = (depth % 5);
-		return Random.Int(5 - floorThisSet) < asLeftThisSet;
-	}
-
-	public static boolean danmakuNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.DANMAKU.count - (depth / 5));
-		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
-
-		int floorThisSet = (depth % 5);
-		return Random.Int(5 - floorThisSet) < asLeftThisSet;
-	}
-
 	private static final String INIT_VER	= "init_ver";
 	private static final String VERSION		= "version";
 	private static final String SEED		= "seed";

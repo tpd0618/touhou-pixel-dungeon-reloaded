@@ -282,7 +282,7 @@ public class Heap implements Bundlable {
 					}
 
 				//upgraded items can endure the blast
-				} else if (item.level() <= 0) {
+				} else if (item.level() <= -1) {
 					items.remove( item );
 				}
 

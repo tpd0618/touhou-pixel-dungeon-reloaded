@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
@@ -63,7 +62,7 @@ public class Gold extends Item {
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 
-		if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
 			Statistics.mood += 1;
 		}
 

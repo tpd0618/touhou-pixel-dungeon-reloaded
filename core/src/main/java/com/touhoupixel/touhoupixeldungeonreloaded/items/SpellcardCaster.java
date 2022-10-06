@@ -70,7 +70,7 @@ public class SpellcardCaster extends Item {
 				Statistics.spellcard -= 1;
 				GameScene.flash(0x80FFFFFF);
 				Sample.INSTANCE.play(Assets.Sounds.BLAST);
-				if (Dungeon.isChallenged(Challenges.KOKORO_MIND_CONTROL)) {
+				if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
 					Statistics.mood += 1;
 				}
 				if (Statistics.card46) {

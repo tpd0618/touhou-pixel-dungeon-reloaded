@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
@@ -43,7 +42,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Shadows;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
@@ -58,10 +56,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantHakkero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEnchantWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
@@ -88,7 +82,6 @@ import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
@@ -208,23 +201,6 @@ public abstract class Level implements Bundlable {
 			if (Dungeon.asNeeded()) {
 				addItemToSpawn( new PatchouliCard() );
 				Dungeon.LimitedDrops.ARCANE_STYLI.count++;
-			}
-
-			if (Dungeon.weaponNeeded()) {
-				addItemToSpawn( new ScrollOfEnchantWeapon() );
-				Dungeon.LimitedDrops.WEAPON.count++;
-			}
-			if (Dungeon.armorNeeded()) {
-				addItemToSpawn( new ScrollOfEnchantArmor() );
-				Dungeon.LimitedDrops.ARMOR.count++;
-			}
-			if (Dungeon.hakkeroNeeded()) {
-				addItemToSpawn( new ScrollOfEnchantHakkero() );
-				Dungeon.LimitedDrops.HAKKERO.count++;
-			}
-			if (Dungeon.danmakuNeeded()) {
-				addItemToSpawn( new ScrollOfEnchantDanmaku() );
-				Dungeon.LimitedDrops.DANMAKU.count++;
 			}
 
 			//one scroll of transmutation is guaranteed to spawn somewhere on chapter 2-4
