@@ -77,14 +77,8 @@ abstract public class EquipmentCards extends Item {
     public boolean doPickUp(Hero hero, int pos) {
         parent = null;
 
-        if (Dungeon.isChallenged(Challenges.HUNDREDTH_BLACK_MARKET)) {
-            Statistics.playercorruption += 4;
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            GLog.w(Messages.get(Potion.class, "corruption"));
-        }
-
         Shopkeeper shopkeeper = new Shopkeeper();
-        if (Statistics.card66 && Random.Int(4) == 0) {
+        if (Statistics.card66 && Random.Int(2) == 0) {
             GameScene.flash(0x80FFFFFF);
         } else shopkeeper.destroy();
         return super.doPickUp(hero, pos);
@@ -97,6 +91,6 @@ abstract public class EquipmentCards extends Item {
 
     @Override
     public int value() {
-        return 100 * quantity;
+        return 30 * quantity;
     }
 }

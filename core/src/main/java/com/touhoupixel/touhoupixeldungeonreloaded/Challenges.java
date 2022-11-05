@@ -26,50 +26,37 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int YUYUKO_DEADLY_TRAP       = 1;
-	public static final int REBIRTH_DAY		         = 2;
-	public static final int EIKI_JUDGEMENT 	         = 4;
-	public static final int REISEN_ILLUSION			 = 8;
-	public static final int TENSHI_PUNISHMENT = 16;
-	public static final int JUNKO_SANCTUARY = 32;
-	public static final int RINGING_BLOOM 		     = 64;
-	public static final int NITORI_KEY = 128;
-	public static final int IKU_AIR_READING = 256;
-	public static final int TIME_EATER 	             = 512;
-	public static final int EIRIN_UNHOLY_HEAL 	     = 1024;
-	public static final int HUNDREDTH_BLACK_MARKET = 2048;
-	public static final int FLANDRE_GAZE             = 4096;
-	public static final int FATEFUL                  = 8192;
-	public static final int KOKORO_MINDGAME = 16384;
-	public static final int HECATIA_CHESS = 32768;
+	public static final int TUTORIAL                 = 1;
+	public static final int SAKURA_TRAP              = 2;
+	public static final int MUENZUKA_FORCE           = 4;
+	public static final int REBIRTH_DAY		         = 8;
+	public static final int RINGING_BLOOM 		     = 16;
+	public static final int KYOUEN_RED_VIOLET        = 32;
+	public static final int EIENTEI_ILLUSION         = 64;
+	public static final int SWORD_OF_HISOU           = 128;
+	public static final int TIME_EATER               = 256;
+	public static final int NIGHT_CHESS              = 512;
+	public static final int SENSENFUKOKU             = 1024;
 
-	public static final int MAX_VALUE                = 65535;
+	public static final int MAX_VALUE                = 2047;
 
 	public static final String[] NAME_IDS = {
-			"yuyuko_deadly_trap",
+			"tutorial",
+			"sakura_trap",
+			"muenzuka_force",
 			"rebirth_day",
-			"eiki_judgement",
-			"reisen_illusion",
-			"tenshi_punishment",
-			"junko_sanctuary",
 			"ringing_bloom",
-			"nitori_advent",
-			"iku_air_reading",
+			"kyouen_red_violet",
+			"eientei_illusion",
+			"sword_of_hisou",
 			"time_eater",
-			"eirin_unholy_heal",
-			"hundredth_black_market",
-			"flandre_gaze",
-			"fateful",
-			"kokoro_mindgame",
-			"hecatia_chess"
+			"night_chess",
+			"sensenfukoku"
 	};
 
 	public static final int[] MASKS = {
-			YUYUKO_DEADLY_TRAP, REBIRTH_DAY, EIKI_JUDGEMENT,
-			REISEN_ILLUSION, TENSHI_PUNISHMENT, JUNKO_SANCTUARY,
-			RINGING_BLOOM, NITORI_KEY, IKU_AIR_READING,
-			TIME_EATER, EIRIN_UNHOLY_HEAL, HUNDREDTH_BLACK_MARKET,
-			FLANDRE_GAZE, FATEFUL, KOKORO_MINDGAME, HECATIA_CHESS
+			TUTORIAL, SAKURA_TRAP, MUENZUKA_FORCE, REBIRTH_DAY, RINGING_BLOOM, KYOUEN_RED_VIOLET,
+			EIENTEI_ILLUSION, SWORD_OF_HISOU, TIME_EATER, NIGHT_CHESS, SENSENFUKOKU
 	};
 
 	public static int activeChallenges(){

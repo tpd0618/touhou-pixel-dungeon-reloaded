@@ -21,7 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.GamesInProgress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;

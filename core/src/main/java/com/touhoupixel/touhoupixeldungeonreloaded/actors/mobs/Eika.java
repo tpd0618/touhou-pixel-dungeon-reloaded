@@ -1,6 +1,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EikaSprite;
@@ -11,23 +13,23 @@ public class Eika extends Mob {
     {
         spriteClass = EikaSprite.class;
 
-        HP = HT = 59;
-        defenseSkill = 17;
-        EXP = 5;
-        maxLvl = 25;
+        HP = HT = 28;
+        defenseSkill = 10;
+        EXP = 8;
+        maxLvl = 17;
 
-        loot = new PotionOfParalyticGas();
-        lootChance = 0.125f;
+        loot = Gold.class;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 11);
+        return Random.NormalIntRange(3, 7);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 22;
+        return 15;
     }
 
     @Override

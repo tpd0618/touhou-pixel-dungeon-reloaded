@@ -232,7 +232,7 @@ public class ItemSpriteSheet {
 	public static final int SWAP      = TAILSMANS+8;
 	public static final int HALVE      = TAILSMANS+9;
 	public static final int DEBILITATION      = TAILSMANS+10;
-	public static final int JUDGEMENT      = TAILSMANS+11;
+	public static final int VERTIGO = TAILSMANS+11;
 	public static final int FLANDRE      = TAILSMANS+12;
 	public static final int MURASA      = TAILSMANS+13;
 	public static final int AYA      = TAILSMANS+14;
@@ -269,8 +269,8 @@ public class ItemSpriteSheet {
 	public static final int RADIO = WEP_TIER2+2;
 	public static final int MYSTIAWING = WEP_TIER2+3;
 	public static final int KOAKUMAWING = WEP_TIER2+4;
-	public static final int RINGODANGO      = WEP_TIER2+5;
-	public static final int SILKYHAIR       = WEP_TIER2+6;
+	public static final int RINGO_DANGO = WEP_TIER2+5;
+	public static final int SILKY_HAIR = WEP_TIER2+6;
 	public static final int NAZRINROD       = WEP_TIER2+7;
 	static{
 		assignItemRect(TENGUSHORTSWORD,      11, 13);
@@ -278,8 +278,8 @@ public class ItemSpriteSheet {
 		assignItemRect(RADIO,           6, 9);
 		assignItemRect(MYSTIAWING,    13, 13);
 		assignItemRect(KOAKUMAWING,            12, 13);
-		assignItemRect(RINGODANGO,      13, 13);
-		assignItemRect(SILKYHAIR,       13, 13);
+		assignItemRect(RINGO_DANGO,      13, 13);
+		assignItemRect(SILKY_HAIR,       13, 13);
 		assignItemRect(NAZRINROD,       13, 13);
 	}
 
@@ -287,7 +287,7 @@ public class ItemSpriteSheet {
 	public static final int SMALLYINGYANGORB = WEP_TIER3+0;
 	public static final int EIKIROD = WEP_TIER3+1;
 	public static final int PALESWORD = WEP_TIER3+2;
-	public static final int YOUMUHALFPHANTOM = WEP_TIER3+3;
+	public static final int YOUMU_HALF_PHANTOM = WEP_TIER3+3;
 	public static final int SKYSWORD = WEP_TIER3+4;
 	public static final int SHINMYOMARUNEEDLE = WEP_TIER3+5;
 	public static final int AKYUUBRUSH      = WEP_TIER3+6;
@@ -296,7 +296,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SMALLYINGYANGORB,           9, 9);
 		assignItemRect(EIKIROD,            13, 13);
 		assignItemRect(PALESWORD,        13, 13);
-		assignItemRect(YOUMUHALFPHANTOM,    14, 13);
+		assignItemRect(YOUMU_HALF_PHANTOM,    14, 13);
 		assignItemRect(SKYSWORD,             13, 13);
 		assignItemRect(SHINMYOMARUNEEDLE,            13, 13);
 		assignItemRect(AKYUUBRUSH,      13, 13);
@@ -307,20 +307,20 @@ public class ItemSpriteSheet {
 	public static final int MEDIUMYINGYANGORB = WEP_TIER4+0;
 	public static final int UTSUHOROD = WEP_TIER4+1;
 	public static final int CIRNOWING = WEP_TIER4+2;
-	public static final int REMILIAWING = WEP_TIER4+3;
+	public static final int REMILIA_WING = WEP_TIER4+3;
 	public static final int RANTAIL = WEP_TIER4+4;
-	public static final int YUKARIUMBRELLA = WEP_TIER4+5;
-	public static final int YUYUKOFOLDINGFAN= WEP_TIER4+6;
-	public static final int MURASADIPPER    = WEP_TIER4+7;
+	public static final int YUKARI_UMBRELLA = WEP_TIER4+5;
+	public static final int YUYUKO_FOLDING_FAN = WEP_TIER4+6;
+	public static final int MURASA_DIPPER = WEP_TIER4+7;
 	static{
 		assignItemRect(MEDIUMYINGYANGORB,     12, 12);
 		assignItemRect(UTSUHOROD,      13, 13);
 		assignItemRect(CIRNOWING,           13, 13);
-		assignItemRect(REMILIAWING,       13, 13);
+		assignItemRect(REMILIA_WING,       13, 13);
 		assignItemRect(RANTAIL, 9, 9);
-		assignItemRect(YUKARIUMBRELLA,        13, 13);
-		assignItemRect(YUYUKOFOLDINGFAN,10, 10);
-		assignItemRect(MURASADIPPER,    13, 13);
+		assignItemRect(YUKARI_UMBRELLA,        13, 13);
+		assignItemRect(YUYUKO_FOLDING_FAN,10, 10);
+		assignItemRect(MURASA_DIPPER,    13, 13);
 	}
 
 	private static final int WEP_TIER5      =                               xy(1, 9);   //8 slots
@@ -333,7 +333,7 @@ public class ItemSpriteSheet {
 	public static final int SWORDOFHISOU    = WEP_TIER5+6;
 	public static final int MIRACLEROD      = WEP_TIER5+7;
 	public static final int KOMACHISCYTHE   = WEP_TIER5+8;
-	public static final int FULLMOONSCYTHE       = WEP_TIER5+9;
+	public static final int FULL_MOON_SCYTHE = WEP_TIER5+9;
 	public static final int JEWELEDBRANCH   = WEP_TIER5+10;
 	public static final int DOREMY_DREAM    = WEP_TIER5+11;
 	public static final int KOKOROFAN       = WEP_TIER5+12;
@@ -380,7 +380,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SWORDOFHISOU, 13, 13);
 		assignItemRect(MIRACLEROD,   13, 13);
 		assignItemRect(KOMACHISCYTHE,16, 13);
-		assignItemRect(FULLMOONSCYTHE,    16, 13);
+		assignItemRect(FULL_MOON_SCYTHE,    16, 13);
 		assignItemRect(JEWELEDBRANCH, 13, 13);
 		assignItemRect(DOREMY_DREAM,  14, 13);
 		assignItemRect(KOKOROFAN,     10, 10);
@@ -785,24 +785,15 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 14);
 	}
 
-	private static final int GIFTCARD     =                               xy(1, 26);  //16 slots
-	public static final int BIRTHDAY_CARD     = GIFTCARD+0;
-	public static final int SPCARD     = GIFTCARD+1;
-	public static final int THREE_STAR_TICKET     = GIFTCARD+2;
-	public static final int SCROLL_OF_POWER     = GIFTCARD+3;
-	public static final int RED_GREEN_SCROLL     = GIFTCARD+4;
-	public static final int RED_PURPLE_SCROLL     = GIFTCARD+5;
-	public static final int PURPLE_GREEN_SCROLL     = GIFTCARD+6;
-	public static final int SCROLL_FRAGMENTS     = GIFTCARD+7;
+	private static final int GOLDEN_CARD =                               xy(1, 26);  //16 slots
+	public static final int THREE_STAR_TICKET     = GOLDEN_CARD +0;
+	public static final int TENSHI_CARD     = GOLDEN_CARD +1;
+	public static final int PATCHOULI_CARD     = GOLDEN_CARD +2;
+	public static final int STRENGTH_CARD     = GOLDEN_CARD +3;
+	public static final int UPGRADE_CARD     = GOLDEN_CARD +4;
 	static {
-		assignItemRect(BIRTHDAY_CARD, 15, 11);
-		assignItemRect(SPCARD, 15, 11);
-		assignItemRect(THREE_STAR_TICKET, 15, 11);
-		assignItemRect(SCROLL_OF_POWER, 11, 15);
-		assignItemRect(RED_GREEN_SCROLL, 11, 15);
-		assignItemRect(RED_PURPLE_SCROLL, 11, 15);
-		assignItemRect(PURPLE_GREEN_SCROLL, 11, 15);
-		assignItemRect(SCROLL_FRAGMENTS, 7, 9);
+		for (int i = GOLDEN_CARD; i < GOLDEN_CARD+16; i++)
+			assignItemRect(i, 15, 11);
 	}
 
 	private static final int SPELLS         =                               xy(1, 27);  //16 slots
@@ -985,7 +976,7 @@ public class ItemSpriteSheet {
 
 	private static final int WEP_TIER5_PART2   =                               xy(1, 35);   //8 slots
 	public static final int RANDOMPHONE    = WEP_TIER5_PART2+0;
-	public static final int TENKYUUCLOAK   = WEP_TIER5_PART2+1;
+	public static final int CHIMATA_CLOAK = WEP_TIER5_PART2+1;
 	public static final int MINTCHOCOSWORD   = WEP_TIER5_PART2+2;
 	public static final int HOROU_BOOK        = WEP_TIER5_PART2+3;
 	public static final int KEINE_BOOK        = WEP_TIER5_PART2+4;
@@ -1002,7 +993,7 @@ public class ItemSpriteSheet {
 	public static final int BLACK_FAN        = WEP_TIER5_PART2+15;
 	static{
 		assignItemRect(RANDOMPHONE, 8, 12);
-		assignItemRect(TENKYUUCLOAK,    16, 14);
+		assignItemRect(CHIMATA_CLOAK,    16, 14);
 		assignItemRect(MINTCHOCOSWORD,    13, 13);
 		assignItemRect(HOROU_BOOK,      13, 16);
 		assignItemRect(KEINE_BOOK,      13, 16);
@@ -1270,7 +1261,7 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_ANTIMAGIC= EXOTIC_SCROLLS+2;
 		public static final int SCROLL_PRISIMG  = EXOTIC_SCROLLS+3;
 		public static final int SCROLL_MYSTENRG = EXOTIC_SCROLLS+4;
-		public static final int SCROLL_YUYUKORAGE  = EXOTIC_SCROLLS+5;
+		public static final int SCROLL_SANCTUARY = EXOTIC_SCROLLS+5;
 		public static final int SCROLL_SIREN    = EXOTIC_SCROLLS+6;
 		public static final int SCROLL_FORESIGHT= EXOTIC_SCROLLS+7;
 		public static final int SCROLL_CHALLENGE= EXOTIC_SCROLLS+8;
@@ -1287,7 +1278,7 @@ public class ItemSpriteSheet {
 			assignIconRect( SCROLL_ANTIMAGIC,   7, 7 );
 			assignIconRect( SCROLL_PRISIMG,     5, 7 );
 			assignIconRect( SCROLL_MYSTENRG,    7, 5 );
-			assignIconRect( SCROLL_YUYUKORAGE,     6, 6 );
+			assignIconRect(SCROLL_SANCTUARY,     6, 6 );
 			assignIconRect( SCROLL_SIREN,       7, 6 );
 			assignIconRect( SCROLL_FORESIGHT,   7, 5 );
 			assignIconRect( SCROLL_CHALLENGE,   7, 7 );
@@ -1352,8 +1343,8 @@ public class ItemSpriteSheet {
 		public static final int POTION_CLEANSE  = EXOTIC_POTIONS+10;
 		public static final int POTION_CONFUSIONHEAL   = EXOTIC_POTIONS+11;
 		public static final int POTION_PHILOSOPHER = EXOTIC_POTIONS+12;
-		public static final int POTION_INVULNERABILITY = EXOTIC_POTIONS+13;
-		public static final int POTION_TRIPLESPEED = EXOTIC_POTIONS+14;
+		public static final int POTION_BALANCE = EXOTIC_POTIONS+13;
+		public static final int POTION_LIGNIFICATION = EXOTIC_POTIONS+14;
 		public static final int POTION_CHIMATA = EXOTIC_POTIONS+15;
 		static {
 			assignIconRect( POTION_NITORI,     7, 7 );
@@ -1369,8 +1360,8 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_CLEANSE,     7, 7 );
 			assignIconRect( POTION_CONFUSIONHEAL,      6, 7 );
 			assignIconRect( POTION_PHILOSOPHER,   7, 7 );
-			assignIconRect( POTION_INVULNERABILITY,   5, 7 );
-			assignIconRect( POTION_TRIPLESPEED,   7, 7 );
+			assignIconRect(POTION_BALANCE,   5, 7 );
+			assignIconRect( POTION_LIGNIFICATION,   7, 7 );
 			assignIconRect( POTION_CHIMATA,   7, 7 );
 		}
 	}

@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossLarva;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Flandre;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;

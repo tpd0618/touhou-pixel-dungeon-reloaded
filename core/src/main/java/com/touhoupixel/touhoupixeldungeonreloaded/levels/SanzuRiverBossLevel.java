@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,161 +22,224 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.builders.Builder;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.builders.FigureEightBuilder;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.SewerPainter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.StandardRoom;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.Callback;
+import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-import java.util.ArrayList;
-
-public class SanzuRiverBossLevel extends HakureiShrineLevel {
+public class SanzuRiverBossLevel extends Level {
 
 	{
+		viewDistance = 8;
+
 		color1 = 0x48763c;
 		color2 = 0x59994a;
 	}
-	
-	private int stairs = 0;
 
 	@Override
-	protected ArrayList<Room> initRooms() {
-		ArrayList<Room> initRooms = new ArrayList<>();
-		
-		int standards = standardRooms(true);
-		for (int i = 0; i < standards; i++) {
-			StandardRoom s = StandardRoom.createRoom();
-			//force to normal size
-			s.setSizeCat(0, 0);
-			initRooms.add(s);
+	public void playLevelMusic() {
+		Music.INSTANCE.playTracks(
+				new String[]{Assets.Music.FLOOR_10, Assets.Music.FLOOR_10, Assets.Music.FLOOR_10},
+				new float[]{1, 1, 0.5f},
+				false);
+	}
+
+	private static int WIDTH = 37;
+	private static int HEIGHT = 37;
+
+	private static boolean isCompleted = false;
+
+	@Override
+	public String tilesTex() {
+		return Assets.Environment.TILES_10;
+	}
+
+	@Override
+	public String waterTex() {
+		return Assets.Environment.WATER_10;
+	}
+
+	@Override
+	protected boolean build() {
+		setSize(WIDTH, HEIGHT);
+
+		transitions.add(new LevelTransition(this, 1276, LevelTransition.Type.REGULAR_ENTRANCE));
+		transitions.add(new LevelTransition(this, 55, LevelTransition.Type.REGULAR_EXIT));
+
+		buildLevel();
+
+		return true;
+	}
+
+	private static final short n = -1;
+	private static final short W = Terrain.WALL;
+	private static final short e = Terrain.EMPTY;
+	private static final short E = Terrain.ENTRANCE;
+	private static final short w = Terrain.WATER;
+	private static final short L = Terrain.LOCKED_EXIT;
+
+	private static short[] level = {
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
+			W, W, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, E, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
+	};
+
+	private void buildLevel(){
+		int pos = 0 + 0*width();
+
+		short[] levelTiles = level;
+		for (int i = 0; i < levelTiles.length; i++){
+			if (levelTiles[i] != n) map[pos] = levelTiles[i];
+
+			pos++;
 		}
-
-		return initRooms;
-	}
-	
-	@Override
-	protected int standardRooms(boolean forceMax) {
-		if (forceMax) return 3;
-		//2 to 3, average 2.5
-		return 2+Random.chances(new float[]{1, 1});
-	}
-	
-	protected Builder builder(){
-		return new FigureEightBuilder()
-				.setLoopShape( 2 , Random.Float(0.3f, 0.8f), 0f)
-				.setPathLength(1f, new float[]{1})
-				.setTunnelLength(new float[]{1, 2}, new float[]{1});
-	}
-	
-	@Override
-	protected Painter painter() {
-		return new SewerPainter()
-				.setWater(0.50f, 5)
-				.setGrass(0.20f, 4)
-				.setTraps(nTraps(), trapClasses(), trapChances());
-	}
-	
-	protected int nTraps() {
-		return 0;
 	}
 
 	@Override
 	protected void createMobs() {
 	}
-	
-	public Actor addRespawner() {
-		return null;
-	}
-	
+
 	@Override
 	protected void createItems() {
 	}
 
 	@Override
 	public int randomRespawnCell( Char ch ) {
-		int pos;
+		int cell;
 		do {
-			pos = pointToCell(roomEntrance.random());
-		} while (pos == entrance
-				|| !passable[pos]
-				|| Actor.findChar(pos) != null);
-		return pos;
+			cell = entrance() + PathFinder.NEIGHBOURS8[Random.Int(8)];
+		} while (!passable[cell]
+				|| Actor.findChar(cell) != null);
+		return cell;
 	}
 
-	
-	public void seal() {
-		if (entrance != 0) {
-
-			super.seal();
-			
-			set( entrance, Terrain.WATER );
-			GameScene.updateMap( entrance );
-			GameScene.ripple( entrance );
-			
-			stairs = entrance;
-			entrance = 0;
-
-			Game.runOnRenderThread(new Callback() {
-				@Override
-				public void call() {
-					Music.INSTANCE.play(Assets.Music.FLOOR_10, true);
-				}
-			});
-		}
-	}
-	
-	public void unseal() {
-		if (stairs != 0) {
-
-			super.unseal();
-			
-			entrance = stairs;
-			stairs = 0;
-			
-			set( entrance, Terrain.ENTRANCE );
-			GameScene.updateMap( entrance );
-
-			Game.runOnRenderThread(new Callback() {
-				@Override
-				public void call() {
-					Music.INSTANCE.end();
-				}
-			});
-		}
-	}
-	
 	@Override
-	public Group addVisuals() {
-		super.addVisuals();
-		if (map[exit-1] != Terrain.WALL_DECO) visuals.add(new YokaiMountainLevel.Torch(exit-1));
-		if (map[exit+1] != Terrain.WALL_DECO) visuals.add(new YokaiMountainLevel.Torch(exit+1));
-		return visuals;
+	public void seal() {
+		super.seal();
+
+		set( 1276, Terrain.WATER );
+		GameScene.updateMap( 1276 );
+
+		BossKomachi boss = new BossKomachi();
+		boss.state = boss.WANDERING;
+		boss.pos = 684;
+		GameScene.add( boss );
+		boss.beckon(Dungeon.hero.pos);
+
+		if (heroFOV[boss.pos]) {
+			boss.notice();
+			boss.sprite.alpha( 0 );
+			boss.sprite.parent.add( new AlphaTweener( boss.sprite, 1, 0.1f ) );
+		}
 	}
-	
-	private static final String STAIRS	= "stairs";
-	
+
+	@Override
+	public void unseal() {
+		super.unseal();
+
+		set( 1276, Terrain.ENTRANCE );
+		GameScene.updateMap( 1276 );
+
+		isCompleted = true;
+
+		Dungeon.observe();
+	}
+
+	@Override
+	public String tileName( int tile ) {
+		switch (tile) {
+			case Terrain.WATER:
+				return Messages.get(HakureiShrineLevel.class, "water_name");
+			case Terrain.WALL_DECO:
+				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
+			case Terrain.STATUE:
+				return Messages.get(HakureiShrineLevel.class, "statue_name");
+			case Terrain.LOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
+			case Terrain.UNLOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
+			default:
+				return super.tileName( tile );
+		}
+	}
+
+	private static final String ISCOMPLETED = "iscompleted";
+
 	@Override
 	public void storeInBundle( Bundle bundle ) {
-		super.storeInBundle( bundle );
-		bundle.put( STAIRS, stairs );
+		super.storeInBundle(bundle);
+		bundle.put(ISCOMPLETED, isCompleted);
 	}
-	
+
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
-		super.restoreFromBundle( bundle );
-		stairs = bundle.getInt( STAIRS );
-		roomExit = roomEntrance;
+		super.restoreFromBundle(bundle);
+		isCompleted = bundle.getBoolean( ISCOMPLETED );
+	}
+
+	@Override
+	public String tileDesc(int tile) {
+		switch (tile) {
+			case Terrain.ENTRANCE:
+				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
+			case Terrain.EXIT:
+				return Messages.get(HakureiShrineLevel.class, "exit_desc");
+			case Terrain.EMPTY_DECO:
+				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
+			case Terrain.WALL_DECO:
+				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
+			case Terrain.BOOKSHELF:
+				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
+			case Terrain.STATUE:
+				return Messages.get(HakureiShrineLevel.class, "statue_desc");
+			case Terrain.LOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
+			case Terrain.UNLOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
+			default:
+				return super.tileDesc( tile );
+		}
 	}
 }

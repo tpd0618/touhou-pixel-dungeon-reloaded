@@ -95,17 +95,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		ANGULAR_SPEEDS.put(ShardDanmaku.class,         0);
 		ANGULAR_SPEEDS.put(BulletDanmaku.class,       0);
 		ANGULAR_SPEEDS.put(CirnoDanmaku.class,       0);
-		
 		ANGULAR_SPEEDS.put(Miracle.SpiritArrow.class,       0);
-		
-		//720 is default
-		
-		ANGULAR_SPEEDS.put(StarDanmaku.class,1440);
-		ANGULAR_SPEEDS.put(KunaiDanmaku.class,         1440);
-		
-		ANGULAR_SPEEDS.put(CircleDanmaku.class,      2160);
-		
-		ANGULAR_SPEEDS.put(BossAyaSprite.TenguShuriken.class,      2160);
 	}
 
 	//TODO it might be nice to have a source and destination angle, to improve thrown weapon visuals
@@ -151,8 +141,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		if (item instanceof Dart && Dungeon.hero.belongings.weapon() instanceof YukariUmbrella){
 			speed *= 3f;
 			
-		} else if (item instanceof Miracle.SpiritArrow
-				|| item instanceof BossAyaSprite.TenguShuriken){
+		} else if (item instanceof Miracle.SpiritArrow){
 			speed *= 1.5f;
 		}
 		

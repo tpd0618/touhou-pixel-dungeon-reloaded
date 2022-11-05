@@ -6,19 +6,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCirno;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfInvulnerability;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfJunko;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfBalance;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPhilosopher;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -63,8 +57,8 @@ public class SevenDaysTailsman extends Tailsman {
                         Sample.INSTANCE.play(Assets.Sounds.BLAST);
                         ch.die(null);
                         if (ch.properties().contains(Char.Property.ELIXIR)) {
-                            Dungeon.level.drop(new PotionOfJunko(), ch.pos).sprite.drop();
-                        } else Dungeon.level.drop(new PotionOfCirno(), ch.pos).sprite.drop();
+                            Dungeon.level.drop(new PotionOfPhilosopher(), ch.pos).sprite.drop();
+                        } else Dungeon.level.drop(new PotionOfLightHealing(), ch.pos).sprite.drop();
                 }
             }
         }

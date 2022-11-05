@@ -12,13 +12,13 @@ public class Miko extends Mob {
     {
         spriteClass = MikoSprite.class;
 
-        HP = HT = 191;
-        defenseSkill = 42;
-        EXP = 9;
-        maxLvl = 50;
+        HP = HT = 178;
+        defenseSkill = 22;
+        EXP = 14;
+        maxLvl = 30;
 
         loot = new LifeFragment();
-        lootChance = 0.05f;
+        lootChance = 0.01f;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Miko extends Mob {
 
     @Override
     public int attackSkill(Char target) {
-        return 47;
+        return 27;
     }
 
     @Override
@@ -42,5 +42,4 @@ public class Miko extends Mob {
         Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
         return damage;
     }
-    //also see Mob.attackproc
 }

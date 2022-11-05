@@ -38,7 +38,7 @@ public class KomachiDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return (2 + Challenges.activeChallenges()/2) * tier +
-				(tier) * lvl;
+		return (2+Challenges.activeChallenges()/2)*tier +
+				(tier)*lvl;
 	}
 }

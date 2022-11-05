@@ -33,5 +33,4 @@ public class MediumYingYangOrb extends MeleeWeapon {
 
 		tier = 4;
 	}
-
 }

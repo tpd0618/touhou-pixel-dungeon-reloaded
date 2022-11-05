@@ -52,11 +52,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
@@ -186,21 +186,20 @@ public abstract class Level implements Bundlable {
 			addItemToSpawn(Generator.random(Generator.Category.FOOD));
 
 			addItemToSpawn(Generator.random(Generator.Category.HERB));
-			addItemToSpawn(Generator.random(Generator.Category.HERB));
 
 			addItemToSpawn(new Torch());
 
-			if (Dungeon.posNeeded()) {
-				addItemToSpawn( new PotionOfStrength() );
-				Dungeon.LimitedDrops.STRENGTH_POTIONS.count++;
+			if (Dungeon.strengthNeeded()) {
+				addItemToSpawn( new StrengthCard() );
+				Dungeon.LimitedDrops.STRENGTH_CARDS.count++;
 			}
-			if (Dungeon.souNeeded()) {
-				addItemToSpawn( new ScrollOfUpgrade() );
-				Dungeon.LimitedDrops.UPGRADE_SCROLLS.count++;
+			if (Dungeon.upgradeNeeded()) {
+				addItemToSpawn( new UpgradeCard() );
+				Dungeon.LimitedDrops.UPGRADE_CARDS.count++;
 			}
-			if (Dungeon.asNeeded()) {
+			if (Dungeon.patchouliNeeded()) {
 				addItemToSpawn( new PatchouliCard() );
-				Dungeon.LimitedDrops.ARCANE_STYLI.count++;
+				Dungeon.LimitedDrops.PATCHOULI_CARD.count++;
 			}
 
 			//one scroll of transmutation is guaranteed to spawn somewhere on chapter 2-4
@@ -317,11 +316,6 @@ public abstract class Level implements Bundlable {
 	public void restoreFromBundle( Bundle bundle ) {
 
 		version = bundle.getInt( VERSION );
-
-		//saves from before v0.9.3c are not supported
-		if (version < ShatteredPixelDungeon.v0_9_3c){
-			throw new RuntimeException("old save");
-		}
 
 		setSize( bundle.getInt(WIDTH), bundle.getInt(HEIGHT));
 
@@ -1383,6 +1377,8 @@ public abstract class Level implements Bundlable {
 				return Messages.get(Level.class, "locked_door_desc");
 			case Terrain.CRYSTAL_DOOR:
 				return Messages.get(Level.class, "crystal_door_desc");
+			case Terrain.PEDESTAL:
+				return Messages.get(Level.class, "pedestal_desc");
 			case Terrain.LOCKED_EXIT:
 				return Messages.get(Level.class, "locked_exit_desc");
 			case Terrain.BARRICADE:

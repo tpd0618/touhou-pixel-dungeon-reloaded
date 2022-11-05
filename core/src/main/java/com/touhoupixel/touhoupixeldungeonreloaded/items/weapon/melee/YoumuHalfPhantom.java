@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class YoumuHalfPhantom extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.YOUMUHALFPHANTOM;
+		image = ItemSpriteSheet.YOUMU_HALF_PHANTOM;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 

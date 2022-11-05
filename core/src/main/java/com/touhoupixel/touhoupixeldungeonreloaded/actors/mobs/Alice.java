@@ -11,23 +11,23 @@ public class Alice extends Mob {
     {
         spriteClass = AliceSprite.class;
 
-        HP = HT = 67;
-        defenseSkill = 17;
-        EXP = 4;
-        maxLvl = 25;
+        HP = HT = 31;
+        defenseSkill = 10;
+        EXP = 7;
+        maxLvl = 17;
 
         loot = new PotionOfHealing();
-        lootChance = 0.125f;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 13);
+        return Random.NormalIntRange(4, 8);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 22;
+        return 15;
     }
 
     @Override

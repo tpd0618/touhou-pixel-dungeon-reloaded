@@ -26,8 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;

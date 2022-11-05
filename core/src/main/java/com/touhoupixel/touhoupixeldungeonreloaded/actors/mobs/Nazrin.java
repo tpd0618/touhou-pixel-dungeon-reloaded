@@ -10,7 +10,7 @@ public class Nazrin extends Mob {
     {
         spriteClass = NazrinSprite.class;
 
-        HP = HT = 11;
+        HP = HT = 10;
         defenseSkill = 2;
         EXP = 1;
         maxLvl = 10;
@@ -21,7 +21,7 @@ public class Nazrin extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 3);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override

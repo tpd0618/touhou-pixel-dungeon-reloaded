@@ -52,7 +52,6 @@ public class KoishiDagger extends MeleeWeapon {
 			Hero hero = (Hero)owner;
 			Char enemy = hero.enemy();
 			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)) {
-				//deals 75% toward max to max on surprise, instead of min to max.
 				int diff = max() - min();
 				int damage = augment.damageFactor(Random.NormalIntRange(
 						min() + Math.round(diff*0.75f),
@@ -66,5 +65,4 @@ public class KoishiDagger extends MeleeWeapon {
 		}
 		return super.damageRoll(owner);
 	}
-
 }

@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class RemiliaWing extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.REMILIAWING;
+		image = ItemSpriteSheet.REMILIA_WING;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 

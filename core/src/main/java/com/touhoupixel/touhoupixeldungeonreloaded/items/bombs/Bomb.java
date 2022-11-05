@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SmokeParticle;
@@ -183,6 +184,10 @@ public class Bomb extends Item {
 				//those not at the center of the blast take less damage
 				if (ch.pos != cell){
 					dmg = Math.round(dmg*0.67f);
+				}
+
+				if (ch instanceof Utsuho){
+					dmg *= 0;
 				}
 
 				dmg -= ch.drRoll();

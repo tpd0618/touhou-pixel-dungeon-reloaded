@@ -44,7 +44,7 @@ public class PatchouliCard extends Item {
 	private static final String AC_INSCRIBE = "INSCRIBE";
 	
 	{
-		image = ItemSpriteSheet.THREE_STAR_TICKET;
+		image = ItemSpriteSheet.PATCHOULI_CARD;
 		
 		stackable = true;
 

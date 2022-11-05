@@ -44,54 +44,27 @@ public class Toyohime extends Mob implements Callback {
 	{
 		spriteClass = ToyohimeSprite.class;
 
-		if (Dungeon.depth > 50) {
-			HP = HT = 1000;
-		} else HP = HT = 300;
-
-		if (Dungeon.depth > 50) {
-			defenseSkill = 100;
-		} else defenseSkill = 50;
-
-		if (Dungeon.depth > 50) {
-			EXP = 75;
-		} else EXP = 25;
-
-		if (Dungeon.depth > 50) {
-			maxLvl = 99;
-		} else maxLvl = 50;
+		HP = HT = 500;
+		defenseSkill = 50;
+		EXP = 25;
+		maxLvl = 99;
 
 		flying = true;
 
 		loot = new ThreeStarTicket();
 		lootChance = 0.1f;
 
-		properties.add(Property.FLOAT);
-		properties.add(Property.GOD);
-		properties.add(Property.COLD);
-
 		baseSpeed = 0.8f;
 	}
 
 	@Override
-	public void die(Object cause) {
-		super.die(cause);
-
-		Statistics.toyohimesKilled++;
-	}
-
-
-	@Override
 	public int damageRoll() {
-		if (Dungeon.depth > 50) {
-			return Random.NormalIntRange(60, 76);
-		} else return Random.NormalIntRange(30, 38);
+		return Random.NormalIntRange(40, 50);
 	}
 
 	@Override
 	public int attackSkill(Char target) {
-		if (Dungeon.depth > 50) {
-			return 120;
-		} else return 55;
+		return 75;
 	}
 
 	@Override
@@ -131,7 +104,7 @@ public class Toyohime extends Mob implements Callback {
 
 		if (hit(this, enemy, true)) {
 			//TODO would be nice for this to work on ghost/statues too
-			if (enemy == Dungeon.hero && Random.Int(0) == 0) {
+			if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
 				Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
 			}

@@ -1,36 +1,46 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChimataSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Chimata extends Mob {
 
     {
-        spriteClass = AyaSprite.class;
+        spriteClass = ChimataSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = 229;
+        defenseSkill = 40;
+        EXP = 19;
+        maxLvl = 47;
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        loot = Generator.Category.SCROLL;
+        lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(23, 28);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 45;
     }
 
     @Override
@@ -41,11 +51,13 @@ public class Chimata extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+            MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
+            if (meleeweapon != null) {
+                meleeweapon.downgrade();
+                meleeweapon.enchantment = null;
+                Sample.INSTANCE.play( Assets.Sounds.CURSED );
+                GLog.w(Messages.get(this, "downgrade"));
             }
         }
         return damage;

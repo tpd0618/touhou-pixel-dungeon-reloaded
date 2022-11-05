@@ -1,35 +1,137 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015 Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2022 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Chains;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfExorcismRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KomachiSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MikeSprite;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundle;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class Komachi extends Mob {
 
+    //they can only use their chains once
+    private boolean chainsUsed = false;
+
     {
-        spriteClass = AyaSprite.class;
+        spriteClass = KomachiSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
+        HP = HT = 83;
+        defenseSkill = 25;
         EXP = 14;
-        maxLvl = 30;
+        maxLvl = 32;
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        loot = PotionOfExorcismRod.class;
+        lootChance = 0.1f;
+
+        HUNTING = new Hunting();
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(8, 12);
+    }
+
+    private boolean chain(int target){
+        if (chainsUsed || enemy.properties().contains(Property.IMMOVABLE))
+            return false;
+
+        Ballistica chain = new Ballistica(pos, target, Ballistica.PROJECTILE);
+
+        if (chain.collisionPos != enemy.pos
+                || chain.path.size() < 2
+                || Dungeon.level.pit[chain.path.get(1)])
+            return false;
+        else {
+            int newPos = -1;
+            for (int i : chain.subPath(1, chain.dist)){
+                if (!Dungeon.level.solid[i] && Actor.findChar(i) == null){
+                    newPos = i;
+                    break;
+                }
+            }
+
+            if (newPos == -1){
+                return false;
+            } else {
+                final int newPosFinal = newPos;
+                this.target = newPos;
+
+                if (sprite.visible || enemy.sprite.visible) {
+                    yell(Messages.get(this, "distance"));
+                    new Item().throwSound();
+                    Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                    Sample.INSTANCE.play(Assets.Sounds.CHAINS);
+                    sprite.parent.add(new Chains(sprite.center(), enemy.sprite.destinationCenter(), new Callback() {
+                        public void call() {
+                            Actor.addDelayed(new Pushing(enemy, enemy.pos, newPosFinal, new Callback() {
+                                public void call() {
+                                    pullEnemy(enemy, newPosFinal);
+                                }
+                            }), -1);
+                            next();
+                        }
+                    }));
+                } else {
+                    pullEnemy(enemy, newPos);
+                }
+            }
+        }
+        chainsUsed = true;
+        return true;
+    }
+
+    private void pullEnemy( Char enemy, int pullPos ){
+        enemy.pos = pullPos;
+        enemy.sprite.place(pullPos);
+        Dungeon.level.occupyCell(enemy);
+        if (enemy == Dungeon.hero) {
+            Dungeon.hero.interrupt();
+            Dungeon.observe();
+            GameScene.updateFog();
+        }
     }
 
     @Override
-    public int attackSkill(Char target) {
+    public int attackSkill( Char target ) {
         return 30;
     }
 
@@ -39,15 +141,50 @@ public class Komachi extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+    public float lootChance() {
+        //each drop makes future drops 1/2 as likely
+        // so loot chance looks like: 1/5, 1/10, 1/20, 1/40, etc.
+        return super.lootChance() * (float)Math.pow(1/2f, Dungeon.LimitedDrops.GUARD_ARM.count);
+    }
+
+    @Override
+    public Item createLoot() {
+        Dungeon.LimitedDrops.GUARD_ARM.count++;
+        return super.createLoot();
+    }
+
+    private final String CHAINSUSED = "chainsused";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(CHAINSUSED, chainsUsed);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        chainsUsed = bundle.getBoolean(CHAINSUSED);
+    }
+
+    private class Hunting extends Mob.Hunting{
+        @Override
+        public boolean act( boolean enemyInFOV, boolean justAlerted ) {
+            enemySeen = enemyInFOV;
+
+            if (!chainsUsed
+                    && enemyInFOV
+                    && !isCharmedBy( enemy )
+                    && !canAttack( enemy )
+                    && Dungeon.level.distance( pos, enemy.pos ) < 5
+
+
+                    && chain(enemy.pos)){
+                return !(sprite.visible || enemy.sprite.visible);
+            } else {
+                return super.act( enemyInFOV, justAlerted );
             }
+
         }
-        return damage;
     }
 }

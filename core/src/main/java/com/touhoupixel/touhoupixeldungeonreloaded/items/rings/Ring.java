@@ -31,7 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -192,7 +192,7 @@ public class Ring extends KindofMisc {
 
 		if (this.level()>9){
 			GLog.w(Messages.get(this, "upgradefail"));
-			Dungeon.level.drop(new ScrollOfUpgrade(), curUser.pos).sprite.drop();
+			Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
 		} else
 			super.upgrade();
 

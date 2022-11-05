@@ -44,6 +44,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.CellSelector;
@@ -65,15 +66,15 @@ public abstract class Wand extends Item {
 	public static final String AC_ZAP	= "ZAP";
 
 	private static final float TIME_TO_ZAP	= 1f;
-	
+
 	public int maxCharges = initialCharges();
 	public int curCharges = maxCharges;
 	public float partialCharge = 0f;
-	
+
 	protected Charger charger;
-	
+
 	public boolean curChargeKnown = false;
-	
+
 	public boolean curseInfusionBonus = false;
 	public int resinBonus = 0;
 
@@ -82,13 +83,13 @@ public abstract class Wand extends Item {
 	private float availableUsesToID = USES_TO_ID/2f;
 
 	protected int collisionProperties = Ballistica.MAGIC_BOLT;
-	
+
 	{
 		defaultAction = AC_ZAP;
 		usesTargeting = true;
 		bones = true;
 	}
-	
+
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
@@ -98,14 +99,14 @@ public abstract class Wand extends Item {
 
 		return actions;
 	}
-	
+
 	@Override
 	public void execute( Hero hero, String action ) {
 
 		super.execute( hero, action );
 
 		if (action.equals( AC_ZAP )) {
-			
+
 			curUser = hero;
 			curItem = this;
 			GameScene.selectCell( zapper );
@@ -128,7 +129,7 @@ public abstract class Wand extends Item {
 			return false;
 		}
 
-		if ( curCharges >= (cursed ? 1 : chargesPerCast())){
+		if ( curCharges >= (cursed ? 1 : chargesPerCast()) && !(Dungeon.level.map[Dungeon.hero.pos] == Terrain.PEDESTAL)){
 			return true;
 		} else {
 			GLog.w(Messages.get(this, "fizzles"));
@@ -374,7 +375,9 @@ public abstract class Wand extends Item {
 				&& !Dungeon.hero.belongings.contains(this)) {
 		}
 
-		Invisibility.dispel();
+		if (!Statistics.card54) {
+			Invisibility.dispel();
+		}
 		updateQuickslot();
 
 		curUser.spendAndNext( TIME_TO_ZAP );

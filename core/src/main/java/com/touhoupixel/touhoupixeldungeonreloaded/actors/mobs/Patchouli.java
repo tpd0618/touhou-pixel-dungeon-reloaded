@@ -11,23 +11,23 @@ public class Patchouli extends Mob {
     {
         spriteClass = PatchouliSprite.class;
 
-        HP = HT = 107;
-        defenseSkill = 27;
+        HP = HT = 47;
+        defenseSkill = 15;
         EXP = 9;
-        maxLvl = 35;
+        maxLvl = 22;
 
         loot = new Bomb();
-        lootChance = 0.2f;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 16);
+        return Random.NormalIntRange(4, 8);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 32;
+        return 20;
     }
 
     @Override

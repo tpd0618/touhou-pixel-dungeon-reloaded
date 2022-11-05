@@ -2,8 +2,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfAntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.LilySprite;
 import com.watabou.utils.Random;
@@ -13,25 +15,25 @@ public class Lily extends Mob {
     {
         spriteClass = LilySprite.class;
 
-        HP = HT = 90;
-        defenseSkill = 12;
-        EXP = 4;
-        maxLvl = 20;
+        HP = HT = 22;
+        defenseSkill = 7;
+        EXP = 6;
+        maxLvl = 15;
 
         flying = true;
 
-        loot = new ScrollOfAntiMagic();
+        loot = Generator.Category.TAILSMAN;
         lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 13);
+        return Random.NormalIntRange(4, 5);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 17;
+        return 12;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class Lily extends Mob {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(4) == 0) {
             Buff.prolong(enemy, Haste.class, Haste.DURATION);
-            Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
+            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
         }
         return damage;
     }

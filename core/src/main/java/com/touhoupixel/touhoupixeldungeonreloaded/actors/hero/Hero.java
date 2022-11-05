@@ -41,14 +41,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
@@ -57,6 +58,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
@@ -66,16 +68,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SakiMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
@@ -130,6 +133,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
@@ -198,7 +202,7 @@ public class Hero extends Char {
 	public HeroClass heroClass = HeroClass.PLAYERKOISHI;
 
 	private int attackSkill = 10; //test ver. 100, original ver. 10
-	private int defenseSkill = 5;
+	private int defenseSkill = 5; //test ver. 0, original ver. 5
 
 	public boolean ready = false;
 	private boolean damageInterrupt = true;
@@ -388,11 +392,7 @@ public class Hero extends Char {
 		float accuracy = 1;
 		accuracy *= RingOfAccuracy.accuracyMultiplier( this );
 
-		if (Statistics.card16 && enemy instanceof Wraith){
-			return INFINITE_ACCURACY;
-		}
-
-		if (buff(HomingBlade.class) != null) {
+		if (Statistics.card16 && enemy instanceof Wraith || buff(HomingBlade.class) != null){
 			return INFINITE_ACCURACY;
 		}
 
@@ -404,10 +404,6 @@ public class Hero extends Char {
 			} else {
 				accuracy *= 1.1f;
 			}
-		}
-
-		if (Statistics.card37 && wep instanceof MeleeWeapon){
-			accuracy *= 1.12f;
 		}
 
 		if (wep != null) {
@@ -428,12 +424,12 @@ public class Hero extends Char {
 			}
 		}
 
-		if (Statistics.card63 && this.HP < 60){
-			evasion *= 1.22;
+		if (Statistics.card68 && buff(NightTime.class) != null && buff(Light.class) == null && (Random.Int(3) == 0)){
+			return INFINITE_EVASION;
 		}
 
-		if (Statistics.card68){
-			evasion *= 1.05;
+		if (Statistics.card63 && this.HP % 2 == 0){
+			evasion *= 1.18;
 		}
 
 		if (Statistics.card43 && Statistics.spellcard > 1){
@@ -504,6 +500,10 @@ public class Hero extends Char {
 			speed *= 2;
 		}
 
+		if (Dungeon.isChallenged(Challenges.SENSENFUKOKU) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0){
+			speed *= 0.5;
+		}
+
 		speed *= RingOfHaste.speedMultiplier(this);
 
 		if (belongings.armor() != null) {
@@ -519,7 +519,7 @@ public class Hero extends Char {
 	public boolean canSurpriseAttack(){
 		if (belongings.weapon() == null || !(belongings.weapon() instanceof Weapon))    return true;
 		if (STR() < ((Weapon)belongings.weapon()).STRReq())                             return false;
-		if (Dungeon.hero.buff(AntiSneakattack.class) != null)                                        return false;
+		if (Dungeon.hero.buff(AntiSneakattack.class) != null)                           return false;
 		if (belongings.weapon() instanceof CirnoWing)                                   return false;
 		if (Dungeon.hero.buff(Powerful.class) != null)                                  return false;
 		if (Statistics.card45) return false;
@@ -636,7 +636,7 @@ public class Hero extends Char {
 			} else Statistics.yukariCount += 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT) && !Statistics.amuletObtained){
+		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU) && !Statistics.amuletObtained){
 			if (Statistics.tenshiEarthquake > 98) {
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
@@ -675,7 +675,7 @@ public class Hero extends Char {
 		spend( time );
 		next();
 
-		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
+		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
 			Statistics.mood += 1;
 			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
 		}
@@ -683,7 +683,6 @@ public class Hero extends Char {
 
 	@Override
 	public boolean act() {
-
 		//calls to dungeon.observe will also update hero's local FOV.
 		fieldOfView = Dungeon.level.heroFOV;
 
@@ -773,6 +772,132 @@ public class Hero extends Char {
 
 		AttackIndicator.updateState();
 		BuffIndicator.refreshBoss();
+
+		if (Dungeon.isChallenged(Challenges.NIGHT_CHESS)) {
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob.pos - Dungeon.level.width()*2 - 1){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+			for (Mob mob2 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob2.pos - Dungeon.level.width()*2 + 1){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+			for (Mob mob3 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob3.pos - Dungeon.level.width() - 2){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+			for (Mob mob4 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob4.pos - Dungeon.level.width() + 2){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+			for (Mob mob5 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob5.pos + Dungeon.level.width() - 2){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+			for (Mob mob6 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob6.pos + Dungeon.level.width() + 2){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+			for (Mob mob7 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob7.pos + Dungeon.level.width()*2 - 1){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6);
+				}
+			}
+			for (Mob mob8 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mob8.pos + Dungeon.level.width()*2 + 1){
+					this.damage(Dungeon.depth/3+1, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Junko.class);
+						GLog.n( Messages.get(Junko.class, "ondeath") );
+					}
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+				}
+			}
+		}
+
+		if (buff(SakiMark.class) != null) {
+			for (Mob mobsaki : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki.pos - Dungeon.level.width()*2 - 1){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki2 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki2.pos - Dungeon.level.width()*2 + 1){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki3 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki3.pos - Dungeon.level.width() - 2){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki4 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki4.pos - Dungeon.level.width() + 2){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki5 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki5.pos + Dungeon.level.width() - 2){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki6 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki6.pos + Dungeon.level.width() + 2){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki7 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki7.pos + Dungeon.level.width()*2 - 1){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+			for (Mob mobsaki8 : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (this.pos == mobsaki8.pos + Dungeon.level.width()*2 + 1){
+					Buff.prolong(this, Degrade.class, Degrade.DURATION);
+				}
+			}
+		}
 
 		GameScene.ready();
 	}
@@ -1129,6 +1254,14 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 
+		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
+			damage *= 0;
+		}
+
+		if (Dungeon.hero.buff(RemiliaFate.class) != null){
+			damage *= 2;
+		}
+
 		if (Dungeon.hero.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null){
 			damage *= 0;
 		}
@@ -1204,7 +1337,7 @@ public class Hero extends Char {
 			Statistics.timetrackbuff += 1;
 		}
 
-		if (buff(DanDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (buff(DanmakuDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			damage *= 1.4f;
 		}
 
@@ -1213,7 +1346,6 @@ public class Hero extends Char {
 		}
 
 		if (Dungeon.hero.belongings.armor() instanceof ToyohimeArmor && (Random.Int(75) == 0)){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
 		}
 
 		if (buff(CursedBlow.class) != null){
@@ -1230,13 +1362,8 @@ public class Hero extends Char {
 			damage *= 1.1f;
 		}
 
-		if (Statistics.card59){
-			Buff.affect( enemy, Burning.class ).reignite( enemy, 10f );
-			damage *= 1.15f;
-		}
-
 		if (Statistics.card58 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
-			damage *= 1.1f;
+			Buff.prolong(this, ReachIncrease.class, ReachIncrease.DURATION/2f);
 		}
 
 		if (Dungeon.hero.belongings.weapon() instanceof YuukaDanmaku){
@@ -1251,7 +1378,7 @@ public class Hero extends Char {
 			return damage;
 		}
 
-		if (Statistics.card17 && (Random.Int(5) == 0)) {
+		if (Statistics.card17) {
 			Buff.prolong(enemy, Slow.class, Slow.DURATION/2f);
 		}
 
@@ -1263,6 +1390,14 @@ public class Hero extends Char {
 			damage *= 1.2f;
 		}
 
+		if (Statistics.card20 && this.buff(Might.class) != null){
+			damage *= 1.5f;
+		}
+
+		if (Statistics.card21 && this.buff(Hisou.class) != null){
+			damage *= 1.5f;
+		}
+
 		if (Statistics.card22 && this.buff(Doublespeed.class) != null){
 			damage *= 1.2f;
 		}
@@ -1271,7 +1406,7 @@ public class Hero extends Char {
 			damage *= 1.2f;
 		}
 
-		if (Statistics.card24 && this.buff(Triplespeed.class) != null){
+		if (Statistics.card24 && this.buff(Haste.class) != null){
 			damage *= 1.2f;
 		}
 
@@ -1279,8 +1414,8 @@ public class Hero extends Char {
 			damage *= 1.2f;
 		}
 
-		if (Statistics.card26 && this.HP % 2 == 0){
-			damage *= 1.2f;
+		if (Statistics.card26 && Statistics.playercorruption > 5){
+			damage *= 1.3f;
 		}
 
 		if (Statistics.card39 && this.flying) {
@@ -1352,28 +1487,16 @@ public class Hero extends Char {
 			Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
 		}
 
-		if (Statistics.card60 && (Random.Int(4) == 0)){
-			Buff.prolong(enemy, Terror.class, Terror.DURATION/10f);
-		}
-
-		if (Statistics.card51){
+		if (Statistics.card51 && (Random.Int(2) == 0)){
 			Buff.prolong(enemy, Weakness.class, Weakness.DURATION);
 		}
 
-		if (Statistics.card52){
+		if (Statistics.card52 && (Random.Int(2) == 0)){
 			Buff.prolong(enemy, Vulnerable.class, Vulnerable.DURATION);
 		}
 
-		if (Statistics.card53){
+		if (Statistics.card53 && (Random.Int(2) == 0)){
 			Buff.prolong(enemy, Hex.class, Hex.DURATION);
-		}
-
-		if (Statistics.card56 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
-			Dungeon.energy += 1;
-		}
-
-		if (Statistics.card57){
-			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
 		}
 
 		if (Statistics.card73 && Dungeon.level.map[enemy.pos] == Terrain.OPEN_DOOR){
@@ -1406,15 +1529,23 @@ public class Hero extends Char {
 			damage *= 0f;
 		}
 
+		if (Statistics.card33 && Random.Int(3) == 0){
+			ScrollOfMirrorImage.spawnImages(this, 1);
+		}
+
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (Statistics.card40 && enemy.pos == this.pos+i){
 				damage *= 0.9f;
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.IKU_AIR_READING) && Dungeon.level.map[this.pos] == Terrain.EMPTY){
-			damage *= 1.2f;
-			Buff.prolong(this, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
+		if (buff(Lignification.class) != null){
+			damage *= 0.75f;
+		}
+
+		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
+			damage *= 0f;
+
 		}
 
 		if (buff(SupernaturalBorder.class) != null){
@@ -1715,7 +1846,7 @@ public class Hero extends Char {
 
 		} else if (Dungeon.level.getTransition(cell) != null
 				&& !Dungeon.level.locked
-				&& (Dungeon.depth < 105 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_ENTRANCE) ) {
+				&& (Dungeon.depth < 52 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_ENTRANCE) ) {
 
 			curAction = new HeroAction.LvlTransition( cell );
 
@@ -2000,7 +2131,7 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isAlive() {
-		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
+		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
 			if (Statistics.mood == 0) {
 				Buff.prolong(this, Powerful.class, Powerful.DURATION);
 				Buff.detach( this, Cool.class);
@@ -2093,10 +2224,6 @@ public class Hero extends Char {
 			Statistics.timetrackstrup += 1;
 		}
 
-		if (Statistics.card54){
-			Buff.prolong(this, Light.class, Light.DURATION/250f);
-		}
-
 		if (Statistics.power < 100){
 			Statistics.power = 100;
 		}
@@ -2137,86 +2264,46 @@ public class Hero extends Char {
 	public void move(int step, boolean travelling) {
 		boolean wasHighGrass = Dungeon.level.map[step] == Terrain.HIGH_GRASS;
 
-		if (Dungeon.depth == 5 && !Statistics.boss1) {
-			Dungeon.level.seal();
-			Statistics.boss1 = true;
-		}
-		if (Dungeon.depth == 10 && !Statistics.boss2) {
-			Dungeon.level.seal();
-			Statistics.boss2 = true;
-		}
-		if (Dungeon.depth == 15 && !Statistics.boss3) {
-			Dungeon.level.seal();
-			Statistics.boss3 = true;
-		}
-		if (Dungeon.depth == 20 && !Statistics.boss4) {
-			Dungeon.level.seal();
-			Statistics.boss4 = true;
-		}
-		if (Dungeon.depth == 25 && !Statistics.boss5) {
-			Dungeon.level.seal();
-			Statistics.boss5 = true;
-		}
-		if (Dungeon.depth == 30 && !Statistics.boss6) {
-			Dungeon.level.seal();
-			Statistics.boss6 = true;
-		}
-		if (Dungeon.depth == 35 && !Statistics.boss7) {
-			Dungeon.level.seal();
-			Statistics.boss7 = true;
-		}
-		if (Dungeon.depth == 40 && !Statistics.boss8) {
-			Dungeon.level.seal();
-			Statistics.boss8 = true;
-		}
-		if (Dungeon.depth == 45 && !Statistics.boss9) {
-			Dungeon.level.seal();
-			Statistics.boss9 = true;
-		}
-		if (Dungeon.depth == 50 && !Statistics.boss10) {
-			Dungeon.level.seal();
-			Statistics.boss10 = true;
-		}
-		if (Dungeon.depth == 55 && !Statistics.boss11) {
-			Dungeon.level.seal();
-			Statistics.boss11 = true;
-		}
-		if (Dungeon.depth == 60 && !Statistics.boss12) {
-			Dungeon.level.seal();
-			Statistics.boss12 = true;
-		}
-		if (Dungeon.depth == 65 && !Statistics.boss13) {
-			Dungeon.level.seal();
-			Statistics.boss13 = true;
-		}
-		if (Dungeon.depth == 70 && !Statistics.boss14) {
-			Dungeon.level.seal();
-			Statistics.boss14 = true;
-		}
-		if (Dungeon.depth == 75 && !Statistics.boss15) {
-			Dungeon.level.seal();
-			Statistics.boss15 = true;
-		}
-		if (Dungeon.depth == 80 && !Statistics.boss16) {
-			Dungeon.level.seal();
-			Statistics.boss16 = true;
-		}
-		if (Dungeon.depth == 85 && !Statistics.boss17) {
-			Dungeon.level.seal();
-			Statistics.boss17 = true;
-		}
-		if (Dungeon.depth == 90 && !Statistics.boss18) {
-			Dungeon.level.seal();
-			Statistics.boss18 = true;
-		}
-		if (Dungeon.depth == 94 && !Statistics.boss19) {
-			Dungeon.level.seal();
-			Statistics.boss19 = true;
-		}
-		if (Dungeon.depth == 98 && !Statistics.boss20) {
-			Dungeon.level.seal();
-			Statistics.boss20 = true;
-		}
+		//if (Dungeon.depth == 5 && !Statistics.boss1) {
+			//Dungeon.level.seal();
+			//Statistics.boss1 = true;
+		//}
+		//if (Dungeon.depth == 10 && !Statistics.boss2) {
+			//Dungeon.level.seal();
+			//Statistics.boss2 = true;
+		//}
+		//if (Dungeon.depth == 15 && !Statistics.boss3) {
+			//Dungeon.level.seal();
+			//Statistics.boss3 = true;
+		//}
+		//if (Dungeon.depth == 20 && !Statistics.boss4) {
+			//Dungeon.level.seal();
+			//Statistics.boss4 = true;
+		//}
+		//if (Dungeon.depth == 25 && !Statistics.boss5) {
+			//Dungeon.level.seal();
+			//Statistics.boss5 = true;
+		//}
+		//if (Dungeon.depth == 30 && !Statistics.boss6) {
+			//Dungeon.level.seal();
+			//Statistics.boss6 = true;
+		//}
+		//if (Dungeon.depth == 35 && !Statistics.boss7) {
+			//Dungeon.level.seal();
+			//Statistics.boss7 = true;
+		//}
+		//if (Dungeon.depth == 40 && !Statistics.boss8) {
+			//Dungeon.level.seal();
+			//Statistics.boss8 = true;
+		//}
+		//if (Dungeon.depth == 45 && !Statistics.boss9) {
+			//Dungeon.level.seal();
+			//Statistics.boss9 = true;
+		//}
+		//if (Dungeon.depth == 50 && !Statistics.boss10) {
+			//Dungeon.level.seal();
+			//Statistics.boss10 = true;
+		//}
 
 		if (buff(MoveDetect.class) != null) {
 			damage(10, this);
@@ -2228,7 +2315,7 @@ public class Hero extends Char {
 
 		super.move( step, travelling);
 
-		if (Dungeon.isChallenged(Challenges.REISEN_ILLUSION)){
+		if (Dungeon.isChallenged(Challenges.EIENTEI_ILLUSION)){
 			if (Dungeon.level.distance(Dungeon.hero.pos, pos) <= 1) {
 				BArray.setFalse(Dungeon.level.visited);
 				BArray.setFalse(Dungeon.level.mapped);
@@ -2281,7 +2368,6 @@ public class Hero extends Char {
 
 	@Override
 	public void onOperateComplete() {
-
 		if (curAction instanceof HeroAction.Unlock) {
 
 			int doorCell = ((HeroAction.Unlock)curAction).dst;
@@ -2350,7 +2436,7 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return buff(AnkhInvulnerability.class) != null;
+		return (buff(AnkhInvulnerability.class) != null || Dungeon.level.map[this.pos] == Terrain.PEDESTAL);
 	}
 
 	public boolean search( boolean intentional ) {

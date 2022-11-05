@@ -64,5 +64,4 @@ public class RanTail extends MeleeWeapon {
 		}
 		return super.damageRoll(owner);
 	}
-
 }

@@ -17,23 +17,23 @@ public class Nemuno extends Mob {
     {
         spriteClass = NemunoSprite.class;
 
-        HP = HT = 156;
-        defenseSkill = 37;
-        EXP = 13;
-        maxLvl = 45;
+        HP = HT = 72;
+        defenseSkill = 20;
+        EXP = 11;
+        maxLvl = 27;
 
-        loot = Generator.Category.MIS_T5;
-        lootChance = 0.15f;
+        loot = Generator.Category.WEP_T5;
+        lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(27, 31);
+        return Random.NormalIntRange(8, 13);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 42;
+        return 25;
     }
 
     @Override

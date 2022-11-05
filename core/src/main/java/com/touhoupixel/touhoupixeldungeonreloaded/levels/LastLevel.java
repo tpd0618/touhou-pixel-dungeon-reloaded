@@ -45,10 +45,10 @@ import java.util.Arrays;
 public class LastLevel extends Level {
 
 	{
+		viewDistance = 8;
+
 		color1 = 0x801500;
 		color2 = 0xa68521;
-
-		viewDistance = Math.min(4, viewDistance);
 	}
 
 	@Override

@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -41,8 +42,8 @@ public class TewiDanmaku extends MissileWeapon {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage ) {
-		if (Random.Int(5) == 0) {
-			new GrimTrap().set(defender.pos).activate();
+		if (attacker.HP % 10 == 0 || attacker.HP % 10 == 1) {
+			damage *= 2;
 		}
 		return super.proc( attacker, defender, damage );
 	}

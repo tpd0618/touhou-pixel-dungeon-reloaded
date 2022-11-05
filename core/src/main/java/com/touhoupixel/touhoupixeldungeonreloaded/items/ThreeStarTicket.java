@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
@@ -70,12 +68,12 @@ public class ThreeStarTicket extends Item {
 				case 6:
 				case 7:
 				case 8:
-					PotionOfStrength pos = new PotionOfStrength();
-					pos.identify().collect();
+					StrengthCard sc = new StrengthCard();
+					sc.collect();
 					break;
 				case 9:
-					ScrollOfUpgrade sou = new ScrollOfUpgrade();
-					sou.identify().collect();
+					UpgradeCard uc = new UpgradeCard();
+					uc.collect();
 					break;
 			}
 		}

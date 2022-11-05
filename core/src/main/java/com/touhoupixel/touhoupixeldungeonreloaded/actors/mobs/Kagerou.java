@@ -40,23 +40,23 @@ public class Kagerou extends Mob implements Callback {
     {
         spriteClass = KagerouSprite.class;
 
-        HP = HT = 86;
-        defenseSkill = 22;
-        EXP = 9;
-        maxLvl = 30;
+        HP = HT = 45;
+        defenseSkill = 12;
+        EXP = 10;
+        maxLvl = 20;
 
         loot = new SpellcardFragment();
-        lootChance = 0.05f;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(12, 16);
+        return Random.NormalIntRange(5, 11);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 17;
     }
 
     @Override
@@ -95,11 +95,11 @@ public class Kagerou extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int( 2 ) == 0) {
+            if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
                 new AlarmTrap().set(enemy.pos).activate();
             }
 
-            int dmg = Random.NormalIntRange( 13, 18 );
+            int dmg = Random.NormalIntRange( 4, 7 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

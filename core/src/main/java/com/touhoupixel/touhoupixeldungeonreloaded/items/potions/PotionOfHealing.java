@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Healing;
@@ -40,9 +41,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SakiMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
@@ -76,15 +79,13 @@ public class PotionOfHealing extends Potion {
 		} else Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
 		if (ch == Dungeon.hero) {
 			GLog.p(Messages.get(PotionOfHealing.class, "heal"));
-			if (Dungeon.isChallenged(Challenges.EIRIN_UNHOLY_HEAL)) {
-				Buff.prolong(curUser, Paralysis.class, Paralysis.DURATION/5f);
-			}
 		}
 	}
 	
 	public static void cure( Char ch ) {
 		Buff.detach( ch, Poison.class);
 		Buff.detach( ch, Cripple.class);
+		Buff.detach( ch, Paralysis.class);
 		Buff.detach( ch, Weakness.class);
 		Buff.detach( ch, Vulnerable.class);
 		Buff.detach( ch, Bleeding.class);
@@ -95,7 +96,10 @@ public class PotionOfHealing extends Potion {
 		Buff.detach( ch, ExtremeConfusion.class);
 		Buff.detach( ch, RemiliaFate.class);
 		Buff.detach( ch, OneDamage.class);
+		Buff.detach( ch, WandZeroDamage.class);
 		Buff.detach( ch, NoInvisibility.class);
+		Buff.detach( ch, CursedBlow.class);
+		Buff.detach( ch, SakiMark.class);
 	}
 
 	@Override

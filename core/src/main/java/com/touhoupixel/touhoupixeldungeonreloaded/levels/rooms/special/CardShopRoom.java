@@ -78,8 +78,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.activecards.N
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.activecards.SmeltScales;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.activecards.TooHonestSignpost;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.ExuberantPowerless;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.FreewheelingHead;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.LaidBackInvertebrate;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.LunaticSilence;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.OffensiveJeweledPagoda;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.QuietTwinkling;
@@ -87,7 +85,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcard
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.TeacupMarisa;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.TeacupReimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.equipmentcards.YamanbaKitchenKnife;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.BeautyDestruction;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.BumperCrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.DilemmaCapitalism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.DragonPassage;
@@ -102,7 +99,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.SheepCount;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.SootCoveredUchiwa;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.StimulatingScales;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.passivecards.UnleashGuardianHounds;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
@@ -262,13 +258,10 @@ public class CardShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new SmeltScales() );
 		itemsToSpawn.add( new TooHonestSignpost() );
 		itemsToSpawn.add( new ExuberantPowerless() );
-		itemsToSpawn.add( new FreewheelingHead() );
-		itemsToSpawn.add( new LaidBackInvertebrate() );
 		itemsToSpawn.add( new LunaticSilence() );
 		itemsToSpawn.add( new OffensiveJeweledPagoda() );
 		itemsToSpawn.add( new QuietTwinkling() );
 		itemsToSpawn.add( new YamanbaKitchenKnife() );
-		itemsToSpawn.add( new BeautyDestruction() );
 		itemsToSpawn.add( new BumperCrop() );
 		itemsToSpawn.add( new DilemmaCapitalism() );
 		itemsToSpawn.add( new DragonPassage() );
@@ -280,7 +273,6 @@ public class CardShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new ScamRabbitFoot() );
 		itemsToSpawn.add( new SheepCount() );
 		itemsToSpawn.add( new StimulatingScales() );
-		itemsToSpawn.add( new UnleashGuardianHounds() );
 		itemsToSpawn.add( new NimbleFabric() );
 		itemsToSpawn.add( new HastyDetourCrossing() );
 		itemsToSpawn.add( new RabbitHasLanded() );

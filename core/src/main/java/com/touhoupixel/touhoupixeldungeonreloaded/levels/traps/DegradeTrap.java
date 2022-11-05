@@ -36,7 +36,7 @@ import com.watabou.noosa.audio.Sample;
 public class DegradeTrap extends Trap {
 
 	{
-		color = GREY;
+		color = RED;
 		shape = LARGE_DOT;
 
 		avoidsHallways = false;
@@ -47,9 +47,9 @@ public class DegradeTrap extends Trap {
 		Char c = Actor.findChar(pos);
 		if (c != null && c == Dungeon.hero) {
 			Buff.prolong(c, Degrade.class, Degrade.DURATION);
+			GLog.w(Messages.get(this, "degrade"));
+			GameScene.flash(0x80FFFFFF);
 		}
-		GLog.w(Messages.get(this, "degrade"));
-		GameScene.flash(0x80FFFFFF);
 		Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 	}
 }

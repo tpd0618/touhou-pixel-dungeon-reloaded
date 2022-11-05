@@ -5,6 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleanHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MystiaSprite;
@@ -16,25 +17,25 @@ public class Mystia extends Mob {
     {
         spriteClass = MystiaSprite.class;
 
-        HP = HT = 64;
-        defenseSkill = 17;
-        EXP = 4;
-        maxLvl = 25;
+        HP = HT = 27;
+        defenseSkill = 10;
+        EXP = 7;
+        maxLvl = 17;
 
         flying = true;
 
-        loot = new PotionOfHealing();
-        lootChance = 0.125f;
+        loot = new CleanHerb();
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange(3, 7);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 22;
+        return 15;
     }
 
     @Override

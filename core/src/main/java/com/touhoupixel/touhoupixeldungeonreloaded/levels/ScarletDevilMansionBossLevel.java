@@ -25,9 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossCirno;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKosuzu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossMarisa;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossRemilia;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -41,6 +38,8 @@ import com.watabou.utils.Random;
 public class ScarletDevilMansionBossLevel extends Level {
 
 	{
+		viewDistance = 8;
+
 		color1 = 0x48763c;
 		color2 = 0x59994a;
 	}

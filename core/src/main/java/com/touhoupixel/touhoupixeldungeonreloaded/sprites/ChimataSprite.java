@@ -29,7 +29,7 @@ public class ChimataSprite extends MobSprite {
 	public ChimataSprite() {
 		super();
 		
-		texture( Assets.Sprites.TENKYUU );
+		texture( Assets.Sprites.CHIMATA);
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

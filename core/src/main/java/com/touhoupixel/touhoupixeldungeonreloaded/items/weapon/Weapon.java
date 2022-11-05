@@ -221,9 +221,15 @@ abstract public class Weapon extends KindOfWeapon {
 
 	@Override
 	public int reachFactor(Char owner) {
-		if (owner.buff(ReachIncrease.class) != null || Statistics.card33){
+		if (owner.buff(ReachIncrease.class) != null && Statistics.card37){
+			return hasEnchant(Projecting.class, owner) ? RCH+3 : RCH+2;
+		} else if (owner.buff(ReachIncrease.class) == null && Statistics.card37){
 			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
-		} else return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;
+		} else if (owner.buff(ReachIncrease.class) != null && !Statistics.card37){
+			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
+		} else {
+			return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;
+		}
 	}
 
 	public int STRReq(){
@@ -238,7 +244,7 @@ abstract public class Weapon extends KindOfWeapon {
 
 	protected static int STRReq(int tier, int lvl){
 		lvl = Math.max(0, lvl);
-		return Math.max(1,(5 + Math.round(tier * 5)) - lvl);
+		return Math.max(1,(6 + Math.round(tier * 4)) - lvl);
 	}
 
 	@Override

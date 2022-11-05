@@ -124,6 +124,9 @@ public class BuffIndicator extends Component {
 	public static final int REBIRTH         = 91;
 	public static final int REBIRTH_DONE         = 92;
 	public static final int WAND_ZERODAMAGE         = 94;
+	public static final int SAKI_MARK         = 95;
+	public static final int LIGNIFICATION         = 96;
+	public static final int BALANCE_BREAK         = 98;
 	public static final int EXTREME_CONFUSION         = 99;
 	public static final int CURSED_BLOW         = 101;
 	public static final int NO_INVISIBILITY         = 102;

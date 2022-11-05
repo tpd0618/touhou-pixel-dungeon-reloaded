@@ -18,10 +18,10 @@ public class Kogasa extends Mob {
     {
         spriteClass = KogasaSprite.class;
 
-        HP = HT = 24;
-        defenseSkill = 7;
-        EXP = 2;
-        maxLvl = 15;
+        HP = HT = 13;
+        defenseSkill = 5;
+        EXP = 3;
+        maxLvl = 12;
 
         loot = new StoneOfFear();
         lootChance = 0.15f;
@@ -29,12 +29,12 @@ public class Kogasa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 6);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 12;
+        return 10;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KosuzuSprite;
 import com.watabou.utils.Random;
@@ -13,23 +14,23 @@ public class Kosuzu extends Mob {
     {
         spriteClass = KosuzuSprite.class;
 
-        HP = HT = 27;
-        defenseSkill = 7;
-        EXP = 2;
-        maxLvl = 15;
+        HP = HT = 15;
+        defenseSkill = 5;
+        EXP = 4;
+        maxLvl = 12;
 
-        loot = new ScrollOfIdentify();
+        loot = new LifeFragment();
         lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 6);
+        return Random.NormalIntRange(2, 5);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 12;
+        return 10;
     }
 
     @Override

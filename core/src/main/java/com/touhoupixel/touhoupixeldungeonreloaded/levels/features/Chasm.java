@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
@@ -60,23 +62,28 @@ public class Chasm implements Hero.Doom {
 		Game.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
-				GameScene.show(
-						new WndOptions( new Image(Dungeon.level.tilesTex(), 48, 48, 16, 16),
-								Messages.get(Chasm.class, "chasm"),
-								Messages.get(Chasm.class, "jump"),
-								Messages.get(Chasm.class, "yes"),
-								Messages.get(Chasm.class, "no") ) {
-							@Override
-							protected void onSelect( int index ) {
-								if (index == 0) {
-									if (Dungeon.hero.pos == heroPos) {
-										jumpConfirmed = true;
-										hero.resume();
+				if (Dungeon.hero.buff(BalanceBreak.class) == null) {
+					GameScene.show(
+							new WndOptions(new Image(Dungeon.level.tilesTex(), 48, 48, 16, 16),
+									Messages.get(Chasm.class, "chasm"),
+									Messages.get(Chasm.class, "jump"),
+									Messages.get(Chasm.class, "yes"),
+									Messages.get(Chasm.class, "no")) {
+								@Override
+								protected void onSelect(int index) {
+									if (index == 0) {
+										if (Dungeon.hero.pos == heroPos) {
+											jumpConfirmed = true;
+											hero.resume();
+										}
 									}
 								}
 							}
-						}
-				);
+					);
+				} else if (Dungeon.hero.pos == heroPos) {
+					jumpConfirmed = true;
+					hero.resume();
+				}
 			}
 		});
 	}
@@ -132,7 +139,7 @@ public class Chasm implements Hero.Doom {
 			Buff.prolong(hero, Cripple.class, Cripple.DURATION);
 		}
 
-		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
+		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
 			Statistics.mood += 1;
 		}
 

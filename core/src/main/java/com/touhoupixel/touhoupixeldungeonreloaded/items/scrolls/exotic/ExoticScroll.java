@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -35,7 +36,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribut
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
@@ -50,8 +50,8 @@ public abstract class ExoticScroll extends Scroll {
 		regToExo.put(ScrollOfIdentify.class, ScrollOfReduceCorruption.class);
 		exoToReg.put(ScrollOfReduceCorruption.class, ScrollOfIdentify.class);
 		
-		regToExo.put(ScrollOfUpgrade.class, ScrollOfEnchantment.class);
-		exoToReg.put(ScrollOfEnchantment.class, ScrollOfUpgrade.class);
+		regToExo.put(ScrollOfFixer.class, ScrollOfEnchantment.class);
+		exoToReg.put(ScrollOfEnchantment.class, ScrollOfFixer.class);
 		
 		regToExo.put(ScrollOfRemoveCurse.class, ScrollOfAntiMagic.class);
 		exoToReg.put(ScrollOfAntiMagic.class, ScrollOfRemoveCurse.class);
@@ -71,8 +71,8 @@ public abstract class ExoticScroll extends Scroll {
 		regToExo.put(ScrollOfMagicMapping.class, ScrollOfForesight.class);
 		exoToReg.put(ScrollOfForesight.class, ScrollOfMagicMapping.class);
 		
-		regToExo.put(ScrollOfTeleportation.class, ScrollOfYuyukoRage.class);
-		exoToReg.put(ScrollOfYuyukoRage.class, ScrollOfTeleportation.class);
+		regToExo.put(ScrollOfTeleportation.class, ScrollOfSanctuary.class);
+		exoToReg.put(ScrollOfSanctuary.class, ScrollOfTeleportation.class);
 		
 		regToExo.put(ScrollOfRetribution.class, ScrollOfPsionicBlast.class);
 		exoToReg.put(ScrollOfPsionicBlast.class, ScrollOfRetribution.class);

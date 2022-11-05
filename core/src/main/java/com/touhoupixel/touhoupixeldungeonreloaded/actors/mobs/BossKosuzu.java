@@ -20,7 +20,7 @@ public class BossKosuzu extends Mob {
 
         HP = HT = 150;
         defenseSkill = 10;
-        EXP = 0;
+        EXP = 10;
         maxLvl = 99;
 
         properties.add(Property.BOSS);
@@ -34,7 +34,7 @@ public class BossKosuzu extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(10), pos ).sprite.drop();
+        Dungeon.level.drop(new SkeletonKey(5), pos ).sprite.drop();
     }
 
     @Override

@@ -1,36 +1,44 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuumaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Yuuma extends Mob {
 
     {
-        spriteClass = AyaSprite.class;
+        spriteClass = YuumaSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = 358;
+        defenseSkill = 50;
+        EXP = 25;
+        maxLvl = 99;
 
         loot = new LifeFragment();
-        lootChance = 0.04f;
+        lootChance = 0.05f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(35, 40);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 75;
     }
 
     @Override
@@ -41,12 +49,12 @@ public class Yuuma extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            }
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
+            Dungeon.hero.STR--;
+            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+            Buff.prolong(this, Hisou.class, Hisou.DURATION);
+            Sample.INSTANCE.play( Assets.Sounds.CURSED );
+            GLog.w(Messages.get(this, "str_reduce"));
         }
         return damage;
     }

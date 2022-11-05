@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SparkParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -41,24 +42,23 @@ public class Tojiko extends Mob implements Callback {
 	{
 		spriteClass = TojikoSprite.class;
 
-		HP = HT = 20;
-		defenseSkill = 8;
+		HP = HT = 79;
+		defenseSkill = 25;
+		EXP = 14;
+		maxLvl = 32;
 
-		EXP = 6;
-		maxLvl = 13;
-
-		loot = Generator.Category.SCROLL;
-		lootChance = 0.25f;
+		loot = new PotionOfParalyticGas();
+		lootChance = 0.1f;
 	}
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 2, 8 );
+		return Random.NormalIntRange( 10, 15 );
 	}
 
 	@Override
 	public int attackSkill( Char target ) {
-		return 11;
+		return 30;
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class Tojiko extends Mob implements Callback {
 			spend( TIME_TO_ZAP );
 
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(3, 10);
+				int dmg = Random.NormalIntRange(9, 14);
 				enemy.damage( dmg, new LightningBolt() );
 
 				if (enemy.sprite.visible) {

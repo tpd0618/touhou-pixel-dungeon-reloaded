@@ -37,7 +37,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFl
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -110,7 +109,6 @@ public class Blandfruit extends Food {
 	@Override
 	public String name() {
 		if (potionAttrib instanceof PotionOfHealing)        return Messages.get(this, "sunfruit");
-		if (potionAttrib instanceof PotionOfStrength)       return Messages.get(this, "rotfruit");
 		if (potionAttrib instanceof PotionOfParalyticGas)   return Messages.get(this, "earthfruit");
 		if (potionAttrib instanceof PotionOfInvisibility)   return Messages.get(this, "blindfruit");
 		if (potionAttrib instanceof PotionOfLiquidFlame)    return Messages.get(this, "firefruit");
@@ -159,7 +157,6 @@ public class Blandfruit extends Food {
 		potionAttrib.image = ItemSpriteSheet.BLANDFRUIT;
 
 		if (potionAttrib instanceof PotionOfHealing)        potionGlow = new ItemSprite.Glowing( 0x2EE62E );
-		if (potionAttrib instanceof PotionOfStrength)       potionGlow = new ItemSprite.Glowing( 0xCC0022 );
 		if (potionAttrib instanceof PotionOfParalyticGas)   potionGlow = new ItemSprite.Glowing( 0x67583D );
 		if (potionAttrib instanceof PotionOfInvisibility)   potionGlow = new ItemSprite.Glowing( 0xD9D9D9 );
 		if (potionAttrib instanceof PotionOfLiquidFlame)    potionGlow = new ItemSprite.Glowing( 0xFF7F00 );

@@ -22,7 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfConfusionHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfNitori;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPerfectMath;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.TitleScene;
@@ -82,7 +82,7 @@ public class ShatteredPixelDungeon extends Game {
 				PotionOfConfusionHeal.class,
 				"com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfHolyFuror" );
 		com.watabou.utils.Bundle.addAlias(
-				PotionOfNitori.class,
+				PotionOfPerfectMath.class,
 				"com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfAdrenalineSurge" );
 
 		//pre-v1.0.0

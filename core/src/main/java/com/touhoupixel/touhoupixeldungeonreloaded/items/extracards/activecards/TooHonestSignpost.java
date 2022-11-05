@@ -24,8 +24,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.extracards.activecards;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ActiveCooldown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -67,8 +67,8 @@ public class TooHonestSignpost extends ActiveCards {
         if (action.equals(AC_DRINK)) {
             if (hero.buff(ActiveCooldown.class) == null) {
                 GameScene.flash(0x80FFFFFF);
-                Buff.prolong(hero, ActiveCooldown.class, ActiveCooldown.DURATION*2f);
-                Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
+                Buff.prolong(hero, ActiveCooldown.class, ActiveCooldown.DURATION);
+                Buff.prolong(hero, Lignification.class, Lignification.DURATION);
             }
         }
     }

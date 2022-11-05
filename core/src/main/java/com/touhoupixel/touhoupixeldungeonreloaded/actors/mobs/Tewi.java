@@ -16,7 +16,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DestroyArmorTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DoublespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
@@ -35,7 +34,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TriplespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WeakeningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TewiSprite;
@@ -46,23 +44,23 @@ public class Tewi extends Mob {
     {
         spriteClass = TewiSprite.class;
 
-        HP = HT = 83;
-        defenseSkill = 22;
-        EXP = 8;
-        maxLvl = 30;
+        HP = HT = 45;
+        defenseSkill = 12;
+        EXP = 9;
+        maxLvl = 20;
 
         loot = new ReclaimTrap();
-        lootChance = 0.125f;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange(4, 6);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 17;
     }
 
     @Override
@@ -74,7 +72,7 @@ public class Tewi extends Mob {
     public void die(Object cause) {
         super.die(cause);
         if (cause == Dungeon.hero) {
-            switch (Random.Int(35)) {
+            switch (Random.Int(33)) {
                 case 0:
                 default:
                     new AlarmTrap().set(enemy.pos).activate();
@@ -116,7 +114,7 @@ public class Tewi extends Mob {
                     new DisintegrationTrap().set(enemy.pos).activate();
                     break;
                 case 13:
-                    new DoublespeedTrap().set(enemy.pos).activate();
+                    new WarpingTrap().set(enemy.pos).activate();
                     break;
                 case 14:
                     new ExConfusionTrap().set(enemy.pos).activate();
@@ -174,12 +172,6 @@ public class Tewi extends Mob {
                     break;
                 case 32:
                     new ToxicTrap().set(enemy.pos).activate();
-                    break;
-                case 33:
-                    new TriplespeedTrap().set(enemy.pos).activate();
-                    break;
-                case 34:
-                    new WarpingTrap().set(enemy.pos).activate();
                     break;
             }
         }

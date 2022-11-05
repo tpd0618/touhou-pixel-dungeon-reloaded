@@ -54,29 +54,29 @@ import com.watabou.utils.Reflection;
 
 public class TrapsRoom extends SpecialRoom {
 
-	public void paint( Level level ) {
-		 
-		Painter.fill( level, this, Terrain.WALL );
+	public void paint(Level level) {
+
+		Painter.fill(level, this, Terrain.WALL);
 
 		Class<? extends Trap> trapClass;
-		switch (Random.Int(4)){
+		switch (Random.Int(4)) {
 			case 0:
 				trapClass = null;
 				break;
 			default:
-				trapClass = Random.oneOf(levelTraps[Dungeon.depth/5]);
+				trapClass = Random.oneOf(levelTraps[Dungeon.depth / 100]);
 				break;
 		}
 
-		if (trapClass == null){
+		if (trapClass == null) {
 			Painter.fill(level, this, 1, Terrain.CHASM);
 		} else {
 			Painter.fill(level, this, 1, Terrain.TRAP);
 		}
-		
+
 		Door door = entrance();
-		door.set( Door.Type.REGULAR );
-		
+		door.set(Door.Type.REGULAR);
+
 		int lastRow = level.map[left + 1 + (top + 1) * level.width()] == Terrain.CHASM ? Terrain.CHASM : Terrain.EMPTY;
 
 		int x = -1;
@@ -84,92 +84,92 @@ public class TrapsRoom extends SpecialRoom {
 		if (door.x == left) {
 			x = right - 1;
 			y = top + height() / 2;
-			Painter.fill( level, x, top + 1, 1, height() - 2 , lastRow );
+			Painter.fill(level, x, top + 1, 1, height() - 2, lastRow);
 		} else if (door.x == right) {
 			x = left + 1;
 			y = top + height() / 2;
-			Painter.fill( level, x, top + 1, 1, height() - 2 , lastRow );
+			Painter.fill(level, x, top + 1, 1, height() - 2, lastRow);
 		} else if (door.y == top) {
 			x = left + width() / 2;
 			y = bottom - 1;
-			Painter.fill( level, left + 1, y, width() - 2, 1 , lastRow );
+			Painter.fill(level, left + 1, y, width() - 2, 1, lastRow);
 		} else if (door.y == bottom) {
 			x = left + width() / 2;
 			y = top + 1;
-			Painter.fill( level, left + 1, y, width() - 2, 1 , lastRow );
+			Painter.fill(level, left + 1, y, width() - 2, 1, lastRow);
 		}
 
-		for(Point p : getPoints()) {
+		for (Point p : getPoints()) {
 			int cell = level.pointToCell(p);
-			if (level.map[cell] == Terrain.TRAP){
+			if (level.map[cell] == Terrain.TRAP) {
 				level.setTrap(Reflection.newInstance(trapClass).reveal(), cell);
 			}
 		}
-		
+
 		int pos = x + y * level.width();
-		if (Random.Int( 3 ) == 0) {
+		if (Random.Int(3) == 0) {
 			if (lastRow == Terrain.CHASM) {
-				Painter.set( level, pos, Terrain.EMPTY );
+				Painter.set(level, pos, Terrain.EMPTY);
 			}
-			level.drop( prize( level ), pos ).type = Heap.Type.CHEST;
+			level.drop(prize(level), pos).type = Heap.Type.CHEST;
 		} else {
-			Painter.set( level, pos, Terrain.PEDESTAL );
-			level.drop( prize( level ), pos ).type = Heap.Type.CHEST;
+			Painter.set(level, pos, Terrain.PEDESTAL);
+			level.drop(prize(level), pos).type = Heap.Type.CHEST;
 		}
-		
-		level.addItemToSpawn( new PotionOfLevitation() );
+
+		level.addItemToSpawn(new PotionOfLevitation());
 	}
-	
-	private static Item prize( Level level ) {
+
+	private static Item prize(Level level) {
 
 		Item prize;
 
 		//67% chance for prize item
-		if (Random.Int(3) != 0){
+		if (Random.Int(3) != 0) {
 			prize = level.findPrizeItem();
 			if (prize != null)
 				return prize;
 		}
-		
+
 		//1 floor set higher in probability, never cursed
 		do {
 			if (Random.Int(2) == 0) {
-				prize = Generator.randomWeapon(Math.min(5,(Dungeon.depth / 10)));
+				prize = Generator.randomWeapon(Math.min(5, (Dungeon.depth / 10)));
 			} else {
-				prize = Generator.randomArmor(Math.min(5,(Dungeon.depth / 10)));
+				prize = Generator.randomArmor(Math.min(5, (Dungeon.depth / 10)));
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;
 
 		//33% chance for an extra update.
-		if (Random.Int(3) == 0){
+		if (Random.Int(3) == 0) {
 			prize.upgrade();
 		}
-		
+
 		return prize;
 	}
 
 	@SuppressWarnings("unchecked")
-	private static Class<?extends Trap>[][] levelTraps = new Class[][]{
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, CorrosionTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
-			{PoisonDartTrap.class, DisintegrationTrap.class, StormTrap.class, GrimTrap.class},
+	private static Class<? extends Trap>[][] levelTraps = new Class[][]{
+			//1
+			{DisintegrationTrap.class},
+			//2
+			{DisintegrationTrap.class},
+			//3
+			{DisintegrationTrap.class},
+			//4
+			{DisintegrationTrap.class},
+			//5
+			{DisintegrationTrap.class},
+			//6
+			{DisintegrationTrap.class},
+			//7
+			{DisintegrationTrap.class},
+			//8
+			{DisintegrationTrap.class},
+			//9
+			{GrimTrap.class},
+			//10
+			{GrimTrap.class}
 	};
 }

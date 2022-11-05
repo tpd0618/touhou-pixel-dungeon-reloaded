@@ -31,8 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Imp;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Wandmaker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
@@ -44,39 +42,30 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.BambooForestBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.BambooForestLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.DeadEndLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ForestofMagicBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ForestofMagicLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.GardenoftheSunBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.GardenoftheSunLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakugyokurouBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakugyokurouLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakureiShrineBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakureiShrineLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HeavenBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HeavenLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellFinalBossLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellMidBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HumanVillageBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HumanVillageLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LandoftheBackDoorBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LandoftheBackDoorLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LastLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.LunarCapitalBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LunarCapitalLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.MakaiBossLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.MakaiLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.MistyLakeBossLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.PrimateSpiritGardenBossLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.PrimateSpiritGardenLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MistyLakeLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.MoriyaShrineBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MoriyaShrineLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.MyourenTempleBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MyourenTempleLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.RainbowDragonCaveBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RainbowDragonCaveLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.SanzuRiverBossLevel;
@@ -85,7 +74,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionBoss
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.YokaiMountainBossLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.TutorialLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.YokaiMountainLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.secret.SecretRoom;
@@ -118,9 +107,9 @@ public class Dungeon {
 	//could all be their own separate numbers, but this allows iterating, much nicer for bundling/initializing.
 	public static enum LimitedDrops {
 		//limited world drops
-		STRENGTH_POTIONS,
-		UPGRADE_SCROLLS,
-		ARCANE_STYLI,
+		STRENGTH_CARDS,
+		UPGRADE_CARDS,
+		PATCHOULI_CARD,
 		WEAPON,
 		ARMOR,
 		HAKKERO,
@@ -267,9 +256,6 @@ public class Dungeon {
 
 		chapters = new HashSet<>();
 
-		Wandmaker.Quest.reset();
-		Imp.Quest.reset();
-
 		hero = new Hero();
 		hero.live();
 
@@ -300,182 +286,101 @@ public class Dungeon {
 		Level level;
 		switch (depth) {
 			case 1:
+				if (!Dungeon.isChallenged(Challenges.TUTORIAL)) {
+					level = new HakureiShrineLevel();
+					break;
+				} else {
+					level = new TutorialLevel();
+					break;
+				}
 			case 2:
-			case 3:
-			case 4:
 				level = new HakureiShrineLevel();
 				break;
+			case 3:
+			case 4:
 			case 5:
-				level = new HakureiShrineBossLevel();
+				level = new HumanVillageLevel();
 				break;
 			case 6:
 			case 7:
+				level = new MistyLakeLevel();
+				break;
 			case 8:
 			case 9:
-				level = new HumanVillageLevel();
-				break;
 			case 10:
-				level = new HumanVillageBossLevel();
+				level = new ForestofMagicLevel();
 				break;
 			case 11:
 			case 12:
+				level = new BambooForestLevel();
+				break;
 			case 13:
 			case 14:
-				level = new MistyLakeLevel();
-				break;
 			case 15:
-				level = new MistyLakeBossLevel();
+				level = new ScarletDevilMansionLevel();
 				break;
 			case 16:
 			case 17:
+				level = new YokaiMountainLevel();
+				break;
 			case 18:
 			case 19:
-				level = new ForestofMagicLevel();
-				break;
 			case 20:
-				level = new ForestofMagicBossLevel();
+				level = new GardenoftheSunLevel();
 				break;
 			case 21:
 			case 22:
+				level = new MyourenTempleLevel();
+				break;
 			case 23:
 			case 24:
-				level = new BambooForestLevel();
-				break;
 			case 25:
-				level = new BambooForestBossLevel();
+				level = new SanzuRiverLevel();
 				break;
 			case 26:
 			case 27:
+				level = new MoriyaShrineLevel();
+				break;
 			case 28:
 			case 29:
-				level = new ScarletDevilMansionLevel();
-				break;
 			case 30:
-				level = new ScarletDevilMansionBossLevel();
+				level = new ShiningNeedleCastleLevel();
 				break;
 			case 31:
 			case 32:
+				level = new RainbowDragonCaveLevel();
+				break;
 			case 33:
 			case 34:
-				level = new YokaiMountainLevel();
-				break;
 			case 35:
-				level = new YokaiMountainBossLevel();
+				level = new LandoftheBackDoorLevel();
 				break;
 			case 36:
 			case 37:
+				level = new HakugyokurouLevel();
+				break;
 			case 38:
 			case 39:
-				level = new GardenoftheSunLevel();
-				break;
 			case 40:
-				level = new GardenoftheSunBossLevel();
+				level = new HeavenLevel();
 				break;
 			case 41:
 			case 42:
+				level = new LunarCapitalLevel();
+				break;
 			case 43:
 			case 44:
-				level = new MyourenTempleLevel();
-				break;
 			case 45:
-				level = new MyourenTempleBossLevel();
+				level = new PrimateSpiritGardenLevel();
 				break;
 			case 46:
 			case 47:
 			case 48:
 			case 49:
-				level = new SanzuRiverLevel();
-				break;
 			case 50:
-				level = new SanzuRiverBossLevel();
-				break;
-			case 51:
-			case 52:
-			case 53:
-			case 54:
-				level = new MoriyaShrineLevel();
-				break;
-			case 55:
-				level = new MoriyaShrineBossLevel();
-				break;
-			case 56:
-			case 57:
-			case 58:
-			case 59:
-				level = new ShiningNeedleCastleLevel();
-				break;
-			case 60:
-				level = new ShiningNeedleCastleBossLevel();
-				break;
-			case 61:
-			case 62:
-			case 63:
-			case 64:
-				level = new RainbowDragonCaveLevel();
-				break;
-			case 65:
-				level = new RainbowDragonCaveBossLevel();
-				break;
-			case 66:
-			case 67:
-			case 68:
-			case 69:
-				level = new LandoftheBackDoorLevel();
-				break;
-			case 70:
-				level = new LandoftheBackDoorBossLevel();
-				break;
-			case 71:
-			case 72:
-			case 73:
-			case 74:
-				level = new HakugyokurouLevel();
-				break;
-			case 75:
-				level = new HakugyokurouBossLevel();
-				break;
-			case 76:
-			case 77:
-			case 78:
-			case 79:
-				level = new HeavenLevel();
-				break;
-			case 80:
-				level = new HeavenBossLevel();
-				break;
-			case 81:
-			case 82:
-			case 83:
-			case 84:
-				level = new LunarCapitalLevel();
-				break;
-			case 85:
-				level = new LunarCapitalBossLevel();
-				break;
-			case 86:
-			case 87:
-			case 88:
-			case 89:
-				level = new MakaiLevel();
-				break;
-			case 90:
-				level = new MakaiBossLevel();
-				break;
-			case 91:
-			case 92:
-			case 93:
-			case 94:
-			case 96:
-			case 97:
 				level = new HellLevel();
 				break;
-			case 95:
-				level = new HellMidBossLevel();
-				break;
-			case 98:
-				level = new HellFinalBossLevel();
-				break;
-			case 99:
+			case 51:
 				level = new LastLevel();
 				break;
 			default:
@@ -518,11 +423,11 @@ public class Dungeon {
 	}
 
 	public static boolean shopOnLevel() {
-		return depth == 6 || depth == 16 || depth == 26 || depth == 36 || depth == 46 || depth == 56 || depth == 66 || depth == 76 || depth == 86;
+		return depth == 6 || depth == 16 || depth == 26 || depth == 36 || depth == 46;
 	}
 
 	public static boolean cardshopOnLevel() {
-		return depth == 11 || depth == 21 || depth == 31 || depth == 41 || depth == 51 || depth == 61 || depth == 71 || depth == 81;
+		return depth == 11 || depth == 21 || depth == 31 || depth == 41;
 	}
 
 	public static boolean bossLevel() {
@@ -530,7 +435,7 @@ public class Dungeon {
 	}
 
 	public static boolean bossLevel( int depth ) {
-		return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == 30 || depth == 35 || depth == 40 || depth == 45 || depth == 50 || depth == 55 || depth == 60 || depth == 65 || depth == 70 || depth == 75 || depth == 80 || depth == 85 || depth == 90 || depth == 94 || depth == 98;
+		return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == 30 || depth == 35 || depth == 40 || depth == 45 || depth == 50;
 	}
 
 	//value used for scaling of damage values and other effects.
@@ -604,10 +509,10 @@ public class Dungeon {
 		dropped.add( item );
 	}
 
-	public static boolean posNeeded() {
+	public static boolean strengthNeeded() {
 		//2 POS each floor set
-		int posLeftThisSet = 2 - (LimitedDrops.STRENGTH_POTIONS.count - (depth / 5) * 2);
-		if (posLeftThisSet <= 0 || Dungeon.depth > 90) return false;
+		int posLeftThisSet = 2 - (LimitedDrops.STRENGTH_CARDS.count - (depth / 5) * 2);
+		if (posLeftThisSet <= 0 || Dungeon.depth > 50) return false;
 
 		int floorThisSet = (depth % 5);
 
@@ -620,24 +525,19 @@ public class Dungeon {
 
 	}
 
-	public static boolean souNeeded() {
+	public static boolean upgradeNeeded() {
 		int souLeftThisSet;
-		//3 SOU each floor set, 1.5 (rounded) on fateful... challenge
-		if (isChallenged(Challenges.FATEFUL)){
-			souLeftThisSet = Math.round(1.5f - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 1.5f));
-		} else {
-			souLeftThisSet = 3 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 3);
-		}
-		if (souLeftThisSet <= 0 || Dungeon.depth > 90) return false;
+		souLeftThisSet = 3 - (LimitedDrops.UPGRADE_CARDS.count - (depth / 5) * 3);
+		if (souLeftThisSet <= 0 || Dungeon.depth > 50) return false;
 
 		int floorThisSet = (depth % 5);
 		//chance is floors left / scrolls left
 		return Random.Int(5 - floorThisSet) < souLeftThisSet;
 	}
 
-	public static boolean asNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.ARCANE_STYLI.count - (depth / 5));
-		if (asLeftThisSet <= 0 || Dungeon.depth > 90) return false;
+	public static boolean patchouliNeeded() {
+		int asLeftThisSet = 1 - (LimitedDrops.PATCHOULI_CARD.count - (depth / 5));
+		if (asLeftThisSet <= 0 || Dungeon.depth > 50) return false;
 
 		int floorThisSet = (depth % 5);
 		return Random.Int(5 - floorThisSet) < asLeftThisSet;
@@ -701,11 +601,6 @@ public class Dungeon {
 				ids[count++] = id;
 			}
 			bundle.put( CHAPTERS, ids );
-
-			Bundle quests = new Bundle();
-			Wandmaker	.Quest.storeInBundle( quests );
-			Imp			.Quest.storeInBundle( quests );
-			bundle.put( QUESTS, quests );
 
 			SpecialRoom.storeRoomsInBundle( bundle );
 			SecretRoom.storeRoomsInBundle( bundle );
@@ -804,14 +699,14 @@ public class Dungeon {
 				}
 			}
 
-			Bundle quests = bundle.getBundle( QUESTS );
-			if (!quests.isNull()) {
-				Wandmaker.Quest.restoreFromBundle( quests );
-				Imp.Quest.restoreFromBundle( quests );
-			} else {
-				Wandmaker.Quest.reset();
-				Imp.Quest.reset();
-			}
+			//Bundle quests = bundle.getBundle( QUESTS );
+			//if (!quests.isNull()) {
+				//Wandmaker.Quest.restoreFromBundle( quests );
+				//Imp.Quest.restoreFromBundle( quests );
+			//} else {
+				//Wandmaker.Quest.reset();
+				//Imp.Quest.reset();
+			//}
 
 			SpecialRoom.restoreRoomsFromBundle(bundle);
 			SecretRoom.restoreRoomsFromBundle(bundle);
@@ -918,7 +813,9 @@ public class Dungeon {
 
 		hero.belongings.identify();
 
-		Rankings.INSTANCE.submit( true, cause );
+		if (!Dungeon.isChallenged(Challenges.TUTORIAL)) {
+			Rankings.INSTANCE.submit(true, cause);
+		}
 	}
 
 	public static void updateLevelExplored(){

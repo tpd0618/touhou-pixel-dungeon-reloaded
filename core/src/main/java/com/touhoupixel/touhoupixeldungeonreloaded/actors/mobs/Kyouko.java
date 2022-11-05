@@ -14,10 +14,10 @@ public class Kyouko extends Mob {
     {
         spriteClass = KyoukoSprite.class;
 
-        HP = HT = 142;
-        defenseSkill = 42;
-        EXP = 8;
-        maxLvl = 50;
+        HP = HT = 144;
+        defenseSkill = 22;
+        EXP = 13;
+        maxLvl = 30;
 
         loot = new ScrollOfSirensSong();
         lootChance = 0.1f;
@@ -30,7 +30,7 @@ public class Kyouko extends Mob {
 
     @Override
     public int attackSkill(Char target) {
-        return 47;
+        return 27;
     }
 
     @Override

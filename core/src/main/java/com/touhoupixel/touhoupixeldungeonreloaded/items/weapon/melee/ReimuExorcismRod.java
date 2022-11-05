@@ -35,5 +35,4 @@ public class ReimuExorcismRod extends MeleeWeapon {
 		
 		bones = false;
 	}
-
 }

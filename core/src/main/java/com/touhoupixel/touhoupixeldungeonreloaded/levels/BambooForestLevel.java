@@ -36,12 +36,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DoublespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
@@ -66,7 +64,7 @@ import com.watabou.utils.Random;
 public class BambooForestLevel extends RegularLevel {
 
 	{
-		viewDistance = 6;
+		viewDistance = 8;
 
 		color1 = 0x48763c;
 		color2 = 0x59994a;
@@ -119,15 +117,15 @@ public class BambooForestLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,
-						GrippingTrap.class, TrainingTrap.class}:
+						TrainingTrap.class}:
 				new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, ConfusionTrap.class,
 						AlarmTrap.class, BurningTrap.class, SlowTrap.class, WarpingTrap.class, OozeTrap.class,
-						DoublespeedTrap.class, TrainingTrap.class};
+						TrainingTrap.class};
 	}
 
 	@Override
@@ -135,7 +133,7 @@ public class BambooForestLevel extends RegularLevel {
 		return new float[]{
 				3, 3, 3, 3, 3,
 				2, 2, 2, 2, 2,
-				1, 1};
+				1};
 	}
 	
 	@Override

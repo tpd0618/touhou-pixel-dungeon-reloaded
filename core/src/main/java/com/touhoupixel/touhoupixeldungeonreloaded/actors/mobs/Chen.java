@@ -4,6 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChenSprite;
 import com.watabou.utils.Random;
@@ -17,18 +18,18 @@ public class Chen extends Mob {
     {
         spriteClass = ChenSprite.class;
 
-        HP = HT = 94;
-        defenseSkill = 17;
-        EXP = 4;
-        maxLvl = 25;
+        HP = HT = 38;
+        defenseSkill = 10;
+        EXP = 7;
+        maxLvl = 17;
 
         baseSpeed = 2f;
 
         harmfulBuffs.add( Chill.class );
         harmfulBuffs.add( Frost.class );
 
-        loot = new SpellcardFragment();
-        lootChance = 0.125f;
+        loot = Generator.Category.MISSILE;
+        lootChance = 0.15f;
     }
 
     @Override
@@ -42,12 +43,12 @@ public class Chen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(14, 18);
+        return Random.NormalIntRange(5, 11);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 22;
+        return 15;
     }
 
     @Override

@@ -37,7 +37,7 @@ import java.util.Arrays;
 
 public class SakuyaDaggerTrap extends Trap{
 
-	private static final float DELAY = 2f;
+	private static final float DELAY = 1f;
 
 	{
 		color = TEAL;
@@ -77,7 +77,7 @@ public class SakuyaDaggerTrap extends Trap{
 			summoned++;
 			Mob mob;
 			switch (summoned){
-				case 1: case 2: default:
+				case 0: default:
 					mob = new SakuyaDagger();
 					break;
 			}

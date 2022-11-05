@@ -3,6 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RingoSprite;
 import com.watabou.utils.Random;
@@ -12,25 +13,25 @@ public class Ringo extends Mob {
     {
         spriteClass = RingoSprite.class;
 
-        HP = HT = 31;
-        defenseSkill = 7;
+        HP = HT = 16;
+        defenseSkill = 5;
         EXP = 3;
-        maxLvl = 15;
+        maxLvl = 12;
 
         baseSpeed = 2f;
 
-        loot = new PotionOfRingoDango();
+        loot = Generator.Category.ARMOR_T2;
         lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 9);
+        return Random.NormalIntRange(3, 4);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 12;
+        return 10;
     }
 
     @Override

@@ -23,7 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.tiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellFinalBossLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellBossLevel;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.Tilemap;
 
@@ -67,7 +67,7 @@ public class WallBlockingTilemap extends Tilemap {
 
 		//FIXME this is to address the wall blocking looking odd on the new yog floor.
 		// The true solution is to improve the fog of war so the blockers aren't necessary.
-		if (Dungeon.level instanceof HellFinalBossLevel){
+		if (Dungeon.level instanceof HellBossLevel){
 			data[cell] = CLEARED;
 			super.updateMapCell(cell);
 			return;

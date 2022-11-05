@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Imp;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.CityPainter;
@@ -62,7 +61,7 @@ import com.watabou.utils.Random;
 public class HakugyokurouLevel extends RegularLevel {
 
 	{
-		viewDistance = 3;
+		viewDistance = 8;
 
 		color1 = 0x4b6636;
 		color2 = 0xf2f2f2;
@@ -117,7 +116,7 @@ public class HakugyokurouLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class, DegradeTrap.class,
@@ -134,13 +133,6 @@ public class HakugyokurouLevel extends RegularLevel {
 				3, 3, 3, 3, 3, 3,
 				2, 2, 2, 2, 2, 2,
 				1, 1};
-	}
-	
-	@Override
-	protected void createMobs() {
-		Imp.Quest.spawn( this );
-		
-		super.createMobs();
 	}
 	
 	@Override

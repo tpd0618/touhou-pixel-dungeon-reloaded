@@ -26,10 +26,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class NightTime extends FlavourBuff {
 	
-	public static final float DURATION = 100000f;
+	public static final float DURATION = 10000f;
 	
 	{
-		type = buffType.NEGATIVE;
+		type = buffType.NEUTRAL;
 		announced = true;
 	}
 	

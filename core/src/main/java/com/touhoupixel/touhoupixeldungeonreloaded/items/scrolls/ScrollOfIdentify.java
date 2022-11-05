@@ -46,13 +46,9 @@ public class ScrollOfIdentify extends InventoryScroll {
 
 	@Override
 	protected void onItemSelected( Item item ) {
-
-		if (!(Dungeon.isChallenged(Challenges.FATEFUL) && Random.Int(2) == 0)) {
-			curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
-
-			item.identify();
-			GLog.i(Messages.get(this, "it_is", item));
-		} else GLog.i(Messages.get(this, "fateful", item));
+		curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
+		item.identify();
+		GLog.i(Messages.get(this, "it_is", item));
 	}
 	
 	@Override

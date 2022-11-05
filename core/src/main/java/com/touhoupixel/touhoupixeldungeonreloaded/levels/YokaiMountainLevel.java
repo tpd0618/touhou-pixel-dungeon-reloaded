@@ -24,12 +24,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Wandmaker;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlameParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.PrisonPainter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
@@ -63,12 +61,10 @@ import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-import java.util.ArrayList;
-
 public class YokaiMountainLevel extends RegularLevel {
 
 	{
-		viewDistance = 5;
+		viewDistance = 8;
 
 		color1 = 0x6a723d;
 		color2 = 0x88924c;
@@ -80,11 +76,6 @@ public class YokaiMountainLevel extends RegularLevel {
 				new String[]{Assets.Music.FLOOR_7, Assets.Music.FLOOR_7, Assets.Music.FLOOR_7},
 				new float[]{1, 1, 0.5f},
 				false);
-	}
-
-	@Override
-	protected ArrayList<Room> initRooms() {
-		return Wandmaker.Quest.spawnRoom(super.initRooms());
 	}
 	
 	@Override
@@ -127,7 +118,7 @@ public class YokaiMountainLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,

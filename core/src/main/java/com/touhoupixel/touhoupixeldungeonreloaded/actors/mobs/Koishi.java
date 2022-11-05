@@ -5,32 +5,34 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfReverseYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KoishiSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Koishi extends Mob {
 
     {
-        spriteClass = AyaSprite.class;
+        spriteClass = KoishiSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = 249;
+        defenseSkill = 45;
+        EXP = 23;
+        maxLvl = 75;
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        loot = new PotionOfReverseYingYang();
+        lootChance = 0.05f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(36, 41);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 50;
     }
 
     @Override
@@ -38,16 +40,5 @@ public class Koishi extends Mob {
         return Random.NormalIntRange(0, 2);
     }
 
-    @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            }
-        }
-        return damage;
-    }
+    //transparent sprite is the special ability
 }

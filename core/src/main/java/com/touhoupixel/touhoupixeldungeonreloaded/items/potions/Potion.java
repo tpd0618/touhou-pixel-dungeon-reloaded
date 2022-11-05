@@ -40,14 +40,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCorrosiveGas;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfShroudingFog;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfStormClouds;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
+import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Blindweed;
@@ -109,12 +107,12 @@ public class Potion extends Item {
 			put("green",ItemSpriteSheet.POTION_GREEN);
 			put("greentea_crimson",ItemSpriteSheet.GREENTEA_POTION_CRIMSON);
 			put("greentea_amber",ItemSpriteSheet.GREENTEA_POTION_AMBER);
-			put("greentea_golden",ItemSpriteSheet.GREENTEA_POTION_GOLDEN);
-			put("greentea_jade",ItemSpriteSheet.GREENTEA_POTION_JADE);
-			put("greentea_turquoise",ItemSpriteSheet.GREENTEA_POTION_TURQUOISE);
-			put("greentea_azure",ItemSpriteSheet.GREENTEA_POTION_AZURE);
-			put("greentea_indigo",ItemSpriteSheet.GREENTEA_POTION_INDIGO);
-			put("greentea_magenta",ItemSpriteSheet.GREENTEA_POTION_MAGENTA);
+			//put("greentea_golden",ItemSpriteSheet.GREENTEA_POTION_GOLDEN);
+			//put("greentea_jade",ItemSpriteSheet.GREENTEA_POTION_JADE);
+			//put("greentea_turquoise",ItemSpriteSheet.GREENTEA_POTION_TURQUOISE);
+			//put("greentea_azure",ItemSpriteSheet.GREENTEA_POTION_AZURE);
+			//put("greentea_indigo",ItemSpriteSheet.GREENTEA_POTION_INDIGO);
+			//put("greentea_magenta",ItemSpriteSheet.GREENTEA_POTION_MAGENTA);
 			//put("greentea_bistre",ItemSpriteSheet.GREENTEA_POTION_BISTRE);
 			//put("greentea_charcoal",ItemSpriteSheet.GREENTEA_POTION_CHARCOAL);
 			//put("greentea_silver",ItemSpriteSheet.GREENTEA_POTION_SILVER);
@@ -128,17 +126,6 @@ public class Potion extends Item {
 	
 	private static final HashSet<Class<?extends Potion>> mustThrowPots = new HashSet<>();
 	static{
-		mustThrowPots.add(PotionOfToxicGas.class);
-		mustThrowPots.add(PotionOfLiquidFlame.class);
-		mustThrowPots.add(PotionOfParalyticGas.class);
-		mustThrowPots.add(PotionOfFrost.class);
-		
-		//exotic
-		mustThrowPots.add(PotionOfCorrosiveGas.class);
-		mustThrowPots.add(PotionOfSnapFreeze.class);
-		mustThrowPots.add(PotionOfShroudingFog.class);
-		mustThrowPots.add(PotionOfStormClouds.class);
-		
 		//also all brews, hardcoded
 	}
 	
@@ -261,6 +248,8 @@ public class Potion extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(PotionFreeze.class) != null) {
 				GLog.w(Messages.get(this, "potionfreeze"));
+			} else if (Dungeon.isChallenged(Challenges.SENSENFUKOKU) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+				GLog.w(Messages.get(this, "sensenfukoku"));
 			} else if (isKnown() && mustThrowPots.contains(getClass())) {
 				
 					GameScene.show(
@@ -279,7 +268,7 @@ public class Potion extends Item {
 					
 				} else {
 					drink( hero );
-				if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
+				if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
 					Statistics.mood += 1;
 				}
 			}
@@ -311,7 +300,7 @@ public class Potion extends Item {
 			super.doThrow( hero );
 		}
 	}
-	
+
 	protected void drink( Hero hero ) {
 		
 		detach( hero.belongings.backpack );
@@ -481,7 +470,6 @@ public class Potion extends Item {
 			types.put(Fadeleaf.Seed.class,      PotionOfMindVision.class);
 			types.put(Firebloom.Seed.class,     PotionOfLiquidFlame.class);
 			types.put(Icecap.Seed.class,        PotionOfFrost.class);
-			types.put(Rotberry.Seed.class,      PotionOfStrength.class);
 			types.put(Sorrowmoss.Seed.class,    PotionOfToxicGas.class);
 			types.put(Starflower.Seed.class,    PotionOfExperience.class);
 			types.put(Stormvine.Seed.class,     PotionOfLevitation.class);

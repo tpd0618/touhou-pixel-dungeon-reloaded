@@ -4,8 +4,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -21,9 +21,9 @@ public class Yuuka extends Mob {
         HP = HT = 500;
         defenseSkill = 0;
         EXP = 1;
-        maxLvl = 45;
+        maxLvl = 27;
 
-        baseSpeed = 0.1f;
+        baseSpeed = 0.2f;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Yuuka extends Mob {
 
     @Override
     public int attackSkill(Char target) {
-        return 50;
+        return 25;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Yuuka extends Mob {
             Buff.prolong(this, Bless.class, Bless.DURATION*10000f);
             Buff.prolong(this, YuukaRage.class, YuukaRage.DURATION*10000f);
             Buff.prolong(this, Haste.class, Haste.DURATION*10000f);
-            Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION*10000f);
+            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION*10000f);
             GLog.w(Messages.get(this, "reflect"));
         }
         return super.defenseProc(enemy, damage);

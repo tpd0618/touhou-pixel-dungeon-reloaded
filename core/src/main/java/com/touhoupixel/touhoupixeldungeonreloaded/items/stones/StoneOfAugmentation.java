@@ -25,8 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -59,7 +59,7 @@ public class StoneOfAugmentation extends InventoryStone {
 		
 		weapon.augment = augment;
 		useAnimation();
-		ScrollOfUpgrade.upgrade(curUser);
+		UpgradeCard.upgrade(curUser);
 		
 	}
 	
@@ -67,7 +67,7 @@ public class StoneOfAugmentation extends InventoryStone {
 		
 		armor.augment = augment;
 		useAnimation();
-		ScrollOfUpgrade.upgrade(curUser);
+		UpgradeCard.upgrade(curUser);
 	}
 	
 	@Override

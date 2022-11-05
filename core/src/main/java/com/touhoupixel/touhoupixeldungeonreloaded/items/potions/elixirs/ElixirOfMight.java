@@ -21,12 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -71,7 +70,7 @@ public class ElixirOfMight extends Elixir {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfStrength.class, AlchemicalCatalyst.class};
+			inputs =  new Class[]{StrengthCard.class, AlchemicalCatalyst.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

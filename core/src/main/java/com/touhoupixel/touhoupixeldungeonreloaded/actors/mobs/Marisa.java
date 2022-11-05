@@ -50,27 +50,27 @@ public class Marisa extends Mob {
     {
         spriteClass = MarisaSprite.class;
 
-        HP = HT = 73;
-        defenseSkill = 17;
-        EXP = 5;
-        maxLvl = 25;
+        HP = HT = 26;
+        defenseSkill = 10;
+        EXP = 8;
+        maxLvl = 17;
 
         viewDistance = Light.DISTANCE;
 
         HUNTING = new Hunting();
 
         loot = Generator.Category.WAND;
-        lootChance = 0.05f;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 11);
+        return Random.NormalIntRange(2, 5);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 22;
+        return 15;
     }
 
     @Override
@@ -176,7 +176,7 @@ public class Marisa extends Mob {
             }
 
             if (hit( this, ch, true )) {
-                ch.damage( Random.NormalIntRange( 20, 26 ), new DeathGaze() );
+                ch.damage( Random.NormalIntRange( 5, 8 ), new DeathGaze() );
 
                 if (ch instanceof Hero) {
                     Sample.INSTANCE.play(Assets.Sounds.CURSED);

@@ -9,7 +9,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -23,8 +22,6 @@ import com.watabou.noosa.audio.Sample;
 import java.util.ArrayList;
 
 public class NitoDismantleHammer extends Item {
-
-    private static final String AC_DRINK = "DRINK";
 
     {
         image = ItemSpriteSheet.KOGASA_HAMMER;
@@ -103,10 +100,10 @@ public class NitoDismantleHammer extends Item {
                     public void onBackPressed() {
                     }
                 });
-            } else if (item != null) {
+            } else {
                 item.detach(curUser.belongings.backpack);
-                Dungeon.level.drop(new ScrollOfUpgrade().quantity(item.level()), curUser.pos).sprite.drop();
-                if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME)) {
+                Dungeon.level.drop(new UpgradeCard().quantity(item.level()), curUser.pos).sprite.drop();
+                if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
                     Statistics.mood += 1;
                 }
                 updateQuickslot();

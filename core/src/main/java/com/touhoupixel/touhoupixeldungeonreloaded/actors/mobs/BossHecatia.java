@@ -9,6 +9,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HecatiaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -16,7 +17,7 @@ import com.watabou.utils.Random;
 public class BossHecatia extends Mob {
 
     {
-        spriteClass = AunnSprite.class;
+        spriteClass = HecatiaSprite.class;
 
         HP = HT = 200;
         defenseSkill = 30;
@@ -34,7 +35,7 @@ public class BossHecatia extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(98), pos ).sprite.drop();
+        Dungeon.level.drop(new SkeletonKey(50), pos ).sprite.drop();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SakuyaDaggerTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakuyaSprite;
@@ -11,25 +12,25 @@ public class Sakuya extends Mob {
     {
         spriteClass = SakuyaSprite.class;
 
-        HP = HT = 99;
-        defenseSkill = 27;
+        HP = HT = 40;
+        defenseSkill = 15;
         EXP = 10;
-        maxLvl = 35;
+        maxLvl = 22;
 
         baseSpeed = 3f;
 
-        loot = new Swiftthistle.Seed();
+        loot = new LifeFragment();
         lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(16, 21);
+        return Random.NormalIntRange(5, 10);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 32;
+        return 20;
     }
 
     @Override

@@ -141,16 +141,6 @@ public class Statistics {
 	public static boolean boss8 = false;
 	public static boolean boss9 = false;
 	public static boolean boss10 = false;
-	public static boolean boss11 = false;
-	public static boolean boss12 = false;
-	public static boolean boss13 = false;
-	public static boolean boss14 = false;
-	public static boolean boss15 = false;
-	public static boolean boss16 = false;
-	public static boolean boss17 = false;
-	public static boolean boss18 = false;
-	public static boolean boss19 = false;
-	public static boolean boss20 = false;
 
 	//ability cards
 	public static boolean card1 = false;
@@ -209,11 +199,7 @@ public class Statistics {
 	public static boolean card53 = false;
 	public static boolean card54 = false;
 	public static boolean card55 = false;
-	public static boolean card56 = false;
-	public static boolean card57 = false;
 	public static boolean card58 = false;
-	public static boolean card59 = false;
-	public static boolean card60 = false;
 	public static boolean card61 = false;
 	public static boolean card62 = false;
 	public static boolean card63 = false;
@@ -302,7 +288,7 @@ public class Statistics {
 
 		power = 100;
 		value = 0;
-		life = 0;
+		life = 8;
 		lifefragment = 0;
 		spellcard = 0;
 		spellcardfragment = 0;
@@ -349,16 +335,6 @@ public class Statistics {
 		boss8 = false;
 		boss9 = false;
 		boss10 = false;
-		boss11 = false;
-		boss12 = false;
-		boss13 = false;
-		boss14 = false;
-		boss15 = false;
-		boss16 = false;
-		boss17 = false;
-		boss18 = false;
-		boss19 = false;
-		boss20 = false;
 
 		card1 = false;
 		card2 = false;
@@ -416,11 +392,7 @@ public class Statistics {
 		card53 = false;
 		card54 = false;
 		card55 = false;
-		card56 = false;
-		card57 = false;
 		card58 = false;
-		card59 = false;
-		card60 = false;
 		card61 = false;
 		card62 = false;
 		card63 = false;
@@ -553,16 +525,6 @@ public class Statistics {
 	private static final String BOSS8		= "boss8";
 	private static final String BOSS9		= "boss9";
 	private static final String BOSS10		= "boss10";
-	private static final String BOSS11		= "boss11";
-	private static final String BOSS12		= "boss12";
-	private static final String BOSS13		= "boss13";
-	private static final String BOSS14		= "boss14";
-	private static final String BOSS15		= "boss15";
-	private static final String BOSS16		= "boss16";
-	private static final String BOSS17		= "boss17";
-	private static final String BOSS18		= "boss18";
-	private static final String BOSS19		= "boss19";
-	private static final String BOSS20		= "boss20";
 
 	private static final String CARD1		= "card1";
 	private static final String CARD2		= "card2";
@@ -620,11 +582,7 @@ public class Statistics {
 	private static final String CARD53		= "card53";
 	private static final String CARD54		= "card54";
 	private static final String CARD55	    = "card55";
-	private static final String CARD56		= "card56";
-	private static final String CARD57		= "card57";
 	private static final String CARD58		= "card58";
-	private static final String CARD59		= "card59";
-	private static final String CARD60		= "card60";
 	private static final String CARD61		= "card61";
 	private static final String CARD62		= "card62";
 	private static final String CARD63		= "card63";
@@ -722,16 +680,6 @@ public class Statistics {
 		bundle.put( BOSS8,	boss8 );
 		bundle.put( BOSS9,	boss9 );
 		bundle.put( BOSS10,	boss10 );
-		bundle.put( BOSS11,	boss11 );
-		bundle.put( BOSS12,	boss12 );
-		bundle.put( BOSS13,	boss13 );
-		bundle.put( BOSS14,	boss14 );
-		bundle.put( BOSS15,	boss15 );
-		bundle.put( BOSS16,	boss16 );
-		bundle.put( BOSS17,	boss17 );
-		bundle.put( BOSS18,	boss18 );
-		bundle.put( BOSS19,	boss19 );
-		bundle.put( BOSS20,	boss20 );
 
 		bundle.put( CARD1,	card1 );
 		bundle.put( CARD2,	card2 );
@@ -789,11 +737,7 @@ public class Statistics {
 		bundle.put( CARD53,	card53 );
 		bundle.put( CARD54,	card54 );
 		bundle.put( CARD55,	card55 );
-		bundle.put( CARD56,	card56 );
-		bundle.put( CARD57,	card57 );
 		bundle.put( CARD58,	card58 );
-		bundle.put( CARD59,	card59 );
-		bundle.put( CARD60,	card60 );
 		bundle.put( CARD61,	card61 );
 		bundle.put( CARD62,	card62 );
 		bundle.put( CARD63,	card63 );
@@ -971,16 +915,6 @@ public class Statistics {
 		boss8	= bundle.getBoolean( BOSS8 );
 		boss9	= bundle.getBoolean( BOSS9 );
 		boss10  = bundle.getBoolean( BOSS10 );
-		boss11	= bundle.getBoolean( BOSS11 );
-		boss12	= bundle.getBoolean( BOSS12 );
-		boss13	= bundle.getBoolean( BOSS13 );
-		boss14	= bundle.getBoolean( BOSS14 );
-		boss15	= bundle.getBoolean( BOSS15 );
-		boss16	= bundle.getBoolean( BOSS16 );
-		boss17	= bundle.getBoolean( BOSS17 );
-		boss18	= bundle.getBoolean( BOSS18 );
-		boss19	= bundle.getBoolean( BOSS19 );
-		boss20	= bundle.getBoolean( BOSS20 );
 
 		card1	= bundle.getBoolean( CARD1 );
 		card2	= bundle.getBoolean( CARD2 );
@@ -1038,11 +972,7 @@ public class Statistics {
 		card53	= bundle.getBoolean( CARD53 );
 		card54	= bundle.getBoolean( CARD54 );
 		card55  = bundle.getBoolean( CARD55 );
-		card56	= bundle.getBoolean( CARD56 );
-		card57	= bundle.getBoolean( CARD57 );
 		card58	= bundle.getBoolean( CARD58 );
-		card59	= bundle.getBoolean( CARD59 );
-		card60	= bundle.getBoolean( CARD60 );
 		card61	= bundle.getBoolean( CARD61 );
 		card62	= bundle.getBoolean( CARD62 );
 		card63	= bundle.getBoolean( CARD63 );

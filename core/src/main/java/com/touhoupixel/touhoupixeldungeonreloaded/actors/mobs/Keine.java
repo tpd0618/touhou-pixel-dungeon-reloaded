@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.PurityHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -19,23 +20,23 @@ public class Keine extends Mob {
     {
         spriteClass = KeineSprite.class;
 
-        HP = HT = 107;
-        defenseSkill = 22;
+        HP = HT = 39;
+        defenseSkill = 12;
         EXP = 9;
-        maxLvl = 30;
+        maxLvl = 20;
 
-        loot = new ScrollOfSirensSong();
-        lootChance = 0.125f;
+        loot = new PurityHerb();
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 15);
+        return Random.NormalIntRange(3, 8);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 17;
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Keine extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (hero.HT/2 < hero.HP && Random.Int(4) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && hero.HT/2 < hero.HP && Random.Int(4) == 0) {
             Statistics.playercorruption += 1;
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             GLog.w(Messages.get(Potion.class, "corruption"));

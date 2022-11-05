@@ -33,7 +33,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Elas
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TenguDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
@@ -66,13 +65,6 @@ public class WandOfBlastWave extends DamageWand {
 	public void onZap(Ballistica bolt) {
 		Sample.INSTANCE.play( Assets.Sounds.BLAST );
 		BlastWave.blast(bolt.collisionPos);
-
-		//presses all tiles in the AOE first, with the exception of tengu dart traps
-		for (int i : PathFinder.NEIGHBOURS9){
-			if (!(Dungeon.level.traps.get(bolt.collisionPos+i) instanceof TenguDartTrap)) {
-				Dungeon.level.pressCell(bolt.collisionPos + i);
-			}
-		}
 
 		//throws other chars around the center.
 		for (int i  : PathFinder.NEIGHBOURS8){

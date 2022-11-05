@@ -30,7 +30,7 @@ public class SakuyaDagger extends Mob {
 
     @Override
     public int attackSkill(Char target) {
-        return 32;
+        return 10;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class SakuyaDagger extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        Buff.affect(enemy, Bleeding.class).set(3);
+        Buff.affect(enemy, Bleeding.class).set(2);
         destroy();
         sprite.die();
         Sample.INSTANCE.play( Assets.Sounds.BLAST );

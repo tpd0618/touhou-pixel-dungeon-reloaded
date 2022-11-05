@@ -34,7 +34,7 @@ public class HakureiHolder extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Tailsman || item instanceof Herb){
+		if (item instanceof Herb){
 			return super.canHold(item);
 		} else {
 			return false;

@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.painters;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Wandmaker;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
@@ -34,14 +33,6 @@ public class PrisonPainter extends RegularPainter {
 	
 	@Override
 	protected void decorate(Level level, ArrayList<Room> rooms) {
-		
-		for (Room r : rooms) {
-			if (r instanceof EntranceRoom) {
-				Wandmaker.Quest.spawnWandmaker(level, r);
-				break;
-			}
-		}
-		
 		int w = level.width();
 		int l = level.length();
 		int[] map = level.map;

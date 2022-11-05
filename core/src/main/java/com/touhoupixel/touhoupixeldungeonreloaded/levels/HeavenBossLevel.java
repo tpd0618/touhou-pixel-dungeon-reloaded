@@ -45,6 +45,8 @@ import java.util.ArrayList;
 public class HeavenBossLevel extends HakureiShrineLevel {
 
 	{
+		viewDistance = 8;
+
 		color1 = 0x48763c;
 		color2 = 0x59994a;
 	}

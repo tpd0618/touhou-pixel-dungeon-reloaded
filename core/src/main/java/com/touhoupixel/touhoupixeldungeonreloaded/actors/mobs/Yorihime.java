@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -32,36 +33,31 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YorihimeSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class Yorihime extends Mob {
-	
+
 	{
 		spriteClass = YorihimeSprite.class;
 
-		if (Dungeon.depth > 50){
-			HP = HT = 1000;
-		} else HP = HT = 300;
-
-		if (Dungeon.depth > 50){
-			defenseSkill = 100;
-		} else defenseSkill = 50;
-
-		if (Dungeon.depth > 50){
-			EXP = 75;
-		} else EXP = 25;
-
-		if (Dungeon.depth > 50){
-			maxLvl = 99;
-		} else maxLvl = 50;
+		HP = HT = 500;
+		defenseSkill = 50;
+		EXP = 25;
+		maxLvl = 99;
 
 		flying = true;
-
-		properties.add(Property.FLOAT);
-		properties.add(Property.GOD);
-		properties.add(Property.FIRE);
 
 		baseSpeed = 0.8f;
 
@@ -70,26 +66,15 @@ public class Yorihime extends Mob {
 	}
 
 	@Override
-	public void die( Object cause ) {
-		super.die( cause );
-
-		Statistics.yorihimesKilled++;
-	}
-
-	@Override
 	public int damageRoll() {
-		if (Dungeon.depth > 50) {
-			return Random.NormalIntRange(60, 76);
-		} else return Random.NormalIntRange(30, 38);
+		return Random.NormalIntRange(40, 50);
 	}
 
 	@Override
 	public int attackSkill(Char target) {
-		if (Dungeon.depth > 50) {
-			return 120;
-		} else return 55;
+		return 75;
 	}
-	
+
 	@Override
 	public int drRoll() {
 		return Random.NormalIntRange(0, 2);
@@ -98,16 +83,9 @@ public class Yorihime extends Mob {
 	@Override
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
-		if (Random.Int( 2 ) == 0) {
-			Buff.prolong( enemy, Weakness.class, Weakness.DURATION );
-			Buff.prolong( enemy, Vulnerable.class, Vulnerable.DURATION );
-			Buff.prolong( enemy, Hex.class, Hex.DURATION );
-			Buff.prolong( enemy, Blindness.class, Blindness.DURATION );
-			Buff.affect( enemy, Burning.class ).reignite(enemy, 3f);
-			Buff.prolong( enemy, Cripple.class, Cripple.DURATION );
-			Buff.prolong( enemy, Slow.class, Slow.DURATION );
+		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+			new DisarmingTrap().set(enemy.pos).activate();
 		}
-
 		return damage;
 	}
 }

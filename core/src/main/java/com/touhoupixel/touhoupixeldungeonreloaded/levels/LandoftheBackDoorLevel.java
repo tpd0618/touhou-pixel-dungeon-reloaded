@@ -62,7 +62,7 @@ import com.watabou.utils.Random;
 public class LandoftheBackDoorLevel extends RegularLevel {
 
 	{
-		viewDistance = 3;
+		viewDistance = 8;
 
 		color1 = 0x4b6636;
 		color2 = 0xf2f2f2;
@@ -117,7 +117,7 @@ public class LandoftheBackDoorLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class, DegradeTrap.class,

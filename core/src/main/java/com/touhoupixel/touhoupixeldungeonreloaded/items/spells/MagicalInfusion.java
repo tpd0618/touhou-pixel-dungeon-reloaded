@@ -26,8 +26,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -49,7 +49,7 @@ public class MagicalInfusion extends InventorySpell {
 	@Override
 	protected void onItemSelected( Item item ) {
 
-		ScrollOfUpgrade.upgrade(curUser);
+		UpgradeCard.upgrade(curUser);
 
 		Degrade.detach( curUser, Degrade.class );
 
@@ -75,7 +75,7 @@ public class MagicalInfusion extends InventorySpell {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{ScrollOfUpgrade.class, ArcaneCatalyst.class};
+			inputs =  new Class[]{UpgradeCard.class, ArcaneCatalyst.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 4;

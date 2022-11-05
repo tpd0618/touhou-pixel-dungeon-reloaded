@@ -12,25 +12,25 @@ public class Hatate extends Mob {
     {
         spriteClass = HatateSprite.class;
 
-        HP = HT = 131;
-        defenseSkill = 32;
+        HP = HT = 62;
+        defenseSkill = 17;
         EXP = 12;
-        maxLvl = 40;
+        maxLvl = 25;
 
         flying = true;
 
         loot = Generator.Category.SCROLL;
-        lootChance = 0.15f;
+        lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(24, 29);
+        return Random.NormalIntRange(7, 10);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 37;
+        return 22;
     }
 
     @Override

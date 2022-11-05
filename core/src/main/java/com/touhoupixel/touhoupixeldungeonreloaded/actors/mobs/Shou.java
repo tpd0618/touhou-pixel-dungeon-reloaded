@@ -46,17 +46,17 @@ public class Shou extends Mob {
 	{
 		spriteClass = ShouSprite.class;
 
-		HP = HT = 181;
-		defenseSkill = 42;
-		EXP = 8;
-		maxLvl = 50;
+		HP = HT = 189;
+		defenseSkill = 22;
+		EXP = 13;
+		maxLvl = 30;
 
 		viewDistance = Light.DISTANCE;
 
 		HUNTING = new Hunting();
 
 		loot = Generator.Category.RING;
-		lootChance = 0.02f;
+		lootChance = 0.03f;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class Shou extends Mob {
 
 	@Override
 	public int attackSkill(Char target) {
-		return 47;
+		return 27;
 	}
 
 	@Override

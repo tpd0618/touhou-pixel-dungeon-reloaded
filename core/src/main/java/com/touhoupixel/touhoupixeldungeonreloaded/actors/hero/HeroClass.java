@@ -25,12 +25,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.SpellcardCaster;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
@@ -41,23 +45,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CalmHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HealHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HomingHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.NightHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfTriplespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfEquipmentIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSanctuary;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.MagicalInfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SanaeExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
@@ -91,16 +88,9 @@ public enum HeroClass {
 		NitoDismantleHammer nitofusion = new NitoDismantleHammer();
 		nitofusion.collect();
 
-		//test//
-		RandomStar randomstar = new RandomStar();
-		randomstar.identify().collect();
+		//test, too many will make the bug for the game
 
-		EveKeyboard randomsta2r = new EveKeyboard();
-		randomsta2r.identify().collect();
-
-		ArisaKeyboard randomstar3 = new ArisaKeyboard();
-		randomstar3.identify().collect();
-		//test//
+		//test, too many will make the bug for the game
 
 		HealHerb healherb = new HealHerb();
 		healherb.collect();
@@ -116,9 +106,6 @@ public enum HeroClass {
 		new HakureiHolder().collect();
 		new VelvetPouch().collect();
 		new CardHolder().collect();
-
-		new PotionOfStrength().identify();
-		new ScrollOfUpgrade().identify();
 
 		switch (this) {
 			case PLAYERREIMU:

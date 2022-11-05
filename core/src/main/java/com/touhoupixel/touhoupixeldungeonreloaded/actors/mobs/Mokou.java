@@ -7,6 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfDragonsBlood;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MokouSprite;
 import com.watabou.utils.Random;
 
@@ -15,27 +16,27 @@ public class Mokou extends Mob {
     {
         spriteClass = MokouSprite.class;
 
-        HP = HT = 93;
-        defenseSkill = 22;
-        EXP = 9;
-        maxLvl = 30;
-
-        loot = new LifeFragment();
-        lootChance = 0.05f;
+        HP = HT = 36;
+        defenseSkill = 12;
+        EXP = 10;
+        maxLvl = 20;
 
         properties.add(Property.ELIXIR);
 
-        immunities.add( Fire.class );
+        loot = new LifeFragment();
+        lootChance = 0.15f;
+
+        immunities.add(Fire.class);
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(10, 14);
+        return Random.NormalIntRange(3, 8);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 17;
     }
 
     @Override

@@ -22,19 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TenguDartTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.PathFinder;
-
-import java.util.ArrayList;
 
 public class EikiDanmaku extends MissileWeapon {
 
@@ -48,7 +37,7 @@ public class EikiDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return (3 + Statistics.enemiesSlain / 1000) * tier +
-				(tier) * lvl;
+		return (3+Statistics.enemiesSlain/1000)*tier +
+				(tier)*lvl;
 	}
 }

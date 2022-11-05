@@ -41,8 +41,8 @@ public class RiceDanmaku extends MissileWeapon {
 	}
 
 	@Override
-	public int proc(Char attacker, Char defender, int damage ) {
-		Buff.prolong(attacker, Light.class, Light.DURATION/50f);
-		return super.proc( attacker, defender, damage );
+	public int max(int lvl) {
+		return 5 * tier +                  //16 base, down from 20
+				(tier) * lvl;               //scaling unchanged
 	}
 }

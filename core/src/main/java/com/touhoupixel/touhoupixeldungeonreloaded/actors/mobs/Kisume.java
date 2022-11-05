@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -41,23 +42,23 @@ public class Kisume extends Mob implements Callback {
     {
         spriteClass = KisumeSprite.class;
 
-        HP = HT = 86;
-        defenseSkill = 22;
-        EXP = 6;
-        maxLvl = 30;
+        HP = HT = 81;
+        defenseSkill = 25;
+        EXP = 13;
+        maxLvl = 32;
 
-        loot = new SpellcardFragment();
-        lootChance = 0.05f;
+        loot = new PotionOfLiquidFlame();
+        lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(12, 16);
+        return Random.NormalIntRange(8, 12);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 30;
     }
 
     @Override
@@ -97,10 +98,10 @@ public class Kisume extends Mob implements Callback {
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-                Buff.affect(enemy, Burning.class).reignite(enemy, 11f);
+                Buff.affect(enemy, Burning.class).reignite(enemy, 10f);
             }
 
-            int dmg = Random.NormalIntRange( 13, 18 );
+            int dmg = Random.NormalIntRange( 9, 14 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

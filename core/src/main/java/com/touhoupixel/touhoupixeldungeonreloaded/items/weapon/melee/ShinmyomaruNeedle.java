@@ -40,5 +40,4 @@ public class ShinmyomaruNeedle extends MeleeWeapon {
 		return  3*(tier+1) +    //12 base, down from 20
 				lvl*(tier);     //+3 per level, down from +4
 	}
-
 }

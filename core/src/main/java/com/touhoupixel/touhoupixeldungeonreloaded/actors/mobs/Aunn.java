@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.WriggleSprite;
@@ -16,20 +17,20 @@ public class Aunn extends Mob {
     {
         spriteClass = AunnSprite.class;
 
-        HP = HT = 9;
+        HP = HT = 8;
         defenseSkill = 2;
         EXP = 1;
         maxLvl = 10;
 
         flying = true;
 
-        loot = SpellcardFragment.class;
-        lootChance = 0.1f;
+        loot = LifeFragment.class;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 5);
+        return Random.NormalIntRange(1, 4);
     }
 
     @Override

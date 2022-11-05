@@ -83,10 +83,6 @@ public abstract class Scroll extends Item {
 			put("BERKANAN",ItemSpriteSheet.SCROLL_BERKANAN);
 			put("ODAL",ItemSpriteSheet.SCROLL_ODAL);
 			put("TIWAZ",ItemSpriteSheet.SCROLL_TIWAZ);
-			put("GENSOKYO",ItemSpriteSheet.SCROLL_GENSOKYO);
-			put("ZUN",ItemSpriteSheet.SCROLL_ZUN);
-			put("DANMAKU",ItemSpriteSheet.SCROLL_DANMAKU);
-			put("FUMO",ItemSpriteSheet.SCROLL_FUMO);
 		}
 	};
 	
@@ -301,7 +297,7 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfTeleportation.class, StoneOfBlink.class);
 			stones.put(ScrollOfTerror.class,        StoneOfFear.class);
 			stones.put(ScrollOfTransmutation.class, StoneOfAugmentation.class);
-			stones.put(ScrollOfUpgrade.class,       StoneOfEnchantment.class);
+			stones.put(ScrollOfFixer.class,       StoneOfEnchantment.class);
 		}
 		
 		@Override

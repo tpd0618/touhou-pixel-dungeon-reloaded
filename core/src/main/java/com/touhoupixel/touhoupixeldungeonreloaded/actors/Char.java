@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
@@ -57,7 +56,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriAdvent;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
@@ -66,7 +64,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SnipersMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
@@ -432,17 +429,10 @@ public abstract class Char extends Actor {
             damage = 1;
         }
         if (buff(Might.class) != null ) {
-            if (Statistics.card20) {
-                damage *= 2f;
-            } else damage *= 1.25f;
+            damage *= 1.25f;
         }
         if (buff(Hisou.class) != null && !enemy.flying ){
-            if (Statistics.card21) {
-                damage *= 2.5f;
-            } else damage *= 1.5f;
-        }
-        if (buff(NitoriAdvent.class) != null){
-            damage *= 1.4f;
+            damage *= 1.5f;
         }
         if (buff(YuukaRage.class) != null){
             damage += 100;
@@ -631,14 +621,8 @@ public abstract class Char extends Actor {
         } else if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
         }
-        if (buff( Doublespeed.class ) != null && buff( EquipmentIdentify.class ) == null && buff( Triplespeed.class ) == null) {
+        if (buff( Doublespeed.class ) != null) {
             timeScale *= 2.0f;
-        }
-        if (buff( NitoriAdvent.class ) != null && buff( EquipmentIdentify.class ) == null) {
-            timeScale *= 2.5f;
-        }
-        if (buff( Triplespeed.class ) != null && buff( EquipmentIdentify.class ) == null) {
-            timeScale *= 3.0f;
         }
 
         super.spend( time / timeScale );

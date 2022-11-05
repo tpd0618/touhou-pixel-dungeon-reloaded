@@ -36,13 +36,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NitoriAdvent;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
@@ -60,9 +57,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
@@ -71,7 +65,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
-import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
@@ -201,7 +194,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 
-		if (Dungeon.isChallenged(Challenges.KOKORO_MINDGAME) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
+		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
 			switch (Random.Int(4)) {
 				case 0:
 				default:
@@ -631,7 +624,11 @@ public abstract class Mob extends Char {
 	public int attackProc( Char enemy, int damage ) {
 
 		if (Dungeon.hero.buff( NightTime.class ) != null && Dungeon.hero.buff( Light.class ) == null){
-			damage *= 2;
+			if (Dungeon.isChallenged(Challenges.RINGING_BLOOM)) {
+				damage *= 3;
+			} else {
+				damage *= 2;
+			}
 		}
 
 		if (this instanceof Nazrin && Dungeon.gold > 200){
@@ -650,32 +647,9 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		for (int i : PathFinder.NEIGHBOURS8) {
-			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-				if (this instanceof Miko && enemy.pos == this.pos + i) {
-					damage *= 1.2f;
-				}
-			}
-		}
-
-		for (int i : PathFinder.NEIGHBOURS4) {
-			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-				if (Dungeon.isChallenged(Challenges.FLANDRE_GAZE) && !(this.HP == this.HT) && buff(FlandreMark.class) == null && enemy.pos == this.pos + i) {
-					this.HP = Math.min(this.HP + damage * 10, this.HT);
-					Buff.prolong(this, FlandreMark.class, FlandreMark.DURATION);
-				}
-			}
-		}
-
-		if (Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 ||
-				Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 ||
-				Dungeon.isChallenged(Challenges.NITORI_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0){
-			Buff.prolong(this, NitoriAdvent.class, NitoriAdvent.DURATION);
-		}
-
 		damage += Statistics.timetrackstrup/48;
 
-		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)) {
+		if (Dungeon.isChallenged(Challenges.MUENZUKA_FORCE)) {
 			damage += Statistics.playercorruption + Statistics.enemiesSlain/100;
 		}
 		return damage;
@@ -782,14 +756,6 @@ public abstract class Mob extends Char {
 
 	@Override
 	public void die( Object cause ) {
-		if (Dungeon.isChallenged(Challenges.JUNKO_SANCTUARY)) {
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-					Buff.prolong(mob, OneDefDamage.class, OneDefDamage.DURATION/10f);
-				}
-			}
-		}
-
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			if (Dungeon.hero.buff(Powerful.class) == null) {
 				Statistics.power += 5;

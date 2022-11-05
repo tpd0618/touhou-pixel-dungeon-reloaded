@@ -74,28 +74,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.NightHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HomingHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHina;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfReisen;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfCirno;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFlamePower;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrostPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightReverse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
@@ -111,6 +105,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshootin
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -122,7 +117,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribut
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
@@ -145,7 +139,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ExplosionTails
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FlandreTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FogpurgeTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ImpedeTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.JudgementTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.VertigoTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.OkinaTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.MystiaTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SwapTailsman;
@@ -164,8 +158,27 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RanTail;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RingoDango;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SagumeWing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YoumuSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoakumaWing;
@@ -192,6 +205,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallYingYa
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.GoldenExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShinmyomaruNeedle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukinaMic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YuukaUmbrella;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YuyukoFoldingFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.AyaDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KunaiDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MedicineDanmaku;
@@ -313,7 +329,6 @@ public class Generator {
 			GOLD.probs = new float[]{ 1 };
 
 			POTION.classes = new Class<?>[]{
-					PotionOfStrength.class, //2 drop every chapter, see Dungeon.posNeeded()
 					PotionOfHealing.class,
 					PotionOfMindVision.class,
 					PotionOfFrost.class,
@@ -329,15 +344,10 @@ public class Generator {
 					PotionOfMight.class,
 					PotionOfDoublespeed.class,
 					PotionOfLightHealing.class,
-					PotionOfCirno.class,
-					PotionOfHina.class,
-					PotionOfReisen.class,
-					PotionOfFlamePower.class,
-					PotionOfFrostPower.class,
-					PotionOfLightReverse.class,
-					PotionOfKomachi.class,
+					PotionOfLignification.class,
+					PotionOfDanmaku.class,
 					PotionOfYingYang.class};
-			POTION.defaultProbs = new float[]{ 0, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 };
+			POTION.defaultProbs = new float[]{ 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -357,7 +367,7 @@ public class Generator {
 			SEED.probs = SEED.defaultProbs.clone();
 
 			SCROLL.classes = new Class<?>[]{
-					ScrollOfUpgrade.class, //3 drop every chapter, see Dungeon.souNeeded()
+					ScrollOfFixer.class,
 					ScrollOfIdentify.class,
 					ScrollOfRemoveCurse.class,
 					ScrollOfMirrorImage.class,
@@ -370,12 +380,12 @@ public class Generator {
 					ScrollOfTerror.class,
 					ScrollOfTransmutation.class
 			};
-			SCROLL.defaultProbs = new float[]{ 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			SCROLL.defaultProbs = new float[]{ 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
-					StoneOfEnchantment.class,   //1 is guaranteed to drop on floors 6-19
-					StoneOfIntuition.class,     //1 additional stone is also dropped on floors 1-3
+					StoneOfEnchantment.class,
+					StoneOfIntuition.class,
 					StoneOfDisarming.class,
 					StoneOfFlock.class,
 					StoneOfShock.class,
@@ -400,7 +410,7 @@ public class Generator {
 					ImpedeTailsman.class,
 					SwapTailsman.class,
 					DebilitationTailsman.class,
-					JudgementTailsman.class,
+					VertigoTailsman.class,
 					FlandreTailsman.class,
 					MystiaTailsman.class,
 					OkinaTailsman.class,
@@ -432,6 +442,9 @@ public class Generator {
 					ReimuExorcismRod.class,
 					SanaeExorcismRod.class,
 					KoishiDagger.class,
+					//SmallSeiranHammer.class,
+					//HinaRibbon.class,
+					//HisoutenMankind.class,
 					MarisaStaff.class
 			};
 			WEP_T1.probs = new float[]{ 1, 1, 1, 0 };
@@ -441,9 +454,12 @@ public class Generator {
 					KogasaUmbrella.class,
 					Radio.class,
 					MystiaWing.class,
-					KoakumaWing.class
+					KoakumaWing.class,
+					RingoDango.class,
+					SilkyHair.class,
+					KyoukoBroom.class
 			};
-			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4 };
+			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4 };
 
 			WEP_T3.classes = new Class<?>[]{
 					SmallYingYangOrb.class,
@@ -451,9 +467,11 @@ public class Generator {
 					PaleSword.class,
 					YoumuHalfPhantom.class,
 					SkySword.class,
-					ShinmyomaruNeedle.class
+					ShinmyomaruNeedle.class,
+					AlchemySword.class,
+					WatermelonSword.class
 			};
-			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4 };
+			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4 };
 
 			WEP_T4.classes = new Class<?>[]{
 					MediumYingYangOrb.class,
@@ -461,9 +479,13 @@ public class Generator {
 					CirnoWing.class,
 					RemiliaWing.class,
 					RanTail.class,
-					YukariUmbrella.class
+					YukariUmbrella.class,
+					YuukaUmbrella.class,
+					MurasaDipper.class,
+					YachieHorn.class,
+					YuyukoFoldingFan.class
 			};
-			WEP_T4.probs = new float[]{ 6, 5, 5, 4, 4, 4 };
+			WEP_T4.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T5.classes = new Class<?>[]{
 					BigYingYangOrb.class,
@@ -471,9 +493,22 @@ public class Generator {
 					TenguSmartphone.class,
 					SeiranHammer.class,
 					JunkoSword.class,
-					AyaFan.class
+					AyaFan.class,
+					YoumuSword.class,
+					SevenStarSword.class,
+					PortablePhoenixTail.class,
+					ChimataCloak.class,
+					Grayswandir.class,
+					FullMoonScythe.class,
+					SagumeWing.class,
+					HoshigumaHorn.class,
+					HorouBook.class,
+					RandomStar.class,
+					ArisaKeyboard.class,
+					EveKeyboard.class,
+					YukinaMic.class
 			};
-			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};
@@ -618,22 +653,12 @@ public class Generator {
 	private static final float[][] floorSetTierProbs = new float[][] {
 			{0, 75, 20,  4,  0},
 			{0, 75, 20,  4,  0},
-			{0, 75, 20,  4,  0},
 			{0, 25, 50, 20,  5},
 			{0, 25, 50, 20,  5},
-			{0, 25, 50, 20,  5},
-			{0,  0, 40, 50, 10},
-			{0,  0, 40, 50, 10},
 			{0,  0, 40, 50, 10},
 			{0,  0, 40, 50, 10},
 			{0,  0, 20, 40, 40},
 			{0,  0, 20, 40, 40},
-			{0,  0, 20, 40, 40},
-			{0,  0, 20, 40, 40},
-			{0,  0, 20, 40, 40},
-			{0,  0,  0, 20, 80},
-			{0,  0,  0, 20, 80},
-			{0,  0,  0, 20, 80},
 			{0,  0,  0, 20, 80},
 			{0,  0,  0, 20, 80}
 	};

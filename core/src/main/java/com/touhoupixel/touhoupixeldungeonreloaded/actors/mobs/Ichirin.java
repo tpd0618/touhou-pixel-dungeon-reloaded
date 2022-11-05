@@ -47,13 +47,13 @@ public class Ichirin extends Mob implements Callback {
     {
         spriteClass = IchirinSprite.class;
 
-        HP = HT = 173;
-        defenseSkill = 42;
-        EXP = 8;
-        maxLvl = 50;
+        HP = HT = 151;
+        defenseSkill = 22;
+        EXP = 13;
+        maxLvl = 30;
 
-        loot = new SpellcardFragment();
-        lootChance = 0.05f;
+        loot = new PotionOfHealing();
+        lootChance = 0.1f;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Ichirin extends Mob implements Callback {
 
     @Override
     public int attackSkill(Char target) {
-        return 47;
+        return 27;
     }
 
     @Override

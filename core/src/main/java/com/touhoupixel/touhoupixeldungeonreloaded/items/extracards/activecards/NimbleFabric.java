@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ActiveCooldown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
@@ -68,7 +69,7 @@ public class NimbleFabric extends ActiveCards {
             if (hero.buff(ActiveCooldown.class) == null) {
                 GameScene.flash(0x80FFFFFF);
                 Buff.prolong(hero, ActiveCooldown.class, ActiveCooldown.DURATION);
-                Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION);
+                Buff.prolong(hero, HomingBlade.class, HomingBlade.DURATION/2f);
             }
         }
     }

@@ -22,17 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -99,7 +95,7 @@ public class Item implements Bundlable {
 			return Generator.Category.order( lhs ) - Generator.Category.order( rhs );
 		}
 	};
-	
+
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = new ArrayList<>();
 		actions.add( AC_DROP );
@@ -142,28 +138,28 @@ public class Item implements Bundlable {
 	public void doThrow( Hero hero ) {
 		GameScene.selectCell(thrower);
 	}
-	
+
 	public void execute( Hero hero, String action ) {
 
 		GameScene.cancel();
 		curUser = hero;
 		curItem = this;
-		
+
 		if (action.equals( AC_DROP )) {
-			
+
 			if (hero.belongings.backpack.contains(this) || isEquipped(hero)) {
 				doDrop(hero);
 			}
-			
+
 		} else if (action.equals( AC_THROW )) {
-			
+
 			if (hero.belongings.backpack.contains(this) || isEquipped(hero)) {
 				doThrow(hero);
 			}
-			
+
 		}
 	}
-	
+
 	public void execute( Hero hero ) {
 		execute( hero, defaultAction );
 	}
@@ -347,6 +343,15 @@ public class Item implements Bundlable {
 		
 		return this;
 	}
+
+	public Item downgrade() {
+
+		this.level--;
+
+		updateQuickslot();
+
+		return this;
+	}
 	
 	final public Item upgrade( int n ) {
 		for (int i=0; i < n; i++) {
@@ -382,7 +387,7 @@ public class Item implements Bundlable {
 	public boolean visiblyCursed() {
 		return cursed && cursedKnown;
 	}
-	
+
 	public boolean isUpgradable() {
 		return true;
 	}
@@ -408,7 +413,7 @@ public class Item implements Bundlable {
 		levelKnown = true;
 		cursedKnown = true;
 		Item.updateQuickslot();
-		
+
 		return this;
 	}
 	

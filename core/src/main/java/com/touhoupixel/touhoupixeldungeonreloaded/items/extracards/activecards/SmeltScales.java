@@ -68,7 +68,7 @@ public class SmeltScales extends ActiveCards {
             if (hero.buff(ActiveCooldown.class) == null) {
                 GameScene.flash(0x80FFFFFF);
                 Buff.prolong(hero, ActiveCooldown.class, ActiveCooldown.DURATION);
-                Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
+                Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION/2f);
             }
         }
     }

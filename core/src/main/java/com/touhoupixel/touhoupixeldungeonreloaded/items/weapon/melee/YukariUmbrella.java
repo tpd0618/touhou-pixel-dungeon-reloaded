@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class YukariUmbrella extends MeleeWeapon {
 	
 	{
-		image = ItemSpriteSheet.YUKARIUMBRELLA;
+		image = ItemSpriteSheet.YUKARI_UMBRELLA;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 		
@@ -38,7 +38,7 @@ public class YukariUmbrella extends MeleeWeapon {
 	
 	@Override
 	public int max(int lvl) {
-		return  4*(tier+1) +    //20 base, down from 25
-				lvl*(tier);     //+4 per level, down from +5
+		return  4*(tier+1) +
+				lvl*(tier);
 	}
 }

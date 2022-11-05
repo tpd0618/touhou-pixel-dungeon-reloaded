@@ -13,7 +13,7 @@ public class Wriggle extends Mob {
     {
         spriteClass = WriggleSprite.class;
 
-        HP = HT = 12;
+        HP = HT = 8;
         defenseSkill = 2;
         EXP = 1;
         maxLvl = 10;
@@ -21,7 +21,7 @@ public class Wriggle extends Mob {
         flying = true;
 
         loot = SpellcardFragment.class;
-        lootChance = 0.1f;
+        lootChance = 0.15f;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Wriggle extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            Buff.prolong(enemy, Light.class, Light.DURATION / 10f);
+            Buff.prolong(enemy, Light.class, Light.DURATION/10f);
         }
         return damage;
     }

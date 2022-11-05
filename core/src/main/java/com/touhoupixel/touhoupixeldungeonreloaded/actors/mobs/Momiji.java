@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MomijiSprite;
 import com.watabou.utils.Random;
@@ -10,25 +11,25 @@ public class Momiji extends Mob {
     {
         spriteClass = MomijiSprite.class;
 
-        HP = HT = 147;
-        defenseSkill = 32;
+        HP = HT = 65;
+        defenseSkill = 17;
         EXP = 11;
-        maxLvl = 40;
+        maxLvl = 25;
 
         viewDistance = 10000;
 
-        loot = new PotionOfMindVision();
-        lootChance = 0.15f;
+        loot = Generator.Category.POTION;
+        lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(26, 30);
+        return Random.NormalIntRange(5, 11);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 37;
+        return 22;
     }
 
     @Override

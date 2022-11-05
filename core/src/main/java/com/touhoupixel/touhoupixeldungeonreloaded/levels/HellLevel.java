@@ -65,7 +65,7 @@ import java.util.ArrayList;
 public class HellLevel extends RegularLevel {
 
 	{
-		viewDistance = 1;
+		viewDistance = 8;
 		
 		color1 = 0x801500;
 		color2 = 0xa68521;
@@ -127,7 +127,7 @@ public class HellLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class, DegradeTrap.class,

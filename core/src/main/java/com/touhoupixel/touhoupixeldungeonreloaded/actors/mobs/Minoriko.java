@@ -1,36 +1,80 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015 Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2021 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MinorikoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Minoriko extends Mob {
 
+    public Item item;
+
     {
-        spriteClass = AyaSprite.class;
+        spriteClass = MinorikoSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = 98;
+        defenseSkill = 27;
+        EXP = 15;
+        maxLvl = 35;
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        WANDERING = new Wandering();
+        FLEEING = new Fleeing();
+
+        loot = new Food();
+        lootChance = 0.1f;
+    }
+
+    private static final String ITEM = "item";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(ITEM, item);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        item = (Item) bundle.get(ITEM);
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(10, 18);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 32;
     }
 
     @Override
@@ -39,15 +83,33 @@ public class Minoriko extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
+    public int attackProc(Char enemy, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            }
+        if (alignment == Alignment.ENEMY && item == null && enemy instanceof Hero && steal((Hero) enemy)) {
+            state = WANDERING;
+            Food food = new Food();
+            food.collect();
         }
         return damage;
+    }
+
+    protected boolean steal(Hero hero) {
+
+        Item toSteal = hero.belongings.randomUnequipped();
+
+        if (toSteal != null && !toSteal.unique && toSteal.level() < 1) {
+
+            GLog.w(Messages.get(Minoriko.class, "stole", toSteal.name()));
+            if (!toSteal.stackable) {
+                Dungeon.quickslot.convertToPlaceholder(toSteal);
+                Sample.INSTANCE.play( Assets.Sounds.CURSED );
+            }
+            Item.updateQuickslot();
+
+            item = toSteal.detach(hero.belongings.backpack);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

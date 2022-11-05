@@ -22,13 +22,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class ScrollOfEquipmentIdentify extends ExoticScroll {
 	
@@ -39,6 +36,7 @@ public class ScrollOfEquipmentIdentify extends ExoticScroll {
 	@Override
 	public void doRead() {
 		Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION);
+		GLog.p(Messages.get(this, "equipmentidentify"));
 
 		identify();
 		readAnimation();

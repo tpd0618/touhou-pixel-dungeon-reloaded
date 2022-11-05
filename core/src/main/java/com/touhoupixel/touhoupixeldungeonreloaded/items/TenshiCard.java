@@ -2,10 +2,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfNitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -24,7 +22,7 @@ public class TenshiCard extends Item {
     private static final String AC_DRINK = "DRINK";
 
     {
-        image = ItemSpriteSheet.THREE_STAR_TICKET;
+        image = ItemSpriteSheet.TENSHI_CARD;
 
         defaultAction = AC_DRINK;
 

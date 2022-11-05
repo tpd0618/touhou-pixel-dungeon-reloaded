@@ -284,6 +284,7 @@ public class Assets {
 		public static final String BENBEN = "sprites/benben.png";
 		public static final String YATSUHASHI = "sprites/yatsuhashi.png";
 		public static final String YUUMA = "sprites/yuuma.png";
+		public static final String YUYUKO = "sprites/yuyuko.png";
 		public static final String KOSUZU = "sprites/kosuzu.png";
 		public static final String JOON = "sprites/joon.png";
 		public static final String SHION = "sprites/shion.png";
@@ -294,7 +295,7 @@ public class Assets {
 		public static final String MISUMARU = "sprites/misumaru.png";
 		public static final String MINORIKO = "sprites/minoriko.png";
 		public static final String YACHIE = "sprites/yachie.png";
-		public static final String TENKYUU = "sprites/tenkyuu.png";
+		public static final String CHIMATA = "sprites/chimata.png";
 		public static final String EIKA = "sprites/eika.png";
 		public static final String MOKOU = "sprites/mokou.png";
 		public static final String NAZRIN = "sprites/nazrin.png";
@@ -315,7 +316,11 @@ public class Assets {
 		public static final String SHIZUHA = "sprites/shizuha.png";
 		public static final String SATORI = "sprites/satori.png";
 		public static final String KEIKI = "sprites/keiki.png";
+		public static final String RENKO = "sprites/renko.png";
+		public static final String REIMU = "sprites/reimu.png";
+		public static final String SANAE = "sprites/sanae.png";
 		public static final String KOMACHI = "sprites/komachi.png";
+		public static final String SEIRAN = "sprites/seiran.png";
 		public static final String IKU = "sprites/iku.png";
 		public static final String AYA = "sprites/aya.png";
 		public static final String SHINMYOMARU = "sprites/shinmyomaru.png";

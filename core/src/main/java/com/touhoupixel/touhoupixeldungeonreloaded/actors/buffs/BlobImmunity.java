@@ -35,7 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.StenchGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.StormCloud;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.ToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Web;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossAya;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.MagicalFireRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;

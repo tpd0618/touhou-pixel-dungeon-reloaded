@@ -21,10 +21,13 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
+import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 
 public class Regeneration extends Buff {
 	
@@ -43,7 +46,9 @@ public class Regeneration extends Buff {
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
-					target.HP += 1;
+					if (!(Dungeon.isChallenged(Challenges.SENSENFUKOKU) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0)) {
+						target.HP += 1;
+					}
 					if (target.HP == regencap()) {
 						((Hero) target).resting = false;
 					}

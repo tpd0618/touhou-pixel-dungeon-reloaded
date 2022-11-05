@@ -28,13 +28,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfStrength;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -122,8 +122,8 @@ public class Shopkeeper extends NPC {
 		if (item instanceof EquipmentCards)                                 return false;
 		if (item instanceof PassiveCards)                                   return false;
 		if (item.isIdentified() && item.level() > 0)                        return false;
-		if (item instanceof PotionOfStrength)                               return false;
-		if (item instanceof ScrollOfUpgrade)                                return false;
+		if (item instanceof StrengthCard)                                   return false;
+		if (item instanceof UpgradeCard)                                    return false;
 		if (item instanceof Torch)                                          return false;
 		return true;
 	}

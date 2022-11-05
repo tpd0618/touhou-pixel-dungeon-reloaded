@@ -21,20 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;
 
@@ -71,7 +63,7 @@ public class LifeSpellcardChecker extends Item {
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats5", Statistics.spellcardfragment);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats6", Statistics.playercorruption);
 		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "statsdaynight", Statistics.nighttimecount);
-		if (Dungeon.isChallenged(Challenges.TENSHI_PUNISHMENT)){
+		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
 			info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats7", Statistics.tenshiEarthquake);
 		}
 		if (Dungeon.isChallenged(Challenges.TIME_EATER)){

@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.ActiveCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.equipmentcards.EquipmentCards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards.PassiveCards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.Tailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class CardHolder extends Bag {
@@ -35,7 +36,7 @@ public class CardHolder extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof ActiveCards || item instanceof EquipmentCards || item instanceof PassiveCards){
+		if (item instanceof ActiveCards || item instanceof EquipmentCards || item instanceof PassiveCards || item instanceof Tailsman){
 			return super.canHold(item);
 		} else {
 			return false;

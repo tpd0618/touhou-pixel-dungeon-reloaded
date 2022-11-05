@@ -19,7 +19,7 @@ public class BossRemilia extends Mob {
 
         HP = HT = 400;
         defenseSkill = 30;
-        EXP = 0;
+        EXP = 30;
         maxLvl = 99;
 
         flying = true;
@@ -35,7 +35,7 @@ public class BossRemilia extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(30), pos ).sprite.drop();
+        Dungeon.level.drop(new SkeletonKey(15), pos ).sprite.drop();
     }
 
     @Override

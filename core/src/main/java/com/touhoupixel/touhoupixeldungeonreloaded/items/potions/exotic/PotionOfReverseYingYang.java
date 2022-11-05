@@ -21,12 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
@@ -35,7 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class PotionOfReverseYingYang extends ExoticPotion {
 	
 	{
-		icon = ItemSpriteSheet.Icons.POTION_TRIPLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
 	}
 	
 	@Override

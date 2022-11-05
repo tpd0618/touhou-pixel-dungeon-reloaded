@@ -174,10 +174,10 @@ public class Badges {
 	public static void validateChampion( int challenges ) {
 		if (challenges == 0) return;
 		Badge badge = null;
-		if (challenges >= 1) {
+		if (challenges >= 2) {
 			badge = Badge.CHAMPION_1;
 		}
-		if (challenges >= 3){
+		if (challenges >= 4){
 			unlock(badge);
 			badge = Badge.CHAMPION_2;
 		}
@@ -185,11 +185,11 @@ public class Badges {
 			unlock(badge);
 			badge = Badge.CHAMPION_3;
 		}
-		if (challenges >= 10){
+		if (challenges >= 8){
 			unlock(badge);
 			badge = Badge.CHAMPION_4;
 		}
-		if (challenges >= 15){
+		if (challenges >= 10){
 			unlock(badge);
 			badge = Badge.CHAMPION_5;
 		}

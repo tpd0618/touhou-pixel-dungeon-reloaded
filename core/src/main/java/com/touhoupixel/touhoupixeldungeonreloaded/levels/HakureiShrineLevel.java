@@ -37,7 +37,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DoublespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
@@ -51,7 +50,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TrainingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TriplespeedTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WornDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -68,7 +66,7 @@ import com.watabou.utils.Random;
 public class HakureiShrineLevel extends RegularLevel {
 
 	{
-		viewDistance = 7;
+		viewDistance = 8;
 
 		color1 = 0x48763c;
 		color2 = 0x59994a;
@@ -124,15 +122,15 @@ public class HakureiShrineLevel extends RegularLevel {
 	
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, DegradeTrap.class, CursingTrap.class,
-						DoublespeedTrap.class, TrainingTrap.class}:
+						TrainingTrap.class}:
 				new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, WornDartTrap.class,
 						AlarmTrap.class, BurningTrap.class, SlowTrap.class, TeleportationTrap.class, OozeTrap.class,
-						TriplespeedTrap.class, TrainingTrap.class};
+						TrainingTrap.class};
 	}
 
 	@Override
@@ -140,7 +138,7 @@ public class HakureiShrineLevel extends RegularLevel {
 		return new float[]{
 						3, 3, 3, 3, 3,
 						2, 2, 2, 2, 2,
-						1, 1};
+						1};
 	}
 	
 	@Override

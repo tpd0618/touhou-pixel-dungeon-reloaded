@@ -38,6 +38,8 @@ import com.watabou.utils.Random;
 public class HumanVillageBossLevel extends Level {
 
 	{
+		viewDistance = 8;
+
 		color1 = 0x48763c;
 		color2 = 0x59994a;
 	}

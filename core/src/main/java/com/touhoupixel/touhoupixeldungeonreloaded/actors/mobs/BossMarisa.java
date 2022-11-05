@@ -33,7 +33,7 @@ public class BossMarisa extends Mob {
 
         HP = HT = 250;
         defenseSkill = 20;
-        EXP = 0;
+        EXP = 20;
         maxLvl = 99;
 
         viewDistance = Light.DISTANCE;
@@ -51,7 +51,7 @@ public class BossMarisa extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(20), pos ).sprite.drop();
+        Dungeon.level.drop(new SkeletonKey(10), pos ).sprite.drop();
     }
 
     @Override

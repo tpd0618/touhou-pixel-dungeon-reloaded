@@ -68,7 +68,7 @@ import com.watabou.utils.Random;
 public class MyourenTempleLevel extends RegularLevel {
 
 	{
-		viewDistance = 5;
+		viewDistance = 8;
 
 		color1 = 0x48763c;
 		color2 = 0x59994a;
@@ -122,7 +122,7 @@ public class MyourenTempleLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.YUYUKO_DEADLY_TRAP) ?
+		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
 						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,

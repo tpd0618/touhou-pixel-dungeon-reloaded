@@ -33,5 +33,4 @@ public class TenguShortsword extends MeleeWeapon {
 
 		tier = 2;
 	}
-
 }

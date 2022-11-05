@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KoakumaSprite;
 import com.watabou.utils.Random;
@@ -10,25 +11,25 @@ public class Koakuma extends Mob {
     {
         spriteClass = KoakumaSprite.class;
 
-        HP = HT = 124;
-        defenseSkill = 27;
+        HP = HT = 48;
+        defenseSkill = 15;
         EXP = 9;
-        maxLvl = 35;
+        maxLvl = 22;
 
         baseSpeed = 2f;
 
-        loot = new SpellcardFragment();
-        lootChance = 0.04f;
+        loot = Generator.Category.SCROLL;
+        lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(18, 22);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 32;
+        return 20;
     }
 
     @Override

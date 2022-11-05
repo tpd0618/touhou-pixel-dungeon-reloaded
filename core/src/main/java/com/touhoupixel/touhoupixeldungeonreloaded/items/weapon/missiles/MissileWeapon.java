@@ -28,11 +28,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
@@ -97,7 +94,7 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	public int STRReq(int lvl){
-		return Math.max(1,(5 + Math.round(tier * 5)) - lvl);
+		return Math.max(1,(6 + Math.round(tier * 4)) - lvl);
 	}
 
 	@Override
@@ -192,22 +189,6 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
-		if (Dungeon.isChallenged(Challenges.HECATIA_CHESS)) {
-			if (Dungeon.level.map[defender.pos] == Terrain.EMPTY && Dungeon.level.map[attacker.pos] == Terrain.EMPTY ||
-					Dungeon.level.map[defender.pos] == Terrain.WATER && Dungeon.level.map[attacker.pos] == Terrain.WATER ||
-					Dungeon.level.map[defender.pos] == Terrain.EMPTY_SP && Dungeon.level.map[attacker.pos] == Terrain.EMPTY_SP ||
-					Dungeon.level.map[defender.pos] == Terrain.OPEN_DOOR && Dungeon.level.map[attacker.pos] == Terrain.EMPTY ||
-					Dungeon.level.map[defender.pos] == Terrain.OPEN_DOOR && Dungeon.level.map[attacker.pos] == Terrain.WATER ||
-					Dungeon.level.map[defender.pos] == Terrain.OPEN_DOOR && Dungeon.level.map[attacker.pos] == Terrain.EMPTY_SP ||
-					Dungeon.level.map[defender.pos] == Terrain.EMPTY && Dungeon.level.map[attacker.pos] == Terrain.OPEN_DOOR ||
-					Dungeon.level.map[defender.pos] == Terrain.WATER && Dungeon.level.map[attacker.pos] == Terrain.OPEN_DOOR ||
-					Dungeon.level.map[defender.pos] == Terrain.EMPTY_SP && Dungeon.level.map[attacker.pos] == Terrain.OPEN_DOOR) {
-				if (!(Dungeon.depth == 5 || Dungeon.depth == 10 || Dungeon.depth == 15 || Dungeon.depth == 20 || Dungeon.depth == 25 || Dungeon.depth == 30 || Dungeon.depth == 35 || Dungeon.depth == 40 || Dungeon.depth == 45 || Dungeon.depth == 50 || Dungeon.depth == 55 || Dungeon.depth == 60 || Dungeon.depth == 65 || Dungeon.depth == 70 || Dungeon.depth == 75 || Dungeon.depth == 80 || Dungeon.depth == 85 || Dungeon.depth == 90 || Dungeon.depth == 94 || Dungeon.depth == 98)) {
-					new HecatiaTrap().set(attacker.pos).activate();
-				}
-			}
-		}
-
 		if (Dungeon.hero.buff(Cool.class) != null){
 			damage *= 0;
 		}

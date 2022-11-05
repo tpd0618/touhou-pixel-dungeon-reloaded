@@ -25,16 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossAya;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossCirno;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKasen;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKosuzu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossMarisa;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossRemilia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hatate;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
@@ -46,6 +38,8 @@ import com.watabou.utils.Random;
 public class GardenoftheSunBossLevel extends Level {
 
 	{
+		viewDistance = 8;
+
 		color1 = 0x48763c;
 		color2 = 0x59994a;
 	}

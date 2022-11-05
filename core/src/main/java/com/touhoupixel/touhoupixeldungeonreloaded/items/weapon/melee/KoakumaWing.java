@@ -64,5 +64,4 @@ public class KoakumaWing extends MeleeWeapon {
 		}
 		return super.damageRoll(owner);
 	}
-
 }

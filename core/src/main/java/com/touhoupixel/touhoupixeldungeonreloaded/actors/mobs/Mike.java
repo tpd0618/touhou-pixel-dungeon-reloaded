@@ -47,7 +47,7 @@ public class Mike extends Mob {
     {
         spriteClass = MikeSprite.class;
 
-        HP = HT = 9;
+        HP = HT = 7;
         defenseSkill = 2;
         EXP = 2;
         maxLvl = 10;

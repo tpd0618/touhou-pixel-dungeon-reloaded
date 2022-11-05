@@ -3,6 +3,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CirnoSprite;
 import com.watabou.utils.Random;
@@ -12,25 +14,25 @@ public class Cirno extends Mob {
     {
         spriteClass = CirnoSprite.class;
 
-        HP = HT = 45;
-        defenseSkill = 12;
-        EXP = 4;
-        maxLvl = 20;
+        HP = HT = 27;
+        defenseSkill = 7;
+        EXP = 6;
+        maxLvl = 15;
 
         flying = true;
 
-        loot = new PotionOfSnapFreeze();
-        lootChance = 0.15f;
+        loot = new Dewdrop();
+        lootChance = 1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 11);
+        return Random.NormalIntRange(3, 7);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 17;
+        return 12;
     }
 
     @Override
