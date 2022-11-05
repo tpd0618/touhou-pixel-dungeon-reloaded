@@ -623,12 +623,8 @@ public abstract class Mob extends Char {
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 
-		if (Dungeon.hero.buff( NightTime.class ) != null && Dungeon.hero.buff( Light.class ) == null){
-			if (Dungeon.isChallenged(Challenges.RINGING_BLOOM)) {
-				damage *= 3;
-			} else {
-				damage *= 2;
-			}
+		if (Dungeon.hero.buff(NightTime.class) != null && Dungeon.hero.buff(Light.class) == null) {
+			damage *= 2;
 		}
 
 		if (this instanceof Nazrin && Dungeon.gold > 200){
