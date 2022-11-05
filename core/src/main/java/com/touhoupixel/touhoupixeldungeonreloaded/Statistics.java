@@ -288,7 +288,7 @@ public class Statistics {
 
 		power = 100;
 		value = 0;
-		life = 8;
+		life = 0;
 		lifefragment = 0;
 		spellcard = 0;
 		spellcardfragment = 0;

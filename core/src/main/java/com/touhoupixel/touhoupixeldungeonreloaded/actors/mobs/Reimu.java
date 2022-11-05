@@ -58,10 +58,12 @@ public class Reimu extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
             Artifact artifact = Dungeon.hero.belongings.getItem(Artifact.class);
-            artifact.charge = 0;
-            Item.updateQuickslot();
-            Sample.INSTANCE.play( Assets.Sounds.CURSED );
-            GLog.w(Messages.get(this, "artifact_charge_lost"));
+            if (artifact != null) {
+                artifact.charge = 0;
+                Item.updateQuickslot();
+                Sample.INSTANCE.play(Assets.Sounds.CURSED);
+                GLog.w(Messages.get(this, "artifact_charge_lost"));
+            }
         }
         return damage;
     }
