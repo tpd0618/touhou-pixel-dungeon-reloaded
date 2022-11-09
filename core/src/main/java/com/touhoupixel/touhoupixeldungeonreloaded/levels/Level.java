@@ -213,10 +213,12 @@ public abstract class Level implements Bundlable {
 				addItemToSpawn( new StoneOfIntuition() );
 			}
 
-			if (Dungeon.depth > 1) {
+			if (Dungeon.depth > 40) {
+				feeling = Feeling.LARGE;
+			} else {
 				//50% chance of getting a level feeling
 				//~7.15% chance for each feeling
-				switch (Random.Int( 14 )) {
+				switch (Random.Int(14)) {
 					case 0:
 						feeling = Feeling.CHASM;
 						break;
@@ -229,7 +231,7 @@ public abstract class Level implements Bundlable {
 					case 3:
 						feeling = Feeling.DARK;
 						addItemToSpawn(new Torch());
-						viewDistance = Math.round(viewDistance/2f);
+						viewDistance = Math.round(viewDistance / 2f);
 						break;
 					case 4:
 						feeling = Feeling.LARGE;
@@ -343,10 +345,10 @@ public abstract class Level implements Bundlable {
 				transitions.add(new LevelTransition(
 						this,
 						bundle.getInt("entrance"),
-						Dungeon.depth == 1 ? LevelTransition.Type.SURFACE : LevelTransition.Type.REGULAR_ENTRANCE));
+						Dungeon.depth == 1 ? LevelTransition.Type.SURFACE : LevelTransition.Type.REGULAR_EXIT));
 			}
 			if (bundle.contains("exit")){
-				transitions.add(new LevelTransition(this, bundle.getInt("exit"), LevelTransition.Type.REGULAR_EXIT));
+				transitions.add(new LevelTransition(this, bundle.getInt("exit"), LevelTransition.Type.REGULAR_ENTRANCE));
 			}
 		}
 
@@ -489,7 +491,7 @@ public abstract class Level implements Bundlable {
 	}
 
 	public int exit(){
-		LevelTransition l = getTransition(LevelTransition.Type.REGULAR_EXIT);
+		LevelTransition l = getTransition(LevelTransition.Type.REGULAR_ENTRANCE);
 		if (l != null){
 			return l.cell();
 		}
@@ -500,7 +502,7 @@ public abstract class Level implements Bundlable {
 		for (LevelTransition transition : transitions){
 			//if we don't specify a type, prefer to return any entrance
 			if (type == null &&
-					(transition.type == LevelTransition.Type.REGULAR_ENTRANCE || transition.type == LevelTransition.Type.SURFACE)){
+					(transition.type == LevelTransition.Type.REGULAR_EXIT || transition.type == LevelTransition.Type.SURFACE)){
 				return transition;
 			} else if (transition.type == type){
 				return transition;

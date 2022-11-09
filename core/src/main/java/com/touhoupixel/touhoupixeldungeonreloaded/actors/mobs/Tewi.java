@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.HecatiaTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
@@ -72,7 +71,7 @@ public class Tewi extends Mob {
     public void die(Object cause) {
         super.die(cause);
         if (cause == Dungeon.hero) {
-            switch (Random.Int(33)) {
+            switch (Random.Int(32)) {
                 case 0:
                 default:
                     new AlarmTrap().set(enemy.pos).activate();
@@ -147,30 +146,27 @@ public class Tewi extends Mob {
                     new OozeTrap().set(enemy.pos).activate();
                     break;
                 case 24:
-                    new PitfallTrap().set(enemy.pos).activate();
-                    break;
-                case 25:
                     new PoisonDartTrap().set(enemy.pos).activate();
                     break;
-                case 26:
+                case 25:
                     new RockfallTrap().set(enemy.pos).activate();
                     break;
-                case 27:
+                case 26:
                     new ShockingTrap().set(enemy.pos).activate();
                     break;
-                case 28:
+                case 27:
                     new SlowTrap().set(enemy.pos).activate();
                     break;
-                case 29:
+                case 28:
                     new StormTrap().set(enemy.pos).activate();
                     break;
-                case 30:
+                case 29:
                     new SummoningTrap().set(enemy.pos).activate();
                     break;
-                case 31:
+                case 30:
                     new TeleportationTrap().set(enemy.pos).activate();
                     break;
-                case 32:
+                case 31:
                     new ToxicTrap().set(enemy.pos).activate();
                     break;
             }

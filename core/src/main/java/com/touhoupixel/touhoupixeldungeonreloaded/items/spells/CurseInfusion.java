@@ -22,15 +22,14 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.spells;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.MetalShard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DebilitationTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
@@ -95,7 +94,7 @@ public class CurseInfusion extends InventorySpell {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{ScrollOfRemoveCurse.class, MetalShard.class};
+			inputs =  new Class[]{ScrollOfRemoveCurse.class, DebilitationTailsman.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

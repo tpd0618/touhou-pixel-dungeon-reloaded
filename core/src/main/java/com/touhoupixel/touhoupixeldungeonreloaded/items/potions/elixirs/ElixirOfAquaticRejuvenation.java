@@ -25,8 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CalmHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.GooBlob;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
@@ -139,7 +139,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfHealing.class, GooBlob.class};
+			inputs =  new Class[]{PotionOfHealing.class, CalmHerb.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

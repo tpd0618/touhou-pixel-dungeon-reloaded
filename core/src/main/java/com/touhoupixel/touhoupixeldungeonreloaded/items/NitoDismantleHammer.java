@@ -10,6 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
@@ -72,7 +73,7 @@ public class NitoDismantleHammer extends Item {
 
         @Override
         public boolean itemSelectable(Item item) {
-            return item instanceof Weapon && item.level() > 0 && !item.isEquipped(curUser) && item.isIdentified() ||
+            return item instanceof MeleeWeapon && item.level() > 0 && !item.isEquipped(curUser) && item.isIdentified() ||
                     item instanceof Armor && ((Armor) item).checkSeal() == null && item.level() > 0 && !item.isEquipped(curUser) && item.isIdentified();
         }
 

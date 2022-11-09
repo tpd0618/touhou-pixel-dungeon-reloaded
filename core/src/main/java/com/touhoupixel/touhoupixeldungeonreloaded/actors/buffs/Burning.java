@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
@@ -88,6 +89,10 @@ public class Burning extends Buff implements Hero.Doom {
 			
 			int damage = Random.NormalIntRange( 1, 3 + Dungeon.depth/4 );
 			Buff.detach( target, Chill.class);
+
+			if (target.buff(Zen.class) != null){
+				damage *= 0;
+			}
 
 			if (target instanceof Hero && target.buff(TimekeepersHourglass.timeStasis.class) == null) {
 				

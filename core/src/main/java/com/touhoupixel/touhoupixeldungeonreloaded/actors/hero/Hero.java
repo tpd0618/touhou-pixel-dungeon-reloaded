@@ -77,9 +77,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorde
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
@@ -134,6 +136,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
@@ -160,6 +163,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.scenes.AlchemyScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.InterlevelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.SurfaceScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.TitleScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.AttackIndicator;
@@ -168,9 +172,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndMessage;
+import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndTradeItem;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
@@ -578,65 +584,7 @@ public class Hero extends Char {
 			return;
 		}
 
-		if (Statistics.amuletObtained) {
-			if (Statistics.yukariCount > 98) {
-				Statistics.yukariCount = 0;
-
-				Camera.main.shake( 5, 1f );
-
-				int newPos = pos;
-
-				if (Actor.findChar(pos) != null) {
-					ArrayList<Integer> candidates = new ArrayList<>();
-
-					for (int n : PathFinder.NEIGHBOURS8) {
-						int c = pos + n;
-						if (!Dungeon.level.solid[c] && Actor.findChar(c) == null) {
-							candidates.add(c);
-						}
-					}
-
-					newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
-				}
-
-				if (newPos != -1) {
-					Hecatia hecatia = new Hecatia();
-					hecatia.HP = hecatia.HT;
-					hecatia.pos = newPos;
-
-					GameScene.add(hecatia);
-
-					hecatia.sprite.alpha(0);
-					hecatia.sprite.parent.add(new AlphaTweener(hecatia.sprite, 1, 0.15f));
-				}
-
-				if (Actor.findChar(pos) != null) {
-					ArrayList<Integer> candidates = new ArrayList<>();
-
-					for (int n : PathFinder.NEIGHBOURS8) {
-						int c = pos + n;
-						if (!Dungeon.level.solid[c] && Actor.findChar(c) == null) {
-							candidates.add(c);
-						}
-					}
-
-					newPos = candidates.size() > 0 ? Random.element(candidates) : -1;
-				}
-
-				if (newPos != -1) {
-					Yukari yukari = new Yukari();
-					yukari.HP = yukari.HT;
-					yukari.pos = newPos;
-
-					GameScene.add(yukari);
-
-					yukari.sprite.alpha(0);
-					yukari.sprite.parent.add(new AlphaTweener(yukari.sprite, 1, 0.15f));
-				}
-			} else Statistics.yukariCount += 1;
-		}
-
-		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU) && !Statistics.amuletObtained){
+		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
 			if (Statistics.tenshiEarthquake > 98) {
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
@@ -1167,12 +1115,30 @@ public class Hero extends Char {
 
 			if (transition.type == LevelTransition.Type.SURFACE){
 				if (belongings.getItem( Amulet.class ) == null) {
-					Game.runOnRenderThread(new Callback() {
-						@Override
-						public void call() {
-							GameScene.show( new WndMessage( Messages.get(Hero.this, "leave") ) );
-						}
-					});
+					if (Dungeon.depth == 51){
+						GLog.n( Messages.get(Reimu.class, "amulet") );
+					} else {
+						Game.runOnRenderThread(new Callback() {
+							@Override
+							public void call() {
+								GameScene.show(new WndOptions(new Image(Dungeon.level.tilesTex(), 48, 48, 16, 16),
+										Messages.get(Reimu.class, "chasm"),
+										Messages.get(Reimu.class, "jump"),
+										Messages.get(Reimu.class, "yes"),
+										Messages.get(Reimu.class, "no")) {
+									@Override
+									protected void onSelect(int index) {
+										if (index == 0) {
+											ShatteredPixelDungeon.switchScene(TitleScene.class);
+											Dungeon.deleteGame(GamesInProgress.curSlot, true);
+										} else {
+											// do nothing
+										}
+									}
+								});
+							}
+						});
+					}
 					ready();
 				} else {
 					Dungeon.win( Amulet.class );
@@ -1191,10 +1157,10 @@ public class Hero extends Char {
 
 				InterlevelScene.curTransition = transition;
 				//TODO probably want to make this more flexible when more types exist
-				if (transition.type == LevelTransition.Type.REGULAR_EXIT) {
-					InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
-				} else {
+				if (transition.type == LevelTransition.Type.REGULAR_ENTRANCE) {
 					InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
+				} else {
+					InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
 				}
 				Game.switchScene(InterlevelScene.class);
 
@@ -1335,6 +1301,12 @@ public class Hero extends Char {
 
 		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
 			Statistics.timetrackbuff += 1;
+		}
+
+		if (Dungeon.hero.buff(YukariBorder.class) != null){
+			Statistics.playercorruption += 1;
+			Sample.INSTANCE.play(Assets.Sounds.CURSED);
+			GLog.w(Messages.get(Potion.class, "corruption"));
 		}
 
 		if (buff(DanmakuDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
@@ -1592,6 +1564,47 @@ public class Hero extends Char {
 			dmg += Dungeon.depth/5;
 		}
 
+		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 2 && (Random.Int(80) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 3 && (Random.Int(60) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 4 && (Random.Int(40) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 5 && (Random.Int(20) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 6 && (Random.Int(10) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 7 && (Random.Int(7) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 8 && (Random.Int(4) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 9 && (Random.Int(3) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+		if (Statistics.playercorruption == 10 && (Random.Int(2) == 0)){
+			dmg *= 2;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+
 		if (!(src instanceof Hunger || src instanceof Viscosity.DeferedDamage) && damageInterrupt) {
 			interrupt();
 			resting = false;
@@ -1846,7 +1859,7 @@ public class Hero extends Char {
 
 		} else if (Dungeon.level.getTransition(cell) != null
 				&& !Dungeon.level.locked
-				&& (Dungeon.depth < 52 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_ENTRANCE) ) {
+				&& (Dungeon.depth < 52 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_EXIT) ) {
 
 			curAction = new HeroAction.LvlTransition( cell );
 

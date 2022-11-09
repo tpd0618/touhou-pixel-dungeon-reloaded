@@ -21,7 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Bomb;
 
 public class ExplosiveTrap extends Trap {
 

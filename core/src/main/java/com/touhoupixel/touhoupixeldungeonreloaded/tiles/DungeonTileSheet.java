@@ -61,8 +61,8 @@ public class DungeonTileSheet {
 
 	public static final int FLOOR_ALT_2     = GROUND +12;
 
-	public static final int ENTRANCE        = GROUND +16;
-	public static final int EXIT            = GROUND +17;
+	public static final int ENTRANCE        = GROUND +17;
+	public static final int EXIT            = GROUND +16;
 	public static final int WELL            = GROUND +18;
 	public static final int EMPTY_WELL      = GROUND +19;
 	public static final int PEDESTAL        = GROUND +20;

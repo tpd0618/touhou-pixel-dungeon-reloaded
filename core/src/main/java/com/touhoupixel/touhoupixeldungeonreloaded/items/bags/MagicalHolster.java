@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -38,7 +37,7 @@ public class MagicalHolster extends Bag {
 	
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Wand || item instanceof MissileWeapon || item instanceof Bomb){
+		if (item instanceof Wand || item instanceof MissileWeapon){
 			return super.canHold(item);
 		} else {
 			return false;

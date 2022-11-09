@@ -28,8 +28,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleanHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.GooBlob;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.watabou.noosa.audio.Sample;
@@ -71,7 +71,7 @@ public class CausticBrew extends Brew {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfToxicGas.class, GooBlob.class};
+			inputs =  new Class[]{PotionOfToxicGas.class, CleanHerb.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 2;

@@ -19,35 +19,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.quest;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSanctuary;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class MetalShard extends Item {
+public class ElixirOfZen extends Elixir {
 	
 	{
-		image = ItemSpriteSheet.SHARD;
-		stackable = true;
+		image = ItemSpriteSheet.ELIXIR_ZEN;
 	}
 	
 	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-	
-	@Override
-	public boolean isIdentified() {
-		return true;
+	public void apply(Hero hero) {
+		Buff.prolong(hero, Zen.class, Zen.DURATION);
 	}
 	
 	@Override
 	public int value() {
-		return quantity * 50;
+		return quantity * (30 + 30);
+	}
+	
+	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
+		
+		{
+			inputs =  new Class[]{ElixirOfDragonsBlood.class, ScrollOfSanctuary.class};
+			inQuantity = new int[]{1, 1};
+			
+			cost = 6;
+			
+			output = ElixirOfZen.class;
+			outQuantity = 1;
+		}
+		
 	}
 
-	@Override
-	public int energyVal() {
-		return quantity * 3;
-	}
 }

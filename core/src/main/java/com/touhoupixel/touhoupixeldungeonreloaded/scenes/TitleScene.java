@@ -132,7 +132,7 @@ public class TitleScene extends PixelScene {
 				return super.onLongClick();
 			}
 		};
-		btnPlay.icon(Icons.get(Icons.ENTER));
+		btnPlay.icon(Icons.get(Icons.TALENT));
 		add(btnPlay);
 
 		StyledButton btnSupport = new SupportButton(GREY_TR, Messages.get(this, "support"));

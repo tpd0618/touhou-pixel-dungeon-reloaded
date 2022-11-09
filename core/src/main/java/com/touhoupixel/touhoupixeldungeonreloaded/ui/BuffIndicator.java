@@ -86,10 +86,10 @@ public class BuffIndicator extends Component {
 	public static final int CORRUPT     = 36;
 	public static final int BLESS       = 37;
 	public static final int HOMING_BLADE        = 38;
-	public static final int SACRIFICE   = 39;
+	public static final int YUKARI_BORDER   = 39;
 	public static final int BERSERK     = 40;
 	public static final int HASTE       = 41;
-	public static final int NITORI_ADVENT = 42;
+	public static final int HEAVEN_SPEED = 42;
 	public static final int WELL_FED    = 43;
 	public static final int HEALING     = 44;
 	public static final int WEAPON      = 45;
@@ -105,6 +105,7 @@ public class BuffIndicator extends Component {
 	public static final int SUPERDEGRADE= 55;
 	public static final int DOUBLESPEED = 56;
 	public static final int TRIPLESPEED = 57;
+	public static final int ZEN = 58;
 	public static final int SILENCE     = 59;
 	public static final int HISOU       = 60;
 	public static final int HIGHSTRESS  = 61;

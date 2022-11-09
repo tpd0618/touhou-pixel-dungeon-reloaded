@@ -73,7 +73,7 @@ public class InterlevelScene extends PixelScene {
 	private static float fadeTime;
 	
 	public enum Mode {
-		DESCEND, ASCEND, CONTINUE, RESURRECT, RETURN, FALL, RESET, NONE
+		ASCEND, DESCEND, CONTINUE, RESURRECT, RETURN, FALL, RESET, NONE
 	}
 	public static Mode mode;
 
@@ -121,7 +121,7 @@ public class InterlevelScene extends PixelScene {
 				loadingDepth = GamesInProgress.check(GamesInProgress.curSlot).depth;
 				scrollSpeed = 5;
 				break;
-			case DESCEND:
+			case ASCEND:
 				if (Dungeon.hero == null){
 					loadingDepth = 1;
 					fadeTime = SLOW_FADE;
@@ -130,29 +130,19 @@ public class InterlevelScene extends PixelScene {
 					else                        loadingDepth = Dungeon.depth+1;
 					if (Statistics.deepestFloor >= loadingDepth) {
 						fadeTime = FAST_FADE;
-					} else if (loadingDepth == 6 || loadingDepth == 11
-							|| loadingDepth == 16 || loadingDepth == 21
-							|| loadingDepth == 26 || loadingDepth == 31
-							|| loadingDepth == 36 || loadingDepth == 41
-							|| loadingDepth == 46 || loadingDepth == 51
-							|| loadingDepth == 56 || loadingDepth == 61
-							|| loadingDepth == 66 || loadingDepth == 71
-							|| loadingDepth == 76 || loadingDepth == 81
-							|| loadingDepth == 86 || loadingDepth == 91) {
-						fadeTime = SLOW_FADE;
 					}
 				}
-				scrollSpeed = 5;
+				scrollSpeed = -5;
 				break;
 			case FALL:
-				loadingDepth = Dungeon.depth+1;
+				loadingDepth = Dungeon.depth-1;
 				scrollSpeed = 50;
 				break;
-			case ASCEND:
+			case DESCEND:
 				fadeTime = FAST_FADE;
 				if (curTransition != null)  loadingDepth = curTransition.destDepth;
 				else                        loadingDepth = Dungeon.depth-1;
-				scrollSpeed = -5;
+				scrollSpeed = 5;
 				break;
 			case RETURN:
 				loadingDepth = returnDepth;
@@ -177,16 +167,6 @@ public class InterlevelScene extends PixelScene {
 		else if (lastRegion == 8)    loadingAsset = Assets.Interfaces.LOADING_8;
 		else if (lastRegion == 9)    loadingAsset = Assets.Interfaces.LOADING_9;
 		else if (lastRegion == 10)   loadingAsset = Assets.Interfaces.LOADING_10;
-		else if (lastRegion == 11)   loadingAsset = Assets.Interfaces.LOADING_11;
-		else if (lastRegion == 12)   loadingAsset = Assets.Interfaces.LOADING_12;
-		else if (lastRegion == 13)   loadingAsset = Assets.Interfaces.LOADING_13;
-		else if (lastRegion == 14)   loadingAsset = Assets.Interfaces.LOADING_14;
-		else if (lastRegion == 15)   loadingAsset = Assets.Interfaces.LOADING_15;
-		else if (lastRegion == 16)   loadingAsset = Assets.Interfaces.LOADING_16;
-		else if (lastRegion == 17)   loadingAsset = Assets.Interfaces.LOADING_17;
-		else if (lastRegion == 18)   loadingAsset = Assets.Interfaces.LOADING_18;
-		else if (lastRegion == 19)   loadingAsset = Assets.Interfaces.LOADING_19;
-		else if (lastRegion == 20)   loadingAsset = Assets.Interfaces.LOADING_20;
 		else                         loadingAsset = Assets.Interfaces.SHADOW;
 		
 		//slow down transition when displaying an install prompt
@@ -285,10 +265,10 @@ public class InterlevelScene extends PixelScene {
 						Actor.fixTime();
 
 						switch (mode) {
-							case DESCEND:
+							case ASCEND:
 								descend();
 								break;
-							case ASCEND:
+							case DESCEND:
 								ascend();
 								break;
 							case CONTINUE:
@@ -436,12 +416,8 @@ public class InterlevelScene extends PixelScene {
 		Dungeon.saveAll();
 
 		Level level;
-		Dungeon.depth++;
-		if (Dungeon.depth > Statistics.deepestFloor) {
-			level = Dungeon.newLevel();
-		} else {
-			level = Dungeon.loadLevel( GamesInProgress.curSlot );
-		}
+		Dungeon.depth--;
+		level = Dungeon.loadLevel( GamesInProgress.curSlot );
 		Dungeon.switchLevel( level, level.fallCell( fallIntoPit ));
 	}
 	

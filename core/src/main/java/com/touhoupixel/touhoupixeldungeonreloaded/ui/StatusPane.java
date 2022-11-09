@@ -73,7 +73,6 @@ public class StatusPane extends Component {
 	private BitmapText level;
 
 	private BuffIndicator buffs;
-	private Compass compass;
 
 	private BusyIndicator busy;
 	private CircleArc counter;
@@ -114,9 +113,6 @@ public class StatusPane extends Component {
 		add(avatar);
 
 		talentBlink = 0;
-
-		compass = new Compass(Statistics.amuletObtained ? Dungeon.level.entrance() : Dungeon.level.exit());
-		add(compass);
 
 		if (large) rawShielding = new Image(asset, 0, 112, 128, 9);
 		else rawShielding = new Image(asset, 0, 40, 50, 4);
@@ -185,10 +181,6 @@ public class StatusPane extends Component {
 		PixelScene.align(avatar);
 
 		heroInfo.setRect(x, y + (large ? 0 : 1), 30, large ? 40 : 30);
-
-		compass.x = avatar.x + avatar.width / 2f - compass.origin.x;
-		compass.y = avatar.y + avatar.height / 2f - compass.origin.y;
-		PixelScene.align(compass);
 
 		if (large) {
 			exp.x = x + 30;

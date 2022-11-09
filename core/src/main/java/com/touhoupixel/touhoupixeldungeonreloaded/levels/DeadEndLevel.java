@@ -66,7 +66,7 @@ public class DeadEndLevel extends Level {
 		}
 
 		int entrance = SIZE * width() + SIZE / 2 + 1;
-		transitions.add(new LevelTransition(this, entrance, LevelTransition.Type.REGULAR_ENTRANCE));
+		transitions.add(new LevelTransition(this, entrance, LevelTransition.Type.REGULAR_EXIT));
 		map[entrance] = Terrain.ENTRANCE;
 
 		return true;

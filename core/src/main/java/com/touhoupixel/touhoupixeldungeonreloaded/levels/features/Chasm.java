@@ -25,19 +25,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.FeatherFall;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.WeakFloorRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -73,16 +72,26 @@ public class Chasm implements Hero.Doom {
 								protected void onSelect(int index) {
 									if (index == 0) {
 										if (Dungeon.hero.pos == heroPos) {
-											jumpConfirmed = true;
-											hero.resume();
+											if (Dungeon.depth == 1){
+												ScrollOfTeleportation.teleportChar(hero);
+												GLog.n( Messages.get(Tenshi.class, "depthonefall") );
+											} else {
+												jumpConfirmed = true;
+												hero.resume();
+											}
 										}
 									}
 								}
 							}
 					);
 				} else if (Dungeon.hero.pos == heroPos) {
-					jumpConfirmed = true;
-					hero.resume();
+					if (Dungeon.depth == 1){
+						ScrollOfTeleportation.teleportChar(hero);
+						GLog.n( Messages.get(Tenshi.class, "depthonefall") );
+					} else {
+						jumpConfirmed = true;
+						hero.resume();
+					}
 				}
 			}
 		});
@@ -100,15 +109,17 @@ public class Chasm implements Hero.Doom {
 		if (timeBubble != null) timeBubble.disarmPressedTraps();
 
 		if (Dungeon.hero.isAlive()) {
-			Dungeon.hero.interrupt();
 			InterlevelScene.mode = InterlevelScene.Mode.FALL;
 			if (Dungeon.level instanceof RegularLevel) {
-				Room room = ((RegularLevel)Dungeon.level).room( pos );
-				InterlevelScene.fallIntoPit = room != null && room instanceof WeakFloorRoom;
-			} else {
 				InterlevelScene.fallIntoPit = false;
 			}
-			Game.switchScene( InterlevelScene.class );
+			if (Dungeon.depth == 1) {
+				ScrollOfTeleportation.teleportChar(Dungeon.hero);
+				GLog.n(Messages.get(Tenshi.class, "depthonefall"));
+			} else {
+				Dungeon.hero.interrupt();
+				Game.switchScene(InterlevelScene.class);
+			}
 		} else {
 			Dungeon.hero.sprite.visible = false;
 		}

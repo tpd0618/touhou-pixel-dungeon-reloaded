@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.SewerPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
@@ -45,7 +44,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
@@ -105,7 +103,6 @@ public class GardenoftheSunLevel extends RegularLevel {
 
 	@Override
 	public void create() {
-		itemsToSpawn.add( new Bomb() );
 		itemsToSpawn.add( new Torch() );
 		super.create();
 	}
@@ -125,7 +122,7 @@ public class GardenoftheSunLevel extends RegularLevel {
 		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
-						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,
+						AlarmTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class,
 						FlashingTrap.class, TrainingTrap.class}:
 				new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, ConfusionTrap.class, DespairTrap.class,

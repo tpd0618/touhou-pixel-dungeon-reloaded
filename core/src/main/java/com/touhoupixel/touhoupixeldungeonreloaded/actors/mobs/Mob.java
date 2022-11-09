@@ -37,6 +37,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
@@ -683,7 +684,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public float speed() {
-		if (Statistics.amuletObtained){
+		if (Dungeon.hero.buff(HeavenSpeed.class) != null){
 			return super.speed()*2f;
 		}
 		return super.speed();

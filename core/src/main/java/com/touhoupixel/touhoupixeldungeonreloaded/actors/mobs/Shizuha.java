@@ -11,6 +11,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
@@ -55,11 +56,13 @@ public class Shizuha extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Waterskin waterskin = new Waterskin();
-            waterskin.volume = 0;
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            GLog.w(Messages.get(this, "dry"));
-            Item.updateQuickslot();
+            Waterskin waterskin = Dungeon.hero.belongings.getItem(Waterskin.class);
+            if (waterskin != null) {
+                waterskin.volume = 0;
+                Sample.INSTANCE.play(Assets.Sounds.CURSED);
+                GLog.w(Messages.get(this, "dry"));
+                Item.updateQuickslot();
+            }
         }
         return damage;
     }

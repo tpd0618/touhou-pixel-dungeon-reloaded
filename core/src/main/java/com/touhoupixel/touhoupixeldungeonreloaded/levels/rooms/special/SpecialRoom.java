@@ -81,7 +81,7 @@ public abstract class SpecialRoom extends Room {
 
 	//9 special rooms which give equipment more often than consumables (or as often as)
 	private static final ArrayList<Class<? extends SpecialRoom>> EQUIP_SPECIALS = new ArrayList<>( Arrays.asList(
-			WeakFloorRoom.class, CryptRoom.class, PoolRoom.class, ArmoryRoom.class, SentryRoom.class,
+			CryptRoom.class, PoolRoom.class, ArmoryRoom.class, SentryRoom.class,
 			StatueRoom.class, CrystalVaultRoom.class, CrystalPathRoom.class, CrystalChoiceRoom.class
 	));
 
@@ -134,7 +134,7 @@ public abstract class SpecialRoom extends Room {
 		floorSpecials = (ArrayList<Class<?extends Room>>) runSpecials.clone();
 		
 		//laboratory rooms spawn at set intervals every chapter
-		if (Dungeon.depth%5 == (Dungeon.seed%3 + 2)){
+		if (Dungeon.depth % 5 == (Dungeon.seed % 3 + 2)){
 			floorSpecials.add(0, LaboratoryRoom.class);
 		}
 	}
@@ -169,20 +169,11 @@ public abstract class SpecialRoom extends Room {
 			return new LaboratoryRoom();
 		
 		} else {
-			
-			if (Dungeon.bossLevel(Dungeon.depth + 1)){
-				floorSpecials.remove(WeakFloorRoom.class);
-			}
-
 			//60% chance for front of queue, 30% chance for next, 10% for one after that
 			int index = Random.chances(new float[]{6, 3, 1});
 			while (index >= floorSpecials.size()) index--;
 
 			Room r = Reflection.newInstance(floorSpecials.get( index ));
-
-			if (r instanceof WeakFloorRoom){
-				pitNeededDepth = Dungeon.depth + 1;
-			}
 			
 			useType( r.getClass() );
 			return (SpecialRoom)r;

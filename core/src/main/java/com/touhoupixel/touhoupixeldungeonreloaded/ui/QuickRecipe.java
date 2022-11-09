@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Blandfruit;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MeatPie;
@@ -48,6 +47,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOf
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfIcyTouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfToxicEssence;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
@@ -320,18 +320,6 @@ public class QuickRecipe extends Component {
 				}
 				return result;
 			case 5:
-				r = new Bomb.EnhanceBomb();
-				int i = 0;
-				for (Class<?> cls : Bomb.EnhanceBomb.validIngredients.keySet()){
-					if (i == 2){
-						result.add(null);
-						i = 0;
-					}
-					Item item = (Item) Reflection.newInstance(cls);
-					ArrayList<Item> in = new ArrayList<>(Arrays.asList(new Bomb(), item));
-					result.add(new QuickRecipe( r, in, r.sampleOutput(in)));
-					i++;
-				}
 				return result;
 			case 6:
 				result.add(new QuickRecipe( new LiquidMetal.Recipe(),
@@ -371,6 +359,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new ElixirOfIcyTouch.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfZen.Recipe()));
 				return result;
 			case 9:
 				result.add(new QuickRecipe(new TelekineticGrab.Recipe()));

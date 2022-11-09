@@ -21,7 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.stones;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class StoneOfBlast extends Runestone {

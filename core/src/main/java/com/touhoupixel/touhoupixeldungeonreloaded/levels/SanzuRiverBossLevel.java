@@ -71,8 +71,8 @@ public class SanzuRiverBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 1276, LevelTransition.Type.REGULAR_ENTRANCE));
-		transitions.add(new LevelTransition(this, 55, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 1276, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 55, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
 

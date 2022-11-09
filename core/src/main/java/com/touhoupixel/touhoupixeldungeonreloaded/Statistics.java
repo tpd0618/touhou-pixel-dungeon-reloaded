@@ -115,7 +115,6 @@ public class Statistics {
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
 
-	public static boolean amuletObtained = false;
 	public static boolean gameWon = false;
 	public static boolean ascended = false;
 
@@ -310,7 +309,6 @@ public class Statistics {
 
 		qualifiedForNoKilling = false;
 
-		amuletObtained = false;
 		gameWon = false;
 		ascended = false;
 
@@ -500,7 +498,6 @@ public class Statistics {
 
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
-	private static final String AMULET          = "amuletObtained";
 	private static final String WON		        = "won";
 	private static final String ASCENDED		= "ascended";
 
@@ -795,7 +792,6 @@ public class Statistics {
 
 		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
-		bundle.put( AMULET,		amuletObtained );
 		bundle.put( WON,        gameWon );
 		bundle.put( ASCENDED,   ascended );
 	}
@@ -890,7 +886,6 @@ public class Statistics {
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 
-		amuletObtained	= bundle.getBoolean( AMULET );
 		gameWon         = bundle.getBoolean( WON );
 		ascended        = bundle.getBoolean( ASCENDED );
 

@@ -89,10 +89,10 @@ public class Bestiary {
 						Hecatia.class, Seiran.class, Eirin.class, Doremy.class, Sagume.class, Junko.class));
 			case 43: case 44: case 45:
 				return new ArrayList<>(Arrays.asList(
-						Hecatia.class, Rumia.class, Satori.class, Koishi.class, Sumireko.class, Renko.class, Keiki.class));
+						Yukari.class));
 			case 46: case 47: case 48: case 49: case 50:
 				return new ArrayList<>(Arrays.asList(
-						Hecatia.class, Toyohime.class, Yorihime.class, Reimu.class, Utsuho.class, Yuuma.class, Eiki.class));
+						Yukari.class));
 		}
 	}
 }

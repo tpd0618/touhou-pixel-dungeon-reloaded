@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class PotionFreeze extends FlavourBuff {
 
-	public static final float DURATION = 75f;
+	public static final float DURATION = 25f;
 
 	{
 		type = buffType.NEGATIVE;

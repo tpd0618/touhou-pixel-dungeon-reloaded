@@ -54,7 +54,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.PointerArea;
 import com.watabou.noosa.ui.Component;
-import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.GameMath;
 
 import java.text.SimpleDateFormat;
@@ -127,7 +126,7 @@ public class HeroSelectScene extends PixelScene {
 				Dungeon.hero = null;
 				Dungeon.daily = false;
 				ActionIndicator.action = null;
-				InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+				InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
 
 				if (SPDSettings.intro()) {
 					SPDSettings.intro( false );
@@ -467,7 +466,7 @@ public class HeroSelectScene extends PixelScene {
 									Dungeon.hero = null;
 									Dungeon.daily = true;
 									ActionIndicator.action = null;
-									InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+									InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
 
 									Game.switchScene( InterlevelScene.class );
 								}

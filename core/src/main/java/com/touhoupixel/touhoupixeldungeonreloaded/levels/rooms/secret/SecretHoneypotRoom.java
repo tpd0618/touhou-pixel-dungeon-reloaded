@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Medicine;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
@@ -55,8 +54,6 @@ public class SecretHoneypotRoom extends SecretRoom {
 		bee.setPotInfo(level.pointToCell(brokenPotPos), null);
 		
 		placeItem(new Honeypot(), level);
-		
-		placeItem( new Bomb().random(), level);
 		
 		entrance().set(Door.Type.HIDDEN);
 	}

@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
@@ -206,7 +205,7 @@ public class RingOfWealth extends Ring {
 	}
 
 	private static Item genMidValueConsumable(){
-		switch (Random.Int(6)){
+		switch (Random.Int(5)){
 			case 0: default:
 				Item i = genLowValueConsumable();
 				return i.quantity(i.quantity()*2);
@@ -219,26 +218,17 @@ public class RingOfWealth extends Ring {
 			case 3:
 				return Random.Int(2) == 0 ? new ArcaneCatalyst() : new AlchemicalCatalyst();
 			case 4:
-				return new Bomb();
-			case 5:
 				return new Honeypot();
 		}
 	}
 
 	private static Item genHighValueConsumable(){
-		switch (Random.Int(4)){
+		switch (Random.Int(3)){
 			case 0: default:
-				Item i = genMidValueConsumable();
-				if (i instanceof Bomb){
-					return new Bomb.DoubleBomb();
-				} else {
-					return i.quantity(i.quantity()*2);
-				}
-			case 1:
 				return new StoneOfEnchantment();
-			case 2:
+			case 1:
 				return new PotionOfExperience();
-			case 3:
+			case 2:
 				return new ScrollOfTransmutation();
 		}
 	}

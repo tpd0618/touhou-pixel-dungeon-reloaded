@@ -172,7 +172,7 @@ public class Miracle extends Weapon {
 
 	@Override
 	public int max(int lvl) {
-		int dmg = 6 + Dungeon.hero.lvl
+		int dmg = 5 + Dungeon.hero.lvl
 				+ 2*RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
 				+ (curseInfusionBonus ? 2 + 2*Dungeon.hero.lvl/3 : 0);
 		return Math.max(0, dmg);

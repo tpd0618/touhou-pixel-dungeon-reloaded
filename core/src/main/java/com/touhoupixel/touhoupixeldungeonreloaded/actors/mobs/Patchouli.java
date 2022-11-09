@@ -1,7 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.PatchouliSprite;
 import com.watabou.utils.Random;
@@ -16,8 +16,8 @@ public class Patchouli extends Mob {
         EXP = 9;
         maxLvl = 22;
 
-        loot = new Bomb();
-        lootChance = 0.15f;
+        loot = new ElixirOfZen();
+        lootChance = 0.02f;
     }
 
     @Override

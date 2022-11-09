@@ -51,7 +51,7 @@ public class ExitRoom extends StandardRoom {
 
 		int exit = level.pointToCell(random( 2 ));
 		Painter.set( level, exit, Terrain.EXIT );
-		level.transitions.add(new LevelTransition(level, exit, LevelTransition.Type.REGULAR_EXIT));
+		level.transitions.add(new LevelTransition(level, exit, LevelTransition.Type.REGULAR_ENTRANCE));
 	}
 
 	@Override

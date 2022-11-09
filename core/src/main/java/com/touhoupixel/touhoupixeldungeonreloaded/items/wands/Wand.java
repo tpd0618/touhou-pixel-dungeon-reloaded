@@ -37,11 +37,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -180,6 +182,12 @@ public abstract class Wand extends Item {
 		wandProc(target, buffedLvl(), chargesUsed);
 		if (Dungeon.hero.buff(Happy.class) != null){
 			Buff.prolong(curUser, OneDamage.class, OneDamage.DURATION);
+		}
+
+		if (Dungeon.hero.buff(YukariBorder.class) != null){
+			Statistics.playercorruption += 1;
+			Sample.INSTANCE.play(Assets.Sounds.CURSED);
+			GLog.w(Messages.get(Potion.class, "corruption"));
 		}
 	}
 

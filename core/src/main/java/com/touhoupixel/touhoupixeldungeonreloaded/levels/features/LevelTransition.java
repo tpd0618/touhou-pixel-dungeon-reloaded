@@ -33,8 +33,8 @@ public class LevelTransition extends Rect implements Bundlable {
 
     public enum Type {
         SURFACE,
-        REGULAR_ENTRANCE,
-        REGULAR_EXIT;
+        REGULAR_EXIT,
+        REGULAR_ENTRANCE;
     }
 
     public Type type;
@@ -66,15 +66,15 @@ public class LevelTransition extends Rect implements Bundlable {
         set(p.x, p.y, p.x, p.y);
         this.type = type;
         switch (type){
-            case REGULAR_ENTRANCE: default:
+            case REGULAR_EXIT: default:
                 destDepth = Dungeon.depth-1;
                 destBranch = Dungeon.branch;
-                destType = Type.REGULAR_EXIT;
+                destType = Type.REGULAR_ENTRANCE;
                 break;
-            case REGULAR_EXIT:
+            case REGULAR_ENTRANCE:
                 destDepth = Dungeon.depth+1;
                 destBranch = Dungeon.branch;
-                destType = Type.REGULAR_ENTRANCE;
+                destType = Type.REGULAR_EXIT;
                 break;
             case SURFACE:
                 destDepth = 0;

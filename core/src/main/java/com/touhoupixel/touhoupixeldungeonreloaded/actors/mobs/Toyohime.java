@@ -109,7 +109,7 @@ public class Toyohime extends Mob implements Callback {
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
 			}
 
-			int dmg = Random.NormalIntRange(16, 20);
+			int dmg = Random.NormalIntRange(26, 32);
 			enemy.damage(dmg, new DarkBolt());
 
 			if (enemy == Dungeon.hero && !enemy.isAlive()) {

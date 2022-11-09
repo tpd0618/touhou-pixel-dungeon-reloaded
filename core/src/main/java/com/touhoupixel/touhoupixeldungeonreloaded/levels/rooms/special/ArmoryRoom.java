@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -75,12 +74,10 @@ public class ArmoryRoom extends SpecialRoom {
 		prizeCats[index] = 0;
 		switch (index){
 			case 0:
-				return new Bomb().random();
-			case 1:
 				return Generator.randomWeapon();
-			case 2:
+			case 1:
 				return Generator.randomArmor();
-			case 3: default:
+			case 2: default:
 				return Generator.randomMissile();
 		}
 	}

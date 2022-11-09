@@ -44,35 +44,25 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.BambooForestLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.DeadEndLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.ForestofMagicBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ForestofMagicLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.GardenoftheSunBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.GardenoftheSunLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakugyokurouLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakureiShrineLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HeavenBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HeavenLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.HumanVillageBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HumanVillageLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.LandoftheBackDoorBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LandoftheBackDoorLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LastLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LunarCapitalLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.PrimateSpiritGardenBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.PrimateSpiritGardenLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MistyLakeLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MoriyaShrineLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MyourenTempleLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RainbowDragonCaveLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.SanzuRiverBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.SanzuRiverLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionLevel;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.TutorialLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.YokaiMountainLevel;
@@ -438,8 +428,6 @@ public class Dungeon {
 		return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == 30 || depth == 35 || depth == 40 || depth == 45 || depth == 50;
 	}
 
-	//value used for scaling of damage values and other effects.
-	//is usually the dungeon depth, but can be set to 99 when ascending
 	public static int scalingDepth(){
 		return depth;
 	}
@@ -454,7 +442,7 @@ public class Dungeon {
 	public static void switchLevel( final Level level, int pos ) {
 
 		if (pos == -2){
-			LevelTransition t = level.getTransition(LevelTransition.Type.REGULAR_EXIT);
+			LevelTransition t = level.getTransition(LevelTransition.Type.REGULAR_ENTRANCE);
 			if (t != null) pos = t.cell();
 		}
 

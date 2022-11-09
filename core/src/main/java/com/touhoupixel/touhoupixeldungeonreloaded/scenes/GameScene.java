@@ -270,9 +270,6 @@ public class GameScene extends PixelScene {
 
 		for (Mob mob : Dungeon.level.mobs) {
 			addMobSprite(mob);
-			if (Statistics.amuletObtained) {
-				mob.beckon(Dungeon.hero.pos);
-			}
 		}
 
 		raisedTerrain = new RaisedTerrainTilemap();
@@ -391,7 +388,7 @@ public class GameScene extends PixelScene {
 			case RETURN:
 				ScrollOfTeleportation.appear(Dungeon.hero, Dungeon.hero.pos);
 				break;
-			case DESCEND:
+			case ASCEND:
 			case FALL:
 				switch (Dungeon.depth) {
 					case 1:
@@ -423,33 +420,6 @@ public class GameScene extends PixelScene {
 						break;
 					case 46:
 						WndStory.showChapter(WndStory.ID_10);
-						break;
-					case 51:
-						WndStory.showChapter(WndStory.ID_11);
-						break;
-					case 56:
-						WndStory.showChapter(WndStory.ID_12);
-						break;
-					case 61:
-						WndStory.showChapter(WndStory.ID_13);
-						break;
-					case 66:
-						WndStory.showChapter(WndStory.ID_14);
-						break;
-					case 71:
-						WndStory.showChapter(WndStory.ID_15);
-						break;
-					case 76:
-						WndStory.showChapter(WndStory.ID_16);
-						break;
-					case 81:
-						WndStory.showChapter(WndStory.ID_17);
-						break;
-					case 86:
-						WndStory.showChapter(WndStory.ID_18);
-						break;
-					case 91:
-						WndStory.showChapter(WndStory.ID_19);
 						break;
 				}
 				if (Dungeon.hero.isAlive()) {
@@ -495,11 +465,11 @@ public class GameScene extends PixelScene {
 
 		switch (InterlevelScene.mode) {
 			case FALL:
-			case DESCEND:
+			case ASCEND:
 			case CONTINUE:
 				Camera.main.snapTo(hero.center().x, hero.center().y - DungeonTilemap.SIZE * (defaultZoom / Camera.main.zoom));
 				break;
-			case ASCEND:
+			case DESCEND:
 				Camera.main.snapTo(hero.center().x, hero.center().y + DungeonTilemap.SIZE * (defaultZoom / Camera.main.zoom));
 				break;
 			default:
@@ -509,30 +479,16 @@ public class GameScene extends PixelScene {
 
 		if (InterlevelScene.mode != InterlevelScene.Mode.NONE) {
 			if (Dungeon.depth == Statistics.deepestFloor
-					&& (InterlevelScene.mode == InterlevelScene.Mode.DESCEND || InterlevelScene.mode == InterlevelScene.Mode.FALL)) {
-				GLog.h(Messages.get(this, "descend"), Dungeon.depth);
+					&& (InterlevelScene.mode == InterlevelScene.Mode.ASCEND || InterlevelScene.mode == InterlevelScene.Mode.FALL)) {
+				GLog.h(Messages.get(this, "ascend"), Dungeon.depth);
 				Sample.INSTANCE.play(Assets.Sounds.DESCEND);
-
-				int spawnersAbove = Statistics.spawnersAlive;
-				if (spawnersAbove > 0 && Dungeon.depth <= 105) {
-					for (Mob m : Dungeon.level.mobs) {
-					}
-
-					if (spawnersAbove > 0) {
-						if (Dungeon.bossLevel()) {
-							GLog.n(Messages.get(this, "spawner_warn_final"));
-						} else {
-							GLog.n(Messages.get(this, "spawner_warn"));
-						}
-					}
-				}
 
 			} else if (InterlevelScene.mode == InterlevelScene.Mode.RESET) {
 				GLog.h(Messages.get(this, "warp"));
 			} else if (InterlevelScene.mode == InterlevelScene.Mode.RESURRECT) {
 				GLog.h(Messages.get(this, "resurrect"), Dungeon.depth);
 			} else {
-				GLog.h(Messages.get(this, "return"), Dungeon.depth);
+				GLog.h(Messages.get(this, "descend"), Dungeon.depth);
 			}
 
 			switch (Dungeon.level.feeling) {

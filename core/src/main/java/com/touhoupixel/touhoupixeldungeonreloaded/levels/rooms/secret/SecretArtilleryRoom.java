@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.secret;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
@@ -43,11 +42,7 @@ public class SecretArtilleryRoom extends SecretRoom {
 			} while ( level.map[itemPos] != Terrain.EMPTY_SP
 					|| level.heaps.get(itemPos) != null);
 			
-			if( i == 0 ){
-				level.drop(new Bomb.DoubleBomb(), itemPos);
-			} else {
-				level.drop(Generator.randomMissile(), itemPos);
-			}
+			level.drop(Generator.randomMissile(), itemPos);
 		}
 		
 		entrance().set(Door.Type.HIDDEN);

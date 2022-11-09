@@ -32,7 +32,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.ChargrilledMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.FrozenCarpaccio;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;

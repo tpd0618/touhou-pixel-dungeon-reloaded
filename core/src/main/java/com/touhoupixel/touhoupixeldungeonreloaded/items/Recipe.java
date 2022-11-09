@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Blandfruit;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MeatPie;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.StewedMeat;
@@ -39,6 +38,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOf
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfIcyTouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfToxicEssence;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
@@ -178,7 +178,6 @@ public abstract class Recipe {
 	
 	private static Recipe[] twoIngredientRecipes = new Recipe[]{
 		new Blandfruit.CookFruit(),
-		new Bomb.EnhanceBomb(),
 		new AlchemicalCatalyst.Recipe(),
 		new ArcaneCatalyst.Recipe(),
 		new ElixirOfArcaneArmor.Recipe(),
@@ -188,6 +187,7 @@ public abstract class Recipe {
 		new ElixirOfMight.Recipe(),
 		new ElixirOfHoneyedHealing.Recipe(),
 		new ElixirOfToxicEssence.Recipe(),
+		new ElixirOfZen.Recipe(),
 		new BlizzardBrew.Recipe(),
 		new InfernalBrew.Recipe(),
 		new ShockingBrew.Recipe(),

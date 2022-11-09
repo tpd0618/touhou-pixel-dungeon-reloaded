@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -49,7 +48,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -178,7 +176,7 @@ public class CursedWand {
 	}
 
 	private static boolean uncommonEffect(final Item origin, final Char user, final int targetPos){
-		switch(Random.Int(4)){
+		switch(Random.Int(3)){
 
 			//Random plant
 			case 0: default:
@@ -233,14 +231,8 @@ public class CursedWand {
 				}
 				return true;
 
-			//Bomb explosion
-			case 2:
-				new Bomb().explode(targetPos);
-				tryForWandProc(Actor.findChar(targetPos), origin);
-				return true;
-
 			//shock and recharge
-			case 3:
+			case 2:
 				new ShockingTrap().set( user.pos ).activate();
 				Buff.prolong(user, Recharging.class, Recharging.DURATION);
 				ScrollOfRecharging.charge(user);

@@ -94,7 +94,7 @@ public class WndStartGame extends Window {
 				GamesInProgress.curSlot = slot;
 				Dungeon.hero = null;
 				ActionIndicator.action = null;
-				InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+				InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
 
 				if (SPDSettings.intro()) {
 					SPDSettings.intro(false);

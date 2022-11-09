@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.GooBlob;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.MetalShard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -36,8 +34,7 @@ public class VelvetPouch extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Plant.Seed || item instanceof Runestone
-				|| item instanceof GooBlob || item instanceof MetalShard){
+		if (item instanceof Plant.Seed || item instanceof Runestone){
 			return super.canHold(item);
 		} else {
 			return false;

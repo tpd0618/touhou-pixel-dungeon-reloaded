@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.SewerPainter;
@@ -42,7 +41,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OozeTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
@@ -103,7 +101,6 @@ public class HakureiShrineLevel extends RegularLevel {
 
 	@Override
 	public void create() {
-		itemsToSpawn.add( new Bomb() );
 		itemsToSpawn.add( new Spellcard() );
 		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
 		itemsToSpawn.add( Generator.random(Generator.Category.TAILSMAN));
@@ -119,13 +116,13 @@ public class HakureiShrineLevel extends RegularLevel {
 	public String waterTex() {
 		return Assets.Environment.WATER_1;
 	}
-	
+
 	@Override
 	protected Class<?>[] trapClasses() {
 		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
 				new Class<?>[]{
 						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class,
-						PitfallTrap.class, BlazingTrap.class, ExConfusionTrap.class, DegradeTrap.class, CursingTrap.class,
+						AlarmTrap.class, BlazingTrap.class, ExConfusionTrap.class, DegradeTrap.class, CursingTrap.class,
 						TrainingTrap.class}:
 				new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, FlockTrap.class, WornDartTrap.class,
@@ -136,9 +133,9 @@ public class HakureiShrineLevel extends RegularLevel {
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-						3, 3, 3, 3, 3,
-						2, 2, 2, 2, 2,
-						1};
+				3, 3, 3, 3, 3,
+				2, 2, 2, 2, 2,
+				1};
 	}
 	
 	@Override

@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,39 +22,86 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Cirno;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eiki;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Kokoro;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Nazrin;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Okina;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Ringo;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wriggle;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine1;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine10;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine11;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine12;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine13;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine14;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine2;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine3;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine4;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine5;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine6;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine7;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine8;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.TutorialKeine9;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HomingHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.MasterHealHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.NightHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfExorcismRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DecoyTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FlandreTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ImpedeTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.OkinaTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MystiaWing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YuyukoFoldingFan;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KomachiDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.tiles.CustomTilemap;
-import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTileSheet;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.Tilemap;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Sungrass;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.watabou.noosa.audio.Music;
-import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
-
-import java.util.Arrays;
 
 public class LastLevel extends Level {
 
 	{
-		viewDistance = 8;
+		viewDistance = 100;
 
-		color1 = 0x801500;
-		color2 = 0xa68521;
+		color1 = 0x48763c;
+		color2 = 0x59994a;
 	}
 
 	@Override
 	public void playLevelMusic() {
-		Music.INSTANCE.end();
+		Music.INSTANCE.playTracks(
+				new String[]{Assets.Music.FLOOR_19, Assets.Music.FLOOR_19, Assets.Music.FLOOR_19},
+				new float[]{1, 1, 0.5f},
+				false);
 	}
+
+	private static int WIDTH = 13;
+	private static int HEIGHT = 13;
 
 	@Override
 	public String tilesTex() {
@@ -67,101 +114,61 @@ public class LastLevel extends Level {
 	}
 
 	@Override
-	public void create() {
-		super.create();
-		for (int i=0; i < length(); i++) {
-			int flags = Terrain.flags[map[i]];
-			if ((flags & Terrain.PIT) != 0){
-				passable[i] = avoid[i] = false;
-				solid[i] = true;
-			}
-		}
-		for (int i = (height-ROOM_TOP+2)*width; i < length; i++){
-			passable[i] = avoid[i] = false;
-			solid[i] = true;
-		}
-		for (int i = (height-ROOM_TOP+1)*width; i < length; i++){
-			if (i % width < 4 || i % width > 12 || i >= (length-width)){
-				discoverable[i] = false;
-			} else {
-				visited[i] = true;
-			}
-		}
-	}
-
-	private static final int ROOM_TOP = 10;
-	private static final int WIDTH = 16;
-	private static final int MID = WIDTH/2;
-	public static int AMULET_POS = 12*WIDTH + MID;
-
-	@Override
 	protected boolean build() {
+		setSize(WIDTH, HEIGHT);
 
-		setSize(16, 64);
-		Arrays.fill( map, Terrain.CHASM );
+		transitions.add(new LevelTransition(this, 32, LevelTransition.Type.SURFACE));
+		transitions.add(new LevelTransition(this, 136, LevelTransition.Type.REGULAR_EXIT));
 
-		final int MID = width/2;
-
-		Painter.fill( this, 0, height-1, width, 1, Terrain.WALL );
-		Painter.fill( this, MID - 1, 10, 3, (height-11), Terrain.EMPTY);
-		Painter.fill( this, MID - 2, height - 3, 5, 1, Terrain.EMPTY);
-		Painter.fill( this, MID - 3, height - 2, 7, 1, Terrain.EMPTY);
-
-		int entrance = (height-ROOM_TOP) * width() + MID;
-		Painter.fill(this, 0, height - ROOM_TOP, width, 2, Terrain.WALL);
-		map[entrance] = Terrain.ENTRANCE;
-		map[entrance+width] = Terrain.ENTRANCE;
-		LevelTransition entry = new LevelTransition(this, entrance, LevelTransition.Type.REGULAR_ENTRANCE);
-		entry.left--;
-		entry.right++;
-		entry.bottom += 2;
-		transitions.add(entry);
-		Painter.fill(this, 0, height - ROOM_TOP + 2, width, 8, Terrain.EMPTY);
-		Painter.fill(this, MID-1, height - ROOM_TOP + 2, 3, 1, Terrain.ENTRANCE);
-
-		for (int i=0; i < length(); i++) {
-			if (map[i] == Terrain.EMPTY && Random.Int( 5 ) == 0) {
-				map[i] = Terrain.EMPTY_DECO;
-			}
-		}
-
-		Painter.fill( this, MID - 2, 9, 5, 7, Terrain.EMPTY);
-		Painter.fill( this, MID - 3, 10, 7, 5, Terrain.EMPTY);
-
-		feeling = Feeling.NONE;
-		viewDistance = 4;
-
-		CustomTilemap vis = new CustomFloor();
-		vis.setRect( 5, 0, 7, height - ROOM_TOP);
-		customTiles.add(vis);
-
-		vis = new CenterPieceVisuals();
-		vis.pos(0, height - ROOM_TOP);
-		customTiles.add(vis);
-
-		vis = new CenterPieceWalls();
-		vis.pos(0, height - ROOM_TOP-1);
-		customWalls.add(vis);
+		buildLevel();
 
 		return true;
 	}
 
-	@Override
-	public Mob createMob() {
-		return null;
+	private static final short n = -1;
+	private static final short W = Terrain.WALL;
+	private static final short d = Terrain.EMPTY;
+	private static final short A = Terrain.EMPTY; //items and npcs
+	private static final short S = Terrain.EXIT;
+	private static final short E = Terrain.ENTRANCE;
+	private static final short s = Terrain.PEDESTAL;
+	private static final short c = Terrain.EMPTY_SP;
+	private static final short e = Terrain.WATER;
+
+	private static short[] level = {
+			W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, e, e, e, e, S, e, e, e, e, W, W,
+			W, W, e, d, d, d, d, d, d, d, e, W, W,
+			W, W, e, d, c, c, c, c, c, d, e, W, W,
+			W, W, e, d, c, s, s, s, c, d, e, W, W,
+			W, W, e, d, c, s, A, s, c, d, e, W, W,
+			W, W, e, d, c, s, s, s, c, d, e, W, W,
+			W, W, e, d, c, c, c, c, c, d, e, W, W,
+			W, W, e, d, d, d, d, d, d, d, e, W, W,
+			W, W, e, e, e, e, E, e, e, e, e, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W
+	};
+
+	private void buildLevel(){
+		int pos = 0 + 0*width();
+
+		short[] levelTiles = level;
+		for (int i = 0; i < levelTiles.length; i++){
+			if (levelTiles[i] != n) map[pos] = levelTiles[i];
+
+			pos++;
+		}
 	}
 
 	@Override
 	protected void createMobs() {
 	}
 
-	public Actor addRespawner() {
-		return null;
-	}
-
 	@Override
 	protected void createItems() {
-		drop( new Amulet(), AMULET_POS );
+		drop( new Amulet(), 84 );
 	}
 
 	@Override
@@ -178,14 +185,15 @@ public class LastLevel extends Level {
 	public String tileName( int tile ) {
 		switch (tile) {
 			case Terrain.WATER:
-				return Messages.get(HellLevel.class, "water_name");
-			case Terrain.GRASS:
-				return Messages.get(HellLevel.class, "grass_name");
-			case Terrain.HIGH_GRASS:
-				return Messages.get(HellLevel.class, "high_grass_name");
+				return Messages.get(HakureiShrineLevel.class, "water_name");
+			case Terrain.WALL_DECO:
+				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
 			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(HellLevel.class, "statue_name");
+				return Messages.get(HakureiShrineLevel.class, "statue_name");
+			case Terrain.LOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
+			case Terrain.UNLOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
 			default:
 				return super.tileName( tile );
 		}
@@ -194,178 +202,24 @@ public class LastLevel extends Level {
 	@Override
 	public String tileDesc(int tile) {
 		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HellLevel.class, "water_desc");
-			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(HellLevel.class, "statue_desc");
+			case Terrain.ENTRANCE:
+				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
+			case Terrain.EXIT:
+				return Messages.get(HakureiShrineLevel.class, "exit_desc");
+			case Terrain.EMPTY_DECO:
+				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
+			case Terrain.WALL_DECO:
+				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
 			case Terrain.BOOKSHELF:
-				return Messages.get(HellLevel.class, "bookshelf_desc");
+				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
+			case Terrain.STATUE:
+				return Messages.get(HakureiShrineLevel.class, "statue_desc");
+			case Terrain.LOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
+			case Terrain.UNLOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
 			default:
 				return super.tileDesc( tile );
-		}
-	}
-
-	@Override
-	public Group addVisuals () {
-		super.addVisuals();
-		HellLevel.addHallsVisuals(this, visuals);
-		return visuals;
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		//pre-1.3.0 saves, deletes unneeded exit
-		if (bundle.contains("exit")) bundle.remove("exit");
-
-		super.restoreFromBundle(bundle);
-		for (int i=0; i < length(); i++) {
-			int flags = Terrain.flags[map[i]];
-			if ((flags & Terrain.PIT) != 0){
-				passable[i] = avoid[i] = false;
-				solid[i] = true;
-			}
-		}
-		for (int i = (height-ROOM_TOP+2)*width; i < length; i++){
-			passable[i] = avoid[i] = false;
-			solid[i] = true;
-		}
-		for (int i = (height-ROOM_TOP+1)*width; i < length; i++){
-			if (i % width < 4 || i % width > 12 || i >= (length-width)){
-				discoverable[i] = false;
-			} else {
-				visited[i] = true;
-			}
-		}
-	}
-
-	public static class CustomFloor extends CustomTilemap {
-
-		{
-			texture = Assets.Environment.HALLS_SP;
-		}
-
-		private static final int[] CANDLES = new int[]{
-				-1, 42, 46, 46, 46, 43, -1,
-				42, 46, 46, 46, 46, 46, 43,
-				46, 46, 45, 19, 44, 46, 46,
-				46, 46, 19, 19, 19, 46, 46,
-				46, 46, 43, 19, 42, 46, 46,
-				44, 46, 46, 19, 46, 46, 45,
-				-1, 44, 45, 19, 44, 45, -1
-		};
-
-		@Override
-		public Tilemap create() {
-			Tilemap v = super.create();
-
-			int candlesStart = AMULET_POS - 3 - 3*Dungeon.level.width();
-
-			int cell = tileX + tileY * Dungeon.level.width();
-			int[] map = Dungeon.level.map;
-			int[] data = new int[tileW*tileH];
-			for (int i = 0; i < data.length; i++){
-				if (i % tileW == 0){
-					cell = tileX + (tileY + i / tileW) * Dungeon.level.width();
-				}
-				if (cell == candlesStart){
-					for (int candle : CANDLES) {
-						if (data[i] == 0) data[i] = candle;
-
-						if (data[i] == 46 && DungeonTileSheet.tileVariance[cell] >= 50){
-							data[i] ++;
-						}
-
-						if (Statistics.amuletObtained && data[i] > 40){
-							data[i] += 8;
-						}
-
-						if (map[cell] != Terrain.CHASM && map[cell+Dungeon.level.width] == Terrain.CHASM) {
-							data[i+tileW] = 6;
-						}
-
-						i++;
-						cell++;
-						if (i % tileW == 0){
-							cell = tileX + (tileY + i / tileW) * Dungeon.level.width();
-						}
-					}
-				}
-				if (map[cell] == Terrain.EMPTY_DECO) {
-					if (Statistics.amuletObtained){
-						data[i] = 31;
-					} else {
-						data[i] = 27;
-					}
-				} else if (map[cell] == Terrain.EMPTY) {
-					data[i] = 19;
-				} else if (data[i] == 0) {
-					data[i] = -1;
-				}
-				cell++;
-			}
-			v.map( data, tileW );
-			return v;
-		}
-
-	}
-
-	public static class CenterPieceVisuals extends CustomTilemap {
-
-		{
-			texture = Assets.Environment.HALLS_SP;
-
-			tileW = 16;
-			tileH = 10;
-		}
-
-		private static final int[] map = new int[]{
-				-1, -1, -1, -1, -1, -1, -1, -1, 19, -1, -1, -1, -1, -1, -1, -1,
-				0,  0,  0,  0,  8,  9, 10, 11, 19, 11, 12, 13, 14,  0,  0,  0,
-				0,  0,  0,  0, 16, 17, 18, 31, 19, 31, 20, 21, 22,  0,  0,  0,
-				0,  0,  0,  0, 24, 25, 26, 19, 19, 19, 28, 29, 30,  0,  0,  0,
-				0,  0,  0,  0, 24, 25, 26, 19, 19, 19, 28, 29, 30,  0,  0,  0,
-				0,  0,  0,  0, 24, 25, 26, 19, 19, 19, 28, 29, 30,  0,  0,  0,
-				0,  0,  0,  0, 24, 25, 34, 35, 35, 35, 34, 29, 30,  0,  0,  0,
-				0,  0,  0,  0, 40, 41, 36, 36, 36, 36, 36, 40, 41,  0,  0,  0,
-				0,  0,  0,  0, 48, 49, 36, 36, 36, 36, 36, 48, 49,  0,  0,  0,
-				0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-		};
-
-		@Override
-		public Tilemap create() {
-			Tilemap v = super.create();
-			v.map(map, tileW);
-			return v;
-		}
-	}
-
-	public static class CenterPieceWalls extends CustomTilemap {
-
-		{
-			texture = Assets.Environment.HALLS_SP;
-
-			tileW = 16;
-			tileH = 9;
-		}
-
-		private static final int[] map = new int[]{
-				4,  4,  4,  4,  4,  4,  4,  5,  7,  3,  4,  4,  4,  4,  4,  4,
-				0,  0,  0,  0,  0,  0,  0,  1, 15,  2,  0,  0,  0,  0,  0,  0,
-				-1, -1, -1, -1, -1, -1, -1, -1, 23, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, 32, 33, -1, -1, -1, -1, -1, 32, 33, -1, -1, -1,
-				-1, -1, -1, -1, 40, 41, -1, -1, -1, -1, -1, 40, 41, -1, -1, -1,
-		};
-
-		@Override
-		public Tilemap create() {
-			Tilemap v = super.create();
-			v.map(map, tileW);
-			return v;
 		}
 	}
 }

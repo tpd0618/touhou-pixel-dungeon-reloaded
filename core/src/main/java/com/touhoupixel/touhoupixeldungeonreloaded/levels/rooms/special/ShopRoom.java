@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
@@ -33,7 +32,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
@@ -188,19 +186,8 @@ public class ShopRoom extends SpecialRoom {
 
 		itemsToSpawn.add( new SmallRation() );
 		itemsToSpawn.add( new SmallRation() );
-		
-		switch (Random.Int(4)){
-			case 0:
-				itemsToSpawn.add( new Bomb() );
-				break;
-			case 1:
-			case 2:
-				itemsToSpawn.add( new Bomb.DoubleBomb() );
-				break;
-			case 3:
-				itemsToSpawn.add( new Honeypot() );
-				break;
-		}
+
+		itemsToSpawn.add( new Honeypot() );
 
 		itemsToSpawn.add(new StoneOfAugmentation());
 

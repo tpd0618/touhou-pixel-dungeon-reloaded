@@ -86,7 +86,7 @@ import com.watabou.utils.Random;
 public class TutorialLevel extends Level {
 
 	{
-		viewDistance = 50;
+		viewDistance = 100;
 
 		color1 = 0x48763c;
 		color2 = 0x59994a;
