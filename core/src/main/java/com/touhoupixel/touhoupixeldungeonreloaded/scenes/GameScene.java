@@ -516,13 +516,6 @@ public class GameScene extends PixelScene {
 			}
 
 			InterlevelScene.mode = InterlevelScene.Mode.NONE;
-
-
-		}
-
-		if (Rankings.INSTANCE.totalNumber > 0 && !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_ABILITY_CARDS)) {
-			GLog.p(Messages.get(Guidebook.class, "hint"));
-			GameScene.flashForDocument(Document.GUIDE_ABILITY_CARDS);
 		}
 
 		if (!invVisible) toggleInvPane();

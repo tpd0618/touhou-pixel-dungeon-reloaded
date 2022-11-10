@@ -72,7 +72,7 @@ public class Seiran extends Mob {
                         hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
                         Sample.INSTANCE.play(Assets.Sounds.LULLABY);
                         if (hypnotize instanceof Potion) {
-                            hypnotize.execute((Hero) hero);
+                            ((Potion) hypnotize).drink((Hero) hero);
                         }
                         if (hypnotize instanceof Herb) {
                             hypnotize.execute((Hero) hero);

@@ -22,13 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.TransientTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
@@ -57,25 +57,25 @@ public class ScrollOfTeleportation extends Scroll {
 	public void doRead() {
 
 		Sample.INSTANCE.play( Assets.Sounds.READ );
-		
+
 		if (teleportPreferringUnseen( curUser )){
 			readAnimation();
 		}
 		identify();
 
 	}
-	
+
 	public static boolean teleportToLocation(Char ch, int pos){
 		PathFinder.buildDistanceMap(pos, BArray.or(Dungeon.level.passable, Dungeon.level.avoid, null));
-		if (PathFinder.distance[ch.pos] == Integer.MAX_VALUE
+		if ((PathFinder.distance[ch.pos] == Integer.MAX_VALUE
 				|| (!Dungeon.level.passable[pos] && !Dungeon.level.avoid[pos])
-				|| Actor.findChar(pos) != null){
+				|| Actor.findChar(pos) != null) && !(curItem instanceof TransientTailsman)){
 			if (ch == Dungeon.hero){
 				GLog.w( Messages.get(ScrollOfTeleportation.class, "cant_reach") );
 			}
 			return false;
 		}
-		
+
 		appear( ch, pos );
 		Dungeon.level.occupyCell( ch );
 		if (ch == Dungeon.hero) {
@@ -83,13 +83,13 @@ public class ScrollOfTeleportation extends Scroll {
 			GameScene.updateFog();
 		}
 		return true;
-		
+
 	}
-	
+
 	public static boolean teleportHero( Hero hero ) {
 		return teleportChar( hero );
 	}
-	
+
 	public static boolean teleportChar( Char ch ) {
 
 		if (!(Dungeon.level instanceof RegularLevel)){
@@ -100,7 +100,7 @@ public class ScrollOfTeleportation extends Scroll {
 			GLog.w( Messages.get(ScrollOfTeleportation.class, "no_tele") );
 			return false;
 		}
-		
+
 		int count = 20;
 		int pos;
 		do {
@@ -109,38 +109,38 @@ public class ScrollOfTeleportation extends Scroll {
 				break;
 			}
 		} while (pos == -1 || Dungeon.level.secret[pos]);
-		
+
 		if (pos == -1) {
-			
+
 			GLog.w( Messages.get(ScrollOfTeleportation.class, "no_tele") );
 			return false;
-			
+
 		} else {
-			
+
 			appear( ch, pos );
 			Dungeon.level.occupyCell( ch );
-			
+
 			if (ch == Dungeon.hero) {
 				GLog.i( Messages.get(ScrollOfTeleportation.class, "tele") );
-				
+
 				Dungeon.observe();
 				GameScene.updateFog();
 				Dungeon.hero.interrupt();
 			}
 			return true;
-			
+
 		}
 	}
-	
+
 	public static boolean teleportPreferringUnseen( Hero hero ){
-		
+
 		if (!(Dungeon.level instanceof RegularLevel)){
 			return teleportInNonRegularLevel( hero, true );
 		}
-		
+
 		RegularLevel level = (RegularLevel) Dungeon.level;
 		ArrayList<Integer> candidates = new ArrayList<>();
-		
+
 		for (Room r : level.rooms()){
 			if (r instanceof SpecialRoom){
 				int terr;
@@ -156,7 +156,7 @@ public class ScrollOfTeleportation extends Scroll {
 					continue;
 				}
 			}
-			
+
 			int cell;
 			for (Point p : r.charPlaceablePoints(level)){
 				cell = level.pointToCell(p);
@@ -165,7 +165,7 @@ public class ScrollOfTeleportation extends Scroll {
 				}
 			}
 		}
-		
+
 		if (candidates.isEmpty()){
 			return teleportChar( hero );
 		} else {
@@ -201,7 +201,7 @@ public class ScrollOfTeleportation extends Scroll {
 			GameScene.updateFog();
 			return true;
 		}
-		
+
 	}
 
 	//teleports to a random pathable location on the floor
@@ -287,7 +287,7 @@ public class ScrollOfTeleportation extends Scroll {
 			ch.sprite.emitter().start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 		}
 	}
-	
+
 	@Override
 	public int value() {
 		return isKnown() ? 30 * quantity : super.value();

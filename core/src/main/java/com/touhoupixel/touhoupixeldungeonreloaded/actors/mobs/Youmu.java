@@ -45,7 +45,7 @@ public class Youmu extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            hero.damage(damageRoll(), this);
+            hero.damage(15, this);
         }
         return damage;
     }

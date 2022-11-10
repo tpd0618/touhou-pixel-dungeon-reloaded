@@ -38,9 +38,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
@@ -624,8 +626,8 @@ public abstract class Mob extends Char {
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 
-		if (Dungeon.hero.buff(NightTime.class) != null && Dungeon.hero.buff(Light.class) == null) {
-			damage *= 2;
+		if (this.buff(OneDamage.class) != null ) {
+			damage = 1;
 		}
 
 		if (this instanceof Nazrin && Dungeon.gold > 200){
@@ -654,6 +656,10 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
+
+		if (this.buff(HighStress.class) != null){
+			this.HP = 1;
+		}
 
 		if (enemy instanceof Hero
 				&& ((Hero) enemy).belongings.weapon() instanceof MissileWeapon){
@@ -764,7 +770,7 @@ public abstract class Mob extends Char {
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			if (Dungeon.hero.buff(Powerful.class) == null) {
-				Statistics.value += 1;
+				Statistics.value += 5;
 			}
 		}
 

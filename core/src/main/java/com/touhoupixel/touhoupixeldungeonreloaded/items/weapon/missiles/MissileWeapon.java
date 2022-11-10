@@ -89,7 +89,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (5+Dungeon.hero.lvl) * tier +                      //base
+		return  (5+Dungeon.hero.lvl/3) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 

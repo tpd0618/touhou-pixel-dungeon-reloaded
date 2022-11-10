@@ -25,12 +25,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LifeSpellcardChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.SpellcardCaster;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
@@ -40,11 +41,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards.MoonMadness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HealHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.TransientTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
@@ -84,6 +86,9 @@ public enum HeroClass {
 		//test, too many will make the bug for the game
 
 		//test, too many will make the bug for the game
+
+		Torch torch = new Torch();
+		torch.quantity(3).collect();
 
 		HealHerb healherb = new HealHerb();
 		healherb.collect();

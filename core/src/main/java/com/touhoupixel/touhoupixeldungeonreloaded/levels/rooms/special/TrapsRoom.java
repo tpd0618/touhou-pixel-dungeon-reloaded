@@ -152,13 +152,13 @@ public class TrapsRoom extends SpecialRoom {
 	@SuppressWarnings("unchecked")
 	private static Class<? extends Trap>[][] levelTraps = new Class[][]{
 			//1
-			{DisintegrationTrap.class},
+			{PoisonDartTrap.class},
 			//2
-			{DisintegrationTrap.class},
+			{PoisonDartTrap.class},
 			//3
-			{DisintegrationTrap.class},
+			{PoisonDartTrap.class},
 			//4
-			{DisintegrationTrap.class},
+			{PoisonDartTrap.class},
 			//5
 			{DisintegrationTrap.class},
 			//6

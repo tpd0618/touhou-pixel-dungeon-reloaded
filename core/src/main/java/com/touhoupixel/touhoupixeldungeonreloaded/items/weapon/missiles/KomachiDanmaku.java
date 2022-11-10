@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -38,7 +39,7 @@ public class KomachiDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return (2+Challenges.activeChallenges()/2)*tier +
-				(tier)*lvl;
+		return  (4+Challenges.activeChallenges()+Dungeon.hero.lvl/3) * tier +                      //base
+				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }

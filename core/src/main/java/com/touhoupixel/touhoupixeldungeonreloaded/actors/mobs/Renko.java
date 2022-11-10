@@ -149,7 +149,7 @@ public class Renko extends Mob implements Callback {
                                         Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.BUBBLE ), 0.2f, 3 );
                                         Sample.INSTANCE.play(Assets.Sounds.LULLABY);
                                         if (hypnotize instanceof Potion) {
-                                            hypnotize.execute(Dungeon.hero);
+                                            ((Potion) hypnotize).drink(Dungeon.hero);
                                         }
                                         if (hypnotize instanceof Herb) {
                                             hypnotize.execute(Dungeon.hero);

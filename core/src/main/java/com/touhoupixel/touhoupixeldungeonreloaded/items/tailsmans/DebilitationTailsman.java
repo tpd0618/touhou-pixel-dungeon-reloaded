@@ -20,7 +20,7 @@ public class DebilitationTailsman extends Tailsman {
 
         if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)){
             if (Dungeon.hero.buff(Pure.class) == null) {
-                Buff.prolong(ch, OneDamage.class, OneDamage.DURATION / 2f);
+                Buff.prolong(ch, OneDamage.class, OneDamage.DURATION);
             }
         }
     }

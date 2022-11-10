@@ -43,11 +43,11 @@ public class StarDanmaku extends MissileWeapon {
 		tier = 4;
 		sticky = false;
 	}
-	
+
 	@Override
 	public int max(int lvl) {
-		return 4 * tier +                  //16 base, down from 20
-				(tier) * lvl;               //scaling unchanged
+		return  (6+Dungeon.hero.lvl/3) * tier +                      //base
+				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 	
 	@Override

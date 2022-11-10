@@ -44,6 +44,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCorrosiveGas;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfShroudingFog;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfStormClouds;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -123,9 +127,20 @@ public class Potion extends Item {
 			//put("greentea_green",ItemSpriteSheet.GREENTEA_POTION_GREEN);
 		}
 	};
-	
+
 	private static final HashSet<Class<?extends Potion>> mustThrowPots = new HashSet<>();
 	static{
+		mustThrowPots.add(PotionOfToxicGas.class);
+		mustThrowPots.add(PotionOfLiquidFlame.class);
+		mustThrowPots.add(PotionOfParalyticGas.class);
+		mustThrowPots.add(PotionOfFrost.class);
+
+		//exotic
+		mustThrowPots.add(PotionOfCorrosiveGas.class);
+		mustThrowPots.add(PotionOfSnapFreeze.class);
+		mustThrowPots.add(PotionOfShroudingFog.class);
+		mustThrowPots.add(PotionOfStormClouds.class);
+
 		//also all brews, hardcoded
 	}
 	
@@ -301,7 +316,7 @@ public class Potion extends Item {
 		}
 	}
 
-	protected void drink( Hero hero ) {
+	public void drink( Hero hero ) {
 		
 		detach( hero.belongings.backpack );
 		

@@ -173,7 +173,7 @@ public class TutorialLevel extends Level {
 			W, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, W, W, W, D, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, D, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
 			W, W, e, e, e, i, e, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, W, e, e, e, e, e, W, i, e, e, e, e, W, e, e, e, e, e, e, i, i, i, i, e, e, e, e, i, e, e, W, W,
+			W, W, e, e, e, e, e, W, e, e, e, e, e, W, i, e, e, e, e, W, e, e, e, e, i, i, i, i, i, i, e, e, e, e, i, e, e, W, W,
 			W, W, e, e, e, e, e, W, e, e, e, e, e, D, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, i, e, e, W, W,
 			W, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, i, e, e, W, W,
 			W, W, e, e, W, e, e, W, e, e, i, e, e, W, e, e, e, e, e, W, W, W, W, W, W, W, W, W, W, W, W, W, e, e, i, e, e, W, W,
@@ -312,6 +312,8 @@ public class TutorialLevel extends Level {
 		drop( new StrengthCard(), 1594 );
 		drop( new StrengthCard(), 1633 );
 		drop( new StrengthCard(), 1672 );
+		drop( new UpgradeCard(), 1545 );
+		drop( new UpgradeCard(), 1546 );
 		drop( new UpgradeCard(), 1547 );
 		drop( new UpgradeCard(), 1548 );
 		drop( new UpgradeCard(), 1549 );

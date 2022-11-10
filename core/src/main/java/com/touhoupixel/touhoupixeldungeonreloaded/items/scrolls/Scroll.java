@@ -21,9 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
@@ -39,7 +37,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfA
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlast;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlink;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfClairvoyance;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDeepSleep;
@@ -50,7 +48,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.HecatiaTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -290,7 +287,7 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfLullaby.class,       StoneOfDeepSleep.class);
 			stones.put(ScrollOfMagicMapping.class,  StoneOfClairvoyance.class);
 			stones.put(ScrollOfMirrorImage.class,   StoneOfFlock.class);
-			stones.put(ScrollOfRetribution.class,   StoneOfBlast.class);
+			stones.put(ScrollOfRetribution.class,   StoneOfMadness.class);
 			stones.put(ScrollOfRage.class,          StoneOfAggression.class);
 			stones.put(ScrollOfRecharging.class,    StoneOfShock.class);
 			stones.put(ScrollOfRemoveCurse.class,   StoneOfDisarming.class);

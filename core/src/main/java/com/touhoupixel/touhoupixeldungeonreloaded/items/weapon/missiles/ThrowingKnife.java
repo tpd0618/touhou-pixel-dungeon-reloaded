@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
@@ -37,11 +38,11 @@ public class ThrowingKnife extends MissileWeapon {
 		
 		tier = 1;
 	}
-	
+
 	@Override
 	public int max(int lvl) {
-		return  6 * tier +                      //6 base, up from 5
-				(tier == 1 ? 2*lvl : tier*lvl); //scaling unchanged
+		return  (6+Dungeon.hero.lvl/3) * tier +                      //base
+				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 	
 	@Override

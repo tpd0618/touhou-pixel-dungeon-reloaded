@@ -64,6 +64,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
@@ -493,6 +494,132 @@ public class Hero extends Char {
 			dmg = RingOfForce.damageRoll(this);
 		}
 		if (dmg < 0) dmg = 0;
+
+		if (Dungeon.hero.buff(OneDamage.class) != null) {
+			dmg = 1;
+		}
+
+		if (Dungeon.hero.buff(RemiliaFate.class) != null){
+			dmg *= 2;
+		}
+
+		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
+			dmg = 1;
+			ScrollOfTeleportation.teleportChar(enemy);
+		}
+
+		if (Dungeon.hero.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null ||
+			Dungeon.hero.buff(Cool.class) != null && enemy.buff(Cool.class) != null ||
+			Dungeon.hero.buff(Pure.class) != null && enemy.buff(Pure.class) != null ||
+			Dungeon.hero.buff(Happy.class) != null && enemy.buff(Happy.class) != null){
+			dmg *= 0;
+		}
+
+		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0) ||
+			Statistics.playercorruption == 2 && (Random.Int(80) == 0) ||
+			Statistics.playercorruption == 3 && (Random.Int(60) == 0) ||
+			Statistics.playercorruption == 4 && (Random.Int(40) == 0) ||
+			Statistics.playercorruption == 5 && (Random.Int(20) == 0) ||
+			Statistics.playercorruption == 6 && (Random.Int(10) == 0) ||
+			Statistics.playercorruption == 7 && (Random.Int(7) == 0) ||
+			Statistics.playercorruption == 8 && (Random.Int(4) == 0) ||
+			Statistics.playercorruption == 9 && (Random.Int(3) == 0) ||
+			Statistics.playercorruption == 10 && (Random.Int(2) == 0)) {
+			dmg *= 0;
+			Sample.INSTANCE.play( Assets.Sounds.CURSED );
+		}
+
+		if (Dungeon.hero.buff(DanmakuDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+			dmg *= 1.4f;
+		}
+
+		if (Statistics.power == 400){
+			dmg *= 1.1f;
+		}
+		if (Statistics.power >= 300){
+			dmg *= 1.1f;
+		}
+		if (Statistics.power >= 200){
+			dmg *= 1.1f;
+		}
+
+		if (Statistics.card18 && Dungeon.depth % 2 == 1){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card19 && Dungeon.depth % 2 == 0){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card20 && Dungeon.hero.buff(Might.class) != null){
+			dmg *= 1.5f;
+		}
+
+		if (Statistics.card21 && Dungeon.hero.buff(Hisou.class) != null){
+			dmg *= 1.5f;
+		}
+
+		if (Statistics.card22 && Dungeon.hero.buff(Doublespeed.class) != null){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card23 && Dungeon.level.map[enemy.pos] == Terrain.GRASS || Dungeon.level.map[enemy.pos] == Terrain.HIGH_GRASS || Dungeon.level.map[enemy.pos] == Terrain.FURROWED_GRASS){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card24 && Dungeon.hero.buff(Haste.class) != null){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card25 && Dungeon.hero.HP % 2 == 1){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card26 && Statistics.playercorruption > 5){
+			dmg *= 1.3f;
+		}
+
+		if (Statistics.card39 && Dungeon.hero.flying) {
+			dmg *= 1.4f;
+		}
+
+		if (Statistics.card45) {
+			dmg *= 1.28f;
+		}
+
+		if (Statistics.card13){
+			dmg *= 0.9f;
+			if (Random.Int(8) == 0) {
+				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+			}
+		}
+
+		if (Statistics.card14){
+			dmg *= 1.08f;
+			if (Random.Int(3) == 0) {
+				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+			}
+		}
+
+		if (Statistics.card65 && (Random.Int(2) == 0)){
+			dmg *= 1.2f;
+		}
+
+		if (Statistics.card67){
+			dmg *= 0.9f;
+		}
+
+		if (Statistics.card74 && !Statistics.lifelose){
+			dmg *= 1.25f;
+		}
+
+		if (Statistics.card73 && Dungeon.level.map[enemy.pos] == Terrain.OPEN_DOOR){
+			dmg *= 1.3f;
+		}
+
+		if (Statistics.card77 && Dungeon.hero.belongings.weapon() instanceof MeleeWeapon){
+			dmg *= 1.1f;
+		}
 
 		return dmg;
 	}
@@ -1220,27 +1347,6 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 
-		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
-			damage *= 0;
-		}
-
-		if (Dungeon.hero.buff(RemiliaFate.class) != null){
-			damage *= 2;
-		}
-
-		if (Dungeon.hero.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null){
-			damage *= 0;
-		}
-		if (Dungeon.hero.buff(Cool.class) != null && enemy.buff(Cool.class) != null){
-			damage *= 0;
-		}
-		if (Dungeon.hero.buff(Pure.class) != null && enemy.buff(Pure.class) != null){
-			damage *= 0;
-		}
-		if (Dungeon.hero.buff(Happy.class) != null && enemy.buff(Happy.class) != null){
-			damage *= 0;
-		}
-
 		if (Dungeon.hero.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
 			Buff.prolong(enemy, Might.class, Might.DURATION/2f);
 		}
@@ -1252,47 +1358,6 @@ public class Hero extends Char {
 		}
 		if (Dungeon.hero.buff(Happy.class) != null && enemy.HT/2 > enemy.HP){
 			Buff.prolong(enemy, Doublerainbow.class, Doublerainbow.DURATION/4f);
-		}
-
-		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 2 && (Random.Int(80) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 3 && (Random.Int(60) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 4 && (Random.Int(40) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 5 && (Random.Int(20) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 6 && (Random.Int(10) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 7 && (Random.Int(7) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 8 && (Random.Int(4) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 9 && (Random.Int(3) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 10 && (Random.Int(2) == 0)){
-			damage *= 0;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
 		}
 
 		if (buff(SupernaturalBorder.class) == null) {
@@ -1309,10 +1374,6 @@ public class Hero extends Char {
 			GLog.w(Messages.get(Potion.class, "corruption"));
 		}
 
-		if (buff(DanmakuDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
-			damage *= 1.4f;
-		}
-
 		if (Dungeon.hero.belongings.armor() instanceof YorihimeArmor && (Random.Int(75) == 0)){
 			Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
 		}
@@ -1322,16 +1383,6 @@ public class Hero extends Char {
 
 		if (buff(CursedBlow.class) != null){
 			CursedWand.cursedEffect(null, this, enemy);
-		}
-
-		if (Statistics.power == 400){
-			damage *= 1.1f;
-		}
-		if (Statistics.power >= 300){
-			damage *= 1.1f;
-		}
-		if (Statistics.power >= 200){
-			damage *= 1.1f;
 		}
 
 		if (Statistics.card58 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
@@ -1354,78 +1405,8 @@ public class Hero extends Char {
 			Buff.prolong(enemy, Slow.class, Slow.DURATION/2f);
 		}
 
-		if (Statistics.card18 && Dungeon.depth % 2 == 1){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card19 && Dungeon.depth % 2 == 0){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card20 && this.buff(Might.class) != null){
-			damage *= 1.5f;
-		}
-
-		if (Statistics.card21 && this.buff(Hisou.class) != null){
-			damage *= 1.5f;
-		}
-
-		if (Statistics.card22 && this.buff(Doublespeed.class) != null){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card23 && Dungeon.level.map[enemy.pos] == Terrain.GRASS || Dungeon.level.map[enemy.pos] == Terrain.HIGH_GRASS || Dungeon.level.map[enemy.pos] == Terrain.FURROWED_GRASS){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card24 && this.buff(Haste.class) != null){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card25 && this.HP % 2 == 1){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card26 && Statistics.playercorruption > 5){
-			damage *= 1.3f;
-		}
-
-		if (Statistics.card39 && this.flying) {
-			damage *= 1.4f;
-		}
-
-		if (Statistics.card45) {
-			damage *= 1.28f;
-		}
-
-		if (Statistics.card13){
-			damage *= 0.9f;
-			if (Random.Int(8) == 0) {
-				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
-			}
-		}
-
-		if (Statistics.card14){
-			damage *= 1.08f;
-			if (Random.Int(3) == 0) {
-				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
-			}
-		}
-
 		if (Statistics.card64 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon && (Random.Int(4) == 0)){
 			Buff.prolong(enemy, HighStress.class, HighStress.DURATION);
-		}
-
-		if (Statistics.card65 && (Random.Int(2) == 0)){
-			damage *= 1.2f;
-		}
-
-		if (Statistics.card67){
-			damage *= 0.9f;
-		}
-
-		if (Statistics.card74 && !Statistics.lifelose){
-			damage *= 1.25f;
 		}
 
 		if (Statistics.card50 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
@@ -1471,14 +1452,6 @@ public class Hero extends Char {
 			Buff.prolong(enemy, Hex.class, Hex.DURATION);
 		}
 
-		if (Statistics.card73 && Dungeon.level.map[enemy.pos] == Terrain.OPEN_DOOR){
-			damage *= 1.3f;
-		}
-
-		if (Statistics.card77 && Dungeon.hero.belongings.weapon() instanceof MeleeWeapon){
-			damage *= 1.1f;
-		}
-
 		if (Statistics.card55 && (Random.Int(6) == 0) && enemy.HP > 3){
 			enemy.HP /= 2;
 		}
@@ -1493,8 +1466,8 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
-		if (buff(HighStress.class) != null){
-			HP = 1;
+		if (Dungeon.hero.buff(HighStress.class) != null){
+			Dungeon.hero.HP = 1;
 		}
 
 		if (Statistics.card15 && Random.Int(5) == 0 && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
@@ -1517,7 +1490,6 @@ public class Hero extends Char {
 
 		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
 			damage *= 0f;
-
 		}
 
 		if (buff(SupernaturalBorder.class) != null){
@@ -1564,43 +1536,16 @@ public class Hero extends Char {
 			dmg += Dungeon.depth/5;
 		}
 
-		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 2 && (Random.Int(80) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 3 && (Random.Int(60) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 4 && (Random.Int(40) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 5 && (Random.Int(20) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 6 && (Random.Int(10) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 7 && (Random.Int(7) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 8 && (Random.Int(4) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 9 && (Random.Int(3) == 0)){
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
-		if (Statistics.playercorruption == 10 && (Random.Int(2) == 0)){
+		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0) ||
+			Statistics.playercorruption == 2 && (Random.Int(80) == 0) ||
+			Statistics.playercorruption == 3 && (Random.Int(60) == 0) ||
+			Statistics.playercorruption == 4 && (Random.Int(40) == 0) ||
+			Statistics.playercorruption == 5 && (Random.Int(20) == 0) ||
+			Statistics.playercorruption == 6 && (Random.Int(10) == 0) ||
+			Statistics.playercorruption == 7 && (Random.Int(7) == 0) ||
+			Statistics.playercorruption == 8 && (Random.Int(4) == 0) ||
+			Statistics.playercorruption == 9 && (Random.Int(3) == 0) ||
+			Statistics.playercorruption == 10 && (Random.Int(2) == 0)) {
 			dmg *= 2;
 			Sample.INSTANCE.play( Assets.Sounds.CURSED );
 		}

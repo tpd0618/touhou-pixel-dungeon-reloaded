@@ -225,7 +225,7 @@ public class ItemSpriteSheet {
 	public static final int BLOWAWAY        = TAILSMANS+1;
 	public static final int CHAOS       = TAILSMANS+2;
 	public static final int DECOY      = TAILSMANS+3;
-	public static final int EXPLOSION   = TAILSMANS+4;
+	public static final int TRANSIENT = TAILSMANS+4;
 	public static final int FOGPURGE       = TAILSMANS+5;
 	public static final int IMPEDE      = TAILSMANS+6;
 	public static final int CHALLENGE       = TAILSMANS+7;
@@ -637,7 +637,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SCROLL_CATALYST, 12, 11);
 		assignItemRect(ARCANE_RESIN, 12, 11);
 		assignItemRect(POTION_CATALYST, 10, 15);
-		assignItemRect(LIQUID_METAL, 16, 16);
+		assignItemRect(LIQUID_METAL, 10, 15);
 		assignItemRect(HERB, 11, 14);
 	}
 
@@ -689,7 +689,7 @@ public class ItemSpriteSheet {
 	public static final int STONE_AGGRESSION    = STONES+0;
 	public static final int STONE_AUGMENTATION  = STONES+1;
 	public static final int STONE_FEAR          = STONES+2;
-	public static final int STONE_BLAST         = STONES+3;
+	public static final int STONE_MADNESS = STONES+3;
 	public static final int STONE_BLINK         = STONES+4;
 	public static final int STONE_CLAIRVOYANCE  = STONES+5;
 	public static final int STONE_SLEEP         = STONES+6;

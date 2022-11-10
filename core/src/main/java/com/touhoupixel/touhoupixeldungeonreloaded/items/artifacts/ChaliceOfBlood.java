@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -53,7 +54,7 @@ public class ChaliceOfBlood extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && level() < levelCap && !cursed && !hero.isInvulnerable(getClass()))
+		if (isEquipped( hero ) && level() < levelCap && !cursed && Dungeon.hero.buff(OneDefDamage.class) == null && !hero.isInvulnerable(getClass()))
 			actions.add(AC_PRICK);
 		return actions;
 	}

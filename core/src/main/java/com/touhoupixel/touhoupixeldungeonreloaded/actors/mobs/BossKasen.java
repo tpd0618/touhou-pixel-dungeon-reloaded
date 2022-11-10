@@ -92,10 +92,10 @@ public class BossKasen extends Mob {
                     hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
                     Sample.INSTANCE.play(Assets.Sounds.LULLABY);
                     if (hypnotize instanceof Potion) {
-                        ((Potion) hypnotize).execute((Hero) hero);
+                        ((Potion) hypnotize).drink((Hero) hero);
                     }
                     if (hypnotize instanceof Herb) {
-                        ((Herb) hypnotize).execute((Hero) hero);
+                        hypnotize.execute((Hero) hero);
                     }
                 } else {
                     GLog.w(Messages.get(Reisen.class, "failtogaze"));

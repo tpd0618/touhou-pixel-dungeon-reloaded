@@ -422,12 +422,6 @@ public abstract class Char extends Actor {
         if (buff(Weakness.class) != null ) {
             damage *= 0.67f;
         }
-        if (buff(OneDamage.class) != null ) {
-            damage = 1;
-        }
-        if (Dungeon.hero.buff(NightTime.class) != null && Dungeon.hero.buff(Light.class) == null){
-            damage = 1;
-        }
         if (buff(Might.class) != null ) {
             damage *= 1.25f;
         }

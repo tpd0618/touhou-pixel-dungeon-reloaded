@@ -121,7 +121,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlast;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlink;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfClairvoyance;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDeepSleep;
@@ -135,7 +135,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.BlowawayTailsm
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SevenDaysTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DebilitationTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DecoyTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ExplosionTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.TransientTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FlandreTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.FogpurgeTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.ImpedeTailsman;
@@ -393,7 +393,7 @@ public class Generator {
 					StoneOfDeepSleep.class,
 					StoneOfClairvoyance.class,
 					StoneOfAggression.class,
-					StoneOfBlast.class,
+					StoneOfMadness.class,
 					StoneOfFear.class,
 					StoneOfAugmentation.class  //1 is sold in each shop
 			};
@@ -405,7 +405,7 @@ public class Generator {
 					BlowawayTailsman.class,
 					SevenDaysTailsman.class,
 					DecoyTailsman.class,
-					ExplosionTailsman.class,
+					TransientTailsman.class,
 					FogpurgeTailsman.class,
 					ImpedeTailsman.class,
 					SwapTailsman.class,

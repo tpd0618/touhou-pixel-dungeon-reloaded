@@ -5,6 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
@@ -47,7 +48,7 @@ public class SevenDaysTailsman extends Tailsman {
                         Buff.affect(ch, Drowsy.class);
                         break;
                     case 4:
-                        new ExplosiveTrap().set(cell).activate();
+                        Buff.affect(ch, Doom.class);
                         break;
                     case 5:
                         ScrollOfTeleportation.teleportChar(ch);

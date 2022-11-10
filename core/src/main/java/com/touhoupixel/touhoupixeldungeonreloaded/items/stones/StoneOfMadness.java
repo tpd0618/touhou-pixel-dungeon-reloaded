@@ -21,18 +21,38 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.stones;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Bomb;
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.watabou.noosa.audio.Sample;
 
-public class StoneOfBlast extends Runestone {
+public class StoneOfMadness extends Runestone {
 	
 	{
-		image = ItemSpriteSheet.STONE_BLAST;
+		image = ItemSpriteSheet.STONE_MADNESS;
 	}
-	
+
 	@Override
 	protected void activate(int cell) {
-		new Bomb().explode(cell);
+
+		if (Actor.findChar(cell) != null) {
+
+			Char c = Actor.findChar(cell);
+
+			if (c instanceof Mob){
+
+				Buff.prolong(c, HighStress.class, HighStress.DURATION);
+
+			}
+
+		}
+
+		Sample.INSTANCE.play( Assets.Sounds.LULLABY );
+
 	}
-	
 }

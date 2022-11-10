@@ -47,7 +47,7 @@ public class Ichirin extends Mob implements Callback {
     {
         spriteClass = IchirinSprite.class;
 
-        HP = HT = 151;
+        HP = HT = 107;
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;
@@ -58,7 +58,7 @@ public class Ichirin extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(19, 25);
+        return Random.NormalIntRange(17, 23);
     }
 
     @Override

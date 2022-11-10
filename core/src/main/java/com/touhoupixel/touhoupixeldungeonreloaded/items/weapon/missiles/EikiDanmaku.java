@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -37,7 +39,7 @@ public class EikiDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return (3+Statistics.enemiesSlain/1000)*tier +
-				(tier)*lvl;
+		return  (4+Statistics.enemiesSlain/500+Dungeon.hero.lvl/3) * tier +                      //base
+				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }
