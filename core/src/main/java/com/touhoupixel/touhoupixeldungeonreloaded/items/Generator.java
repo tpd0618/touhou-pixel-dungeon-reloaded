@@ -287,7 +287,7 @@ public class Generator {
 
 		SCROLL	( 8, 8, Scroll.class ),
 		STONE   ( 1, 1, Runestone.class),
-		TAILSMAN( 6, 6, Tailsman.class),
+		TAILSMAN( 7, 7, Tailsman.class),
 
 		GOLD	( 10, 10,   Gold.class );
 

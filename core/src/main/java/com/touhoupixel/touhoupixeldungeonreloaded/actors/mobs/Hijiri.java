@@ -14,7 +14,7 @@ public class Hijiri extends Mob {
     {
         spriteClass = HijiriSprite.class;
 
-        HP = HT = 158;
+        HP = HT = 98;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
@@ -25,7 +25,7 @@ public class Hijiri extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(20, 24);
+        return Random.NormalIntRange(18, 22);
     }
 
     @Override

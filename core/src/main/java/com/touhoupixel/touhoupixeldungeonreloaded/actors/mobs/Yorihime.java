@@ -84,6 +84,7 @@ public class Yorihime extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+			GLog.n( Messages.get(this, "disarm") );
 			new DisarmingTrap().set(enemy.pos).activate();
 		}
 		return damage;

@@ -71,7 +71,7 @@ public class Tewi extends Mob {
     public void die(Object cause) {
         super.die(cause);
         if (cause == Dungeon.hero) {
-            switch (Random.Int(32)) {
+            switch (Random.Int(31)) {
                 case 0:
                 default:
                     new AlarmTrap().set(enemy.pos).activate();
@@ -110,63 +110,60 @@ public class Tewi extends Mob {
                     new DisarmingTrap().set(enemy.pos).activate();
                     break;
                 case 12:
-                    new DisintegrationTrap().set(enemy.pos).activate();
-                    break;
-                case 13:
                     new WarpingTrap().set(enemy.pos).activate();
                     break;
-                case 14:
+                case 13:
                     new ExConfusionTrap().set(enemy.pos).activate();
                     break;
-                case 15:
+                case 14:
                     new ExplosiveTrap().set(enemy.pos).activate();
                     break;
-                case 16:
+                case 15:
                     new FlashingTrap().set(enemy.pos).activate();
                     break;
-                case 17:
+                case 16:
                     new FlockTrap().set(enemy.pos).activate();
                     break;
-                case 18:
+                case 17:
                     new FrostTrap().set(enemy.pos).activate();
                     break;
-                case 19:
+                case 18:
                     new WeakeningTrap().set(enemy.pos).activate();
                     break;
-                case 20:
+                case 19:
                     new GeyserTrap().set(enemy.pos).activate();
                     break;
-                case 21:
+                case 20:
                     new GrippingTrap().set(enemy.pos).activate();
                     break;
-                case 22:
+                case 21:
                     new HecatiaTrap().set(enemy.pos).activate();
                     break;
-                case 23:
+                case 22:
                     new OozeTrap().set(enemy.pos).activate();
                     break;
-                case 24:
+                case 23:
                     new PoisonDartTrap().set(enemy.pos).activate();
                     break;
-                case 25:
+                case 24:
                     new RockfallTrap().set(enemy.pos).activate();
                     break;
-                case 26:
+                case 25:
                     new ShockingTrap().set(enemy.pos).activate();
                     break;
-                case 27:
+                case 26:
                     new SlowTrap().set(enemy.pos).activate();
                     break;
-                case 28:
+                case 27:
                     new StormTrap().set(enemy.pos).activate();
                     break;
-                case 29:
+                case 28:
                     new SummoningTrap().set(enemy.pos).activate();
                     break;
-                case 30:
+                case 29:
                     new TeleportationTrap().set(enemy.pos).activate();
                     break;
-                case 31:
+                case 30:
                     new ToxicTrap().set(enemy.pos).activate();
                     break;
             }

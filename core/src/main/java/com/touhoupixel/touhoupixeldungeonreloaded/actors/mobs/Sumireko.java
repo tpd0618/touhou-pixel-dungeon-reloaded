@@ -8,8 +8,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowPartic
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SumirekoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
@@ -46,6 +48,7 @@ public class Sumireko extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(7) == 0) {
+            GLog.n( Messages.get(this, "disarm") );
             new DisarmingTrap().set(enemy.pos).activate();
         }
         return damage;

@@ -47,7 +47,7 @@ public class Yuuka extends Mob {
     @Override
     public int defenseProc(Char enemy, int damage) {
         if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
-            enemy.damage(damage*2, target);
+            enemy.damage(damage/2, target);
             Buff.prolong(this, Bless.class, Bless.DURATION*10000f);
             Buff.prolong(this, YuukaRage.class, YuukaRage.DURATION*10000f);
             Buff.prolong(this, Haste.class, Haste.DURATION*10000f);
