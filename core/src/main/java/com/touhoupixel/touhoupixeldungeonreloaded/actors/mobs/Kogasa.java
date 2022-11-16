@@ -20,7 +20,7 @@ public class Kogasa extends Mob {
 
         HP = HT = 13;
         defenseSkill = 5;
-        EXP = 3;
+        EXP = 2;
         maxLvl = 12;
 
         loot = new StoneOfFear();

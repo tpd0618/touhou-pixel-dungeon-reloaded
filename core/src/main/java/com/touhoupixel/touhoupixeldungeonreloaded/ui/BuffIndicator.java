@@ -104,7 +104,7 @@ public class BuffIndicator extends Component {
 	public static final int MIGHT       = 54;
 	public static final int SUPERDEGRADE= 55;
 	public static final int DOUBLESPEED = 56;
-	public static final int TRIPLESPEED = 57;
+	public static final int REGEN_BLOCK = 57;
 	public static final int ZEN = 58;
 	public static final int SILENCE     = 59;
 	public static final int HISOU       = 60;

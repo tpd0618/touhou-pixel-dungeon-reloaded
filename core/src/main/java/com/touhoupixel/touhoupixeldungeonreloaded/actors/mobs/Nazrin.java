@@ -1,5 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.NazrinSprite;
@@ -21,7 +22,8 @@ public class Nazrin extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 3);
+        return Dungeon.gold > 200 ? Random.NormalIntRange(2, 4):
+                Random.NormalIntRange(1, 3);
     }
 
     @Override

@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -37,7 +39,9 @@ public class PotionOfRingoDango extends Potion {
 	
 	@Override
 	public void apply( Hero hero ) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		Statistics.power += 100;
 		GLog.p(Messages.get(this, "ringo"));
 	}

@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class AntiSneakattack extends FlavourBuff {
 	
-	public static final float DURATION = 20f;
+	public static final float DURATION = 100f;
 	
 	{
 		type = buffType.NEGATIVE;

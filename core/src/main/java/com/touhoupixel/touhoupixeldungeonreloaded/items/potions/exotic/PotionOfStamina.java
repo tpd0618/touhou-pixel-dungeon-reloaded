@@ -36,7 +36,9 @@ public class PotionOfStamina extends ExoticPotion {
 	
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		
 		Buff.affect(hero, Stamina.class, Stamina.DURATION);
 	}

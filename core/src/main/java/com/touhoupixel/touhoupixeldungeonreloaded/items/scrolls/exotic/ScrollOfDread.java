@@ -54,7 +54,9 @@ public class ScrollOfDread extends ExoticScroll {
 			}
 		}
 
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 
 		readAnimation();
 	}

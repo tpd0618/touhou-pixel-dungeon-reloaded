@@ -69,7 +69,9 @@ public class ScrollOfTerror extends Scroll {
 		default:
 			GLog.i( Messages.get(this, "many") );
 		}
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 
 		readAnimation();
 	}

@@ -43,7 +43,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlavourBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
@@ -90,7 +89,6 @@ public class WandOfCorruption extends Wand {
 		MINOR_DEBUFFS.put(Terror.class,         1f);
 		
 		MINOR_DEBUFFS.put(Chill.class,          0f);
-		MINOR_DEBUFFS.put(Ooze.class,           0f);
 		MINOR_DEBUFFS.put(Roots.class,          0f);
 		MINOR_DEBUFFS.put(Vertigo.class,        0f);
 		MINOR_DEBUFFS.put(Drowsy.class,         0f);

@@ -27,36 +27,36 @@ public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
 	public static final int TUTORIAL                 = 1;
-	public static final int SAKURA_TRAP              = 2;
-	public static final int MUENZUKA_FORCE           = 4;
+	public static final int PITFALL_OF_LIFE          = 2;
+	public static final int FANTASY_EXORCISM         = 4;
 	public static final int REBIRTH_DAY		         = 8;
-	public static final int RINGING_BLOOM 		     = 16;
-	public static final int KYOUEN_RED_VIOLET        = 32;
-	public static final int EIENTEI_ILLUSION         = 64;
+	public static final int ETERNAL_DREAM 		     = 16;
+	public static final int UNIDENTIFIED_OBJECT      = 32;
+	public static final int INVINCIBLE_GENSOKYO      = 64;
 	public static final int SWORD_OF_HISOU           = 128;
 	public static final int TIME_EATER               = 256;
-	public static final int NIGHT_CHESS              = 512;
-	public static final int SENSENFUKOKU             = 1024;
+	public static final int LUNAR_CAPITAL_CHESS      = 512;
+	public static final int RINGING_BLOOM            = 1024;
 
 	public static final int MAX_VALUE                = 2047;
 
 	public static final String[] NAME_IDS = {
 			"tutorial",
-			"sakura_trap",
-			"muenzuka_force",
+			"pitfall_of_life",
+			"fantasy_exorcism",
 			"rebirth_day",
-			"ringing_bloom",
-			"kyouen_red_violet",
-			"eientei_illusion",
+			"eternal_dream",
+			"unidentified_object",
+			"invincible_gensokyo",
 			"sword_of_hisou",
 			"time_eater",
-			"night_chess",
-			"sensenfukoku"
+			"lunar_capital_chess",
+			"ringing_bloom"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, SAKURA_TRAP, MUENZUKA_FORCE, REBIRTH_DAY, RINGING_BLOOM, KYOUEN_RED_VIOLET,
-			EIENTEI_ILLUSION, SWORD_OF_HISOU, TIME_EATER, NIGHT_CHESS, SENSENFUKOKU
+			TUTORIAL, PITFALL_OF_LIFE, FANTASY_EXORCISM, REBIRTH_DAY, ETERNAL_DREAM, UNIDENTIFIED_OBJECT,
+			INVINCIBLE_GENSOKYO, SWORD_OF_HISOU, TIME_EATER, LUNAR_CAPITAL_CHESS, RINGING_BLOOM
 	};
 
 	public static int activeChallenges(){

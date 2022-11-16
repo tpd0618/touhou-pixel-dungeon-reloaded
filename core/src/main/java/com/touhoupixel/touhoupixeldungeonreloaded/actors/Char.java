@@ -429,7 +429,7 @@ public abstract class Char extends Actor {
             damage *= 1.5f;
         }
         if (buff(YuukaRage.class) != null){
-            damage += 100;
+            damage *= 10f;
         }
 
         return damage;

@@ -25,19 +25,20 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
-public class DegradeTrap extends Trap {
+public class EnchantEraseTrap extends Trap {
 
 	{
-		color = VIOLET;
-		shape = GRILL;
+		color = YELLOW;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
 	}
@@ -46,8 +47,16 @@ public class DegradeTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null && c == Dungeon.hero) {
-			Buff.prolong(c, Degrade.class, Degrade.DURATION);
-			GLog.w(Messages.get(this, "degrade"));
+			MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
+			Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
+			if (meleeweapon != null) {
+				meleeweapon.enchantment = null;
+				GLog.w(Messages.get(this, "weaponenchanterase"));
+			}
+			if (armor != null) {
+				armor.glyph = null;
+				GLog.w(Messages.get(this, "armorenchanterase"));
+			}
 		}
 		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);

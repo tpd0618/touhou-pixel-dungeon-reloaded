@@ -45,7 +45,9 @@ public class PotionOfLevitation extends Potion {
 	public void shatter( int cell ) {
 
 		if (Dungeon.level.heroFOV[cell]) {
-			identify();
+			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+				identify();
+			}
 
 			splash( cell );
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER );
@@ -57,7 +59,9 @@ public class PotionOfLevitation extends Potion {
 	
 	@Override
 	public void apply( Hero hero ) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		Buff.affect( hero, Levitation.class, Levitation.DURATION/5f );
 		GLog.i( Messages.get(this, "float") );
 	}

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
@@ -40,7 +41,9 @@ public class PotionOfYingYang extends Potion {
 
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		if (hero.HP % 2 == 1) {
 			if (hero.buff(AntiHeal.class) != null && hero.HP % 2 == 1) {
 				hero.damage(hero.HT / 2, hero);

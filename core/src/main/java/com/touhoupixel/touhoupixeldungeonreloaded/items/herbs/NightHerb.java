@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -45,7 +46,11 @@ public class NightHerb extends Herb {
 
 		if (action.equals( AC_EAT )) {
 			if (hero.buff(NightTime.class) != null) {
-				Buff.affect(hero, Light.class, Light.DURATION);
+				if (Dungeon.isChallenged(Challenges.ETERNAL_DREAM)){
+					Buff.affect(hero, Light.class, Light.DURATION/2f);
+				} else {
+					Buff.affect(hero, Light.class, Light.DURATION);
+				}
 			} else {
 				if (hero.buff(AntiHeal.class) != null) {
 					hero.damage(hero.HT / 2, hero);

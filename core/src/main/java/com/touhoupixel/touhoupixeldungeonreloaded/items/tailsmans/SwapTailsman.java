@@ -1,9 +1,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -37,6 +40,9 @@ public class SwapTailsman extends Tailsman {
                 ch.sprite.move(cell, curUser.pos);
 
                 ScrollOfTeleportation.teleportToLocation(curUser, cell);
+                if (Dungeon.isChallenged(Challenges.FANTASY_EXORCISM)) {
+                    Buff.prolong(Dungeon.hero, RegenBlock.class, RegenBlock.DURATION);
+                }
             }
         }
     }

@@ -24,30 +24,35 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class NoInvisibility extends FlavourBuff {
-
+public class RegenBlock extends FlavourBuff {
+	
 	public static final float DURATION = 300f;
-
+	
 	{
 		type = buffType.NEGATIVE;
 		announced = true;
 	}
-
+	
 	@Override
 	public int icon() {
-		return BuffIndicator.NO_INVISIBILITY;
+		return BuffIndicator.REGEN_BLOCK;
 	}
 
 	@Override
 	public float iconFadePercent() {
 		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
-
+	
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
 	}
-
+	
+	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
+	}
+	
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());

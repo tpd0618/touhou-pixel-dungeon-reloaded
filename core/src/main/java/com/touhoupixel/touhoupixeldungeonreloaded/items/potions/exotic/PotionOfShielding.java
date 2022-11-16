@@ -36,7 +36,9 @@ public class PotionOfShielding extends ExoticPotion {
 	
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		//~75% of a potion of healing
 		Buff.affect(hero, Barrier.class).setShield((int) (0.6f * hero.HT + 10));
 	}

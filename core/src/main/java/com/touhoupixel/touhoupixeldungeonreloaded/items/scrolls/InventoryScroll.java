@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -39,7 +41,9 @@ public abstract class InventoryScroll extends Scroll {
 	public void doRead() {
 		
 		if (!isKnown()) {
-			identify();
+			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+				identify();
+			}
 			identifiedByUse = true;
 		} else {
 			identifiedByUse = false;

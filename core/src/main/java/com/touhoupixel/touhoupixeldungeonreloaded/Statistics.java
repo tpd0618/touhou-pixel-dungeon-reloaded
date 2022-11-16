@@ -128,6 +128,7 @@ public class Statistics {
 	public static boolean scorelife8 = false;
 
 	public static boolean lifelose = false;
+	public static boolean spellcarduse = false;
 
 	//boss appear check
 	public static boolean boss1 = false;
@@ -322,6 +323,7 @@ public class Statistics {
 		scorelife8 = false;
 
 		lifelose = false;
+		spellcarduse = false;
 
 		boss1 = false;
 		boss2 = false;
@@ -511,6 +513,7 @@ public class Statistics {
 	private static final String SCORELIFE8		= "scorelife8";
 
 	private static final String LIFELOSE		= "lifelose";
+	private static final String SPELLCARDUSE		= "spellcarduse";
 
 	private static final String BOSS1		= "boss1";
 	private static final String BOSS2		= "boss2";
@@ -620,7 +623,7 @@ public class Statistics {
 		bundle.put( PROG_SCORE,  progressScore );
 		bundle.put( ITEM_VAL,    heldItemValue );
 		bundle.put( TRES_SCORE,  treasureScore );
-		for (int i = 1; i < 99; i++){
+		for (int i = 1; i < 51; i++){
 			if (floorsExplored.containsKey(i)){
 				bundle.put( FLR_EXPL+i, floorsExplored.get(i) );
 			}
@@ -666,6 +669,7 @@ public class Statistics {
 		bundle.put( SCORELIFE8,	scorelife8 );
 
 		bundle.put( LIFELOSE,	lifelose );
+		bundle.put( SPELLCARDUSE,	spellcarduse );
 
 		bundle.put( BOSS1,	boss1 );
 		bundle.put( BOSS2,	boss2 );
@@ -899,6 +903,7 @@ public class Statistics {
 		scorelife8	= bundle.getBoolean( SCORELIFE8 );
 
 		lifelose	= bundle.getBoolean( LIFELOSE );
+		spellcarduse	= bundle.getBoolean( SPELLCARDUSE );
 
 		boss1	= bundle.getBoolean( BOSS1 );
 		boss2	= bundle.getBoolean( BOSS2 );

@@ -25,33 +25,40 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Random;
 
-public class TrainingTrap extends Trap {
+public class RustTrap extends Trap {
 
 	{
-		color = RED;
-		shape = STARS;
+		color = VIOLET;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
-		canBeHidden = false;
 	}
-	
+
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null) {
-			if (Random.Int(2) == 0) {
-				Dungeon.hero.earnExp( Dungeon.hero.maxExp(), getClass() );
-			} else c.HP = 1;
+		if (c != null && c == Dungeon.hero) {
+			MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
+			Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
+			if (meleeweapon != null) {
+				meleeweapon.downgrade();
+				GLog.w(Messages.get(this, "weapondowngrade"));
+			}
+			if (armor != null) {
+				armor.downgrade();
+				GLog.w(Messages.get(this, "armordowngrade"));
+			}
 		}
-
-			GLog.w(Messages.get(this, "train"));
+		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}
 	}
+}

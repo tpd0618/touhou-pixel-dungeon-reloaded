@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.CorrosiveGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
@@ -89,10 +88,7 @@ public class WandOfCorrosion extends Wand {
 		// lvl 1 - 50%
 		// lvl 2 - 60%
 		if (Random.Int( buffedLvl() + 3 ) >= 2) {
-			
-			Buff.affect( defender, Ooze.class ).set( Ooze.DURATION );
 			CellEmitter.center(defender.pos).burst( CorrosionParticle.SPLASH, 5 );
-			
 		}
 	}
 

@@ -28,25 +28,33 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.CityPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiRingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiSneakTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursedBlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RustTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StormTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TrainingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
@@ -114,23 +122,23 @@ public class HakugyokurouLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.SAKURA_TRAP) ?
+		return Dungeon.isChallenged(Challenges.PITFALL_OF_LIFE) ?
 				new Class<?>[]{
-						FrostTrap.class, StormTrap.class, CorrosionTrap.class, SummoningTrap.class, GrimTrap.class, DespairTrap.class,
-						AlarmTrap.class, BlazingTrap.class, ExConfusionTrap.class, AntiHealTrap.class, CursingTrap.class, DegradeTrap.class,
-						FlashingTrap.class, TrainingTrap.class}:
+						BlazingTrap.class, FrostTrap.class, ShockingTrap.class, WarpingTrap.class, GrippingTrap.class,
+						CursedBlowTrap.class, CorrosionTrap.class, ExConfusionTrap.class, CursingTrap.class, RustTrap.class,
+						DespairTrap.class, EnchantEraseTrap.class, AlarmTrap.class, DegradeTrap.class, AntiRingTrap.class}:
 				new Class<?>[]{
-						RockfallTrap.class, ShockingTrap.class, ToxicTrap.class, GrimTrap.class, ConfusionTrap.class, DespairTrap.class,
-						AlarmTrap.class, BlazingTrap.class, SlowTrap.class, WarpingTrap.class, CursingTrap.class, DegradeTrap.class,
-						GrippingTrap.class, TrainingTrap.class};
+						BurningTrap.class, ChillingTrap.class, FlockTrap.class, TeleportationTrap.class, SlowTrap.class,
+						BalanceTrap.class, ToxicTrap.class, DegradeTrap.class, AntiSneakTrap.class, SummoningTrap.class,
+						PoisonDartTrap.class, DisintegrationTrap.class, FlashingTrap.class, GeyserTrap.class, GrimTrap.class};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				3, 3, 3, 3, 3, 3,
-				2, 2, 2, 2, 2, 2,
-				1, 1};
+				3, 3, 3, 3, 3,
+				2, 2, 2, 2, 2,
+				2, 2, 2, 2, 1};
 	}
 	
 	@Override

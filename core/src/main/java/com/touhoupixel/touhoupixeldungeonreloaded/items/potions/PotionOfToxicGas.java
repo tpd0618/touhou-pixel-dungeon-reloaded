@@ -40,7 +40,9 @@ public class PotionOfToxicGas extends Potion {
 	public void shatter( int cell ) {
 
 		if (Dungeon.level.heroFOV[cell]) {
-			identify();
+			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+				identify();
+			}
 
 			splash( cell );
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER );

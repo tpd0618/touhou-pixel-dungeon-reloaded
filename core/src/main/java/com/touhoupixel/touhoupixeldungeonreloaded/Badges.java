@@ -45,7 +45,9 @@ public class Badges {
 		CHAMPION_2                  ( 1 ),
 		CHAMPION_3                  ( 2 ),
 		CHAMPION_4                  ( 3 ),
-		CHAMPION_5                  ( 4 );
+		CHAMPION_5                  ( 4 ),
+		NO_MISS                  ( 5 ),
+		NO_BOMB                  ( 6 );
 
 		public boolean meta;
 
@@ -169,6 +171,24 @@ public class Badges {
 	public static int totalUnlocked(boolean global){
 		if (global) return Badges.global.size();
 		else        return Badges.local.size();
+	}
+
+	public static void lifeBind(){
+		Badge badge = null;
+		if (!Statistics.lifelose){
+			badge = Badge.NO_MISS;
+			local.add(badge);
+		}
+		displayBadge( badge );
+	}
+
+	public static void bombBind(){
+		Badge badge = null;
+		if (!Statistics.spellcarduse){
+			badge = Badge.NO_BOMB;
+			local.add(badge);
+		}
+		displayBadge( badge );
 	}
 
 	public static void validateChampion( int challenges ) {

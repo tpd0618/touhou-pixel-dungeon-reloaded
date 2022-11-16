@@ -36,7 +36,7 @@ public class AntiHealTrap extends Trap {
 
 	{
 		color = RED;
-		shape = GRILL;
+		shape = DIAMOND;
 
 		avoidsHallways = false;
 	}

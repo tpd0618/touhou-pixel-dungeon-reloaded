@@ -56,7 +56,7 @@ public abstract class Key extends Item {
 		Notes.add(this);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
 		hero.spendAndNext( TIME_TO_PICK_UP );
-		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 			Statistics.mood += 1;
 		}
 		GameScene.updateKeyDisplay();

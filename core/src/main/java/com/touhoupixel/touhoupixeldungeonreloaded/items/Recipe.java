@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.food.StewedMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.BlizzardBrew;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.CausticBrew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.InfernalBrew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.ShockingBrew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfAquaticRejuvenation;
@@ -191,7 +190,6 @@ public abstract class Recipe {
 		new BlizzardBrew.Recipe(),
 		new InfernalBrew.Recipe(),
 		new ShockingBrew.Recipe(),
-		new CausticBrew.Recipe(),
 		new AquaBlast.Recipe(),
 		new CurseInfusion.Recipe(),
 		new FeatherFall.Recipe(),

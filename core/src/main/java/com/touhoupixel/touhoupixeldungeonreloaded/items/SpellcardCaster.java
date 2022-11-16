@@ -68,9 +68,10 @@ public class SpellcardCaster extends Item {
 			}
 			if (Statistics.spellcard > 0) {
 				Statistics.spellcard -= 1;
+				Statistics.spellcarduse = true;
 				GameScene.flash(0x80FFFFFF);
 				Sample.INSTANCE.play(Assets.Sounds.BLAST);
-				if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+				if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 					Statistics.mood += 1;
 				}
 				if (Statistics.card46) {

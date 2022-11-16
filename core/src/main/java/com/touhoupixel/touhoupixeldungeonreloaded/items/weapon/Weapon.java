@@ -112,7 +112,7 @@ abstract public class Weapon extends KindOfWeapon {
 		}
 		
 		if (!levelKnown && attacker == Dungeon.hero) {
-			float uses = Math.min( availableUsesToID, availableUsesToID);
+			float uses = availableUsesToID;
 			availableUsesToID -= uses;
 			usesLeftToID -= uses;
 			if (usesLeftToID <= 0) {

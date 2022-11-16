@@ -37,7 +37,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.food.StewedMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.BlizzardBrew;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.CausticBrew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.InfernalBrew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.ShockingBrew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfAquaticRejuvenation;
@@ -346,7 +345,6 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new ArcaneCatalyst.Recipe(), new ArrayList<>(Arrays.asList(new Scroll.PlaceHolder(), new Plant.Seed.PlaceHolder())), new ArcaneCatalyst()));
 				return result;
 			case 8:
-				result.add(new QuickRecipe(new CausticBrew.Recipe()));
 				result.add(new QuickRecipe(new BlizzardBrew.Recipe()));
 				result.add(new QuickRecipe(new InfernalBrew.Recipe()));
 				result.add(new QuickRecipe(new ShockingBrew.Recipe()));

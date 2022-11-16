@@ -90,7 +90,7 @@ public abstract class Plant implements Bundlable {
 
 		Char ch = Actor.findChar(pos);
 
-		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 			Statistics.mood += 1;
 		}
 

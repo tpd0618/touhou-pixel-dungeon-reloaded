@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,32 +21,36 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
-import com.watabou.utils.PathFinder;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
-public class OozeTrap extends Trap {
+public class AntiSneakTrap extends Trap {
 
 	{
 		color = GREEN;
-		shape = DOTS;
+		shape = DIAMOND;
+
+		avoidsHallways = false;
 	}
 
 	@Override
 	public void activate() {
-
-		for( int i : PathFinder.NEIGHBOURS9) {
-			if (!Dungeon.level.solid[pos + i]) {
-				Splash.at( pos + i, 0x000000, 5);
-				Char ch = Actor.findChar( pos + i );
-				if (ch != null && !ch.flying){
-					Buff.affect(ch, Ooze.class).set( Ooze.DURATION );
-				}
-			}
+		Char c = Actor.findChar(pos);
+		if (c != null && c == Dungeon.hero) {
+			Buff.prolong(c, AntiSneakattack.class, AntiSneakattack.DURATION);
+		}
+		if (Dungeon.level.heroFOV[pos]) {
+			GameScene.flash(0x80FFFFFF);
+			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
 		}
 	}
 }

@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.armor.curses;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
@@ -42,8 +41,8 @@ public class Corrosion extends Armor.Glyph {
 			int pos = defender.pos;
 			for (int i : PathFinder.NEIGHBOURS9){
 				Splash.at(pos+i, 0x000000, 5);
-				if (Actor.findChar(pos+i) != null)
-					Buff.affect(Actor.findChar(pos+i), Ooze.class).set( Ooze.DURATION );
+				if (Actor.findChar(pos+i) != null) {
+				}
 			}
 		}
 

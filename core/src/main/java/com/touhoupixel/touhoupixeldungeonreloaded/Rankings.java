@@ -137,15 +137,11 @@ public enum Rankings {
 	//assumes a ranking is loaded, or game is ending
 	public int calculateScore(){
 
-			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 6;
+			Statistics.progressScore = Dungeon.hero.lvl;
 
 			Statistics.treasureScore = Statistics.goldCollected + Statistics.heldItemValue;
 
-			Statistics.exploreScore = 0;
-			int scorePerFloor = Statistics.floorsExplored.size * 50;
-			for (Boolean b : Statistics.floorsExplored.valueList()){
-				if (b) Statistics.exploreScore += scorePerFloor;
-			}
+			Statistics.exploreScore = Statistics.deepestFloor;
 
 		Statistics.chalMultiplier = (float)Math.pow(1.15, Challenges.activeChallenges());
 		Statistics.chalMultiplier = Math.round(Statistics.chalMultiplier*20f)/20f;

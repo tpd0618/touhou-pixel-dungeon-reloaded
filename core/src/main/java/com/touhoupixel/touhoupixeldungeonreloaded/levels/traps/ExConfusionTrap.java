@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -35,20 +36,21 @@ public class ExConfusionTrap extends Trap {
 
 	{
 		color = GREEN;
-		shape = DIAMOND;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
 	}
-	
+
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null) {
-			Buff.prolong( c, ExtremeConfusion.class, ExtremeConfusion.DURATION );
-		}
-
+			Buff.prolong(c, ExtremeConfusion.class, ExtremeConfusion.DURATION);
 			GLog.w(Messages.get(this, "exconf"));
+		}
+		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}
 	}
+}

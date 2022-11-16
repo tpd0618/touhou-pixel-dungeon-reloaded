@@ -47,7 +47,9 @@ public class ScrollOfMysticalEnergy extends ExoticScroll {
 		Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
 		
 		SpellSprite.show( curUser, SpellSprite.CHARGE );
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		ScrollOfRecharging.charge(curUser);
 		
 		readAnimation();

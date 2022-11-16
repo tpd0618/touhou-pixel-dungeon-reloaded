@@ -38,7 +38,9 @@ public class PotionOfMindVision extends Potion {
 
 	@Override
 	public void apply( Hero hero ) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		Buff.affect( hero, MindVision.class, MindVision.DURATION );
 		Dungeon.observe();
 		

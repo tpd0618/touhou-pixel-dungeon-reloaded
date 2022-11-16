@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Enchanting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -56,7 +58,9 @@ public class ScrollOfEnchantment extends ExoticScroll {
 	@Override
 	public void doRead() {
 		if (!isKnown()) {
-			identify();
+			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+				identify();
+			}
 			identifiedByUse = true;
 		} else {
 			identifiedByUse = false;

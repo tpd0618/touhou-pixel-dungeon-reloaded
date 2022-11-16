@@ -150,7 +150,7 @@ public class Chasm implements Hero.Doom {
 			Buff.prolong(hero, Cripple.class, Cripple.DURATION);
 		}
 
-		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 			Statistics.mood += 1;
 		}
 

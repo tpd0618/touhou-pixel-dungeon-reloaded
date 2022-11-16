@@ -31,8 +31,8 @@ import com.watabou.noosa.audio.Sample;
 public class ConfusionTrap extends Trap {
 
 	{
-		color = TEAL;
-		shape = GRILL;
+		color = YELLOW;
+		shape = DIAMOND;
 	}
 
 	@Override

@@ -26,12 +26,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class BalanceBreak extends FlavourBuff {
 
+	public static final float DURATION = 100f;
+
 	{
 		type = buffType.NEGATIVE;
 		announced = true;
 	}
-
-	public static final float DURATION = 100f;
 
 	@Override
 	public int icon() {
@@ -46,6 +46,11 @@ public class BalanceBreak extends FlavourBuff {
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
+	}
+
+	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
 	}
 
 	@Override

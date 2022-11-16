@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -66,8 +68,12 @@ public class Torch extends Item {
 			hero.sprite.operate( hero.pos );
 			
 			detach( hero.belongings.backpack );
-			
-			Buff.affect(hero, Light.class, Light.DURATION);
+
+			if (Dungeon.isChallenged(Challenges.ETERNAL_DREAM)){
+				Buff.affect(hero, Light.class, Light.DURATION/2f);
+			} else {
+				Buff.affect(hero, Light.class, Light.DURATION);
+			}
 			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 			
 			Emitter emitter = hero.sprite.centerEmitter();

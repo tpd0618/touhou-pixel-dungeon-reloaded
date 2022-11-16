@@ -34,7 +34,7 @@ public class DespairTrap extends Trap {
 
 	{
 		color = WHITE;
-		shape = DIAMOND;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
 	}
@@ -43,7 +43,7 @@ public class DespairTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null) {
-			if (Dungeon.hero.belongings.weapon != null && Dungeon.hero.belongings.weapon.level() > 14)
+			if (Dungeon.hero.belongings.weapon != null && Dungeon.hero.belongings.weapon.level() > 9)
 				Dungeon.hero.HP = 1;
 		}
 

@@ -50,13 +50,13 @@ public class WndScoreBreakdown extends Window {
 
 		NumberFormat num = NumberFormat.getInstance(Locale.US);
 			pos = statSlot(this, Messages.get(this, "progress_title"),
-					num.format(Statistics.progressScore), pos, Statistics.progressScore >= 50_000);
+					num.format(Statistics.progressScore), pos, false);
 			pos = addInfo(this, Messages.get(this, "progress_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "treasure_title"),
-					num.format(Statistics.treasureScore), pos, Statistics.treasureScore >= 20_000);
+					num.format(Statistics.treasureScore), pos, false);
 			pos = addInfo(this, Messages.get(this, "treasure_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "explore_title"),
-					num.format(Statistics.exploreScore), pos, Statistics.exploreScore >= 20_000);
+					num.format(Statistics.exploreScore), pos, false);
 			pos = addInfo(this, Messages.get(this, "explore_desc"), pos);
 
 		if (Statistics.chalMultiplier > 1) {

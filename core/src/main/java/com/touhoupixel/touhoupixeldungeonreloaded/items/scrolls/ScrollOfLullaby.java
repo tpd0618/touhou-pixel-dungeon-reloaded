@@ -56,7 +56,9 @@ public class ScrollOfLullaby extends Scroll {
 
 		GLog.i( Messages.get(this, "sooth") );
 
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		readAnimation();
 	}
 	

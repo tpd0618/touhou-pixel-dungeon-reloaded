@@ -1,5 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
@@ -24,7 +25,7 @@ public class Koakuma extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 3);
+        return Random.NormalIntRange(1+Statistics.upgradesUsed, 3+Statistics.upgradesUsed);
     }
 
     @Override

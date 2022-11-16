@@ -62,7 +62,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
@@ -79,14 +78,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yukari;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
@@ -172,14 +168,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndMessage;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndTradeItem;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.GameMath;
@@ -633,7 +627,7 @@ public class Hero extends Char {
 			speed *= 2;
 		}
 
-		if (Dungeon.isChallenged(Challenges.SENSENFUKOKU) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0){
+		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0){
 			speed *= 0.5;
 		}
 
@@ -750,7 +744,7 @@ public class Hero extends Char {
 		spend( time );
 		next();
 
-		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
+		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO) && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
 			Statistics.mood += 1;
 			Buff.prolong(this, AntiHeal.class, AntiHeal.DURATION/10f);
 		}
@@ -848,15 +842,15 @@ public class Hero extends Char {
 		AttackIndicator.updateState();
 		BuffIndicator.refreshBoss();
 
-		if (Dungeon.isChallenged(Challenges.NIGHT_CHESS)) {
+		if (Dungeon.isChallenged(Challenges.LUNAR_CAPITAL_CHESS)) {
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (this.pos == mob.pos - Dungeon.level.width()*2 - 1){
-					this.damage(Dungeon.depth/3+1, this);
+				if (this.pos == mob.pos - Dungeon.level.width() * 2 - 1) {
+					this.damage(Dungeon.depth / 3 + 1, this);
 					if (this == Dungeon.hero && !this.isAlive()) {
 						Dungeon.fail(Junko.class);
-						GLog.n( Messages.get(Junko.class, "ondeath") );
+						GLog.n(Messages.get(Junko.class, "ondeath"));
 					}
-					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
+					this.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6);
 				}
 			}
 			for (Mob mob2 : Dungeon.level.mobs.toArray(new Mob[0])) {
@@ -1532,10 +1526,6 @@ public class Hero extends Char {
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
 			return;
 
-		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM)){
-			dmg += Dungeon.depth/5;
-		}
-
 		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0) ||
 			Statistics.playercorruption == 2 && (Random.Int(80) == 0) ||
 			Statistics.playercorruption == 3 && (Random.Int(60) == 0) ||
@@ -2089,7 +2079,7 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isAlive() {
-		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 			if (Statistics.mood == 0) {
 				Buff.prolong(this, Powerful.class, Powerful.DURATION);
 				Buff.detach( this, Cool.class);
@@ -2263,25 +2253,7 @@ public class Hero extends Char {
 			//Statistics.boss10 = true;
 		//}
 
-		if (buff(MoveDetect.class) != null) {
-			damage(10, this);
-			if (this == Dungeon.hero && !this.isAlive()) {
-				Dungeon.fail(Star.class);
-				GLog.n( Messages.get(MoveDetect.class, "ondeath") );
-			}
-		}
-
 		super.move( step, travelling);
-
-		if (Dungeon.isChallenged(Challenges.EIENTEI_ILLUSION)){
-			if (Dungeon.level.distance(Dungeon.hero.pos, pos) <= 1) {
-				BArray.setFalse(Dungeon.level.visited);
-				BArray.setFalse(Dungeon.level.mapped);
-
-				GameScene.updateFog(); //just in case hero wasn't moved
-				Dungeon.observe();
-			}
-		}
 
 		if (!flying && travelling) {
 			if (Dungeon.level.water[pos]) {

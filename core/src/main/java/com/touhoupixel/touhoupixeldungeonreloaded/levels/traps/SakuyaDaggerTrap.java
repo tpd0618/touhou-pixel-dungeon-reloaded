@@ -40,8 +40,8 @@ public class SakuyaDaggerTrap extends Trap{
 	private static final float DELAY = 1f;
 
 	{
-		color = TEAL;
-		shape = LARGE_DOT;
+		color = ORANGE;
+		shape = WAVES;
 	}
 
 	private static final ArrayList<Class<?extends Mob>> RARE = new ArrayList<>(Arrays.asList(

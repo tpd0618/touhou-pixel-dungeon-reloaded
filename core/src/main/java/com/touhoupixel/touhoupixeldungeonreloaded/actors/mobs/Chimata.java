@@ -7,6 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
@@ -53,11 +54,18 @@ public class Chimata extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
+            Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
             if (meleeweapon != null) {
                 meleeweapon.downgrade();
                 meleeweapon.enchantment = null;
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
-                GLog.w(Messages.get(this, "downgrade"));
+                GLog.w(Messages.get(this, "weapondowngrade"));
+            }
+            if (armor != null) {
+                armor.downgrade();
+                armor.glyph = null;
+                Sample.INSTANCE.play( Assets.Sounds.CURSED );
+                GLog.w(Messages.get(this, "armordowngrade"));
             }
         }
         return damage;

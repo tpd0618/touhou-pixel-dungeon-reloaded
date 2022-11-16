@@ -39,9 +39,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
@@ -197,7 +195,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 
-		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
+		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
 			switch (Random.Int(4)) {
 				case 0:
 				default:
@@ -617,7 +615,7 @@ public abstract class Mob extends Char {
 	@Override
 	public String defenseVerb() {
 		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Dungeon.level.map[this.pos] == Terrain.WATER && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
-			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10000f);
+			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*1000f);
 			GameScene.updateMap( this.pos );
 		}
 		return Messages.get(this, "def_verb");
@@ -630,27 +628,14 @@ public abstract class Mob extends Char {
 			damage = 1;
 		}
 
-		if (this instanceof Nazrin && Dungeon.gold > 200){
-			damage += 1;
-		}
-
-		if (this instanceof Koakuma){
-			damage += Statistics.upgradesUsed;
-		}
-
 		for (int i : PathFinder.NEIGHBOURS4) {
-			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-				if (this instanceof Meiling && enemy.pos == this.pos + i) {
-					Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
-				}
+			if (this instanceof Meiling && enemy.pos == this.pos + i) {
+				Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
 			}
 		}
 
 		damage += Statistics.timetrackstrup/48;
 
-		if (Dungeon.isChallenged(Challenges.MUENZUKA_FORCE)) {
-			damage += Statistics.playercorruption + Statistics.enemiesSlain/100;
-		}
 		return damage;
 	}
 
@@ -770,7 +755,7 @@ public abstract class Mob extends Char {
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			if (Dungeon.hero.buff(Powerful.class) == null) {
-				Statistics.value += 5;
+				Statistics.value += Random.NormalIntRange(10, 15);
 			}
 		}
 

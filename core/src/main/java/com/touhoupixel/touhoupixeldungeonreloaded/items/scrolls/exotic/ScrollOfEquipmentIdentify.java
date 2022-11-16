@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -38,7 +40,9 @@ public class ScrollOfEquipmentIdentify extends ExoticScroll {
 		Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION);
 		GLog.p(Messages.get(this, "equipmentidentify"));
 
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		readAnimation();
 	}
 }

@@ -37,7 +37,9 @@ public class PotionOfDoublespeed extends Potion {
 	
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION);
 	}
 

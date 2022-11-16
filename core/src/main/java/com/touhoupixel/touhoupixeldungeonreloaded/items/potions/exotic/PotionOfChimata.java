@@ -43,7 +43,9 @@ public class PotionOfChimata extends ExoticPotion {
 
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		Statistics.playercorruption -= 1;
 		GLog.p(Messages.get(this, "reduce"));
 	}

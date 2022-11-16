@@ -31,7 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
@@ -59,7 +58,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.plants.Fadeleaf;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Firebloom;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Icecap;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
-import com.touhoupixel.touhoupixeldungeonreloaded.plants.Rotberry;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Sorrowmoss;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Starflower;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Stormvine;
@@ -263,7 +261,7 @@ public class Potion extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(PotionFreeze.class) != null) {
 				GLog.w(Messages.get(this, "potionfreeze"));
-			} else if (Dungeon.isChallenged(Challenges.SENSENFUKOKU) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+			} else if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
 				GLog.w(Messages.get(this, "sensenfukoku"));
 			} else if (isKnown() && mustThrowPots.contains(getClass())) {
 				
@@ -283,7 +281,7 @@ public class Potion extends Item {
 					
 				} else {
 					drink( hero );
-				if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+				if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 					Statistics.mood += 1;
 				}
 			}
@@ -440,7 +438,6 @@ public class Potion extends Item {
 		Char ch = Actor.findChar(cell);
 		if (ch != null && ch.alignment == Char.Alignment.ALLY) {
 			Buff.detach(ch, Burning.class);
-			Buff.detach(ch, Ooze.class);
 			Splash.at( ch.sprite.center(), color, 5 );
 		} else {
 			Splash.at( cell, color, 5 );

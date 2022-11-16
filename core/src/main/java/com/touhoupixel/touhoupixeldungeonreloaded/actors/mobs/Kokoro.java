@@ -17,7 +17,7 @@ public class Kokoro extends Mob {
 
         HP = HT = 14;
         defenseSkill = 5;
-        EXP = 3;
+        EXP = 2;
         maxLvl = 12;
 
         loot = Generator.Category.WEP_T2;

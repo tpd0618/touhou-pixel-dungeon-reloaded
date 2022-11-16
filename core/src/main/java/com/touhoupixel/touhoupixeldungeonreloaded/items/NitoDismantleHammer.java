@@ -9,7 +9,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -104,7 +103,7 @@ public class NitoDismantleHammer extends Item {
             } else {
                 item.detach(curUser.belongings.backpack);
                 Dungeon.level.drop(new UpgradeCard().quantity(item.level()), curUser.pos).sprite.drop();
-                if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+                if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
                     Statistics.mood += 1;
                 }
                 updateQuickslot();

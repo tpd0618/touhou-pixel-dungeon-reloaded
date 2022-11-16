@@ -2,9 +2,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.StarSprite;
 import com.watabou.utils.Random;
 
@@ -43,7 +41,7 @@ public class Star extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(3) == 0) {
-            Buff.prolong(enemy, MoveDetect.class, MoveDetect.DURATION/5f);
+            //currently no ability
         }
         return damage;
     }

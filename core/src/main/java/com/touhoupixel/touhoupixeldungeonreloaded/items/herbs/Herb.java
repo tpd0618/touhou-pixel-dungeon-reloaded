@@ -67,7 +67,7 @@ public class Herb extends Item {
 			SpellSprite.show(hero, SpellSprite.FOOD);
 			Sample.INSTANCE.play(Assets.Sounds.EAT);
 
-			if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+			if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 				Statistics.mood += 1;
 			}
 

@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corrosion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
@@ -62,7 +61,6 @@ public class RingOfElements extends Ring {
 		RESISTS.add( Burning.class );
 		RESISTS.add( Chill.class );
 		RESISTS.add( Frost.class );
-		RESISTS.add( Ooze.class );
 		RESISTS.add( Paralysis.class );
 		RESISTS.add( Poison.class );
 		RESISTS.add( Corrosion.class );

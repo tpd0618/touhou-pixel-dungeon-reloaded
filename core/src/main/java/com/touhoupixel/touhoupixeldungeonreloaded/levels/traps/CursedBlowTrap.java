@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,34 +21,36 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
-public class WeakeningTrap extends Trap{
+public class CursedBlowTrap extends Trap {
 
 	{
-		color = GREEN;
-		shape = WAVES;
+		color = VIOLET;
+		shape = STARS;
+
+		avoidsHallways = false;
 	}
 
 	@Override
 	public void activate() {
-		if (Dungeon.level.heroFOV[ pos ]){
-			CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+		Char c = Actor.findChar(pos);
+		if (c != null && c == Dungeon.hero) {
+			Buff.prolong(c, CursedBlow.class, CursedBlow.DURATION);
 		}
-
-		Char ch = Actor.findChar( pos );
-		if (ch != null){
-			if (ch.properties().contains(Char.Property.BOSS)
-				|| ch.properties().contains(Char.Property.MINIBOSS)){
-				Buff.prolong( ch, Weakness.class, Weakness.DURATION/2f );
-			}
-			Buff.prolong( ch, Weakness.class, Weakness.DURATION*3f );
+		if (Dungeon.level.heroFOV[pos]) {
+			GameScene.flash(0x80FFFFFF);
+			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
 		}
 	}
 }

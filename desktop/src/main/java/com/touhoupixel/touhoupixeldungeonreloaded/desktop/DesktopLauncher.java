@@ -2,7 +2,7 @@
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
- * Shattered Pixel Dungeon
+ * Touhou Pixel Dungeon
  * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ public class DesktopLauncher {
 
 				//shorten/simplify exception message to make it easier to fit into a message box
 				exceptionMsg = exceptionMsg.replaceAll("\\(.*:([0-9]*)\\)", "($1)");
-				exceptionMsg = exceptionMsg.replace("com.shatteredpixel.shatteredpixeldungeon.", "");
+				exceptionMsg = exceptionMsg.replace("com.touhoupixel.touhoupixeldungeon.", "");
 				exceptionMsg = exceptionMsg.replace("com.watabou.", "");
 				exceptionMsg = exceptionMsg.replace("com.badlogic.gdx.", "");
 				exceptionMsg = exceptionMsg.replace("\t", "    ");
@@ -133,21 +133,21 @@ public class DesktopLauncher {
 		Files.FileType baseFileType = null;
 		if (SharedLibraryLoader.isWindows) {
 			if (System.getProperties().getProperty("os.name").equals("Windows XP")) {
-				basePath = "Application Data/.shatteredpixel/Shattered Pixel Dungeon/";
+				basePath = "Application Data/.touhoupixel/Touhou Pixel Dungeon/";
 			} else {
-				basePath = "AppData/Roaming/.shatteredpixel/Shattered Pixel Dungeon/";
+				basePath = "AppData/Roaming/.touhoupixel/Touhou Pixel Dungeon/";
 			}
 			baseFileType = Files.FileType.External;
 		} else if (SharedLibraryLoader.isMac) {
-			basePath = "Library/Application Support/Shattered Pixel Dungeon/";
+			basePath = "Library/Application Support/Touhou Pixel Dungeon/";
 			baseFileType = Files.FileType.External;
 		} else if (SharedLibraryLoader.isLinux) {
 			String XDGHome = System.getenv("XDG_DATA_HOME");
 			if (XDGHome == null) XDGHome = System.getProperty("user.home") + "/.local/share";
-			basePath = XDGHome + "/.shatteredpixel/shattered-pixel-dungeon/";
+			basePath = XDGHome + "/.touhoupixel/touhou-pixel-dungeon/";
 
 			//copy over files from old linux save DIR, pre-1.2.0
-			FileHandle oldBase = new Lwjgl3FileHandle(".shatteredpixel/shattered-pixel-dungeon/", Files.FileType.External);
+			FileHandle oldBase = new Lwjgl3FileHandle(".touhoupixel/touhou-pixel-dungeon/", Files.FileType.External);
 			FileHandle newBase = new Lwjgl3FileHandle(basePath, Files.FileType.Absolute);
 			if (oldBase.exists()){
 				if (!newBase.exists()) {

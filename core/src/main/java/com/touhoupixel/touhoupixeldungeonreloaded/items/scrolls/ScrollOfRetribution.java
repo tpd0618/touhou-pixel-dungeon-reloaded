@@ -63,7 +63,9 @@ public class ScrollOfRetribution extends Scroll {
 		Buff.prolong(curUser, Blindness.class, Blindness.DURATION);
 		Dungeon.observe();
 
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		
 		readAnimation();
 		

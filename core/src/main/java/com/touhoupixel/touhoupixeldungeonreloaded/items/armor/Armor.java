@@ -395,7 +395,7 @@ public class Armor extends EquipableItem {
 		}
 		
 		if (!levelKnown && defender == Dungeon.hero) {
-			float uses = Math.min( availableUsesToID, availableUsesToID );
+			float uses = availableUsesToID;
 			availableUsesToID -= uses;
 			usesLeftToID -= uses;
 			if (usesLeftToID <= 0) {

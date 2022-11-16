@@ -43,7 +43,9 @@ public class ScrollOfForesight extends ExoticScroll {
 		
 		Buff.affect(curUser, Foresight.class, Foresight.DURATION);
 
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		
 		readAnimation();
 	}

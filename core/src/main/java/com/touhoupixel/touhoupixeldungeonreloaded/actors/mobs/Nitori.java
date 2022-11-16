@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NoInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -107,7 +106,6 @@ public class Nitori extends Mob implements Callback {
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
-                Buff.prolong(enemy, NoInvisibility.class, NoInvisibility.DURATION);
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }
 

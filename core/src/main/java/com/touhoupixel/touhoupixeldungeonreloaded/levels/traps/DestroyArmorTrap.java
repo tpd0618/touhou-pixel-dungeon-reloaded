@@ -39,8 +39,8 @@ import com.watabou.utils.PathFinder;
 public class DestroyArmorTrap extends Trap {
 
 	{
-		color = RED;
-		shape = LARGE_DOT;
+		color = YELLOW;
+		shape = WAVES;
 	}
 
 	@Override

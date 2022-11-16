@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class EquipmentIdentify extends FlavourBuff {
 	
-	public static final float DURATION = 5f;
+	public static final float DURATION = 20f;
 	
 	{
 		type = buffType.POSITIVE;

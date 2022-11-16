@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -37,7 +39,9 @@ public class PotionOfLightReverse extends ExoticPotion {
 
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		if (hero.HT/5 > hero.HP) {
 			hero.HP = Math.min(hero.HP + 10000, hero.HT);
 			GLog.p(Messages.get(this, "lightreverse1"));

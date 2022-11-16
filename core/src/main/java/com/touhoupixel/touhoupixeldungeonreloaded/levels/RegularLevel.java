@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -48,6 +49,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.SpecialRo
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.EntranceRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.ExitRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.StandardRoom;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
@@ -55,7 +57,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTra
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WornDartTrap;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
@@ -166,11 +167,13 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 
 	protected int nTraps() {
-		return Random.NormalIntRange( 2, 3 + (Dungeon.depth/10) );
+		return Dungeon.isChallenged(Challenges.PITFALL_OF_LIFE) ?
+				Random.NormalIntRange(5, 7):
+				Random.NormalIntRange(3, 5);
 	}
 
 	protected Class<?>[] trapClasses(){
-		return new Class<?>[]{WornDartTrap.class};
+		return new Class<?>[]{AntiHealTrap.class};
 	}
 
 	protected float[] trapChances() {

@@ -161,19 +161,6 @@ public class WndRanking extends WndTabbed {
 			float pos = title.bottom() + GAP + 1;
 
 			NumberFormat num = NumberFormat.getInstance(Locale.US);
-			pos = statSlot( this, Messages.get(this, "score"), num.format( Statistics.totalScore ), pos );
-
-			IconButton scoreInfo = new IconButton(Icons.get(Icons.INFO)){
-				@Override
-				protected void onClick() {
-					super.onClick();
-					ShatteredPixelDungeon.scene().addToFront(new WndScoreBreakdown());
-				}
-			};
-			scoreInfo.setSize(16, 16);
-			scoreInfo.setPos(WIDTH-scoreInfo.width(), pos-14);
-			add(scoreInfo);
-			pos += GAP;
 
 			int strBonus = Dungeon.hero.STR() - Dungeon.hero.STR;
 			if (strBonus > 0)       pos = statSlot(this, Messages.get(this, "str"), Dungeon.hero.STR + " + " + strBonus, pos);

@@ -49,7 +49,9 @@ public class PotionOfPerfectMath extends ExoticPotion {
 
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		hero.HP = Math.min(99, hero.HT);
 		GLog.p(Messages.get(this, "cirno"));
 	}

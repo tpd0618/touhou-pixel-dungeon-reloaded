@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
@@ -41,7 +42,9 @@ public class PotionOfBalance extends ExoticPotion {
 
 	@Override
 	public void apply(Hero hero) {
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 		Buff.prolong(hero, BalanceBreak.class, BalanceBreak.DURATION);
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);

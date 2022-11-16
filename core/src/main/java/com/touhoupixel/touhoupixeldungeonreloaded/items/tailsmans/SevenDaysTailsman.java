@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -9,6 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
@@ -59,7 +61,13 @@ public class SevenDaysTailsman extends Tailsman {
                         ch.die(null);
                         if (ch.properties().contains(Char.Property.ELIXIR)) {
                             Dungeon.level.drop(new PotionOfPhilosopher(), ch.pos).sprite.drop();
-                        } else Dungeon.level.drop(new PotionOfLightHealing(), ch.pos).sprite.drop();
+                        } else {
+                            Dungeon.level.drop(new PotionOfLightHealing(), ch.pos).sprite.drop();
+                        }
+                        break;
+                }
+                if (Dungeon.isChallenged(Challenges.FANTASY_EXORCISM)) {
+                    Buff.prolong(Dungeon.hero, RegenBlock.class, RegenBlock.DURATION);
                 }
             }
         }

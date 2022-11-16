@@ -15,7 +15,7 @@ public class Ringo extends Mob {
 
         HP = HT = 16;
         defenseSkill = 5;
-        EXP = 3;
+        EXP = 2;
         maxLvl = 12;
 
         baseSpeed = 2f;

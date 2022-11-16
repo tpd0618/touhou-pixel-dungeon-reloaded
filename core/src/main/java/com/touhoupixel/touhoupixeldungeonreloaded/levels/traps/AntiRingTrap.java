@@ -25,19 +25,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
-public class DegradeTrap extends Trap {
+public class AntiRingTrap extends Trap {
 
 	{
-		color = VIOLET;
-		shape = GRILL;
+		color = ORANGE;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
 	}
@@ -46,8 +48,20 @@ public class DegradeTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null && c == Dungeon.hero) {
-			Buff.prolong(c, Degrade.class, Degrade.DURATION);
-			GLog.w(Messages.get(this, "degrade"));
+			Ring ring = Dungeon.hero.belongings.ring;
+			KindofMisc misc = Dungeon.hero.belongings.misc;
+			if (ring != null) {
+				Dungeon.hero.belongings.ring = null;
+				Dungeon.quickslot.clearItem(ring);
+				ring.updateQuickslot();
+				GLog.w(Messages.get(this, "antiringfirst"));
+			}
+			if (misc != null && misc instanceof Ring) {
+				Dungeon.hero.belongings.misc = null;
+				Dungeon.quickslot.clearItem(misc);
+				misc.updateQuickslot();
+				GLog.w(Messages.get(this, "antiringsecond"));
+			}
 		}
 		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);

@@ -83,7 +83,9 @@ public class PotionOfPurity extends Potion {
 			splash(cell);
 			Sample.INSTANCE.play(Assets.Sounds.SHATTER);
 
-			identify();
+			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+				identify();
+			}
 			GLog.i(Messages.get(this, "freshness"));
 		}
 		
@@ -93,7 +95,9 @@ public class PotionOfPurity extends Potion {
 	public void apply( Hero hero ) {
 		GLog.w( Messages.get(this, "protected") );
 		Buff.prolong( hero, BlobImmunity.class, BlobImmunity.DURATION );
-		identify();
+		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
+			identify();
+		}
 	}
 	
 	@Override

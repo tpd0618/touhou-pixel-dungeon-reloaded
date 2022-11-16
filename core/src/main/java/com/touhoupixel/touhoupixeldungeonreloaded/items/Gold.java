@@ -62,7 +62,7 @@ public class Gold extends Item {
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 
-		if (Dungeon.isChallenged(Challenges.KYOUEN_RED_VIOLET)) {
+		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 			Statistics.mood += 1;
 		}
 

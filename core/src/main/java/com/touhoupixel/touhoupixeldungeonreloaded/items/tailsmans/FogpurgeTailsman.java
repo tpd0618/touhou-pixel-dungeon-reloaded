@@ -1,5 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -16,6 +17,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -45,6 +47,9 @@ public class FogpurgeTailsman extends Tailsman {
                 Buff.detach(ch, YuukaRage.class);
                 Buff.detach(ch, OneDefDamage.class);
                 Buff.detach(ch, AnkhInvulnerability.class);
+                if (Dungeon.isChallenged(Challenges.FANTASY_EXORCISM)) {
+                    Buff.prolong(Dungeon.hero, RegenBlock.class, RegenBlock.DURATION);
+                }
             }
         }
     }

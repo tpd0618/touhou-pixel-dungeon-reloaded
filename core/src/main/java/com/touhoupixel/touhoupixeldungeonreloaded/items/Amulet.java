@@ -43,7 +43,7 @@ public class Amulet extends Item {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		actions.remove(AC_DROP);
+		//actions.remove(AC_DROP);
 		//actions.remove(AC_THROW);
 		return actions;
 	}
@@ -52,6 +52,8 @@ public class Amulet extends Item {
 	public boolean doPickUp(Hero hero, int pos) {
 		if (!Dungeon.isChallenged(Challenges.TUTORIAL)) {
 			Badges.validateChampion(Challenges.activeChallenges());
+			Badges.lifeBind();
+			Badges.bombBind();
 		}
 		return super.doPickUp(hero, pos);
 	}

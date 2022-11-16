@@ -21,7 +21,7 @@ public class Akyuu extends Mob {
 
         HP = HT = 16;
         defenseSkill = 5;
-        EXP = 4;
+        EXP = 3;
         maxLvl = 12;
 
         loot = new SpellcardFragment();

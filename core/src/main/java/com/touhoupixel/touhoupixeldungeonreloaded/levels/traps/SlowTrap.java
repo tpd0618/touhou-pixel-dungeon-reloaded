@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -34,21 +35,22 @@ import com.watabou.noosa.audio.Sample;
 public class SlowTrap extends Trap {
 
 	{
-		color = WHITE;
+		color = VIOLET;
 		shape = DIAMOND;
 
 		avoidsHallways = false;
 	}
-	
+
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null) {
-			Buff.prolong( c, Slow.class, Slow.DURATION*3f );
+			Buff.prolong(c, Slow.class, Slow.DURATION * 3f);
+			GLog.w(Messages.get(this, "balancebreak"));
 		}
-
-			GLog.w(Messages.get(this, "slow"));
+		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}
 	}
+}
