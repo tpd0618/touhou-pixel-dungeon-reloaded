@@ -21,6 +21,8 @@ public class Koishi extends Mob {
         EXP = 23;
         maxLvl = 75;
 
+        state = WANDERING;
+
         loot = new PotionOfReverseYingYang();
         lootChance = 0.05f;
     }
@@ -40,5 +42,5 @@ public class Koishi extends Mob {
         return Random.NormalIntRange(0, 2);
     }
 
-    //transparent sprite is the special ability
+    //transparent sprite, init wandering is the special ability
 }

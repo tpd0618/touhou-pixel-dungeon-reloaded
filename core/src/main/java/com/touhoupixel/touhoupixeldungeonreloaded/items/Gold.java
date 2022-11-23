@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -61,6 +62,11 @@ public class Gold extends Item {
 		
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERSHOU) {
+			Dungeon.gold += quantity;
+			Statistics.goldCollected += quantity;
+		}
 
 		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 			Statistics.mood += 1;

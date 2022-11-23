@@ -155,6 +155,7 @@ public class UpgradeCard extends Item {
 					item.upgrade();
 				}
 				Statistics.upgradesUsed++;
+				curUser.spendAndNext(1f);
 
 				curItem.detach(curUser.belongings.backpack);
 			}

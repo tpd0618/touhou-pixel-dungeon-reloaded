@@ -46,7 +46,7 @@ public class SlowTrap extends Trap {
 		Char c = Actor.findChar(pos);
 		if (c != null) {
 			Buff.prolong(c, Slow.class, Slow.DURATION * 3f);
-			GLog.w(Messages.get(this, "balancebreak"));
+			GLog.w(Messages.get(this, "slow"));
 		}
 		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);

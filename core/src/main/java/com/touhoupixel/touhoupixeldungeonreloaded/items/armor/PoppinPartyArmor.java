@@ -23,13 +23,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class KirakiraBandArmor extends Armor {
+public class PoppinPartyArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_POPPINPARTY;
 	}
 
-	public KirakiraBandArmor() {
+	public PoppinPartyArmor() {
 		super( 3 );
 	}
 

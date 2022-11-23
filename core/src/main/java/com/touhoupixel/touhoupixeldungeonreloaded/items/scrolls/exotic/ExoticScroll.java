@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfHeavenDuel;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -82,6 +83,9 @@ public abstract class ExoticScroll extends Scroll {
 		
 		regToExo.put(ScrollOfTransmutation.class, ScrollOfEquipmentIdentify.class);
 		exoToReg.put(ScrollOfEquipmentIdentify.class, ScrollOfTransmutation.class);
+
+		regToExo.put(ScrollOfHeavenDuel.class, ScrollOfMassConfusion.class);
+		exoToReg.put(ScrollOfMassConfusion.class, ScrollOfHeavenDuel.class);
 	}
 	
 	@Override

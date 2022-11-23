@@ -46,6 +46,16 @@ public enum Icons {
 	PLAYERMARISA,
 	PLAYERKOISHI,
 	PLAYERSANAE,
+	PLAYERRUMIA,
+	PLAYERKAGUYA,
+	PLAYERKEINE,
+	PLAYERSHOU,
+	PLAYERAYA,
+	PLAYEREIKI,
+	PLAYERCIRNO,
+	PLAYERKEIKI,
+	PLAYERHINA,
+	PLAYERDOREMY,
 
 	//grey icons, mainly used for buttons, spacing for 16x16
 	EXIT,
@@ -165,6 +175,36 @@ public enum Icons {
 				break;
 			case PLAYERSANAE:
 				icon.frame( icon.texture.uvRectBySize( 64, 16, 16, 16 ) );
+				break;
+			case PLAYERRUMIA:
+				icon.frame( icon.texture.uvRectBySize( 80, 16, 9, 15 ) );
+				break;
+			case PLAYERKAGUYA:
+				icon.frame( icon.texture.uvRectBySize( 96, 16, 15, 14 ) );
+				break;
+			case PLAYERKEINE:
+				icon.frame( icon.texture.uvRectBySize( 112, 16, 9, 15 ) );
+				break;
+			case PLAYERSHOU:
+				icon.frame( icon.texture.uvRectBySize( 128, 16, 16, 16 ) );
+				break;
+			case PLAYERAYA:
+				icon.frame( icon.texture.uvRectBySize( 144, 16, 9, 15 ) );
+				break;
+			case PLAYEREIKI:
+				icon.frame( icon.texture.uvRectBySize( 160, 16, 15, 14 ) );
+				break;
+			case PLAYERCIRNO:
+				icon.frame( icon.texture.uvRectBySize( 176, 16, 9, 15 ) );
+				break;
+			case PLAYERKEIKI:
+				icon.frame( icon.texture.uvRectBySize( 192, 16, 16, 16 ) );
+				break;
+			case PLAYERHINA:
+				icon.frame( icon.texture.uvRectBySize( 208, 16, 9, 15 ) );
+				break;
+			case PLAYERDOREMY:
+				icon.frame( icon.texture.uvRectBySize( 224, 16, 15, 14 ) );
 				break;
 
 			case EXIT:
@@ -393,6 +433,26 @@ public enum Icons {
 			return get(PLAYERKOISHI);
 		case PLAYERSANAE:
 			return get(PLAYERSANAE);
+		case PLAYERRUMIA:
+			return get(PLAYERRUMIA);
+		case PLAYERKAGUYA:
+			return get(PLAYERKAGUYA);
+		case PLAYERKEINE:
+			return get(PLAYERKEINE);
+		case PLAYERSHOU:
+			return get(PLAYERSHOU);
+		case PLAYERAYA:
+			return get(PLAYERAYA);
+		case PLAYEREIKI:
+			return get(PLAYEREIKI);
+		case PLAYERCIRNO:
+			return get(PLAYERCIRNO);
+		case PLAYERKEIKI:
+			return get(PLAYERKEIKI);
+		case PLAYERHINA:
+			return get(PLAYERHINA);
+		case PLAYERDOREMY:
+			return get(PLAYERDOREMY);
 		default:
 			return null;
 		}

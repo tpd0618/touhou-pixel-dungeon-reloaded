@@ -22,8 +22,6 @@ public class Aunn extends Mob {
         EXP = 1;
         maxLvl = 10;
 
-        flying = true;
-
         loot = LifeFragment.class;
         lootChance = 0.15f;
     }

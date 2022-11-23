@@ -61,6 +61,8 @@ public class StrengthCard extends Item {
 			hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "msg_1"));
 			GLog.p(Messages.get(this, "msg_2"));
 
+			curUser.spendAndNext(1f);
+
 			curItem.detach(curUser.belongings.backpack);
 		}
 	}

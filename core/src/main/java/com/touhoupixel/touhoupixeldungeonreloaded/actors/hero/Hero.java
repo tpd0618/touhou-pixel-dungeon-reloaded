@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -60,6 +61,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
@@ -97,7 +99,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap.Type;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KirakiraBandArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PoppinPartyArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MorfonicaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.NitoriArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SharkArmor;
@@ -150,6 +152,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.MayumiTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
@@ -245,7 +248,7 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		HT = 50+ 5*(lvl-1) + HTBoost; //test ver. 5000, original ver. 50
+		HT = 50 + Statistics.extraSTRcheck + 5 * (lvl-1) + HTBoost; //test ver. 5000, original ver. 50
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 
@@ -443,7 +446,7 @@ public class Hero extends Char {
 			evasion /= 2;
 		}
 
-		if (Dungeon.hero.belongings.armor() instanceof KirakiraBandArmor){
+		if (Dungeon.hero.belongings.armor() instanceof PoppinPartyArmor){
 			evasion *= 1.05;
 		}
 
@@ -624,7 +627,11 @@ public class Hero extends Char {
 		float speed = super.speed();
 
 		if (Statistics.card31){
-			speed *= 2;
+			speed *= 1.2;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERAYA) {
+			speed *= 1.2;
 		}
 
 		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0){
@@ -1341,6 +1348,24 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERRUMIA && Dungeon.hero.buff( Light.class ) == null) {
+			Buff.affect(enemy, Bleeding.class).set(Math.round(Dungeon.depth/2f));
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYEREIKI) {
+			damage += Statistics.enemiesSlain/50+Statistics.foodEaten/10;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERCIRNO && Dungeon.hero.HP % 10 == 9) {
+			Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERDOREMY && enemy.buff( MagicalSleep.class ) != null) {
+			Dungeon.hero.HP = Math.min(Dungeon.hero.HP + Dungeon.depth*3, Dungeon.hero.HT);
+			Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
+			enemy.damage(enemy.HT / 4, this);
+		}
+
 		if (Dungeon.hero.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
 			Buff.prolong(enemy, Might.class, Might.DURATION/2f);
 		}
@@ -1470,6 +1495,14 @@ public class Hero extends Char {
 
 		if (Statistics.card33 && Random.Int(3) == 0){
 			ScrollOfMirrorImage.spawnImages(this, 1);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERCIRNO) {
+			Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERKEIKI && Dungeon.hero.HP < Dungeon.hero.HT/5){
+			new MayumiTrap().set(pos).activate();
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {

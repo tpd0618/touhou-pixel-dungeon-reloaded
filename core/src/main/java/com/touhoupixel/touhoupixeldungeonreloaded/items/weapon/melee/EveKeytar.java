@@ -28,10 +28,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class EveKeyboard extends MeleeWeapon {
+public class EveKeytar extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.EVE_KEYBOARD;
+		image = ItemSpriteSheet.EVE_KEYTAR;
 		hitSound = Assets.Sounds.HIT_MAGIC;
 		hitSoundPitch = 1f;
 

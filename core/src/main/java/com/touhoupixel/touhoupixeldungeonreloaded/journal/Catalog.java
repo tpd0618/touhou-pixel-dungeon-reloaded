@@ -35,7 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PC98MarisaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PC98ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.AyaArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KirakiraBandArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PoppinPartyArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.RumiaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SanaeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SharkArmor;
@@ -146,6 +146,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshootin
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfHeavenDuel;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -157,28 +158,32 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribut
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorrosion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfDisintegration;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFireblast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFrost;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLightning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HisoutenMankind;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
@@ -305,8 +310,9 @@ public enum Catalog {
 		WEAPONS.seen.put( HorouBook.class,                   true);
 		WEAPONS.seen.put( RandomStar.class,                   true);
 		WEAPONS.seen.put( ArisaKeyboard.class,                   true);
-		WEAPONS.seen.put( EveKeyboard.class,                   true);
+		WEAPONS.seen.put( EveKeytar.class,                   true);
 		WEAPONS.seen.put( YukinaMic.class,                   true);
+		WEAPONS.seen.put( KanonDrumstick.class,                   true);
 
 		ARMORS.seen.put( ReimuArmor.class,                   true);
 		ARMORS.seen.put( MarisaArmor.class,                 true);
@@ -321,7 +327,7 @@ public enum Catalog {
 		ARMORS.seen.put( HanasakigawaArmor.class,            true);
 		ARMORS.seen.put( YuyukoArmor.class,                  true);
 		ARMORS.seen.put( HecatiaArmor.class,                 true);
-		ARMORS.seen.put( KirakiraBandArmor.class,             true);
+		ARMORS.seen.put( PoppinPartyArmor.class,             true);
 		ARMORS.seen.put( MaxwellArmor.class,                 true);
 		ARMORS.seen.put( GoldenDragonArmor.class,            true);
 		ARMORS.seen.put( NitoriArmor.class,             true);
@@ -340,6 +346,9 @@ public enum Catalog {
 		WANDS.seen.put( WandOfWarding.class,                true);
 		WANDS.seen.put( WandOfCorruption.class,             true);
 		WANDS.seen.put( WandOfRegrowth.class,               true);
+		WANDS.seen.put( WandOfAntiDoor.class,                true);
+		WANDS.seen.put( WandOfSetsunatrip.class,             true);
+		WANDS.seen.put( WandOfHealWounds.class,               true);
 
 		CARDS.seen.put( EsteemedAuthority.class,           true);
 		CARDS.seen.put( GreatTenguRice.class,              true);
@@ -458,6 +467,7 @@ public enum Catalog {
 		SCROLLS.seen.put( ScrollOfLullaby.class,            true);
 		SCROLLS.seen.put( ScrollOfRage.class,               true);
 		SCROLLS.seen.put( ScrollOfRetribution.class,        true);
+		SCROLLS.seen.put( ScrollOfHeavenDuel.class,         true);
 		SCROLLS.seen.put( ScrollOfTransmutation.class,      true);
 	}
 

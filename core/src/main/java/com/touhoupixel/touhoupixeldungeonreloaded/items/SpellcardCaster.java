@@ -74,6 +74,7 @@ public class SpellcardCaster extends Item {
 				if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
 					Statistics.mood += 1;
 				}
+				curUser.spendAndNext(1f);
 				if (Statistics.card46) {
 					Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
 				} else {

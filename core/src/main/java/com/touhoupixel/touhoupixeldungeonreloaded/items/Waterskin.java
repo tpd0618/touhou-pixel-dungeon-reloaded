@@ -76,8 +76,6 @@ public class Waterskin extends Item {
 		if (volume > 0) {
 			actions.add( AC_DRINK );
 		}
-		actions.remove(AC_DROP);
-		actions.remove(AC_THROW);
 		return actions;
 	}
 

@@ -265,6 +265,16 @@ public class Assets {
 		public static final String PLAYERMARISA = "splashes/playermarisa.jpg";
 		public static final String PLAYERKOISHI = "splashes/playerkoishi.jpg";
 		public static final String PLAYERSANAE = "splashes/playersanae.jpg";
+		public static final String PLAYERRUMIA = "splashes/playerrumia.jpg";
+		public static final String PLAYERKAGUYA = "splashes/playerkaguya.jpg";
+		public static final String PLAYERKEINE = "splashes/playerkeine.jpg";
+		public static final String PLAYERSHOU = "splashes/playershou.jpg";
+		public static final String PLAYERAYA = "splashes/playeraya.jpg";
+		public static final String PLAYEREIKI = "splashes/playereiki.jpg";
+		public static final String PLAYERCIRNO = "splashes/playercirno.jpg";
+		public static final String PLAYERKEIKI = "splashes/playerkeiki.jpg";
+		public static final String PLAYERHINA = "splashes/playerhina.jpg";
+		public static final String PLAYERDOREMY = "splashes/playerdoremy.jpg";
 	}
 
 	public static class Sprites {
@@ -275,6 +285,16 @@ public class Assets {
 		public static final String PLAYERMARISA = "sprites/players/playermarisa.png";
 		public static final String PLAYERKOISHI = "sprites/players/playerkoishi.png";
 		public static final String PLAYERSANAE = "sprites/players/playersanae.png";
+		public static final String PLAYERRUMIA = "sprites/players/playerrumia.png";
+		public static final String PLAYERKAGUYA = "sprites/players/playerkaguya.png";
+		public static final String PLAYERKEINE = "sprites/players/playerkeine.png";
+		public static final String PLAYERSHOU = "sprites/players/playershou.png";
+		public static final String PLAYERAYA = "sprites/players/playeraya.png";
+		public static final String PLAYEREIKI = "sprites/players/playereiki.png";
+		public static final String PLAYERCIRNO = "sprites/players/playercirno.png";
+		public static final String PLAYERKEIKI = "sprites/players/playerkeiki.png";
+		public static final String PLAYERHINA = "sprites/players/playerhina.png";
+		public static final String PLAYERDOREMY = "sprites/players/playerdoremy.png";
 		public static final String AVATARS = "sprites/avatars.png";
 		public static final String PET = "sprites/pet.png";
 		public static final String AMULET = "sprites/itemamulet.png";
@@ -315,6 +335,7 @@ public class Assets {
 		public static final String KEINE = "sprites/keine.png";
 		public static final String SHIZUHA = "sprites/shizuha.png";
 		public static final String SATORI = "sprites/satori.png";
+		public static final String MAYUMI = "sprites/mayumi.png";
 		public static final String KEIKI = "sprites/keiki.png";
 		public static final String RENKO = "sprites/renko.png";
 		public static final String REIMU = "sprites/reimu.png";

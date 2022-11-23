@@ -54,7 +54,9 @@ public class Psychokinesis extends ActiveCards {
     @Override
     public ArrayList<String> actions( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
-        actions.add( AC_DRINK );
+        if (hero.buff(ActiveCooldown.class) == null) {
+            actions.add( AC_DRINK );
+        }
         return actions;
     }
 

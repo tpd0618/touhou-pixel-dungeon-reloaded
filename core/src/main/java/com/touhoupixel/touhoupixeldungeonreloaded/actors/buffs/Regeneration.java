@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
@@ -49,6 +50,9 @@ public class Regeneration extends Buff {
 					if (!(Dungeon.isChallenged(Challenges.RINGING_BLOOM) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0)) {
 						if (target.buff(RegenBlock.class) == null) {
 							target.HP += 1;
+							if (target.buff(NightTime.class) != null && Dungeon.hero.heroClass == HeroClass.PLAYERRUMIA){
+								target.HP += 1;
+							}
 						}
 					}
 					if (target.HP == regencap()) {

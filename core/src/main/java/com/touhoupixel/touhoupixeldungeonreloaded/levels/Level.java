@@ -43,6 +43,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Shadows;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
@@ -1136,7 +1137,11 @@ public abstract class Level implements Bundlable {
 			}
 
 			if (c.buff( NightTime.class ) != null && c.buff( Light.class ) == null){
-				viewDist = 1;
+				if (Dungeon.hero.heroClass == HeroClass.PLAYERRUMIA) {
+					viewDist = 3;
+				} else {
+					viewDist = 1;
+				}
 			}
 
 			ShadowCaster.castShadow( cx, cy, fieldOfView, blocking, viewDist );

@@ -35,7 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PC98MarisaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PC98ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.AyaArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KirakiraBandArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.PoppinPartyArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.RumiaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SanaeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SharkArmor;
@@ -106,6 +106,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfHeavenDuel;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -146,26 +147,30 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.Tailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.HalveTailsman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorrosion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfDisintegration;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFireblast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFrost;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLightning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
@@ -378,9 +383,10 @@ public class Generator {
 					ScrollOfRage.class,
 					ScrollOfRetribution.class,
 					ScrollOfTerror.class,
+					ScrollOfHeavenDuel.class,
 					ScrollOfTransmutation.class
 			};
-			SCROLL.defaultProbs = new float[]{ 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			SCROLL.defaultProbs = new float[]{ 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
@@ -431,8 +437,11 @@ public class Generator {
 					WandOfPrismaticLight.class,
 					WandOfWarding.class,
 					WandOfCorruption.class,
+					WandOfAntiDoor.class,
+					WandOfSetsunatrip.class,
+					WandOfHealWounds.class,
 					WandOfRegrowth.class };
-			WAND.probs = new float[]{ 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3 };
+			WAND.probs = new float[]{ 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 0, 3 };
 
 			//see generator.randomWeapon
 			WEAPON.classes = new Class<?>[]{};
@@ -505,10 +514,11 @@ public class Generator {
 					HorouBook.class,
 					RandomStar.class,
 					ArisaKeyboard.class,
-					EveKeyboard.class,
-					YukinaMic.class
+					EveKeytar.class,
+					YukinaMic.class,
+					KanonDrumstick.class
 			};
-			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};
@@ -530,7 +540,7 @@ public class Generator {
 					PC98MarisaArmor.class,
 					HanasakigawaArmor.class,
 					NitoriArmor.class,
-					KirakiraBandArmor.class};
+					PoppinPartyArmor.class};
 			ARMOR_T3.probs = new float[]{ 5, 5, 5, 5, 5 };
 
 			ARMOR_T4.classes = new Class<?>[]{

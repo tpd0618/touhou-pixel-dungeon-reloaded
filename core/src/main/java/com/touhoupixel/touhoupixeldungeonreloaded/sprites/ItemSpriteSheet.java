@@ -631,6 +631,8 @@ public class ItemSpriteSheet {
 	public static final int POTION_CATALYST = OTHERS+2;
 	public static final int LIQUID_METAL    = OTHERS+3;
 	public static final int HERB    = OTHERS+4;
+	public static final int HINA_CURSED_RIBBON    = OTHERS+5;
+	public static final int DOREMY_DREAM_EATER    = OTHERS+6;
 	static {
 		for (int i = OTHERS; i < OTHERS + 16; i++)
 			assignItemRect(i, 11, 15);
@@ -639,6 +641,8 @@ public class ItemSpriteSheet {
 		assignItemRect(POTION_CATALYST, 10, 15);
 		assignItemRect(LIQUID_METAL, 10, 15);
 		assignItemRect(HERB, 11, 14);
+		assignItemRect(HINA_CURSED_RIBBON, 13, 15);
+		assignItemRect(DOREMY_DREAM_EATER, 13, 16);
 	}
 
 	private static final int SCROLLS        =                               xy(1, 19);  //16 slots
@@ -961,8 +965,9 @@ public class ItemSpriteSheet {
 	public static final int HELLKEYBOARD   = XYZ_WEAPON+4;
 	public static final int HELLMIC   = XYZ_WEAPON+5;
 	public static final int RANDOM_STAR   = XYZ_WEAPON+6;
-	public static final int EVE_KEYBOARD   = XYZ_WEAPON+7;
+	public static final int EVE_KEYTAR = XYZ_WEAPON+7;
 	public static final int ARISA_KEYBOARD   = XYZ_WEAPON+8;
+	public static final int KANON_DRUMSTICK   = XYZ_WEAPON+9;
 	static{
 		assignItemRect(FIREBRAND2, 13, 13);
 		assignItemRect(FROSTBRAND2,    13, 13);
@@ -971,8 +976,9 @@ public class ItemSpriteSheet {
 		assignItemRect(HELLKEYBOARD,    13, 13);
 		assignItemRect(HELLMIC,    13, 13);
 		assignItemRect(RANDOM_STAR,    15, 15);
-		assignItemRect(EVE_KEYBOARD,    10, 15);
+		assignItemRect(EVE_KEYTAR,    10, 15);
 		assignItemRect(ARISA_KEYBOARD,    13, 13);
+		assignItemRect(KANON_DRUMSTICK,    13, 13);
 	}
 
 	private static final int WEP_TIER5_PART2   =                               xy(1, 35);   //8 slots
@@ -1233,7 +1239,7 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_RETRIB   = SCROLLS+9;
 		public static final int SCROLL_TERROR   = SCROLLS+10;
 		public static final int SCROLL_TRANSMUTE= SCROLLS+11;
-		public static final int SCROLL_EWEAPON = SCROLLS+12;
+		public static final int SCROLL_HDUEL = SCROLLS+12;
 		public static final int SCROLL_EARMOR  = SCROLLS+13;
 		public static final int SCROLL_EHAKKERO  = SCROLLS+14;
 		public static final int SCROLL_EDANMAKU  = SCROLLS+15;
@@ -1250,7 +1256,7 @@ public class ItemSpriteSheet {
 			assignIconRect( SCROLL_RETRIB,      5, 6 );
 			assignIconRect( SCROLL_TERROR,      5, 7 );
 			assignIconRect( SCROLL_TRANSMUTE,   7, 7 );
-			assignIconRect( SCROLL_EWEAPON,    7, 7 );
+			assignIconRect( SCROLL_HDUEL,    7, 7 );
 			assignIconRect( SCROLL_EARMOR,     7, 7 );
 			assignIconRect( SCROLL_EHAKKERO,     7, 7 );
 			assignIconRect( SCROLL_EDANMAKU, 7, 7 );
@@ -1269,7 +1275,7 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_PSIBLAST = EXOTIC_SCROLLS+9;
 		public static final int SCROLL_DREAD    = EXOTIC_SCROLLS+10;
 		public static final int SCROLL_EQUIPMENT_IDENTIFY = EXOTIC_SCROLLS+11;
-		public static final int SCROLL_NEWEAPON  = EXOTIC_SCROLLS+12;
+		public static final int SCROLL_MCONFUSION = EXOTIC_SCROLLS+12;
 		public static final int SCROLL_NEARMOR = EXOTIC_SCROLLS+13;
 		public static final int SCROLL_NEHAKKERO = EXOTIC_SCROLLS+14;
 		public static final int SCROLL_NEDANMAKU = EXOTIC_SCROLLS+15;
@@ -1279,14 +1285,14 @@ public class ItemSpriteSheet {
 			assignIconRect( SCROLL_ANTIMAGIC,   7, 7 );
 			assignIconRect( SCROLL_PRISIMG,     5, 7 );
 			assignIconRect( SCROLL_MYSTENRG,    7, 5 );
-			assignIconRect(SCROLL_SANCTUARY,     6, 6 );
+			assignIconRect( SCROLL_SANCTUARY,     6, 6 );
 			assignIconRect( SCROLL_SIREN,       7, 6 );
 			assignIconRect( SCROLL_FORESIGHT,   7, 5 );
 			assignIconRect( SCROLL_CHALLENGE,   7, 7 );
 			assignIconRect( SCROLL_PSIBLAST,    5, 6 );
 			assignIconRect( SCROLL_DREAD,       5, 7 );
-			assignIconRect(SCROLL_EQUIPMENT_IDENTIFY,   5, 6 );
-			assignIconRect( SCROLL_NEWEAPON,    7, 7 );
+			assignIconRect( SCROLL_EQUIPMENT_IDENTIFY,   5, 6 );
+			assignIconRect( SCROLL_MCONFUSION,    7, 7 );
 			assignIconRect( SCROLL_NEARMOR,     7, 7 );
 			assignIconRect( SCROLL_NEHAKKERO,   7, 7 );
 			assignIconRect( SCROLL_NEDANMAKU,   7, 7 );

@@ -304,7 +304,7 @@ public class WndStartGame extends Window {
 					name.text(Messages.capitalize(cl.title()));
 
 					switch (cl) {
-						case PLAYERREIMU:
+						case PLAYERREIMU: default:
 							heroItem.icon(new ItemSprite(ItemSpriteSheet.SEAL, null));
 							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.REIMUEXORCISMROD, null));
 							heroMisc.icon(new ItemSprite(ItemSpriteSheet.RATION, null));
