@@ -24,6 +24,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -71,6 +77,12 @@ public class Miyoi extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
             if (Random.Int(3) == 0 && Dungeon.energy > 9) {
                 Dungeon.energy -= 10;
+                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                    Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                }
+                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                    Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
+                }
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
                 GLog.w(Messages.get(this, "stole"));

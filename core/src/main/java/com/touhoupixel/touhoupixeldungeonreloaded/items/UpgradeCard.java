@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -89,7 +90,7 @@ public class UpgradeCard extends Item {
 					protected void onSelect(int index) {
 						switch (index) {
 							case 0:
-								curUser.spendAndNext(1f);
+								curUser.spendAndNext(0f);
 								break;
 							case 1:
 								GameScene.selectItem(itemSelector);
@@ -156,6 +157,11 @@ public class UpgradeCard extends Item {
 				}
 				Statistics.upgradesUsed++;
 				curUser.spendAndNext(1f);
+
+				if (Statistics.card77) {
+					curUser.HP = Math.min(curUser.HP + Dungeon.depth*2, curUser.HT);
+					Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
+				}
 
 				curItem.detach(curUser.belongings.backpack);
 			}

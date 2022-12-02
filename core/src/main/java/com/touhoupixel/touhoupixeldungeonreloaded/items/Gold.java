@@ -63,7 +63,7 @@ public class Gold extends Item {
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERSHOU) {
+		if (Statistics.card36) {
 			Dungeon.gold += quantity;
 			Statistics.goldCollected += quantity;
 		}

@@ -25,8 +25,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.HecatiaArmor;
@@ -75,6 +80,12 @@ public class Hecatia extends Mob {
 					mob.beckon(enemy.pos);
 					Buff.prolong(mob, Doublespeed.class, Doublespeed.DURATION * 1000f);
 					Buff.prolong(mob, Might.class, Might.DURATION * 1000f);
+					if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+						Buff.prolong(mob, Doublerainbow.class, Doublerainbow.DURATION);
+					}
+					if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+						Buff.prolong(mob, Hisou.class, Hisou.DURATION);
+					}
 				}
 			}
 		}

@@ -68,8 +68,8 @@ public abstract class DamageWand extends Wand{
 		if (hero.buff(WandZeroDamage.class) != null){
 			dmg *= 0f;
 		}
-		if (Statistics.card78){
-			dmg *= 1.3f;
+		if (Statistics.card78) {
+			dmg *= 1.25f;
 		}
 		return dmg;
 	}

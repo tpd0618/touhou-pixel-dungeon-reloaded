@@ -3,9 +3,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
@@ -53,7 +57,14 @@ public class Kaguya extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
             if (Dungeon.hero.HP % 10 == 0 || Dungeon.hero.HP % 10 == 1) {
                 damage *= 2;
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                    Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                }
+                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                    Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+                } else {
+                    Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+                }
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 GLog.w(Messages.get(this, "double_damage"));
             }

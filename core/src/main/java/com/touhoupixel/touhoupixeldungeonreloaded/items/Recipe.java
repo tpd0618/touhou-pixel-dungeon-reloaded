@@ -44,7 +44,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScr
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.AquaBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ArcaneCatalyst;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.CurseInfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.FeatherFall;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.MagicalInfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.MagicalPorter;
@@ -191,7 +190,6 @@ public abstract class Recipe {
 		new InfernalBrew.Recipe(),
 		new ShockingBrew.Recipe(),
 		new AquaBlast.Recipe(),
-		new CurseInfusion.Recipe(),
 		new FeatherFall.Recipe(),
 		new MagicalInfusion.Recipe(),
 		new MagicalPorter.Recipe(),

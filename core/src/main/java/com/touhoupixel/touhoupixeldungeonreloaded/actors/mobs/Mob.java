@@ -30,6 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
@@ -46,8 +47,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
@@ -56,6 +59,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
@@ -64,6 +69,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
@@ -628,9 +634,25 @@ public abstract class Mob extends Char {
 			damage = 1;
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+			damage *= 0.8f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) {
+			damage *= 1.2f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+			damage *= 1.4f;
+		}
+
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (this instanceof Meiling && enemy.pos == this.pos + i) {
-				Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+				if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+					Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+				} else {
+					Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+				}
 			}
 		}
 
@@ -747,9 +769,9 @@ public abstract class Mob extends Char {
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			if (Dungeon.hero.buff(Powerful.class) == null) {
 				Statistics.power += 5;
-				if (Statistics.card35) {
-					Dungeon.gold += 10 * Dungeon.depth;
-				}
+			}
+			if (Statistics.card35) {
+				Dungeon.gold += 10 * Dungeon.depth;
 			}
 		}
 

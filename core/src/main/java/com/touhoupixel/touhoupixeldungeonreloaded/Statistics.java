@@ -69,7 +69,7 @@ public class Statistics {
 
 	public static int yukariCount;
 
-	public static int extraSTRcheck;
+	public static int healwoundsHTdown;
 	public static int extraSTRcheck2;
 
 	public static int redscroll;
@@ -264,7 +264,7 @@ public class Statistics {
 
 		yukariCount = 0;
 
-		extraSTRcheck   = 0;
+		healwoundsHTdown = 0;
 		extraSTRcheck2   = 0;
 
 		redscroll	= 0;
@@ -276,7 +276,6 @@ public class Statistics {
 
 		duration	= 0;
 
-		//resistances
 		powerfulres = 0;
 		coolres = 0;
 		pureres = 0;
@@ -455,7 +454,7 @@ public class Statistics {
 
 	private static final String YUKARICOUNT		= "yukaricount";
 
-	private static final String EXTRASTRCHECK		= "extraSTRcheck";
+	private static final String HEALWOUNDSHTDOWN		= "healwoundshtdown";
 	private static final String EXTRASTRCHECK2		= "extraSTRcheck2";
 
 	private static final String REDSCROLL		= "redscroll";
@@ -649,7 +648,7 @@ public class Statistics {
 
 		bundle.put( YUKARICOUNT, yukariCount);
 
-		bundle.put( EXTRASTRCHECK,	extraSTRcheck );
+		bundle.put( HEALWOUNDSHTDOWN, healwoundsHTdown);
 		bundle.put( EXTRASTRCHECK2,	extraSTRcheck2 );
 
 		bundle.put( REDSCROLL,	redscroll );
@@ -845,7 +844,7 @@ public class Statistics {
 
 		yukariCount = bundle.getInt( YUKARICOUNT );
 
-		extraSTRcheck   = bundle.getInt( EXTRASTRCHECK );
+		healwoundsHTdown = bundle.getInt( HEALWOUNDSHTDOWN );
 		extraSTRcheck2   = bundle.getInt( EXTRASTRCHECK2 );
 
 		redscroll   = bundle.getInt( REDSCROLL );

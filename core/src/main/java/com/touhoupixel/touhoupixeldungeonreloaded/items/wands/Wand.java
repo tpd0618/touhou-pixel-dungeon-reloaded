@@ -189,6 +189,8 @@ public abstract class Wand extends Item {
 			Sample.INSTANCE.play(Assets.Sounds.CURSED);
 			GLog.w(Messages.get(Potion.class, "corruption"));
 		}
+
+		Statistics.power -= 30;
 	}
 
 	//TODO Consider externalizing char awareness buff
@@ -383,7 +385,7 @@ public abstract class Wand extends Item {
 				&& !Dungeon.hero.belongings.contains(this)) {
 		}
 
-		if (!Statistics.card54) {
+		if (!Statistics.card40 && Random.Int(2) == 0) {
 			Invisibility.dispel();
 		}
 		updateQuickslot();

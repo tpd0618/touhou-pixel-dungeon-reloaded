@@ -36,9 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
@@ -50,7 +48,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
@@ -61,7 +58,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
@@ -143,7 +139,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.CirnoWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.YuukaDanmaku;
@@ -152,7 +147,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.MayumiTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
@@ -203,7 +197,7 @@ public class Hero extends Char {
 	private static final float TIME_TO_SEARCH	    = 2f;
 	private static final float HUNGER_FOR_SEARCH	= 6f;
 
-	public HeroClass heroClass = HeroClass.PLAYERKOISHI;
+	public HeroClass heroClass = HeroClass.PLAYERREIMU;
 
 	private int attackSkill = 10; //test ver. 100, original ver. 10
 	private int defenseSkill = 5; //test ver. 0, original ver. 5
@@ -237,7 +231,7 @@ public class Hero extends Char {
 	public Hero() {
 		super();
 
-		HP = HT = 50; //test ver. 5000, original ver. 50
+		HP = HT = 30; //test ver. 5000, original ver. 50
 		STR = STARTING_STR;
 
 		belongings = new Belongings( this );
@@ -248,7 +242,17 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		HT = 50 + Statistics.extraSTRcheck + 5 * (lvl-1) + HTBoost; //test ver. 5000, original ver. 50
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+			HT = 30 + Statistics.healwoundsHTdown + 3 * (lvl - 1) + HTBoost;
+		} else if (Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) {
+			HT = 30 + Statistics.healwoundsHTdown + 4 * (lvl - 1) + HTBoost;
+		} else if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE) {
+			HT = 30 + Statistics.healwoundsHTdown + 4 * (lvl - 1) + HTBoost;
+		} else if (Dungeon.hero.heroClass == HeroClass.PLAYERMARISA) {
+			HT = 30 + Statistics.healwoundsHTdown + 5 * (lvl - 1) + HTBoost;
+		} else if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+			HT = 30 + Statistics.healwoundsHTdown + 5 * (lvl - 1) + HTBoost;
+		}
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 
@@ -422,22 +426,12 @@ public class Hero extends Char {
 
 		float evasion = defenseSkill;
 
-		for (int i : PathFinder.NEIGHBOURS4) {
-			if (Statistics.card28 && enemy.pos == this.pos+i && (Random.Int(5) == 0)){
-				return INFINITE_EVASION;
-			}
-		}
-
 		if (Statistics.card68 && buff(NightTime.class) != null && buff(Light.class) == null && (Random.Int(3) == 0)){
 			return INFINITE_EVASION;
 		}
 
 		if (Statistics.card63 && this.HP % 2 == 0){
 			evasion *= 1.18;
-		}
-
-		if (Statistics.card43 && Statistics.spellcard > 1){
-			evasion *= 1.1;
 		}
 
 		evasion *= RingOfEvasion.evasionMultiplier( this );
@@ -540,31 +534,7 @@ public class Hero extends Char {
 			dmg *= 1.1f;
 		}
 
-		if (Statistics.card18 && Dungeon.depth % 2 == 1){
-			dmg *= 1.2f;
-		}
-
-		if (Statistics.card19 && Dungeon.depth % 2 == 0){
-			dmg *= 1.2f;
-		}
-
-		if (Statistics.card20 && Dungeon.hero.buff(Might.class) != null){
-			dmg *= 1.5f;
-		}
-
-		if (Statistics.card21 && Dungeon.hero.buff(Hisou.class) != null){
-			dmg *= 1.5f;
-		}
-
 		if (Statistics.card22 && Dungeon.hero.buff(Doublespeed.class) != null){
-			dmg *= 1.2f;
-		}
-
-		if (Statistics.card23 && Dungeon.level.map[enemy.pos] == Terrain.GRASS || Dungeon.level.map[enemy.pos] == Terrain.HIGH_GRASS || Dungeon.level.map[enemy.pos] == Terrain.FURROWED_GRASS){
-			dmg *= 1.2f;
-		}
-
-		if (Statistics.card24 && Dungeon.hero.buff(Haste.class) != null){
 			dmg *= 1.2f;
 		}
 
@@ -576,30 +546,8 @@ public class Hero extends Char {
 			dmg *= 1.3f;
 		}
 
-		if (Statistics.card39 && Dungeon.hero.flying) {
-			dmg *= 1.4f;
-		}
-
 		if (Statistics.card45) {
 			dmg *= 1.28f;
-		}
-
-		if (Statistics.card13){
-			dmg *= 0.9f;
-			if (Random.Int(8) == 0) {
-				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
-			}
-		}
-
-		if (Statistics.card14){
-			dmg *= 1.08f;
-			if (Random.Int(3) == 0) {
-				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
-			}
-		}
-
-		if (Statistics.card65 && (Random.Int(2) == 0)){
-			dmg *= 1.2f;
 		}
 
 		if (Statistics.card67){
@@ -608,14 +556,6 @@ public class Hero extends Char {
 
 		if (Statistics.card74 && !Statistics.lifelose){
 			dmg *= 1.25f;
-		}
-
-		if (Statistics.card73 && Dungeon.level.map[enemy.pos] == Terrain.OPEN_DOOR){
-			dmg *= 1.3f;
-		}
-
-		if (Statistics.card77 && Dungeon.hero.belongings.weapon() instanceof MeleeWeapon){
-			dmg *= 1.1f;
 		}
 
 		return dmg;
@@ -627,10 +567,6 @@ public class Hero extends Char {
 		float speed = super.speed();
 
 		if (Statistics.card31){
-			speed *= 1.2;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERAYA) {
 			speed *= 1.2;
 		}
 
@@ -1348,24 +1284,6 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERRUMIA && Dungeon.hero.buff( Light.class ) == null) {
-			Buff.affect(enemy, Bleeding.class).set(Math.round(Dungeon.depth/2f));
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYEREIKI) {
-			damage += Statistics.enemiesSlain/50+Statistics.foodEaten/10;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERCIRNO && Dungeon.hero.HP % 10 == 9) {
-			Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERDOREMY && enemy.buff( MagicalSleep.class ) != null) {
-			Dungeon.hero.HP = Math.min(Dungeon.hero.HP + Dungeon.depth*3, Dungeon.hero.HT);
-			Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
-			enemy.damage(enemy.HT / 4, this);
-		}
-
 		if (Dungeon.hero.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
 			Buff.prolong(enemy, Might.class, Might.DURATION/2f);
 		}
@@ -1455,10 +1373,6 @@ public class Hero extends Char {
 			Sample.INSTANCE.play(Assets.Sounds.SHEEP);
 		}
 
-		if (Statistics.card62){
-			Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
-		}
-
 		if (Statistics.card51 && (Random.Int(2) == 0)){
 			Buff.prolong(enemy, Weakness.class, Weakness.DURATION);
 		}
@@ -1489,26 +1403,8 @@ public class Hero extends Char {
 			Dungeon.hero.HP = 1;
 		}
 
-		if (Statistics.card15 && Random.Int(5) == 0 && Dungeon.level.map[this.pos] == Terrain.OPEN_DOOR){
-			damage *= 0f;
-		}
-
 		if (Statistics.card33 && Random.Int(3) == 0){
 			ScrollOfMirrorImage.spawnImages(this, 1);
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERCIRNO) {
-			Buff.prolong(enemy, Slow.class, Slow.DURATION);
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERKEIKI && Dungeon.hero.HP < Dungeon.hero.HT/5){
-			new MayumiTrap().set(pos).activate();
-		}
-
-		for (int i : PathFinder.NEIGHBOURS4) {
-			if (Statistics.card40 && enemy.pos == this.pos+i){
-				damage *= 0.9f;
-			}
 		}
 
 		if (buff(Lignification.class) != null){
@@ -1973,10 +1869,10 @@ public class Hero extends Char {
 
 		Statistics.lifelose = true;
 
-		if (Statistics.card29 && Statistics.spellcard > 2){
+		if (Statistics.card29 && Statistics.spellcard > 1){
 			interrupt();
 			resting = false;
-			Statistics.spellcard = 0;
+			Statistics.spellcard -= 2;
 			if (Statistics.card34){
 				Statistics.spellcard += 3;
 			}
@@ -1993,10 +1889,10 @@ public class Hero extends Char {
 			for (Char ch : Actor.chars()) {
 			}
 			return;
-		} else if (Statistics.card38 && Dungeon.gold > 200*Dungeon.depth){
+		} else if (Statistics.card38 && Dungeon.gold > 499){
 			interrupt();
 			resting = false;
-			Dungeon.gold = 0;
+			Dungeon.gold -= 500;
 			if (Statistics.card34){
 				Statistics.spellcard += 3;
 			}
@@ -2408,7 +2304,7 @@ public class Hero extends Char {
 
 		boolean smthFound = false;
 
-		int distance = heroClass == HeroClass.PLAYERKOISHI ? 2 : 1;
+		int distance = Statistics.card23 ? 3 : 1;
 
 		boolean foresight = buff(Foresight.class) != null;
 		boolean foresightScan = foresight && !Dungeon.level.mapped[pos];

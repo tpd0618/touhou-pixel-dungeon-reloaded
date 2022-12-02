@@ -21,9 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
@@ -89,6 +91,9 @@ abstract public class Tailsman extends Item {
                 quantity++;
                 if (Random.Int(4) == 0) {
                     quantity++;
+                    if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+                        quantity++;
+                    }
                 }
             }
         }

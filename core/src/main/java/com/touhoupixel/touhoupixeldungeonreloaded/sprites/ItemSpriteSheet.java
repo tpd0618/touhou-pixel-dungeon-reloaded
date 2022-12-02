@@ -92,7 +92,7 @@ public class ItemSpriteSheet {
 	public static final int SPELLCARD_CASTER       = UNCOLLECTIBLE+8;
 	public static final int TENGU_BOMB      = UNCOLLECTIBLE+9;
 	public static final int TENGU_SHOCKER   = UNCOLLECTIBLE+10;
-	public static final int LIFESPELLCARD_CHECKER       = UNCOLLECTIBLE+11;
+	public static final int NITO_CHECKER = UNCOLLECTIBLE+11;
 	static{
 		assignItemRect(GOLD,        12, 12);
 		assignItemRect(DEWDROP,     10, 10);
@@ -106,7 +106,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SPELLCARD_CASTER,   16, 16);
 		assignItemRect(TENGU_BOMB,      10, 10);
 		assignItemRect(TENGU_SHOCKER,   10, 10);
-		assignItemRect(LIFESPELLCARD_CHECKER,   13, 16);
+		assignItemRect(NITO_CHECKER,   13, 16);
 	}
 
 	private static final int CONTAINERS     =                               xy(1, 3);   //16 slots
@@ -1238,11 +1238,8 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_RAGE     = SCROLLS+8;
 		public static final int SCROLL_RETRIB   = SCROLLS+9;
 		public static final int SCROLL_TERROR   = SCROLLS+10;
-		public static final int SCROLL_TRANSMUTE= SCROLLS+11;
-		public static final int SCROLL_HDUEL = SCROLLS+12;
-		public static final int SCROLL_EARMOR  = SCROLLS+13;
-		public static final int SCROLL_EHAKKERO  = SCROLLS+14;
-		public static final int SCROLL_EDANMAKU  = SCROLLS+15;
+		public static final int SCROLL_HDUEL= SCROLLS+11;
+		public static final int SCROLL_TRANSMUTE = SCROLLS+12;
 		static {
 			assignIconRect( SCROLL_UPGRADE,     7, 7 );
 			assignIconRect( SCROLL_IDENTIFY,    4, 7 );
@@ -1255,11 +1252,8 @@ public class ItemSpriteSheet {
 			assignIconRect( SCROLL_RAGE,        6, 6 );
 			assignIconRect( SCROLL_RETRIB,      5, 6 );
 			assignIconRect( SCROLL_TERROR,      5, 7 );
+			assignIconRect( SCROLL_HDUEL,       6, 7 );
 			assignIconRect( SCROLL_TRANSMUTE,   7, 7 );
-			assignIconRect( SCROLL_HDUEL,    7, 7 );
-			assignIconRect( SCROLL_EARMOR,     7, 7 );
-			assignIconRect( SCROLL_EHAKKERO,     7, 7 );
-			assignIconRect( SCROLL_EDANMAKU, 7, 7 );
 		}
 
 		private static final int EXOTIC_SCROLLS =                            xy(1, 4);  //16 slots
@@ -1274,11 +1268,8 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_CHALLENGE= EXOTIC_SCROLLS+8;
 		public static final int SCROLL_PSIBLAST = EXOTIC_SCROLLS+9;
 		public static final int SCROLL_DREAD    = EXOTIC_SCROLLS+10;
-		public static final int SCROLL_EQUIPMENT_IDENTIFY = EXOTIC_SCROLLS+11;
-		public static final int SCROLL_MCONFUSION = EXOTIC_SCROLLS+12;
-		public static final int SCROLL_NEARMOR = EXOTIC_SCROLLS+13;
-		public static final int SCROLL_NEHAKKERO = EXOTIC_SCROLLS+14;
-		public static final int SCROLL_NEDANMAKU = EXOTIC_SCROLLS+15;
+		public static final int SCROLL_MCONFUSION = EXOTIC_SCROLLS+11;
+		public static final int SCROLL_EQUIPMENT_IDENTIFY = EXOTIC_SCROLLS+12;
 		static {
 			assignIconRect( SCROLL_ENCHANT,     7, 7 );
 			assignIconRect( SCROLL_REDUCE_CORR,    7, 7 );
@@ -1291,11 +1282,8 @@ public class ItemSpriteSheet {
 			assignIconRect( SCROLL_CHALLENGE,   7, 7 );
 			assignIconRect( SCROLL_PSIBLAST,    5, 6 );
 			assignIconRect( SCROLL_DREAD,       5, 7 );
-			assignIconRect( SCROLL_EQUIPMENT_IDENTIFY,   5, 6 );
-			assignIconRect( SCROLL_MCONFUSION,    7, 7 );
-			assignIconRect( SCROLL_NEARMOR,     7, 7 );
-			assignIconRect( SCROLL_NEHAKKERO,   7, 7 );
-			assignIconRect( SCROLL_NEDANMAKU,   7, 7 );
+			assignIconRect( SCROLL_MCONFUSION,   7, 7 );
+			assignIconRect( SCROLL_EQUIPMENT_IDENTIFY,    5, 6 );
 		}
 
 		//16 free slots
@@ -1332,7 +1320,7 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_EXP,         7, 7 );
 			assignIconRect( POTION_RINGODANGO,       3, 7 );
 			assignIconRect( POTION_MIGHT,       7, 7 );
-			assignIconRect( POTION_DOUBLESPEED,       7, 7 );
+			assignIconRect( POTION_DOUBLESPEED,       6, 6 );
 			assignIconRect( POTION_LIGHTHEALING,       6, 7 );
 		}
 
@@ -1365,11 +1353,11 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_STRMCLOUD,   7, 7 );
 			assignIconRect( POTION_EARTHARMR,   6, 6 );
 			assignIconRect( POTION_CLEANSE,     7, 7 );
-			assignIconRect( POTION_CONFUSIONHEAL,      6, 7 );
+			assignIconRect( POTION_CONFUSIONHEAL,      4, 7 );
 			assignIconRect( POTION_PHILOSOPHER,   7, 7 );
-			assignIconRect(POTION_BALANCE,   5, 7 );
-			assignIconRect( POTION_LIGNIFICATION,   7, 7 );
-			assignIconRect( POTION_CHIMATA,   7, 7 );
+			assignIconRect( POTION_BALANCE,   5, 7 );
+			assignIconRect( POTION_LIGNIFICATION,   6, 6 );
+			assignIconRect( POTION_CHIMATA,   5, 7 );
 		}
 	}
 }

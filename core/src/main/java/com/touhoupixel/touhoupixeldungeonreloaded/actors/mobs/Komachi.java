@@ -27,6 +27,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Chains;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -93,6 +98,12 @@ public class Komachi extends Mob {
                     yell(Messages.get(this, "distance"));
                     new Item().throwSound();
                     Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                    if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                        Buff.prolong(this, Hisou.class, Hisou.DURATION);
+                    }
+                    if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                        Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
+                    }
                     Sample.INSTANCE.play(Assets.Sounds.CHAINS);
                     sprite.parent.add(new Chains(sprite.center(), enemy.sprite.destinationCenter(), new Callback() {
                         public void call() {

@@ -22,9 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.LeafParticle;
@@ -42,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Callback;
@@ -70,7 +75,11 @@ public class Miracle extends Weapon {
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
 		actions.remove(AC_EQUIP);
-		actions.add(AC_SHOOT);
+		actions.remove(AC_DROP);
+		actions.remove(AC_THROW);
+		if (Statistics.spellcard > 0) {
+			actions.add(AC_SHOOT);
+		}
 		return actions;
 	}
 
@@ -80,11 +89,13 @@ public class Miracle extends Weapon {
 		super.execute(hero, action);
 
 		if (action.equals(AC_SHOOT)) {
-
-			curUser = hero;
-			curItem = this;
-			GameScene.selectCell( shooter );
-
+			if (Statistics.spellcard < 1) {
+				GLog.w(Messages.get(this, "nospellcard"));
+			} else {
+				curUser = hero;
+				curItem = this;
+				GameScene.selectCell( shooter );
+			}
 		}
 	}
 
@@ -164,17 +175,15 @@ public class Miracle extends Weapon {
 
 	@Override
 	public int min(int lvl) {
-		int dmg = 1 + 2*Dungeon.hero.lvl/5
-				+ RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
-				+ (curseInfusionBonus ? 1 + 2*Dungeon.hero.lvl/5 : 0);
+		int dmg = 5 + 5*Dungeon.hero.lvl/3
+				+ RingOfSharpshooting.levelDamageBonus(Dungeon.hero);
 		return Math.max(0, dmg);
 	}
 
 	@Override
 	public int max(int lvl) {
-		int dmg = 5 + Dungeon.hero.lvl/5
-				+ 2*RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
-				+ (curseInfusionBonus ? 2 + 2*Dungeon.hero.lvl/3 : 0);
+		int dmg = 7 + 5*Dungeon.hero.lvl/2
+				+ 2*RingOfSharpshooting.levelDamageBonus(Dungeon.hero);
 		return Math.max(0, dmg);
 	}
 
@@ -403,6 +412,18 @@ public class Miracle extends Weapon {
 		public void onSelect( Integer target ) {
 			if (target != null) {
 				knockArrow().cast(curUser, target);
+				Statistics.spellcard -= 1;
+				Statistics.spellcarduse = true;
+				GameScene.flash(0x80FFFFFF);
+				Sample.INSTANCE.play(Assets.Sounds.BLAST);
+				if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
+					Statistics.mood += 1;
+				}
+				if (Statistics.card46) {
+					Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
+				} else {
+					Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
+				}
 			}
 		}
 		@Override

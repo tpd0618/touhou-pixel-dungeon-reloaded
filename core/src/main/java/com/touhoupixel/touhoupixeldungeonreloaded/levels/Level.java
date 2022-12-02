@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
@@ -1137,8 +1138,8 @@ public abstract class Level implements Bundlable {
 			}
 
 			if (c.buff( NightTime.class ) != null && c.buff( Light.class ) == null){
-				if (Dungeon.hero.heroClass == HeroClass.PLAYERRUMIA) {
-					viewDist = 3;
+				if (Statistics.card54) {
+					viewDist = 2;
 				} else {
 					viewDist = 1;
 				}

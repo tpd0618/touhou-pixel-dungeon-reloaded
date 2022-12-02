@@ -236,7 +236,7 @@ public class Dungeon {
 		depth = 1;
 		branch = 0;
 
-		gold = 0;
+		gold = 5; //to buy an ability card on floor 1.
 		energy = 0;
 
 		droppedItems = new SparseArray<>();
@@ -417,7 +417,7 @@ public class Dungeon {
 	}
 
 	public static boolean cardshopOnLevel() {
-		return depth == 11 || depth == 21 || depth == 31 || depth == 41;
+		return depth == 1 || depth == 3 || depth == 8 || depth == 11 || depth == 21 || depth == 31 || depth == 41;
 	}
 
 	public static boolean bossLevel() {

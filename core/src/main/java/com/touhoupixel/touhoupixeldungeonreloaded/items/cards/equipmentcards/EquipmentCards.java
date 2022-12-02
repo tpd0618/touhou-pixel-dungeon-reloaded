@@ -91,6 +91,6 @@ abstract public class EquipmentCards extends Item {
 
     @Override
     public int value() {
-        return 30 * quantity;
+        return quantity;
     }
 }

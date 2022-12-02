@@ -23,8 +23,14 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.CurseInfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.PhaseShift;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HinaSprite;
 import com.watabou.utils.Random;
 
@@ -38,7 +44,7 @@ public class Hina extends Mob {
         EXP = 15;
         maxLvl = 37;
 
-        loot = new CurseInfusion();
+        loot = new PhaseShift();
         lootChance = 0.1f;
     }
 
@@ -62,6 +68,12 @@ public class Hina extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
             new CursingTrap().set(enemy.pos).activate();
+            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
+            }
+            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                new DespairTrap().set(enemy.pos).activate();
+            }
         }
         return damage;
     }

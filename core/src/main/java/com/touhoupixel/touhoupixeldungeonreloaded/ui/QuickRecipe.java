@@ -53,7 +53,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScr
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.AquaBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ArcaneCatalyst;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.CurseInfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.FeatherFall;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.MagicalInfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.PhaseShift;
@@ -370,7 +369,6 @@ public class QuickRecipe extends Component {
 				result.add(null);
 				result.add(new QuickRecipe(new Alchemize.Recipe()));
 				result.add(new QuickRecipe(new MagicalInfusion.Recipe()));
-				result.add(new QuickRecipe(new CurseInfusion.Recipe()));
 				return result;
 		}
 	}

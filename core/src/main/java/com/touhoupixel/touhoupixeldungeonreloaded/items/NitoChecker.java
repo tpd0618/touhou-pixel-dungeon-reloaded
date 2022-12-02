@@ -25,17 +25,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class LifeSpellcardChecker extends Item {
+public class NitoChecker extends Item {
 
 	private static final String AC_DRINK = "DRINK";
 
 	{
-		image = ItemSpriteSheet.LIFESPELLCARD_CHECKER;
+		image = ItemSpriteSheet.NITO_CHECKER;
 
 		defaultAction = AC_DRINK;
 
@@ -56,18 +57,33 @@ public class LifeSpellcardChecker extends Item {
 
 		String info = desc();
 
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats1", Statistics.power);
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats2", Statistics.life);
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats3", Statistics.lifefragment);
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats4", Statistics.spellcard);
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats5", Statistics.spellcardfragment);
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats6", Statistics.playercorruption);
-		info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "statsdaynight", Statistics.nighttimecount);
+		info += "\n\n" + Messages.get( NitoChecker.class, "stats1", Statistics.power);
+		info += "\n\n" + Messages.get( NitoChecker.class, "stats2", Statistics.life);
+		info += "\n\n" + Messages.get( NitoChecker.class, "stats3", Statistics.lifefragment);
+		info += "\n\n" + Messages.get( NitoChecker.class, "stats4", Statistics.spellcard);
+		info += "\n\n" + Messages.get( NitoChecker.class, "stats5", Statistics.spellcardfragment);
+		info += "\n\n" + Messages.get( NitoChecker.class, "stats6", Statistics.playercorruption);
+		info += "\n\n" + Messages.get( NitoChecker.class, "statsdaynight", Statistics.nighttimecount);
 		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
-			info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats7", Statistics.tenshiEarthquake);
+			info += "\n\n" + Messages.get( NitoChecker.class, "stats7", Statistics.tenshiEarthquake);
 		}
 		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
-			info += "\n\n" + Messages.get( LifeSpellcardChecker.class, "stats8", Statistics.timetrackbuff);
+			info += "\n\n" + Messages.get( NitoChecker.class, "stats8", Statistics.timetrackbuff);
+		}
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+			info += "\n\n" + Messages.get(NitoChecker.class, "easy");
+		}
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERMARISA) {
+			info += "\n\n" + Messages.get(NitoChecker.class, "normal");
+		}
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE) {
+			info += "\n\n" + Messages.get(NitoChecker.class, "hard");
+		}
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) {
+			info += "\n\n" + Messages.get(NitoChecker.class, "lunatic");
+		}
+		if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+			info += "\n\n" + Messages.get(NitoChecker.class, "overdrive");
 		}
 
 		return info;

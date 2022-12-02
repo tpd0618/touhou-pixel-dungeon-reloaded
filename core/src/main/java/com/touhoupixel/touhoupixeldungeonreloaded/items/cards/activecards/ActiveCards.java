@@ -91,6 +91,6 @@ abstract public class ActiveCards extends Item {
 
     @Override
     public int value() {
-        return 30 * quantity;
+        return quantity;
     }
 }

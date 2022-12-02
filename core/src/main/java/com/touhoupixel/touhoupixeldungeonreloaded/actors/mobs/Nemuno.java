@@ -22,7 +22,7 @@ public class Nemuno extends Mob {
         EXP = 11;
         maxLvl = 27;
 
-        loot = Generator.Category.WEP_T5;
+        loot = Generator.Category.WEP_T4;
         lootChance = 0.1f;
     }
 

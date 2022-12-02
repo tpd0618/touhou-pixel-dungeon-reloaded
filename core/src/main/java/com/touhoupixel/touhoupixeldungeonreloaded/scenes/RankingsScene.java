@@ -217,12 +217,6 @@ public class RankingsScene extends PixelScene {
 				level.measure();
 				add(level);
 			}
-
-			classIcon.copy( Icons.get( rec.heroClass ) );
-			if (rec.heroClass == HeroClass.PLAYERKOISHI){
-				//cloak of shadows needs to be brightened a bit
-				classIcon.brightness(2f);
-			}
 		}
 
 		@Override

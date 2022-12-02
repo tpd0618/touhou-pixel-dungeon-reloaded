@@ -303,29 +303,6 @@ public class WndStartGame extends Window {
 
 					name.text(Messages.capitalize(cl.title()));
 
-					switch (cl) {
-						case PLAYERREIMU: default:
-							heroItem.icon(new ItemSprite(ItemSpriteSheet.SEAL, null));
-							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.REIMUEXORCISMROD, null));
-							heroMisc.icon(new ItemSprite(ItemSpriteSheet.RATION, null));
-							break;
-						case PLAYERMARISA:
-							heroItem.icon(new ItemSprite(ItemSpriteSheet.MARISASTAFF, null));
-							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.HOLDER, null));
-							heroMisc.icon(new ItemSprite(ItemSpriteSheet.WAND_MAGIC_MISSILE, null));
-							break;
-						case PLAYERKOISHI:
-							heroItem.icon(new ItemSprite(ItemSpriteSheet.ARTIFACT_CLOAK, null));
-							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.KOISHIDAGGER, null));
-							heroMisc.icon(Icons.get(Icons.STAIRS));
-							break;
-						case PLAYERSANAE:
-							heroItem.icon(new ItemSprite(ItemSpriteSheet.SPIRIT_BOW, null));
-							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.SANAEEXORCISMROD, null));
-							heroMisc.icon(new Image(Assets.Environment.TILES_1, 112, 96, 16, 16));
-							break;
-					}
-
 					layout();
 
 					visible = true;

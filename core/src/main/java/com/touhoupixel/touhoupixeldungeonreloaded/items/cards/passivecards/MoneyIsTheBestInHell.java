@@ -19,24 +19,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.cards.activecards;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.cards.passivecards;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ActiveCooldown;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class UndergroundSun extends ActiveCards {
+public class MoneyIsTheBestInHell extends PassiveCards {
 
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS11;
+        image = ItemSpriteSheet.CARDS38;
 
         defaultAction = AC_DRINK;
 
@@ -46,40 +42,13 @@ public class UndergroundSun extends ActiveCards {
 
     @Override
     public boolean doPickUp(Hero hero, int pos) {
-        Statistics.card11 = true;
+        Statistics.card38 = true;
         return super.doPickUp(hero, pos);
     }
 
     @Override
     public ArrayList<String> actions( Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
-        if (hero.buff(ActiveCooldown.class) == null) {
-            actions.add( AC_DRINK );
-        }
         return actions;
-    }
-
-    @Override
-    public void execute( final Hero hero, String action ) {
-
-        super.execute(hero, action);
-
-        if (action.equals(AC_DRINK)) {
-            if (hero.buff(ActiveCooldown.class) == null) {
-                GameScene.flash(0x80FFFFFF);
-                Buff.prolong(hero, ActiveCooldown.class, ActiveCooldown.DURATION);
-                Buff.prolong(hero, Might.class, Might.DURATION);
-            }
-        }
-    }
-
-    @Override
-    public boolean isUpgradable() {
-        return false;
-    }
-
-    @Override
-    public boolean isIdentified() {
-        return true;
     }
 }
