@@ -5,7 +5,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
@@ -29,6 +35,8 @@ public class Keiki extends Mob {
         defenseSkill = 45;
         EXP = 24;
         maxLvl = 75;
+
+        properties.add(Property.GOD);
 
         loot = new SpellcardFragment();
         lootChance = 0.05f;
@@ -58,6 +66,12 @@ public class Keiki extends Mob {
             if (!(Dungeon.level.map[hero.pos] == Terrain.WATER)) {
                 damage = hero.HP + 1;
                 GLog.w(Messages.get(this, "idolatrize"));
+            }
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
+            }
+            if (Statistics.difficulty > 4) {
+                Dungeon.hero.STR--;
             }
         }
         return damage;

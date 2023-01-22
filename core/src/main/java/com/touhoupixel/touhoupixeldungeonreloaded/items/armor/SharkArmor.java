@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class SharkArmor extends Armor {
@@ -29,8 +30,13 @@ public class SharkArmor extends Armor {
 		image = ItemSpriteSheet.SHARK_ARMOR;
 	}
 
+	@Override
+	public int WarpDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public SharkArmor() {
-		super( 4 );
+		super( 3 );
 	}
 
 }

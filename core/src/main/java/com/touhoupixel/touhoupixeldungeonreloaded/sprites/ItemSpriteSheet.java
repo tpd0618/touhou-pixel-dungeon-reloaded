@@ -220,26 +220,26 @@ public class ItemSpriteSheet {
 		assignItemRect(REISEN_DANMAKU,   16, 9);
 	}
 
-	private static final int TAILSMANS          =                               xy(1, 6);   //16 slots
-	public static final int BIND            = TAILSMANS+0;
-	public static final int BLOWAWAY        = TAILSMANS+1;
-	public static final int CHAOS       = TAILSMANS+2;
-	public static final int DECOY      = TAILSMANS+3;
-	public static final int TRANSIENT = TAILSMANS+4;
-	public static final int FOGPURGE       = TAILSMANS+5;
-	public static final int IMPEDE      = TAILSMANS+6;
-	public static final int CHALLENGE       = TAILSMANS+7;
-	public static final int SWAP      = TAILSMANS+8;
-	public static final int HALVE      = TAILSMANS+9;
-	public static final int DEBILITATION      = TAILSMANS+10;
-	public static final int VERTIGO = TAILSMANS+11;
-	public static final int FLANDRE      = TAILSMANS+12;
-	public static final int MURASA      = TAILSMANS+13;
-	public static final int AYA      = TAILSMANS+14;
-	public static final int OKINA = TAILSMANS+15;
+	private static final int TALISMANS =                               xy(1, 6);   //16 slots
+	public static final int BINDING = TALISMANS +0;
+	public static final int BLOWAWAY        = TALISMANS +1;
+	public static final int CHAOS       = TALISMANS +2;
+	public static final int DECOY      = TALISMANS +3;
+	public static final int TRANSIENT = TALISMANS +4;
+	public static final int FOGPURGE       = TALISMANS +5;
+	public static final int IMPEDE      = TALISMANS +6;
+	public static final int CHALLENGE       = TALISMANS +7;
+	public static final int SWAP      = TALISMANS +8;
+	public static final int CUTTER = TALISMANS +9;
+	public static final int DEBILITATION      = TALISMANS +10;
+	public static final int VERTIGO = TALISMANS +11;
+	public static final int FLANDRE      = TALISMANS +12;
+	public static final int MURASA      = TALISMANS +13;
+	public static final int AYA      = TALISMANS +14;
+	public static final int BACKDOOR = TALISMANS +15;
 
 	static {
-		for (int i = TAILSMANS; i < TAILSMANS+16; i++)
+		for (int i = TALISMANS; i < TALISMANS +16; i++)
 			assignItemRect(i, 12, 14);
 	}
 
@@ -426,7 +426,7 @@ public class ItemSpriteSheet {
 
 	public static final int DART            = DANMAKU_WEP +1;
 	public static final int THROWING_KNIFE  = DANMAKU_WEP +2;
-	public static final int REIMU_TAILSMAN = DANMAKU_WEP +3;
+	public static final int REIMU_TALISMAN = DANMAKU_WEP +3;
 
 	public static final int SCALE_DANMAKU = DANMAKU_WEP +4;
 	public static final int CIRCLE_DANMAKU = DANMAKU_WEP +5;
@@ -449,7 +449,7 @@ public class ItemSpriteSheet {
 
 		assignItemRect(DART,            15, 15);
 		assignItemRect(THROWING_KNIFE,  13, 13);
-		assignItemRect(REIMU_TAILSMAN,  12, 14);
+		assignItemRect(REIMU_TALISMAN,  12, 14);
 
 		assignItemRect(SCALE_DANMAKU,   12, 14);
 		assignItemRect(CIRCLE_DANMAKU,        16, 16);
@@ -599,6 +599,11 @@ public class ItemSpriteSheet {
 	public static final int NITORI_ARMOR      = ARTIFACTS+20;
 	public static final int SHARK_ARMOR      = ARTIFACTS+21;
 	public static final int MORFONICA_ARMOR      = ARTIFACTS+22;
+	public static final int NARUMI_ARMOR      = ARTIFACTS+23;
+	public static final int OKINA_ARMOR      = ARTIFACTS+24;
+	public static final int KEIKI_ARMOR      = ARTIFACTS+25;
+	public static final int SATONO_ARMOR      = ARTIFACTS+26;
+	public static final int MAI_ARMOR      = ARTIFACTS+27;
 	static{
 		assignItemRect(ARTIFACT_CLOAK,      9,  15);
 		assignItemRect(ARTIFACT_ARMBAND,    16, 13);
@@ -623,6 +628,11 @@ public class ItemSpriteSheet {
 		assignItemRect(NITORI_ARMOR,      9, 13);
 		assignItemRect(SHARK_ARMOR,      9, 13);
 		assignItemRect(MORFONICA_ARMOR,      9, 13);
+		assignItemRect(NARUMI_ARMOR,      9, 13);
+		assignItemRect(OKINA_ARMOR,      9, 13);
+		assignItemRect(KEIKI_ARMOR,      9, 13);
+		assignItemRect(SATONO_ARMOR,      9, 13);
+		assignItemRect(MAI_ARMOR,      9, 13);
 	}
 
 	private static final int OTHERS          =                            xy(1, 18);  //16 slots
@@ -633,6 +643,14 @@ public class ItemSpriteSheet {
 	public static final int HERB    = OTHERS+4;
 	public static final int HINA_CURSED_RIBBON    = OTHERS+5;
 	public static final int DOREMY_DREAM_EATER    = OTHERS+6;
+
+	public static final int EASY    = OTHERS+7;
+	public static final int NORMAL    = OTHERS+8;
+	public static final int HARD    = OTHERS+9;
+	public static final int LUNATIC    = OTHERS+10;
+	public static final int OVERDRIVE    = OTHERS+11;
+	public static final int EXTRA    = OTHERS+12;
+	public static final int LASTWORD    = OTHERS+13;
 	static {
 		for (int i = OTHERS; i < OTHERS + 16; i++)
 			assignItemRect(i, 11, 15);
@@ -643,6 +661,14 @@ public class ItemSpriteSheet {
 		assignItemRect(HERB, 11, 14);
 		assignItemRect(HINA_CURSED_RIBBON, 13, 15);
 		assignItemRect(DOREMY_DREAM_EATER, 13, 16);
+
+		assignItemRect(EASY, 12, 15);
+		assignItemRect(NORMAL, 12, 15);
+		assignItemRect(HARD, 12, 15);
+		assignItemRect(LUNATIC, 12, 15);
+		assignItemRect(OVERDRIVE, 12, 15);
+		assignItemRect(EXTRA, 12, 15);
+		assignItemRect(LASTWORD, 12, 15);
 	}
 
 	private static final int SCROLLS        =                               xy(1, 19);  //16 slots
@@ -872,7 +898,7 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int QUEST  =                                       xy(1, 29);  //32 slots
-	public static final int SKULL   = QUEST+0;
+	public static final int GLASSBOTTLE   = QUEST+0;
 	public static final int DUST    = QUEST+1;
 	public static final int CANDLE  = QUEST+2;
 	public static final int EMBER   = QUEST+3;
@@ -898,7 +924,7 @@ public class ItemSpriteSheet {
 	public static final int CUCUMBER   = QUEST+23;
 	public static final int TWOSOYSAUCE   = QUEST+24;
 	static{
-		assignItemRect(SKULL,   16, 11);
+		assignItemRect(GLASSBOTTLE,   12, 14);
 		assignItemRect(DUST,    12, 11);
 		assignItemRect(CANDLE,  12, 12);
 		assignItemRect(EMBER,   12, 11);
@@ -926,7 +952,7 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int BAGS       =                                   xy(1, 31);  //16 slots
-	public static final int WATERSKIN   = BAGS+0;
+	public static final int NONE_BAG = BAGS+0;
 	public static final int BACKPACK    = BAGS+1;
 	public static final int POUCH       = BAGS+2;
 	public static final int HOLDER      = BAGS+3;
@@ -941,7 +967,7 @@ public class ItemSpriteSheet {
 	public static final int YUKARIMEMO       = BAGS+12;
 	public static final int RENKOMEMO       = BAGS+13;
 	static{
-		assignItemRect(WATERSKIN,   16, 14);
+		assignItemRect(NONE_BAG,   12, 14);
 		assignItemRect(BACKPACK,    16, 16);
 		assignItemRect(POUCH,       14, 15);
 		assignItemRect(HOLDER,      16, 16);

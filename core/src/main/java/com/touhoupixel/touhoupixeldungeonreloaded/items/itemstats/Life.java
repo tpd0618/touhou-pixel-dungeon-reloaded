@@ -59,6 +59,9 @@ public class Life extends Item {
 	public boolean doPickUp(Hero hero, int pos) {
 
 		Statistics.life += 1;
+		if (Statistics.card52){
+			Statistics.lifefragment += 1;
+		}
 
 		GameScene.pickUp( this, pos );
 		hero.spendAndNext( TIME_TO_PICK_UP );

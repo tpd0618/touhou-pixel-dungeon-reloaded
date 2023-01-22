@@ -46,9 +46,7 @@ public class ScrollOfSanctuary extends ExoticScroll {
 			GLog.p(Messages.get(this, "sanctuary_failed"));
 		}
 
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		readAnimation();
 	}
 }

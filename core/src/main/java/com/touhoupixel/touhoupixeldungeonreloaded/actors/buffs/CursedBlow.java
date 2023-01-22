@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class CursedBlow extends FlavourBuff {
 	
-	public static final float DURATION = 50f;
+	public static final float DURATION = 30f;
 	
 	{
 		type = buffType.NEGATIVE;

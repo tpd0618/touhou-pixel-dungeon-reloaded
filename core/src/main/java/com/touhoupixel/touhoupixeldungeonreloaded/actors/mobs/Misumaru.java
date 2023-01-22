@@ -44,6 +44,8 @@ public class Misumaru extends Mob {
         EXP = 18;
         maxLvl = 40;
 
+        properties.add(Property.GOD);
+
         loot = new SpellcardFragment();
         lootChance = 0.1f;
     }

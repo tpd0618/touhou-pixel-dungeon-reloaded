@@ -47,6 +47,8 @@ public class Medicine extends Mob {
 		
 		flying = true;
 		state = WANDERING;
+
+		properties.add(Property.YOKAI);
 		
 		//only applicable when the bee is charmed with elixir of honeyed healing
 		intelligentAlly = true;

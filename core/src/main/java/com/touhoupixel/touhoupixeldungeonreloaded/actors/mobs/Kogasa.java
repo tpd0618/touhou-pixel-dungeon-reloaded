@@ -2,6 +2,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
@@ -29,6 +30,8 @@ public class Kogasa extends Mob {
         EXP = 2;
         maxLvl = 12;
 
+        properties.add(Property.YOKAI);
+
         loot = new StoneOfFear();
         lootChance = 0.15f;
     }
@@ -51,7 +54,7 @@ public class Kogasa extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(3) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
             //trim it to just be the part that goes past them
             trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
@@ -61,10 +64,10 @@ public class Kogasa extends Mob {
             CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
             GLog.w(Messages.get(this, "fear"));
 
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Hex.class, Hex.DURATION / 5f);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION / 2f);
             }
             return damage;

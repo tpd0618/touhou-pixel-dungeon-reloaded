@@ -29,6 +29,8 @@ public class Aunn extends Mob {
         EXP = 1;
         maxLvl = 10;
 
+        properties.add(Property.YOKAI);
+
         loot = LifeFragment.class;
         lootChance = 0.15f;
     }
@@ -53,12 +55,6 @@ public class Aunn extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
             Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, Weakness.class, Weakness.DURATION/2f);
-            }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION/6f);
-            }
         }
         return damage;
     }

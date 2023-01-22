@@ -42,6 +42,8 @@ public class Murasa extends Mob {
 		baseSpeed = 2f;
 		
 		EXP = 0;
+
+		properties.add(Property.WARP);
 		
 		loot = MysteryMeat.class;
 		lootChance = 1f;

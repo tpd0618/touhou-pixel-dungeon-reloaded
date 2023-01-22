@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
@@ -40,15 +41,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SakiMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
@@ -62,11 +64,19 @@ public class PotionOfHealing extends Potion {
 	
 	@Override
 	public void apply( Hero hero ) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		cure( hero );
 		heal( hero );
+		if (Statistics.card62){
+			GameScene.flash(0x80FFFFFF);
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+					if (!mob.properties().contains(Char.Property.BOSS) || !mob.properties().contains(Char.Property.MINIBOSS)) {
+						mob.HP = Math.max(3, mob.HP/2);
+					}
+				}
+			}
+		}
 	}
 
 	public static void heal( Char ch ) {
@@ -98,7 +108,6 @@ public class PotionOfHealing extends Potion {
 		Buff.detach( ch, OneDamage.class);
 		Buff.detach( ch, WandZeroDamage.class);
 		Buff.detach( ch, CursedBlow.class);
-		Buff.detach( ch, SakiMark.class);
 		Buff.detach( ch, AntiSneakattack.class);
 		Buff.detach( ch, BalanceBreak.class);
 		Buff.detach( ch, RegenBlock.class);

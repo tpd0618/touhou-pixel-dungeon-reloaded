@@ -28,6 +28,8 @@ public class Keine extends Mob {
         EXP = 9;
         maxLvl = 20;
 
+        properties.add(Property.ANIMAL);
+
         loot = new PurityHerb();
         lootChance = 0.15f;
     }
@@ -52,10 +54,10 @@ public class Keine extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && hero.HT/2 < hero.HP && Random.Int(4) == 0) {
             Statistics.playercorruption += 1;
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Statistics.playercorruption += 1;
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Statistics.playercorruption += 1;
             }
             Sample.INSTANCE.play(Assets.Sounds.CURSED);

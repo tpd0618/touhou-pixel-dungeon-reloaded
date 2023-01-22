@@ -48,6 +48,6 @@ public class YoumuSword extends MeleeWeapon {
     @Override
     public int proc(Char attacker, Char defender, int damage) {
         Buff.affect(defender, Bleeding.class).set(20);
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

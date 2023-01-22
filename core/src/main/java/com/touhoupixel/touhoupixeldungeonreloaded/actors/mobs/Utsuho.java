@@ -22,21 +22,17 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KagerouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.UtsuhoSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -53,8 +49,19 @@ public class Utsuho extends Mob implements Callback {
         EXP = 25;
         maxLvl = 99;
 
+        properties.add(Property.ANIMAL);
+
         loot = new SpellcardFragment();
         lootChance = 0.05f;
+    }
+
+    @Override
+    protected boolean act() {
+        boolean result = super.act();
+        if (buff(Doublespeed.class) == null && Statistics.difficulty > 2) {
+            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION * 10000f);
+        }
+        return result;
     }
 
     @Override
@@ -63,18 +70,12 @@ public class Utsuho extends Mob implements Callback {
     }
 
     @Override
-    protected boolean act() {
-        boolean result = super.act();
-        if (buff(Doublespeed.class) == null) {
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION * 10000f);
-        }
-        return result;
-    }
-
-    @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         new ExplosiveTrap().set(enemy.pos).activate();
+        if (Statistics.difficulty > 4) {
+            Buff.affect(enemy, Bleeding.class).set(10);
+        }
         return damage;
     }
 

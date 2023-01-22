@@ -50,6 +50,6 @@ public class HisoutenMankind extends MeleeWeapon {
         if (Random.Int(15) == 0) {
             Buff.prolong(attacker, Hisou.class, Hisou.DURATION);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

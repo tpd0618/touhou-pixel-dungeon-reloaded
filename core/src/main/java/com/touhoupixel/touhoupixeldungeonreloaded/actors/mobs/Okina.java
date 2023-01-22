@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
@@ -49,6 +50,8 @@ public class Okina extends Mob {
         EXP = 18;
         maxLvl = 42;
 
+        properties.add(Property.GOD);
+
         loot = new PotionOfBalance();
         lootChance = 0.1f;
     }
@@ -73,10 +76,10 @@ public class Okina extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR){
             damage *= 4;
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(this, ReBirth.class, ReBirth.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
             }
         }

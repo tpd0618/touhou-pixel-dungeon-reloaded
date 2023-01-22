@@ -51,6 +51,6 @@ public class HorouBook extends MeleeWeapon {
         if (Random.Int(8) == 0) {
             Buff.prolong(defender, OneDamage.class, OneDamage.DURATION / 2f);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

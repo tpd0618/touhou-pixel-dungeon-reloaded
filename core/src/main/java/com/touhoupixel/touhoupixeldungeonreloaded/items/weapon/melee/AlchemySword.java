@@ -48,6 +48,6 @@ public class AlchemySword extends MeleeWeapon {
         if (Random.Int(9) == 0) {
             Dungeon.energy += 1;
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

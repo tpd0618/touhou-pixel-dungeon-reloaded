@@ -396,6 +396,7 @@ public class InterlevelScene extends PixelScene {
 			//TODO this is brittle atm, assumes we're always going down in depth 1 at a time
 			if (curTransition.destDepth > Statistics.deepestFloor) {
 				level = Dungeon.newLevel();
+				Statistics.hitorilefttime = 0;
 			} else {
 				level = Dungeon.loadLevel( GamesInProgress.curSlot );
 			}

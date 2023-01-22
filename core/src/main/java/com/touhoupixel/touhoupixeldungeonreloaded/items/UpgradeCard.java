@@ -1,8 +1,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
@@ -12,16 +14,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPot
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.DungeonSeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
-import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;
 
@@ -158,8 +157,8 @@ public class UpgradeCard extends Item {
 				Statistics.upgradesUsed++;
 				curUser.spendAndNext(1f);
 
-				if (Statistics.card77) {
-					curUser.HP = Math.min(curUser.HP + Dungeon.depth*2, curUser.HT);
+				if (Statistics.card30) {
+					curUser.HP = Math.min(curUser.HP + Dungeon.depth*3, curUser.HT);
 					Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 				}
 

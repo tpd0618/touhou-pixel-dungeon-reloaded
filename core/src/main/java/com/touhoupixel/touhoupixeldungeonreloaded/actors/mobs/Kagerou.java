@@ -45,6 +45,8 @@ public class Kagerou extends Mob implements Callback {
         EXP = 10;
         maxLvl = 20;
 
+        properties.add(Property.ANIMAL);
+
         loot = new SpellcardFragment();
         lootChance = 0.15f;
     }

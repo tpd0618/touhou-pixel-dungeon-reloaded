@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
@@ -58,6 +59,8 @@ public class Yorihime extends Mob {
 		maxLvl = 99;
 
 		flying = true;
+
+		properties.add(Property.WARP);
 
 		baseSpeed = 0.8f;
 
@@ -86,6 +89,12 @@ public class Yorihime extends Mob {
 		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
 			GLog.n( Messages.get(this, "disarm") );
 			new DisarmingTrap().set(enemy.pos).activate();
+			if (Statistics.difficulty > 2) {
+				Dungeon.hero.STR--;
+			}
+			if (Statistics.difficulty > 4) {
+				Dungeon.hero.STR--;
+			}
 		}
 		return damage;
 	}

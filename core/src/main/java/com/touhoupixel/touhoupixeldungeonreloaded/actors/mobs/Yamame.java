@@ -31,6 +31,8 @@ public class Yamame extends Mob {
         EXP = 19;
         maxLvl = 45;
 
+        properties.add(Property.YOKAI);
+
         loot = new PotionOfToxicGas();
         lootChance = 0.1f;
     }
@@ -55,10 +57,10 @@ public class Yamame extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.affect(hero, Poison.class).set(Math.round(Statistics.upgradesUsed/5f));
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;
             }
         }

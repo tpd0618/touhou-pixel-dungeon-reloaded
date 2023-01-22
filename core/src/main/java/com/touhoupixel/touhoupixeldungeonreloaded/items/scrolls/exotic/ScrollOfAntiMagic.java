@@ -40,9 +40,7 @@ public class ScrollOfAntiMagic extends ExoticScroll {
 		Buff.affect( curUser, MagicImmune.class, MagicImmune.DURATION );
 		new Flare( 5, 32 ).color( 0xFF0000, true ).show( curUser.sprite, 2f );
 
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		
 		readAnimation();
 	}

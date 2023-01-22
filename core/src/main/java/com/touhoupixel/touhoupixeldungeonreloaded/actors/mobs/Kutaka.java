@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
@@ -49,6 +50,8 @@ public class Kutaka extends Mob {
 
         flying = true;
 
+        properties.add(Property.GOD);
+
         loot = Generator.Category.HERB;
         lootChance = 0.1f;
     }
@@ -73,10 +76,10 @@ public class Kutaka extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
             Buff.prolong(enemy, Slow.class, Slow.DURATION);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
             }
         }

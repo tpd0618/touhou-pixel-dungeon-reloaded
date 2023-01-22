@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class NitoriArmor extends Armor {
@@ -29,8 +30,13 @@ public class NitoriArmor extends Armor {
 		image = ItemSpriteSheet.NITORI_ARMOR;
 	}
 
+	@Override
+	public int WarpDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public NitoriArmor() {
-		super( 3 );
+		super( 2 );
 	}
 
 }

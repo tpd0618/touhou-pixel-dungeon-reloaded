@@ -130,7 +130,7 @@ public enum Document {
 	public static final String GUIDE_SURPRISE_ATKS  = "Surprise_Attacks";
 	public static final String GUIDE_IDING          = "Identifying";
 	public static final String GUIDE_FOOD           = "Food";
-	public static final String GUIDE_ABILITY_CARDS = "Ability_Cards";
+	public static final String GUIDE_ABILITY_CARDS  = "Ability_Cards";
 	public static final String GUIDE_SEARCHING      = "Searching";
 
 	//pages and default states

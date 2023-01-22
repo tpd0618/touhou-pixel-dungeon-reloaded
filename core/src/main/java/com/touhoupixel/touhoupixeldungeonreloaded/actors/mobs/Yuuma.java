@@ -2,16 +2,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuumaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -26,6 +23,8 @@ public class Yuuma extends Mob {
         defenseSkill = 50;
         EXP = 25;
         maxLvl = 99;
+
+        properties.add(Property.YOKAI);
 
         loot = new LifeFragment();
         lootChance = 0.05f;
@@ -55,6 +54,12 @@ public class Yuuma extends Mob {
             Buff.prolong(this, Hisou.class, Hisou.DURATION);
             Sample.INSTANCE.play( Assets.Sounds.CURSED );
             GLog.w(Messages.get(this, "str_reduce"));
+            if (Statistics.difficulty > 2) {
+                Dungeon.hero.STR--;
+            }
+            if (Statistics.difficulty > 4) {
+                Dungeon.hero.STR--;
+            }
         }
         return damage;
     }

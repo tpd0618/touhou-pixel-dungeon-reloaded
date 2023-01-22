@@ -14,7 +14,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DestroyArmorTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KasenSprite;
@@ -36,6 +35,7 @@ public class BossKasen extends Mob {
         maxLvl = 99;
 
         properties.add(Property.BOSS);
+        properties.add(Property.YOKAI);
 
         loot = new Spellcard();
         lootChance = 1f;
@@ -76,9 +76,6 @@ public class BossKasen extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            if (Dungeon.hero.belongings.armor != null && Random.Int(3) == 0) {
-                new DestroyArmorTrap().set(target).activate();
-            }
             ArrayList<Item> gazer = new ArrayList<>();
             if (hero.buff(LostInventory.class) == null) {
                 for (Item i : Dungeon.hero.belongings) {

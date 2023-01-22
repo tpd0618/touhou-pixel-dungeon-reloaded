@@ -30,7 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMysticalEnergy;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.SevenDaysTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SevenDaysTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -77,7 +77,7 @@ public class WildEnergy extends TargetedSpell {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{ScrollOfMysticalEnergy.class, SevenDaysTailsman.class};
+			inputs =  new Class[]{ScrollOfMysticalEnergy.class, SevenDaysTalisman.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 4;

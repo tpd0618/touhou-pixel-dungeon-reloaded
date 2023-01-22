@@ -26,37 +26,37 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int TUTORIAL                 = 1;
-	public static final int PITFALL_OF_LIFE          = 2;
-	public static final int FANTASY_EXORCISM         = 4;
-	public static final int REBIRTH_DAY		         = 8;
-	public static final int ETERNAL_DREAM 		     = 16;
-	public static final int UNIDENTIFIED_OBJECT      = 32;
-	public static final int INVINCIBLE_GENSOKYO      = 64;
-	public static final int SWORD_OF_HISOU           = 128;
-	public static final int TIME_EATER               = 256;
-	public static final int LUNAR_CAPITAL_CHESS      = 512;
-	public static final int RINGING_BLOOM            = 1024;
+	public static final int TUTORIAL            = 1;
+	public static final int DISTORTION          = 2;
+	public static final int REBIRTH_DAY         = 4;
+	public static final int RINGING_BLOOM		= 8;
+	public static final int FLAME_KEYSTONE      = 16;
+	public static final int LOTUS_LABYRINTH     = 32;
+	public static final int TIME_EATER          = 64;
+	public static final int SWORD_OF_HISOU      = 128;
+	public static final int STARRY_HOUSE        = 256;
+	public static final int ASYLUM_OF_DANMAKU   = 512;
+	public static final int PURELY_BULLET_HELL  = 1024;
 
-	public static final int MAX_VALUE                = 2047;
+	public static final int MAX_VALUE           = 2047;
 
 	public static final String[] NAME_IDS = {
 			"tutorial",
-			"pitfall_of_life",
-			"fantasy_exorcism",
+			"distortion",
 			"rebirth_day",
-			"eternal_dream",
-			"unidentified_object",
-			"invincible_gensokyo",
-			"sword_of_hisou",
+			"ringing_bloom",
+			"flame_keystone",
+			"lotus_labyrinth",
 			"time_eater",
-			"lunar_capital_chess",
-			"ringing_bloom"
+			"sword_of_hisou",
+			"starry_house",
+			"asylum_of_danmaku",
+			"purely_bullet_hell"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, PITFALL_OF_LIFE, FANTASY_EXORCISM, REBIRTH_DAY, ETERNAL_DREAM, UNIDENTIFIED_OBJECT,
-			INVINCIBLE_GENSOKYO, SWORD_OF_HISOU, TIME_EATER, LUNAR_CAPITAL_CHESS, RINGING_BLOOM
+			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, FLAME_KEYSTONE, LOTUS_LABYRINTH,
+			TIME_EATER, SWORD_OF_HISOU, STARRY_HOUSE, ASYLUM_OF_DANMAKU, PURELY_BULLET_HELL
 	};
 
 	public static int activeChallenges(){

@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class SanaeArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_SCALE;
+	}
+
+	@Override
+	public int YokaiDefFactor( Char owner ) {
+		return 1;
 	}
 	
 	public SanaeArmor() {

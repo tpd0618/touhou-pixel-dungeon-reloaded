@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -51,6 +52,8 @@ public class Kisume extends Mob implements Callback {
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
+
+        properties.add(Property.YOKAI);
 
         loot = new PotionOfLiquidFlame();
         lootChance = 0.1f;
@@ -104,10 +107,10 @@ public class Kisume extends Mob implements Callback {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
                 Buff.affect(enemy, Burning.class).reignite(enemy, 10f);
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 2) {
                     Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
                 }
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 4) {
                     Buff.affect(enemy, Bleeding.class).set(5);
                 }
             }

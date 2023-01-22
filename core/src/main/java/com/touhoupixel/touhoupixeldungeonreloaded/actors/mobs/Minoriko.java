@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -50,6 +51,8 @@ public class Minoriko extends Mob {
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;
+
+        properties.add(Property.GOD);
 
         WANDERING = new Wandering();
         FLEEING = new Fleeing();
@@ -94,10 +97,10 @@ public class Minoriko extends Mob {
             state = WANDERING;
             Food food = new Food();
             food.collect();
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Hisou.class, Hisou.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
             }
         }

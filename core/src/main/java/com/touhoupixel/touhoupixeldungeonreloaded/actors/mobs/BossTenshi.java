@@ -25,6 +25,7 @@ public class BossTenshi extends Mob {
         maxLvl = 30;
 
         properties.add(Property.BOSS);
+        properties.add(Property.WARP);
 
         loot = new LifeFragment();
         lootChance = 0.04f;

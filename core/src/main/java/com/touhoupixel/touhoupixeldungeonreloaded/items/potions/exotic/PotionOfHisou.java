@@ -36,9 +36,7 @@ public class PotionOfHisou extends ExoticPotion {
 	
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		Buff.prolong(hero, Hisou.class, Hisou.DURATION);
 	}
 }

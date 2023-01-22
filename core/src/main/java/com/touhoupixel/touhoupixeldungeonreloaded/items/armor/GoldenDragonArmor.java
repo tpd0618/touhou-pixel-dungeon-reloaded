@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class GoldenDragonArmor extends Armor {
@@ -29,8 +30,13 @@ public class GoldenDragonArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_GOLDENDRAGON;
 	}
 
+	@Override
+	public int AnimalDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public GoldenDragonArmor() {
-		super( 5 );
+		super( 4 );
 	}
 
 }

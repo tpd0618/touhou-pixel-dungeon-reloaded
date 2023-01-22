@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
@@ -53,6 +54,8 @@ public class Sanae extends Mob implements Callback {
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;
+
+        properties.add(Property.HUMAN);
 
         loot = new SpellcardFragment();
         lootChance = 0.1f;
@@ -106,10 +109,10 @@ public class Sanae extends Mob implements Callback {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
                 Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 2) {
                     Buff.prolong(this, BalanceBreak.class, BalanceBreak.DURATION);
                 }
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, Lignification.class, Lignification.DURATION);
                 }
             }

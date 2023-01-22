@@ -38,6 +38,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.Icons;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.StyledButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
+import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndDifficulty;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndTextInput;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.DungeonSeed;
@@ -521,16 +522,33 @@ public class HeroSelectScene extends PixelScene {
 					ShatteredPixelDungeon.scene().addToFront(new WndChallenges(SPDSettings.challenges(), true) {
 						public void onBackPressed() {
 							super.onBackPressed();
-							icon(Icons.get(SPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
+							icon(Icons.get(Icons.CHALLENGE_OFF));
 							updateOptionsColor();
 						}
 					});
 				}
 			};
 			challengeButton.leftJustify = true;
-			challengeButton.icon(Icons.get(SPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
+			challengeButton.icon(Icons.get(Icons.CHALLENGE_OFF));
 			add(challengeButton);
 			buttons.add(challengeButton);
+
+			StyledButton difficulty = new StyledButton(Chrome.Type.BLANK, Messages.get(WndDifficulty.class, "title"), 6) {
+				@Override
+				protected void onClick() {
+					ShatteredPixelDungeon.scene().addToFront(new WndDifficulty(SPDSettings.difficulty(), true) {
+						public void onBackPressed() {
+							super.onBackPressed();
+							icon(Icons.get(Icons.CHALLENGE_ON));
+							updateOptionsColor();
+						}
+					});
+				}
+			};
+			difficulty.leftJustify = true;
+			difficulty.icon(Icons.get(Icons.CHALLENGE_ON));
+			add(difficulty);
+			buttons.add(difficulty);
 
 			for (int i = 1; i < buttons.size(); i++) {
 				ColorBlock spc = new ColorBlock(1, 1, 0xFF000000);

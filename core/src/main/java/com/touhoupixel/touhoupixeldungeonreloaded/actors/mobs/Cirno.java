@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
@@ -24,6 +25,8 @@ public class Cirno extends Mob {
         defenseSkill = 7;
         EXP = 6;
         maxLvl = 15;
+
+        properties.add(Property.WARP);
 
         flying = true;
 
@@ -51,10 +54,10 @@ public class Cirno extends Mob {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(2) == 0) {
             Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Might.class, Might.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(this, Hisou.class, Hisou.DURATION);
             }
         }

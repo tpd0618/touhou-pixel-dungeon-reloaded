@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class MorfonicaArmor extends Armor {
@@ -29,8 +30,13 @@ public class MorfonicaArmor extends Armor {
 		image = ItemSpriteSheet.MORFONICA_ARMOR;
 	}
 
+	@Override
+	public int WarpDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public MorfonicaArmor() {
-		super( 5 );
+		super( 4 );
 	}
 
 }

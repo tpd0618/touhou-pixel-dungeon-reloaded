@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -24,6 +25,8 @@ public class Kyouko extends Mob {
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;
+
+        properties.add(Property.ANIMAL);
 
         loot = new ScrollOfSirensSong();
         lootChance = 0.1f;
@@ -49,10 +52,10 @@ public class Kyouko extends Mob {
         if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
             enemy.damage(damage / 2, target);
             GLog.w(Messages.get(this, "reflect"));
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Might.class, Might.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(this, Hisou.class, Hisou.DURATION);
             }
         }

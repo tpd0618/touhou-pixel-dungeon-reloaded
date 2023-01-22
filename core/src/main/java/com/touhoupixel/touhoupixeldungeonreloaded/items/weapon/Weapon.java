@@ -110,7 +110,7 @@ abstract public class Weapon extends KindOfWeapon {
 		if (enchantment != null && attacker.buff(MagicImmune.class) == null) {
 			damage = enchantment.proc( this, attacker, defender, damage );
 		}
-		
+
 		if (!levelKnown && attacker == Dungeon.hero) {
 			float uses = availableUsesToID;
 			availableUsesToID -= uses;
@@ -123,8 +123,9 @@ abstract public class Weapon extends KindOfWeapon {
 
 		return damage;
 	}
-	
+
 	public void onHeroGainExp( float levelPercent, Hero hero ){
+		levelPercent *= 1;
 		if (!levelKnown && isEquipped(hero) && availableUsesToID <= USES_TO_ID/2f) {
 			//gains enough uses to ID over 0.5 levels
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID);
@@ -221,11 +222,11 @@ abstract public class Weapon extends KindOfWeapon {
 
 	@Override
 	public int reachFactor(Char owner) {
-		if (owner.buff(ReachIncrease.class) != null && Statistics.card37){
+		if (owner.buff(ReachIncrease.class) != null && Statistics.card60){
 			return hasEnchant(Projecting.class, owner) ? RCH+3 : RCH+2;
-		} else if (owner.buff(ReachIncrease.class) == null && Statistics.card37){
+		} else if (owner.buff(ReachIncrease.class) == null && Statistics.card60){
 			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
-		} else if (owner.buff(ReachIncrease.class) != null && !Statistics.card37){
+		} else if (owner.buff(ReachIncrease.class) != null && !Statistics.card60){
 			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
 		} else {
 			return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;

@@ -2,6 +2,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
@@ -31,6 +32,7 @@ public class Kaguya extends Mob {
         maxLvl = 45;
 
         properties.add(Property.ELIXIR);
+        properties.add(Property.WARP);
 
         loot = new LifeFragment();
         lootChance = 0.1f;
@@ -57,10 +59,10 @@ public class Kaguya extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
             if (Dungeon.hero.HP % 10 == 0 || Dungeon.hero.HP % 10 == 1) {
                 damage *= 2;
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 2) {
                     Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
                 }
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
                 } else {
                     Buff.prolong(enemy, Degrade.class, Degrade.DURATION);

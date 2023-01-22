@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class PC98ReimuArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_PC98REIMU;
+	}
+
+	@Override
+	public int GodDefFactor( Char owner ) {
+		return 1;
 	}
 
 	public PC98ReimuArmor() {

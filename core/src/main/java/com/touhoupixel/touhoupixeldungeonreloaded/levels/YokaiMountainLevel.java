@@ -22,37 +22,20 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlameParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.PrisonPainter;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiRingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiSneakTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursedBlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RustTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Group;
@@ -92,12 +75,13 @@ public class YokaiMountainLevel extends RegularLevel {
 		//1 to 3, average 2.0
 		return 1+Random.chances(new float[]{1, 3, 1});
 	}
-	
+
 	@Override
 	protected Painter painter() {
-		return new PrisonPainter()
-				.setWater(feeling == Feeling.WATER ? 0.90f : 0.30f, 4)
-				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 3)
+		return new TouhouPainter()
+				.setWater(feeling == Feeling.WATER ? 0.85f : 0.30f, 5)
+				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
+				.setSunny(0.35f, 5)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
@@ -118,23 +102,16 @@ public class YokaiMountainLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.PITFALL_OF_LIFE) ?
-				new Class<?>[]{
-						BlazingTrap.class, FrostTrap.class, ShockingTrap.class, WarpingTrap.class, GrippingTrap.class,
-						CursedBlowTrap.class, CorrosionTrap.class, ExConfusionTrap.class, CursingTrap.class, RustTrap.class,
-						DespairTrap.class, EnchantEraseTrap.class, AntiRingTrap.class}:
-				new Class<?>[]{
-						BurningTrap.class, ChillingTrap.class, FlockTrap.class, TeleportationTrap.class, SlowTrap.class,
-						BalanceTrap.class, ToxicTrap.class, DegradeTrap.class, AntiSneakTrap.class, SummoningTrap.class,
-						PoisonDartTrap.class, DisintegrationTrap.class, AlarmTrap.class};
+		return new Class[]{
+				EnchantEraseTrap.class, ChillingTrap.class, BurningTrap.class, AlarmTrap.class, AntiHealTrap.class,
+				DegradeTrap.class, ExConfusionTrap.class, CursedBlowTrap.class, CorrosionTrap.class, RockfallTrap.class};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
 				3, 3, 3, 3, 3,
-				2, 2, 2, 2, 2,
-				2, 2, 2};
+				2, 2, 2, 2, 2};
 	}
 
 	@Override

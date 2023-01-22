@@ -2,6 +2,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
@@ -29,6 +30,8 @@ public class Akyuu extends Mob {
         EXP = 3;
         maxLvl = 12;
 
+        properties.add(Property.HUMAN);
+
         loot = new SpellcardFragment();
         lootChance = 0.15f;
     }
@@ -53,10 +56,10 @@ public class Akyuu extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0){
             Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION / 2f);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Silence.class, Silence.DURATION);
             }
         }

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class PC98MarisaArmor extends Armor {
@@ -29,7 +30,12 @@ public class PC98MarisaArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_PC98MARISA;
 	}
 
+	@Override
+	public int HumanDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public PC98MarisaArmor() {
-		super( 3 );
+		super( 2 );
 	}
 }

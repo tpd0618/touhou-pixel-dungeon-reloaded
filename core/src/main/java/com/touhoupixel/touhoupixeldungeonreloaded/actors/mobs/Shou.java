@@ -54,6 +54,8 @@ public class Shou extends Mob {
 
 		viewDistance = Light.DISTANCE;
 
+		properties.add(Property.YOKAI);
+
 		HUNTING = new Hunting();
 
 		loot = Generator.Category.RING;

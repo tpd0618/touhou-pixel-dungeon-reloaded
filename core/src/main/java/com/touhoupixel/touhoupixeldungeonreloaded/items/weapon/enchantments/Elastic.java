@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.watabou.utils.Random;
@@ -51,7 +51,7 @@ public class Elastic extends Weapon.Enchantment {
 			WandOfBlastWave.throwChar(defender,
 					trajectory,
 					2,
-					!(weapon instanceof MissileWeapon || weapon instanceof Miracle),
+					!(weapon instanceof MissileWeapon),
 					true,
 					getClass());
 		}

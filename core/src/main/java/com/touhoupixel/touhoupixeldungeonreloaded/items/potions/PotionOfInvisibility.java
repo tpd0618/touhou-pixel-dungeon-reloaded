@@ -40,9 +40,7 @@ public class PotionOfInvisibility extends Potion {
 
 	@Override
 	public void apply( Hero hero ) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		Buff.affect(hero, Invisibility.class, Invisibility.DURATION/2f);
 		GLog.i(Messages.get(this, "invisible"));
 		Sample.INSTANCE.play(Assets.Sounds.MELD);

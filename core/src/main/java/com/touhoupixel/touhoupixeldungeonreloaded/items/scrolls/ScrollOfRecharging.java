@@ -52,9 +52,7 @@ public class ScrollOfRecharging extends Scroll {
 
 		GLog.i( Messages.get(this, "surge") );
 		SpellSprite.show( curUser, SpellSprite.CHARGE );
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 
 		readAnimation();
 	}

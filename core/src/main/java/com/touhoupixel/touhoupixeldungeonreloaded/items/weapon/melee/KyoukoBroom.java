@@ -50,6 +50,6 @@ public class KyoukoBroom extends MeleeWeapon {
         if (Random.Int(4) == 0) {
             Buff.prolong(defender, Vertigo.class, Vertigo.DURATION);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

@@ -25,16 +25,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.KunaiDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ScaleDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.StarDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.BulletDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ShardDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.CircleDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.ThrowingKnife;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.RiceDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.CirnoDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ScaleDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ShardDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.RiceDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.CirnoDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Visual;
 import com.watabou.noosa.tweeners.PosTweener;
@@ -95,7 +92,6 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		ANGULAR_SPEEDS.put(ShardDanmaku.class,         0);
 		ANGULAR_SPEEDS.put(BulletDanmaku.class,       0);
 		ANGULAR_SPEEDS.put(CirnoDanmaku.class,       0);
-		ANGULAR_SPEEDS.put(Miracle.SpiritArrow.class,       0);
 	}
 
 	//TODO it might be nice to have a source and destination angle, to improve thrown weapon visuals
@@ -140,9 +136,6 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		float speed = SPEED;
 		if (item instanceof Dart && Dungeon.hero.belongings.weapon() instanceof YukariUmbrella){
 			speed *= 3f;
-			
-		} else if (item instanceof Miracle.SpiritArrow){
-			speed *= 1.5f;
 		}
 		
 		PosTweener tweener = new PosTweener( this, to, d.length() / speed );

@@ -49,6 +49,6 @@ public class SevenStarSword extends MeleeWeapon {
         if (Random.Int(10) == 0) {
             Statistics.spellcardfragment += 1;
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

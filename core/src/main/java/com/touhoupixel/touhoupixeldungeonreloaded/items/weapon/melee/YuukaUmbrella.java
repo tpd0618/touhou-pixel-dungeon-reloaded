@@ -52,6 +52,6 @@ public class YuukaUmbrella extends MeleeWeapon {
         trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
         //knock them back along that ballistica
         WandOfBlastWave.throwChar(defender, trajectory, 5, false, true, getClass());
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

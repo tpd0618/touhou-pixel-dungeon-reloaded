@@ -51,6 +51,6 @@ public class WatermelonSword extends MeleeWeapon {
         if (attacker.HP == 99 || attacker.HP == 199){
             damage *= 1.5f;
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

@@ -22,14 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.TransientTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.TransientTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
@@ -62,9 +61,7 @@ public class ScrollOfTeleportation extends Scroll {
 		if (teleportPreferringUnseen( curUser )){
 			readAnimation();
 		}
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 
 	}
 
@@ -72,7 +69,7 @@ public class ScrollOfTeleportation extends Scroll {
 		PathFinder.buildDistanceMap(pos, BArray.or(Dungeon.level.passable, Dungeon.level.avoid, null));
 		if ((PathFinder.distance[ch.pos] == Integer.MAX_VALUE
 				|| (!Dungeon.level.passable[pos] && !Dungeon.level.avoid[pos])
-				|| Actor.findChar(pos) != null) && !(curItem instanceof TransientTailsman)){
+				|| Actor.findChar(pos) != null) && !(curItem instanceof TransientTalisman)){
 			if (ch == Dungeon.hero){
 				GLog.w( Messages.get(ScrollOfTeleportation.class, "cant_reach") );
 			}

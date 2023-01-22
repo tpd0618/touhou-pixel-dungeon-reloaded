@@ -24,6 +24,7 @@ public class BossRemilia extends Mob {
         flying = true;
 
         properties.add(Property.BOSS);
+        properties.add(Property.WARP);
 
         loot = new Spellcard();
         lootChance = 1f;

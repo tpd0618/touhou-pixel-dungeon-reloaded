@@ -58,6 +58,8 @@ public class Sannyo extends Mob {
         EXP = 17;
         maxLvl = 40;
 
+        properties.add(Property.YOKAI);
+
         loot = new ScrollOfSirensSong();
         lootChance = 0.1f;
     }
@@ -81,10 +83,10 @@ public class Sannyo extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Statistics.playercorruption += 1;
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;
             }
             ArrayList<Item> gazer = new ArrayList<>();

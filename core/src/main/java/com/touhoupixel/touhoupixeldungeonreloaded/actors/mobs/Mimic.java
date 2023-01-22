@@ -56,6 +56,8 @@ public class Mimic extends Mob {
 		spriteClass = MimicSprite.class;
 
 		EXP = 0;
+
+		properties.add(Property.ANIMAL);
 		
 		//mimics are neutral when hidden
 		alignment = Alignment.NEUTRAL;

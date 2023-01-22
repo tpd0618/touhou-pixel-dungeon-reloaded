@@ -47,6 +47,8 @@ public class Tojiko extends Mob implements Callback {
 		EXP = 14;
 		maxLvl = 32;
 
+		properties.add(Property.WARP);
+
 		loot = new PotionOfParalyticGas();
 		lootChance = 0.1f;
 	}

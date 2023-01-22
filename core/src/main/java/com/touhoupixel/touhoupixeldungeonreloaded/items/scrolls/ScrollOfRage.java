@@ -51,9 +51,7 @@ public class ScrollOfRage extends Scroll {
 		}
 
 		GLog.w( Messages.get(this, "roar") );
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		
 		curUser.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
 		Sample.INSTANCE.play( Assets.Sounds.CHALLENGE );

@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -67,8 +69,12 @@ public class Herb extends Item {
 			SpellSprite.show(hero, SpellSprite.FOOD);
 			Sample.INSTANCE.play(Assets.Sounds.EAT);
 
-			if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
+			if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
 				Statistics.mood += 1;
+			}
+
+			if (Statistics.card33){
+				Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION);
 			}
 
 			hero.spend(eatingTime());

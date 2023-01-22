@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class ToyohimeArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_TOYOHIME;
+	}
+
+	@Override
+	public int GodDefFactor( Char owner ) {
+		return 1;
 	}
 
 	public ToyohimeArmor() {

@@ -51,9 +51,7 @@ public class ScrollOfMassConfusion extends ExoticScroll {
 			}
 		}
 
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 
 		readAnimation();
 	}

@@ -50,6 +50,6 @@ public class FullMoonScythe extends MeleeWeapon {
             damage *= 1.5f;
             Buff.affect(defender, Bleeding.class).set(12);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

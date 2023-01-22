@@ -58,9 +58,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 	@Override
 	public void doRead() {
 		if (!isKnown()) {
-			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-				identify();
-			}
+			identify();
 			identifiedByUse = true;
 		} else {
 			identifiedByUse = false;

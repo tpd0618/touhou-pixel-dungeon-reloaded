@@ -44,7 +44,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Shadows;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
@@ -63,7 +62,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantmen
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.StarDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.StarDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.HighGrass;
@@ -1139,7 +1138,7 @@ public abstract class Level implements Bundlable {
 
 			if (c.buff( NightTime.class ) != null && c.buff( Light.class ) == null){
 				if (Statistics.card54) {
-					viewDist = 2;
+					viewDist = 3;
 				} else {
 					viewDist = 1;
 				}
@@ -1359,6 +1358,14 @@ public abstract class Level implements Bundlable {
 				return Messages.get(Level.class, "bookshelf_name");
 			case Terrain.ALCHEMY:
 				return Messages.get(Level.class, "alchemy_name");
+
+			case Terrain.SUNNY_TILES:
+				return Messages.get(Level.class, "sunny_name");
+			case Terrain.LUNA_TILES:
+				return Messages.get(Level.class, "luna_name");
+			case Terrain.STAR_TILES:
+				return Messages.get(Level.class, "star_name");
+
 			default:
 				return Messages.get(Level.class, "default_name");
 		}
@@ -1400,6 +1407,14 @@ public abstract class Level implements Bundlable {
 				return Messages.get(Level.class, "statue_desc");
 			case Terrain.ALCHEMY:
 				return Messages.get(Level.class, "alchemy_desc");
+
+			case Terrain.SUNNY_TILES:
+				return Messages.get(Level.class, "sunny_desc");
+			case Terrain.LUNA_TILES:
+				return Messages.get(Level.class, "luna_desc");
+			case Terrain.STAR_TILES:
+				return Messages.get(Level.class, "star_desc");
+
 			case Terrain.EMPTY_WELL:
 				return Messages.get(Level.class, "empty_well_desc");
 			default:

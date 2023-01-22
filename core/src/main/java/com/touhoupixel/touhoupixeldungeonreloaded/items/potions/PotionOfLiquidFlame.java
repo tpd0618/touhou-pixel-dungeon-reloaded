@@ -24,8 +24,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -41,8 +46,17 @@ public class PotionOfLiquidFlame extends Potion {
 	public void shatter( int cell ) {
 
 		if (Dungeon.level.heroFOV[cell]) {
-			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-				identify();
+			identify();
+
+			if (Statistics.card55){
+				GameScene.flash(0x80FFFFFF);
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+						if (!mob.properties().contains(Char.Property.BOSS) || !mob.properties().contains(Char.Property.MINIBOSS)) {
+							Buff.prolong(mob, HighStress.class, HighStress.DURATION);
+						}
+					}
+				}
 			}
 
 			splash( cell );
@@ -52,9 +66,7 @@ public class PotionOfLiquidFlame extends Potion {
 
 		for (int offset : PathFinder.NEIGHBOURS9){
 			if (!Dungeon.level.solid[cell+offset]) {
-
 				GameScene.add(Blob.seed(cell + offset, 2, Fire.class));
-
 			}
 		}
 	}

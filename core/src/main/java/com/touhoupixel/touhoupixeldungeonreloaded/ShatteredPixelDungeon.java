@@ -61,7 +61,7 @@ public class ShatteredPixelDungeon extends Game {
 
 		//pre-v1.2.0
 		com.watabou.utils.Bundle.addAlias(
-				com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.CleansingDart.class,
+				com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.CleansingDart.class,
 				"com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.SleepDart" );
 
 		com.watabou.utils.Bundle.addAlias(

@@ -23,6 +23,8 @@ public class Ringo extends Mob {
         EXP = 2;
         maxLvl = 12;
 
+        properties.add(Property.WARP);
+
         baseSpeed = 2f;
 
         loot = Generator.Category.ARMOR_T2;
@@ -49,11 +51,11 @@ public class Ringo extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment){
             Statistics.power += 10;
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, Vulnerable.class, Vulnerable.DURATION / 5f);
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(enemy, Vulnerable.class, Vulnerable.DURATION/5f);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION / 2f);
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION/2f);
             }
         }
         return damage;

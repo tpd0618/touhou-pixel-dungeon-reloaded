@@ -51,6 +51,6 @@ public class KanonDrumstick extends MeleeWeapon {
         if (Random.Int(7) == 0) {
             Buff.prolong(attacker, HomingBlade.class, HomingBlade.DURATION);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

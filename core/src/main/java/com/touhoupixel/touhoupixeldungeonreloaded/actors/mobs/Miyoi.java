@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -52,6 +53,8 @@ public class Miyoi extends Mob {
         EXP = 17;
         maxLvl = 42;
 
+        properties.add(Property.YOKAI);
+
         loot = Generator.Category.POTION;
         lootChance = 0.1f;
     }
@@ -77,10 +80,10 @@ public class Miyoi extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
             if (Random.Int(3) == 0 && Dungeon.energy > 9) {
                 Dungeon.energy -= 10;
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 2) {
                     Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
                 }
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
                 }
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);

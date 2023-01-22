@@ -326,7 +326,7 @@ public class WndJournal extends WndTabbed {
 				case "Upgrades":
 					return new ItemSprite( ItemSpriteSheet.KOGASA_HAMMER );
 				case "Item_Use":
-					return new ItemSprite( ItemSpriteSheet.REIMU_TAILSMAN );
+					return new ItemSprite( ItemSpriteSheet.REIMU_TALISMAN);
 				case "Levelling":
 					return Icons.get(Icons.TALENT);
 				case "Positioning":

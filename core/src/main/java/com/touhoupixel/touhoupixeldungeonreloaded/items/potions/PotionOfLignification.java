@@ -42,9 +42,7 @@ public class PotionOfLignification extends Potion {
 
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 
 		Buff.prolong( hero, Lignification.class, Lignification.DURATION);
 	}

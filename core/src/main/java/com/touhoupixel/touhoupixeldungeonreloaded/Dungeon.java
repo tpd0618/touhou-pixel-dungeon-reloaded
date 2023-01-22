@@ -161,6 +161,7 @@ public class Dungeon {
 	}
 
 	public static int challenges;
+	public static int difficulty;
 	public static int mobsToChampion;
 
 	public static Hero hero;
@@ -194,6 +195,7 @@ public class Dungeon {
 
 		initialVersion = version = Game.versionCode;
 		challenges = SPDSettings.challenges();
+		difficulty = SPDSettings.difficulty();
 		mobsToChampion = -1;
 
 		if (daily) {
@@ -236,7 +238,7 @@ public class Dungeon {
 		depth = 1;
 		branch = 0;
 
-		gold = 5; //to buy an ability card on floor 1.
+		gold = 5; //to buy an ability card on floor 1
 		energy = 0;
 
 		droppedItems = new SparseArray<>();
@@ -256,6 +258,10 @@ public class Dungeon {
 
 	public static boolean isChallenged( int mask ) {
 		return (challenges & mask) != 0;
+	}
+
+	public static boolean isDifficulty( int mask ) {
+		return (difficulty & mask) != 0;
 	}
 
 	public static Level newLevel() {
@@ -413,11 +419,11 @@ public class Dungeon {
 	}
 
 	public static boolean shopOnLevel() {
-		return depth == 6 || depth == 16 || depth == 26 || depth == 36 || depth == 46;
+		return depth == 6 || depth == 8 || depth == 16 || depth == 26 || depth == 36 || depth == 41;
 	}
 
 	public static boolean cardshopOnLevel() {
-		return depth == 1 || depth == 3 || depth == 8 || depth == 11 || depth == 21 || depth == 31 || depth == 41;
+		return depth == 1 || depth == 3 || depth == 11 || depth == 21 || depth == 31;
 	}
 
 	public static boolean bossLevel() {

@@ -111,6 +111,12 @@ public class Statistics {
 	public static int spellcardfragmentkill;
 
 	public static int playercorruption;
+	public static int hitoricount;
+	public static int hitorilefttime;
+
+	public static int difficulty;
+
+	public static boolean dinfocheck = false;
 
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
@@ -191,7 +197,6 @@ public class Statistics {
 	public static boolean card46 = false;
 	public static boolean card47 = false;
 	public static boolean card48 = false;
-
 	public static boolean card49 = false;
 	public static boolean card50 = false;
 	public static boolean card51 = false;
@@ -199,7 +204,11 @@ public class Statistics {
 	public static boolean card53 = false;
 	public static boolean card54 = false;
 	public static boolean card55 = false;
+	public static boolean card56 = false;
+	public static boolean card57 = false;
 	public static boolean card58 = false;
+	public static boolean card59 = false;
+	public static boolean card60 = false;
 	public static boolean card61 = false;
 	public static boolean card62 = false;
 	public static boolean card63 = false;
@@ -210,15 +219,6 @@ public class Statistics {
 	public static boolean card68 = false;
 	public static boolean card69 = false;
 	public static boolean card70 = false;
-
-	public static boolean card71 = false;
-	public static boolean card72 = false;
-	public static boolean card73 = false;
-	public static boolean card74 = false;
-	public static boolean card75 = false;
-	public static boolean card76 = false;
-	public static boolean card77 = false;
-	public static boolean card78 = false;
 
 	public static boolean nightcheck = false;
 
@@ -306,6 +306,12 @@ public class Statistics {
 		spellcardfragmentkill = 0;
 
 		playercorruption = 0;
+		hitoricount = 0;
+		hitorilefttime = 0;
+
+		difficulty = 0;
+
+		dinfocheck = false;
 
 		qualifiedForNoKilling = false;
 
@@ -383,7 +389,6 @@ public class Statistics {
 		card46 = false;
 		card47 = false;
 		card48 = false;
-
 		card49 = false;
 		card50 = false;
 		card51 = false;
@@ -391,7 +396,11 @@ public class Statistics {
 		card53 = false;
 		card54 = false;
 		card55 = false;
+		card56 = false;
+		card57 = false;
 		card58 = false;
+		card59 = false;
+		card60 = false;
 		card61 = false;
 		card62 = false;
 		card63 = false;
@@ -402,15 +411,6 @@ public class Statistics {
 		card68 = false;
 		card69 = false;
 		card70 = false;
-
-		card71 = false;
-		card72 = false;
-		card73 = false;
-		card74 = false;
-		card75 = false;
-		card76 = false;
-		card77 = false;
-		card78 = false;
 
 		nightcheck = false;
 	}
@@ -496,6 +496,12 @@ public class Statistics {
 	private static final String SPELLCARDFRAGMENTKILL	= "spellcardfragmentkill";
 
 	private static final String PLAYERCORRUPTION	= "playercorruption";
+	private static final String HITORICOUNT	= "hitoricount";
+	private static final String HITORILEFTTIME	= "hitorilefttime";
+
+	private static final String DIFFICULTY	= "difficulty";
+
+	private static final String DINFOCHECK	= "dinfocheck";
 
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
@@ -573,7 +579,6 @@ public class Statistics {
 	private static final String CARD46		= "card46";
 	private static final String CARD47		= "card47";
 	private static final String CARD48		= "card48";
-
 	private static final String CARD49		= "card49";
 	private static final String CARD50		= "card50";
 	private static final String CARD51		= "card51";
@@ -581,7 +586,11 @@ public class Statistics {
 	private static final String CARD53		= "card53";
 	private static final String CARD54		= "card54";
 	private static final String CARD55	    = "card55";
+	private static final String CARD56	    = "card56";
+	private static final String CARD57	    = "card57";
 	private static final String CARD58		= "card58";
+	private static final String CARD59		= "card59";
+	private static final String CARD60		= "card60";
 	private static final String CARD61		= "card61";
 	private static final String CARD62		= "card62";
 	private static final String CARD63		= "card63";
@@ -592,15 +601,6 @@ public class Statistics {
 	private static final String CARD68		= "card68";
 	private static final String CARD69		= "card69";
 	private static final String CARD70		= "card70";
-
-	private static final String CARD71		= "card71";
-	private static final String CARD72		= "card72";
-	private static final String CARD73		= "card73";
-	private static final String CARD74		= "card74";
-	private static final String CARD75		= "card75";
-	private static final String CARD76		= "card76";
-	private static final String CARD77		= "card77";
-	private static final String CARD78		= "card78";
 
 	private static final String NIGHTCHECK		= "nightcheck";
 
@@ -729,7 +729,6 @@ public class Statistics {
 		bundle.put( CARD46,	card46 );
 		bundle.put( CARD47,	card47 );
 		bundle.put( CARD48,	card48 );
-
 		bundle.put( CARD49,	card49 );
 		bundle.put( CARD50,	card50 );
 		bundle.put( CARD51,	card51 );
@@ -737,7 +736,11 @@ public class Statistics {
 		bundle.put( CARD53,	card53 );
 		bundle.put( CARD54,	card54 );
 		bundle.put( CARD55,	card55 );
+		bundle.put( CARD56,	card56 );
+		bundle.put( CARD57,	card57 );
 		bundle.put( CARD58,	card58 );
+		bundle.put( CARD59,	card59 );
+		bundle.put( CARD60,	card60 );
 		bundle.put( CARD61,	card61 );
 		bundle.put( CARD62,	card62 );
 		bundle.put( CARD63,	card63 );
@@ -748,15 +751,6 @@ public class Statistics {
 		bundle.put( CARD68,	card68 );
 		bundle.put( CARD69,	card69 );
 		bundle.put( CARD70,	card70 );
-
-		bundle.put( CARD71,	card71 );
-		bundle.put( CARD72,	card72 );
-		bundle.put( CARD73,	card73 );
-		bundle.put( CARD74,	card74 );
-		bundle.put( CARD75,	card75 );
-		bundle.put( CARD76,	card76 );
-		bundle.put( CARD77,	card77 );
-		bundle.put( CARD78,	card78 );
 
 		bundle.put( NIGHTTIMECOUNT,	nighttimecount );
 
@@ -792,6 +786,12 @@ public class Statistics {
 		bundle.put( SPELLCARDFRAGMENTKILL,	spellcardfragmentkill );
 
 		bundle.put( PLAYERCORRUPTION,	playercorruption );
+		bundle.put( HITORICOUNT,	hitoricount );
+		bundle.put( HITORILEFTTIME,	hitorilefttime );
+
+		bundle.put( DIFFICULTY,	difficulty );
+
+		bundle.put( DINFOCHECK, dinfocheck );
 
 		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
@@ -886,6 +886,12 @@ public class Statistics {
 		spellcardfragmentkill		= bundle.getInt( SPELLCARDFRAGMENTKILL );
 
 		playercorruption		= bundle.getInt( PLAYERCORRUPTION );
+		hitoricount		= bundle.getInt( HITORICOUNT );
+		hitorilefttime		= bundle.getInt( HITORILEFTTIME );
+
+		difficulty		= bundle.getInt( DIFFICULTY );
+
+		dinfocheck = bundle.getBoolean( DINFOCHECK );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 
@@ -963,7 +969,6 @@ public class Statistics {
 		card46	= bundle.getBoolean( CARD46 );
 		card47	= bundle.getBoolean( CARD47 );
 		card48	= bundle.getBoolean( CARD48 );
-
 		card49	= bundle.getBoolean( CARD49 );
 		card50	= bundle.getBoolean( CARD50 );
 		card51	= bundle.getBoolean( CARD51 );
@@ -971,7 +976,11 @@ public class Statistics {
 		card53	= bundle.getBoolean( CARD53 );
 		card54	= bundle.getBoolean( CARD54 );
 		card55  = bundle.getBoolean( CARD55 );
+		card56	= bundle.getBoolean( CARD56 );
+		card57  = bundle.getBoolean( CARD57 );
 		card58	= bundle.getBoolean( CARD58 );
+		card59	= bundle.getBoolean( CARD59 );
+		card60  = bundle.getBoolean( CARD60 );
 		card61	= bundle.getBoolean( CARD61 );
 		card62	= bundle.getBoolean( CARD62 );
 		card63	= bundle.getBoolean( CARD63 );
@@ -982,15 +991,6 @@ public class Statistics {
 		card68	= bundle.getBoolean( CARD68 );
 		card69	= bundle.getBoolean( CARD69 );
 		card70  = bundle.getBoolean( CARD70 );
-
-		card71	= bundle.getBoolean( CARD71 );
-		card72	= bundle.getBoolean( CARD72 );
-		card73	= bundle.getBoolean( CARD73 );
-		card74	= bundle.getBoolean( CARD74 );
-		card75	= bundle.getBoolean( CARD75 );
-		card76	= bundle.getBoolean( CARD76 );
-		card77	= bundle.getBoolean( CARD77 );
-		card78  = bundle.getBoolean( CARD78 );
 
 		nightcheck  = bundle.getBoolean( NIGHTCHECK );
 	}

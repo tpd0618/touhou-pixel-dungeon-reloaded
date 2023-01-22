@@ -29,6 +29,8 @@ public class HecatiaArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_HECATIA;
 	}
 
+	//return 0
+
 	public HecatiaArmor() {
 		super( 5 );
 	}

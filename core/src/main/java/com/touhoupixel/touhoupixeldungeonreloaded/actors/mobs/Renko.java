@@ -23,15 +23,21 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
@@ -69,6 +75,8 @@ public class Renko extends Mob implements Callback {
         defenseSkill = 45;
         EXP = 10;
         maxLvl = 75;
+
+        properties.add(Property.HUMAN);
 
         loot = new LifeFragment();
         lootChance = 0.05f;
@@ -121,6 +129,12 @@ public class Renko extends Mob implements Callback {
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+                if (Statistics.difficulty > 2) {
+                    Buff.prolong(this, Might.class, Might.DURATION);
+                }
+                if (Statistics.difficulty > 4) {
+                    Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+                }
                 switch (Random.Int(4)) {
                     case 0:
                     default:
@@ -132,7 +146,7 @@ public class Renko extends Mob implements Callback {
                         }
                         break;
                     case 1:
-                        Buff.prolong(enemy, OneDamage.class, Light.DURATION / 10f);
+                        Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
                         break;
                     case 2:
                         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {

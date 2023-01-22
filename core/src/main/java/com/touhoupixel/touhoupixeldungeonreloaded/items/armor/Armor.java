@@ -343,6 +343,22 @@ public class Armor extends EquipableItem {
 		
 		return stealth;
 	}
+
+	public int YokaiDefFactor( Char owner ) {
+		return 0;
+	}
+	public int GodDefFactor( Char owner ) {
+		return 0;
+	}
+	public int HumanDefFactor( Char owner ) {
+		return 0;
+	}
+	public int AnimalDefFactor( Char owner ) {
+		return 0;
+	}
+	public int WarpDefFactor( Char owner ) {
+		return 0;
+	}
 	
 	@Override
 	public int level() {
@@ -393,7 +409,7 @@ public class Armor extends EquipableItem {
 		if (glyph != null && defender.buff(MagicImmune.class) == null) {
 			damage = glyph.proc( this, attacker, defender, damage );
 		}
-		
+
 		if (!levelKnown && defender == Dungeon.hero) {
 			float uses = availableUsesToID;
 			availableUsesToID -= uses;
@@ -403,12 +419,13 @@ public class Armor extends EquipableItem {
 				GLog.p( Messages.get(Armor.class, "identify") );
 			}
 		}
-		
+
 		return damage;
 	}
-	
+
 	@Override
 	public void onHeroGainExp(float levelPercent, Hero hero) {
+		levelPercent *= 1;
 		if (!levelKnown && isEquipped(hero) && availableUsesToID <= USES_TO_ID/2f) {
 			//gains enough uses to ID over 0.5 levels
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID);

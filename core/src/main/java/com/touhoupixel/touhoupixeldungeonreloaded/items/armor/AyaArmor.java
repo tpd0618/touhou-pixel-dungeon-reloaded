@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class AyaArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_PLATE;
+	}
+
+	@Override
+	public int YokaiDefFactor( Char owner ) {
+		return 1;
 	}
 	
 	public AyaArmor() {

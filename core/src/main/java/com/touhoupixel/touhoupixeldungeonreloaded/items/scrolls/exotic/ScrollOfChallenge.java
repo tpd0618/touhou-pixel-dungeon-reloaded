@@ -57,9 +57,7 @@ public class ScrollOfChallenge extends ExoticScroll {
 
 		Buff.affect(curUser, ChallengeArena.class).setup(curUser.pos);
 
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		
 		curUser.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
 		Sample.INSTANCE.play( Assets.Sounds.CHALLENGE );

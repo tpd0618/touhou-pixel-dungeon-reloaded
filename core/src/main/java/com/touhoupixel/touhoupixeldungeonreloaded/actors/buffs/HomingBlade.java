@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class HomingBlade extends FlavourBuff {
 	
-	public static final float DURATION = 50f;
+	public static final float DURATION = 20f;
 	
 	{
 		type = buffType.POSITIVE;

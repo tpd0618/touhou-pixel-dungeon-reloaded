@@ -21,7 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.rings;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -190,7 +190,11 @@ public class Ring extends KindofMisc {
 	@Override
 	public Item upgrade() {
 
-		if (this.level()>9){
+
+		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && this.level() > 2){
+			GLog.w(Messages.get(this, "ringing_upgradefail"));
+			Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
+		} else if (this.level() > 8){
 			GLog.w(Messages.get(this, "upgradefail"));
 			Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
 		} else

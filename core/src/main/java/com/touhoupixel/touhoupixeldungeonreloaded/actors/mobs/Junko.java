@@ -6,6 +6,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
@@ -27,6 +30,8 @@ public class Junko extends Mob {
         defenseSkill = 42;
         EXP = 22;
         maxLvl = 50;
+
+        properties.add(Property.GOD);
 
         loot = new SpellcardFragment();
         lootChance = 0.05f;
@@ -52,6 +57,12 @@ public class Junko extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             Statistics.life -= 1;
+            if (Statistics.difficulty > 2) {
+                Statistics.life -= 1;
+            }
+            if (Statistics.difficulty > 4) {
+                Statistics.life -= 1;
+            }
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             GLog.w(Messages.get(this, "lifelose"));
         }

@@ -55,6 +55,8 @@ public class Benben extends Mob {
         EXP = 15;
         maxLvl = 37;
 
+        properties.add(Property.YOKAI);
+
         loot = Gold.class;
         lootChance = 0.1f;
     }
@@ -77,13 +79,13 @@ public class Benben extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
             Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
             }
         }

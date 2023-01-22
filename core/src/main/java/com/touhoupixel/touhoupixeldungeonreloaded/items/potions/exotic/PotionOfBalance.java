@@ -42,9 +42,7 @@ public class PotionOfBalance extends ExoticPotion {
 
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		Buff.prolong(hero, BalanceBreak.class, BalanceBreak.DURATION);
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);

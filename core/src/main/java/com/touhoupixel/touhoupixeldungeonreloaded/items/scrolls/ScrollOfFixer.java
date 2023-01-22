@@ -45,17 +45,11 @@ public class ScrollOfFixer extends Scroll {
 
 	@Override
 	public void doRead() {
-		if (Dungeon.isChallenged(Challenges.ETERNAL_DREAM)){
-			Buff.affect(curUser, Light.class, Light.DURATION/2f);
-		} else {
-			Buff.affect(curUser, Light.class, Light.DURATION);
-		}
+		Buff.affect(curUser, Light.class, Light.DURATION);
 		Sample.INSTANCE.play(Assets.Sounds.BURNING);
 		curUser.HP = Math.min(curUser.HP + 100000, curUser.HT);
 		GLog.p(Messages.get(this, "fixer"));
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		readAnimation();
 	}
 

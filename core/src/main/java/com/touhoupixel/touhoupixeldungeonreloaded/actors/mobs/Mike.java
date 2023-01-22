@@ -52,6 +52,8 @@ public class Mike extends Mob {
         EXP = 2;
         maxLvl = 10;
 
+        properties.add(Property.ANIMAL);
+
         loot = Generator.Category.POTION;
         lootChance = 0.15f;
 

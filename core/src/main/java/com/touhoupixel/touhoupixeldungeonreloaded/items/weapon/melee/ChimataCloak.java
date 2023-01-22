@@ -49,6 +49,6 @@ public class ChimataCloak extends MeleeWeapon {
         if (Random.Int(100) == 0) {
             Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

@@ -25,8 +25,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -63,12 +64,18 @@ public class Gold extends Item {
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 
-		if (Statistics.card36) {
+		if (Statistics.card46) {
+			Dungeon.gold += quantity;
+			Statistics.goldCollected += quantity;
 			Dungeon.gold += quantity;
 			Statistics.goldCollected += quantity;
 		}
 
-		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
+		if (Statistics.card69) {
+			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION/2f);
+		}
+
+		if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
 			Statistics.mood += 1;
 		}
 

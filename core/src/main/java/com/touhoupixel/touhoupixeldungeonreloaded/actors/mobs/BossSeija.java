@@ -25,6 +25,7 @@ public class BossSeija extends Mob {
         maxLvl = 30;
 
         properties.add(Property.BOSS);
+        properties.add(Property.YOKAI);
 
         loot = new LifeFragment();
         lootChance = 0.04f;

@@ -1,10 +1,15 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
@@ -28,6 +33,8 @@ public class Yukari extends Mob {
         defenseSkill = 45;
         EXP = 25;
         maxLvl = 99;
+
+        properties.add(Property.YOKAI);
 
         flying = true;
 
@@ -53,8 +60,14 @@ public class Yukari extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.prolong(enemy, YukariBorder.class, YukariBorder.DURATION);
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+            }
         }
         return damage;
     }

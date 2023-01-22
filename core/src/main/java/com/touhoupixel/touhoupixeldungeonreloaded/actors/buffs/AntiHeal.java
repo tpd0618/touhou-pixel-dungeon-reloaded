@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class AntiHeal extends FlavourBuff {
 	
-	public static final float DURATION = 200f;
+	public static final float DURATION = 30f;
 	
 	{
 		type = buffType.NEGATIVE;

@@ -39,6 +39,7 @@ public class Flandre extends Mob {
         flying = true;
 
         properties.add(Property.BOSS);
+        properties.add(Property.WARP);
 
         EXP = 0;
         maxLvl = 99;

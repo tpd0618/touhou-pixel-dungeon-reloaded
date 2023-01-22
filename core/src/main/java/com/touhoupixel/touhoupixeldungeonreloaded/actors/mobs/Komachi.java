@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -57,6 +58,8 @@ public class Komachi extends Mob {
         defenseSkill = 25;
         EXP = 14;
         maxLvl = 32;
+
+        properties.add(Property.GOD);
 
         loot = PotionOfExorcismRod.class;
         lootChance = 0.1f;
@@ -98,10 +101,10 @@ public class Komachi extends Mob {
                     yell(Messages.get(this, "distance"));
                     new Item().throwSound();
                     Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
-                    if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                    if (Statistics.difficulty > 2) {
                         Buff.prolong(this, Hisou.class, Hisou.DURATION);
                     }
-                    if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                    if (Statistics.difficulty > 4) {
                         Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
                     }
                     Sample.INSTANCE.play(Assets.Sounds.CHAINS);

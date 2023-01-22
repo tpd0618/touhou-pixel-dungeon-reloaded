@@ -64,28 +64,30 @@ public class NitoChecker extends Item {
 		info += "\n\n" + Messages.get( NitoChecker.class, "stats5", Statistics.spellcardfragment);
 		info += "\n\n" + Messages.get( NitoChecker.class, "stats6", Statistics.playercorruption);
 		info += "\n\n" + Messages.get( NitoChecker.class, "statsdaynight", Statistics.nighttimecount);
+		if (Dungeon.isChallenged(Challenges.DISTORTION)){
+			info += "\n\n" + Messages.get( NitoChecker.class, "statsbocchi", Statistics.hitorilefttime);
+		}
 		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "stats7", Statistics.tenshiEarthquake);
 		}
 		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "stats8", Statistics.timetrackbuff);
 		}
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+		if (Statistics.difficulty == 1) {
 			info += "\n\n" + Messages.get(NitoChecker.class, "easy");
 		}
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERMARISA) {
+		if (Statistics.difficulty == 2) {
 			info += "\n\n" + Messages.get(NitoChecker.class, "normal");
 		}
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE) {
+		if (Statistics.difficulty == 3) {
 			info += "\n\n" + Messages.get(NitoChecker.class, "hard");
 		}
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) {
+		if (Statistics.difficulty == 4) {
 			info += "\n\n" + Messages.get(NitoChecker.class, "lunatic");
 		}
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+		if (Statistics.difficulty == 5) {
 			info += "\n\n" + Messages.get(NitoChecker.class, "overdrive");
 		}
-
 		return info;
 	}
 

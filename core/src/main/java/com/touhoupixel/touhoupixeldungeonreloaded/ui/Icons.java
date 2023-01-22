@@ -88,7 +88,7 @@ public enum Icons {
 	SCROLL_HOLDER,
 	WAND_HOLSTER,
 	POTION_BANDOLIER,
-	TAILSMAN_HOLDER,
+	TALISMAN_HOLDER,
 	CARD_HOLDER,
 
 	//icons that appear in the game itself, variable spacing
@@ -278,7 +278,7 @@ public enum Icons {
 			case POTION_BANDOLIER:
 				icon.frame( icon.texture.uvRectBySize( 241, 48, 10, 10 ) );
 				break;
-			case TAILSMAN_HOLDER:
+			case TALISMAN_HOLDER:
 				icon.frame( icon.texture.uvRectBySize( 201, 58, 10, 10 ) );
 				break;
 			case CARD_HOLDER:

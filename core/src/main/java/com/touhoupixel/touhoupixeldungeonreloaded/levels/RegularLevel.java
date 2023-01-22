@@ -167,7 +167,7 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 
 	protected int nTraps() {
-		return Dungeon.isChallenged(Challenges.PITFALL_OF_LIFE) ?
+		return Dungeon.isChallenged(Challenges.STARRY_HOUSE) ?
 				Random.NormalIntRange(5, 7):
 				Random.NormalIntRange(3, 5);
 	}
@@ -188,11 +188,11 @@ public abstract class RegularLevel extends Level {
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.33f);
 		}
-		if (Statistics.card75){
-			mobs = (int)Math.ceil(mobs * 1.5f);
+		if (Statistics.card56){
+			mobs = (int)Math.ceil(mobs * 1.25f);
 		}
-		if (Statistics.card76){
-			mobs = (int)Math.ceil(mobs * 0.75f);
+		if (Statistics.card5){
+			mobs = (int)Math.ceil(mobs * 0.85f);
 		}
 		return mobs;
 	}
@@ -322,10 +322,10 @@ public abstract class RegularLevel extends Level {
 	protected void createItems() {
 
 		// drops 3/4/5 items 60%/30%/10% of the time
-		int nItems = 3 + Random.chances(new float[]{6, 3, 1});
+		int nItems = 5 + Random.chances(new float[]{6, 3, 1});
 
 		if (feeling == Feeling.LARGE){
-			nItems += 2;
+			nItems += 5;
 		}
 
 		for (int i=0; i < nItems; i++) {

@@ -36,9 +36,7 @@ public class PotionOfExperience extends Potion {
 	
 	@Override
 	public void apply( Hero hero ) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		hero.earnExp( hero.maxExp(), getClass() );
 	}
 	

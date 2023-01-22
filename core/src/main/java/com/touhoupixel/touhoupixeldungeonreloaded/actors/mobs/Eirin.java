@@ -22,18 +22,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EirinSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KagerouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -51,6 +49,7 @@ public class Eirin extends Mob implements Callback {
         maxLvl = 50;
 
         properties.add(Property.ELIXIR);
+        properties.add(Property.WARP);
 
         loot = new PotionOfHealing();
         lootChance = 0.05f;
@@ -104,6 +103,12 @@ public class Eirin extends Mob implements Callback {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
                 Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+                if (Statistics.difficulty > 2) {
+                    Dungeon.level.drop(new Dewdrop(), enemy.pos).sprite.drop();
+                }
+                if (Statistics.difficulty > 4) {
+                    Dungeon.level.drop(new Dewdrop(), enemy.pos).sprite.drop();
+                }
             }
 
             int dmg = Random.NormalIntRange( 13, 18 );

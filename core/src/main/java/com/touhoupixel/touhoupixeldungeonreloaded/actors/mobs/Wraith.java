@@ -45,6 +45,8 @@ public class Wraith extends Mob {
 		EXP = 0;
 
 		maxLvl = -2;
+
+		properties.add(Property.WARP);
 		
 		flying = true;
 	}

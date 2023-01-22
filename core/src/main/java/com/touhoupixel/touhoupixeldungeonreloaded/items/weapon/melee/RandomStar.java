@@ -75,8 +75,7 @@ public class RandomStar extends MeleeWeapon {
 				mob5.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 			}
 		}
-
-		return damage;
+		return super.proc(attacker, defender, damage);
 	}
 
 	@Override

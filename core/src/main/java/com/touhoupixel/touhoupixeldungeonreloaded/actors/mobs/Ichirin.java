@@ -52,6 +52,8 @@ public class Ichirin extends Mob implements Callback {
         EXP = 13;
         maxLvl = 30;
 
+        properties.add(Property.YOKAI);
+
         loot = new PotionOfHealing();
         lootChance = 0.1f;
     }

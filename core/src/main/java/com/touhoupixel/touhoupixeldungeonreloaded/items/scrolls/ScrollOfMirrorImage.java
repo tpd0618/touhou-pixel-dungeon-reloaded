@@ -51,9 +51,7 @@ public class ScrollOfMirrorImage extends Scroll {
 		int spawnedImages = spawnImages(curUser, NIMAGES);
 		
 		if (spawnedImages > 0) {
-			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-				identify();
-			}
+			identify();
 		}
 		
 		Sample.INSTANCE.play( Assets.Sounds.READ );

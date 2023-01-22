@@ -79,7 +79,7 @@ public class Food extends Item {
 			SpellSprite.show( hero, SpellSprite.FOOD );
 			Sample.INSTANCE.play( Assets.Sounds.EAT );
 
-			if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
+			if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
 				Statistics.mood += 1;
 			}
 
@@ -87,8 +87,12 @@ public class Food extends Item {
 
 			Statistics.foodEaten++;
 
-			if (Statistics.card61){
+			if (Statistics.card41){
 				Buff.affect(hero, WellFed.class).reset();
+			}
+
+			if (Statistics.card67){
+				Statistics.power += 100;
 			}
 		}
 	}

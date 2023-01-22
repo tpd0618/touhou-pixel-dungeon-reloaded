@@ -25,6 +25,8 @@ public class Kosuzu extends Mob {
         EXP = 3;
         maxLvl = 12;
 
+        properties.add(Property.HUMAN);
+
         loot = new LifeFragment();
         lootChance = 0.15f;
     }
@@ -48,11 +50,11 @@ public class Kosuzu extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (Statistics.upgradesUsed == 0) {
-            Buff.affect(enemy, Burning.class).reignite(enemy, 8f);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            Buff.affect(enemy, Burning.class).reignite(enemy, 3f);
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION/10f);
             }
         }

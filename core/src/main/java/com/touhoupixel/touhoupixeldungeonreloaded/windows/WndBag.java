@@ -27,11 +27,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -392,15 +392,15 @@ public class WndBag extends WndTabbed {
 	private Image icon( Bag bag ) {
 		if (bag instanceof VelvetPouch) {
 			return Icons.get( Icons.SEED_POUCH );
-		} else if (bag instanceof ScrollHolder) {
+		} else if (bag instanceof SpellcardHolder) {
 			return Icons.get( Icons.SCROLL_HOLDER );
 		} else if (bag instanceof MagicalHolster) {
 			return Icons.get( Icons.WAND_HOLSTER );
 		} else if (bag instanceof PotionBandolier) {
 			return Icons.get( Icons.POTION_BANDOLIER );
-		} else if (bag instanceof HakureiHolder) {
-			return Icons.get( Icons.TAILSMAN_HOLDER );
-		} else if (bag instanceof CardHolder) {
+		} else if (bag instanceof HerbPouch) {
+			return Icons.get( Icons.TALISMAN_HOLDER);
+		} else if (bag instanceof MagicalContainer) {
 			return Icons.get( Icons.CARD_HOLDER );
 		} else {
 			return Icons.get( Icons.BACKPACK );

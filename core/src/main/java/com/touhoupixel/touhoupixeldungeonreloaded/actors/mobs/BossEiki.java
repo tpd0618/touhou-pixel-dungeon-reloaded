@@ -24,6 +24,7 @@ public class BossEiki extends Mob {
         maxLvl = 30;
 
         properties.add(Property.BOSS);
+        properties.add(Property.GOD);
 
         loot = new LifeFragment();
         lootChance = 0.04f;

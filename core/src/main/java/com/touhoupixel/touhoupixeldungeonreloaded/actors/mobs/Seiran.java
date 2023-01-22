@@ -2,21 +2,20 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SeiranSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -33,6 +32,8 @@ public class Seiran extends Mob {
         defenseSkill = 42;
         EXP = 21;
         maxLvl = 50;
+
+        properties.add(Property.WARP);
 
         loot = Generator.Category.HERB;
         lootChance = 0.05f;
@@ -57,6 +58,12 @@ public class Seiran extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            if (Statistics.difficulty > 2) {
+                new EnchantEraseTrap().set(enemy.pos).activate();
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+            }
             ArrayList<Item> gazer = new ArrayList<>();
             if (hero.buff(LostInventory.class) == null) {
                 for (Item i : Dungeon.hero.belongings) {
@@ -65,7 +72,7 @@ public class Seiran extends Mob {
                     }
                 }
                 if ((Random.Int(4) == 0)) {
-                    Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/2f);
+                    Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
                     if (!gazer.isEmpty()) {
                         Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
                         GLog.w(Messages.get(this, "gaze"));

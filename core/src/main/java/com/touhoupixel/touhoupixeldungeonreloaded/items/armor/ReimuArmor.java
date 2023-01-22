@@ -30,6 +30,8 @@ public class ReimuArmor extends Armor {
 
 		bones = false; //Finding them in bones would be semi-frequent and disappointing.
 	}
+
+	//return 0
 	
 	public ReimuArmor() {
 		super( 1 );

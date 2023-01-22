@@ -31,7 +31,7 @@ public class ExtremeConfusion extends FlavourBuff {
 		announced = true;
 	}
 
-	public static final float DURATION = 250f;
+	public static final float DURATION = 25f;
 
 	@Override
 	public int icon() {

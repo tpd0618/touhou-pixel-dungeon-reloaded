@@ -54,6 +54,8 @@ public class Mai extends Mob {
         EXP = 17;
         maxLvl = 42;
 
+        properties.add(Property.HUMAN);
+
         loot = new SpellcardFragment();
         lootChance = 0.1f;
     }
@@ -77,10 +79,10 @@ public class Mai extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         Buff.prolong(enemy, Slow.class, Slow.DURATION);
-        if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+        if (Statistics.difficulty > 2) {
             Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
         }
-        if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+        if (Statistics.difficulty > 4) {
             Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
         }
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR) {

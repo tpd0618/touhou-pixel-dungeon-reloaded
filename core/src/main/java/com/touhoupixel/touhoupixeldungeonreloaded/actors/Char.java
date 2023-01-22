@@ -39,7 +39,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlamePower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
@@ -51,17 +50,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LifeLink;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SnipersMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
@@ -429,7 +424,7 @@ public abstract class Char extends Actor {
             damage *= 1.5f;
         }
         if (buff(YuukaRage.class) != null){
-            damage *= 10f;
+            damage += 50;
         }
 
         return damage;
@@ -584,9 +579,6 @@ public abstract class Char extends Actor {
             }
             if (ch.buff(Terror.class) != null && ch.buff(Terror.class).object == id()){
                 ch.buff(Terror.class).detach();
-            }
-            if (ch.buff(SnipersMark.class) != null && ch.buff(SnipersMark.class).object == id()){
-                ch.buff(SnipersMark.class).detach();
             }
         }
     }
@@ -828,20 +820,16 @@ public abstract class Char extends Actor {
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
         MINIBOSS ( new HashSet<Class>(),
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
-        YOKAI,
-        FLOAT,
-        ANIMAL,
-        GOD,
         NONE,
         ELIXIR,
-        FIRE,
-        COLD,
-        WARP,
-        POWERFUL,
-        COOL,
-        PURE,
-        HAPPY,
-        IMMOVABLE;
+        IMMOVABLE,
+
+        //Mob property
+        YOKAI,
+        GOD,
+        HUMAN,
+        ANIMAL,
+        WARP;
 
         private HashSet<Class> resistances;
         private HashSet<Class> immunities;

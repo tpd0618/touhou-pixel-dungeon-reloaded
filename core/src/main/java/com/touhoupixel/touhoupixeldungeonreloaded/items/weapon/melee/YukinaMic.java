@@ -52,6 +52,6 @@ public class YukinaMic extends MeleeWeapon {
             Buff.prolong(attacker, Bless.class, Bless.DURATION);
             Buff.prolong(attacker, OneDefDamage.class, OneDefDamage.DURATION/2f);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

@@ -59,6 +59,8 @@ public class Marisa extends Mob {
 
         HUNTING = new Hunting();
 
+        properties.add(Property.HUMAN);
+
         loot = Generator.Category.WAND;
         lootChance = 0.15f;
     }

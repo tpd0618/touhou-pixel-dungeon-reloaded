@@ -84,9 +84,7 @@ public class ScrollOfMagicMapping extends Scroll {
 
 		}
 		Sample.INSTANCE.play(Assets.Sounds.READ);
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		readAnimation();
 	}
 	

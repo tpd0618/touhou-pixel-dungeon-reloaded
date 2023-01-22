@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
@@ -49,6 +50,8 @@ public class Hecatia extends Mob {
 		defenseSkill = Dungeon.depth;
 
 		flying = true;
+
+		properties.add(Property.GOD);
 
 		EXP = 0;
 		maxLvl = 99;
@@ -80,10 +83,10 @@ public class Hecatia extends Mob {
 					mob.beckon(enemy.pos);
 					Buff.prolong(mob, Doublespeed.class, Doublespeed.DURATION * 1000f);
 					Buff.prolong(mob, Might.class, Might.DURATION * 1000f);
-					if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+					if (Statistics.difficulty > 2) {
 						Buff.prolong(mob, Doublerainbow.class, Doublerainbow.DURATION);
 					}
-					if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+					if (Statistics.difficulty > 4) {
 						Buff.prolong(mob, Hisou.class, Hisou.DURATION);
 					}
 				}

@@ -24,31 +24,23 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HakureiHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MeatPie;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlink;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DebilitationTailsman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
 public enum HeroClass {
@@ -61,61 +53,44 @@ public enum HeroClass {
 
 	public void initHero( Hero hero ) {
 
+		//test, too many will make the bug for the game
+
+		//test, too many will make the bug for the game
+
+		if (Statistics.difficulty == 1){
+			PotionOfHealing poh = new PotionOfHealing();
+			poh.quantity(5).identify().collect();
+		}
+
 		hero.heroClass = this;
+
+		(hero.belongings.weapon = new ReimuExorcismRod()).identify();
 
 		Item i = new ReimuArmor().identify();
 		if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ReimuArmor)i;
 
-		i = new Food();
-		if (!Challenges.isItemBlocked(i)) i.collect();
-
-		//test, too many will make the bug for the game
-
-		//test, too many will make the bug for the game
-
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
-			PotionOfHealing poh = new PotionOfHealing();
-			poh.quantity(3).identify().collect();
-
-			DragonHerb dragonherb = new DragonHerb();
-			dragonherb.quantity(3).collect();
-
-			MeatPie meatpie = new MeatPie();
-			meatpie.quantity(3).collect();
-
-			StoneOfBlink stoneofblink = new StoneOfBlink();
-			stoneofblink.quantity(3).collect();
-
-			DebilitationTailsman dt = new DebilitationTailsman();
-			dt.quantity(3).collect();
-		}
-
 		MarisaStaff staff;
 		staff = new MarisaStaff(new WandOfMagicMissile());
-		(hero.belongings.weapon = staff).identify();
-		hero.belongings.weapon.activate(hero);
-		Dungeon.quickslot.setSlot(0, staff);
+		staff.identify().collect();
 
-		Waterskin waterskin = new Waterskin();
-		waterskin.collect();
-		Dungeon.quickslot.setSlot(1, waterskin);
+		GlassBottle glassBottle = new GlassBottle();
+		glassBottle.collect();
 
 		Miracle miracle = new Miracle();
 		miracle.identify().collect();
-		Dungeon.quickslot.setSlot(2, miracle);
 
-		NitoChecker nitochecker = new NitoChecker();
-		nitochecker.collect();
+		NitoChecker nitoChecker = new NitoChecker();
+		nitoChecker.collect();
 
 		NitoDismantleHammer nitodismantlehammer = new NitoDismantleHammer();
 		nitodismantlehammer.collect();
 
 		new MagicalHolster().collect();
 		new PotionBandolier().collect();
-		new ScrollHolder().collect();
-		new HakureiHolder().collect();
+		new SpellcardHolder().collect();
+		new HerbPouch().collect();
 		new VelvetPouch().collect();
-		new CardHolder().collect();
+		new MagicalContainer().collect();
 	}
 
 	public String title() {

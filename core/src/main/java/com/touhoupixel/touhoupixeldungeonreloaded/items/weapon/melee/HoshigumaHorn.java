@@ -52,6 +52,6 @@ public class HoshigumaHorn extends MeleeWeapon {
             Buff.prolong(attacker, Bless.class, Bless.DURATION);
             Buff.prolong(attacker, ReachIncrease.class, ReachIncrease.DURATION/2f);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

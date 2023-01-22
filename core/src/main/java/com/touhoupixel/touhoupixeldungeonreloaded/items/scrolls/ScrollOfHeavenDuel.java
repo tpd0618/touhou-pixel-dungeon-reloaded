@@ -49,7 +49,7 @@ public class ScrollOfHeavenDuel extends Scroll {
 	public void doRead() {
 
 		Buff.prolong(curUser, Hisou.class, Hisou.DURATION);
-		Buff.prolong(curUser, HeavenSpeed.class, HeavenSpeed.DURATION);
+		Buff.prolong(curUser, HeavenSpeed.class, HeavenSpeed.DURATION*5f);
 
 		GLog.p(Messages.get(this, "hduel"));
 
@@ -57,9 +57,7 @@ public class ScrollOfHeavenDuel extends Scroll {
 		Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
 
 		SpellSprite.show( curUser, SpellSprite.CHARGE );
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 
 		readAnimation();
 	}

@@ -40,9 +40,7 @@ public class ScrollOfEquipmentIdentify extends ExoticScroll {
 		Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION);
 		GLog.p(Messages.get(this, "equipmentidentify"));
 
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		readAnimation();
 	}
 }

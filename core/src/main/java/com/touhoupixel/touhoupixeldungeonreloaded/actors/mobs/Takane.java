@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -23,6 +24,8 @@ public class Takane extends Mob {
         defenseSkill = 17;
         EXP = 11;
         maxLvl = 25;
+
+        properties.add(Property.YOKAI);
 
         loot = new AquaBlast();
         lootChance = 0.1f;
@@ -47,10 +50,10 @@ public class Takane extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         new GeyserTrap().set(this.pos).activate();
-        if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+        if (Statistics.difficulty > 2) {
             Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
         }
-        if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+        if (Statistics.difficulty > 4) {
             Buff.prolong(enemy, Lignification.class, Lignification.DURATION);
         }
         return damage;

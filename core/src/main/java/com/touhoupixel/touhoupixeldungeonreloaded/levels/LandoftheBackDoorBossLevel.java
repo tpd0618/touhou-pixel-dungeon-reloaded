@@ -24,12 +24,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.builders.Builder;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.builders.FigureEightBuilder;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.SewerPainter;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.Room;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.StandardRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -84,7 +82,7 @@ public class LandoftheBackDoorBossLevel extends HakureiShrineLevel {
 	
 	@Override
 	protected Painter painter() {
-		return new SewerPainter()
+		return new TouhouPainter()
 				.setWater(0.50f, 5)
 				.setGrass(0.20f, 4)
 				.setTraps(nTraps(), trapClasses(), trapChances());

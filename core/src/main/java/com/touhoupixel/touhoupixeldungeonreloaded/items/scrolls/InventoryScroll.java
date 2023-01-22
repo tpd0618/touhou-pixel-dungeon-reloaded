@@ -41,9 +41,7 @@ public abstract class InventoryScroll extends Scroll {
 	public void doRead() {
 		
 		if (!isKnown()) {
-			if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-				identify();
-			}
+			identify();
 			identifiedByUse = true;
 		} else {
 			identifiedByUse = false;

@@ -51,6 +51,8 @@ public class Yatsuhashi extends Mob {
         EXP = 15;
         maxLvl = 37;
 
+        properties.add(Property.YOKAI);
+
         loot = Gold.class;
         lootChance = 0.1f;
     }
@@ -75,10 +77,10 @@ public class Yatsuhashi extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Statistics.playercorruption += 1;
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Statistics.playercorruption += 1;
             }
             Sample.INSTANCE.play(Assets.Sounds.CURSED);

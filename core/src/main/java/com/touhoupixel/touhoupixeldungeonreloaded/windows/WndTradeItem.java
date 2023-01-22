@@ -216,13 +216,7 @@ public class WndTradeItem extends WndInfoItem {
 		if (item == null) return;
 		
 		int price = Shopkeeper.sellPrice( item );
-		if (Statistics.card67){
-			Dungeon.gold -= price/2f;
-		} else Dungeon.gold -= price;
-
-		if (Statistics.card48){
-			Statistics.spellcardfragment += 4;
-		}
+		Dungeon.gold -= price;
 
 		if (!item.doPickUp( Dungeon.hero )) {
 			Dungeon.level.drop( item, heap.pos ).sprite.drop();

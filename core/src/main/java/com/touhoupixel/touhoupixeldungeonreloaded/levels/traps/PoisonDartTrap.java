@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.PoisonDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.PoisonDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
 import com.watabou.noosa.audio.Sample;

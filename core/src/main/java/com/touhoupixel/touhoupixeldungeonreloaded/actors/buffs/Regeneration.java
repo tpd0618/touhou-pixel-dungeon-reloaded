@@ -25,8 +25,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
@@ -48,10 +49,12 @@ public class Regeneration extends Buff {
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
-					if (!(Dungeon.isChallenged(Challenges.RINGING_BLOOM) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0)) {
+					if (Dungeon.isChallenged(Challenges.FLAME_KEYSTONE) && target.HP > 14){
+						target.HP -= Notes.keyCount(new IronKey(Dungeon.depth))*2+Notes.keyCount(new GoldenKey(Dungeon.depth))+Notes.keyCount(new CrystalKey(Dungeon.depth));
+					} else {
 						if (target.buff(RegenBlock.class) == null) {
 							target.HP += 1;
-							if (Statistics.card28){
+							if (Statistics.card50 && target.HP + 1 < target.HT) {
 								target.HP += 1;
 							}
 						}

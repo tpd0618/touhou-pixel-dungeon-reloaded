@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
@@ -23,6 +24,8 @@ public class Sakuya extends Mob {
         defenseSkill = 15;
         EXP = 10;
         maxLvl = 22;
+
+        properties.add(Property.HUMAN);
 
         baseSpeed = 3f;
 
@@ -50,10 +53,10 @@ public class Sakuya extends Mob {
         damage = super.attackProc(enemy, damage);
         if (Random.Int(4) == 0) {
             new SakuyaDaggerTrap().set(enemy.pos).activate();
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Haste.class, Haste.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
             }
         }

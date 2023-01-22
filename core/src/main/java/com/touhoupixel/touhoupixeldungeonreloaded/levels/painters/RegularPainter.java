@@ -63,6 +63,18 @@ public abstract class RegularPainter extends Painter {
 		grassSmoothness = smoothness;
 		return this;
 	}
+
+
+	private float sunnyFill = 0f;
+	private int sunnySmoothness;
+
+	public RegularPainter setSunny(float fill, int smoothness){
+		sunnyFill = fill;
+		sunnySmoothness = smoothness;
+		return this;
+	}
+
+
 	
 	private int nTraps = 0;
 	private Class<? extends Trap>[] trapClasses;
@@ -133,6 +145,10 @@ public abstract class RegularPainter extends Painter {
 		
 		if (grassFill > 0f){
 			paintGrass( level, rooms );
+		}
+
+		if (sunnyFill > 0f){
+			paintSunny( level, rooms );
 		}
 		
 		if (nTraps > 0){
@@ -362,6 +378,67 @@ public abstract class RegularPainter extends Painter {
 		}
 		
 	}
+
+
+
+
+
+	protected void paintSunny( Level l, ArrayList<Room> rooms ) {
+		boolean[] grass = Patch.generate( l.width(), l.height(), sunnyFill, sunnySmoothness, true );
+
+		ArrayList<Integer> sunnyCells = new ArrayList<>();
+
+		if (!rooms.isEmpty()){
+			for (Room r : rooms){
+				for (Point p : r.grassPlaceablePoints()){
+					int i = l.pointToCell(p);
+					if (grass[i] && l.map[i] == Terrain.EMPTY){
+						sunnyCells.add(i);
+					}
+				}
+			}
+		} else {
+			for (int i = 0; i < l.length(); i ++) {
+				if (grass[i] && l.map[i] == Terrain.EMPTY){
+					sunnyCells.add(i);
+				}
+			}
+		}
+
+		for (int i : sunnyCells) {
+			if (l.heaps.get(i) != null || l.findMob(i) != null) {
+				switch (Random.Int(3)) {
+					case 0:
+					default:
+						l.map[i] = Terrain.SUNNY_TILES;
+						break;
+					case 1:
+						l.map[i] = Terrain.LUNA_TILES;
+						break;
+					case 2:
+						l.map[i] = Terrain.STAR_TILES;
+						break;
+				}
+				continue;
+			}
+
+			switch (Random.Int(3)) {
+				case 0:
+				default:
+					l.map[i] = Terrain.SUNNY_TILES;
+					break;
+				case 1:
+					l.map[i] = Terrain.LUNA_TILES;
+					break;
+				case 2:
+					l.map[i] = Terrain.STAR_TILES;
+					break;
+			}
+		}
+	}
+
+
+
 	
 	protected void paintGrass( Level l, ArrayList<Room> rooms ) {
 		boolean[] grass = Patch.generate( l.width(), l.height(), grassFill, grassSmoothness, true );
@@ -446,7 +523,7 @@ public abstract class RegularPainter extends Painter {
 		nTraps = Math.min(nTraps, validCells.size()/5);
 
 		//5x traps on traps level feeling, but the extra traps are all visible
-		for (int i = 0; i < (l.feeling == Level.Feeling.TRAPS ? 5*nTraps : nTraps); i++) {
+		for (int i = 0; i < (l.feeling == Level.Feeling.TRAPS ? 3*nTraps : nTraps); i++) {
 
 			Trap trap = Reflection.newInstance(trapClasses[Random.chances( trapChances )]);
 

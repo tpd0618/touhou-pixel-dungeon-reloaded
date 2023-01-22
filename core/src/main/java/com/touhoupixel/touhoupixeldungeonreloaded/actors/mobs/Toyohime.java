@@ -26,7 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -50,6 +52,8 @@ public class Toyohime extends Mob implements Callback {
 		maxLvl = 99;
 
 		flying = true;
+
+		properties.add(Property.WARP);
 
 		loot = new ThreeStarTicket();
 		lootChance = 0.1f;
@@ -107,6 +111,12 @@ public class Toyohime extends Mob implements Callback {
 			if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
 				Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
+				if (Statistics.difficulty > 2) {
+					Dungeon.hero.STR--;
+				}
+				if (Statistics.difficulty > 4) {
+					Dungeon.hero.STR--;
+				}
 			}
 
 			int dmg = Random.NormalIntRange(26, 32);

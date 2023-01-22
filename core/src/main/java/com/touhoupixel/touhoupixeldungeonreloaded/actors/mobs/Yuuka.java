@@ -23,12 +23,14 @@ public class Yuuka extends Mob {
         EXP = 1;
         maxLvl = 27;
 
+        properties.add(Property.YOKAI);
+
         baseSpeed = 0.2f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(0, 1);
+        return 1;
     }
 
     @Override

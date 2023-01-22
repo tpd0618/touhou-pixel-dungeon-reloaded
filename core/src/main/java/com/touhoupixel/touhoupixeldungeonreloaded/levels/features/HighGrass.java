@@ -22,26 +22,22 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.features;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.LeafParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Camouflage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.SandalsOfNature;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -59,7 +55,7 @@ public class HighGrass {
 		Char ch = Actor.findChar(pos);
 		
 		if (level.map[pos] == Terrain.FURROWED_GRASS){
-			if (ch instanceof Hero && Statistics.card24){
+			if (ch instanceof Hero && Statistics.card49){
 				//Do nothing
 				freezeTrample = true;
 			} else {
@@ -67,7 +63,7 @@ public class HighGrass {
 			}
 			
 		} else {
-			if (ch instanceof Hero && Statistics.card24){
+			if (ch instanceof Hero && Statistics.card49){
 				Level.set(pos, Terrain.FURROWED_GRASS);
 				freezeTrample = true;
 			} else {
@@ -95,7 +91,7 @@ public class HighGrass {
 				}
 				
 				// Dew, scales from 1/6 to 1/3
-				Waterskin flask = Dungeon.hero.belongings.getItem(Waterskin.class);
+				GlassBottle flask = Dungeon.hero.belongings.getItem(GlassBottle.class);
 
 				if (Random.Int(24 - naturalismLevel*3) <= 3) {
 					if (flask != null && !flask.isFull() && ch instanceof Hero) {

@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
@@ -23,6 +24,8 @@ public class Miko extends Mob {
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
+
+        properties.add(Property.ANIMAL);
 
         loot = new LifeFragment();
         lootChance = 0.01f;
@@ -47,10 +50,10 @@ public class Miko extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
-        if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+        if (Statistics.difficulty > 2) {
             Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
         }
-        if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+        if (Statistics.difficulty > 4) {
             Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
         }
         return damage;

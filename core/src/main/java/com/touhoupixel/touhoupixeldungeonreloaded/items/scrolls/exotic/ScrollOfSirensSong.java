@@ -100,9 +100,7 @@ public class ScrollOfSirensSong extends ExoticScroll {
 					GLog.w(Messages.get(ScrollOfSirensSong.class, "no_target"));
 				}
 
-				if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-					identify();
-				}
+				identify();
 
 				readAnimation();
 

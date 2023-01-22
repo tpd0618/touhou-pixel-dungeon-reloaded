@@ -15,6 +15,8 @@ public class Tewi extends Mob {
         EXP = 9;
         maxLvl = 20;
 
+        properties.add(Property.ANIMAL);
+
         loot = new ReclaimTrap();
         lootChance = 0.15f;
     }

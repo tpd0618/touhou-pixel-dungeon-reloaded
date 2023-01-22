@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class YuyukoArmor extends Armor {
@@ -29,8 +30,13 @@ public class YuyukoArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_YUYUKO;
 	}
 
+	@Override
+	public int HumanDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public YuyukoArmor() {
-		super( 4 );
+		super( 5 );
 	}
 
 }

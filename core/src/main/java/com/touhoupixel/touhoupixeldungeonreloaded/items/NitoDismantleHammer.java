@@ -103,7 +103,7 @@ public class NitoDismantleHammer extends Item {
             } else {
                 item.detach(curUser.belongings.backpack);
                 Dungeon.level.drop(new UpgradeCard().quantity(item.level()), curUser.pos).sprite.drop();
-                if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
+                if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
                     Statistics.mood += 1;
                 }
                 updateQuickslot();

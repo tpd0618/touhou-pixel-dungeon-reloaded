@@ -25,6 +25,8 @@ public class Larva extends Mob {
 
         flying = true;
 
+        properties.add(Property.WARP);
+
         loot = Generator.Category.SCROLL;
         lootChance = 0.15f;
     }
@@ -49,12 +51,6 @@ public class Larva extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
             Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION/2f);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, Hex.class, Hex.DURATION/2f);
-            }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION/6f);
-            }
         }
         return damage;
     }

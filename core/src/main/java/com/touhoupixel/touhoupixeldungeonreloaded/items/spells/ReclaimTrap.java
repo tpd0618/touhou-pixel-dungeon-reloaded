@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tailsmans.DecoyTailsman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.EnragingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -136,7 +136,7 @@ public class ReclaimTrap extends TargetedSpell {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{ScrollOfMagicMapping.class, DecoyTailsman.class};
+			inputs =  new Class[]{ScrollOfMagicMapping.class, EnragingTalisman.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

@@ -22,23 +22,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DespairTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KagerouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RanSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
@@ -55,6 +48,8 @@ public class Ran extends Mob implements Callback {
         defenseSkill = 37;
         EXP = 19;
         maxLvl = 45;
+
+        properties.add(Property.ANIMAL);
 
         loot = new SpellcardFragment();
         lootChance = 0.1f;
@@ -108,10 +103,10 @@ public class Ran extends Mob implements Callback {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
                 Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 2) {
                     new CorrosionTrap().set(enemy.pos).activate();
                 }
-                if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+                if (Statistics.difficulty > 4) {
                     new FlashingTrap().set(enemy.pos).activate();
                 }
             }

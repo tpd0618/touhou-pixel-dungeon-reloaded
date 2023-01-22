@@ -19,6 +19,8 @@ public class Yachie extends Mob {
         EXP = 14;
         maxLvl = 30;
 
+        properties.add(Property.YOKAI);
+
         loot = new LifeFragment();
         lootChance = 0.04f;
     }

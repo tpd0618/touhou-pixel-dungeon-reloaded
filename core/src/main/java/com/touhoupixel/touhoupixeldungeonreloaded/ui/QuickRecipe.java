@@ -61,7 +61,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.TelekineticGrab;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.WildEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.AlchemyScene;

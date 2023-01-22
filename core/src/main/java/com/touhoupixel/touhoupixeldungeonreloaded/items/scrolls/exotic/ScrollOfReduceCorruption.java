@@ -39,9 +39,7 @@ public class ScrollOfReduceCorruption extends ExoticScroll {
 		Statistics.playercorruption -= 1;
 		GLog.p(Messages.get(this, "reduce"));
 
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		readAnimation();
 	}
 }

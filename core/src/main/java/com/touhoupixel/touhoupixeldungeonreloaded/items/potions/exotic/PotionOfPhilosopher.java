@@ -37,9 +37,7 @@ public class PotionOfPhilosopher extends ExoticPotion {
 	
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		Buff.prolong( hero, OneDefDamage.class, OneDefDamage.DURATION/2f);
 	}
 }

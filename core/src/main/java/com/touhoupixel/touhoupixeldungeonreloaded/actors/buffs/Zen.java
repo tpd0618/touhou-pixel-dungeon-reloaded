@@ -31,7 +31,7 @@ public class Zen extends FlavourBuff {
 		announced = true;
 	}
 
-	public static final float DURATION = 100f;
+	public static final float DURATION = 50f;
 
 	@Override
 	public int icon() {

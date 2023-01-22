@@ -41,9 +41,7 @@ public class PotionOfYingYang extends Potion {
 
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		if (hero.HP % 2 == 1) {
 			if (hero.buff(AntiHeal.class) != null && hero.HP % 2 == 1) {
 				hero.damage(hero.HT / 2, hero);

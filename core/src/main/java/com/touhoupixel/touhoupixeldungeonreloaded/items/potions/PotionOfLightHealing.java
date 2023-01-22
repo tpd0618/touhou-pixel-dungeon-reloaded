@@ -40,9 +40,7 @@ public class PotionOfLightHealing extends Potion {
 
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);
 			if (hero == Dungeon.hero && !hero.isAlive()) {

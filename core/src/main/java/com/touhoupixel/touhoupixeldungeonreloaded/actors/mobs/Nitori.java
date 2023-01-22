@@ -53,6 +53,8 @@ public class Nitori extends Mob implements Callback {
         EXP = 11;
         maxLvl = 25;
 
+        properties.add(Property.YOKAI);
+
         flying = true;
 
         loot = new PotionOfInvisibility();

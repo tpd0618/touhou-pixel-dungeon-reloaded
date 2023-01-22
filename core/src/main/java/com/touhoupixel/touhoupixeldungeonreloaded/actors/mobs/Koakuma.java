@@ -26,13 +26,15 @@ public class Koakuma extends Mob {
 
         baseSpeed = 2f;
 
+        properties.add(Property.WARP);
+
         loot = Generator.Category.SCROLL;
         lootChance = 0.15f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1+Statistics.upgradesUsed, 3+Statistics.upgradesUsed);
+        return Random.NormalIntRange(1+Statistics.upgradesUsed/2, 3+Statistics.upgradesUsed/2);
     }
 
     @Override
@@ -49,10 +51,10 @@ public class Koakuma extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, Roots.class, Roots.DURATION);
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION /5f);
             }
         }

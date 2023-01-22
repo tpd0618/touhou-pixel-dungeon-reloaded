@@ -39,10 +39,8 @@ public class PotionOfRingoDango extends Potion {
 	
 	@Override
 	public void apply( Hero hero ) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
-		Statistics.power += 100;
+		identify();
+		Statistics.power += 150;
 		GLog.p(Messages.get(this, "ringo"));
 	}
 	

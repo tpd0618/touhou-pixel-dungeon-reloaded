@@ -41,6 +41,7 @@ public class BossMarisa extends Mob {
         HUNTING = new Hunting();
 
         properties.add(Property.BOSS);
+        properties.add(Property.HUMAN);
 
         loot = new Spellcard();
         lootChance = 1f;

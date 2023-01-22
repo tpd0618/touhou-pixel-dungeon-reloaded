@@ -48,6 +48,6 @@ public class SagumeWing extends MeleeWeapon {
         if (Random.Int(80) == 0) {
             Statistics.playercorruption -= 1;
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

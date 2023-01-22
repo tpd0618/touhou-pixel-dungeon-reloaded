@@ -120,16 +120,6 @@ public class Assets {
 		public static final String LOADING_8 = "interfaces/loading_8.png";
 		public static final String LOADING_9 = "interfaces/loading_9.png";
 		public static final String LOADING_10 = "interfaces/loading_10.png";
-		public static final String LOADING_11 = "interfaces/loading_11.png";
-		public static final String LOADING_12 = "interfaces/loading_12.png";
-		public static final String LOADING_13 = "interfaces/loading_13.png";
-		public static final String LOADING_14 = "interfaces/loading_14.png";
-		public static final String LOADING_15 = "interfaces/loading_15.png";
-		public static final String LOADING_16 = "interfaces/loading_16.png";
-		public static final String LOADING_17 = "interfaces/loading_17.png";
-		public static final String LOADING_18 = "interfaces/loading_18.png";
-		public static final String LOADING_19 = "interfaces/loading_19.png";
-		public static final String LOADING_20 = "interfaces/loading_20.png";
 
 		public static final String BUFFS_SMALL = "interfaces/buffs.png";
 		public static final String BUFFS_LARGE = "interfaces/large_buffs.png";
@@ -311,8 +301,13 @@ public class Assets {
 		public static final String DOREMY = "sprites/doremy.png";
 		public static final String YUUKA = "sprites/yuuka.png";
 		public static final String KAGUYA = "sprites/kaguya.png";
+		public static final String BIRUKO = "sprites/biruko.png";
+		public static final String SEKIBANKI = "sprites/sekibanki.png";
+		public static final String FUTO = "sprites/futo.png";
+		public static final String SEIGA = "sprites/seiga.png";
 		public static final String CHEN = "sprites/chen.png";
 		public static final String SANNYO = "sprites/sannyo.png";
+		public static final String HITORI = "sprites/hitori.png";
 		public static final String OKINA = "sprites/okina.png";
 		public static final String KEINE = "sprites/keine.png";
 		public static final String SHIZUHA = "sprites/shizuha.png";

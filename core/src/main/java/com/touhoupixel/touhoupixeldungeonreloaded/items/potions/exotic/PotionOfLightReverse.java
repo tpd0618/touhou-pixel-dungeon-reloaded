@@ -39,9 +39,7 @@ public class PotionOfLightReverse extends ExoticPotion {
 
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		if (hero.HT/5 > hero.HP) {
 			hero.HP = Math.min(hero.HP + 10000, hero.HT);
 			GLog.p(Messages.get(this, "lightreverse1"));

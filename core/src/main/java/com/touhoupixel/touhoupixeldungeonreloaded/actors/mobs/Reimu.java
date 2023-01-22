@@ -2,23 +2,14 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ReimuSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -33,6 +24,8 @@ public class Reimu extends Mob {
         defenseSkill = 50;
         EXP = 25;
         maxLvl = 99;
+
+        properties.add(Property.HUMAN);
 
         loot = new LifeFragment();
         lootChance = 0.05f;
@@ -63,6 +56,12 @@ public class Reimu extends Mob {
                 Item.updateQuickslot();
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 GLog.w(Messages.get(this, "artifact_charge_lost"));
+            }
+            if (Statistics.difficulty > 2) {
+                Buff.affect(enemy, Bleeding.class).set(18);
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.affect(enemy, Bleeding.class).set(18);
             }
         }
         return damage;

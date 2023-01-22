@@ -1,17 +1,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfAntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.LilySprite;
 import com.watabou.utils.Random;
 
@@ -27,7 +22,9 @@ public class Lily extends Mob {
 
         flying = true;
 
-        loot = Generator.Category.TAILSMAN;
+        properties.add(Property.WARP);
+
+        loot = Generator.Category.TALISMAN;
         lootChance = 0.15f;
     }
 
@@ -51,10 +48,10 @@ public class Lily extends Mob {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(4) == 0) {
             Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
-            if (!(Dungeon.hero.heroClass == HeroClass.PLAYERSANAE) && !(Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) && !(Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA)) {
+            if (!(Statistics.difficulty > 2)) {
                 Buff.prolong(enemy, Haste.class, Haste.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);
             }
         }

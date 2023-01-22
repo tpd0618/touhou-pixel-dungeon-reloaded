@@ -69,11 +69,7 @@ public class Torch extends Item {
 			
 			detach( hero.belongings.backpack );
 
-			if (Dungeon.isChallenged(Challenges.ETERNAL_DREAM)){
-				Buff.affect(hero, Light.class, Light.DURATION/2f);
-			} else {
-				Buff.affect(hero, Light.class, Light.DURATION);
-			}
+			Buff.affect(hero, Light.class, Light.DURATION);
 			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 			
 			Emitter emitter = hero.sprite.centerEmitter();

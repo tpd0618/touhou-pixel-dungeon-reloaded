@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class HanasakigawaArmor extends Armor {
@@ -29,8 +30,13 @@ public class HanasakigawaArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_HANASAKIGAWA;
 	}
 
+	@Override
+	public int HumanDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public HanasakigawaArmor() {
-		super( 3 );
+		super( 4 );
 	}
 
 }

@@ -46,6 +46,6 @@ public class SmallSeiranHammer extends MeleeWeapon {
     @Override
     public int proc(Char attacker, Char defender, int damage) {
         Buff.affect(defender, Bleeding.class).set(2);
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

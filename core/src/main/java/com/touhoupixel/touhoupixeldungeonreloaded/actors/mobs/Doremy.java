@@ -2,9 +2,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
@@ -22,6 +25,8 @@ public class Doremy extends Mob {
         defenseSkill = 42;
         EXP = 21;
         maxLvl = 50;
+
+        properties.add(Property.ANIMAL);
 
         loot = Generator.Category.POTION;
         lootChance = 0.05f;
@@ -47,6 +52,12 @@ public class Doremy extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
             new FlockTrap().set(target).activate();
+            if (Statistics.difficulty > 2) {
+                Statistics.playercorruption += 1;
+            }
+            if (Statistics.difficulty > 4) {
+                Statistics.playercorruption += 1;
+            }
         }
         return damage;
     }

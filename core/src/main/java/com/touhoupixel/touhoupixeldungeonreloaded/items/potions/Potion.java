@@ -39,7 +39,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
@@ -48,7 +47,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfS
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfStormClouds;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
-import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Blindweed;
@@ -261,8 +259,6 @@ public class Potion extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(PotionFreeze.class) != null) {
 				GLog.w(Messages.get(this, "potionfreeze"));
-			} else if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
-				GLog.w(Messages.get(this, "sensenfukoku"));
 			} else if (isKnown() && mustThrowPots.contains(getClass())) {
 				
 					GameScene.show(
@@ -281,7 +277,7 @@ public class Potion extends Item {
 					
 				} else {
 					drink( hero );
-				if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO)) {
+				if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
 					Statistics.mood += 1;
 				}
 			}

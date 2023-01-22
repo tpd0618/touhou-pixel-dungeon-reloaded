@@ -31,7 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ScrollHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
@@ -310,7 +310,7 @@ public class UnstableSpellbook extends Artifact {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return ScrollHolder.class;
+			return SpellcardHolder.class;
 		}
 
 		@Override

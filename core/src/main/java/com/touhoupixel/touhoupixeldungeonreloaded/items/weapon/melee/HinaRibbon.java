@@ -50,6 +50,6 @@ public class HinaRibbon extends MeleeWeapon {
             attacker.HP = Math.min(attacker.HP + 100000, attacker.HT);
             PotionOfHealing.cure(attacker);
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

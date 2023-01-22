@@ -51,10 +51,6 @@ public class SkeletonKey extends Key {
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
 
-		if (Statistics.card30){
-			Statistics.life += 1;
-		}
-
 		if(!SPDSettings.supportNagged()){
 			try {
 				Dungeon.saveAll();

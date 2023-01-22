@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
@@ -50,7 +49,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
@@ -59,19 +57,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.MissileWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.Dart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
@@ -201,7 +195,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 
-		if (Dungeon.isChallenged(Challenges.INVINCIBLE_GENSOKYO) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
+		if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
 			switch (Random.Int(4)) {
 				case 0:
 				default:
@@ -601,6 +595,11 @@ public abstract class Mob extends Char {
 	}
 
 	@Override
+	public boolean isInvulnerable(Class effect) {
+		return Dungeon.isChallenged(Challenges.ASYLUM_OF_DANMAKU) && Dungeon.hero.justMoved;
+	}
+
+	@Override
 	public void onAttackComplete() {
 		attack( enemy );
 		spend( attackDelay() );
@@ -622,7 +621,6 @@ public abstract class Mob extends Char {
 	public String defenseVerb() {
 		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Dungeon.level.map[this.pos] == Terrain.WATER && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*1000f);
-			GameScene.updateMap( this.pos );
 		}
 		return Messages.get(this, "def_verb");
 	}
@@ -634,21 +632,21 @@ public abstract class Mob extends Char {
 			damage = 1;
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+		if (Statistics.difficulty == 1) {
 			damage *= 0.8f;
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) {
+		if (Statistics.difficulty == 3 || Statistics.difficulty == 4) {
 			damage *= 1.2f;
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+		if (Statistics.difficulty == 5) {
 			damage *= 1.4f;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (this instanceof Meiling && enemy.pos == this.pos + i) {
-				if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+				if (Statistics.difficulty > 4) {
 					Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
 				} else {
 					Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
@@ -676,8 +674,7 @@ public abstract class Mob extends Char {
 			Statistics.sneakAttacks++;
 			//TODO this is somewhat messy, it would be nicer to not have to manually handle delays here
 			// playing the strong hit sound might work best as another property of weapon?
-			if (Dungeon.hero.belongings.weapon() instanceof Miracle.SpiritArrow
-					|| Dungeon.hero.belongings.weapon() instanceof Dart){
+			if (Dungeon.hero.belongings.weapon() instanceof Dart){
 				Sample.INSTANCE.playDelayed(Assets.Sounds.HIT_STRONG, 0.125f);
 			} else {
 				Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG);
@@ -767,16 +764,16 @@ public abstract class Mob extends Char {
 	@Override
 	public void die( Object cause ) {
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			if (Dungeon.hero.buff(Powerful.class) == null) {
+			if (Dungeon.hero.buff(Pure.class) == null) {
 				Statistics.power += 5;
 			}
-			if (Statistics.card35) {
-				Dungeon.gold += 10 * Dungeon.depth;
+			if (Statistics.card44) {
+				Dungeon.gold += 20;
 			}
 		}
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			if (Dungeon.hero.buff(Powerful.class) == null) {
+			if (Dungeon.hero.buff(Pure.class) == null) {
 				Statistics.value += Random.NormalIntRange(10, 15);
 			}
 		}
@@ -790,10 +787,8 @@ public abstract class Mob extends Char {
 
 		if (cause == Chasm.class){
 			//50% chance to round up, 50% to round down
-			if (!Statistics.card36) {
-				if (EXP % 2 == 1) EXP += Random.Int(2);
-				EXP /= 2;
-			}
+			if (EXP % 2 == 1) EXP += Random.Int(2);
+			EXP /= 2;
 		}
 
 		if (alignment == Alignment.ENEMY){

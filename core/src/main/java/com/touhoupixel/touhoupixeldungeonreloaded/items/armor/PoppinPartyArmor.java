@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class PoppinPartyArmor extends Armor {
@@ -29,8 +30,13 @@ public class PoppinPartyArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_POPPINPARTY;
 	}
 
+	@Override
+	public int AnimalDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public PoppinPartyArmor() {
-		super( 3 );
+		super( 2 );
 	}
 
 }

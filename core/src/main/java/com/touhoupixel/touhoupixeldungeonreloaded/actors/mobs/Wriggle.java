@@ -24,6 +24,8 @@ public class Wriggle extends Mob {
 
         flying = true;
 
+        properties.add(Property.YOKAI);
+
         loot = SpellcardFragment.class;
         lootChance = 0.15f;
     }
@@ -47,13 +49,7 @@ public class Wriggle extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
-            Buff.prolong(enemy, Light.class, Light.DURATION/10f);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, HeavenSpeed.class, HeavenSpeed.DURATION/15f);
-            }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
-                Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION/4f);
-            }
+            Buff.prolong(enemy, Light.class, Light.DURATION);
         }
         return damage;
     }

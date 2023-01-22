@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class SakuyaArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_MAIL;
+	}
+
+	@Override
+	public int YokaiDefFactor( Char owner ) {
+		return 1;
 	}
 	
 	public SakuyaArmor() {

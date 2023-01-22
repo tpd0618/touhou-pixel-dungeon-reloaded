@@ -37,9 +37,7 @@ public class PotionOfReverseYingYang extends ExoticPotion {
 	
 	@Override
 	public void apply(Hero hero) {
-		if (!Dungeon.isChallenged(Challenges.UNIDENTIFIED_OBJECT)) {
-			identify();
-		}
+		identify();
 		if (hero.HP % 2 == 1) {
 			Buff.prolong( hero, Invisibility.class, Invisibility.DURATION);
 		} else ScrollOfTeleportation.teleportChar(hero);

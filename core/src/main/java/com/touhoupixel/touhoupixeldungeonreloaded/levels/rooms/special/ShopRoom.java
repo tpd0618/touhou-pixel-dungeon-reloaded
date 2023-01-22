@@ -39,7 +39,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMap
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.missiles.darts.TippedDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;

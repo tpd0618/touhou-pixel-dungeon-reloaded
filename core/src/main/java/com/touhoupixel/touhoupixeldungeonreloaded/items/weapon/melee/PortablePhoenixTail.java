@@ -48,6 +48,6 @@ public class PortablePhoenixTail extends MeleeWeapon {
         if (Random.Int(100) == 0) {
             Statistics.life += 1;
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

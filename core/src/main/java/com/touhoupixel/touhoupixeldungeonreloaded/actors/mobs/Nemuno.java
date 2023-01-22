@@ -22,6 +22,8 @@ public class Nemuno extends Mob {
         EXP = 11;
         maxLvl = 27;
 
+        properties.add(Property.YOKAI);
+
         loot = Generator.Category.WEP_T4;
         lootChance = 0.1f;
     }

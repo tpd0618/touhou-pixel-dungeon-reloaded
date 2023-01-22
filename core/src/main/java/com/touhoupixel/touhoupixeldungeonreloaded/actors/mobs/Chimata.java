@@ -2,7 +2,14 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -29,6 +36,8 @@ public class Chimata extends Mob {
         defenseSkill = 40;
         EXP = 19;
         maxLvl = 47;
+
+        properties.add(Property.GOD);
 
         loot = Generator.Category.SCROLL;
         lootChance = 0.1f;
@@ -66,6 +75,12 @@ public class Chimata extends Mob {
                 armor.glyph = null;
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
                 GLog.w(Messages.get(this, "armordowngrade"));
+            }
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
             }
         }
         return damage;

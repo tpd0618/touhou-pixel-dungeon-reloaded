@@ -2,6 +2,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
@@ -28,6 +29,8 @@ public class Shion extends Mob {
         defenseSkill = 20;
         EXP = 12;
         maxLvl = 27;
+
+        properties.add(Property.GOD);
 
         loot = Gold.class;
         lootChance = 0.1f;
@@ -59,10 +62,10 @@ public class Shion extends Mob {
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
                 GLog.w(Messages.get(this, "losemoney"));
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Silence.class, Silence.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
             }
             return damage;

@@ -45,6 +45,6 @@ public class Grayswandir extends MeleeWeapon {
         if (Dungeon.depth > 45) {
             damage *= 2.2f;
         }
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 }

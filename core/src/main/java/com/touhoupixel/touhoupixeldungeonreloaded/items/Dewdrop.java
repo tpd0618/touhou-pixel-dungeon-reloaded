@@ -23,12 +23,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barrier;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
@@ -51,7 +52,7 @@ public class Dewdrop extends Item {
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
 
-		Waterskin flask = hero.belongings.getItem(Waterskin.class);
+		GlassBottle flask = hero.belongings.getItem(GlassBottle.class);
 
 		if (flask != null && !flask.isFull()) {
 
@@ -65,6 +66,10 @@ public class Dewdrop extends Item {
 				return false;
 			}
 
+		}
+
+		if (Statistics.card68){
+			Buff.prolong(curUser, Invisibility.class, Invisibility.DURATION/10f);
 		}
 
 		Sample.INSTANCE.play(Assets.Sounds.DEWDROP);

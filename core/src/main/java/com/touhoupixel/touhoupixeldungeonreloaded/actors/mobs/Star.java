@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
@@ -16,10 +17,12 @@ public class Star extends Mob {
     {
         spriteClass = StarSprite.class;
 
-        HP = HT = 25;
+        HP = HT = 20;
         defenseSkill = 7;
         EXP = 5;
         maxLvl = 15;
+
+        properties.add(Property.WARP);
 
         flying = true;
 
@@ -47,10 +50,10 @@ public class Star extends Mob {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(3) == 0) {
             //currently no ability
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Hex.class, Hex.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
             }
         }

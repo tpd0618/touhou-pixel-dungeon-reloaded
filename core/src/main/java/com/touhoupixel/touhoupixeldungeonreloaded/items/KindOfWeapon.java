@@ -133,6 +133,22 @@ abstract public class KindOfWeapon extends EquipableItem {
 	public int defenseFactor( Char owner ) {
 		return 0;
 	}
+
+	public int YokaiFactor( Char owner ) {
+		return 0;
+	}
+	public int GodFactor( Char owner ) {
+		return 0;
+	}
+	public int HumanFactor( Char owner ) {
+		return 0;
+	}
+	public int AnimalFactor( Char owner ) {
+		return 0;
+	}
+	public int WarpFactor( Char owner ) {
+		return 0;
+	}
 	
 	public int proc( Char attacker, Char defender, int damage ) {
 		return damage;

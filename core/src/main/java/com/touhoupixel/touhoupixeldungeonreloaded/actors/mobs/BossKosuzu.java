@@ -24,6 +24,7 @@ public class BossKosuzu extends Mob {
         maxLvl = 99;
 
         properties.add(Property.BOSS);
+        properties.add(Property.HUMAN);
 
         loot = new Spellcard();
         lootChance = 1f;

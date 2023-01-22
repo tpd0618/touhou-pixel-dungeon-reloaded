@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
@@ -53,6 +54,8 @@ public class Seija extends Mob {
         EXP = 16;
         maxLvl = 37;
 
+        properties.add(Property.YOKAI);
+
         loot = Generator.Category.MIS_T5;
         lootChance = 0.1f;
     }
@@ -78,10 +81,10 @@ public class Seija extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(7) == 0) {
             damage = Math.max(damage, hero.HP - 1);
             GLog.w(Messages.get(this, "reverse"));
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Lignification.class, Lignification.DURATION);
             }
         }

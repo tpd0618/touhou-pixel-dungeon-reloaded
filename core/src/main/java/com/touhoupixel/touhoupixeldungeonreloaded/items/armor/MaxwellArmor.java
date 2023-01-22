@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class MaxwellArmor extends Armor {
@@ -29,8 +30,13 @@ public class MaxwellArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_MAXWELL;
 	}
 
+	@Override
+	public int AnimalDefFactor( Char owner ) {
+		return 1;
+	}
+
 	public MaxwellArmor() {
-		super( 4 );
+		super( 3 );
 	}
 
 }

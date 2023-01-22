@@ -22,31 +22,19 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.CityPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiRingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiSneakTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursedBlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RustTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ShockingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.WarpingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Group;
@@ -96,12 +84,13 @@ public class ForestofMagicLevel extends RegularLevel {
 	public String waterTex() {
 		return Assets.Environment.WATER_4;
 	}
-	
+
 	@Override
 	protected Painter painter() {
-		return new CityPainter()
-				.setWater(feeling == Feeling.WATER ? 0.90f : 0.30f, 4)
-				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 3)
+		return new TouhouPainter()
+				.setWater(feeling == Feeling.WATER ? 0.85f : 0.30f, 5)
+				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
+				.setSunny(0.35f, 5)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
@@ -112,13 +101,9 @@ public class ForestofMagicLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return Dungeon.isChallenged(Challenges.PITFALL_OF_LIFE) ?
-				new Class<?>[]{
-						BlazingTrap.class, FrostTrap.class, ShockingTrap.class, WarpingTrap.class, GrippingTrap.class,
-						CursedBlowTrap.class, CorrosionTrap.class, ExConfusionTrap.class, CursingTrap.class, RustTrap.class}:
-				new Class<?>[]{
-						BurningTrap.class, ChillingTrap.class, FlockTrap.class, TeleportationTrap.class, SlowTrap.class,
-						BalanceTrap.class, ToxicTrap.class, DegradeTrap.class, AntiSneakTrap.class, SummoningTrap.class};
+		return new Class[]{
+				EnchantEraseTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, FlockTrap.class,
+				SlowTrap.class, BalanceTrap.class, AntiSneakTrap.class, ToxicTrap.class, ConfusionTrap.class};
 	}
 
 	@Override

@@ -28,6 +28,7 @@ public class Mokou extends Mob {
         maxLvl = 20;
 
         properties.add(Property.ELIXIR);
+        properties.add(Property.HUMAN);
 
         loot = new LifeFragment();
         lootChance = 0.15f;
@@ -56,10 +57,10 @@ public class Mokou extends Mob {
         if (Random.Int(3) == 0 && buff(ReBirthDone.class) == null) {
             Buff.prolong( this, ReBirth.class, ReBirth.DURATION*1000f);
             Buff.affect(enemy, Burning.class).reignite(enemy, 6f);
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE || Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU || Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION/2f);
             }
-            if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+            if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             }
         }
