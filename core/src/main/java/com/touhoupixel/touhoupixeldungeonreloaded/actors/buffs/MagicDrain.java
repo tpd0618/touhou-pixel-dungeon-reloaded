@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,38 +21,21 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class Lignification extends FlavourBuff {
-
-	public static final float DURATION = 20f;
-
+public class MagicDrain extends FlavourBuff {
+	
+	public static final float DURATION = 30f;
+	
 	{
-		type = buffType.POSITIVE;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
 	
 	@Override
-	public boolean attachTo( Char target ) {
-		if (!target.flying && super.attachTo( target )) {
-			target.rooted = true;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
-	public void detach() {
-		target.rooted = false;
-		super.detach();
-	}
-	
-	@Override
 	public int icon() {
-		return BuffIndicator.LIGNIFICATION;
+		return BuffIndicator.MAGIC_DRAIN;
 	}
 
 	@Override
@@ -64,7 +47,7 @@ public class Lignification extends FlavourBuff {
 	public String toString() {
 		return Messages.get(this, "name");
 	}
-
+	
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());

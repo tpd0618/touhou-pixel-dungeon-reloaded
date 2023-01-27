@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -51,10 +52,10 @@ public class Kokoro extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0){
             Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Weakness.class, Weakness.DURATION / 5f);
+                Buff.prolong(enemy, Weakness.class, Weakness.DURATION/5f);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION / 2f);
+                Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION/2f);
             }
         }
         return damage;

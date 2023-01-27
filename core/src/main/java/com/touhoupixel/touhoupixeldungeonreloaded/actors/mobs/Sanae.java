@@ -24,20 +24,14 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KagerouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SanaeSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
@@ -113,7 +107,7 @@ public class Sanae extends Mob implements Callback {
                     Buff.prolong(this, BalanceBreak.class, BalanceBreak.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
-                    Buff.prolong(enemy, Lignification.class, Lignification.DURATION);
+                    Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
                 }
             }
 

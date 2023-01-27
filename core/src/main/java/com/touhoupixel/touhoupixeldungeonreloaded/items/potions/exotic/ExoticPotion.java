@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLignification;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
@@ -99,8 +99,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfRingoDango.class, PotionOfPhilosopher.class);
 		exoToReg.put(PotionOfPhilosopher.class, PotionOfRingoDango.class);
 
-		regToExo.put(PotionOfLightHealing.class, PotionOfChimata.class);
-		exoToReg.put(PotionOfChimata.class, PotionOfLightHealing.class);
+		regToExo.put(PotionOfLightHealing.class, PotionOfEnlightenment.class);
+		exoToReg.put(PotionOfEnlightenment.class, PotionOfLightHealing.class);
 
 		regToExo.put(PotionOfYingYang.class, PotionOfReverseYingYang.class);
 		exoToReg.put(PotionOfReverseYingYang.class, PotionOfYingYang.class);
@@ -108,8 +108,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfDanmaku.class, PotionOfHisou.class);
 		exoToReg.put(PotionOfHisou.class, PotionOfDanmaku.class);
 
-		regToExo.put(PotionOfLignification.class, PotionOfExorcismRod.class);
-		exoToReg.put(PotionOfExorcismRod.class, PotionOfLignification.class);
+		regToExo.put(PotionOfMagic.class, PotionOfExorcismRod.class);
+		exoToReg.put(PotionOfExorcismRod.class, PotionOfMagic.class);
 	}
 	
 	@Override

@@ -7,6 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuumaSprite;
@@ -55,7 +56,7 @@ public class Yuuma extends Mob {
             Sample.INSTANCE.play( Assets.Sounds.CURSED );
             GLog.w(Messages.get(this, "str_reduce"));
             if (Statistics.difficulty > 2) {
-                Dungeon.hero.STR--;
+                Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;

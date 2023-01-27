@@ -49,7 +49,7 @@ public class HorouBook extends MeleeWeapon {
     @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(8) == 0) {
-            Buff.prolong(defender, OneDamage.class, OneDamage.DURATION / 2f);
+            Buff.prolong(defender, OneDamage.class, OneDamage.DURATION);
         }
         return super.proc(attacker, defender, damage);
     }

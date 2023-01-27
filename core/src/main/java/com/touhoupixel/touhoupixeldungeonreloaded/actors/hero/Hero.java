@@ -55,7 +55,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
@@ -521,7 +520,7 @@ public class Hero extends Char {
 			Dungeon.hero.buff(Cool.class) != null && enemy.buff(Cool.class) != null ||
 			Dungeon.hero.buff(Pure.class) != null && enemy.buff(Pure.class) != null ||
 			Dungeon.hero.buff(Happy.class) != null && enemy.buff(Happy.class) != null){
-			dmg *= 0;
+			dmg *= 0.5;
 		}
 
 		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0) ||
@@ -529,11 +528,11 @@ public class Hero extends Char {
 			Statistics.playercorruption == 3 && (Random.Int(60) == 0) ||
 			Statistics.playercorruption == 4 && (Random.Int(40) == 0) ||
 			Statistics.playercorruption == 5 && (Random.Int(20) == 0) ||
-			Statistics.playercorruption == 6 && (Random.Int(10) == 0) ||
-			Statistics.playercorruption == 7 && (Random.Int(7) == 0) ||
-			Statistics.playercorruption == 8 && (Random.Int(4) == 0) ||
-			Statistics.playercorruption == 9 && (Random.Int(3) == 0) ||
-			Statistics.playercorruption == 10 && (Random.Int(2) == 0)) {
+			Statistics.playercorruption == 6 && (Random.Int(15) == 0) ||
+			Statistics.playercorruption == 7 && (Random.Int(10) == 0) ||
+			Statistics.playercorruption == 8 && (Random.Int(8) == 0) ||
+			Statistics.playercorruption == 9 && (Random.Int(6) == 0) ||
+			Statistics.playercorruption == 10 && (Random.Int(4) == 0)) {
 			dmg *= 0;
 			Sample.INSTANCE.play( Assets.Sounds.CURSED );
 		}
@@ -647,8 +646,8 @@ public class Hero extends Char {
 		}
 
 		if (Dungeon.isChallenged(Challenges.DISTORTION)){
-			if (Statistics.hitorilefttime > 498){
-				Statistics.hitorilefttime = 490;
+			if (Statistics.hitorilefttime > 798){
+				Statistics.hitorilefttime = 750;
 				GameScene.flash(-65536);
 				GLog.w(Messages.get(this, "hitori_appear"));
 				Hitori hitori = new Hitori();
@@ -666,7 +665,7 @@ public class Hero extends Char {
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
 				if (!this.flying) {
-					this.damage(Dungeon.depth/2+1, this);
+					this.damage(Dungeon.depth/3+1, this);
 					if (this == Dungeon.hero && !this.isAlive()) {
 						Dungeon.fail(Tenshi.class);
 						GLog.n( Messages.get(Tenshi.class, "ondeath") );
@@ -1225,7 +1224,7 @@ public class Hero extends Char {
 			Dungeon.gold += Dungeon.depth*50;
 		}
 
-		if (Statistics.card51 && Dungeon.level.map[enemy.pos] == Terrain.WATER) {
+		if (Statistics.card51 && Dungeon.level.map[this.pos] == Terrain.WATER) {
 			Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
 		}
 
@@ -1364,10 +1363,6 @@ public class Hero extends Char {
 			ScrollOfMirrorImage.spawnImages(this, 7);
 		}
 
-		if (buff(Lignification.class) != null){
-			damage *= 0.5f;
-		}
-
 		if (Dungeon.hero.belongings.armor().YokaiDefFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
 			damage *= 0.75;
 		}
@@ -1438,20 +1433,6 @@ public class Hero extends Char {
 	public void damage( int dmg, Object src ) {
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
 			return;
-
-		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0) ||
-			Statistics.playercorruption == 2 && (Random.Int(80) == 0) ||
-			Statistics.playercorruption == 3 && (Random.Int(60) == 0) ||
-			Statistics.playercorruption == 4 && (Random.Int(40) == 0) ||
-			Statistics.playercorruption == 5 && (Random.Int(20) == 0) ||
-			Statistics.playercorruption == 6 && (Random.Int(10) == 0) ||
-			Statistics.playercorruption == 7 && (Random.Int(7) == 0) ||
-			Statistics.playercorruption == 8 && (Random.Int(4) == 0) ||
-			Statistics.playercorruption == 9 && (Random.Int(3) == 0) ||
-			Statistics.playercorruption == 10 && (Random.Int(2) == 0)) {
-			dmg *= 2;
-			Sample.INSTANCE.play( Assets.Sounds.CURSED );
-		}
 
 		if (!(src instanceof Hunger || src instanceof Viscosity.DeferedDamage) && damageInterrupt) {
 			interrupt();

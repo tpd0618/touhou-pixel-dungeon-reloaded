@@ -19,36 +19,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfLignification extends Potion {
+public class PotionOfEnlightenment extends ExoticPotion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_CHIMATA;
 	}
 
 	@Override
 	public void apply(Hero hero) {
 		identify();
-
-		Buff.prolong( hero, Lignification.class, Lignification.DURATION);
-	}
-
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		Statistics.playercorruption -= 1;
+		GLog.p(Messages.get(this, "reduce"));
 	}
 }

@@ -70,9 +70,6 @@ public class Flandre extends Mob {
         Dungeon.level.drop(new Life(), pos ).sprite.drop();
         Dungeon.level.drop(new Spellcard(), pos ).sprite.drop();
         Dungeon.level.drop(new PotionOfHealing(), pos ).sprite.drop();
-
-        Dungeon.level.drop((Weapon) Generator.random(Generator.Category.WEP_T5), pos).sprite.drop();
-        Dungeon.level.drop((Armor) Generator.random(Generator.Category.ARMOR_T5), pos).sprite.drop();
         super.die( cause );
     }
 

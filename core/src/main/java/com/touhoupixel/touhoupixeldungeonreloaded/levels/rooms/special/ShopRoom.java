@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRice;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
@@ -184,8 +184,8 @@ public class ShopRoom extends SpecialRoom {
 					Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 
 
-		itemsToSpawn.add( new SmallRation() );
-		itemsToSpawn.add( new SmallRation() );
+		itemsToSpawn.add( new SmallRice() );
+		itemsToSpawn.add( new SmallRice() );
 
 		itemsToSpawn.add( new Honeypot() );
 

@@ -21,27 +21,16 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SeijaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Seija extends Mob {
@@ -49,7 +38,7 @@ public class Seija extends Mob {
     {
         spriteClass = SeijaSprite.class;
 
-        HP = HT = 67;
+        HP = HT = 71;
         defenseSkill = 30;
         EXP = 16;
         maxLvl = 37;
@@ -85,7 +74,7 @@ public class Seija extends Mob {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, Lignification.class, Lignification.DURATION);
+                Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
             }
         }
         return damage;

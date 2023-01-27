@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -86,7 +87,7 @@ public class Satono extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
+        Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
         if (Statistics.difficulty > 2) {
             Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);
         }

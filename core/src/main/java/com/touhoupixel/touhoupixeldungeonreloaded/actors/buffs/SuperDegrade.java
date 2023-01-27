@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class SuperDegrade extends FlavourBuff {
 
-	public static final float DURATION = 100f;
+	public static final float DURATION = 30f;
 	
 	{
 		type = buffType.NEGATIVE;

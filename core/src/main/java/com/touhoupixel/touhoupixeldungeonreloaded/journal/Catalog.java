@@ -118,7 +118,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ToyohimeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YorihimeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLignification;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
@@ -472,7 +472,7 @@ public enum Catalog {
 		POTIONS.seen.put( PotionOfLightHealing.class,       true);
 		POTIONS.seen.put( PotionOfYingYang.class,       true);
 		POTIONS.seen.put( PotionOfDanmaku.class,        true);
-		POTIONS.seen.put( PotionOfLignification.class,              true);
+		POTIONS.seen.put( PotionOfMagic.class,              true);
 
 		SCROLLS.seen.put( ScrollOfIdentify.class,           true);
 		SCROLLS.seen.put( ScrollOfFixer.class,              true);

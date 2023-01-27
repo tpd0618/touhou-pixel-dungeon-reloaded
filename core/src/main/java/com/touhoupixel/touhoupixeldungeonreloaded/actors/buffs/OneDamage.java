@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class OneDamage extends FlavourBuff {
 	
-	public static final float DURATION = 10f;
+	public static final float DURATION = 5f;
 	
 	{
 		type = buffType.NEGATIVE;

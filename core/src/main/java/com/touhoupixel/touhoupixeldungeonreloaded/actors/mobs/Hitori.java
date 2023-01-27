@@ -46,8 +46,8 @@ public class Hitori extends Mob {
     {
         spriteClass = HitoriSprite.class;
 
-        HP = HT = Dungeon.depth*5;
-        defenseSkill = Dungeon.depth+5;
+        HP = HT = Dungeon.depth*4;
+        defenseSkill = Dungeon.depth;
 
         flying = true;
 
@@ -68,7 +68,7 @@ public class Hitori extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.depth+7+Statistics.hitoricount, Dungeon.depth+8+Statistics.hitoricount);
+        return Random.NormalIntRange(Dungeon.depth+5+Statistics.hitoricount, Dungeon.depth+6+Statistics.hitoricount);
     }
 
     @Override

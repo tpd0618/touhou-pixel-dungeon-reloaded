@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandEmpower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -67,6 +69,9 @@ public abstract class DamageWand extends Wand{
 		Char enemy = hero.enemy();
 		if (hero.buff(WandZeroDamage.class) != null){
 			dmg *= 0f;
+		}
+		if (hero.buff(MagicBuff.class) != null) {
+			dmg *= 1.25f;
 		}
 		if (Statistics.card31) {
 			dmg *= 1.25f;

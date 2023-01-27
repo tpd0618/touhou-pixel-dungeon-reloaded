@@ -596,7 +596,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return Dungeon.isChallenged(Challenges.ASYLUM_OF_DANMAKU) && Dungeon.hero.justMoved;
+		return !(this instanceof Wraith) && Dungeon.isChallenged(Challenges.ASYLUM_OF_DANMAKU) && Dungeon.hero.justMoved;
 	}
 
 	@Override
@@ -774,7 +774,7 @@ public abstract class Mob extends Char {
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			if (Dungeon.hero.buff(Pure.class) == null) {
-				Statistics.value += Random.NormalIntRange(10, 15);
+				Statistics.value += Random.NormalIntRange(10, 20);
 			}
 		}
 

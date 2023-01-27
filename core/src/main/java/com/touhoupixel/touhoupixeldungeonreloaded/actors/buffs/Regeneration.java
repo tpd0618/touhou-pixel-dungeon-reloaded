@@ -49,8 +49,8 @@ public class Regeneration extends Buff {
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
-					if (Dungeon.isChallenged(Challenges.FLAME_KEYSTONE) && target.HP > 14){
-						target.HP -= Notes.keyCount(new IronKey(Dungeon.depth))*2+Notes.keyCount(new GoldenKey(Dungeon.depth))+Notes.keyCount(new CrystalKey(Dungeon.depth));
+					if (Dungeon.isChallenged(Challenges.FLAME_KEYSTONE) && target.HP > 14 && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Dungeon.isChallenged(Challenges.FLAME_KEYSTONE) && target.HP > 14 && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Dungeon.isChallenged(Challenges.FLAME_KEYSTONE) && target.HP > 14 && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0){
+						target.HP -= (Notes.keyCount(new IronKey(Dungeon.depth))*2+Notes.keyCount(new GoldenKey(Dungeon.depth))+Notes.keyCount(new CrystalKey(Dungeon.depth)));
 					} else {
 						if (target.buff(RegenBlock.class) == null) {
 							target.HP += 1;

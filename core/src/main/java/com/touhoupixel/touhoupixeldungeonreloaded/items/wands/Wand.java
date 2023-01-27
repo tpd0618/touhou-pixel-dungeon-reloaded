@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
@@ -182,6 +183,10 @@ public abstract class Wand extends Item {
 		wandProc(target, buffedLvl(), chargesUsed);
 		if (Dungeon.hero.buff(Happy.class) != null){
 			Buff.prolong(curUser, OneDamage.class, OneDamage.DURATION);
+		}
+
+		if (Dungeon.hero.buff(MagicDrain.class) != null && Dungeon.hero.HP > 3){
+			Dungeon.hero.HP /= 2;
 		}
 
 		if (Dungeon.hero.buff(YukariBorder.class) != null){

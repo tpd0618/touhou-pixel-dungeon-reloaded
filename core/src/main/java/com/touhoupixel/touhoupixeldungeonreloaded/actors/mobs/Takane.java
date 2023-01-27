@@ -1,15 +1,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Lignification;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.AquaBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TakaneSprite;
@@ -54,7 +49,7 @@ public class Takane extends Mob {
             Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
         }
         if (Statistics.difficulty > 4) {
-            Buff.prolong(enemy, Lignification.class, Lignification.DURATION);
+            Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
         }
         return damage;
     }

@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
@@ -93,6 +95,10 @@ public class HakureiShrineLevel extends RegularLevel {
 	public void create() {
 		itemsToSpawn.add( new Spellcard() );
 		itemsToSpawn.add( new Spellcard() );
+		itemsToSpawn.add( new StrengthCard() );
+		itemsToSpawn.add( new StrengthCard() );
+		itemsToSpawn.add( new UpgradeCard() );
+		itemsToSpawn.add( new UpgradeCard() );
 		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
 		itemsToSpawn.add( Generator.random(Generator.Category.TALISMAN));
 

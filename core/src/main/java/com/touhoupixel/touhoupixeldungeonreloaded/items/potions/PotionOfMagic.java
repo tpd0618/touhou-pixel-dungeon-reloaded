@@ -19,32 +19,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfChimata extends ExoticPotion {
+public class PotionOfMagic extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_CHIMATA;
+		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
 	}
 
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Statistics.playercorruption -= 1;
-		GLog.p(Messages.get(this, "reduce"));
+
+		Buff.prolong( hero, MagicBuff.class, MagicBuff.DURATION);
+	}
+
+	@Override
+	public int value() {
+		return isKnown() ? 30 * quantity : super.value();
 	}
 }

@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
@@ -69,7 +70,7 @@ public class Seiga extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
+            Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
             }

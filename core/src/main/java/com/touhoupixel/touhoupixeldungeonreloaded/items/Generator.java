@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Keiki;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Rumia;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KeikiArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MaiArmor;
@@ -81,7 +79,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftnessHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SpearheadHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLignification;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
@@ -355,7 +353,7 @@ public class Generator {
 					PotionOfMight.class,
 					PotionOfDoublespeed.class,
 					PotionOfLightHealing.class,
-					PotionOfLignification.class,
+					PotionOfMagic.class,
 					PotionOfDanmaku.class,
 					PotionOfYingYang.class};
 			POTION.defaultProbs = new float[]{ 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };

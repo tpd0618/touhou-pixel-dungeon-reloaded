@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,42 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.food;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CounterBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class Berry extends Food {
+public class SmallRice extends Food {
 
 	{
-		image = ItemSpriteSheet.BERRY;
-		energy = Hunger.HUNGRY/3f; //100 food value
-
-		bones = false;
+		image = ItemSpriteSheet.OVERPRICED;
+		energy = Hunger.HUNGRY/2f;
 	}
-
-	@Override
-	protected float eatingTime(){
-		return 1;
-	}
-
-	@Override
-	protected void satisfy(Hero hero) {
-		super.satisfy(hero);
-		SeedCounter counter = Buff.count(hero, SeedCounter.class, 1);
-		if (counter.count() >= 2){
-			Dungeon.level.drop(Generator.random(Generator.Category.SEED), hero.pos).sprite.drop();
-			counter.detach();
-		}
-	}
-
+	
 	@Override
 	public int value() {
-		return 5 * quantity;
+		return 10 * quantity;
 	}
-
-	public static class SeedCounter extends CounterBuff{{revivePersists = true;}};
 }

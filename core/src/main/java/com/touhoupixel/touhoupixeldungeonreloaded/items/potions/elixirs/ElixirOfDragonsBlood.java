@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlameParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfChimata;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfEnlightenment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
@@ -58,7 +58,7 @@ public class ElixirOfDragonsBlood extends Elixir {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfChimata.class, AlchemicalCatalyst.class};
+			inputs =  new Class[]{PotionOfEnlightenment.class, AlchemicalCatalyst.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;
