@@ -24,8 +24,6 @@ public class Koakuma extends Mob {
         EXP = 9;
         maxLvl = 22;
 
-        baseSpeed = 2f;
-
         properties.add(Property.WARP);
 
         loot = Generator.Category.SCROLL;
@@ -34,7 +32,7 @@ public class Koakuma extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1+Statistics.upgradesUsed/2, 3+Statistics.upgradesUsed/2);
+        return Random.NormalIntRange(Statistics.upgradesUsed/2, 1+Statistics.upgradesUsed/2);
     }
 
     @Override

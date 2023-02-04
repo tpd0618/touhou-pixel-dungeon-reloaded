@@ -135,7 +135,7 @@ public class TitleScene extends PixelScene {
 		btnPlay.icon(Icons.get(Icons.TALENT));
 		add(btnPlay);
 
-		StyledButton btnSupport = new SupportButton(GREY_TR, Messages.get(this, "support"));
+		StyledButton btnSupport = new SupportButton(GREY_TR, Messages.get(this, "inquiry"));
 		add(btnSupport);
 
 		StyledButton btnRankings = new StyledButton(GREY_TR,Messages.get(this, "rankings")){

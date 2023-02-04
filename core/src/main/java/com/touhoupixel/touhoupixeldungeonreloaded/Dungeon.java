@@ -44,25 +44,35 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.BambooForestLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.DeadEndLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.ForestofMagicBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ForestofMagicLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.GardenoftheSunBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.GardenoftheSunLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakugyokurouLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HakureiShrineLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.HeavenBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HeavenLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HellLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.HumanVillageBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.HumanVillageLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.LandoftheBackDoorBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LandoftheBackDoorLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LastLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.LunarCapitalLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.PrimateSpiritGardenBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.PrimateSpiritGardenLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MistyLakeLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MoriyaShrineLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.MyourenTempleLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RainbowDragonCaveLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.SanzuRiverBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.SanzuRiverLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.TutorialLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.YokaiMountainLevel;
@@ -294,8 +304,10 @@ public class Dungeon {
 				break;
 			case 3:
 			case 4:
-			case 5:
 				level = new HumanVillageLevel();
+				break;
+			case 5:
+				level = new HumanVillageBossLevel();
 				break;
 			case 6:
 			case 7:
@@ -303,8 +315,10 @@ public class Dungeon {
 				break;
 			case 8:
 			case 9:
-			case 10:
 				level = new ForestofMagicLevel();
+				break;
+			case 10:
+				level = new ForestofMagicBossLevel();
 				break;
 			case 11:
 			case 12:
@@ -312,8 +326,10 @@ public class Dungeon {
 				break;
 			case 13:
 			case 14:
-			case 15:
 				level = new ScarletDevilMansionLevel();
+				break;
+			case 15:
+				level = new ScarletDevilMansionBossLevel();
 				break;
 			case 16:
 			case 17:
@@ -321,8 +337,10 @@ public class Dungeon {
 				break;
 			case 18:
 			case 19:
-			case 20:
 				level = new GardenoftheSunLevel();
+				break;
+			case 20:
+				level = new GardenoftheSunBossLevel();
 				break;
 			case 21:
 			case 22:
@@ -330,8 +348,10 @@ public class Dungeon {
 				break;
 			case 23:
 			case 24:
-			case 25:
 				level = new SanzuRiverLevel();
+				break;
+			case 25:
+				level = new SanzuRiverBossLevel();
 				break;
 			case 26:
 			case 27:
@@ -339,8 +359,10 @@ public class Dungeon {
 				break;
 			case 28:
 			case 29:
-			case 30:
 				level = new ShiningNeedleCastleLevel();
+				break;
+			case 30:
+				level = new ShiningNeedleCastleBossLevel();
 				break;
 			case 31:
 			case 32:
@@ -348,8 +370,10 @@ public class Dungeon {
 				break;
 			case 33:
 			case 34:
-			case 35:
 				level = new LandoftheBackDoorLevel();
+				break;
+			case 35:
+				level = new LandoftheBackDoorBossLevel();
 				break;
 			case 36:
 			case 37:
@@ -357,8 +381,10 @@ public class Dungeon {
 				break;
 			case 38:
 			case 39:
-			case 40:
 				level = new HeavenLevel();
+				break;
+			case 40:
+				level = new HeavenBossLevel();
 				break;
 			case 41:
 			case 42:
@@ -366,15 +392,19 @@ public class Dungeon {
 				break;
 			case 43:
 			case 44:
-			case 45:
 				level = new PrimateSpiritGardenLevel();
+				break;
+			case 45:
+				level = new PrimateSpiritGardenBossLevel();
 				break;
 			case 46:
 			case 47:
 			case 48:
 			case 49:
-			case 50:
 				level = new HellLevel();
+				break;
+			case 50:
+				level = new HellBossLevel();
 				break;
 			case 51:
 				level = new LastLevel();

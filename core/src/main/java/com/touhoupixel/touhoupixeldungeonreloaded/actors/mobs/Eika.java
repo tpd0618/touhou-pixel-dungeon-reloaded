@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
@@ -54,7 +55,7 @@ public class Eika extends Mob {
         if (Random.Int(4) == 0) {
             new RockfallTrap().set(pos).activate();
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);

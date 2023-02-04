@@ -21,7 +21,7 @@ public class Kyouko extends Mob {
     {
         spriteClass = KyoukoSprite.class;
 
-        HP = HT = 75;
+        HP = HT = 55;
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;
@@ -34,7 +34,7 @@ public class Kyouko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(21, 29);
+        return Random.NormalIntRange(11, 16);
     }
 
     @Override

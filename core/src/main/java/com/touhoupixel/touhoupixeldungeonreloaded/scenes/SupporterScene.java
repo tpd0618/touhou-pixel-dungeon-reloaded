@@ -73,15 +73,12 @@ public class SupporterScene extends PixelScene {
 		msg.setSize(elementWidth, 0);
 		add(msg);
 
-		StyledButton link = new StyledButton(Chrome.Type.GREY_BUTTON_TR, Messages.get(this, "supporter_link")){
+		StyledButton link = new StyledButton(Chrome.Type.GREY_BUTTON_TR, Messages.get(this, "inquiry_link")){
 			@Override
 			protected void onClick() {
 				super.onClick();
-				String link = "https://www.patreon.com/ShatteredPixel";
-				//tracking codes, so that the website knows where this pageview came from
-				link += "?utm_source=shatteredpd";
-				link += "&utm_medium=supporter_page";
-				link += "&utm_campaign=ingame_link";
+				String link = "https://twitter.com/touhoupd";
+
 				ShatteredPixelDungeon.platform.openURI(link);
 			}
 		};

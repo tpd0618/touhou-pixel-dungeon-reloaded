@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class BalanceBreak extends FlavourBuff {
 
-	public static final float DURATION = 100f;
+	public static final float DURATION = 50f;
 
 	{
 		type = buffType.NEGATIVE;

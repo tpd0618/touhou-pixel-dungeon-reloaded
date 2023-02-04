@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
@@ -38,7 +39,11 @@ public class PotionOfMagic extends Potion {
 	public void apply(Hero hero) {
 		identify();
 
-		Buff.prolong( hero, MagicBuff.class, MagicBuff.DURATION);
+		Buff.prolong(hero, MagicBuff.class, MagicBuff.DURATION);
+
+		//buff test zone//
+
+		//buff test zone//
 	}
 
 	@Override

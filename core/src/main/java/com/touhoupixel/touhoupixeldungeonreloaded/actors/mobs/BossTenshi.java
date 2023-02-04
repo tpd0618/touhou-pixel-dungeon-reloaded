@@ -1,12 +1,20 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TenshiSprite;
@@ -19,16 +27,20 @@ public class BossTenshi extends Mob {
     {
         spriteClass = TenshiSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 1500 : 1000;
+        defenseSkill = 40;
+        EXP = 30;
+        maxLvl = 99;
+
+        baseSpeed = 2f;
 
         properties.add(Property.BOSS);
         properties.add(Property.WARP);
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        immunities.add(Paralysis.class);
+
+        loot = new Life();
+        lootChance = 1f;
     }
 
     @Override
@@ -37,16 +49,17 @@ public class BossTenshi extends Mob {
         super.die(cause);
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
+        yell(Messages.get(this, "bossdefeat"));
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(25, 30);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 45;
     }
 
     @Override
@@ -59,17 +72,17 @@ public class BossTenshi extends Mob {
         super.notice();
         if (!BossHealthBar.isAssigned()) {
             BossHealthBar.assignBoss(this);
+            yell(Messages.get(this, "boss"));
         }
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !hero.flying && Random.Int(3) == 0) {
+            Buff.prolong(enemy, PotionPressure.class, PotionPressure.DURATION);
+            if (this.HP < this.HT / 2){
+                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
             }
         }
         return damage;

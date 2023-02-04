@@ -78,7 +78,8 @@ public abstract class DamageWand extends Wand{
 		}
 		if (Statistics.card32) {
 			dmg *= 1.5f;
-		} //black card
+		} //blank card
+
 		return dmg;
 	}
 

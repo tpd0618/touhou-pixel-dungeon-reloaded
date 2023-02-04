@@ -177,9 +177,7 @@ abstract public class MissileWeapon extends Weapon {
 			if (!curUser.shoot( enemy, this )) {
 				rangedMiss( cell );
 			} else {
-
 				rangedHit( enemy, cell );
-
 			}
 		}
 	}

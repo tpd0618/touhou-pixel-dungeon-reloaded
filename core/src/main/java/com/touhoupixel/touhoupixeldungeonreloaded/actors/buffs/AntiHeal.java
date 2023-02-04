@@ -32,6 +32,12 @@ public class AntiHeal extends FlavourBuff {
 		type = buffType.NEGATIVE;
 		announced = true;
 	}
+
+	@Override
+	public void fx(boolean on) {
+		if (on) target.sprite.aura( 0xFF0000 );
+		else target.sprite.clearAura();
+	}
 	
 	@Override
 	public int icon() {

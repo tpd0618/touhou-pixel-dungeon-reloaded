@@ -49,13 +49,13 @@ public class Kosuzu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Statistics.upgradesUsed == 0) {
+        if (Statistics.upgradesUsed < 2) {
             Buff.affect(enemy, Burning.class).reignite(enemy, 3f);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION/10f);
+                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION/3f);
             }
         }
         return damage;

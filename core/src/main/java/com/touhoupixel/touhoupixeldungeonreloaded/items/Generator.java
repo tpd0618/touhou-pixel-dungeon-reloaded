@@ -136,7 +136,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.BindingTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CirnoTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.KnockbackTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.ResetTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SevenDaysTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DebilitationTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.EnragingTalisman;
@@ -356,7 +358,7 @@ public class Generator {
 					PotionOfMagic.class,
 					PotionOfDanmaku.class,
 					PotionOfYingYang.class};
-			POTION.defaultProbs = new float[]{ 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			POTION.defaultProbs = new float[]{ 8, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -390,7 +392,7 @@ public class Generator {
 					ScrollOfTransmutation.class,
 					ScrollOfHeavenDuel.class
 			};
-			SCROLL.defaultProbs = new float[]{ 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			SCROLL.defaultProbs = new float[]{ 8, 8, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
@@ -424,9 +426,11 @@ public class Generator {
 					FlandreTalisman.class,
 					NightingaleTalisman.class,
 					BackdoorTalisman.class,
-					CutterTalisman.class
+					CutterTalisman.class,
+					ResetTalisman.class,
+					CirnoTalisman.class
 			};
-			TALISMAN.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			TALISMAN.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{
@@ -634,7 +638,7 @@ public class Generator {
 					SonarHerb.class,
 					PurityHerb.class,
 					SpearheadHerb.class };
-			HERB.probs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			HERB.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			RING.classes = new Class<?>[]{
 					RingOfAccuracy.class,

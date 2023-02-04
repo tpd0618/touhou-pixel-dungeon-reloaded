@@ -322,10 +322,14 @@ public abstract class RegularLevel extends Level {
 	protected void createItems() {
 
 		// drops 3/4/5 items 60%/30%/10% of the time
-		int nItems = 5 + Random.chances(new float[]{6, 3, 1});
+		int nItems = 10 + Random.chances(new float[]{6, 3, 1});
 
 		if (feeling == Feeling.LARGE){
-			nItems += 5;
+			nItems += 10;
+		}
+
+		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
+			nItems += 10;
 		}
 
 		for (int i=0; i < nItems; i++) {

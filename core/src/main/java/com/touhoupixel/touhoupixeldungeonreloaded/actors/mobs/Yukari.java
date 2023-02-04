@@ -3,25 +3,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfReduceCorruption;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.EntranceRoom;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.InterlevelScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfCorruptingReduction;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YukariSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTerrainTilemap;
-import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
-import com.watabou.noosa.Game;
 import com.watabou.utils.Random;
 
 public class Yukari extends Mob {
@@ -38,7 +25,7 @@ public class Yukari extends Mob {
 
         flying = true;
 
-        loot = new ScrollOfReduceCorruption();
+        loot = new ScrollOfCorruptingReduction();
         lootChance = 0.1f;
     }
 

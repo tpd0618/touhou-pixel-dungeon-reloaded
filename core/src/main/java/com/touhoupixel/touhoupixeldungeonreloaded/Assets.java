@@ -160,7 +160,7 @@ public class Assets {
 		public static final String FLOOR_15 = "music/hakugyokurou.ogg";
 		public static final String FLOOR_16 = "music/heaven.ogg";
 		public static final String FLOOR_17 = "music/lunarcaptial.ogg";
-		public static final String FLOOR_18 = "music/makai.ogg";
+		public static final String FLOOR_18 = "music/primatespiritgarden.ogg";
 		public static final String FLOOR_19 = "music/hell.ogg";
 	}
 

@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
@@ -79,7 +80,7 @@ public class Kanako extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !hero.flying && Random.Int(5) == 0) {
             Dungeon.hero.STR--;
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;

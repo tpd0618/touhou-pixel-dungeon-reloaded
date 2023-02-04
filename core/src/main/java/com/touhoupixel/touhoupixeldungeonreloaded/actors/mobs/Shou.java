@@ -64,7 +64,7 @@ public class Shou extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(22, 30);
+		return Random.NormalIntRange(10, 15);
 	}
 
 	@Override

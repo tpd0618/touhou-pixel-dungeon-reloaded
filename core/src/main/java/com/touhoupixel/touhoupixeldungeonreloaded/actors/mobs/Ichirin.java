@@ -60,7 +60,7 @@ public class Ichirin extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(17, 23);
+        return Random.NormalIntRange(9, 14);
     }
 
     @Override

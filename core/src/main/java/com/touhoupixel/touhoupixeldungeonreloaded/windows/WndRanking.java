@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Difficulty;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.Rankings;
@@ -32,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
@@ -190,6 +192,7 @@ public class WndRanking extends WndTabbed {
 			pos = statSlot( this, Messages.get(this, "gold"), num.format( Statistics.goldCollected ), pos );
 			pos = statSlot( this, Messages.get(this, "food"), num.format( Statistics.foodEaten ), pos );
 			pos = statSlot( this, Messages.get(this, "alchemy"), num.format( Statistics.itemsCrafted ), pos );
+			pos = statSlot( this, Messages.get(this, "difficulty"), num.format( Statistics.difficulty ), pos );
 
 			int buttontop = HEIGHT - 16;
 

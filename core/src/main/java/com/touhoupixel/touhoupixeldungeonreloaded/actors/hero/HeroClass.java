@@ -38,6 +38,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPerfectMath;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.TransientTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
@@ -62,6 +63,10 @@ public enum HeroClass {
 		if (Statistics.difficulty == 1){
 			PotionOfHealing poh = new PotionOfHealing();
 			poh.quantity(3).identify().collect();
+		}
+		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
+			PotionOfPerfectMath popm = new PotionOfPerfectMath();
+			popm.quantity(3).identify().collect();
 		}
 
 		hero.heroClass = this;

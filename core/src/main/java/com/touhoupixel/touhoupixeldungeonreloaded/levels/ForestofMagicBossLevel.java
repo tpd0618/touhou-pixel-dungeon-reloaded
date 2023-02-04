@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossMarisa;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.MagicalFireRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
@@ -71,7 +72,7 @@ public class ForestofMagicBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 425, LevelTransition.Type.REGULAR_EXIT));
 		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
@@ -83,30 +84,30 @@ public class ForestofMagicBossLevel extends Level {
 	private static final short W = Terrain.WALL;
 	private static final short e = Terrain.EMPTY;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short s = Terrain.STATUE;
+	private static final short s = Terrain.STAR_TILES;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, s, s, s, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, s, s, s, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, s, s, s, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 	};
@@ -144,8 +145,8 @@ public class ForestofMagicBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 448, Terrain.EMPTY );
-		GameScene.updateMap( 448 );
+		set( 425, Terrain.EMPTY );
+		GameScene.updateMap( 425 );
 
 		BossMarisa boss = new BossMarisa();
 		boss.state = boss.WANDERING;
@@ -164,8 +165,8 @@ public class ForestofMagicBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		set( 448, Terrain.ENTRANCE );
-		GameScene.updateMap( 448 );
+		set( 425, Terrain.ENTRANCE );
+		GameScene.updateMap( 425 );
 
 		isCompleted = true;
 

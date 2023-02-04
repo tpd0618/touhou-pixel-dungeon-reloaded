@@ -97,8 +97,6 @@ public class HakureiShrineLevel extends RegularLevel {
 		itemsToSpawn.add( new Spellcard() );
 		itemsToSpawn.add( new StrengthCard() );
 		itemsToSpawn.add( new StrengthCard() );
-		itemsToSpawn.add( new UpgradeCard() );
-		itemsToSpawn.add( new UpgradeCard() );
 		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
 		itemsToSpawn.add( Generator.random(Generator.Category.TALISMAN));
 

@@ -48,6 +48,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
@@ -630,6 +631,10 @@ public abstract class Mob extends Char {
 
 		if (this.buff(OneDamage.class) != null ) {
 			damage = 1;
+		}
+
+		if (buff(YuukaRage.class) != null){
+			damage += 50;
 		}
 
 		if (Statistics.difficulty == 1) {

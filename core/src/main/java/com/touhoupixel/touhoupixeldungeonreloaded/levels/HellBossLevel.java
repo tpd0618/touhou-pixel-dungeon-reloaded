@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,23 +25,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlameParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKeiki;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossOkina;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.tiles.CustomTilemap;
-import com.watabou.noosa.Game;
-import com.watabou.noosa.Group;
-import com.watabou.noosa.Tilemap;
 import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -50,34 +45,22 @@ public class HellBossLevel extends Level {
 	{
 		viewDistance = 8;
 
-		color1 = 0x801500;
-		color2 = 0xa68521;
-
-		viewDistance = Math.min(4, viewDistance);
+		color1 = 0x48763c;
+		color2 = 0x59994a;
 	}
-
-	private static final int WIDTH = 32;
-	private static final int HEIGHT = 32;
-
-	private static final int ROOM_LEFT		= WIDTH / 2 - 4;
-	private static final int ROOM_RIGHT		= WIDTH / 2 + 4;
-	private static final int ROOM_TOP		= 8;
-	private static final int ROOM_BOTTOM	= ROOM_TOP + 8;
 
 	@Override
 	public void playLevelMusic() {
-		if (locked){
-			Music.INSTANCE.play(Assets.Music.FLOOR_19, true);
-		//if exit isn't unlocked
-		} else if (map[exit] != Terrain.EXIT){
-			Music.INSTANCE.end();
-		} else {
-			Music.INSTANCE.playTracks(
-					new String[]{Assets.Music.FLOOR_19, Assets.Music.FLOOR_19, Assets.Music.FLOOR_19},
-					new float[]{1, 1, 0.5f},
-					false);
-		}
+		Music.INSTANCE.playTracks(
+				new String[]{Assets.Music.FLOOR_19, Assets.Music.FLOOR_19, Assets.Music.FLOOR_19},
+				new float[]{1, 1, 0.5f},
+				false);
 	}
+
+	private static int WIDTH = 23;
+	private static int HEIGHT = 22;
+
+	private static boolean isCompleted = false;
 
 	@Override
 	public String tilesTex() {
@@ -91,90 +74,62 @@ public class HellBossLevel extends Level {
 
 	@Override
 	protected boolean build() {
-
 		setSize(WIDTH, HEIGHT);
 
-		for (int i = 0; i < 5; i++) {
+		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
 
-			int top;
-			int bottom;
+		buildLevel();
 
-			if (i == 0 || i == 4){
-				top = Random.IntRange(ROOM_TOP-1, ROOM_TOP+3);
-				bottom = Random.IntRange(ROOM_BOTTOM+2, ROOM_BOTTOM+6);
-			} else if (i == 1 || i == 3){
-				top = Random.IntRange(ROOM_TOP-5, ROOM_TOP-1);
-				bottom = Random.IntRange(ROOM_BOTTOM+6, ROOM_BOTTOM+10);
-			} else {
-				top = Random.IntRange(ROOM_TOP-6, ROOM_TOP-3);
-				bottom = Random.IntRange(ROOM_BOTTOM+8, ROOM_BOTTOM+12);
-			}
+		return true;
+	}
 
-			Painter.fill(this, 4 + i * 5, top, 5, bottom - top + 1, Terrain.EMPTY);
+	private static final short n = -1;
+	private static final short W = Terrain.WALL;
+	private static final short e = Terrain.LUNA_TILES;
+	private static final short E = Terrain.ENTRANCE;
+	private static final short d = Terrain.STAR_TILES;
+	private static final short x = Terrain.SUNNY_TILES;
+	private static final short L = Terrain.LOCKED_EXIT;
 
-			if (i == 2) {
-				entrance = (6 + i * 5) + (bottom - 1) * width();
-			}
+	private static short[] level = {
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
+			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
+			W, W, d, d, W, W, W, e, e, d, d, d, d, d, e, e, W, W, W, d, d, W, W,
+			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
+			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
+			W, W, e, e, x, e, e, W, e, d, d, d, d, d, e, W, e, e, x, e, e, W, W,
+			W, W, e, e, x, e, e, e, W, d, d, d, d, d, W, e, e, e, x, e, e, W, W,
+			W, W, e, e, x, e, e, e, e, W, x, x, x, W, e, e, e, e, x, e, e, W, W,
+			W, W, x, x, W, d, d, d, d, d, x, x, x, d, d, d, d, d, W, x, x, W, W,
+			W, W, x, x, W, d, d, d, d, d, x, x, x, d, d, d, d, d, W, x, x, W, W,
+			W, W, e, e, x, e, e, e, e, W, x, x, x, W, e, e, e, e, x, e, e, W, W,
+			W, W, e, e, x, e, e, e, W, d, d, d, d, d, W, e, e, e, x, e, e, W, W,
+			W, W, e, e, x, e, e, W, e, d, d, d, d, d, e, W, e, e, x, e, e, W, W,
+			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
+			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
+			W, W, d, d, W, W, W, e, e, d, d, d, d, d, e, e, W, W, W, d, d, W, W,
+			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
+			W, W, x, x, x, x, x, x, x, x, x, E, x, x, x, x, x, x, x, x, x, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
+	};
 
+	private void buildLevel(){
+		int pos = 0 + 0*width();
+
+		short[] levelTiles = level;
+		for (int i = 0; i < levelTiles.length; i++){
+			if (levelTiles[i] != n) map[pos] = levelTiles[i];
+
+			pos++;
 		}
-
-		boolean[] patch = Patch.generate(width, height, 0.20f, 0, true);
-		for (int i = 0; i < length(); i++) {
-			if (map[i] == Terrain.EMPTY && patch[i]) {
-				map[i] = Terrain.STATUE;
-			}
-		}
-
-		map[entrance] = Terrain.ENTRANCE;
-
-		Painter.fill(this, ROOM_LEFT-1, ROOM_TOP-1, 11, 11, Terrain.EMPTY );
-
-		patch = Patch.generate(width, height, 0.30f, 3, true);
-		for (int i = 0; i < length(); i++) {
-			if ((map[i] == Terrain.EMPTY || map[i] == Terrain.STATUE) && patch[i]) {
-				map[i] = Terrain.WATER;
-			}
-		}
-
-		for (int i = 0; i < length(); i++) {
-			if (map[i] == Terrain.EMPTY && Random.Int(4) == 0) {
-				map[i] = Terrain.EMPTY_DECO;
-			}
-		}
-
-		Painter.fill(this, ROOM_LEFT, ROOM_TOP, 9, 9, Terrain.EMPTY_SP );
-
-		Painter.fill(this, ROOM_LEFT, ROOM_TOP, 9, 2, Terrain.WALL_DECO );
-		Painter.fill(this, ROOM_LEFT, ROOM_BOTTOM-1, 2, 2, Terrain.WALL_DECO );
-		Painter.fill(this, ROOM_RIGHT-1, ROOM_BOTTOM-1, 2, 2, Terrain.WALL_DECO );
-
-		Painter.fill(this, ROOM_LEFT+3, ROOM_TOP+2, 3, 4, Terrain.EMPTY );
-
-		exit = width/2 + ((ROOM_TOP+1) * width);
-
-		CustomTilemap vis = new CenterPieceVisuals();
-		vis.pos(ROOM_LEFT, ROOM_TOP+1);
-		customTiles.add(vis);
-
-		vis = new CenterPieceWalls();
-		vis.pos(ROOM_LEFT, ROOM_TOP);
-		customWalls.add(vis);
-
-		//basic version of building flag maps for the pathfinder test
-		for (int i = 0; i < length; i++){
-			passable[i]	= ( Terrain.flags[map[i]] & Terrain.PASSABLE) != 0;
-		}
-
-		//ensures a path to the exit exists
-		return (PathFinder.getStep(entrance, exit, passable) != -1);
 	}
 
 	@Override
 	protected void createMobs() {
-	}
-
-	public Actor addRespawner() {
-		return null;
 	}
 
 	@Override
@@ -183,195 +138,99 @@ public class HellBossLevel extends Level {
 
 	@Override
 	public int randomRespawnCell( Char ch ) {
-		int pos = entrance;
 		int cell;
 		do {
-			cell = pos + PathFinder.NEIGHBOURS8[Random.Int(8)];
+			cell = entrance() + PathFinder.NEIGHBOURS8[Random.Int(8)];
 		} while (!passable[cell]
 				|| Actor.findChar(cell) != null);
 		return cell;
 	}
 
 	@Override
-	public void occupyCell( Char ch ) {
-		super.occupyCell( ch );
-
-		if (map[entrance] == Terrain.ENTRANCE && map[exit] != Terrain.EXIT
-				&& ch == Dungeon.hero && Dungeon.level.distance(ch.pos, entrance) >= 2) {
-			seal();
-		}
-	}
-
-	@Override
 	public void seal() {
 		super.seal();
-		set( entrance, Terrain.EMPTY_SP );
-		GameScene.updateMap( entrance );
-		CellEmitter.get( entrance ).start( FlameParticle.FACTORY, 0.1f, 10 );
 
-		Dungeon.observe();
+		set( 448, Terrain.SUNNY_TILES );
+		GameScene.updateMap( 448 );
 
-		Hecatia boss = new Hecatia();
-		boss.pos = exit + width*3;
+		BossHecatia boss = new BossHecatia();
+		boss.state = boss.WANDERING;
+		boss.pos = 287;
 		GameScene.add( boss );
+		boss.beckon(Dungeon.hero.pos);
+
+		if (heroFOV[boss.pos]) {
+			boss.notice();
+			boss.sprite.alpha( 0 );
+			boss.sprite.parent.add( new AlphaTweener( boss.sprite, 1, 0.1f ) );
+		}
 	}
 
 	@Override
 	public void unseal() {
 		super.unseal();
-		set( entrance, Terrain.ENTRANCE );
-		GameScene.updateMap( entrance );
 
-		set( exit, Terrain.EXIT );
-		GameScene.updateMap( exit );
+		set( 448, Terrain.ENTRANCE );
+		GameScene.updateMap( 448 );
 
-		CellEmitter.get(exit-1).burst(ShadowParticle.UP, 25);
-		CellEmitter.get(exit).burst(ShadowParticle.UP, 100);
-		CellEmitter.get(exit+1).burst(ShadowParticle.UP, 25);
-		for( CustomTilemap t : customTiles){
-			if (t instanceof CenterPieceVisuals){
-				((CenterPieceVisuals) t).updateState();
-			}
-		}
-		for( CustomTilemap t : customWalls){
-			if (t instanceof CenterPieceWalls){
-				((CenterPieceWalls) t).updateState();
-			}
-		}
+		isCompleted = true;
 
 		Dungeon.observe();
-
-		Game.runOnRenderThread(new Callback() {
-			@Override
-			public void call() {
-				Music.INSTANCE.end();
-			}
-		});
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		for (Mob m : mobs){
-		}
 	}
 
 	@Override
 	public String tileName( int tile ) {
 		switch (tile) {
 			case Terrain.WATER:
-				return Messages.get(HellLevel.class, "water_name");
-			case Terrain.GRASS:
-				return Messages.get(HellLevel.class, "grass_name");
-			case Terrain.HIGH_GRASS:
-				return Messages.get(HellLevel.class, "high_grass_name");
+				return Messages.get(HakureiShrineLevel.class, "water_name");
+			case Terrain.WALL_DECO:
+				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
 			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(HellLevel.class, "statue_name");
+				return Messages.get(HakureiShrineLevel.class, "statue_name");
+			case Terrain.LOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
+			case Terrain.UNLOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
 			default:
 				return super.tileName( tile );
 		}
 	}
 
+	private static final String ISCOMPLETED = "iscompleted";
+
+	@Override
+	public void storeInBundle( Bundle bundle ) {
+		super.storeInBundle(bundle);
+		bundle.put(ISCOMPLETED, isCompleted);
+	}
+
+	@Override
+	public void restoreFromBundle( Bundle bundle ) {
+		super.restoreFromBundle(bundle);
+		isCompleted = bundle.getBoolean( ISCOMPLETED );
+	}
+
 	@Override
 	public String tileDesc(int tile) {
 		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HellLevel.class, "water_desc");
-			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(HellLevel.class, "statue_desc");
+			case Terrain.ENTRANCE:
+				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
+			case Terrain.EXIT:
+				return Messages.get(HakureiShrineLevel.class, "exit_desc");
+			case Terrain.EMPTY_DECO:
+				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
+			case Terrain.WALL_DECO:
+				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
 			case Terrain.BOOKSHELF:
-				return Messages.get(HellLevel.class, "bookshelf_desc");
+				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
+			case Terrain.STATUE:
+				return Messages.get(HakureiShrineLevel.class, "statue_desc");
+			case Terrain.LOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
+			case Terrain.UNLOCKED_EXIT:
+				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
 			default:
 				return super.tileDesc( tile );
-		}
-	}
-
-	@Override
-	public Group addVisuals () {
-		super.addVisuals();
-		HellLevel.addHallsVisuals( this, visuals );
-		return visuals;
-	}
-
-	public static class CenterPieceVisuals extends CustomTilemap {
-
-		{
-			texture = Assets.Environment.HALLS_SP;
-
-			tileW = 9;
-			tileH = 8;
-		}
-
-		private static final int[] map = new int[]{
-				 8,  9, 10, 11, 11, 11, 12, 13, 14,
-				16, 17, 18, 27, 19, 27, 20, 21, 22,
-				24, 25, 26, 19, 19, 19, 28, 29, 30,
-				24, 25, 26, 19, 19, 19, 28, 29, 30,
-				24, 25, 26, 19, 19, 19, 28, 29, 30,
-				24, 25, 34, 35, 35, 35, 34, 29, 30,
-				40, 41, 36, 36, 36, 36, 36, 40, 41,
-				48, 49, 36, 36, 36, 36, 36, 48, 49
-		};
-
-		@Override
-		public Tilemap create() {
-			Tilemap v = super.create();
-			updateState();
-			return v;
-		}
-
-		private void updateState(){
-			if (vis != null){
-				int[] data = map.clone();
-				if (Dungeon.level.map[Dungeon.level.exit] == Terrain.EXIT) {
-					data[4] = 19;
-					data[12] = data[14] = 31;
-				}
-				vis.map(data, tileW);
-			}
-		}
-	}
-
-	public static class CenterPieceWalls extends CustomTilemap {
-
-		{
-			texture = Assets.Environment.HALLS_SP;
-
-			tileW = 9;
-			tileH = 9;
-		}
-
-		private static final int[] map = new int[]{
-				-1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1,
-				-1, -1, -1, -1, -1, -1, -1, -1, -1,
-				32, 33, -1, -1, -1, -1, -1, 32, 33,
-				40, 41, -1, -1, -1, -1, -1, 40, 41,
-		};
-
-		@Override
-		public Tilemap create() {
-			Tilemap v = super.create();
-			updateState();
-			return v;
-		}
-
-		private void updateState(){
-			if (vis != null){
-				int[] data = map.clone();
-				if (Dungeon.level.map[Dungeon.level.exit] == Terrain.EXIT) {
-					data[3] = 1;
-					data[4] = 0;
-					data[5] = 2;
-					data[13] = 23;
-				}
-				vis.map(data, tileW);
-			}
 		}
 	}
 }

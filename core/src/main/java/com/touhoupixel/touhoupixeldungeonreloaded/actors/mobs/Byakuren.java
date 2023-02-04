@@ -29,7 +29,7 @@ public class Byakuren extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(18, 22);
+        return Random.NormalIntRange(9, 13);
     }
 
     @Override

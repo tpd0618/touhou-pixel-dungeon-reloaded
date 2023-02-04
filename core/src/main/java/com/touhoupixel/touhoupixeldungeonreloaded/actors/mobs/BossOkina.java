@@ -1,12 +1,18 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.OkinaSprite;
@@ -19,16 +25,18 @@ public class BossOkina extends Mob {
     {
         spriteClass = OkinaSprite.class;
 
-        HP = HT = 200;
-        defenseSkill = 30;
-        EXP = 14;
-        maxLvl = 30;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 900 : 600;
+        defenseSkill = 35;
+        EXP = 28;
+        maxLvl = 99;
 
         properties.add(Property.BOSS);
         properties.add(Property.GOD);
 
-        loot = new LifeFragment();
-        lootChance = 0.04f;
+        immunities.add(Paralysis.class);
+
+        loot = new Spellcard();
+        lootChance = 1f;
     }
 
     @Override
@@ -37,16 +45,17 @@ public class BossOkina extends Mob {
         super.die(cause);
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(35), pos ).sprite.drop();
+        yell(Messages.get(this, "bossdefeat"));
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(20, 25);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 30;
+        return 40;
     }
 
     @Override
@@ -59,17 +68,48 @@ public class BossOkina extends Mob {
         super.notice();
         if (!BossHealthBar.isAssigned()) {
             BossHealthBar.assignBoss(this);
+            yell(Messages.get(this, "boss"));
         }
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(0) == 0) {
-            if (HP > 3) {
-                HP = HP / 2;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR) {
+            damage *= 3;
+            if (this.HP < this.HT / 2){
+                damage *= 2;
+            }
+        } else {
+            Mai mai = new Mai();
+            mai.state = mai.WANDERING;
+            mai.pos = Dungeon.level.randomDestination( mai );
+            if (mai.pos != -1) {
+                GameScene.add(mai);
+                mai.beckon(Dungeon.hero.pos);
+            }
+            Satono satono = new Satono();
+            satono.state = satono.WANDERING;
+            satono.pos = Dungeon.level.randomDestination( satono );
+            if (satono.pos != -1) {
+                GameScene.add(satono);
+                satono.beckon(Dungeon.hero.pos);
+            }
+        }
+        if (this.HP < this.HT / 2){
+            Mai mai = new Mai();
+            mai.state = mai.WANDERING;
+            mai.pos = Dungeon.level.randomDestination( mai );
+            if (mai.pos != -1) {
+                GameScene.add(mai);
+                mai.beckon(Dungeon.hero.pos);
+            }
+            Satono satono = new Satono();
+            satono.state = satono.WANDERING;
+            satono.pos = Dungeon.level.randomDestination( satono );
+            if (satono.pos != -1) {
+                GameScene.add(satono);
+                satono.beckon(Dungeon.hero.pos);
             }
         }
         return damage;

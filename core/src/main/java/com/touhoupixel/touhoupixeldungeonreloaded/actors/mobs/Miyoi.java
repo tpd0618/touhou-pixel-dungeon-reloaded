@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -81,7 +82,7 @@ public class Miyoi extends Mob {
             if (Random.Int(3) == 0 && Dungeon.energy > 9) {
                 Dungeon.energy -= 10;
                 if (Statistics.difficulty > 2) {
-                    Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                    Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);

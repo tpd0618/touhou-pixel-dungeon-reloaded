@@ -75,7 +75,7 @@ public class Okina extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR){
-            damage *= 4;
+            damage *= 3;
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, ReBirth.class, ReBirth.DURATION);
             }

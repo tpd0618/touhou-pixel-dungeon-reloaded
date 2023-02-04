@@ -423,9 +423,6 @@ public abstract class Char extends Actor {
         if (buff(Hisou.class) != null && !enemy.flying ){
             damage *= 1.5f;
         }
-        if (buff(YuukaRage.class) != null){
-            damage += 50;
-        }
 
         return damage;
     }

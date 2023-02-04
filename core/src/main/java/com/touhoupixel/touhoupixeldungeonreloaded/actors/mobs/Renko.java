@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
@@ -135,7 +136,7 @@ public class Renko extends Mob implements Callback {
                 if (Statistics.difficulty > 4) {
                     Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
                 }
-                switch (Random.Int(4)) {
+                switch (Random.Int(5)) {
                     case 0:
                     default:
                         if (enemy.HP > 5) {
@@ -175,6 +176,9 @@ public class Renko extends Mob implements Callback {
                         break;
                     case 3:
                         ScrollOfTeleportation.teleportChar(enemy);
+                        break;
+                    case 4:
+                        Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
                         break;
                 }
             }

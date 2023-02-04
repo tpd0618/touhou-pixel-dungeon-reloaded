@@ -27,6 +27,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -73,8 +76,12 @@ public class Herb extends Item {
 				Statistics.mood += 1;
 			}
 
+			if (hero.buff(HerbDegrade.class) != null){
+				Buff.prolong(curUser, SuperDegrade.class, SuperDegrade.DURATION);
+			}
+
 			if (Statistics.card33){
-				Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION);
+				Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION/4f);
 			}
 
 			hero.spend(eatingTime());

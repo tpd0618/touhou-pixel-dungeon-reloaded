@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -11,6 +12,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
@@ -31,9 +33,9 @@ public class BossMarisa extends Mob {
     {
         spriteClass = BossMarisaSprite.class;
 
-        HP = HT = 250;
-        defenseSkill = 20;
-        EXP = 20;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 225 : 150;
+        defenseSkill = 10;
+        EXP = 18;
         maxLvl = 99;
 
         viewDistance = Light.DISTANCE;
@@ -43,7 +45,7 @@ public class BossMarisa extends Mob {
         properties.add(Property.BOSS);
         properties.add(Property.HUMAN);
 
-        loot = new Spellcard();
+        loot = new Life();
         lootChance = 1f;
     }
 
@@ -53,16 +55,17 @@ public class BossMarisa extends Mob {
         super.die(cause);
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(10), pos ).sprite.drop();
+        yell(Messages.get(this, "bossdefeat"));
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 14);
+        return Random.NormalIntRange(2, 5);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 25;
+        return 15;
     }
 
     @Override
@@ -75,6 +78,7 @@ public class BossMarisa extends Mob {
         super.notice();
         if (!BossHealthBar.isAssigned()) {
             BossHealthBar.assignBoss(this);
+            yell(Messages.get(this, "boss"));
         }
     }
 
@@ -176,7 +180,11 @@ public class BossMarisa extends Mob {
             }
 
             if (hit( this, ch, true )) {
-                ch.damage( Random.NormalIntRange( 25, 30 ), new BossMarisa.DeathGaze() );
+                if (this.HP < this.HT/2) {
+                    ch.damage( Random.NormalIntRange( 10, 16 ), new BossMarisa.DeathGaze() );
+                } else {
+                    ch.damage( Random.NormalIntRange( 5, 8 ), new BossMarisa.DeathGaze() );
+                }
 
                 if (ch instanceof Hero) {
                     Sample.INSTANCE.play(Assets.Sounds.CURSED);

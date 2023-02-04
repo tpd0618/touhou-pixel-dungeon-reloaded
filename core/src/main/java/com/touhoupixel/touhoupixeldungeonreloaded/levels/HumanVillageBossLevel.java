@@ -94,8 +94,8 @@ public class HumanVillageBossLevel extends Level {
 			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
 			W, W, e, B, e, B, e, B, e, B, e, B, e, B, e, B, e, B, e, W, W,
 			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, B, e, B, e, B, e, B, e, B, e, B, e, B, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, B, e, B, e, B, e, B, e, B, e, B, e, B, e, B, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, E, e, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
 	};

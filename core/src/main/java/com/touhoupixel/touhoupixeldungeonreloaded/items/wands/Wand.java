@@ -32,14 +32,24 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Youmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
@@ -181,8 +191,43 @@ public abstract class Wand extends Item {
 
 	protected void wandProc(Char target, int chargesUsed){
 		wandProc(target, buffedLvl(), chargesUsed);
+
+		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
+			Dungeon.hero.damage(target.damageRoll(), Youmu.class);
+			if (!Dungeon.hero.isAlive()) {
+				Dungeon.fail(Youmu.class);
+				GLog.n( Messages.get(Youmu.class, "snipe") );
+			}
+		}
+
 		if (Dungeon.hero.buff(Happy.class) != null){
 			Buff.prolong(curUser, OneDamage.class, OneDamage.DURATION);
+		}
+
+		if (Dungeon.hero.buff(SunnySnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.SUNNY_TILES){
+			Dungeon.hero.damage(666, Sunny.class);
+			if (!Dungeon.hero.isAlive()) {
+				Dungeon.fail(Sunny.class);
+				GLog.n( Messages.get(Sunny.class, "snipe") );
+			}
+		}
+		if (Dungeon.hero.buff(LunaSnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.LUNA_TILES){
+			Dungeon.hero.damage(666, Luna.class);
+			if (!Dungeon.hero.isAlive()) {
+				Dungeon.fail(Luna.class);
+				GLog.n( Messages.get(Luna.class, "snipe") );
+			}
+		}
+		if (Dungeon.hero.buff(StarSnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.STAR_TILES){
+			Dungeon.hero.damage(666, Star.class);
+			if (!Dungeon.hero.isAlive()) {
+				Dungeon.fail(Star.class);
+				GLog.n( Messages.get(Star.class, "snipe") );
+			}
+		}
+
+		if (Dungeon.hero.buff(PotionPressure.class) != null){
+			Buff.prolong(Dungeon.hero, SuperDegrade.class, SuperDegrade.DURATION);
 		}
 
 		if (Dungeon.hero.buff(MagicDrain.class) != null && Dungeon.hero.HP > 3){

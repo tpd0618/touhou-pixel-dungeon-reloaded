@@ -52,8 +52,8 @@ public class SanzuRiverBossLevel extends Level {
 				false);
 	}
 
-	private static int WIDTH = 37;
-	private static int HEIGHT = 37;
+	private static int WIDTH = 23;
+	private static int HEIGHT = 22;
 
 	private static boolean isCompleted = false;
 
@@ -71,8 +71,8 @@ public class SanzuRiverBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 1276, LevelTransition.Type.REGULAR_EXIT));
-		transitions.add(new LevelTransition(this, 55, LevelTransition.Type.REGULAR_ENTRANCE));
+		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
 
@@ -83,47 +83,32 @@ public class SanzuRiverBossLevel extends Level {
 	private static final short W = Terrain.WALL;
 	private static final short e = Terrain.EMPTY;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short w = Terrain.WATER;
+	private static final short s = Terrain.SUNNY_TILES;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, w, W, W,
-			W, W, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, E, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, W, e, W, W, W, W, W, W, W, s, W, W, W, W, W, W, W, e, W, W, W,
+			W, W, e, e, W, e, e, e, e, e, e, e, e, e, e, e, e, e, W, e, e, W, W,
+			W, W, e, W, W, e, W, W, W, W, W, s, W, W, W, W, W, e, W, W, e, W, W,
+			W, W, e, e, W, e, W, e, e, e, e, e, e, e, e, e, W, e, W, e, e, W, W,
+			W, W, W, e, W, e, W, e, W, W, W, s, W, W, W, e, W, e, W, e, W, W, W,
+			W, W, e, e, W, e, W, e, W, e, e, e, e, e, W, e, W, e, W, e, e, W, W,
+			W, W, e, W, W, e, W, e, W, e, W, W, W, e, W, e, W, e, W, W, e, W, W,
+			W, W, e, e, s, e, s, e, s, e, W, W, W, e, s, e, s, e, s, e, e, W, W,
+			W, W, W, e, W, e, W, e, W, e, W, W, W, e, W, e, W, e, W, e, W, W, W,
+			W, W, e, e, W, e, W, e, W, e, e, e, e, e, W, e, W, e, W, e, e, W, W,
+			W, W, e, W, W, e, W, e, W, W, W, s, W, W, W, e, W, e, W, W, e, W, W,
+			W, W, e, e, W, e, W, e, e, e, e, e, e, e, e, e, W, e, W, e, e, W, W,
+			W, W, W, e, W, e, W, W, W, W, W, s, W, W, W, W, W, e, W, e, W, W, W,
+			W, W, e, e, W, e, e, e, e, e, e, e, e, e, e, e, e, e, W, e, e, W, W,
+			W, W, e, W, W, W, W, W, W, W, W, s, W, W, W, W, W, W, W, W, e, W, W,
+			W, W, e, e, W, e, e, e, W, e, e, e, e, e, W, e, e, e, W, e, e, W, W,
+			W, W, W, e, e, e, W, e, e, e, W, E, W, e, e, e, W, e, e, e, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
 	};
 
 	private void buildLevel(){
@@ -159,12 +144,12 @@ public class SanzuRiverBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 1276, Terrain.WATER );
-		GameScene.updateMap( 1276 );
+		set( 448, Terrain.EMPTY );
+		GameScene.updateMap( 448 );
 
 		BossKomachi boss = new BossKomachi();
 		boss.state = boss.WANDERING;
-		boss.pos = 684;
+		boss.pos = 287;
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
 
@@ -179,8 +164,8 @@ public class SanzuRiverBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		set( 1276, Terrain.ENTRANCE );
-		GameScene.updateMap( 1276 );
+		set( 448, Terrain.ENTRANCE );
+		GameScene.updateMap( 448 );
 
 		isCompleted = true;
 

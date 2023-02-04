@@ -76,9 +76,9 @@ public class Terrain {
 	static {
 		flags[CHASM]		= AVOID	| PIT;
 		flags[EMPTY]		= PASSABLE;
-		flags[SUNNY_TILES]		= PASSABLE;
-		flags[LUNA_TILES]		= PASSABLE;
-		flags[STAR_TILES]		= PASSABLE;
+		flags[SUNNY_TILES]	= PASSABLE;
+		flags[LUNA_TILES]	= PASSABLE;
+		flags[STAR_TILES]	= PASSABLE;
 		flags[GRASS]		= PASSABLE | FLAMABLE;
 		flags[EMPTY_WELL]	= PASSABLE;
 		flags[WATER]		= PASSABLE | LIQUID;

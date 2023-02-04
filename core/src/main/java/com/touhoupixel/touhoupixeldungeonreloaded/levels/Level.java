@@ -58,6 +58,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
@@ -189,6 +190,10 @@ public abstract class Level implements Bundlable {
 			addItemToSpawn(Generator.random(Generator.Category.HERB));
 
 			addItemToSpawn(new Torch());
+
+			if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
+				addItemToSpawn( new PotionOfHealing() );
+			}
 
 			if (Dungeon.strengthNeeded()) {
 				addItemToSpawn( new StrengthCard() );

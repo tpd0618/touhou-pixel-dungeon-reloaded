@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
@@ -58,7 +59,7 @@ public class Biruko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 21);
+        return Random.NormalIntRange(14, 20);
     }
 
     @Override
@@ -75,7 +76,8 @@ public class Biruko extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            Buff.prolong(this, Vertigo.class, Vertigo.DURATION/2f);
+            Buff.prolong(this, Vertigo.class, Vertigo.DURATION);
+            Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
             }

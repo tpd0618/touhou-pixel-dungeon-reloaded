@@ -48,6 +48,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
@@ -55,26 +56,38 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KomachiCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hitori;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Komachi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Youmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
@@ -132,6 +145,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.YuukaDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -431,12 +445,12 @@ public class Hero extends Char {
 
 		float evasion = defenseSkill;
 
-		if (Dungeon.isChallenged(Challenges.PURELY_BULLET_HELL)){
-			evasion *= 0.75;
-		}
-
 		if (Statistics.card48 && Statistics.spellcard > 3) {
 			evasion *= 1.15;
+		}
+
+		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE) && Dungeon.level.map[this.pos] == Terrain.GRASS || Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE) && Dungeon.level.map[this.pos] == Terrain.FURROWED_GRASS){
+			evasion *= 2;
 		}
 
 		evasion *= RingOfEvasion.evasionMultiplier( this );
@@ -493,22 +507,6 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.buff(RemiliaFate.class) != null){
 			dmg *= 2;
-		}
-
-		if (Dungeon.hero.belongings.weapon().YokaiFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
-			dmg *= 1.25;
-		}
-		if (Dungeon.hero.belongings.weapon().GodFactor(this) == 1 && enemy.properties().contains(Char.Property.GOD)){
-			dmg *= 1.5;
-		}
-		if (Dungeon.hero.belongings.weapon().HumanFactor(this) == 1 && enemy.properties().contains(Char.Property.HUMAN)){
-			dmg *= 1.5;
-		}
-		if (Dungeon.hero.belongings.weapon().AnimalFactor(this) == 1 && enemy.properties().contains(Char.Property.ANIMAL)){
-			dmg *= 1.5;
-		}
-		if (Dungeon.hero.belongings.weapon().WarpFactor(this) == 1 && enemy.properties().contains(Char.Property.WARP)){
-			dmg *= 1.25;
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
@@ -633,6 +631,14 @@ public class Hero extends Char {
 		if (freeze != null) {
 			freeze.processTime(time);
 			return;
+		}
+
+		if (buff(KomachiCurse.class) != null) {
+			this.damage(1, this);
+			if (this == Dungeon.hero && !this.isAlive()) {
+				Dungeon.fail(Komachi.class);
+				GLog.n( Messages.get(Komachi.class, "ondeath") );
+			}
 		}
 
 		if (buff(Calm.class) != null) {
@@ -1167,7 +1173,59 @@ public class Hero extends Char {
 
 	@Override
 	public int attackProc( final Char enemy, int damage ) {
-		damage = super.attackProc( enemy, damage );
+		damage = super.attackProc(enemy, damage);
+
+		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
+			this.damage(enemy.damageRoll(), Youmu.class);
+			if (this == Dungeon.hero && !this.isAlive()) {
+				Dungeon.fail(Youmu.class);
+				GLog.n( Messages.get(Youmu.class, "snipe") );
+			}
+		}
+
+		if (this.buff(SunnySnipe.class) != null && Dungeon.level.map[this.pos] == Terrain.SUNNY_TILES){
+			this.damage(666, Sunny.class);
+			if (this == Dungeon.hero && !this.isAlive()) {
+				Dungeon.fail(Sunny.class);
+				GLog.n( Messages.get(Sunny.class, "snipe") );
+			}
+		}
+		if (this.buff(LunaSnipe.class) != null && Dungeon.level.map[this.pos] == Terrain.LUNA_TILES){
+			this.damage(666, Luna.class);
+			if (this == Dungeon.hero && !this.isAlive()) {
+				Dungeon.fail(Luna.class);
+				GLog.n( Messages.get(Luna.class, "snipe") );
+			}
+		}
+		if (this.buff(StarSnipe.class) != null && Dungeon.level.map[this.pos] == Terrain.STAR_TILES){
+			this.damage(666, Star.class);
+			if (this == Dungeon.hero && !this.isAlive()) {
+				Dungeon.fail(Star.class);
+				GLog.n( Messages.get(Star.class, "snipe") );
+			}
+		}
+
+		KindOfWeapon wep2 = Dungeon.hero.belongings.weapon();
+
+		if (wep2 != null && Dungeon.hero.belongings.weapon().YokaiFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
+			damage *= 1.25;
+		}
+		if (wep2 != null && Dungeon.hero.belongings.weapon().GodFactor(this) == 1 && enemy.properties().contains(Char.Property.GOD)){
+			damage *= 1.5;
+		}
+		if (wep2 != null && Dungeon.hero.belongings.weapon().HumanFactor(this) == 1 && enemy.properties().contains(Char.Property.HUMAN)){
+			damage *= 1.5;
+		}
+		if (wep2 != null && Dungeon.hero.belongings.weapon().AnimalFactor(this) == 1 && enemy.properties().contains(Char.Property.ANIMAL)){
+			damage *= 1.5;
+		}
+		if (wep2 != null && Dungeon.hero.belongings.weapon().WarpFactor(this) == 1 && enemy.properties().contains(Char.Property.WARP)){
+			damage *= 1.25;
+		}
+
+		if (this.buff(PotionPressure.class) != null){
+			Buff.prolong(this, SuperDegrade.class, SuperDegrade.DURATION);
+		}
 
 		if (Dungeon.hero.belongings.armor() instanceof SatonoArmor && (Random.Int(50) == 0)){
 			Buff.prolong(this, Might.class, Might.DURATION);
@@ -1179,7 +1237,7 @@ public class Hero extends Char {
 
 		if (Statistics.card32) {
 			damage *= 1.5f;
-		} //black card
+		} //blank card
 
 		if (Statistics.card7 && enemy.properties().contains(Char.Property.YOKAI)) {
 			damage *= 1.3f;
@@ -1346,10 +1404,9 @@ public class Hero extends Char {
 
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
-
 		if (Statistics.card32) {
 			damage *= 2f;
-		}
+		} //blank card
 
 		if (Statistics.card27 && (Random.Int(4) == 0) && Dungeon.level.map[this.pos] == Terrain.SUNNY_TILES || Statistics.card27 && (Random.Int(3) == 0) && Dungeon.level.map[this.pos] == Terrain.LUNA_TILES || Statistics.card27 && (Random.Int(3) == 0) && Dungeon.level.map[this.pos] == Terrain.STAR_TILES) {
 			Buff.prolong(this, HomingBlade.class, HomingBlade.DURATION);
@@ -1363,19 +1420,21 @@ public class Hero extends Char {
 			ScrollOfMirrorImage.spawnImages(this, 7);
 		}
 
-		if (Dungeon.hero.belongings.armor().YokaiDefFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
+		Earthroot.Armor armor2 = buff( Earthroot.Armor.class );
+
+		if (armor2 != null && Dungeon.hero.belongings.armor().YokaiDefFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
 			damage *= 0.75;
 		}
-		if (Dungeon.hero.belongings.armor().GodDefFactor(this) == 1 && enemy.properties().contains(Char.Property.GOD)){
+		if (armor2 != null && Dungeon.hero.belongings.armor().GodDefFactor(this) == 1 && enemy.properties().contains(Char.Property.GOD)){
 			damage *= 0.5;
 		}
-		if (Dungeon.hero.belongings.armor().HumanDefFactor(this) == 1 && enemy.properties().contains(Char.Property.HUMAN)){
+		if (armor2 != null && Dungeon.hero.belongings.armor().HumanDefFactor(this) == 1 && enemy.properties().contains(Char.Property.HUMAN)){
 			damage *= 0.5;
 		}
-		if (Dungeon.hero.belongings.armor().AnimalDefFactor(this) == 1 && enemy.properties().contains(Char.Property.ANIMAL)){
+		if (armor2 != null && Dungeon.hero.belongings.armor().AnimalDefFactor(this) == 1 && enemy.properties().contains(Char.Property.ANIMAL)){
 			damage *= 0.5;
 		}
-		if (Dungeon.hero.belongings.armor().WarpDefFactor(this) == 1 && enemy.properties().contains(Char.Property.WARP)){
+		if (armor2 != null && Dungeon.hero.belongings.armor().WarpDefFactor(this) == 1 && enemy.properties().contains(Char.Property.WARP)){
 			damage *= 0.75;
 		}
 
@@ -1412,11 +1471,11 @@ public class Hero extends Char {
 			Sample.INSTANCE.play( Assets.Sounds.EVOKE );
 		}
 
+		Earthroot.Armor armor = buff( Earthroot.Armor.class );
 		if (belongings.armor() != null) {
 			damage = belongings.armor().proc( enemy, this, damage );
 		}
 
-		Earthroot.Armor armor = buff( Earthroot.Armor.class );
 		if (armor != null) {
 			damage = armor.absorb( damage );
 		}
@@ -2083,6 +2142,12 @@ public class Hero extends Char {
 		if (Statistics.spellcard > 8){
 			Statistics.spellcard = 8;
 		}
+		if (Statistics.life < 0){
+			Statistics.life = 0;
+		}
+		if (Statistics.spellcard < 0){
+			Statistics.spellcard = 0;
+		}
 		if (Statistics.playercorruption > 10){
 			Statistics.playercorruption = 10;
 		}
@@ -2103,46 +2168,46 @@ public class Hero extends Char {
 	public void move(int step, boolean travelling) {
 		boolean wasHighGrass = Dungeon.level.map[step] == Terrain.HIGH_GRASS;
 
-		//if (Dungeon.depth == 5 && !Statistics.boss1) {
-			//Dungeon.level.seal();
-			//Statistics.boss1 = true;
-		//}
-		//if (Dungeon.depth == 10 && !Statistics.boss2) {
-			//Dungeon.level.seal();
-			//Statistics.boss2 = true;
-		//}
-		//if (Dungeon.depth == 15 && !Statistics.boss3) {
-			//Dungeon.level.seal();
-			//Statistics.boss3 = true;
-		//}
-		//if (Dungeon.depth == 20 && !Statistics.boss4) {
-			//Dungeon.level.seal();
-			//Statistics.boss4 = true;
-		//}
-		//if (Dungeon.depth == 25 && !Statistics.boss5) {
-			//Dungeon.level.seal();
-			//Statistics.boss5 = true;
-		//}
-		//if (Dungeon.depth == 30 && !Statistics.boss6) {
-			//Dungeon.level.seal();
-			//Statistics.boss6 = true;
-		//}
-		//if (Dungeon.depth == 35 && !Statistics.boss7) {
-			//Dungeon.level.seal();
-			//Statistics.boss7 = true;
-		//}
-		//if (Dungeon.depth == 40 && !Statistics.boss8) {
-			//Dungeon.level.seal();
-			//Statistics.boss8 = true;
-		//}
-		//if (Dungeon.depth == 45 && !Statistics.boss9) {
-			//Dungeon.level.seal();
-			//Statistics.boss9 = true;
-		//}
-		//if (Dungeon.depth == 50 && !Statistics.boss10) {
-			//Dungeon.level.seal();
-			//Statistics.boss10 = true;
-		//}
+		if (Dungeon.depth == 5 && !Statistics.boss1) {
+			Dungeon.level.seal();
+			Statistics.boss1 = true;
+		}
+		if (Dungeon.depth == 10 && !Statistics.boss2) {
+			Dungeon.level.seal();
+			Statistics.boss2 = true;
+		}
+		if (Dungeon.depth == 15 && !Statistics.boss3) {
+			Dungeon.level.seal();
+			Statistics.boss3 = true;
+		}
+		if (Dungeon.depth == 20 && !Statistics.boss4) {
+			Dungeon.level.seal();
+			Statistics.boss4 = true;
+		}
+		if (Dungeon.depth == 25 && !Statistics.boss5) {
+			Dungeon.level.seal();
+			Statistics.boss5 = true;
+		}
+		if (Dungeon.depth == 30 && !Statistics.boss6) {
+			Dungeon.level.seal();
+			Statistics.boss6 = true;
+		}
+		if (Dungeon.depth == 35 && !Statistics.boss7) {
+			Dungeon.level.seal();
+			Statistics.boss7 = true;
+		}
+		if (Dungeon.depth == 40 && !Statistics.boss8) {
+			Dungeon.level.seal();
+			Statistics.boss8 = true;
+		}
+		if (Dungeon.depth == 45 && !Statistics.boss9) {
+			Dungeon.level.seal();
+			Statistics.boss9 = true;
+		}
+		if (Dungeon.depth == 50 && !Statistics.boss10) {
+			Dungeon.level.seal();
+			Statistics.boss10 = true;
+		}
 
 		super.move( step, travelling);
 

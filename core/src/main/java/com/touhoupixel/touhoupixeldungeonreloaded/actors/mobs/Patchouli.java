@@ -5,6 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
@@ -56,7 +57,7 @@ public class Patchouli extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);

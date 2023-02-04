@@ -36,7 +36,7 @@ public class Challenges {
 	public static final int SWORD_OF_HISOU      = 128;
 	public static final int STARRY_HOUSE        = 256;
 	public static final int ASYLUM_OF_DANMAKU   = 512;
-	public static final int PURELY_BULLET_HELL  = 1024;
+	public static final int FIRE_EMBLEM_ENGAGE  = 1024;
 
 	public static final int MAX_VALUE           = 2047;
 
@@ -51,12 +51,12 @@ public class Challenges {
 			"sword_of_hisou",
 			"starry_house",
 			"asylum_of_danmaku",
-			"purely_bullet_hell"
+			"fire_emblem_engage"
 	};
 
 	public static final int[] MASKS = {
 			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, FLAME_KEYSTONE, LOTUS_LABYRINTH,
-			TIME_EATER, SWORD_OF_HISOU, STARRY_HOUSE, ASYLUM_OF_DANMAKU, PURELY_BULLET_HELL
+			TIME_EATER, SWORD_OF_HISOU, STARRY_HOUSE, ASYLUM_OF_DANMAKU, FIRE_EMBLEM_ENGAGE
 	};
 
 	public static int activeChallenges(){

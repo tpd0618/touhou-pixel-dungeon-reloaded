@@ -33,7 +33,7 @@ public class Miko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(22, 28);
+        return Random.NormalIntRange(12, 17);
     }
 
     @Override
