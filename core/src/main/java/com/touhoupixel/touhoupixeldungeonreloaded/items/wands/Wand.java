@@ -193,7 +193,7 @@ public abstract class Wand extends Item {
 		wandProc(target, buffedLvl(), chargesUsed);
 
 		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
-			Dungeon.hero.damage(target.damageRoll(), Youmu.class);
+			Dungeon.hero.damage(target.damageRoll()/3, Youmu.class);
 			if (!Dungeon.hero.isAlive()) {
 				Dungeon.fail(Youmu.class);
 				GLog.n( Messages.get(Youmu.class, "snipe") );

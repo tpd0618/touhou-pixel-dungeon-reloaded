@@ -1176,7 +1176,7 @@ public class Hero extends Char {
 		damage = super.attackProc(enemy, damage);
 
 		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
-			this.damage(enemy.damageRoll(), Youmu.class);
+			this.damage(enemy.damageRoll()/3, Youmu.class);
 			if (this == Dungeon.hero && !this.isAlive()) {
 				Dungeon.fail(Youmu.class);
 				GLog.n( Messages.get(Youmu.class, "snipe") );
