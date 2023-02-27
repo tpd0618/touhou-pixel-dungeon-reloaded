@@ -51,15 +51,25 @@ import java.util.ArrayList;
 public class ShopRoom extends SpecialRoom {
 
 	private ArrayList<Item> itemsToSpawn;
-	
+
 	@Override
 	public int minWidth() {
 		return 11;
 	}
-	
+
 	@Override
 	public int minHeight() {
 		return 11;
+	}
+
+	@Override
+	public int maxWidth() {
+		return Math.max(11, (int)(Math.sqrt(itemCount())+3));
+	}
+
+	@Override
+	public int maxHeight() {
+		return Math.max(11, (int)(Math.sqrt(itemCount())+3));
 	}
 
 	public int itemCount(){
