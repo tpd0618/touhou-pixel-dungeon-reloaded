@@ -39,7 +39,7 @@ public class Yuyuko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(24, 28);
+        return Random.NormalIntRange(22, 28);
     }
 
     @Override

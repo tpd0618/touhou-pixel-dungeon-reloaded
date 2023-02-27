@@ -22,32 +22,34 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
-import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class YoumuSword extends MeleeWeapon {
+public class KokoroFan extends MeleeWeapon {
 
-    {
-        image = ItemSpriteSheet.YOUMU_SWORD;
-        hitSound = Assets.Sounds.HIT_SLASH;
-        hitSoundPitch = 1f;
+	{
+		image = ItemSpriteSheet.KOKOROFAN;
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 1f;
 
-        tier = 5;
-    }
+		tier = 2;
+	}
 
-    @Override
-    public int max(int lvl) {
-        return  4*(tier+1) +
-                lvl*(tier+1);
-    }
+	@Override
+	public int WarpFactor( Char owner ) {
+		return 1;
+	}
 
-    @Override
-    public int proc(Char attacker, Char defender, int damage) {
-        Buff.affect(defender, Bleeding.class).set(20);
-        return super.proc(attacker, defender, damage);
-    }
+	@Override
+	public int max(int lvl) {
+		return  4*(tier+1) +    //12 base, down from 15
+				lvl*(tier+1);   //scaling unchanged
+	}
+
+	@Override
+	public int defenseFactor( Char owner ) {
+		return Statistics.difficulty > 3 ? 3 : 1;
+	}
 }

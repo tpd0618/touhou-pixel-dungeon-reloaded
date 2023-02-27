@@ -18,7 +18,7 @@ public class Yuuka extends Mob {
     {
         spriteClass = YuukaSprite.class;
 
-        HP = HT = 500;
+        HP = HT = 450;
         defenseSkill = 0;
         EXP = 1;
         maxLvl = 27;

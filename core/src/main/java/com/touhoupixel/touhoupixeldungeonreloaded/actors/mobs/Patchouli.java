@@ -33,7 +33,7 @@ public class Patchouli extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 8);
+        return Random.NormalIntRange(4, 6);
     }
 
     @Override

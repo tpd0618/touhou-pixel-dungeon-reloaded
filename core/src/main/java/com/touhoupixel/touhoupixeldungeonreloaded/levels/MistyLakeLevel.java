@@ -78,9 +78,10 @@ public class MistyLakeLevel extends RegularLevel {
 	@Override
 	protected Painter painter() {
 		return new TouhouPainter()
-				.setWater(feeling == Feeling.WATER ? 0.85f : 0.30f, 5)
+				.setWater(feeling == Feeling.WATER ? 0.85f : 0.25f, 5)
 				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
-				.setSunny(0.35f, 5)
+				.setSunny(0.20f, 4)
+				.setIron(0.20f, 4)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
@@ -112,38 +113,6 @@ public class MistyLakeLevel extends RegularLevel {
 		return new float[]{
 				3, 3, 3, 3, 3,
 				2, 2, 2, 2, 2};
-	}
-	
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.GRASS:
-				return Messages.get(MistyLakeLevel.class, "grass_name");
-			case Terrain.HIGH_GRASS:
-				return Messages.get(MistyLakeLevel.class, "high_grass_name");
-			case Terrain.WATER:
-				return Messages.get(MistyLakeLevel.class, "water_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-	
-	@Override
-	public String tileDesc( int tile ) {
-		switch (tile) {
-			case Terrain.ENTRANCE:
-				return Messages.get(MistyLakeLevel.class, "entrance_desc");
-			case Terrain.EXIT:
-				return Messages.get(MistyLakeLevel.class, "exit_desc");
-			case Terrain.HIGH_GRASS:
-				return Messages.get(MistyLakeLevel.class, "high_grass_desc");
-			case Terrain.WALL_DECO:
-				return Messages.get(MistyLakeLevel.class, "wall_deco_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(MistyLakeLevel.class, "bookshelf_desc");
-			default:
-				return super.tileDesc( tile );
-		}
 	}
 	
 	@Override

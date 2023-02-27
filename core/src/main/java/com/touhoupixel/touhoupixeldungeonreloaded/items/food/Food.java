@@ -26,7 +26,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WellFed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
@@ -79,8 +82,13 @@ public class Food extends Item {
 			SpellSprite.show( hero, SpellSprite.FOOD );
 			Sample.INSTANCE.play( Assets.Sounds.EAT );
 
-			if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+			if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 				Statistics.mood += 1;
+			}
+
+			if (Dungeon.isChallenged(Challenges.PATIENT_ROGUE)) {
+				Buff.prolong(curUser, Silence.class, Silence.DURATION);
+				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
 			}
 
 			hero.spend( eatingTime() );

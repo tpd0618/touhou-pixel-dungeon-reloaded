@@ -62,7 +62,7 @@ public class Mike extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 3);
+        return Random.NormalIntRange(3, 4);
     }
 
     private boolean chain(int target){

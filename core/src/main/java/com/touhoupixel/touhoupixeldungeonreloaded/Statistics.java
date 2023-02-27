@@ -122,7 +122,7 @@ public class Statistics {
 	public static boolean completedWithNoKilling = false;
 
 	public static boolean gameWon = false;
-	public static boolean ascended = false;
+	public static boolean fliped = false;
 
 	public static boolean scorelife1 = false;
 	public static boolean scorelife2 = false;
@@ -287,9 +287,9 @@ public class Statistics {
 
 		power = 100;
 		value = 0;
-		life = 0;
+		life = 2;
 		lifefragment = 0;
-		spellcard = 0;
+		spellcard = 3;
 		spellcardfragment = 0;
 
 		fairybosskillcount = 0;
@@ -316,7 +316,7 @@ public class Statistics {
 		qualifiedForNoKilling = false;
 
 		gameWon = false;
-		ascended = false;
+		fliped = false;
 
 		scorelife1 = false;
 		scorelife2 = false;
@@ -506,7 +506,7 @@ public class Statistics {
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
 	private static final String WON		        = "won";
-	private static final String ASCENDED		= "ascended";
+	private static final String FLIPED		= "fliped";
 
 	private static final String SCORELIFE1		= "scorelife1";
 	private static final String SCORELIFE2		= "scorelife2";
@@ -796,7 +796,7 @@ public class Statistics {
 		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
 		bundle.put( WON,        gameWon );
-		bundle.put( ASCENDED,   ascended );
+		bundle.put( FLIPED, fliped);
 	}
 
 	public static void restoreFromBundle( Bundle bundle ) {
@@ -896,7 +896,7 @@ public class Statistics {
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 
 		gameWon         = bundle.getBoolean( WON );
-		ascended        = bundle.getBoolean( ASCENDED );
+		fliped = bundle.getBoolean( FLIPED );
 
 		scorelife1	= bundle.getBoolean( SCORELIFE1 );
 		scorelife2	= bundle.getBoolean( SCORELIFE2 );

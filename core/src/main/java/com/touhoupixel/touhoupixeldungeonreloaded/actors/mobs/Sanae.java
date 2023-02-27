@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
@@ -57,7 +58,7 @@ public class Sanae extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(12, 16);
+        return Random.NormalIntRange(13, 21);
     }
 
     @Override
@@ -104,7 +105,7 @@ public class Sanae extends Mob implements Callback {
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
                 Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
                 if (Statistics.difficulty > 2) {
-                    Buff.prolong(this, BalanceBreak.class, BalanceBreak.DURATION);
+                    Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);

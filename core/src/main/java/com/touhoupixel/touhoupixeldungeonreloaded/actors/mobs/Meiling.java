@@ -28,7 +28,7 @@ public class Meiling extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 9);
+        return Random.NormalIntRange(6, 8);
     }
 
     @Override
@@ -50,5 +50,5 @@ public class Meiling extends Mob {
             }
         }
         return damage;
-    }
+    } //see mob.attackproc to watch stat.difficulty > 4 for superdegrade
 }

@@ -28,7 +28,7 @@ public class Takane extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(6, 11);
+        return Random.NormalIntRange(7, 11);
     }
 
     @Override

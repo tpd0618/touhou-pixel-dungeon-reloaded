@@ -97,12 +97,12 @@ public class PrimateSpiritGardenLevel extends RegularLevel {
 	@Override
 	protected Painter painter() {
 		return new TouhouPainter()
-				.setWater(feeling == Feeling.WATER ? 0.85f : 0.30f, 5)
+				.setWater(feeling == Feeling.WATER ? 0.85f : 0.25f, 5)
 				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
-				.setSunny(0.35f, 5)
+				.setSunny(0.20f, 4)
+				.setIron(0.20f, 4)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
-
 	@Override
 	public void create() {
 		itemsToSpawn.add( new Torch() );
@@ -124,40 +124,6 @@ public class PrimateSpiritGardenLevel extends RegularLevel {
 				3, 3, 3, 3, 3,
 				2, 2, 2, 2, 2,
 				1, 1, 1, 1, 1};
-	}
-	
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(PrimateSpiritGardenLevel.class, "water_name");
-			case Terrain.HIGH_GRASS:
-				return Messages.get(PrimateSpiritGardenLevel.class, "high_grass_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-	
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.ENTRANCE:
-				return Messages.get(PrimateSpiritGardenLevel.class, "entrance_desc");
-			case Terrain.EXIT:
-				return Messages.get(PrimateSpiritGardenLevel.class, "exit_desc");
-			case Terrain.WALL_DECO:
-			case Terrain.EMPTY_DECO:
-				return Messages.get(PrimateSpiritGardenLevel.class, "deco_desc");
-			case Terrain.EMPTY_SP:
-				return Messages.get(PrimateSpiritGardenLevel.class, "sp_desc");
-			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(PrimateSpiritGardenLevel.class, "statue_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(PrimateSpiritGardenLevel.class, "bookshelf_desc");
-			default:
-				return super.tileDesc( tile );
-		}
 	}
 	
 	@Override

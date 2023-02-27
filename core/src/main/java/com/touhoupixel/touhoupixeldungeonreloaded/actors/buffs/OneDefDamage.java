@@ -35,7 +35,7 @@ public class OneDefDamage extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.ONEDEFDAMAGE;
+		return BuffIndicator.ONE_DEF_DAMAGE;
 	}
 
 	@Override

@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class BigYingYangOrb extends MeleeWeapon {
@@ -32,5 +33,10 @@ public class BigYingYangOrb extends MeleeWeapon {
 		hitSoundPitch = 1f;
 
 		tier = 5;
+	}
+
+	@Override
+	public int YokaiFactor( Char owner ) {
+		return 1;
 	}
 }

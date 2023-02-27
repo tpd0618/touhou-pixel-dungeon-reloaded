@@ -58,7 +58,7 @@ public class Suwako extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 16);
+        return Random.NormalIntRange(13, 21);
     }
 
     @Override

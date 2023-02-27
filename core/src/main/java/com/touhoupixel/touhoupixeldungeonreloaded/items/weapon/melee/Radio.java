@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class Radio extends MeleeWeapon {
@@ -34,6 +35,11 @@ public class Radio extends MeleeWeapon {
 		tier = 2;
 		DLY = 1.5f; //0.67x speed
 		RCH = 2;    //extra reach
+	}
+
+	@Override
+	public int HumanFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

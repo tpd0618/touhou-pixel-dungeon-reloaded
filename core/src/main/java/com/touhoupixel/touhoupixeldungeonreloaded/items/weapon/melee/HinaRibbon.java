@@ -35,7 +35,7 @@ public class HinaRibbon extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_SLASH;
         hitSoundPitch = 1f;
 
-        tier = 1;
+        tier = 3;
     }
 
     @Override
@@ -45,8 +45,13 @@ public class HinaRibbon extends MeleeWeapon {
     }
 
     @Override
+    public int WarpFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Random.Int(100) == 0) {
+        if (Random.Int(60) == 0) {
             attacker.HP = Math.min(attacker.HP + 100000, attacker.HT);
             PotionOfHealing.cure(attacker);
         }

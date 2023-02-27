@@ -54,7 +54,7 @@ public class Momoyo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(16, 23);
+        return Random.NormalIntRange(19, 26);
     }
 
     @Override

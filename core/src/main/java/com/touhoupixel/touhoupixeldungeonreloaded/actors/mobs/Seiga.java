@@ -53,7 +53,7 @@ public class Seiga extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 12);
+        return Random.NormalIntRange(10, 15);
     }
 
     @Override

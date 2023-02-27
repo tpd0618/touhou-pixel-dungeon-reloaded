@@ -69,7 +69,7 @@ public class Komachi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange(12, 19);
     }
 
     private boolean chain(int target){

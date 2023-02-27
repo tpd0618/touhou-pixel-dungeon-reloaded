@@ -46,7 +46,7 @@ public class NazrinGoldMoney extends abilitycards {
     @Override
     public boolean doPickUp(Hero hero, int pos) {
         Statistics.card1 = true;
-        Dungeon.gold += 300 * Dungeon.depth;
+        Dungeon.gold += 600 * Dungeon.depth;
         return super.doPickUp(hero, pos);
     }
 

@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
@@ -57,9 +58,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
@@ -196,7 +199,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 
-		if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
+		if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
 			switch (Random.Int(4)) {
 				case 0:
 				default:
@@ -597,7 +600,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return !(this instanceof Wraith) && Dungeon.isChallenged(Challenges.ASYLUM_OF_DANMAKU) && Dungeon.hero.justMoved;
+		return !(this instanceof Wraith) && Dungeon.isChallenged(Challenges.UNCONSCIOUS_ROSE) && Dungeon.hero.justMoved;
 	}
 
 	@Override
@@ -798,6 +801,9 @@ public abstract class Mob extends Char {
 
 		if (alignment == Alignment.ENEMY){
 			rollToDropLoot();
+			if (Dungeon.hero.buff(GoldCreation.class) != null){
+				Dungeon.level.drop(new Gold().random(), pos ).sprite.drop();
+			}
 		}
 
 		if (Dungeon.hero.isAlive() && !Dungeon.level.heroFOV[pos]) {

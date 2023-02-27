@@ -25,7 +25,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Alice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossMarisa;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chen;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eika;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mystia;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.MagicalFireRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -84,14 +88,16 @@ public class ForestofMagicBossLevel extends Level {
 	private static final short W = Terrain.WALL;
 	private static final short e = Terrain.EMPTY;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short s = Terrain.STAR_TILES;
+	private static final short s = Terrain.SAND_TILES;
 	private static final short L = Terrain.LOCKED_EXIT;
+	private static final short k = Terrain.EMPTY;
 
 	private static short[] level = {
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, k, e, e, e, e, e, e, e, e, e, e, e, e, e, k, e, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
@@ -104,8 +110,7 @@ public class ForestofMagicBossLevel extends Level {
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
+			W, W, s, e, k, e, e, e, e, e, e, e, e, e, e, e, e, e, k, e, s, W, W,
 			W, W, s, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, s, W, W,
 			W, W, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
@@ -154,6 +159,30 @@ public class ForestofMagicBossLevel extends Level {
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
 
+		Alice alice = new Alice();
+		alice.state = alice.WANDERING;
+		alice.pos = 96;
+		GameScene.add( alice );
+		alice.beckon(Dungeon.hero.pos);
+
+		Mystia mystia = new Mystia();
+		mystia.state = mystia.WANDERING;
+		mystia.pos = 110;
+		GameScene.add( mystia );
+		mystia.beckon(Dungeon.hero.pos);
+
+		Chen chen = new Chen();
+		chen.state = chen.WANDERING;
+		chen.pos = 395;
+		GameScene.add( chen );
+		chen.beckon(Dungeon.hero.pos);
+
+		Eika eika = new Eika();
+		eika.state = eika.WANDERING;
+		eika.pos = 409;
+		GameScene.add( eika );
+		eika.beckon(Dungeon.hero.pos);
+
 		if (heroFOV[boss.pos]) {
 			boss.notice();
 			boss.sprite.alpha( 0 );
@@ -173,24 +202,6 @@ public class ForestofMagicBossLevel extends Level {
 		Dungeon.observe();
 	}
 
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HakureiShrineLevel.class, "water_name");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_name");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-
 	private static final String ISCOMPLETED = "iscompleted";
 
 	@Override
@@ -203,29 +214,5 @@ public class ForestofMagicBossLevel extends Level {
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle(bundle);
 		isCompleted = bundle.getBoolean( ISCOMPLETED );
-	}
-
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.ENTRANCE:
-				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
-			case Terrain.EXIT:
-				return Messages.get(HakureiShrineLevel.class, "exit_desc");
-			case Terrain.EMPTY_DECO:
-				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_desc");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
-			default:
-				return super.tileDesc( tile );
-		}
 	}
 }

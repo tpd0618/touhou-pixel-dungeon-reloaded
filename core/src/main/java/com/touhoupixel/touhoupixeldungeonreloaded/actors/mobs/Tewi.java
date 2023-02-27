@@ -1,6 +1,14 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ReclaimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TewiSprite;
 import com.watabou.utils.Random;
@@ -35,5 +43,19 @@ public class Tewi extends Mob {
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
     }
-    //will replace soon
+
+    @Override
+    public int attackProc( Char hero, int damage ) {
+        damage = super.attackProc( enemy, damage );
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+            }
+        }
+        return damage;
+    }
 }

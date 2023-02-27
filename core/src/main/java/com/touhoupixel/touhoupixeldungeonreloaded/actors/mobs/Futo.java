@@ -55,7 +55,7 @@ public class Futo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 16);
+        return Random.NormalIntRange(13, 19);
     }
 
     @Override

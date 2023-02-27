@@ -52,7 +52,7 @@ public class Misumaru extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.gold/100, Dungeon.gold/50);
+        return Random.NormalIntRange(Dungeon.gold/200, Dungeon.gold/100);
     }
 
     @Override

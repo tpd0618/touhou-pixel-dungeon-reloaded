@@ -47,6 +47,11 @@ public class HorouBook extends MeleeWeapon {
     }
 
     @Override
+    public int WarpFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(8) == 0) {
             Buff.prolong(defender, OneDamage.class, OneDamage.DURATION);

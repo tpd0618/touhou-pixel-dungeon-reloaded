@@ -23,12 +23,19 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Random;
 
 public class PotionOfLightHealing extends Potion {
 
@@ -41,6 +48,9 @@ public class PotionOfLightHealing extends Potion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
+		if (Statistics.card26 && Random.Int(2) == 0){
+			Buff.detach( curUser, SuperDegrade.class);
+		}
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);
 			if (hero == Dungeon.hero && !hero.isAlive()) {
@@ -48,7 +58,7 @@ public class PotionOfLightHealing extends Potion {
 				GLog.n( Messages.get(AntiHeal.class, "ondeath") );
 			}
 		} else {
-			hero.HP = Math.min(hero.HP + 50, hero.HT);
+			hero.HP = Math.min(hero.HP + 50*(Notes.keyCount(new IronKey(Dungeon.depth))+1), hero.HT);
 			GLog.p(Messages.get(this, "lightheal"));
 		}
 	}

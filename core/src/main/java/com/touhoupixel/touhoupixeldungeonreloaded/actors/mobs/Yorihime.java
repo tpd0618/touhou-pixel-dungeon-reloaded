@@ -29,7 +29,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
@@ -80,17 +83,19 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 2);
+		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 50) : Random.NormalIntRange(0, 2);
 	}
 
 	@Override
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-			GLog.n( Messages.get(this, "disarm") );
-			new DisarmingTrap().set(enemy.pos).activate();
+			if (Dungeon.depth != 50) {
+				new DisarmingTrap().set(enemy.pos).activate();
+				GLog.n( Messages.get(this, "disarm") );
+			}
 			if (Statistics.difficulty > 2) {
-				Dungeon.hero.STR--;
+				Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
 			}
 			if (Statistics.difficulty > 4) {
 				Dungeon.hero.STR--;

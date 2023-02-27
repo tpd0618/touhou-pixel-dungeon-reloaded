@@ -41,6 +41,11 @@ public class Grayswandir extends MeleeWeapon {
     }
 
     @Override
+    public int YokaiFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Dungeon.depth > 45) {
             damage *= 2.2f;

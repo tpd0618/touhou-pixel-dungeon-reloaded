@@ -4,12 +4,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RingoSprite;
 import com.watabou.utils.Random;
 
@@ -33,7 +30,7 @@ public class Ringo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 4);
+        return Random.NormalIntRange(4, 6);
     }
 
     @Override
@@ -55,7 +52,7 @@ public class Ringo extends Mob {
                 Buff.prolong(enemy, Vulnerable.class, Vulnerable.DURATION/5f);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION/2f);
+                Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             }
         }
         return damage;

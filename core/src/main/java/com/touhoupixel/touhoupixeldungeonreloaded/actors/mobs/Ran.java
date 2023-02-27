@@ -57,7 +57,7 @@ public class Ran extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(22, 29);
+        return Random.NormalIntRange(22, 28);
     }
 
     @Override

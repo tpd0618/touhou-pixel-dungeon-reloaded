@@ -77,7 +77,7 @@ public class Minoriko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(10, 18);
+        return Random.NormalIntRange(17, 25);
     }
 
     @Override

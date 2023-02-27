@@ -31,7 +31,7 @@ public class Hatate extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 10);
+        return Random.NormalIntRange(8, 12);
     }
 
     @Override

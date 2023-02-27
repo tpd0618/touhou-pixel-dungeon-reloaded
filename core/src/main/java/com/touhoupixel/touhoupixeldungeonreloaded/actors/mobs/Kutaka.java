@@ -24,16 +24,20 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KutakaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.WriggleSprite;
 import com.watabou.utils.Random;
@@ -58,7 +62,7 @@ public class Kutaka extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(10, 14);
+        return Random.NormalIntRange(15, 22);
     }
 
     @Override
@@ -74,13 +78,13 @@ public class Kutaka extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
-            Buff.prolong(enemy, Slow.class, Slow.DURATION);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+            new CursingTrap().set(enemy.pos).activate();
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+                Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
             }
         }
         return damage;

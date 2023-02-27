@@ -132,7 +132,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfAccuracy;
@@ -184,9 +184,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HisoutenMankind;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.NazrinRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RanTail;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
@@ -198,7 +201,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallSeiran
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YoumuSword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoakumaWing;
@@ -261,65 +264,77 @@ public enum Catalog {
 	}
 
 	static {
+		//tier 1
 		WEAPONS.seen.put( ReimuExorcismRod.class,           true);
 		WEAPONS.seen.put( MarisaStaff.class,                true);
 		WEAPONS.seen.put( KoishiDagger.class,                     true);
 		WEAPONS.seen.put( SanaeExorcismRod.class,                     true);
 		WEAPONS.seen.put( SmallSeiranHammer.class,                     true);
-		WEAPONS.seen.put( HinaRibbon.class,                     true);
 		WEAPONS.seen.put( HisoutenMankind.class,                     true);
-
+		//tier 2
 		WEAPONS.seen.put( TenguShortsword.class,                 true);
 		WEAPONS.seen.put( KogasaUmbrella.class,                    true);
 		WEAPONS.seen.put( Radio.class,                      true);
 		WEAPONS.seen.put( MystiaWing.class,               true);
 		WEAPONS.seen.put( KoakumaWing.class,                       true);
+
 		WEAPONS.seen.put( RingoDango.class,                       true);
 		WEAPONS.seen.put( SilkyHair.class,                       true);
 		WEAPONS.seen.put( KyoukoBroom.class,                       true);
-
+		WEAPONS.seen.put( NazrinRod.class,                       true);
+		WEAPONS.seen.put( KokoroFan.class,                       true);
+		//tier 3
 		WEAPONS.seen.put( SmallYingYangOrb.class,                      true);
 		WEAPONS.seen.put( EikiRod.class,                       true);
 		WEAPONS.seen.put( PaleSword.class,                   true);
 		WEAPONS.seen.put( YoumuHalfPhantom.class,                true);
 		WEAPONS.seen.put( SkySword.class,                        true);
+
 		WEAPONS.seen.put( ShinmyomaruNeedle.class,                       true);
 		WEAPONS.seen.put( AlchemySword.class,                   true);
 		WEAPONS.seen.put( WatermelonSword.class,                   true);
-
+		WEAPONS.seen.put( JeweledBranch.class,                   true);
+		WEAPONS.seen.put( HinaRibbon.class,                     true);
+		//tier 4
 		WEAPONS.seen.put( MediumYingYangOrb.class,                  true);
 		WEAPONS.seen.put( UtsuhoRod.class,                  true);
 		WEAPONS.seen.put( CirnoWing.class,                      true);
 		WEAPONS.seen.put( RemiliaWing.class,                 true);
 		WEAPONS.seen.put( RanTail.class,             true);
+
 		WEAPONS.seen.put( YukariUmbrella.class,                   true);
 		WEAPONS.seen.put( YuukaUmbrella.class,                   true);
 		WEAPONS.seen.put( MurasaDipper.class,                   true);
 		WEAPONS.seen.put( YachieHorn.class,                   true);
 		WEAPONS.seen.put( YuyukoFoldingFan.class,                   true);
+		//tier 5
 		WEAPONS.seen.put( BigYingYangOrb.class,                 true);
 		WEAPONS.seen.put( GoldenExorcismRod.class,                  true);
 		WEAPONS.seen.put( TenguSmartphone.class,                     true);
 		WEAPONS.seen.put( SeiranHammer.class,                   true);
 		WEAPONS.seen.put( JunkoSword.class,                true);
+
 		WEAPONS.seen.put( AyaFan.class,                   true);
-		WEAPONS.seen.put( YoumuSword.class,                  true);
+		WEAPONS.seen.put( Roukanken.class,                  true);
 		WEAPONS.seen.put( SevenStarSword.class,              true);
 		WEAPONS.seen.put( PortablePhoenixTail.class,         true);
 		WEAPONS.seen.put( ChimataCloak.class,                true);
+
 		WEAPONS.seen.put( Grayswandir.class,                 true);
 		WEAPONS.seen.put( FullMoonScythe.class,              true);
 		WEAPONS.seen.put( SagumeWing.class,                  true);
 		WEAPONS.seen.put( HoshigumaHorn.class,               true);
 		WEAPONS.seen.put( HorouBook.class,                   true);
+
 		WEAPONS.seen.put( RandomStar.class,                  true);
 		WEAPONS.seen.put( ArisaKeyboard.class,               true);
 		WEAPONS.seen.put( EveKeytar.class,                   true);
 		WEAPONS.seen.put( YukinaMic.class,                   true);
 		WEAPONS.seen.put( KanonDrumstick.class,              true);
 
+		//armor
 		ARMORS.seen.put( ReimuArmor.class,                   true);
-
+		//armor each properties
 		ARMORS.seen.put( MarisaArmor.class,                  true);
 		ARMORS.seen.put( SakuyaArmor.class,                  true);
 		ARMORS.seen.put( SanaeArmor.class,                   true);
@@ -344,7 +359,7 @@ public enum Catalog {
 		ARMORS.seen.put( SharkArmor.class,                   true);
 		ARMORS.seen.put( MorfonicaArmor.class,               true);
 		ARMORS.seen.put( KeikiArmor.class,                   true);
-
+		//non-res. armor
 		ARMORS.seen.put( HecatiaArmor.class,                 true);
 		ARMORS.seen.put( SatonoArmor.class,                  true);
 		ARMORS.seen.put( MaiArmor.class,                     true);
@@ -466,7 +481,7 @@ public enum Catalog {
 		POTIONS.seen.put( PotionOfInvisibility.class,       true);
 		POTIONS.seen.put( PotionOfExperience.class,         true);
 		POTIONS.seen.put( PotionOfHaste.class,              true);
-		POTIONS.seen.put( PotionOfRingoDango.class,         true);
+		POTIONS.seen.put( PotionOfDango.class,         true);
 		POTIONS.seen.put( PotionOfMight.class,              true);
 		POTIONS.seen.put( PotionOfDoublespeed.class,        true);
 		POTIONS.seen.put( PotionOfLightHealing.class,       true);

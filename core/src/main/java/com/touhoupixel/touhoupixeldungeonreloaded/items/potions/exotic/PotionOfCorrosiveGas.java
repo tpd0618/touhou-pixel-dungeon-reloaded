@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.CorrosiveGas;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HecatiaRule;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -57,6 +58,8 @@ public class PotionOfCorrosiveGas extends ExoticPotion {
 			}
 		}
 
-		GameScene.add( Blob.seed( cell, centerVolume, CorrosiveGas.class ).setStrength( 2 + Dungeon.depth/5));
+		if (curUser.buff(HecatiaRule.class) == null) {
+			GameScene.add(Blob.seed(cell, centerVolume, CorrosiveGas.class).setStrength(2 + Dungeon.depth / 5));
+		}
 	}
 }

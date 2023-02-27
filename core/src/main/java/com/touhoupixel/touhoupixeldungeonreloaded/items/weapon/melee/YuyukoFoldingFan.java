@@ -39,6 +39,11 @@ public class YuyukoFoldingFan extends MeleeWeapon {
     }
 
     @Override
+    public int WarpFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int max(int lvl) {
         return  Math.round((Statistics.foodEaten)*0.3f+3f*(tier+1))+
                 lvl*Math.round(1.33f*(tier+1));

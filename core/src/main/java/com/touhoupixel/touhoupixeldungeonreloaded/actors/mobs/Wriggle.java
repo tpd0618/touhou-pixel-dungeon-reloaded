@@ -32,7 +32,7 @@ public class Wriggle extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 4);
+        return Random.NormalIntRange(2, 5);
     }
 
     @Override

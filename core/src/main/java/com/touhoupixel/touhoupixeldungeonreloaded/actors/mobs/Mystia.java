@@ -7,6 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleansingHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MystiaSprite;
@@ -33,7 +34,7 @@ public class Mystia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 7);
+        return Random.NormalIntRange(7, 9);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class Mystia extends Mob {
                 Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
+                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
             }
         }
         return damage;

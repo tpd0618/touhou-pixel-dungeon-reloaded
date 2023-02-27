@@ -91,7 +91,7 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	public int STRReq(int lvl){
-		return Math.max(1,(6 + Math.round(tier * 4)) - lvl);
+		return Math.max(1,(6 + Math.round(tier * 3)) - lvl);
 	}
 
 	@Override

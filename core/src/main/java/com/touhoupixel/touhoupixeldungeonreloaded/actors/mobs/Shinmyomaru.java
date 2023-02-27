@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -69,7 +70,7 @@ public class Shinmyomaru extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);

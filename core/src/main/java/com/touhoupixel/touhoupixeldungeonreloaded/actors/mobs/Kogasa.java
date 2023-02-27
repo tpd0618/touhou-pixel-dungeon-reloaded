@@ -38,7 +38,7 @@ public class Kogasa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 3);
+        return Random.NormalIntRange(3, 4);
     }
 
     @Override

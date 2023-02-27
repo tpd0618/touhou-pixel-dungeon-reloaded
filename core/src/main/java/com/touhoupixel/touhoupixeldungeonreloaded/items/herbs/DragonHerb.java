@@ -45,8 +45,8 @@ public class DragonHerb extends Herb {
 		super.execute(hero, action);
 
 		if (action.equals( AC_EAT )) {
-			GameScene.flash(-65536);
 			Sample.INSTANCE.play(Assets.Sounds.BLAST);
+			hero.sprite.emitter().burst( Speck.factory( Speck.CROWN), 12 );
 
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.pos == hero.pos + 1){

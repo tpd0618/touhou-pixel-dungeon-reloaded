@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HijiriSprite;
@@ -29,7 +30,7 @@ public class Byakuren extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 13);
+        return Random.NormalIntRange(13, 19);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class Byakuren extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(7) == 0) {
             Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION / 4f);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);

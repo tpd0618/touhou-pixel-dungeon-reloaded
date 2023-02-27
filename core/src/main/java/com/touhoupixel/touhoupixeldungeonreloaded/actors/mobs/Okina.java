@@ -58,7 +58,7 @@ public class Okina extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(20, 25);
+        return Random.NormalIntRange(23, 31);
     }
 
     @Override

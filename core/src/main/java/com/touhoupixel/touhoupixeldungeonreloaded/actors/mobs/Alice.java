@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -32,7 +33,7 @@ public class Alice extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 8);
+        return Random.NormalIntRange(7, 9);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class Alice extends Mob {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
             }
         }
         return damage;

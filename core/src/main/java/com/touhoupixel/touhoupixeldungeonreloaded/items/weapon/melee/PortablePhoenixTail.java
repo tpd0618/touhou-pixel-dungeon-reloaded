@@ -44,6 +44,11 @@ public class PortablePhoenixTail extends MeleeWeapon {
     }
 
     @Override
+    public int AnimalFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(100) == 0) {
             Statistics.life += 1;

@@ -64,7 +64,6 @@ public abstract class RegularPainter extends Painter {
 		return this;
 	}
 
-
 	private float sunnyFill = 0f;
 	private int sunnySmoothness;
 
@@ -74,8 +73,15 @@ public abstract class RegularPainter extends Painter {
 		return this;
 	}
 
+	private float ironFill = 0f;
+	private int ironSmoothness;
 
-	
+	public RegularPainter setIron(float fill, int smoothness){
+		ironFill = fill;
+		ironSmoothness = smoothness;
+		return this;
+	}
+
 	private int nTraps = 0;
 	private Class<? extends Trap>[] trapClasses;
 	private float[] trapChances;
@@ -149,6 +155,10 @@ public abstract class RegularPainter extends Painter {
 
 		if (sunnyFill > 0f){
 			paintSunny( level, rooms );
+		}
+
+		if (ironFill > 0f){
+			paintIron( level, rooms );
 		}
 		
 		if (nTraps > 0){
@@ -379,10 +389,6 @@ public abstract class RegularPainter extends Painter {
 		
 	}
 
-
-
-
-
 	protected void paintSunny( Level l, ArrayList<Room> rooms ) {
 		boolean[] grass = Patch.generate( l.width(), l.height(), sunnyFill, sunnySmoothness, true );
 
@@ -437,8 +443,59 @@ public abstract class RegularPainter extends Painter {
 		}
 	}
 
+	protected void paintIron( Level l, ArrayList<Room> rooms ) {
+		boolean[] grass = Patch.generate( l.width(), l.height(), ironFill, ironSmoothness, true );
 
+		ArrayList<Integer> ironCells = new ArrayList<>();
 
+		if (!rooms.isEmpty()){
+			for (Room r : rooms){
+				for (Point p : r.grassPlaceablePoints()){
+					int i = l.pointToCell(p);
+					if (grass[i] && l.map[i] == Terrain.EMPTY){
+						ironCells.add(i);
+					}
+				}
+			}
+		} else {
+			for (int i = 0; i < l.length(); i ++) {
+				if (grass[i] && l.map[i] == Terrain.EMPTY){
+					ironCells.add(i);
+				}
+			}
+		}
+
+		for (int i : ironCells) {
+			if (l.heaps.get(i) != null || l.findMob(i) != null) {
+				switch (Random.Int(3)) {
+					case 0:
+					default:
+						l.map[i] = Terrain.IRON_TILES;
+						break;
+					case 1:
+						l.map[i] = Terrain.SAND_TILES;
+						break;
+					case 2:
+						l.map[i] = Terrain.ICE_TILES;
+						break;
+				}
+				continue;
+			}
+
+			switch (Random.Int(3)) {
+				case 0:
+				default:
+					l.map[i] = Terrain.IRON_TILES;
+					break;
+				case 1:
+					l.map[i] = Terrain.SAND_TILES;
+					break;
+				case 2:
+					l.map[i] = Terrain.ICE_TILES;
+					break;
+			}
+		}
+	}
 	
 	protected void paintGrass( Level l, ArrayList<Room> rooms ) {
 		boolean[] grass = Patch.generate( l.width(), l.height(), grassFill, grassSmoothness, true );

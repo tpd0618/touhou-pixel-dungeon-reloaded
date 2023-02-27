@@ -44,6 +44,11 @@ public class SagumeWing extends MeleeWeapon {
     }
 
     @Override
+    public int HumanFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(80) == 0) {
             Statistics.playercorruption -= 1;

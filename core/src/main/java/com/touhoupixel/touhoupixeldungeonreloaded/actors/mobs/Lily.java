@@ -4,6 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -30,7 +31,7 @@ public class Lily extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 5);
+        return Random.NormalIntRange(3, 6);
     }
 
     @Override
@@ -48,6 +49,7 @@ public class Lily extends Mob {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(4) == 0) {
             Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+            Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             if (!(Statistics.difficulty > 2)) {
                 Buff.prolong(enemy, Haste.class, Haste.DURATION);
             }

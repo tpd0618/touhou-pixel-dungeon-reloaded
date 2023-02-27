@@ -150,10 +150,6 @@ public class Chasm implements Hero.Doom {
 			Buff.prolong(hero, Cripple.class, Cripple.DURATION);
 		}
 
-		if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
-			Statistics.mood += 1;
-		}
-
 		//The lower the hero's HP, the more bleed and the less upfront damage.
 		//Hero has a 50% chance to bleed out at 66% HP, and begins to risk instant-death at 25%
 		if (!Statistics.card53) {

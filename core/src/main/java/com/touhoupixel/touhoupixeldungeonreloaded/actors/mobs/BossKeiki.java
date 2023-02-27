@@ -43,7 +43,7 @@ public class BossKeiki extends Mob {
     {
         spriteClass = KeikiSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 3000 : 2000;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 1800 : 1200;
         defenseSkill = 45;
         EXP = 34;
         maxLvl = 99;

@@ -46,6 +46,11 @@ public class KyoukoBroom extends MeleeWeapon {
     }
 
     @Override
+    public int HumanFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(4) == 0) {
             Buff.prolong(defender, Vertigo.class, Vertigo.DURATION);

@@ -36,7 +36,7 @@ public class Eika extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 7);
+        return Random.NormalIntRange(4, 6);
     }
 
     @Override

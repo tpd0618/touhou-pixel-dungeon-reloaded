@@ -25,6 +25,8 @@ public class Reimu extends Mob {
         EXP = 25;
         maxLvl = 99;
 
+        baseSpeed = 3f;
+
         properties.add(Property.HUMAN);
 
         loot = new LifeFragment();

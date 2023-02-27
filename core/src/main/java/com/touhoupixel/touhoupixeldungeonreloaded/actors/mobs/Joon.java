@@ -39,7 +39,7 @@ public class Joon extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 14);
+        return Random.NormalIntRange(9, 14);
     }
 
     @Override

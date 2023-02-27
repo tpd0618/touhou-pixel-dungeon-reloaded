@@ -56,7 +56,7 @@ public class GlassBottle extends Item {
 		unique = true;
 	}
 
-	public int volume = 0; //was private
+	public int volume = 5; //was private
 
 	private static final String VOLUME	= "volume";
 

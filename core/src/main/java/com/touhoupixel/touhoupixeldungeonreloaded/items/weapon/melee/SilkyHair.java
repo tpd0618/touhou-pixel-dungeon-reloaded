@@ -46,6 +46,11 @@ public class SilkyHair extends MeleeWeapon {
     }
 
     @Override
+    public int GodFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int damageRoll(Char owner) {
         if (owner instanceof Hero) {
             Hero hero = (Hero)owner;

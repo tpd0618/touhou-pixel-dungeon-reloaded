@@ -38,7 +38,7 @@ public class Akyuu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 5);
+        return Random.NormalIntRange(3, 5);
     }
 
     @Override

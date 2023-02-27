@@ -19,38 +19,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfRingoDango extends Potion {
+public class NazrinRod extends MeleeWeapon {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_RINGODANGO;
+		image = ItemSpriteSheet.NAZRINROD;
+		hitSound = Assets.Sounds.HIT_CRUSH;
+		hitSoundPitch = 1f;
 
-		bones = true;
-	}
-	
-	@Override
-	public void apply( Hero hero ) {
-		identify();
-		Statistics.power += 150;
-		GLog.p(Messages.get(this, "ringo"));
-	}
-	
-	@Override
-	public int value() {
-		return isKnown() ? 50 * quantity : super.value();
+		tier = 2;
 	}
 
 	@Override
-	public int energyVal() {
-		return isKnown() ? 8 * quantity : super.energyVal();
+	public int max(int lvl) {
+		return  4*(tier+1) +    //12 base, down from 15
+				lvl*(tier+1);   //scaling unchanged
+	}
+
+	@Override
+	public int AnimalFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
+	public int defenseFactor( Char owner ) {
+		return Challenges.activeChallenges() > 5 ? 3 : 1;
 	}
 }

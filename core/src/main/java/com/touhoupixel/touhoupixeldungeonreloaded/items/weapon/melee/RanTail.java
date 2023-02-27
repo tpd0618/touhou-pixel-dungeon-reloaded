@@ -45,6 +45,11 @@ public class RanTail extends MeleeWeapon {
 	}
 
 	@Override
+	public int WarpFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public int damageRoll(Char owner) {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero)owner;

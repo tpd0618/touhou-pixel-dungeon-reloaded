@@ -62,7 +62,7 @@ public class Miyoi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(18, 23);
+        return Random.NormalIntRange(20, 28);
     }
 
     @Override

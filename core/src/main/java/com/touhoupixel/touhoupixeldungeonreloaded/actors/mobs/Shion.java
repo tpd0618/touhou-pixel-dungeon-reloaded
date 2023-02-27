@@ -38,7 +38,7 @@ public class Shion extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 14);
+        return Random.NormalIntRange(9, 14);
     }
 
     @Override
@@ -54,9 +54,9 @@ public class Shion extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
-            if (Dungeon.gold > 100) {
-                Dungeon.gold -= 100;
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+            if (Dungeon.gold > 200) {
+                Dungeon.gold -= 200;
                 Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);

@@ -21,8 +21,10 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.food;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
@@ -52,23 +54,27 @@ public class MysteryMeat extends Food {
 	}
 
 	public static void effect(Hero hero){
-		switch (Random.Int( 5 )) {
-			case 0:
-				GLog.w( Messages.get(MysteryMeat.class, "hot") );
-				Buff.affect( hero, Burning.class ).reignite( hero );
-				break;
-			case 1:
-				GLog.w( Messages.get(MysteryMeat.class, "legs") );
-				Buff.prolong( hero, Roots.class, Roots.DURATION*2f );
-				break;
-			case 2:
-				GLog.w( Messages.get(MysteryMeat.class, "not_well") );
-				Buff.affect( hero, Poison.class ).set( hero.HT / 5 );
-				break;
-			case 3:
-				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
-				Buff.prolong( hero, Slow.class, Slow.DURATION );
-				break;
+		if (Statistics.card22){
+			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
+		} else {
+			switch (Random.Int(5)) {
+				case 0:
+					GLog.w(Messages.get(MysteryMeat.class, "hot"));
+					Buff.affect(hero, Burning.class).reignite(hero);
+					break;
+				case 1:
+					GLog.w(Messages.get(MysteryMeat.class, "legs"));
+					Buff.prolong(hero, Roots.class, Roots.DURATION * 2f);
+					break;
+				case 2:
+					GLog.w(Messages.get(MysteryMeat.class, "not_well"));
+					Buff.affect(hero, Poison.class).set(hero.HT / 5);
+					break;
+				case 3:
+					GLog.w(Messages.get(MysteryMeat.class, "stuffed"));
+					Buff.prolong(hero, Slow.class, Slow.DURATION);
+					break;
+			}
 		}
 	}
 	

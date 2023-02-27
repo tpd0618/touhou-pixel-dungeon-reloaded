@@ -176,24 +176,6 @@ public class PrimateSpiritGardenBossLevel extends Level {
 		Dungeon.observe();
 	}
 
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HakureiShrineLevel.class, "water_name");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_name");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-
 	private static final String ISCOMPLETED = "iscompleted";
 
 	@Override
@@ -206,29 +188,5 @@ public class PrimateSpiritGardenBossLevel extends Level {
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle(bundle);
 		isCompleted = bundle.getBoolean( ISCOMPLETED );
-	}
-
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.ENTRANCE:
-				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
-			case Terrain.EXIT:
-				return Messages.get(HakureiShrineLevel.class, "exit_desc");
-			case Terrain.EMPTY_DECO:
-				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_desc");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
-			default:
-				return super.tileDesc( tile );
-		}
 	}
 }

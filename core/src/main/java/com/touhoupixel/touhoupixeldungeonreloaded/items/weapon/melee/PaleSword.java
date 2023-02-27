@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class PaleSword extends MeleeWeapon {
@@ -33,6 +34,11 @@ public class PaleSword extends MeleeWeapon {
 
 		tier = 3;
 		DLY = 0.8f; //1.25x speed
+	}
+
+	@Override
+	public int HumanFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

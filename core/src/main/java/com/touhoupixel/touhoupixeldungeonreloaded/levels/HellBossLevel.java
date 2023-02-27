@@ -25,12 +25,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Alice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKeiki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossOkina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chen;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eika;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eiki;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mystia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Toyohime;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yorihime;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuma;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -97,7 +107,7 @@ public class HellBossLevel extends Level {
 			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
-			W, W, d, d, W, W, W, e, e, d, d, d, d, d, e, e, W, W, W, d, d, W, W,
+			W, W, d, d, d, W, W, e, e, d, d, d, d, d, e, e, W, W, d, d, d, W, W,
 			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
 			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
 			W, W, e, e, x, e, e, W, e, d, d, d, d, d, e, W, e, e, x, e, e, W, W,
@@ -110,7 +120,7 @@ public class HellBossLevel extends Level {
 			W, W, e, e, x, e, e, W, e, d, d, d, d, d, e, W, e, e, x, e, e, W, W,
 			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
 			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
-			W, W, d, d, W, W, W, e, e, d, d, d, d, d, e, e, W, W, W, d, d, W, W,
+			W, W, d, d, d, W, W, e, e, d, d, d, d, d, e, e, W, W, d, d, d, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, E, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
@@ -159,6 +169,42 @@ public class HellBossLevel extends Level {
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
 
+		Reimu reimu = new Reimu();
+		reimu.state = reimu.WANDERING;
+		reimu.pos = 96;
+		GameScene.add( reimu );
+		reimu.beckon(Dungeon.hero.pos);
+
+		Toyohime toyohime = new Toyohime();
+		toyohime.state = toyohime.WANDERING;
+		toyohime.pos = 99;
+		GameScene.add( toyohime );
+		toyohime.beckon(Dungeon.hero.pos);
+
+		Yorihime yorihime = new Yorihime();
+		yorihime.state = yorihime.WANDERING;
+		yorihime.pos = 107;
+		GameScene.add( yorihime );
+		yorihime.beckon(Dungeon.hero.pos);
+
+		Utsuho utsuho = new Utsuho();
+		utsuho.state = utsuho.WANDERING;
+		utsuho.pos = 110;
+		GameScene.add( utsuho );
+		utsuho.beckon(Dungeon.hero.pos);
+
+		Yuuma yuuma = new Yuuma();
+		yuuma.state = yuuma.WANDERING;
+		yuuma.pos = 395;
+		GameScene.add( yuuma );
+		yuuma.beckon(Dungeon.hero.pos);
+
+		Eiki eiki = new Eiki();
+		eiki.state = eiki.WANDERING;
+		eiki.pos = 409;
+		GameScene.add( eiki );
+		eiki.beckon(Dungeon.hero.pos);
+
 		if (heroFOV[boss.pos]) {
 			boss.notice();
 			boss.sprite.alpha( 0 );
@@ -178,24 +224,6 @@ public class HellBossLevel extends Level {
 		Dungeon.observe();
 	}
 
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HakureiShrineLevel.class, "water_name");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_name");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-
 	private static final String ISCOMPLETED = "iscompleted";
 
 	@Override
@@ -208,29 +236,5 @@ public class HellBossLevel extends Level {
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle(bundle);
 		isCompleted = bundle.getBoolean( ISCOMPLETED );
-	}
-
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.ENTRANCE:
-				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
-			case Terrain.EXIT:
-				return Messages.get(HakureiShrineLevel.class, "exit_desc");
-			case Terrain.EMPTY_DECO:
-				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_desc");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
-			default:
-				return super.tileDesc( tile );
-		}
 	}
 }

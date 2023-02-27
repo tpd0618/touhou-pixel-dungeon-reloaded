@@ -27,8 +27,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
@@ -60,7 +62,7 @@ public class Sekibanki extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 10);
+        return Random.NormalIntRange(8, 12);
     }
 
     @Override
@@ -85,8 +87,9 @@ public class Sekibanki extends Mob {
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
             GLog.w(Messages.get(this, "fear"));
+            Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
+                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Silence.class, Silence.DURATION);

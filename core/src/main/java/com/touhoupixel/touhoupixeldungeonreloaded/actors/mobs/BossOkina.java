@@ -46,6 +46,15 @@ public class BossOkina extends Mob {
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(35), pos ).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
+
+        for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])){
+            if (mob instanceof Satono){
+                mob.die(null);
+            }
+            if (mob instanceof Mai){
+                mob.die(null);
+            }
+        }
     }
 
     @Override

@@ -26,7 +26,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
@@ -73,7 +76,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 8);
+		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 50) : Random.NormalIntRange(0, 2);
 	}
 
 	@Override
@@ -109,10 +112,12 @@ public class Toyohime extends Mob implements Callback {
 		if (hit(this, enemy, true)) {
 			//TODO would be nice for this to work on ghost/statues too
 			if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-				Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+				if (Dungeon.depth != 50) {
+					Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+				}
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
 				if (Statistics.difficulty > 2) {
-					Dungeon.hero.STR--;
+					Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
 				}
 				if (Statistics.difficulty > 4) {
 					Dungeon.hero.STR--;

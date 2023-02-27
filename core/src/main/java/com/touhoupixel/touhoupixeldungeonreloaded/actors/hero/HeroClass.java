@@ -36,14 +36,23 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPerfectMath;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.TransientTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YoumuHalfPhantom;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
 public enum HeroClass {
@@ -64,10 +73,9 @@ public enum HeroClass {
 			PotionOfHealing poh = new PotionOfHealing();
 			poh.quantity(3).identify().collect();
 		}
-		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
-			PotionOfPerfectMath popm = new PotionOfPerfectMath();
-			popm.quantity(3).identify().collect();
-		}
+
+		Food food = new Food();
+		food.collect();
 
 		hero.heroClass = this;
 

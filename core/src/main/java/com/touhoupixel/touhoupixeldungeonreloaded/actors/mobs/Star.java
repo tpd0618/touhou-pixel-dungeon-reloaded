@@ -33,7 +33,7 @@ public class Star extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 6);
+        return Random.NormalIntRange(4, 7);
     }
 
     @Override

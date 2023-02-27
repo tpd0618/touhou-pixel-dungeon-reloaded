@@ -98,9 +98,10 @@ public class HellLevel extends RegularLevel {
 	@Override
 	protected Painter painter() {
 		return new TouhouPainter()
-				.setWater(feeling == Feeling.WATER ? 0.85f : 0.30f, 5)
+				.setWater(feeling == Feeling.WATER ? 0.85f : 0.25f, 5)
 				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
-				.setSunny(0.35f, 5)
+				.setSunny(0.20f, 4)
+				.setIron(0.20f, 4)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
@@ -136,39 +137,7 @@ public class HellLevel extends RegularLevel {
 				2, 2, 2, 2, 2,
 				1, 1, 1, 1, 1};
 	}
-	
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HellLevel.class, "water_name");
-			case Terrain.GRASS:
-				return Messages.get(HellLevel.class, "grass_name");
-			case Terrain.HIGH_GRASS:
-				return Messages.get(HellLevel.class, "high_grass_name");
-			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(HellLevel.class, "statue_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-	
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HellLevel.class, "water_desc");
-			case Terrain.STATUE:
-			case Terrain.STATUE_SP:
-				return Messages.get(HellLevel.class, "statue_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(HellLevel.class, "bookshelf_desc");
-			default:
-				return super.tileDesc( tile );
-		}
-	}
-	
+
 	@Override
 	public Group addVisuals() {
 		super.addVisuals();

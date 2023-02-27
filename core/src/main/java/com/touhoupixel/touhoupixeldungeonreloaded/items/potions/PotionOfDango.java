@@ -19,52 +19,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Random;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-import java.util.ArrayList;
-
-public class SmallPower extends Item {
-
-	private static final String TXT_VALUE	= "%+d";
+public class PotionOfDango extends Potion {
 
 	{
-		image = ItemSpriteSheet.SMALL_POWER;
-		stackable = true;
-	}
+		icon = ItemSpriteSheet.Icons.POTION_DANGO;
 
-	public SmallPower() {
-		this( 1 );
-	}
-
-	public SmallPower(int value ) {
-		this.quantity = value;
+		bones = true;
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		return new ArrayList<>();
+	public void apply( Hero hero ) {
+		identify();
+		Statistics.power += 100;
+		Buff.prolong(hero, GoldCreation.class, GoldCreation.DURATION);
+		Buff.prolong(hero, KeyHeal.class, KeyHeal.DURATION);
+		GLog.p(Messages.get(this, "ringo"));
 	}
 	
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public int value() {
+		return isKnown() ? 50 * quantity : super.value();
+	}
 
-		Statistics.power += quantity;
-
-		GameScene.pickUp( this, pos );
-		hero.spendAndNext( TIME_TO_PICK_UP );
-		
-		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
-		updateQuickslot();
-		
-		return true;
+	@Override
+	public int energyVal() {
+		return isKnown() ? 8 * quantity : super.energyVal();
 	}
 }

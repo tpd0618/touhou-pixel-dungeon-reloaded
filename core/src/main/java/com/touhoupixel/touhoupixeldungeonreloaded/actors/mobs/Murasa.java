@@ -26,8 +26,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Electricity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Freezing;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BlobImmunity;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MurasaSprite;
@@ -190,5 +196,20 @@ public class Murasa extends Mob {
 			
 			return super.act(enemyInFOV, justAlerted);
 		}
+	}
+
+	@Override
+	public int attackProc( Char hero, int damage ) {
+		damage = super.attackProc( enemy, damage );
+		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+			Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+			if (Statistics.difficulty > 2) {
+				Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+			}
+			if (Statistics.difficulty > 4) {
+				Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+			}
+		}
+		return damage;
 	}
 }

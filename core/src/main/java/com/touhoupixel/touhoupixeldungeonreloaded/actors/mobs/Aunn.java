@@ -2,21 +2,11 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.WriggleSprite;
 import com.watabou.utils.Random;
 
 public class Aunn extends Mob {
@@ -37,7 +27,7 @@ public class Aunn extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 4);
+        return Random.NormalIntRange(2, 5);
     }
 
     @Override

@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -67,7 +66,7 @@ public class NitoChecker extends Item {
 		if (Dungeon.isChallenged(Challenges.DISTORTION)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "statsbocchi", Statistics.hitorilefttime);
 		}
-		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
+		if (Dungeon.isChallenged(Challenges.HISOUTEN_SWORD)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "stats7", Statistics.tenshiEarthquake);
 		}
 		if (Dungeon.isChallenged(Challenges.TIME_EATER)){

@@ -21,8 +21,10 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Blandfruit;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -34,7 +36,7 @@ public class HerbPouch extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Herb || item instanceof PatchouliCard){
+		if (item instanceof Herb || item instanceof PatchouliCard || item instanceof Honeypot || item instanceof Blandfruit){
 			return super.canHold(item);
 		} else {
 			return false;

@@ -247,7 +247,7 @@ public class ItemSpriteSheet {
 	public static final int REIMUEXORCISMROD = WEP_TIER1+0;
 	public static final int KYOUKO_BROOM     = WEP_TIER1+1;
 	public static final int SANAEEXORCISMROD = WEP_TIER1+2;
-	public static final int YOUMU_SWORD      = WEP_TIER1+3;
+	public static final int ROUKANKEN = WEP_TIER1+3;
 	public static final int KOISHIDAGGER = WEP_TIER1+4;
 	public static final int MARISASTAFF = WEP_TIER1+5;
 	public static final int JEWELED_PAGODA   = WEP_TIER1+6;
@@ -256,7 +256,7 @@ public class ItemSpriteSheet {
 		assignItemRect(REIMUEXORCISMROD, 13, 13);
 		assignItemRect(KYOUKO_BROOM,    13, 13);
 		assignItemRect(SANAEEXORCISMROD,          13, 13);
-		assignItemRect(YOUMU_SWORD,     13, 13);
+		assignItemRect(ROUKANKEN,     13, 13);
 		assignItemRect(KOISHIDAGGER,          13, 13);
 		assignItemRect(MARISASTAFF,     13, 13);
 		assignItemRect(JEWELED_PAGODA,  11, 15);
@@ -1327,7 +1327,7 @@ public class ItemSpriteSheet {
 		public static final int POTION_PARAGAS  = POTIONS+9;
 		public static final int POTION_PURITY   = POTIONS+10;
 		public static final int POTION_EXP      = POTIONS+11;
-		public static final int POTION_RINGODANGO = POTIONS+12;
+		public static final int POTION_DANGO = POTIONS+12;
 		public static final int POTION_MIGHT    = POTIONS+13;
 		public static final int POTION_DOUBLESPEED = POTIONS+14;
 		public static final int POTION_LIGHTHEALING = POTIONS+15;
@@ -1344,7 +1344,7 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_PARAGAS,     7, 7 );
 			assignIconRect( POTION_PURITY,      5, 7 );
 			assignIconRect( POTION_EXP,         7, 7 );
-			assignIconRect( POTION_RINGODANGO,       3, 7 );
+			assignIconRect(POTION_DANGO,       3, 7 );
 			assignIconRect( POTION_MIGHT,       7, 7 );
 			assignIconRect( POTION_DOUBLESPEED,       6, 6 );
 			assignIconRect( POTION_LIGHTHEALING,       6, 7 );

@@ -63,7 +63,7 @@ public class Nitori extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 11);
+        return Random.NormalIntRange(6, 10);
     }
 
     @Override

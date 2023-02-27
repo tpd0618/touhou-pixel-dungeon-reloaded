@@ -32,7 +32,7 @@ public class Nazrin extends Mob {
 
     @Override
     public int damageRoll() {
-        return Dungeon.gold > 200 ? Random.NormalIntRange(2, 4) :
+        return Dungeon.gold > 200 ? Random.NormalIntRange(3, 4) :
                 Random.NormalIntRange(1, 3);
     }
 

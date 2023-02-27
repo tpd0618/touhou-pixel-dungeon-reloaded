@@ -8,6 +8,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
@@ -44,6 +45,8 @@ public class BossMarisa extends Mob {
 
         properties.add(Property.BOSS);
         properties.add(Property.HUMAN);
+
+        immunities.add(Slow.class);
 
         loot = new Life();
         lootChance = 1f;

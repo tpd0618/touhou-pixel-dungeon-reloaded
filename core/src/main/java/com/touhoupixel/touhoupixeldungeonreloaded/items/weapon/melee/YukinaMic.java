@@ -47,6 +47,11 @@ public class YukinaMic extends MeleeWeapon {
     }
 
     @Override
+    public int AnimalFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(12) == 0) {
             Buff.prolong(attacker, Bless.class, Bless.DURATION);

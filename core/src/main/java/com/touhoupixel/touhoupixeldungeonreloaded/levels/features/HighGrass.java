@@ -36,6 +36,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Camouflage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.SandalsOfNature;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.BigPower;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.MaxPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -98,7 +100,17 @@ public class HighGrass {
 						flask.volume += 1;
 						Item.updateQuickslot();
 						Sample.INSTANCE.play(Assets.Sounds.DEWDROP);
-					} else level.drop(new Dewdrop(), pos).sprite.drop();
+					} else {
+						if ((Random.Int(2) == 0)) {
+							level.drop(new Dewdrop(), pos).sprite.drop();
+						} else {
+							if ((Random.Int(8) == 0 && ch instanceof Hero)) {
+								level.drop(new MaxPower(), pos).sprite.drop();
+							} else {
+								level.drop(new BigPower(), pos).sprite.drop();
+							}
+						}
+					}
 				}
 			}
 

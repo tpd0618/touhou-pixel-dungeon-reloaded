@@ -76,7 +76,7 @@ public class Miracle extends Item {
 					} else {
 						Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
 					}
-					if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 						Statistics.mood += 1;
 					}
 					Statistics.spellcard -= 1;
@@ -89,7 +89,7 @@ public class Miracle extends Item {
 					} else {
 						Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 					}
-					if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 						Statistics.mood += 1;
 					}
 					curUser.HP -= 4;
@@ -110,7 +110,7 @@ public class Miracle extends Item {
 					} else {
 						Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 					}
-					if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 						Statistics.mood += 1;
 					}
 					Statistics.spellcard -= 1;

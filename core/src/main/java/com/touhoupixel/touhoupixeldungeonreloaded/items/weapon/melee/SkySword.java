@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class SkySword extends MeleeWeapon {
@@ -33,6 +34,11 @@ public class SkySword extends MeleeWeapon {
 
 		tier = 3;
 		DLY = 0.5f; //2x speed
+	}
+
+	@Override
+	public int WarpFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

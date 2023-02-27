@@ -61,7 +61,7 @@ public class Kanako extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 16);
+        return Random.NormalIntRange(14, 22);
     }
 
     @Override

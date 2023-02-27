@@ -22,10 +22,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SparkParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -55,7 +61,7 @@ public class Tojiko extends Mob implements Callback {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 10, 15 );
+		return Random.NormalIntRange(10, 17);
 	}
 
 	@Override
@@ -88,8 +94,17 @@ public class Tojiko extends Mob implements Callback {
 			spend( TIME_TO_ZAP );
 
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(9, 14);
+				int dmg = Random.NormalIntRange(10, 15);
 				enemy.damage( dmg, new LightningBolt() );
+				if (Dungeon.gold > 100) {
+					Dungeon.gold -= 100;
+				}
+				if (Statistics.difficulty > 2) {
+					Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+				}
+				if (Statistics.difficulty > 4) {
+					Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+				}
 
 				if (enemy.sprite.visible) {
 					enemy.sprite.centerEmitter().burst(SparkParticle.FACTORY, 3);

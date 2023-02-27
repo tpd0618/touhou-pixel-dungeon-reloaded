@@ -40,7 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.watabou.utils.Reflection;
@@ -96,8 +96,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfDoublespeed.class, PotionOfLightReverse.class);
 		exoToReg.put(PotionOfLightReverse.class, PotionOfDoublespeed.class);
 
-		regToExo.put(PotionOfRingoDango.class, PotionOfPhilosopher.class);
-		exoToReg.put(PotionOfPhilosopher.class, PotionOfRingoDango.class);
+		regToExo.put(PotionOfDango.class, PotionOfPhilosopher.class);
+		exoToReg.put(PotionOfPhilosopher.class, PotionOfDango.class);
 
 		regToExo.put(PotionOfLightHealing.class, PotionOfEnlightenment.class);
 		exoToReg.put(PotionOfEnlightenment.class, PotionOfLightHealing.class);

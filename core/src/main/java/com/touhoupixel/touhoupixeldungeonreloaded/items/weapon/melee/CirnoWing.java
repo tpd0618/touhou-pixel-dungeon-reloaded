@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class CirnoWing extends MeleeWeapon {
@@ -34,6 +35,11 @@ public class CirnoWing extends MeleeWeapon {
 		tier = 4;
 		ACC = 0.8f; //0.8x accuracy
 		//also cannot surprise attack, see Hero.canSurpriseAttack
+	}
+
+	@Override
+	public int HumanFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

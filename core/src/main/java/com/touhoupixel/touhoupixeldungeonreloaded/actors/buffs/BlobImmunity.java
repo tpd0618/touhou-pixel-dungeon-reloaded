@@ -45,7 +45,7 @@ public class BlobImmunity extends FlavourBuff {
 		type = buffType.POSITIVE;
 	}
 	
-	public static final float DURATION	= 20f;
+	public static final float DURATION	= 40f;
 	
 	@Override
 	public int icon() {

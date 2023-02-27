@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
@@ -279,7 +278,7 @@ public class Potion extends Item {
 					
 				} else {
 					drink( hero );
-				if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+				if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 					Statistics.mood += 1;
 				}
 				Buff.detach( hero, PotionPressure.class);

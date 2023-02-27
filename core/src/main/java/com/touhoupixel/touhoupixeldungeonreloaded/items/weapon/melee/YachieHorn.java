@@ -47,6 +47,11 @@ public class YachieHorn extends MeleeWeapon {
     }
 
     @Override
+    public int AnimalFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         Buff.prolong(attacker, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
         return super.proc(attacker, defender, damage);

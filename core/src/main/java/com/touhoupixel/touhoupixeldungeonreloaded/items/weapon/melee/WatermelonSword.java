@@ -44,6 +44,11 @@ public class WatermelonSword extends MeleeWeapon {
     }
 
     @Override
+    public int HumanFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (attacker.HP == 9 || attacker.HP == 19 || attacker.HP == 29 || attacker.HP == 39 || attacker.HP == 49 || attacker.HP == 59 || attacker.HP == 69 || attacker.HP == 79 || attacker.HP == 89 || attacker.HP == 90 || attacker.HP == 91 || attacker.HP == 92 || attacker.HP == 93 || attacker.HP == 94 || attacker.HP == 95 || attacker.HP == 96 || attacker.HP == 97 || attacker.HP == 98 || attacker.HP == 109 || attacker.HP == 119 || attacker.HP == 129 || attacker.HP == 139 || attacker.HP == 149 || attacker.HP == 159 || attacker.HP == 169 || attacker.HP == 179 || attacker.HP == 189 || attacker.HP == 190 || attacker.HP == 191 || attacker.HP == 192 || attacker.HP == 193 || attacker.HP == 194 || attacker.HP == 195 || attacker.HP == 196 || attacker.HP == 197 || attacker.HP == 198){
             damage *= 1.5f;

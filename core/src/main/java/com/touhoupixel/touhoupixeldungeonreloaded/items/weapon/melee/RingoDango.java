@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class RingoDango extends MeleeWeapon {
@@ -33,6 +34,11 @@ public class RingoDango extends MeleeWeapon {
         hitSoundPitch = 1f;
 
         tier = 2;
+    }
+
+    @Override
+    public int YokaiFactor( Char owner ) {
+        return 1;
     }
 
     @Override

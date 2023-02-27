@@ -47,6 +47,11 @@ public class KanonDrumstick extends MeleeWeapon {
     }
 
     @Override
+    public int WarpFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(7) == 0) {
             Buff.prolong(attacker, HomingBlade.class, HomingBlade.DURATION);

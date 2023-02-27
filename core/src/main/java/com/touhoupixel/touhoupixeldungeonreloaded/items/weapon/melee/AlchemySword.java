@@ -44,6 +44,11 @@ public class AlchemySword extends MeleeWeapon {
     }
 
     @Override
+    public int GodFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(9) == 0) {
             Dungeon.energy += 1;

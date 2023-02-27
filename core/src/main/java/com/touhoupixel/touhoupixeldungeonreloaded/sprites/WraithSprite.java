@@ -25,31 +25,26 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.watabou.noosa.TextureFilm;
 
 public class WraithSprite extends MobSprite {
-	
+
 	public WraithSprite() {
 		super();
-		
+
 		texture( Assets.Sprites.WRAITH );
-		
-		TextureFilm frames = new TextureFilm( texture, 14, 15 );
-		
-		idle = new Animation( 5, true );
-		idle.frames( frames, 0, 1 );
-		
-		run = new Animation( 10, true );
-		run.frames( frames, 0, 1 );
-		
-		attack = new Animation( 10, false );
-		attack.frames( frames, 0, 2, 3 );
-		
-		die = new Animation( 8, false );
-		die.frames( frames, 0, 4, 5, 6, 7 );
-		
+
+		TextureFilm frames = new TextureFilm( texture, 12, 15 );
+
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0, 0, 0, 1, 0, 0, 1, 1 );
+
+		run = new Animation( 12, true );
+		run.frames( frames, 4, 5, 6, 7 );
+
+		attack = new Animation( 12, false );
+		attack.frames( frames, 2, 3, 0 );
+
+		die = new Animation( 12, false );
+		die.frames( frames, 8, 9, 10 );
+
 		play( idle );
-	}
-	
-	@Override
-	public int blood() {
-		return 0x88000000;
 	}
 }

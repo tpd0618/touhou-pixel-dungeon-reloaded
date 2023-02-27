@@ -33,7 +33,7 @@ public class Remilia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 10);
+        return Random.NormalIntRange(7, 9);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Remilia extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(9) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(8) == 0) {
             Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION/2f);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, ReBirth.class, ReBirth.DURATION);

@@ -93,7 +93,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfRingoDango;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
@@ -174,11 +174,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloa
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.NazrinRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RanTail;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
@@ -189,7 +193,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YoumuSword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoakumaWing;
@@ -279,7 +283,7 @@ public class Generator {
 		ARMOR_T4	( 0, 0, Armor.class ),
 		ARMOR_T5	( 0, 0, Armor.class ),
 
-		MISSILE ( 1, 2, MissileWeapon.class ),
+		MISSILE ( 2, 2, MissileWeapon.class ),
 		MIS_T1  ( 0, 0, MissileWeapon.class ),
 		MIS_T2  ( 0, 0, MissileWeapon.class ),
 		MIS_T3  ( 0, 0, MissileWeapon.class ),
@@ -291,16 +295,16 @@ public class Generator {
 		ARTIFACT( 0, 1, Artifact.class),
 
 		FOOD	( 0, 0, Food.class ),
-		HERB	( 0, 0, Herb.class ),
+		HERB	( 4, 4, Herb.class ),
 
-		POTION	( 8, 8, Potion.class ),
+		POTION	( 6, 6, Potion.class ),
 		SEED	( 1, 1, Plant.Seed.class ),
 
-		SCROLL	( 8, 8, Scroll.class ),
+		SCROLL	( 6, 6, Scroll.class ),
 		STONE   ( 1, 1, Runestone.class),
-		TALISMAN( 7, 7, Talisman.class),
+		TALISMAN( 5, 5, Talisman.class),
 
-		GOLD	( 10, 10,   Gold.class );
+		GOLD	( 7, 7,   Gold.class );
 
 		public Class<?>[] classes;
 
@@ -351,14 +355,14 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class,
-					PotionOfRingoDango.class,
+					PotionOfDango.class,
 					PotionOfMight.class,
 					PotionOfDoublespeed.class,
 					PotionOfLightHealing.class,
 					PotionOfMagic.class,
 					PotionOfDanmaku.class,
 					PotionOfYingYang.class};
-			POTION.defaultProbs = new float[]{ 8, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			POTION.defaultProbs = new float[]{ 6, 4, 4, 4, 4, 4, 4, 5, 4, 5, 1, 4, 4, 4, 4, 4, 4, 4 };
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -392,7 +396,7 @@ public class Generator {
 					ScrollOfTransmutation.class,
 					ScrollOfHeavenDuel.class
 			};
-			SCROLL.defaultProbs = new float[]{ 8, 8, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			SCROLL.defaultProbs = new float[]{ 2, 8, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
@@ -430,7 +434,7 @@ public class Generator {
 					ResetTalisman.class,
 					CirnoTalisman.class
 			};
-			TALISMAN.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			TALISMAN.defaultProbs = new float[]{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{
@@ -474,9 +478,11 @@ public class Generator {
 					KoakumaWing.class,
 					RingoDango.class,
 					SilkyHair.class,
-					KyoukoBroom.class
+					KyoukoBroom.class,
+					NazrinRod.class,
+					KokoroFan.class
 			};
-			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4 };
+			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T3.classes = new Class<?>[]{
 					SmallYingYangOrb.class,
@@ -486,9 +492,11 @@ public class Generator {
 					SkySword.class,
 					ShinmyomaruNeedle.class,
 					AlchemySword.class,
-					WatermelonSword.class
+					WatermelonSword.class,
+					JeweledBranch.class,
+					HinaRibbon.class
 			};
-			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4 };
+			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T4.classes = new Class<?>[]{
 					MediumYingYangOrb.class,
@@ -511,7 +519,7 @@ public class Generator {
 					SeiranHammer.class,
 					JunkoSword.class,
 					AyaFan.class,
-					YoumuSword.class,
+					Roukanken.class,
 					SevenStarSword.class,
 					PortablePhoenixTail.class,
 					ChimataCloak.class,
@@ -638,7 +646,7 @@ public class Generator {
 					SonarHerb.class,
 					PurityHerb.class,
 					SpearheadHerb.class };
-			HERB.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			HERB.probs = new float[]{ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 };
 
 			RING.classes = new Class<?>[]{
 					RingOfAccuracy.class,

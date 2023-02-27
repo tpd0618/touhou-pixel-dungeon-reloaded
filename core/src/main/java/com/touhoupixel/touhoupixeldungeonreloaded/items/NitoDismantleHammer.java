@@ -4,7 +4,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
@@ -103,9 +106,7 @@ public class NitoDismantleHammer extends Item {
             } else {
                 item.detach(curUser.belongings.backpack);
                 Dungeon.level.drop(new UpgradeCard().quantity(item.level()), curUser.pos).sprite.drop();
-                if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
-                    Statistics.mood += 1;
-                }
+                Buff.detach(curUser, DismantlePressure.class);
                 updateQuickslot();
 
                 Sample.INSTANCE.play(Assets.Sounds.DRINK);

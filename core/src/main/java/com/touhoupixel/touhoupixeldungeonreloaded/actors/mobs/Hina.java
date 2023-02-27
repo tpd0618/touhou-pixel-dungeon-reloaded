@@ -66,7 +66,7 @@ public class Hina extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             new CursingTrap().set(enemy.pos).activate();
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);

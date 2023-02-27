@@ -87,13 +87,7 @@ public abstract class Plant implements Bundlable {
 				Dungeon.level.drop(Reflection.newInstance(seedClass), pos).sprite.drop();
 			}
 		}
-
 		Char ch = Actor.findChar(pos);
-
-		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
-			Statistics.mood += 1;
-		}
-
 	}
 
 	private static final String POS	= "pos";

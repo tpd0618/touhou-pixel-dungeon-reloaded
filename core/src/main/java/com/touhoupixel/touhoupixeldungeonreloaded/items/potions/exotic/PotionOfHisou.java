@@ -23,8 +23,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -37,6 +39,11 @@ public class PotionOfHisou extends ExoticPotion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Buff.prolong(hero, Hisou.class, Hisou.DURATION);
+		if (Statistics.card45) {
+			Buff.prolong(hero, Hisou.class, Hisou.DURATION*3f);
+			Buff.affect(hero, Levitation.class, Levitation.DURATION/4f);
+		} else {
+			Buff.prolong(hero, Hisou.class, Hisou.DURATION);
+		}
 	}
 }

@@ -42,6 +42,11 @@ public class MystiaWing extends MeleeWeapon {
 	}
 
 	@Override
+	public int AnimalFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public int defenseFactor( Char owner ) {
 		return 2;	//2 extra defence
 	}

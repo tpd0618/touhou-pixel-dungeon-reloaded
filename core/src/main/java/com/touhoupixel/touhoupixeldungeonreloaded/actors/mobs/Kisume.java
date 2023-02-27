@@ -61,7 +61,7 @@ public class Kisume extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange(13, 20);
     }
 
     @Override

@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class ShinmyomaruNeedle extends MeleeWeapon {
@@ -33,6 +34,11 @@ public class ShinmyomaruNeedle extends MeleeWeapon {
 
 		tier = 3;
 		RCH = 3;    //lots of extra reach
+	}
+
+	@Override
+	public int YokaiFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

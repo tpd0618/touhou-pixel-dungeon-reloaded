@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -72,7 +71,7 @@ public class Herb extends Item {
 			SpellSprite.show(hero, SpellSprite.FOOD);
 			Sample.INSTANCE.play(Assets.Sounds.EAT);
 
-			if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+			if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 				Statistics.mood += 1;
 			}
 

@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -38,7 +39,7 @@ public class Youmu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(25, 27);
+        return Random.NormalIntRange(24, 30);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class Youmu extends Mob {
                 Buff.affect(enemy, Burning.class).reignite(enemy, 15f);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, Slow.class, Slow.DURATION);
+                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
             }
         }
         return damage;

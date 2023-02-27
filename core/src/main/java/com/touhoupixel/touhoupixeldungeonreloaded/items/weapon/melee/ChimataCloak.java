@@ -45,6 +45,11 @@ public class ChimataCloak extends MeleeWeapon {
     }
 
     @Override
+    public int WarpFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(100) == 0) {
             Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();

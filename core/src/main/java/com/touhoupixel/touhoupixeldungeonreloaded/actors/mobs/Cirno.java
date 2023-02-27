@@ -36,7 +36,7 @@ public class Cirno extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 7);
+        return Random.NormalIntRange(5, 6);
     }
 
     @Override

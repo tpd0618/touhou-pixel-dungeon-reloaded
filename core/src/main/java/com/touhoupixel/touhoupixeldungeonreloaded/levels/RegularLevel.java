@@ -116,7 +116,7 @@ public abstract class RegularLevel extends Level {
 		if (Dungeon.shopOnLevel())
 			initRooms.add(new ShopRoom());
 
-		if (Dungeon.cardshopOnLevel())
+		if (Dungeon.cardShopOnLevel())
 			initRooms.add(new CardShopRoom());
 
 		//force max special rooms and add one more for large levels
@@ -167,9 +167,7 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 
 	protected int nTraps() {
-		return Dungeon.isChallenged(Challenges.STARRY_HOUSE) ?
-				Random.NormalIntRange(5, 7):
-				Random.NormalIntRange(3, 5);
+		return Random.NormalIntRange(4, 6);
 	}
 
 	protected Class<?>[] trapClasses(){
@@ -182,8 +180,6 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	public int mobLimit() {
-		if (Dungeon.depth <= 1) return 0;
-
 		int mobs = 6 + Dungeon.depth % 5 + Random.Int(3);
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.33f);
@@ -199,8 +195,7 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	protected void createMobs() {
-		//on floor 1, 8 pre-set mobs are created so the player can get level 2.
-		int mobsToSpawn = Dungeon.depth == 1 ? 8 : mobLimit();
+		int mobsToSpawn = mobLimit();
 
 		ArrayList<Room> stdRooms = new ArrayList<>();
 		for (Room room : rooms) {
@@ -233,7 +228,7 @@ public abstract class RegularLevel extends Level {
 				mobs.add(mob);
 
 				//chance to add a second mob to this room, except on floor 1
-				if (Dungeon.depth > 1 && mobsToSpawn > 0 && Random.Int(4) == 0){
+				if (mobsToSpawn > 0 && Random.Int(4) == 0){
 					mob = createMob();
 
 					tries = 30;
@@ -321,15 +316,15 @@ public abstract class RegularLevel extends Level {
 	@Override
 	protected void createItems() {
 
-		// drops 3/4/5 items 60%/30%/10% of the time
-		int nItems = 10 + Random.chances(new float[]{6, 3, 1});
+		// drops 3/4/5 items 50%/30%/20% of the time
+		int nItems = 5 + Random.chances(new float[]{5, 3, 2});
 
 		if (feeling == Feeling.LARGE){
-			nItems += 10;
+			nItems += 3;
 		}
 
-		if (Dungeon.isChallenged(Challenges.FIRE_EMBLEM_ENGAGE)){
-			nItems += 10;
+		if (Dungeon.isChallenged(Challenges.FUMO_ORDER_CLOSED)){
+			nItems -= 3;
 		}
 
 		for (int i=0; i < nItems; i++) {
@@ -369,7 +364,7 @@ public abstract class RegularLevel extends Level {
 			if ((toDrop instanceof Artifact && Random.Int(2) == 0) ||
 					(toDrop.isUpgradable() && Random.Int(4 - toDrop.level()) == 0)){
 
-				if (Dungeon.depth > 1 && Random.Int(10) == 0 && findMob(cell) == null){
+				if (Random.Int(10) == 0 && findMob(cell) == null){
 					mobs.add(Mimic.spawnAt(cell, toDrop, GoldenMimic.class));
 				} else {
 					Heap dropped = drop(toDrop, cell);

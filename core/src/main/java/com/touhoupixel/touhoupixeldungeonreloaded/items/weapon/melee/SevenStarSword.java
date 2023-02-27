@@ -45,6 +45,11 @@ public class SevenStarSword extends MeleeWeapon {
     }
 
     @Override
+    public int HumanFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(10) == 0) {
             Statistics.spellcardfragment += 1;

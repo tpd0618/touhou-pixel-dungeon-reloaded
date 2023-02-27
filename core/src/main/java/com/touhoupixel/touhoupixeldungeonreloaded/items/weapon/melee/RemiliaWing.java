@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class RemiliaWing extends MeleeWeapon {
@@ -36,6 +37,11 @@ public class RemiliaWing extends MeleeWeapon {
 
 	//Essentially it's a tier 4 weapon, with tier 3 base max damage, and tier 5 scaling.
 	//equal to tier 4 in damage at +5
+
+	@Override
+	public int AnimalFactor( Char owner ) {
+		return 1;
+	}
 
 	@Override
 	public int max(int lvl) {

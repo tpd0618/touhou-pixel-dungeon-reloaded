@@ -46,6 +46,11 @@ public class YuukaUmbrella extends MeleeWeapon {
     }
 
     @Override
+    public int GodFactor( Char owner ) {
+        return 1;
+    }
+
+    @Override
     public int proc(Char attacker, Char defender, int damage) {
         Ballistica trajectory = new Ballistica(attacker.pos, defender.pos, Ballistica.STOP_TARGET);
         //trim it to just be the part that goes past them

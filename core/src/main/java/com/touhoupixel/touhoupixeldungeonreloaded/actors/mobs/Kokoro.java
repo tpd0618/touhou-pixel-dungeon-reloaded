@@ -33,7 +33,7 @@ public class Kokoro extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(1, 5);
+        return Random.NormalIntRange(3, 5);
     }
 
     @Override

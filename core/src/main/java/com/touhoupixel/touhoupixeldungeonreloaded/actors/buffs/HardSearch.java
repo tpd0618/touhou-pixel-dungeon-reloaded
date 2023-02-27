@@ -24,9 +24,9 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class FlandreMark extends FlavourBuff {
+public class HardSearch extends FlavourBuff {
 	
-	public static final float DURATION = 99999f;
+	public static final float DURATION = 50f;
 	
 	{
 		type = buffType.NEGATIVE;
@@ -35,7 +35,7 @@ public class FlandreMark extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.FLANDRE_MARK;
+		return BuffIndicator.HARD_SEARCH;
 	}
 
 	@Override
@@ -46,11 +46,6 @@ public class FlandreMark extends FlavourBuff {
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
-	}
-	
-	@Override
-	public String heroMessage() {
-		return Messages.get(this, "heromsg");
 	}
 	
 	@Override

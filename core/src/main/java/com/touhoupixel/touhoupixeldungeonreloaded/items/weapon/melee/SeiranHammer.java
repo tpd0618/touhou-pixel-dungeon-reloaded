@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class SeiranHammer extends MeleeWeapon {
@@ -38,6 +39,11 @@ public class SeiranHammer extends MeleeWeapon {
 	public int max(int lvl) {
 		return  5*(tier+4) +    //45 base, up from 30
 				lvl*(tier+1);   //scaling unchanged
+	}
+
+	@Override
+	public int AnimalFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

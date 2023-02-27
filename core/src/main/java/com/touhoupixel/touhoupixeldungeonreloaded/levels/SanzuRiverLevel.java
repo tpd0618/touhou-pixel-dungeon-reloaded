@@ -82,9 +82,10 @@ public class SanzuRiverLevel extends RegularLevel {
 	@Override
 	protected Painter painter() {
 		return new TouhouPainter()
-				.setWater(feeling == Feeling.WATER ? 0.85f : 0.30f, 5)
+				.setWater(feeling == Feeling.WATER ? 0.85f : 0.25f, 5)
 				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
-				.setSunny(0.35f, 5)
+				.setSunny(0.20f, 4)
+				.setIron(0.20f, 4)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
@@ -130,28 +131,6 @@ public class SanzuRiverLevel extends RegularLevel {
 			if (level.map[i] == Terrain.WALL_DECO) {
 				group.add( new Sink( i ) );
 			}
-		}
-	}
-	
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(SanzuRiverLevel.class, "water_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-	
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.EMPTY_DECO:
-				return Messages.get(SanzuRiverLevel.class, "empty_deco_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(SanzuRiverLevel.class, "bookshelf_desc");
-			default:
-				return super.tileDesc( tile );
 		}
 	}
 	

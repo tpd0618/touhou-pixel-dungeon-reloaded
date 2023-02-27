@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -70,7 +71,11 @@ public class GrimTrap extends Trap {
 			
 			//almost kill the player
 			if (finalTarget == Dungeon.hero && ((float)finalTarget.HP/finalTarget.HT) >= 0.9f){
-				damage = finalTarget.HP-1;
+				if (Statistics.card63) {
+					damage = 6;
+				} else {
+					damage = finalTarget.HP - 1;
+				}
 			//kill 'em
 			} else {
 				damage = finalTarget.HP;

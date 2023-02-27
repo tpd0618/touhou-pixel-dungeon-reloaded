@@ -29,14 +29,14 @@ public class Challenges {
 	public static final int TUTORIAL            = 1;
 	public static final int DISTORTION          = 2;
 	public static final int REBIRTH_DAY         = 4;
-	public static final int RINGING_BLOOM		= 8;
-	public static final int FLAME_KEYSTONE      = 16;
-	public static final int LOTUS_LABYRINTH     = 32;
+	public static final int RINGING_BLOOM       = 8;
+	public static final int FUMO_ORDER_CLOSED   = 16;
+	public static final int DREAM_LOGICAL_WORLD = 32;
 	public static final int TIME_EATER          = 64;
-	public static final int SWORD_OF_HISOU      = 128;
+	public static final int HISOUTEN_SWORD      = 128;
 	public static final int STARRY_HOUSE        = 256;
-	public static final int ASYLUM_OF_DANMAKU   = 512;
-	public static final int FIRE_EMBLEM_ENGAGE  = 1024;
+	public static final int UNCONSCIOUS_ROSE    = 512;
+	public static final int PATIENT_ROGUE       = 1024;
 
 	public static final int MAX_VALUE           = 2047;
 
@@ -45,18 +45,18 @@ public class Challenges {
 			"distortion",
 			"rebirth_day",
 			"ringing_bloom",
-			"flame_keystone",
-			"lotus_labyrinth",
+			"fumo_order_closed",
+			"dream_logical_world",
 			"time_eater",
-			"sword_of_hisou",
+			"hisouten_sword",
 			"starry_house",
-			"asylum_of_danmaku",
-			"fire_emblem_engage"
+			"unconscious_rose",
+			"patient_rogue"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, FLAME_KEYSTONE, LOTUS_LABYRINTH,
-			TIME_EATER, SWORD_OF_HISOU, STARRY_HOUSE, ASYLUM_OF_DANMAKU, FIRE_EMBLEM_ENGAGE
+			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, FUMO_ORDER_CLOSED, DREAM_LOGICAL_WORLD,
+			TIME_EATER, HISOUTEN_SWORD, STARRY_HOUSE, UNCONSCIOUS_ROSE, PATIENT_ROGUE
 	};
 
 	public static int activeChallenges(){

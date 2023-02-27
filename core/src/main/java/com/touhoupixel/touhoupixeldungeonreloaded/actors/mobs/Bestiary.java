@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class Bestiary {
 			case 14:
 			case 15:
 				return new ArrayList<>(Arrays.asList(
-						Koakuma.class, Meiling.class, Patchouli.class, Sakuya.class, Remilia.class));
+						Mamizou.class, Koakuma.class, Meiling.class, Patchouli.class, Sakuya.class, Remilia.class));
 			case 16:
 			case 17:
 				return new ArrayList<>(Arrays.asList(
@@ -109,7 +108,7 @@ public class Bestiary {
 			case 39:
 			case 40:
 				return new ArrayList<>(Arrays.asList(
-						Hecatia.class, Yuugi.class, Clownpiece.class, Chimata.class, Iku.class, Tenshi.class));
+						Hecatia.class, Yuugi.class, Suika.class, Clownpiece.class, Chimata.class, Iku.class, Tenshi.class));
 			case 41:
 			case 42:
 				return new ArrayList<>(Arrays.asList(

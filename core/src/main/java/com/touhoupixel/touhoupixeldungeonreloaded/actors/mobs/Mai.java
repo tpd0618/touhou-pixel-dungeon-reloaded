@@ -62,7 +62,7 @@ public class Mai extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(19, 22);
+        return Random.NormalIntRange(22, 30);
     }
 
     @Override

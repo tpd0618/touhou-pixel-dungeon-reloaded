@@ -1,6 +1,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -30,7 +31,7 @@ public class Nemuno extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 13);
+        return Random.NormalIntRange(10, 15);
     }
 
     @Override
@@ -46,11 +47,13 @@ public class Nemuno extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(7) == 0 && hero.HP > 3 && enemy instanceof Hero) {
-            damage = Math.max(damage, hero.HP / 2);
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            GLog.w(Messages.get(this, "torment"));
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            if (Random.Int(5) == 0 && hero.HP > 3 && enemy instanceof Hero) {
+                damage = Math.max(damage, hero.HP / 2);
+                Sample.INSTANCE.play(Assets.Sounds.CURSED);
+                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+                GLog.w(Messages.get(this, "torment"));
+            }
         }
         return damage;
     }

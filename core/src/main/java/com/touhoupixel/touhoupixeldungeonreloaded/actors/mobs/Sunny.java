@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -34,7 +35,7 @@ public class Sunny extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 6);
+        return Random.NormalIntRange(4, 7);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class Sunny extends Mob {
                 Buff.prolong(enemy, Weakness.class, Weakness.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             }
         }
         return damage;

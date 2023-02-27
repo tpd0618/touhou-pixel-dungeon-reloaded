@@ -35,7 +35,7 @@ public class AntiSneakattack extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.ANTISNEAKATTACK;
+		return BuffIndicator.ANTI_SNEAKATTACK;
 	}
 
 	@Override

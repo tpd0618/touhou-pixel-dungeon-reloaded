@@ -33,7 +33,7 @@ public class Kosuzu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 5);
+        return Random.NormalIntRange(3, 4);
     }
 
     @Override

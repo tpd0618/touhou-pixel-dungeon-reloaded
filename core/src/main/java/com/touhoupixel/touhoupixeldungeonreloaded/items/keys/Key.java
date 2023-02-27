@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
@@ -52,13 +54,13 @@ public abstract class Key extends Item {
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
 		GameScene.pickUpJournal(this, pos);
+		if (hero.buff(KeyHeal.class) != null){
+			hero.HP = Math.min(hero.HP + 50, hero.HT);
+		}
 		WndJournal.last_index = 2;
 		Notes.add(this);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
 		hero.spendAndNext( TIME_TO_PICK_UP );
-		if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
-			Statistics.mood += 1;
-		}
 		GameScene.updateKeyDisplay();
 		return true;
 	}

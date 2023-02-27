@@ -42,6 +42,10 @@ public class YoumuHalfPhantom extends MeleeWeapon {
 				lvl*(tier-1);                   //+2 per level, down from +4
 	}
 
+	@Override
+	public int AnimalFactor( Char owner ) {
+		return 1;
+	}
 
 	@Override
 	public int defenseFactor( Char owner ) {

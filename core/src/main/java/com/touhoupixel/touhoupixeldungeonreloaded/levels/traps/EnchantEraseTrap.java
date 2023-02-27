@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -46,21 +47,23 @@ public class EnchantEraseTrap extends Trap {
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null && c == Dungeon.hero) {
-			MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
-			Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
-			if (meleeweapon != null) {
-				meleeweapon.enchantment = null;
-				GLog.w(Messages.get(this, "weaponenchanterase"));
+		if (!Statistics.card36) {
+			if (c != null && c == Dungeon.hero) {
+				MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
+				Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
+				if (meleeweapon != null) {
+					meleeweapon.enchantment = null;
+					GLog.w(Messages.get(this, "weaponenchanterase"));
+				}
+				if (armor != null) {
+					armor.glyph = null;
+					GLog.w(Messages.get(this, "armorenchanterase"));
+				}
 			}
-			if (armor != null) {
-				armor.glyph = null;
-				GLog.w(Messages.get(this, "armorenchanterase"));
+			if (Dungeon.level.heroFOV[pos]) {
+				GameScene.flash(0x80FFFFFF);
+				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			}
-		}
-		if (Dungeon.level.heroFOV[pos]) {
-			GameScene.flash(0x80FFFFFF);
-			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}
 	}
 }

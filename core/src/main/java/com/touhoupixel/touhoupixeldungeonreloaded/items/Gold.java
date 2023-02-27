@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -67,16 +68,14 @@ public class Gold extends Item {
 		if (Statistics.card46) {
 			Dungeon.gold += quantity;
 			Statistics.goldCollected += quantity;
-			Dungeon.gold += quantity;
-			Statistics.goldCollected += quantity;
 		}
 
 		if (Statistics.card69) {
-			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION/2f);
+			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
 		}
 
-		if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
-			Statistics.mood += 1;
+		if (Statistics.card70) {
+			Buff.prolong(hero, ReachIncrease.class, ReachIncrease.DURATION);
 		}
 
 		GameScene.pickUp( this, pos );
@@ -101,8 +100,7 @@ public class Gold extends Item {
 	
 	@Override
 	public Item random() {
-		quantity = Random.IntRange( 30 + Dungeon.depth * 10, 60 + Dungeon.depth * 20 );
+		quantity = Random.IntRange( 50, 100 );
 		return this;
 	}
-
 }

@@ -34,7 +34,7 @@ public class Kyouko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 16);
+        return Random.NormalIntRange(8, 12);
     }
 
     @Override

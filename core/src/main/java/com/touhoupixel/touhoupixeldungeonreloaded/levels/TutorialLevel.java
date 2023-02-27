@@ -69,6 +69,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.FlandreTalisma
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.KameTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.BackdoorTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MystiaWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YuyukoFoldingFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.KomachiDanmaku;
@@ -163,7 +164,7 @@ public class TutorialLevel extends Level {
 			W, W, e, e, e, e, e, W, e, e, i, e, e, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, e, e, e, e, e, W, W,
 			W, W, e, e, e, e, e, W, e, e, e, e, i, W, W, W, W, W, W, W, W, W, W, W, W, W, e, e, e, e, e, W, e, e, e, e, e, W, W,
 			W, W, e, i, e, i, e, W, e, e, e, e, e, P, e, e, e, e, e, e, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, W, e, e, e, e, e, W, i, e, i, e, e, W, W,
+			W, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, W, e, e, e, e, e, W, i, i, i, e, e, W, W,
 			W, W, e, i, e, i, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, W, e, e, e, e, e, D, e, e, e, e, e, W, W,
 			W, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, W, W,
 			W, W, e, e, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, e, e, i, e, e, e, W, e, e, e, e, e, W, e, e, e, e, e, W, W,
@@ -341,6 +342,7 @@ public class TutorialLevel extends Level {
 		drop( new Torch(), 1102 );
 		drop( new WandOfMagicMissile(), 1141 );
 
+		drop( new BulletDanmaku().quantity(5), 1281 );
 		drop( new KomachiDanmaku().quantity(5), 1282 );
 
 		drop( new PotionOfHealing(), 1212 );
@@ -360,47 +362,5 @@ public class TutorialLevel extends Level {
 		} while (!passable[cell]
 				|| Actor.findChar(cell) != null);
 		return cell;
-	}
-
-	@Override
-	public String tileName( int tile ) {
-		switch (tile) {
-			case Terrain.WATER:
-				return Messages.get(HakureiShrineLevel.class, "water_name");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_name");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_name");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_name");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_name");
-			default:
-				return super.tileName( tile );
-		}
-	}
-
-	@Override
-	public String tileDesc(int tile) {
-		switch (tile) {
-			case Terrain.ENTRANCE:
-				return Messages.get(HakureiShrineLevel.class, "entrance_desc");
-			case Terrain.EXIT:
-				return Messages.get(HakureiShrineLevel.class, "exit_desc");
-			case Terrain.EMPTY_DECO:
-				return Messages.get(HakureiShrineLevel.class, "empty_deco_desc");
-			case Terrain.WALL_DECO:
-				return Messages.get(HakureiShrineLevel.class, "wall_deco_desc");
-			case Terrain.BOOKSHELF:
-				return Messages.get(HakureiShrineLevel.class, "bookshelf_desc");
-			case Terrain.STATUE:
-				return Messages.get(HakureiShrineLevel.class, "statue_desc");
-			case Terrain.LOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "locked_exit_desc");
-			case Terrain.UNLOCKED_EXIT:
-				return Messages.get(HakureiShrineLevel.class, "unlocked_exit_desc");
-			default:
-				return super.tileDesc( tile );
-		}
 	}
 }

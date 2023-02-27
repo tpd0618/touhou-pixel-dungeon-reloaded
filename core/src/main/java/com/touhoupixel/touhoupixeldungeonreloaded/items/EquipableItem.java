@@ -78,7 +78,7 @@ public abstract class EquipableItem extends Item {
 			//This is a special case as the item is being removed from inventory, but is staying with the hero.
 			int slot = Dungeon.quickslot.getSlot( this );
 			doEquip(hero);
-			if (Dungeon.isChallenged(Challenges.LOTUS_LABYRINTH)) {
+			if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 				Statistics.mood += 1;
 			}
 			if (hero.buff(EquipmentIdentify.class) != null) {

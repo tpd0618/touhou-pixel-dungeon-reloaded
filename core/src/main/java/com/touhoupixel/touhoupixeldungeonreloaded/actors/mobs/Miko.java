@@ -9,6 +9,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
@@ -33,7 +34,7 @@ public class Miko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(12, 17);
+        return Random.NormalIntRange(11, 17);
     }
 
     @Override
@@ -49,12 +50,14 @@ public class Miko extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
-        if (Statistics.difficulty > 2) {
-            Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
-        }
-        if (Statistics.difficulty > 4) {
-            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION / 2f);
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+            }
         }
         return damage;
     }

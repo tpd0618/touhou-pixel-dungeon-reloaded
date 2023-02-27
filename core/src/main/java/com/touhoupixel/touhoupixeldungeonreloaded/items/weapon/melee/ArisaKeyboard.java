@@ -39,6 +39,11 @@ public class ArisaKeyboard extends MeleeWeapon {
 	}
 
 	@Override
+	public int GodFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public int proc(Char attacker, Char defender, int damage ) {
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (mob.pos == attacker.pos - Dungeon.level.width()){

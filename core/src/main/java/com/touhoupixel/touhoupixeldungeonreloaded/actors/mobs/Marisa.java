@@ -67,7 +67,7 @@ public class Marisa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 5);
+        return Random.NormalIntRange(4, 6);
     }
 
     @Override
