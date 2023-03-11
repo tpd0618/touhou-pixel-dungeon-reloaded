@@ -26,37 +26,37 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int TUTORIAL            = 1;
-	public static final int DISTORTION          = 2;
-	public static final int REBIRTH_DAY         = 4;
-	public static final int RINGING_BLOOM       = 8;
-	public static final int FUMO_ORDER_CLOSED   = 16;
-	public static final int DREAM_LOGICAL_WORLD = 32;
-	public static final int TIME_EATER          = 64;
-	public static final int HISOUTEN_SWORD      = 128;
-	public static final int STARRY_HOUSE        = 256;
-	public static final int UNCONSCIOUS_ROSE    = 512;
-	public static final int PATIENT_ROGUE       = 1024;
+	public static final int TUTORIAL             = 1;
+	public static final int DISTORTION           = 2;
+	public static final int REBIRTH_DAY          = 4;
+	public static final int RINGING_BLOOM        = 8;
+	public static final int SCALES_OF_JUSTICE    = 16;
+	public static final int DREAM_LOGICAL_WORLD  = 32;
+	public static final int TIME_EATER           = 64;
+	public static final int SWORD_OF_HISOU       = 128;
+	public static final int BUNBUN_DELIVERY      = 256;
+	public static final int UNCONSCIOUS_ROSE     = 512;
+	public static final int KETSUI_KISUNA_JIGOKU = 1024;
 
-	public static final int MAX_VALUE           = 2047;
+	public static final int MAX_VALUE            = 2047;
 
 	public static final String[] NAME_IDS = {
 			"tutorial",
 			"distortion",
 			"rebirth_day",
 			"ringing_bloom",
-			"fumo_order_closed",
+			"scales_of_justice",
 			"dream_logical_world",
 			"time_eater",
-			"hisouten_sword",
-			"starry_house",
+			"sword_of_hisou",
+			"bunbun_delivery",
 			"unconscious_rose",
-			"patient_rogue"
+			"ketsui_kisuna_jigoku"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, FUMO_ORDER_CLOSED, DREAM_LOGICAL_WORLD,
-			TIME_EATER, HISOUTEN_SWORD, STARRY_HOUSE, UNCONSCIOUS_ROSE, PATIENT_ROGUE
+			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, SCALES_OF_JUSTICE, DREAM_LOGICAL_WORLD,
+			TIME_EATER, SWORD_OF_HISOU, BUNBUN_DELIVERY, UNCONSCIOUS_ROSE, KETSUI_KISUNA_JIGOKU
 	};
 
 	public static int activeChallenges(){

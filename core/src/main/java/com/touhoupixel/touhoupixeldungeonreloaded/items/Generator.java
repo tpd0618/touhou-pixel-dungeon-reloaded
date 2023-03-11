@@ -117,7 +117,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMap
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
@@ -384,7 +384,7 @@ public class Generator {
 			SCROLL.classes = new Class<?>[]{
 					ScrollOfFixer.class,
 					ScrollOfIdentify.class,
-					ScrollOfRemoveCurse.class,
+					ScrollOfCurseRemoval.class,
 					ScrollOfMirrorImage.class,
 					ScrollOfRecharging.class,
 					ScrollOfTeleportation.class,
@@ -434,7 +434,7 @@ public class Generator {
 					ResetTalisman.class,
 					CirnoTalisman.class
 			};
-			TALISMAN.defaultProbs = new float[]{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{
@@ -681,8 +681,8 @@ public class Generator {
 	}
 
 	private static final float[][] floorSetTierProbs = new float[][] {
-			{0, 75, 20,  4,  0},
-			{0, 75, 20,  4,  0},
+			{0, 55, 30, 15,  0},
+			{0, 55, 30, 15,  0},
 			{0, 25, 50, 20,  5},
 			{0, 25, 50, 20,  5},
 			{0,  0, 40, 50, 10},
@@ -770,7 +770,7 @@ public class Generator {
 	};
 
 	public static Armor randomArmor(){
-		return randomArmor(Dungeon.depth / 10);
+		return randomArmor(Dungeon.depth/10);
 	}
 
 	public static Armor randomArmor(int floorSet) {
@@ -792,7 +792,7 @@ public class Generator {
 	};
 
 	public static MeleeWeapon randomWeapon(){
-		return randomWeapon(Dungeon.depth / 10);
+		return randomWeapon(Dungeon.depth/10);
 	}
 
 	public static MeleeWeapon randomWeapon(int floorSet) {

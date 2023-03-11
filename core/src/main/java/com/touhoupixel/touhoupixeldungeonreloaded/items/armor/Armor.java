@@ -495,13 +495,10 @@ public class Armor extends EquipableItem {
 
 	@Override
 	public Item random() {
-		//+0: 75% (3/4)
-		//+1: 20% (4/20)
-		//+2: 5%  (1/20)
 		int n = 0;
-		if (Random.Int(4) == 0) {
+		if (Random.Int(3) == 0) {
 			n++;
-			if (Random.Int(5) == 0) {
+			if (Random.Int(3) == 0) {
 				n++;
 			}
 		}
@@ -523,7 +520,7 @@ public class Armor extends EquipableItem {
 	public int STRReq(){
 		int req = STRReq(level());
 		if (masteryPotionBonus){
-			req -= 2;
+			req -= 5;
 		}
 		return req;
 	}

@@ -33,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShaftParticl
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes.Landmark;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -71,8 +71,8 @@ public class WaterOfHealth extends WellWater {
 			CellEmitter.get( pos ).start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
 			Sample.INSTANCE.play( Assets.Sounds.DRINK );
 			return item;
-		} else if (ScrollOfRemoveCurse.uncursable(item)) {
-			if (ScrollOfRemoveCurse.uncurse( null, item )){
+		} else if (ScrollOfCurseRemoval.uncursable(item)) {
+			if (ScrollOfCurseRemoval.uncurse( null, item )){
 				CellEmitter.get( pos ).start( ShadowParticle.UP, 0.05f, 10 );
 			}
 			Sample.INSTANCE.play( Assets.Sounds.DRINK );

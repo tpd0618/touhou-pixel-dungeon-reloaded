@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class Degrade extends FlavourBuff {
 
-	public static final float DURATION = 60f;
+	public static final float DURATION = 25f;
 	
 	{
 		type = buffType.NEGATIVE;

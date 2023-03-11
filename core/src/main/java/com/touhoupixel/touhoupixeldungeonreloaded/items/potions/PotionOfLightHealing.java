@@ -26,8 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
@@ -48,8 +49,8 @@ public class PotionOfLightHealing extends Potion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		if (Statistics.card26 && Random.Int(2) == 0){
-			Buff.detach( curUser, SuperDegrade.class);
+		if (Statistics.card26){
+			Buff.detach(curUser, Degrade.class);
 		}
 		if (hero.buff(AntiHeal.class) != null) {
 			hero.damage(hero.HT / 2, hero);
@@ -59,6 +60,13 @@ public class PotionOfLightHealing extends Potion {
 			}
 		} else {
 			hero.HP = Math.min(hero.HP + 50*(Notes.keyCount(new IronKey(Dungeon.depth))+1), hero.HT);
+			if (Dungeon.isChallenged(Challenges.SCALES_OF_JUSTICE)) {
+				if (Random.Int(2) == 0) {
+					Buff.prolong(curUser, MeleeNullify.class, MeleeNullify.DURATION);
+				} else {
+					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION);
+				}
+			}
 			GLog.p(Messages.get(this, "lightheal"));
 		}
 	}

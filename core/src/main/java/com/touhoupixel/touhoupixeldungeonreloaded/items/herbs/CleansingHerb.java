@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -41,6 +42,7 @@ public class CleansingHerb extends Herb {
 		if (action.equals( AC_EAT )) {
 			PotionOfHealing.cure(hero);
 			Buff.detach(hero, AntiHeal.class);
+			Buff.detach(hero, CursedBlow.class);
 		}
 	}
 }

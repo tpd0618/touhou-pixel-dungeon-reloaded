@@ -154,7 +154,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMap
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
@@ -491,7 +491,7 @@ public enum Catalog {
 
 		SCROLLS.seen.put( ScrollOfIdentify.class,           true);
 		SCROLLS.seen.put( ScrollOfFixer.class,              true);
-		SCROLLS.seen.put( ScrollOfRemoveCurse.class,        true);
+		SCROLLS.seen.put( ScrollOfCurseRemoval.class,        true);
 		SCROLLS.seen.put( ScrollOfMagicMapping.class,       true);
 		SCROLLS.seen.put( ScrollOfTeleportation.class,      true);
 		SCROLLS.seen.put( ScrollOfRecharging.class,         true);

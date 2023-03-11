@@ -21,6 +21,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -157,8 +158,8 @@ public class UpgradeCard extends Item {
 				Statistics.upgradesUsed++;
 				curUser.spendAndNext(1f);
 
-				if (Statistics.card30) {
-					curUser.HP = Math.min(curUser.HP + Dungeon.depth*3, curUser.HT);
+				if (Statistics.card30 && Random.Int(2) == 0) {
+					curUser.HP = Math.min(curUser.HP + Dungeon.depth, curUser.HT);
 					Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 				}
 

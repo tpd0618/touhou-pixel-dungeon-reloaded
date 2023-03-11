@@ -4,8 +4,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfCorruptingReduction;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YukariSprite;
@@ -53,7 +54,7 @@ public class Yukari extends Mob {
                 Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
             }
         }
         return damage;

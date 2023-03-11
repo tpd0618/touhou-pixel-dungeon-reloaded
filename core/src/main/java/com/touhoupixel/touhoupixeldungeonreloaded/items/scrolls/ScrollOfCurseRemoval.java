@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -36,7 +38,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class ScrollOfRemoveCurse extends InventoryScroll {
+public class ScrollOfCurseRemoval extends InventoryScroll {
 
 	{
 		icon = ItemSpriteSheet.Icons.SCROLL_REMCURSE;
@@ -72,6 +74,8 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 			Degrade.detach(curUser, Degrade.class);
 			procced = true;
 		}
+
+		Buff.detach(curUser, CursedBlow.class);
 
 		if (procced) {
 			GLog.p( Messages.get(this, "cleansed") );

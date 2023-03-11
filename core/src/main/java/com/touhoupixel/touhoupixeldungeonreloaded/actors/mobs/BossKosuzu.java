@@ -2,24 +2,19 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KosuzuSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -79,14 +74,14 @@ public class BossKosuzu extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         for (int offset : PathFinder.NEIGHBOURS9){
-            GameScene.add(Blob.seed(enemy.pos + offset, 2, Fire.class));
+            GameScene.add(Blob.seed(enemy.pos + offset, 1, Fire.class));
         }
         if (Dungeon.level.map[enemy.pos] == Terrain.EMBERS) {
             Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION/3f);
             yell(Messages.get(this, "nobookshelf"));
         }
         if (this.HP < this.HT/2) {
-            Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION/2f);
+            Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION/2f);
         }
         return damage;
     }

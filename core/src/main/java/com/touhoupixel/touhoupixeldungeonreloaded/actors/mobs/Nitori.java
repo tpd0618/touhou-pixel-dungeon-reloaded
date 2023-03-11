@@ -111,7 +111,7 @@ public class Nitori extends Mob implements Callback {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }
 
-            int dmg = Random.NormalIntRange( 8, 12 );
+            int dmg = Random.NormalIntRange( 7, 12 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

@@ -66,7 +66,7 @@ public class NitoChecker extends Item {
 		if (Dungeon.isChallenged(Challenges.DISTORTION)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "statsbocchi", Statistics.hitorilefttime);
 		}
-		if (Dungeon.isChallenged(Challenges.HISOUTEN_SWORD)){
+		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "stats7", Statistics.tenshiEarthquake);
 		}
 		if (Dungeon.isChallenged(Challenges.TIME_EATER)){

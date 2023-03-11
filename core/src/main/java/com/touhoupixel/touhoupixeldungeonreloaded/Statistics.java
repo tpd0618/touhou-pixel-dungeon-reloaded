@@ -97,8 +97,8 @@ public class Statistics {
 	public static int spellcard;
 	public static int spellcardfragment;
 
-	public static int fairybosskillcount;
-	public static int mansionbosskillcount;
+	public static int tenshiattackstep;
+	public static int eirinelixircount;
 	public static int ymbosskillcount;
 	public static int forestbosskillcount;
 
@@ -117,6 +117,8 @@ public class Statistics {
 	public static int difficulty;
 
 	public static boolean dinfocheck = false;
+
+	public static boolean elixirtrigger = false;
 
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
@@ -292,8 +294,8 @@ public class Statistics {
 		spellcard = 3;
 		spellcardfragment = 0;
 
-		fairybosskillcount = 0;
-		mansionbosskillcount = 0;
+		tenshiattackstep = 0;
+		eirinelixircount = 0;
 		ymbosskillcount = 0;
 		forestbosskillcount = 0;
 
@@ -312,6 +314,8 @@ public class Statistics {
 		difficulty = 0;
 
 		dinfocheck = false;
+
+		elixirtrigger = false;
 
 		qualifiedForNoKilling = false;
 
@@ -482,8 +486,8 @@ public class Statistics {
 	private static final String SPELLCARD	= "spellcard";
 	private static final String SPELLCARDFRAGMENT	= "spellcardfragment";
 
-	private static final String FAIRYBOSSKILLCOUNT	= "fairybosskillcount";
-	private static final String MANSIONBOSSKILLCOUNT	= "mansionbosskillcount";
+	private static final String TENSHIATTACKSTEP	= "tenshiattackstep";
+	private static final String EIRINELIXIRCOUNT	= "eirinelixircount";
 	private static final String YMBOSSKILLCOUNT	= "ymbosskillcount";
 	private static final String FORESTBOSSKILLCOUNT	= "forestbosskillcount";
 
@@ -502,6 +506,8 @@ public class Statistics {
 	private static final String DIFFICULTY	= "difficulty";
 
 	private static final String DINFOCHECK	= "dinfocheck";
+
+	private static final String ELIXIRTRIGGER	= "elixirtrigger";
 
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
@@ -772,8 +778,8 @@ public class Statistics {
 		bundle.put( SPELLCARD,	spellcard );
 		bundle.put( SPELLCARDFRAGMENT,	spellcardfragment );
 
-		bundle.put( FAIRYBOSSKILLCOUNT,	fairybosskillcount );
-		bundle.put( MANSIONBOSSKILLCOUNT,	mansionbosskillcount );
+		bundle.put( TENSHIATTACKSTEP, tenshiattackstep);
+		bundle.put( EIRINELIXIRCOUNT, eirinelixircount);
 		bundle.put( YMBOSSKILLCOUNT,	ymbosskillcount );
 		bundle.put( FORESTBOSSKILLCOUNT,	forestbosskillcount );
 
@@ -792,6 +798,8 @@ public class Statistics {
 		bundle.put( DIFFICULTY,	difficulty );
 
 		bundle.put( DINFOCHECK, dinfocheck );
+
+		bundle.put( ELIXIRTRIGGER, elixirtrigger );
 
 		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
@@ -872,8 +880,8 @@ public class Statistics {
 		spellcard		= bundle.getInt( SPELLCARD );
 		spellcardfragment		= bundle.getInt( SPELLCARDFRAGMENT );
 
-		fairybosskillcount		= bundle.getInt( FAIRYBOSSKILLCOUNT );
-		mansionbosskillcount		= bundle.getInt( MANSIONBOSSKILLCOUNT );
+		tenshiattackstep = bundle.getInt( TENSHIATTACKSTEP );
+		eirinelixircount = bundle.getInt( EIRINELIXIRCOUNT );
 		ymbosskillcount		= bundle.getInt( YMBOSSKILLCOUNT );
 		forestbosskillcount		= bundle.getInt( FORESTBOSSKILLCOUNT );
 
@@ -892,6 +900,8 @@ public class Statistics {
 		difficulty		= bundle.getInt( DIFFICULTY );
 
 		dinfocheck = bundle.getBoolean( DINFOCHECK );
+
+		elixirtrigger = bundle.getBoolean( ELIXIRTRIGGER );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 

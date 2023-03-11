@@ -93,7 +93,7 @@ public class BossKasen extends Mob {
                         gazer.add(i);
                     }
                 }
-                if ((Random.Int(5) == 0)) {
+                if (Random.Int(5) == 0) {
                     if (!gazer.isEmpty()) {
                         Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
                         GLog.w(Messages.get(Reisen.class, "gaze"));

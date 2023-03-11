@@ -83,19 +83,16 @@ abstract public class Talisman extends Item {
     public Item random() {
         if (!stackable) return this;
 
-        quantity = 3;
+        quantity = 2;
         if (Random.Int(2) == 0) {
             quantity++;
             if (Random.Int(3) == 0) {
                 quantity++;
-                if (Random.Int(4) == 0) {
+                if (Statistics.difficulty == 1) {
                     quantity++;
-                    if (Statistics.difficulty == 1) {
-                        quantity++;
-                    }
-                    if (Statistics.difficulty == 5) {
-                        quantity--;
-                    }
+                }
+                if (Statistics.difficulty == 5) {
+                    quantity--;
                 }
             }
         }
@@ -120,7 +117,7 @@ abstract public class Talisman extends Item {
 
     @Override
     public int value() {
-        return 6 * tier * quantity * (level() + 1);
+        return 10 * quantity;
     }
 
     public static class PlaceHolder extends Talisman {

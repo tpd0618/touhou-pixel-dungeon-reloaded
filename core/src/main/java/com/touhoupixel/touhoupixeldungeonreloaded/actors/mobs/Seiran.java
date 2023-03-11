@@ -72,7 +72,7 @@ public class Seiran extends Mob {
                         gazer.add(i);
                     }
                 }
-                if ((Random.Int(4) == 0)) {
+                if (Random.Int(4) == 0) {
                     Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
                     if (!gazer.isEmpty()) {
                         Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);

@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class Silence extends FlavourBuff {
 
-	public static final float DURATION = 50f;
+	public static final float DURATION = 25f;
 
 	{
 		type = buffType.NEGATIVE;

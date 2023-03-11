@@ -29,9 +29,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
@@ -41,6 +43,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -60,6 +63,8 @@ public class Yorihime extends Mob {
 		defenseSkill = 50;
 		EXP = 25;
 		maxLvl = 99;
+
+		baseSpeed = 3f;
 
 		flying = true;
 
@@ -83,22 +88,22 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 50) : Random.NormalIntRange(0, 2);
+		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
 	}
 
 	@Override
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-			if (Dungeon.depth != 50) {
-				new DisarmingTrap().set(enemy.pos).activate();
-				GLog.n( Messages.get(this, "disarm") );
-			}
+			Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
 			if (Statistics.difficulty > 2) {
 				Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
 			}
 			if (Statistics.difficulty > 4) {
 				Dungeon.hero.STR--;
+				Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+				Sample.INSTANCE.play( Assets.Sounds.CURSED );
+				GLog.w(Messages.get(Kanako.class, "str_reduce"));
 			}
 		}
 		return damage;

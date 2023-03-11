@@ -169,7 +169,7 @@ public abstract class Scroll extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(UnstableSpellbook.bookRecharge.class) != null
 					&& hero.buff(UnstableSpellbook.bookRecharge.class).isCursed()
-					&& !(this instanceof ScrollOfRemoveCurse || this instanceof ScrollOfAntiMagic)){
+					&& !(this instanceof ScrollOfCurseRemoval || this instanceof ScrollOfAntiMagic)){
 				GLog.n( Messages.get(this, "cursed") );
 			} else {
 				curUser = hero;
@@ -251,7 +251,7 @@ public abstract class Scroll extends Item {
 	
 	@Override
 	public int value() {
-		return 30 * quantity;
+		return 50 * quantity;
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfRetribution.class,   StoneOfMadness.class);
 			stones.put(ScrollOfRage.class,          StoneOfAggression.class);
 			stones.put(ScrollOfRecharging.class,    StoneOfShock.class);
-			stones.put(ScrollOfRemoveCurse.class,   StoneOfDisarming.class);
+			stones.put(ScrollOfCurseRemoval.class,   StoneOfDisarming.class);
 			stones.put(ScrollOfTeleportation.class, StoneOfBlink.class);
 			stones.put(ScrollOfTerror.class,        StoneOfFear.class);
 			stones.put(ScrollOfTransmutation.class, StoneOfAugmentation.class);

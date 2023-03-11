@@ -8,6 +8,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuumaSprite;
@@ -51,15 +52,18 @@ public class Yuuma extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
             Dungeon.hero.STR--;
+            Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+            Sample.INSTANCE.play( Assets.Sounds.CURSED );
+            GLog.w(Messages.get(Kanako.class, "str_reduce"));
             Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
             Buff.prolong(this, Hisou.class, Hisou.DURATION);
-            Sample.INSTANCE.play( Assets.Sounds.CURSED );
-            GLog.w(Messages.get(this, "str_reduce"));
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;
+                Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+                GLog.w(Messages.get(Kanako.class, "str_reduce"));
             }
         }
         return damage;

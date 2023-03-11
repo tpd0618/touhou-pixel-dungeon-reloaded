@@ -23,10 +23,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -54,7 +52,7 @@ public class HorouBook extends MeleeWeapon {
     @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(8) == 0) {
-            Buff.prolong(defender, OneDamage.class, OneDamage.DURATION);
+            Buff.prolong(defender, MeleeNullify.class, MeleeNullify.DURATION);
         }
         return super.proc(attacker, defender, damage);
     }

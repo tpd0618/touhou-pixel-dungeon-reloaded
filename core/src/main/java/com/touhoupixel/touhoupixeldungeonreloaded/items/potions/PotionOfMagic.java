@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
@@ -46,7 +47,7 @@ public class PotionOfMagic extends Potion {
 		Buff.prolong(hero, MagicBuff.class, MagicBuff.DURATION);
 
 		//buff test zone//
-		//Buff.prolong(hero, KeyHeal.class, KeyHeal.DURATION);
+
 		//buff test zone//
 	}
 

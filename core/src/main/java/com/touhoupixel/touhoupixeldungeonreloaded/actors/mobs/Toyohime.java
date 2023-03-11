@@ -26,12 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -76,7 +73,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int drRoll() {
-		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 50) : Random.NormalIntRange(0, 2);
+		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
 	}
 
 	@Override
@@ -112,15 +109,16 @@ public class Toyohime extends Mob implements Callback {
 		if (hit(this, enemy, true)) {
 			//TODO would be nice for this to work on ghost/statues too
 			if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-				if (Dungeon.depth != 50) {
-					Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
-				}
+				Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
 				if (Statistics.difficulty > 2) {
 					Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
 				}
 				if (Statistics.difficulty > 4) {
 					Dungeon.hero.STR--;
+					Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+					Sample.INSTANCE.play( Assets.Sounds.CURSED );
+					GLog.w(Messages.get(Kanako.class, "str_reduce"));
 				}
 			}
 

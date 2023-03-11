@@ -47,7 +47,7 @@ public class Hecatia extends Mob {
 		spriteClass = HecatiaSprite.class;
 
 		HP = HT = Dungeon.depth*5;
-		defenseSkill = Dungeon.depth;
+		defenseSkill = 0;
 
 		flying = true;
 
@@ -59,7 +59,7 @@ public class Hecatia extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(Dungeon.depth, Dungeon.depth+1);
+		return Random.NormalIntRange(Dungeon.depth, Dungeon.depth+2);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class Hecatia extends Mob {
 	@Override
 	public int attackProc(Char hero, int damage) {
 		damage = super.attackProc(enemy, damage);
-		if (!(Dungeon.hero.belongings.armor() instanceof HecatiaArmor)) {
+		if (!(Dungeon.hero.belongings.armor() instanceof HecatiaArmor) || !(Dungeon.depth == 50)) {
 			if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(6) == 0) {
 				Sample.INSTANCE.play(Assets.Sounds.READ);
 				CellEmitter.get(pos).burst(ShadowParticle.UP, 5);

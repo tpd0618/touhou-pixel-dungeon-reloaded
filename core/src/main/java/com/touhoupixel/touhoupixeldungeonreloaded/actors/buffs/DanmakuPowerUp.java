@@ -24,32 +24,33 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class OneDamage extends FlavourBuff {
-	
-	public static final float DURATION = 5f;
-	
+public class DanmakuPowerUp extends FlavourBuff {
+
 	{
-		type = buffType.NEGATIVE;
+		type = buffType.POSITIVE;
 		announced = true;
 	}
-	
+
+	public static final float DURATION = 50f;
+
 	@Override
 	public int icon() {
-		return BuffIndicator.ONE_DAMAGE;
+		return BuffIndicator.DANMAKU_POWER_UP;
 	}
 
 	@Override
 	public float iconFadePercent() {
 		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
-	
+
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
 	}
-	
+
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
+	
 }

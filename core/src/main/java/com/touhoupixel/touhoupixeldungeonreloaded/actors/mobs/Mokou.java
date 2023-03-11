@@ -11,6 +11,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfDragonsBlood;
@@ -54,11 +55,11 @@ public class Mokou extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(3) == 0 && buff(ReBirthDone.class) == null) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0 && buff(ReBirthDone.class) == null) {
             Buff.prolong( this, ReBirth.class, ReBirth.DURATION*1000f);
             Buff.affect(enemy, Burning.class).reignite(enemy, 6f);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION/2f);
+                Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION/2f);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);

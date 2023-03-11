@@ -54,10 +54,10 @@ public class Rumia extends Mob {
             Sample.INSTANCE.play( Assets.Sounds.CURSED );
             GLog.w(Messages.get(this, "rumia"));
             if (Statistics.difficulty > 2) {
-                Buff.affect(enemy, Bleeding.class).set(14);
+                Buff.affect(enemy, Bleeding.class).set(8);
             }
             if (Statistics.difficulty > 4) {
-                Buff.affect(enemy, Bleeding.class).set(14);
+                Buff.affect(enemy, Bleeding.class).set(8);
             }
         }
         return damage;

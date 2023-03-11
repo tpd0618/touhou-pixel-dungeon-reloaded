@@ -26,9 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -76,7 +76,7 @@ public class Herb extends Item {
 			}
 
 			if (hero.buff(HerbDegrade.class) != null){
-				Buff.prolong(curUser, SuperDegrade.class, SuperDegrade.DURATION);
+				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
 			}
 
 			if (Statistics.card33){
@@ -103,6 +103,6 @@ public class Herb extends Item {
 
 	@Override
 	public int value() {
-		return 10 * quantity;
+		return 30 * quantity;
 	}
 }

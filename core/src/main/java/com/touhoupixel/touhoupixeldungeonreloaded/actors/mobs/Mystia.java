@@ -3,8 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
@@ -58,7 +57,7 @@ public class Mystia extends Mob {
             GameScene.updateFog(); //just in case hero wasn't moved
             Dungeon.observe();
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
+                Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);

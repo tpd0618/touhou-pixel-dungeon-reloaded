@@ -22,56 +22,42 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chimata;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eiki;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sagume;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Toyohime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yorihime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Youmu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuma;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.EirinJunkoCounterElixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.CellSelector;
@@ -206,80 +192,21 @@ public abstract class Wand extends Item {
 	protected void wandProc(Char target, int chargesUsed){
 		wandProc(target, buffedLvl(), chargesUsed);
 
-		if (Dungeon.hero.buff(EvasiveCounterattack.class) != null){
-			Dungeon.hero.damage(target.damageRoll(), Youmu.class);
-			if (!Dungeon.hero.isAlive()) {
-				Dungeon.fail(Youmu.class);
-				GLog.n( Messages.get(Youmu.class, "snipe") );
-			}
+		if (target instanceof BossTenshi){
+			Statistics.tenshiattackstep += 1;
 		}
 
 		if (target instanceof BossHecatia){
-			switch (Random.Int(6)) {
-				case 0:
-				default:
-					Toyohime toyohime = new Toyohime();
-					toyohime.state = toyohime.WANDERING;
-					toyohime.pos = Dungeon.level.randomDestination(toyohime);
-					if (toyohime.pos != -1) {
-						GameScene.add(toyohime);
-						toyohime.beckon(Dungeon.hero.pos);
-					}
-					break;
-				case 1:
-					Yorihime yorihime = new Yorihime();
-					yorihime.state = yorihime.WANDERING;
-					yorihime.pos = Dungeon.level.randomDestination(yorihime);
-					if (yorihime.pos != -1) {
-						GameScene.add(yorihime);
-						yorihime.beckon(Dungeon.hero.pos);
-					}
-					break;
-				case 2:
-					Reimu reimu = new Reimu();
-					reimu.state = reimu.WANDERING;
-					reimu.pos = Dungeon.level.randomDestination(reimu);
-					if (reimu.pos != -1) {
-						GameScene.add(reimu);
-						reimu.beckon(Dungeon.hero.pos);
-					}
-					break;
-				case 3:
-					Utsuho utsuho = new Utsuho();
-					utsuho.state = utsuho.WANDERING;
-					utsuho.pos = Dungeon.level.randomDestination(utsuho);
-					if (utsuho.pos != -1) {
-						GameScene.add(utsuho);
-						utsuho.beckon(Dungeon.hero.pos);
-					}
-					break;
-				case 4:
-					Yuuma yuuma = new Yuuma();
-					yuuma.state = yuuma.WANDERING;
-					yuuma.pos = Dungeon.level.randomDestination(yuuma);
-					if (yuuma.pos != -1) {
-						GameScene.add(yuuma);
-						yuuma.beckon(Dungeon.hero.pos);
-					}
-					break;
-				case 5:
-					Eiki eiki = new Eiki();
-					eiki.state = eiki.WANDERING;
-					eiki.pos = Dungeon.level.randomDestination(eiki);
-					if (eiki.pos != -1) {
-						GameScene.add(eiki);
-						eiki.beckon(Dungeon.hero.pos);
-					}
-					break;
+			new SummoningTrap().set(Dungeon.hero.pos).activate();
+			if (target.HP < target.HT / 2 && !Statistics.elixirtrigger){
+				Dungeon.level.drop(new EirinJunkoCounterElixir(), 57).sprite.drop();
+				Dungeon.level.drop(new EirinJunkoCounterElixir(), 232).sprite.drop();
+				Dungeon.level.drop(new EirinJunkoCounterElixir(), 273).sprite.drop();
+				Dungeon.level.drop(new EirinJunkoCounterElixir(), 448).sprite.drop();
+				Statistics.eirinelixircount = 0;
+				Statistics.elixirtrigger = true;
+				GLog.w(Messages.get(this, "hecatia_barrier"));
 			}
-		}
-
-		if (Dungeon.hero.buff(Happy.class) != null){
-			Buff.prolong(curUser, Slow.class, Slow.DURATION);
-		}
-
-		if (Dungeon.isChallenged(Challenges.STARRY_HOUSE) && target.properties().contains(Char.Property.YOKAI)){
-			Buff.prolong(curUser, MagicDrain.class, MagicDrain.DURATION);
 		}
 
 		if (Dungeon.hero.buff(SunnySnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.SUNNY_TILES){
@@ -313,12 +240,16 @@ public abstract class Wand extends Item {
 			}
 		}
 
-		if (Dungeon.hero.buff(PotionPressure.class) != null || Dungeon.hero.buff(DismantlePressure.class) != null){
-			Buff.prolong(Dungeon.hero, SuperDegrade.class, SuperDegrade.DURATION);
+		if (Dungeon.hero.buff(DismantlePressure.class) != null){
+			Buff.prolong(Dungeon.hero, Slow.class, Slow.DURATION);
 		}
 
 		if (Dungeon.hero.buff(MagicDrain.class) != null && Dungeon.hero.HP > 3){
 			Dungeon.hero.HP /= 2;
+		}
+
+		if (Dungeon.hero.buff(Happy.class) != null){
+			Buff.prolong(curUser, Slow.class, Slow.DURATION);
 		}
 
 		if (Dungeon.hero.buff(YukariBorder.class) != null){

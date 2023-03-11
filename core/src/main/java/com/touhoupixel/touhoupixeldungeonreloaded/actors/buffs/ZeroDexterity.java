@@ -24,9 +24,9 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class AntiSneakattack extends FlavourBuff {
+public class ZeroDexterity extends FlavourBuff {
 	
-	public static final float DURATION = 50f;
+	public static final float DURATION = 40f;
 	
 	{
 		type = buffType.NEGATIVE;
@@ -35,7 +35,7 @@ public class AntiSneakattack extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.ANTI_SNEAKATTACK;
+		return BuffIndicator.ZERO_DEXTERITY;
 	}
 
 	@Override

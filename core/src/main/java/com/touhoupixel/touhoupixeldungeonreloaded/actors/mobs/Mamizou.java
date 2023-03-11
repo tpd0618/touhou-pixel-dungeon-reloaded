@@ -6,14 +6,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MamizouSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RemiliaSprite;
 import com.watabou.utils.Random;
 
 public class Mamizou extends Mob {
@@ -56,7 +51,7 @@ public class Mamizou extends Mob {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, PotionPressure.class, PotionPressure.DURATION);
+                Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
             }
         }
         return damage;

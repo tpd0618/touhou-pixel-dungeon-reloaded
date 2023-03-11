@@ -21,14 +21,19 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Random;
 
 public class PotionOfDango extends Potion {
 
@@ -44,6 +49,13 @@ public class PotionOfDango extends Potion {
 		Statistics.power += 100;
 		Buff.prolong(hero, GoldCreation.class, GoldCreation.DURATION);
 		Buff.prolong(hero, KeyHeal.class, KeyHeal.DURATION);
+		if (Dungeon.isChallenged(Challenges.SCALES_OF_JUSTICE)) {
+			if (Random.Int(2) == 0) {
+				Buff.prolong(curUser, MeleeNullify.class, MeleeNullify.DURATION);
+			} else {
+				Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION);
+			}
+		}
 		GLog.p(Messages.get(this, "ringo"));
 	}
 	

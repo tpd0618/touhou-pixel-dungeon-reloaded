@@ -31,15 +31,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRice;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
@@ -148,28 +150,48 @@ public class ShopRoom extends SpecialRoom {
 
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
 
+		MeleeWeapon w;
+		Armor a;
 		switch (Dungeon.depth) {
-		default: case 6: case 16:
-			itemsToSpawn.add( Generator.random(Generator.misTiers[1]).quantity(2).identify(false) );
+		default: case 6:
+			w = (MeleeWeapon) Generator.random(Generator.wepTiers[1]);
+			a = (Armor) Generator.random(Generator.armorTiers[1]);
+			itemsToSpawn.add( Generator.random(Generator.misTiers[1]).quantity(3).identify(false) );
 			break;
 			
-		case 26: case 36:
-			itemsToSpawn.add( Generator.random(Generator.misTiers[2]).quantity(2).identify(false) );
+		case 16:
+			w = (MeleeWeapon) Generator.random(Generator.wepTiers[2]);
+			a = (Armor) Generator.random(Generator.armorTiers[2]);
+			itemsToSpawn.add( Generator.random(Generator.misTiers[2]).quantity(3).identify(false) );
 			break;
 			
-		case 46: case 56:
-			itemsToSpawn.add( Generator.random(Generator.misTiers[3]).quantity(2).identify(false) );
+		case 26:
+			w = (MeleeWeapon) Generator.random(Generator.wepTiers[3]);
+			a = (Armor) Generator.random(Generator.armorTiers[3]);
+			itemsToSpawn.add( Generator.random(Generator.misTiers[3]).quantity(3).identify(false) );
 			break;
 
-		case 66: case 76: case 86:
-			itemsToSpawn.add( Generator.random(Generator.misTiers[4]).quantity(2).identify(false) );
+		case 36: case 46:
+			w = (MeleeWeapon) Generator.random(Generator.wepTiers[4]);
+			a = (Armor) Generator.random(Generator.armorTiers[4]);
+			itemsToSpawn.add( Generator.random(Generator.misTiers[4]).quantity(3).identify(false) );
 			break;
 		}
+		w.cursed = false;
+		w.level(0);
+		w.identify(false);
+		itemsToSpawn.add(w);
+
+		a.cursed = false;
+		a.level(0);
+		a.identify(false);
+		itemsToSpawn.add(a);
 		
 		itemsToSpawn.add( TippedDart.randomTipped(2) );
 
 		itemsToSpawn.add( new TenshiCard() );
 
+		itemsToSpawn.add( new Torch() );
 		itemsToSpawn.add( new Torch() );
 
 		itemsToSpawn.add( new Alchemize().quantity(Random.IntRange(2, 3)));
@@ -177,15 +199,15 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new PotionOfHealing() );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 
 		itemsToSpawn.add( new ScrollOfIdentify() );
-		itemsToSpawn.add( new ScrollOfRemoveCurse() );
+		itemsToSpawn.add( new ScrollOfCurseRemoval() );
 		itemsToSpawn.add( new ScrollOfMagicMapping() );
 
 		for (int i=0; i < 2; i++)
@@ -196,9 +218,13 @@ public class ShopRoom extends SpecialRoom {
 
 		itemsToSpawn.add( new SmallRice() );
 		itemsToSpawn.add( new SmallRice() );
+		itemsToSpawn.add( new SmallRice() );
+		itemsToSpawn.add( new SmallRice() );
 
 		itemsToSpawn.add( new Honeypot() );
+		itemsToSpawn.add( new Honeypot() );
 
+		itemsToSpawn.add(new StoneOfAugmentation());
 		itemsToSpawn.add(new StoneOfAugmentation());
 
 		TimekeepersHourglass hourglass = Dungeon.hero.belongings.getItem(TimekeepersHourglass.class);

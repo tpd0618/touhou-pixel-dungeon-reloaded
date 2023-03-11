@@ -26,7 +26,7 @@ public class ResetTalisman extends Talisman {
 
         Char ch = Actor.findChar( cell );
 
-        if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)){
+        if (ch != null && ch != Dungeon.hero && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)){
             ArrayList<Mob> mobs = new ArrayList<>();
             Mob mob = Dungeon.level.createMob();
             mob.state = mob.WANDERING;

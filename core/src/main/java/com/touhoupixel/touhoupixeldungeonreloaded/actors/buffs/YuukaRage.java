@@ -35,7 +35,7 @@ public class YuukaRage extends FlavourBuff {
 
 	@Override
 	public int icon() {
-		return BuffIndicator.YUUKARAGE;
+		return BuffIndicator.YUUKA_RAGE;
 	}
 
 	@Override

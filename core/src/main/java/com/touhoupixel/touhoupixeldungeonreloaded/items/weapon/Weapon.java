@@ -21,12 +21,9 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
@@ -190,7 +187,7 @@ abstract public class Weapon extends KindOfWeapon {
 	@Override
 	public float delayFactor( Char owner ) {
 		if (owner.buff(ExtremeConfusion.class) != null){
-			switch (Random.Int(4)) {
+			switch (Random.Int(3)) {
 				case 0:
 				default:
 					return 0f;
@@ -198,8 +195,6 @@ abstract public class Weapon extends KindOfWeapon {
 					return 1f;
 				case 2:
 					return 2f;
-				case 3:
-					return 3f;
 			}
 		} else return baseDelay(owner) * (1f/speedMultiplier(owner));
 	}
@@ -236,7 +231,7 @@ abstract public class Weapon extends KindOfWeapon {
 	public int STRReq(){
 		int req = STRReq(level());
 		if (masteryPotionBonus){
-			req -= 2;
+			req -= 5;
 		}
 		return req;
 	}
@@ -296,13 +291,10 @@ abstract public class Weapon extends KindOfWeapon {
 	
 	@Override
 	public Item random() {
-		//+0: 75% (3/4)
-		//+1: 20% (4/20)
-		//+2: 5%  (1/20)
 		int n = 0;
-		if (Random.Int(4) == 0) {
+		if (Random.Int(3) == 0) {
 			n++;
-			if (Random.Int(5) == 0) {
+			if (Random.Int(3) == 0) {
 				n++;
 			}
 		}

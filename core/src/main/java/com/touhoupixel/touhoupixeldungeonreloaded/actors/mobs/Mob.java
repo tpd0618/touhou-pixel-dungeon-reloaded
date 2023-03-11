@@ -35,19 +35,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -60,9 +62,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
@@ -600,7 +603,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return !(this instanceof Wraith) && Dungeon.isChallenged(Challenges.UNCONSCIOUS_ROSE) && Dungeon.hero.justMoved;
+		return !(this instanceof Wraith) && Dungeon.isChallenged(Challenges.UNCONSCIOUS_ROSE) && Dungeon.hero.justMoved || this instanceof BossHecatia && Statistics.eirinelixircount != 4;
 	}
 
 	@Override
@@ -626,13 +629,22 @@ public abstract class Mob extends Char {
 		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Dungeon.level.map[this.pos] == Terrain.WATER && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*1000f);
 		}
+
+		if (Dungeon.hero.buff(EvasiveCounterattack.class) != null){
+			Dungeon.hero.damage(this.damageRoll(), Youmu.class);
+			if (!Dungeon.hero.isAlive()) {
+				Dungeon.fail(Youmu.class);
+				GLog.n( Messages.get(Youmu.class, "snipe") );
+			}
+		}
+
 		return Messages.get(this, "def_verb");
 	}
 
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 
-		if (this.buff(OneDamage.class) != null ) {
+		if (this.buff(MeleeNullify.class) != null) {
 			damage = 1;
 		}
 
@@ -655,7 +667,7 @@ public abstract class Mob extends Char {
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (this instanceof Meiling && enemy.pos == this.pos + i) {
 				if (Statistics.difficulty > 4) {
-					Buff.prolong(enemy, SuperDegrade.class, SuperDegrade.DURATION);
+					Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
 				} else {
 					Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
 				}
@@ -778,6 +790,10 @@ public abstract class Mob extends Char {
 			if (Statistics.card44) {
 				Dungeon.gold += 20;
 			}
+		}
+
+		if (this.buff(Light.class) != null && Random.Int(5) == 0) {
+			Dungeon.level.drop(new Torch(), pos).sprite.drop();
 		}
 
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {

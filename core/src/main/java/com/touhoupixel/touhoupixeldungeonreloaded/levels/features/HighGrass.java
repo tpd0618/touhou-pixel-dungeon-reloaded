@@ -101,12 +101,12 @@ public class HighGrass {
 						Item.updateQuickslot();
 						Sample.INSTANCE.play(Assets.Sounds.DEWDROP);
 					} else {
-						if ((Random.Int(2) == 0)) {
+						if (Random.Int(2) == 0) {
 							level.drop(new Dewdrop(), pos).sprite.drop();
 						} else {
-							if ((Random.Int(8) == 0 && ch instanceof Hero)) {
+							if (Random.Int(8) == 0 && ch instanceof Hero) {
 								level.drop(new MaxPower(), pos).sprite.drop();
-							} else {
+							} else if (ch instanceof Hero){
 								level.drop(new BigPower(), pos).sprite.drop();
 							}
 						}

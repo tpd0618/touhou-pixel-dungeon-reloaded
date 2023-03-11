@@ -28,6 +28,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -112,6 +115,12 @@ public class Miracle extends Item {
 					}
 					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 						Statistics.mood += 1;
+					}
+					for (Mob mob : Dungeon.level.mobs){
+						if (Dungeon.depth == 50 && mob instanceof BossHecatia && mob.isAlive()) {
+							Buff.prolong(mob, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
+							GLog.w(Messages.get(this, "bomb_barrier"));
+						}
 					}
 					Statistics.spellcard -= 1;
 					Statistics.spellcarduse = true;

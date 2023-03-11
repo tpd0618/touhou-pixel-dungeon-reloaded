@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMap
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
@@ -54,8 +54,8 @@ public abstract class ExoticScroll extends Scroll {
 		regToExo.put(ScrollOfFixer.class, ScrollOfEnchantment.class);
 		exoToReg.put(ScrollOfEnchantment.class, ScrollOfFixer.class);
 		
-		regToExo.put(ScrollOfRemoveCurse.class, ScrollOfAntiMagic.class);
-		exoToReg.put(ScrollOfAntiMagic.class, ScrollOfRemoveCurse.class);
+		regToExo.put(ScrollOfCurseRemoval.class, ScrollOfAntiMagic.class);
+		exoToReg.put(ScrollOfAntiMagic.class, ScrollOfCurseRemoval.class);
 		
 		regToExo.put(ScrollOfLullaby.class, ScrollOfSirensSong.class);
 		exoToReg.put(ScrollOfSirensSong.class, ScrollOfLullaby.class);

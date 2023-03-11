@@ -99,7 +99,7 @@ public class Bestiary {
 			case 34:
 			case 35:
 				return new ArrayList<>(Arrays.asList(
-						Hecatia.class, Miyoi.class, Parsee.class, Satono.class, Mai.class, Okina.class));
+						Hecatia.class, Miyoi.class, Parsee.class, Mai.class, Satono.class, Okina.class));
 			case 36:
 			case 37:
 				return new ArrayList<>(Arrays.asList(

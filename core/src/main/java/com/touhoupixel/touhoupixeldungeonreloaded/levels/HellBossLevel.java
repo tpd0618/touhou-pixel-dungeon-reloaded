@@ -35,6 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eika;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eiki;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mystia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Toyohime;
@@ -86,7 +87,7 @@ public class HellBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 425, LevelTransition.Type.REGULAR_EXIT));
 		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
@@ -121,8 +122,8 @@ public class HellBossLevel extends Level {
 			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
 			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
 			W, W, d, d, d, W, W, e, e, d, d, d, d, d, e, e, W, W, d, d, d, W, W,
-			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, E, x, x, x, x, x, x, x, x, x, W, W,
+			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
 	};
@@ -160,8 +161,8 @@ public class HellBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 448, Terrain.SUNNY_TILES );
-		GameScene.updateMap( 448 );
+		set( 425, Terrain.SUNNY_TILES );
+		GameScene.updateMap( 425 );
 
 		BossHecatia boss = new BossHecatia();
 		boss.state = boss.WANDERING;
@@ -169,41 +170,11 @@ public class HellBossLevel extends Level {
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
 
-		Reimu reimu = new Reimu();
-		reimu.state = reimu.WANDERING;
-		reimu.pos = 96;
-		GameScene.add( reimu );
-		reimu.beckon(Dungeon.hero.pos);
-
-		Toyohime toyohime = new Toyohime();
-		toyohime.state = toyohime.WANDERING;
-		toyohime.pos = 99;
-		GameScene.add( toyohime );
-		toyohime.beckon(Dungeon.hero.pos);
-
-		Yorihime yorihime = new Yorihime();
-		yorihime.state = yorihime.WANDERING;
-		yorihime.pos = 107;
-		GameScene.add( yorihime );
-		yorihime.beckon(Dungeon.hero.pos);
-
-		Utsuho utsuho = new Utsuho();
-		utsuho.state = utsuho.WANDERING;
-		utsuho.pos = 110;
-		GameScene.add( utsuho );
-		utsuho.beckon(Dungeon.hero.pos);
-
-		Yuuma yuuma = new Yuuma();
-		yuuma.state = yuuma.WANDERING;
-		yuuma.pos = 395;
-		GameScene.add( yuuma );
-		yuuma.beckon(Dungeon.hero.pos);
-
-		Eiki eiki = new Eiki();
-		eiki.state = eiki.WANDERING;
-		eiki.pos = 409;
-		GameScene.add( eiki );
-		eiki.beckon(Dungeon.hero.pos);
+		Junko junko = new Junko();
+		junko.state = junko.WANDERING;
+		junko.pos = 57;
+		GameScene.add( junko );
+		junko.beckon(Dungeon.hero.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();
@@ -216,8 +187,8 @@ public class HellBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		set( 448, Terrain.ENTRANCE );
-		GameScene.updateMap( 448 );
+		set( 425, Terrain.ENTRANCE );
+		GameScene.updateMap( 425 );
 
 		isCompleted = true;
 

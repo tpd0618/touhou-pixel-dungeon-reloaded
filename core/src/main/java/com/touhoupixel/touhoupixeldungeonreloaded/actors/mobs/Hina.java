@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.PhaseShift;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
@@ -72,7 +73,7 @@ public class Hina extends Mob {
                 Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
             }
         }
         return damage;

@@ -25,10 +25,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Alice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossOkina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Iku;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.LevitationHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -55,8 +60,8 @@ public class HeavenBossLevel extends Level {
 				false);
 	}
 
-	private static int WIDTH = 23;
-	private static int HEIGHT = 22;
+	private static int WIDTH = 11;
+	private static int HEIGHT = 11;
 
 	private static boolean isCompleted = false;
 
@@ -74,8 +79,8 @@ public class HeavenBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
-		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
+		transitions.add(new LevelTransition(this, 93, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 16, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
 
@@ -84,34 +89,21 @@ public class HeavenBossLevel extends Level {
 
 	private static final short n = -1;
 	private static final short W = Terrain.WALL;
-	private static final short e = Terrain.EMPTY;
-	private static final short E = Terrain.ENTRANCE;
-	private static final short d = Terrain.DOOR;
+	private static final short e = Terrain.IRON_TILES;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
+			W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, L, W, W, W, W, W,
+			W, W, e, e, e, e, e, e, e, W, W,
+			W, W, e, W, e, e, e, W, e, W, W,
+			W, W, e, e, W, e, W, e, e, W, W,
+			W, W, e, e, e, W, e, e, e, W, W,
+			W, W, e, e, W, e, W, e, e, W, W,
+			W, W, e, W, e, e, e, W, e, W, W,
+			W, W, e, e, e, e, e, e, e, W, W,
+			W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W
 	};
 
 	private void buildLevel(){
@@ -131,6 +123,10 @@ public class HeavenBossLevel extends Level {
 
 	@Override
 	protected void createItems() {
+		drop( new LevitationHerb(), 24 );
+		drop( new LevitationHerb(), 30 );
+		drop( new LevitationHerb(), 90 );
+		drop( new LevitationHerb(), 96 );
 	}
 
 	@Override
@@ -147,14 +143,26 @@ public class HeavenBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 448, Terrain.EMPTY );
-		GameScene.updateMap( 448 );
+		set( 93, Terrain.IRON_TILES );
+		GameScene.updateMap( 93 );
 
 		BossTenshi boss = new BossTenshi();
 		boss.state = boss.WANDERING;
-		boss.pos = 287;
+		boss.pos = 49;
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
+
+		Iku iku = new Iku();
+		iku.state = iku.WANDERING;
+		iku.pos = 57;
+		GameScene.add( iku );
+		iku.beckon(Dungeon.hero.pos);
+
+		Suika suika = new Suika();
+		suika.state = suika.WANDERING;
+		suika.pos = 63;
+		GameScene.add( suika );
+		suika.beckon(Dungeon.hero.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();
@@ -167,8 +175,8 @@ public class HeavenBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		set( 448, Terrain.ENTRANCE );
-		GameScene.updateMap( 448 );
+		set( 93, Terrain.ENTRANCE );
+		GameScene.updateMap( 93 );
 
 		isCompleted = true;
 

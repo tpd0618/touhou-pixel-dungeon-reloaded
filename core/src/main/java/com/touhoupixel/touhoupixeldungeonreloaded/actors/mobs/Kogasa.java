@@ -65,7 +65,7 @@ public class Kogasa extends Mob {
             GLog.w(Messages.get(this, "fear"));
 
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Hex.class, Hex.DURATION / 5f);
+                Buff.prolong(enemy, Hex.class, Hex.DURATION/5f);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION / 2f);

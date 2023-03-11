@@ -12,6 +12,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -62,6 +63,9 @@ public class Yamame extends Mob {
             }
             if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;
+                Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+                Sample.INSTANCE.play( Assets.Sounds.CURSED );
+                GLog.w(Messages.get(Kanako.class, "str_reduce"));
             }
         }
         return damage;

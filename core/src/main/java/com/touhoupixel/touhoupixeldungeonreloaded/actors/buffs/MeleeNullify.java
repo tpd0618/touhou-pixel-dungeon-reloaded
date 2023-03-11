@@ -24,33 +24,37 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class DanmakuDamageIncrease extends FlavourBuff {
-
+public class MeleeNullify extends FlavourBuff {
+	
+	public static final float DURATION = 15f;
+	
 	{
-		type = buffType.POSITIVE;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
-
-	public static final float DURATION = 50f;
-
+	
 	@Override
 	public int icon() {
-		return BuffIndicator.DANMAKU_DAMAGE_INCREASE;
+		return BuffIndicator.MELEE_NULLIFY;
 	}
 
 	@Override
 	public float iconFadePercent() {
 		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
-
+	
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
 	}
 
 	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
+	}
+	
+	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
-	
 }

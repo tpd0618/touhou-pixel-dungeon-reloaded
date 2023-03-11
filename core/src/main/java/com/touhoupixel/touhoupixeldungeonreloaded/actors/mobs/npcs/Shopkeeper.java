@@ -104,7 +104,7 @@ public class Shopkeeper extends NPC {
 
 	//shopkeepers are greedy!
 	public static int sellPrice(Item item){
-		return item.value() * 5 * (Dungeon.depth / 5 + 1);
+		return item.value() * 5;
 	}
 	
 	public static WndBag sell() {
@@ -116,8 +116,8 @@ public class Shopkeeper extends NPC {
 		if (item.unique && !item.stackable)                                 return false;
 		if (item instanceof Armor && ((Armor) item).checkSeal() != null)    return false;
 		if (item.isEquipped(Dungeon.hero) && item.cursed)                   return false;
-		if (item instanceof abilitycards)                                   return false;
 		if (item.isIdentified() && item.level() > 0)                        return false;
+		if (item instanceof abilitycards)                                   return false;
 		if (item instanceof StrengthCard)                                   return false;
 		if (item instanceof UpgradeCard)                                    return false;
 		if (item instanceof Torch)                                          return false;

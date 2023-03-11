@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,56 +19,63 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats;
+package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class Life extends Item {
+public class EirinJunkoCounterElixir extends Item {
 
-	private static final String TXT_VALUE	= "%+d";
+	private static final String AC_DRINK = "DRINK";
 
 	{
-		image = ItemSpriteSheet.LIFE;
+		image = ItemSpriteSheet.ELIXIR_ZEN;
+
+		defaultAction = AC_DRINK;
+
+		stackable = true;
+		unique = true;
 	}
 
-	public Life() {
-		this( 1 );
-	}
-
-	public Life(int value ) {
-		this.quantity = value;
-	}
-	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		return new ArrayList<>();
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
+		actions.add(AC_DRINK);
+		return actions;
 	}
-	
-	@Override
-	public boolean doPickUp(Hero hero, int pos) {
 
-		Statistics.life += 1;
-		if (Statistics.card52){
-			Statistics.lifefragment += 2;
+	@Override
+	public void execute(final Hero hero, String action) {
+
+		super.execute(hero, action);
+
+		if (action.equals(AC_DRINK)) {
+			Statistics.eirinelixircount += 1;
+
+			curUser.spendAndNext(1f);
+
+			Sample.INSTANCE.play( Assets.Sounds.DRINK );
+
+			GLog.p( Messages.get(this, "reduce_power") );
+
+			curItem.detach(curUser.belongings.backpack);
 		}
+	}
 
-		GameScene.pickUp( this, pos );
-		hero.spendAndNext( TIME_TO_PICK_UP );
-		
-		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
-		updateQuickslot();
-		
+	@Override
+	public boolean isUpgradable() {
+		return false;
+	}
+
+	@Override
+	public boolean isIdentified() {
 		return true;
 	}
 }

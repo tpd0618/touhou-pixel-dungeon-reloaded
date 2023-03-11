@@ -3,22 +3,19 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TenshiSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BossHealthBar;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
@@ -31,8 +28,6 @@ public class BossTenshi extends Mob {
         defenseSkill = 40;
         EXP = 30;
         maxLvl = 99;
-
-        baseSpeed = 2f;
 
         properties.add(Property.BOSS);
         properties.add(Property.WARP);
@@ -79,8 +74,26 @@ public class BossTenshi extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !hero.flying && Random.Int(3) == 0) {
-            Buff.prolong(enemy, PotionPressure.class, PotionPressure.DURATION);
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            if (Statistics.tenshiattackstep == 1){
+                GLog.w(Messages.get(this, "charge"));
+            }
+            if (Statistics.tenshiattackstep > 3){
+                Statistics.tenshiattackstep = -1;
+                Camera.main.shake( 30, 1f );
+                if (!Dungeon.hero.flying) {
+                    Dungeon.hero.damage(50, this);
+                    if (!Dungeon.hero.isAlive()) {
+                        Dungeon.fail(BossTenshi.class);
+                        GLog.n( Messages.get(BossTenshi.class, "ondeath") );
+                    }
+                }
+                Sample.INSTANCE.play(Assets.Sounds.BLAST);
+                GLog.w(Messages.get(this, "earthquake"));
+            }
+
+            Statistics.tenshiattackstep += 1;
+
             if (this.HP < this.HT / 2){
                 Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
             }

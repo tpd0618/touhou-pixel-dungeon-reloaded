@@ -86,11 +86,6 @@ public class Food extends Item {
 				Statistics.mood += 1;
 			}
 
-			if (Dungeon.isChallenged(Challenges.PATIENT_ROGUE)) {
-				Buff.prolong(curUser, Silence.class, Silence.DURATION);
-				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
-			}
-
 			hero.spend( eatingTime() );
 
 			Statistics.foodEaten++;

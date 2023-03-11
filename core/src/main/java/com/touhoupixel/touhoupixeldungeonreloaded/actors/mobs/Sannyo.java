@@ -35,6 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
@@ -82,12 +83,15 @@ public class Sannyo extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             if (Statistics.difficulty > 2) {
                 Statistics.playercorruption += 1;
             }
             if (Statistics.difficulty > 4) {
                 Dungeon.hero.STR--;
+                Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+                Sample.INSTANCE.play( Assets.Sounds.CURSED );
+                GLog.w(Messages.get(Kanako.class, "str_reduce"));
             }
             ArrayList<Item> gazer = new ArrayList<>();
             if (hero.buff(LostInventory.class) == null) {
@@ -96,7 +100,7 @@ public class Sannyo extends Mob {
                         gazer.add(i);
                     }
                 }
-                if ((Random.Int(5) == 0)) {
+                if (Random.Int(5) == 0) {
                     damage = Math.max(damage, hero.HP / 2);
                     if (!gazer.isEmpty()) {
                         Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);

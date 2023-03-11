@@ -55,8 +55,8 @@ public class Yuugi extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION / 4f);
-            Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
+            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/3f);
+            Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Might.class, Might.DURATION);
             }

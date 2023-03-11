@@ -55,7 +55,7 @@ public abstract class Key extends Item {
 	public boolean doPickUp(Hero hero, int pos) {
 		GameScene.pickUpJournal(this, pos);
 		if (hero.buff(KeyHeal.class) != null){
-			hero.HP = Math.min(hero.HP + 50, hero.HT);
+			hero.HP = Math.min(hero.HP + 35, hero.HT);
 		}
 		WndJournal.last_index = 2;
 		Notes.add(this);

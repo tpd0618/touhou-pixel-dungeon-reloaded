@@ -31,7 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
@@ -281,7 +280,6 @@ public class Potion extends Item {
 				if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
 					Statistics.mood += 1;
 				}
-				Buff.detach( hero, PotionPressure.class);
 			}
 		}
 	}
@@ -444,7 +442,7 @@ public class Potion extends Item {
 	
 	@Override
 	public int value() {
-		return 30 * quantity;
+		return 50 * quantity;
 	}
 
 	@Override

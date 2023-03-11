@@ -21,12 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuDamageIncrease;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuPowerUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -39,7 +35,7 @@ public class PotionOfDanmaku extends Potion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Buff.prolong( hero, DanmakuDamageIncrease.class, DanmakuDamageIncrease.DURATION);
+		Buff.prolong( hero, DanmakuPowerUp.class, DanmakuPowerUp.DURATION);
 	}
 
 	@Override

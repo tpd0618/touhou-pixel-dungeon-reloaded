@@ -34,7 +34,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
@@ -43,12 +46,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuDamageIncrease;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuPowerUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
@@ -64,18 +66,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionPressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
@@ -91,7 +89,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Youmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
@@ -149,6 +146,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.YuukaDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -494,12 +492,8 @@ public class Hero extends Char {
 		}
 		if (dmg < 0) dmg = 0;
 
-		if (Dungeon.hero.buff(OneDamage.class) != null) {
+		if (Dungeon.hero.buff(MeleeNullify.class) != null && Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
 			dmg = 1;
-		}
-
-		if (Dungeon.hero.buff(RemiliaFate.class) != null){
-			dmg *= 2;
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.PEDESTAL){
@@ -575,8 +569,12 @@ public class Hero extends Char {
 			dmg *= 0;
 		}
 
-		if (Dungeon.hero.buff(DanmakuDamageIncrease.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (Dungeon.hero.buff(DanmakuPowerUp.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			dmg *= 1.4;
+		}
+
+		if (Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU) && Statistics.spellcarduse){
+			dmg *= 0.8;
 		}
 
 		if (Statistics.power == 400){
@@ -640,7 +638,7 @@ public class Hero extends Char {
 	public boolean canSurpriseAttack(){
 		if (belongings.weapon() == null || !(belongings.weapon() instanceof Weapon))    return true;
 		if (STR() < ((Weapon)belongings.weapon()).STRReq())                             return false;
-		if (Dungeon.hero.buff(AntiSneakattack.class) != null)                           return false;
+		if (Dungeon.hero.buff(ZeroDexterity.class) != null)                           return false;
 		if (belongings.weapon() instanceof CirnoWing)                                   return false;
 		if (Dungeon.hero.buff(Powerful.class) != null)                                  return false;
 		if (Statistics.card57)                                                          return false;
@@ -722,7 +720,7 @@ public class Hero extends Char {
 			} else Statistics.hitorilefttime += 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.HISOUTEN_SWORD)){
+		if (Dungeon.isChallenged(Challenges.SWORD_OF_HISOU)){
 			if (Statistics.tenshiEarthquake > 98) {
 				Statistics.tenshiEarthquake = 0;
 				Camera.main.shake( 5, 1f );
@@ -1231,14 +1229,6 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc(enemy, damage);
 
-		if (Dungeon.hero.buff(EvasiveCounterattack.class) != null){
-			this.damage(enemy.damageRoll(), Youmu.class);
-			if (this == Dungeon.hero && !this.isAlive()) {
-				Dungeon.fail(Youmu.class);
-				GLog.n( Messages.get(Youmu.class, "snipe") );
-			}
-		}
-
 		if (this.buff(SunnySnipe.class) != null && Dungeon.level.map[this.pos] == Terrain.SUNNY_TILES){
 			this.damage(666, Sunny.class);
 			if (this == Dungeon.hero && !this.isAlive()) {
@@ -1270,8 +1260,8 @@ public class Hero extends Char {
 			}
 		}
 
-		if (Dungeon.hero.buff(PotionPressure.class) != null || Dungeon.hero.buff(DismantlePressure.class) != null){
-			Buff.prolong(Dungeon.hero, SuperDegrade.class, SuperDegrade.DURATION);
+		if (Dungeon.hero.buff(DismantlePressure.class) != null){
+			Buff.prolong(Dungeon.hero, Slow.class, Slow.DURATION);
 		}
 
 		if (Dungeon.hero.belongings.armor() instanceof SatonoArmor && (Random.Int(50) == 0)){
@@ -1283,15 +1273,15 @@ public class Hero extends Char {
 		}
 
 		if (Statistics.card61 && enemy.properties().contains(Char.Property.GOD) && Random.Int(5) == 0){
-			Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
+			Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
 		}
 
 		if (Statistics.card38 && Random.Int(5) == 0){
 			ScrollOfMirrorImage.spawnImages(this, 1);
 		}
 
-		if (Statistics.card59 && (Random.Int(30) == 0)) {
-			Dungeon.gold += Dungeon.depth*50;
+		if (Statistics.card59 && (Random.Int(50) == 0)) {
+			Dungeon.gold += Dungeon.depth * 50;
 		}
 
 		if (Statistics.card51 && Dungeon.level.map[this.pos] == Terrain.WATER) {
@@ -1325,7 +1315,7 @@ public class Hero extends Char {
 			GLog.w(Messages.get(Potion.class, "corruption"));
 		}
 
-		if (buff(CursedBlow.class) != null){
+		if (buff(CursedBlow.class) != null && Dungeon.hero.belongings.weapon() instanceof MeleeWeapon){
 			CursedWand.cursedEffect(null, this, enemy);
 		}
 
@@ -1404,25 +1394,25 @@ public class Hero extends Char {
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.IRON_TILES){
-			Buff.prolong(this, Blindness.class, Blindness.DURATION);
-			Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+			Buff.prolong(this, Light.class, Light.DURATION/4f);
+			Buff.prolong(enemy, Light.class, Light.DURATION);
 			if (Statistics.card64) {
 				Buff.prolong(this, Zen.class, Zen.DURATION);
-				Buff.prolong(this, DanmakuDamageIncrease.class, DanmakuDamageIncrease.DURATION);
+				Buff.prolong(this, DanmakuPowerUp.class, DanmakuPowerUp.DURATION);
 			}
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.SAND_TILES){
-			Buff.prolong(this, Slow.class, Slow.DURATION);
-			Buff.prolong(enemy, Slow.class, Slow.DURATION);
+			Buff.prolong(this, Cripple.class, Cripple.DURATION);
+			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
 			if (Statistics.card65) {
 				Statistics.value += 10;
 			}
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.ICE_TILES){
-			Buff.prolong(this, Vertigo.class, Vertigo.DURATION);
-			Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
+			Buff.prolong(this, Blindness.class, Blindness.DURATION);
+			Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
 			if (Statistics.card24 && Notes.keyCount(new IronKey(Dungeon.depth)) > 1) {
 				Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
 			}

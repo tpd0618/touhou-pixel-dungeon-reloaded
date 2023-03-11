@@ -26,21 +26,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiSneakattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Healing;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
@@ -53,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Random;
 
 public class PotionOfHealing extends Potion {
 
@@ -86,31 +80,33 @@ public class PotionOfHealing extends Potion {
 				Dungeon.fail(AntiHealTrap.class);
 				GLog.n( Messages.get(AntiHeal.class, "ondeath") );
 			}
-		} else Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
+		} else {
+			Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
+			if (Dungeon.isChallenged(Challenges.SCALES_OF_JUSTICE)) {
+				if (Random.Int(2) == 0) {
+					Buff.prolong(curUser, MeleeNullify.class, MeleeNullify.DURATION);
+				} else {
+					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION);
+				}
+			}
+		}
 		if (ch == Dungeon.hero) {
 			GLog.p(Messages.get(PotionOfHealing.class, "heal"));
 		}
 	}
 	
 	public static void cure( Char ch ) {
-		Buff.detach( ch, Poison.class);
-		Buff.detach( ch, Cripple.class);
-		Buff.detach( ch, Paralysis.class);
-		Buff.detach( ch, Weakness.class);
-		Buff.detach( ch, Vulnerable.class);
-		Buff.detach( ch, Bleeding.class);
-		Buff.detach( ch, Blindness.class);
-		Buff.detach( ch, Drowsy.class);
-		Buff.detach( ch, Slow.class);
+		Buff.detach( ch, Poison.class );
+		Buff.detach( ch, Cripple.class );
+		Buff.detach( ch, Weakness.class );
+		Buff.detach( ch, Vulnerable.class );
+		Buff.detach( ch, Bleeding.class );
+		Buff.detach( ch, Blindness.class );
+		Buff.detach( ch, Drowsy.class );
+		Buff.detach( ch, Slow.class );
 		Buff.detach( ch, Vertigo.class);
-		Buff.detach( ch, ExtremeConfusion.class);
-		Buff.detach( ch, RemiliaFate.class);
-		Buff.detach( ch, OneDamage.class);
+		Buff.detach( ch, MeleeNullify.class);
 		Buff.detach( ch, WandZeroDamage.class);
-		Buff.detach( ch, CursedBlow.class);
-		Buff.detach( ch, AntiSneakattack.class);
-		Buff.detach( ch, BalanceBreak.class);
-		Buff.detach( ch, RegenBlock.class);
 	}
 
 	@Override

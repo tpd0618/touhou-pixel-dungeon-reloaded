@@ -50,122 +50,122 @@ public class DragonHerb extends Herb {
 
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.pos == hero.pos + 1){
-					mob.damage(5 * Dungeon.depth, hero);
+					mob.damage(6 * Dungeon.depth, hero);
 					mob.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob2 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob2.pos == hero.pos - 1){
-					mob2.damage(5 * Dungeon.depth, hero);
+					mob2.damage(6 * Dungeon.depth, hero);
 					mob2.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob3 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob3.pos == hero.pos + 2){
-					mob3.damage(5 * Dungeon.depth, hero);
+					mob3.damage(6 * Dungeon.depth, hero);
 					mob3.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob4 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob4.pos == hero.pos - 2){
-					mob4.damage(5 * Dungeon.depth, hero);
+					mob4.damage(6 * Dungeon.depth, hero);
 					mob4.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob5 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob5.pos == hero.pos + 3){
-					mob5.damage(5 * Dungeon.depth, hero);
+					mob5.damage(6 * Dungeon.depth, hero);
 					mob5.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob6 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob6.pos == hero.pos - 3){
-					mob6.damage(5 * Dungeon.depth, hero);
+					mob6.damage(6 * Dungeon.depth, hero);
 					mob6.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob7 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob7.pos == hero.pos + 4) {
-					mob7.damage(5 * Dungeon.depth, hero);
+					mob7.damage(6 * Dungeon.depth, hero);
 					mob7.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6);
 				}
 			}
 			for (Mob mob8 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob8.pos == hero.pos - 4){
-					mob8.damage(5 * Dungeon.depth, hero);
+					mob8.damage(6 * Dungeon.depth, hero);
 					mob8.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob9 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob9.pos == hero.pos + 5){
-					mob9.damage(5 * Dungeon.depth, hero);
+					mob9.damage(6 * Dungeon.depth, hero);
 					mob9.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob10 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob10.pos == hero.pos - 5){
-					mob10.damage(5 * Dungeon.depth, hero);
+					mob10.damage(6 * Dungeon.depth, hero);
 					mob10.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob11 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob11.pos == hero.pos + 6){
-					mob11.damage(5 * Dungeon.depth, hero);
+					mob11.damage(6 * Dungeon.depth, hero);
 					mob11.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob12 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob12.pos == hero.pos - 6){
-					mob12.damage(5 * Dungeon.depth, hero);
+					mob12.damage(6 * Dungeon.depth, hero);
 					mob12.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob13 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob13.pos == hero.pos + 7){
-					mob13.damage(5 * Dungeon.depth, hero);
+					mob13.damage(6 * Dungeon.depth, hero);
 					mob13.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob14 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob14.pos == hero.pos - 7){
-					mob14.damage(5 * Dungeon.depth, hero);
+					mob14.damage(6 * Dungeon.depth, hero);
 					mob14.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob15 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob15.pos == hero.pos + 8){
-					mob15.damage(5 * Dungeon.depth, hero);
+					mob15.damage(6 * Dungeon.depth, hero);
 					mob15.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob16 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob16.pos == hero.pos - 8){
-					mob16.damage(5 * Dungeon.depth, hero);
+					mob16.damage(6 * Dungeon.depth, hero);
 					mob16.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob17 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob17.pos == hero.pos + 9){
-					mob17.damage(5 * Dungeon.depth, hero);
+					mob17.damage(6 * Dungeon.depth, hero);
 					mob17.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob16 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob16.pos == hero.pos - 9){
-					mob16.damage(5 * Dungeon.depth, hero);
+					mob16.damage(6 * Dungeon.depth, hero);
 					mob16.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 
 			for (Mob mob19 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob19.pos == hero.pos + 10){
-					mob19.damage(5 * Dungeon.depth, hero);
+					mob19.damage(6 * Dungeon.depth, hero);
 					mob19.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob20 : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob20.pos == hero.pos - 10){
-					mob20.damage(5 * Dungeon.depth, hero);
+					mob20.damage(6 * Dungeon.depth, hero);
 					mob20.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}

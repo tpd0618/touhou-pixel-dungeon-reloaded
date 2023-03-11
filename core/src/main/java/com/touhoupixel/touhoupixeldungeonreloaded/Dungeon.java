@@ -453,7 +453,7 @@ public class Dungeon {
 	}
 
 	public static boolean cardShopOnLevel() {
-		return depth == 1 || depth == 11 || depth == 21 || depth == 31;
+		return depth == 1 || depth == 11 || depth == 21 || depth == 31 || depth == 41;
 	}
 
 	public static boolean bossLevel() {

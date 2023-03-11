@@ -49,11 +49,6 @@ public class GoldCreation extends FlavourBuff {
 	}
 	
 	@Override
-	public String heroMessage() {
-		return Messages.get(this, "heromsg");
-	}
-	
-	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}

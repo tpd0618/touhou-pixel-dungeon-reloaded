@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
@@ -325,8 +324,6 @@ public class Item implements Bundlable {
 	public int buffedLvl() {
 		if (Dungeon.hero.buff(Degrade.class) != null) {
 			return Degrade.reduceLevel(level());
-		} else if (Dungeon.hero.buff(SuperDegrade.class) != null) {
-			return SuperDegrade.reduceLevel(level());
 		}
 		return level();
 	}

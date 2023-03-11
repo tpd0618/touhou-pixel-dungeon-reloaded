@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -79,6 +80,9 @@ public abstract class DamageWand extends Wand{
 		if (Statistics.card32) {
 			dmg *= 1.5f;
 		} //blank card
+		if (Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU) && Statistics.spellcarduse){
+			dmg *= 0.8f;
+		}
 
 		return dmg;
 	}

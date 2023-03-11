@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
@@ -62,8 +63,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
@@ -604,8 +605,17 @@ public abstract class Char extends Actor {
         } else if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
         }
-        if (buff( Doublespeed.class ) != null) {
-            timeScale *= 2.0f;
+        if (Dungeon.isChallenged(Challenges.BUNBUN_DELIVERY)) {
+            if (buff(Doublespeed.class) != null && this instanceof Hero) {
+                timeScale *= 1.5f;
+            }
+            if (buff(Doublespeed.class) != null && this instanceof Mob) {
+                timeScale *= 2.5f;
+            }
+        } else {
+            if (buff(Doublespeed.class) != null) {
+                timeScale *= 2.0f;
+            }
         }
 
         super.spend( time / timeScale );

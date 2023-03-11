@@ -27,8 +27,6 @@ public class Sakuya extends Mob {
 
         properties.add(Property.HUMAN);
 
-        baseSpeed = 3f;
-
         loot = new LifeFragment();
         lootChance = 0.15f;
     }

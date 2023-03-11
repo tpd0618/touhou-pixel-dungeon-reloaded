@@ -52,7 +52,7 @@ public class Sunny extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (Random.Int(3) == 0) {
-            Buff.affect(enemy, Burning.class).reignite(enemy, 5f);
+            Buff.affect(enemy, Burning.class).reignite(enemy, 3f);
             Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Weakness.class, Weakness.DURATION);

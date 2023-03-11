@@ -4,13 +4,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RemiliaSprite;
 import com.watabou.utils.Random;
@@ -52,10 +50,10 @@ public class Remilia extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(8) == 0) {
             Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION/2f);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(this, ReBirth.class, ReBirth.DURATION);
+                Buff.detach(enemy, Light.class);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
+                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
             }
         }
         return damage;
