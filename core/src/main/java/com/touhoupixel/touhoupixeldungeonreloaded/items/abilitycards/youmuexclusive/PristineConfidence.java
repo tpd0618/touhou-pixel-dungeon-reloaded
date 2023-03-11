@@ -23,12 +23,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclu
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class PristineConfidence extends abilitycards {
+public class PristineConfidence extends Abilitycards {
 
     private static final String AC_DRINK	= "DRINK";
 

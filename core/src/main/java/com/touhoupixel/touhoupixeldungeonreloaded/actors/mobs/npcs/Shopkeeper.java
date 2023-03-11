@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -117,7 +117,7 @@ public class Shopkeeper extends NPC {
 		if (item instanceof Armor && ((Armor) item).checkSeal() != null)    return false;
 		if (item.isEquipped(Dungeon.hero) && item.cursed)                   return false;
 		if (item.isIdentified() && item.level() > 0)                        return false;
-		if (item instanceof abilitycards)                                   return false;
+		if (item instanceof Abilitycards)                                   return false;
 		if (item instanceof StrengthCard)                                   return false;
 		if (item instanceof UpgradeCard)                                    return false;
 		if (item instanceof Torch)                                          return false;

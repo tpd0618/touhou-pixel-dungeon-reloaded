@@ -22,7 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -34,7 +34,7 @@ public class MagicalContainer extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof abilitycards || item instanceof Talisman){
+		if (item instanceof Abilitycards || item instanceof Talisman){
 			return super.canHold(item);
 		} else {
 			return false;

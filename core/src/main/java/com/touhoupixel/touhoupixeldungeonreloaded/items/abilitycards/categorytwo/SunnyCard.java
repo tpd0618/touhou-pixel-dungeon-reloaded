@@ -23,12 +23,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytw
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class SunnyCard extends abilitycards {
+public class SunnyCard extends Abilitycards {
 
     private static final String AC_DRINK	= "DRINK";
 

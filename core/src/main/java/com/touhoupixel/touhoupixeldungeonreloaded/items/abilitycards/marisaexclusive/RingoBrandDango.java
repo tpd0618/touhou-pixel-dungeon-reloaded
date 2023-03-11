@@ -23,12 +23,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexcl
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class RingoBrandDango extends abilitycards {
+public class RingoBrandDango extends Abilitycards {
 
     private static final String AC_DRINK	= "DRINK";
 

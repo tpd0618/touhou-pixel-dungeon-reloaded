@@ -24,12 +24,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categoryon
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class NazrinAlchemyMoney extends abilitycards {
+public class NazrinAlchemyMoney extends Abilitycards {
 
     private static final String AC_DRINK	= "DRINK";
 

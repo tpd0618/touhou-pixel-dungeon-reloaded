@@ -52,9 +52,6 @@ public class CloakOfShadows extends Artifact {
 		chargeCap = Math.min(level()+3, 10);
 
 		defaultAction = AC_STEALTH;
-
-		unique = true;
-		bones = false;
 	}
 
 	public static final String AC_STEALTH = "STEALTH";

@@ -21,19 +21,16 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-abstract public class abilitycards extends Item {
+abstract public class Abilitycards extends Item {
 
     {
         unique = true;
