@@ -21,15 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -44,11 +41,11 @@ public class PotionOfBalance extends ExoticPotion {
 	public void apply(Hero hero) {
 		identify();
 		Buff.prolong(hero, BalanceBreak.class, BalanceBreak.DURATION);
-		if (hero.buff(AntiHeal.class) != null) {
+		if (hero.buff(Inversion.class) != null) {
 			hero.damage(hero.HT / 2, hero);
 			if (hero == Dungeon.hero && !hero.isAlive()) {
-				Dungeon.fail(AntiHealTrap.class);
-				GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+				Dungeon.fail(InversionTrap.class);
+				GLog.n( Messages.get(Inversion.class, "ondeath") );
 			}
 		} else hero.HP = Math.min(hero.HP + 10000, hero.HT);
 	}

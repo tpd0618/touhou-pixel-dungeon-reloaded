@@ -24,11 +24,11 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barrier;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -88,11 +88,11 @@ public class GlassBottle extends Item {
 
 		if (action.equals( AC_DRINK )) {
 
-			if (hero.buff(AntiHeal.class) != null) {
+			if (hero.buff(Inversion.class) != null) {
 				hero.damage(hero.HT / 2, hero);
 				if (hero == Dungeon.hero && !hero.isAlive()) {
-					Dungeon.fail(AntiHealTrap.class);
-					GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+					Dungeon.fail(InversionTrap.class);
+					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else if (volume > 0) {
 

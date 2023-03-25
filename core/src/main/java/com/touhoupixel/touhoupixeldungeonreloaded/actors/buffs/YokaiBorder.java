@@ -24,18 +24,18 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class EvasiveCounterattack extends FlavourBuff {
-
-	public static final float DURATION = 20f;
+public class YokaiBorder extends FlavourBuff {
 
 	{
-		type = buffType.NEGATIVE;
+		type = buffType.POSITIVE;
 		announced = true;
 	}
-	
+
+	public static final float DURATION = 40f;
+
 	@Override
 	public int icon() {
-		return BuffIndicator.EVASIVE_COUNTERATTACK;
+		return BuffIndicator.YOKAI_BORDER;
 	}
 
 	@Override
@@ -52,4 +52,5 @@ public class EvasiveCounterattack extends FlavourBuff {
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
+	
 }

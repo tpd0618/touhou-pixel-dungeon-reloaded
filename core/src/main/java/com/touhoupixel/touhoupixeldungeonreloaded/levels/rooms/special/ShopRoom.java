@@ -40,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMap
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
@@ -218,11 +219,12 @@ public class ShopRoom extends SpecialRoom {
 
 		itemsToSpawn.add( new SmallRice() );
 		itemsToSpawn.add( new SmallRice() );
-		itemsToSpawn.add( new SmallRice() );
-		itemsToSpawn.add( new SmallRice() );
 
 		itemsToSpawn.add( new Honeypot() );
-		itemsToSpawn.add( new Honeypot() );
+
+		itemsToSpawn.add( new ThreeStarTicket() );
+		itemsToSpawn.add( new ThreeStarTicket() );
+		itemsToSpawn.add( new ThreeStarTicket() );
 
 		itemsToSpawn.add(new StoneOfAugmentation());
 		itemsToSpawn.add(new StoneOfAugmentation());

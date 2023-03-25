@@ -32,7 +32,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoDismantleHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.UnstableSpellbook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
@@ -43,6 +45,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleansingHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Weeds;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
@@ -62,10 +65,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfE
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.ResetTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.TransientTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MystiaWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YoumuHalfPhantom;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
@@ -79,13 +90,23 @@ public enum HeroClass {
 
 	public void initHero( Hero hero ) {
 
-		//test, too many will make the bug for the game
+		//test, too many will trigger the bug for the game
 
-		//test, too many will make the bug for the game
+		//test, too many will trigger the bug for the game
 
 		if (Statistics.difficulty == 1){
 			PotionOfHealing poh = new PotionOfHealing();
 			poh.quantity(3).identify().collect();
+		}
+
+		if (Dungeon.isChallenged(Challenges.KEYSTONE_MISSILE)) {
+			PotionOfLevitation pol = new PotionOfLevitation();
+			pol.quantity(10).identify().collect();
+		}
+
+		if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+			Weeds weeds = new Weeds();
+			weeds.quantity(100).identify().collect();
 		}
 
 		Food food = new Food();

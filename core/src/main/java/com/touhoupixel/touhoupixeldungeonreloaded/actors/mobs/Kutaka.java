@@ -24,22 +24,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KutakaSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.WriggleSprite;
 import com.watabou.utils.Random;
 
 public class Kutaka extends Mob {
@@ -84,7 +74,7 @@ public class Kutaka extends Mob {
                 Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             }
         }
         return damage;

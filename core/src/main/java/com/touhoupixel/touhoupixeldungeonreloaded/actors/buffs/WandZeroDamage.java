@@ -35,7 +35,7 @@ public class WandZeroDamage extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.WAND_ZERODAMAGE;
+		return BuffIndicator.WAND_ZERO_DAMAGE;
 	}
 
 	@Override

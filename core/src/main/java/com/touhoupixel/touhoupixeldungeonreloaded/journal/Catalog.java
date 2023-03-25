@@ -39,7 +39,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytwo
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytwo.StarCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytwo.SunnyCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.AunnHounds;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.ByakurenSutra;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.HijiriSutra;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.DragonPassage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.EikiMoney;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.EirinElixir;
@@ -170,6 +170,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLightning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
@@ -185,6 +186,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HisoutenMan
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JeweledBranch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
@@ -196,6 +198,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SagumeWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallSeiranHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
@@ -272,6 +275,9 @@ public enum Catalog {
 		WEAPONS.seen.put( SmallSeiranHammer.class,                     true);
 		WEAPONS.seen.put( HisoutenMankind.class,                     true);
 		//tier 2
+		WEAPONS.seen.put( ShionFan.class,                 true);
+		WEAPONS.seen.put( JoonFan.class,                    true);
+
 		WEAPONS.seen.put( TenguShortsword.class,                 true);
 		WEAPONS.seen.put( KogasaUmbrella.class,                    true);
 		WEAPONS.seen.put( Radio.class,                      true);
@@ -376,9 +382,10 @@ public enum Catalog {
 		WANDS.seen.put( WandOfWarding.class,                true);
 		WANDS.seen.put( WandOfCorruption.class,             true);
 		WANDS.seen.put( WandOfRegrowth.class,               true);
-		WANDS.seen.put( WandOfAntiDoor.class,                true);
-		WANDS.seen.put( WandOfSetsunatrip.class,             true);
-		WANDS.seen.put( WandOfHealWounds.class,               true);
+		WANDS.seen.put( WandOfAntiDoor.class,               true);
+		WANDS.seen.put( WandOfSetsunatrip.class,            true);
+		WANDS.seen.put( WandOfHealWounds.class,             true);
+		WANDS.seen.put( WandOfMindburst.class,              true);
 
 		CARDS.seen.put( DoremySheep.class,           true);
 		CARDS.seen.put( KeikiCreation.class,           true);
@@ -399,7 +406,7 @@ public enum Catalog {
 		CARDS.seen.put( SunnyCard.class,           true);
 
 		CARDS.seen.put( AunnHounds.class,           true);
-		CARDS.seen.put( ByakurenSutra.class,           true);
+		CARDS.seen.put( HijiriSutra.class,           true);
 		CARDS.seen.put( DragonPassage.class,           true);
 		CARDS.seen.put( EikiMoney.class,           true);
 		CARDS.seen.put( EirinElixir.class,           true);

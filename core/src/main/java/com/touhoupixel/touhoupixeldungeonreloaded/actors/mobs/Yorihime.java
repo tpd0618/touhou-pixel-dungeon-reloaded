@@ -25,33 +25,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YorihimeSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class Yorihime extends Mob {
@@ -72,7 +55,7 @@ public class Yorihime extends Mob {
 
 		baseSpeed = 0.8f;
 
-		loot = new ThreeStarTicket();
+		loot = new FiveStarTicket();
 		lootChance = 0.1f;
 	}
 
@@ -97,7 +80,7 @@ public class Yorihime extends Mob {
 		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
 			Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
 			if (Statistics.difficulty > 2) {
-				Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+				Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
 			}
 			if (Statistics.difficulty > 4) {
 				Dungeon.hero.STR--;

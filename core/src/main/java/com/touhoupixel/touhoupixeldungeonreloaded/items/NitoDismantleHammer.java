@@ -1,10 +1,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
@@ -71,8 +74,8 @@ public class NitoDismantleHammer extends Item {
 
         @Override
         public boolean itemSelectable(Item item) {
-            return item instanceof MeleeWeapon && item.level() > 0 && !item.isEquipped(curUser) && item.isIdentified() ||
-                    item instanceof Armor && ((Armor) item).checkSeal() == null && item.level() > 0 && !item.isEquipped(curUser) && item.isIdentified();
+            return item instanceof MeleeWeapon && !item.isEquipped(curUser) && item.isIdentified() ||
+                    item instanceof Armor && ((Armor) item).checkSeal() == null && !item.isEquipped(curUser) && item.isIdentified();
         }
 
         @Override
@@ -101,8 +104,15 @@ public class NitoDismantleHammer extends Item {
                 });
             } else {
                 item.detach(curUser.belongings.backpack);
-                Dungeon.level.drop(new UpgradeCard().quantity(item.level()), curUser.pos).sprite.drop();
+                if (item.level() > 0) {
+                    Dungeon.level.drop(new UpgradeCard().quantity(item.level()), curUser.pos).sprite.drop();
+                } else {
+                    Dungeon.energy += 2;
+                }
                 Buff.detach(curUser, DismantlePressure.class);
+                if (Dungeon.isChallenged(Challenges.HANAZONO_STREET_LIVE)) {
+                    Buff.prolong(curUser, Slow.class, Slow.DURATION*5f);
+                }
                 updateQuickslot();
 
                 Sample.INSTANCE.play(Assets.Sounds.DRINK);

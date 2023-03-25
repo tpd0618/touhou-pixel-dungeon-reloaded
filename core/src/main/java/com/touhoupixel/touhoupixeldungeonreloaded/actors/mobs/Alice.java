@@ -3,9 +3,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AliceCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AliceSprite;
@@ -47,11 +48,12 @@ public class Alice extends Mob {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
             new SummoningTrap().set(pos).activate();
+            Buff.prolong(enemy, AliceCurse.class, AliceCurse.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             }
         }
         return damage;

@@ -4,19 +4,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfAntiMagic;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KyoukoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SuikaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
@@ -60,7 +54,7 @@ public class Suika extends Mob {
             Buff.prolong(this, Hisou.class, Hisou.DURATION);
             GLog.w(Messages.get(this, "reflect"));
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);

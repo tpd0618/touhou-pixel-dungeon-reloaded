@@ -131,7 +131,7 @@ public class SentryRoom extends SpecialRoom {
 				}
 			}
 			dangerDist = 2*(height()-5);
- 		} else  if (entrance.y == bottom){
+		} else  if (entrance.y == bottom){
 			sentryPos.set(center.x, top+1);
 			Painter.fill(level, left+1, bottom-1, width()-2, 1, Terrain.EMPTY);
 			if (entrance.x > center.x){

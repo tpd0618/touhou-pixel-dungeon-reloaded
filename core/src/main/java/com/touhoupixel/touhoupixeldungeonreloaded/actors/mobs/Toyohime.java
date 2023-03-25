@@ -26,10 +26,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.ThreeStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -55,7 +56,7 @@ public class Toyohime extends Mob implements Callback {
 
 		properties.add(Property.WARP);
 
-		loot = new ThreeStarTicket();
+		loot = new FiveStarTicket();
 		lootChance = 0.1f;
 
 		baseSpeed = 0.8f;
@@ -112,7 +113,7 @@ public class Toyohime extends Mob implements Callback {
 				Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
 				if (Statistics.difficulty > 2) {
-					Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+					Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
 				}
 				if (Statistics.difficulty > 4) {
 					Dungeon.hero.STR--;

@@ -27,36 +27,36 @@ public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
 	public static final int TUTORIAL             = 1;
-	public static final int DISTORTION           = 2;
-	public static final int REBIRTH_DAY          = 4;
-	public static final int RINGING_BLOOM        = 8;
-	public static final int SCALES_OF_JUSTICE    = 16;
-	public static final int DREAM_LOGICAL_WORLD  = 32;
-	public static final int TIME_EATER           = 64;
-	public static final int SWORD_OF_HISOU       = 128;
-	public static final int BUNBUN_DELIVERY      = 256;
-	public static final int UNCONSCIOUS_ROSE     = 512;
-	public static final int KETSUI_KISUNA_JIGOKU = 1024;
+	public static final int MAX_POWER_MODE       = 2;
+	public static final int HANAZONO_STREET_LIVE = 4;
+	public static final int DISTORTION           = 8;
+	public static final int REINCARNATION_APPLE  = 16;
+	public static final int RINGING_BLOOM        = 32;
+	public static final int DREAM_LOGICAL_WORLD  = 64;
+	public static final int TIME_EATER           = 128;
+	public static final int KEYSTONE_MISSILE     = 256;
+	public static final int BUNBUN_DELIVERY      = 512;
+	public static final int KISUNA_JIGOKU_TACHI  = 1024;
 
 	public static final int MAX_VALUE            = 2047;
 
 	public static final String[] NAME_IDS = {
 			"tutorial",
+			"max_power_mode",
+			"hanazono_street_live",
 			"distortion",
-			"rebirth_day",
+			"reincarnation_apple",
 			"ringing_bloom",
-			"scales_of_justice",
 			"dream_logical_world",
 			"time_eater",
-			"sword_of_hisou",
+			"keystone_missile",
 			"bunbun_delivery",
-			"unconscious_rose",
-			"ketsui_kisuna_jigoku"
+			"kisuna_jigoku_tachi"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, DISTORTION, REBIRTH_DAY, RINGING_BLOOM, SCALES_OF_JUSTICE, DREAM_LOGICAL_WORLD,
-			TIME_EATER, SWORD_OF_HISOU, BUNBUN_DELIVERY, UNCONSCIOUS_ROSE, KETSUI_KISUNA_JIGOKU
+			TUTORIAL, MAX_POWER_MODE, HANAZONO_STREET_LIVE, DISTORTION, REINCARNATION_APPLE, RINGING_BLOOM,
+			DREAM_LOGICAL_WORLD, TIME_EATER, KEYSTONE_MISSILE, BUNBUN_DELIVERY, KISUNA_JIGOKU_TACHI
 	};
 
 	public static int activeChallenges(){

@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
@@ -77,7 +77,7 @@ public class BossKosuzu extends Mob {
             GameScene.add(Blob.seed(enemy.pos + offset, 1, Fire.class));
         }
         if (Dungeon.level.map[enemy.pos] == Terrain.EMBERS) {
-            Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION/3f);
+            Buff.prolong(enemy, Inversion.class, Inversion.DURATION/3f);
             yell(Messages.get(this, "nobookshelf"));
         }
         if (this.HP < this.HT/2) {

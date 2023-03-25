@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class ByakurenSutra extends Abilitycards {
+public class HijiriSutra extends Abilitycards {
 
     private static final String AC_DRINK	= "DRINK";
 

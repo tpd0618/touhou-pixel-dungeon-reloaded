@@ -24,43 +24,33 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class AntiHeal extends FlavourBuff {
-	
-	public static final float DURATION = 30f;
-	
+public class HinaCurse extends FlavourBuff {
+
 	{
 		type = buffType.NEGATIVE;
 		announced = true;
 	}
 
-	@Override
-	public void fx(boolean on) {
-		if (on) target.sprite.aura( 0xFF0000 );
-		else target.sprite.clearAura();
-	}
-	
+	public static final float DURATION = 35f;
+
 	@Override
 	public int icon() {
-		return BuffIndicator.ANTIHEAL;
+		return BuffIndicator.HINA_CURSE;
 	}
 
 	@Override
 	public float iconFadePercent() {
 		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
-	
+
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
 	}
-	
-	@Override
-	public String heroMessage() {
-		return Messages.get(this, "heromsg");
-	}
-	
+
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
+	
 }

@@ -20,7 +20,7 @@ public class Larva extends Mob {
 
         HP = HT = 9;
         defenseSkill = 2;
-        EXP = 2;
+        EXP = 1;
         maxLvl = 10;
 
         flying = true;

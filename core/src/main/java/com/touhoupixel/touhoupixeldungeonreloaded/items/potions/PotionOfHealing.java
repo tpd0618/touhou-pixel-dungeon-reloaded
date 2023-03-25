@@ -21,11 +21,10 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -41,12 +40,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.utils.Random;
 
 public class PotionOfHealing extends Potion {
 
@@ -74,21 +72,14 @@ public class PotionOfHealing extends Potion {
 	}
 
 	public static void heal( Char ch ) {
-		if (ch.buff(AntiHeal.class) != null) {
+		if (ch.buff(Inversion.class) != null) {
 			ch.damage(ch.HT / 2, ch);
 			if (ch == Dungeon.hero && !ch.isAlive()) {
-				Dungeon.fail(AntiHealTrap.class);
-				GLog.n( Messages.get(AntiHeal.class, "ondeath") );
+				Dungeon.fail(InversionTrap.class);
+				GLog.n( Messages.get(Inversion.class, "ondeath") );
 			}
 		} else {
 			Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
-			if (Dungeon.isChallenged(Challenges.SCALES_OF_JUSTICE)) {
-				if (Random.Int(2) == 0) {
-					Buff.prolong(curUser, MeleeNullify.class, MeleeNullify.DURATION);
-				} else {
-					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION);
-				}
-			}
 		}
 		if (ch == Dungeon.hero) {
 			GLog.p(Messages.get(PotionOfHealing.class, "heal"));

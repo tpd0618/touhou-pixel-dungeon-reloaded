@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
@@ -95,7 +95,7 @@ public class BossTenshi extends Mob {
             Statistics.tenshiattackstep += 1;
 
             if (this.HP < this.HT / 2){
-                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }
         }
         return damage;

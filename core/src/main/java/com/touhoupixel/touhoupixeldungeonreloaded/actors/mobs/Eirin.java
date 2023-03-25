@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
@@ -102,7 +102,7 @@ public class Eirin extends Mob implements Callback {
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
                 if (Statistics.difficulty > 2) {
                     Dungeon.level.drop(new Dewdrop(), enemy.pos).sprite.drop();
                 }

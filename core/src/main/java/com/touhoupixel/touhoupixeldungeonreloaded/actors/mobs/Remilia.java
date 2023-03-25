@@ -20,7 +20,7 @@ public class Remilia extends Mob {
 
         HP = HT = 39;
         defenseSkill = 15;
-        EXP = 10;
+        EXP = 9;
         maxLvl = 22;
 
         properties.add(Property.WARP);

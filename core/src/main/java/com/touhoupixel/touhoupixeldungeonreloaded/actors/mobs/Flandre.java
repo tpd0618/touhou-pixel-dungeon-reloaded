@@ -17,6 +17,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -69,7 +70,7 @@ public class Flandre extends Mob {
     public void die( Object cause ) {
         Dungeon.level.drop(new Life(), pos ).sprite.drop();
         Dungeon.level.drop(new Spellcard(), pos ).sprite.drop();
-        Dungeon.level.drop(new PotionOfHealing(), pos ).sprite.drop();
+        Dungeon.level.drop(new FourStarTicket(), pos ).sprite.drop();
         super.die( cause );
     }
 

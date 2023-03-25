@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -35,6 +36,6 @@ public class PotionOfPhilosopher extends ExoticPotion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		Buff.prolong( hero, OneDefDamage.class, OneDefDamage.DURATION/2f);
+		Buff.prolong( hero, YokaiBorder.class, YokaiBorder.DURATION);
 	}
 }

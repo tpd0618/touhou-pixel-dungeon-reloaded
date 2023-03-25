@@ -52,7 +52,7 @@ public class Marisa extends Mob {
 
         HP = HT = 26;
         defenseSkill = 10;
-        EXP = 8;
+        EXP = 7;
         maxLvl = 17;
 
         viewDistance = Light.DISTANCE;

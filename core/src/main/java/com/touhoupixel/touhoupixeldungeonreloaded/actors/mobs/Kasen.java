@@ -18,7 +18,7 @@ public class Kasen extends Mob {
 
         HP = HT = 70;
         defenseSkill = 20;
-        EXP = 12;
+        EXP = 11;
         maxLvl = 27;
 
         properties.add(Property.WARP);

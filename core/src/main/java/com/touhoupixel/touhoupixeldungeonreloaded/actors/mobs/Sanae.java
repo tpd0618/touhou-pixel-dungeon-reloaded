@@ -24,9 +24,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
@@ -105,7 +104,7 @@ public class Sanae extends Mob implements Callback {
             if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
                 Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
                 if (Statistics.difficulty > 2) {
-                    Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+                    Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);

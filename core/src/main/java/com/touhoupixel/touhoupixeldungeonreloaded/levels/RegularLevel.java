@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -49,7 +48,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.SpecialRo
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.EntranceRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.ExitRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.StandardRoom;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
@@ -171,7 +170,7 @@ public abstract class RegularLevel extends Level {
 	}
 
 	protected Class<?>[] trapClasses(){
-		return new Class<?>[]{AntiHealTrap.class};
+		return new Class<?>[]{InversionTrap.class};
 	}
 
 	protected float[] trapChances() {
@@ -180,9 +179,9 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	public int mobLimit() {
-		int mobs = 6 + Dungeon.depth % 5 + Random.Int(3);
+		int mobs = 4 + Dungeon.depth % 10 + Random.Int(3);
 		if (feeling == Feeling.LARGE){
-			mobs = (int)Math.ceil(mobs * 1.33f);
+			mobs = (int)Math.ceil(mobs * 1.25f);
 		}
 		if (Statistics.card56){
 			mobs = (int)Math.ceil(mobs * 1.25f);

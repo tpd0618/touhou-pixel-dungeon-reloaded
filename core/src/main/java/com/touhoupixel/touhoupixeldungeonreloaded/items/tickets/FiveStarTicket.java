@@ -19,21 +19,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.tickets;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class ThreeStarTicket extends Item {
+public class FiveStarTicket extends Item {
 
 	private static final String AC_DRINK	= "DRINK";
 
 	{
-		image = ItemSpriteSheet.THREE_STAR_TICKET;
+		image = ItemSpriteSheet.FIVE_STAR_TICKET;
 
 		defaultAction = AC_DRINK;
 
@@ -54,27 +60,16 @@ public class ThreeStarTicket extends Item {
 		super.execute(hero, action);
 
 		if (action.equals(AC_DRINK)) {
-			GameScene.flash(0x80FFFFFF);
-			detach( curUser.belongings.backpack );
-			updateQuickslot();
-			switch (Random.Int(10)) {
-				case 0:
-				default:
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-				case 6:
-				case 7:
-				case 8:
-					StrengthCard sc = new StrengthCard();
-					sc.collect();
-					break;
-				case 9:
-					UpgradeCard uc = new UpgradeCard();
-					uc.collect();
-					break;
+			if (Random.Int(2) == 0) {
+				GameScene.flash(0x80FFFFFF);
+				detach(curUser.belongings.backpack);
+				updateQuickslot();
+				Dungeon.level.drop(Generator.random(Generator.Category.WEP_T5), curUser.pos).sprite.drop();
+			} else {
+				GameScene.flash(0x80FFFFFF);
+				detach( curUser.belongings.backpack );
+				updateQuickslot();
+				Dungeon.level.drop(Generator.random(Generator.Category.ARMOR_T5), curUser.pos).sprite.drop();
 			}
 		}
 	}
@@ -91,6 +86,6 @@ public class ThreeStarTicket extends Item {
 
 	@Override
 	public int value() {
-		return 100 * quantity;
+		return 300 * quantity;
 	}
 }

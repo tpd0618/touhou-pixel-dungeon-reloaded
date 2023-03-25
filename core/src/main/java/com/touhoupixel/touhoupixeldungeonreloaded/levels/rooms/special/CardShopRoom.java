@@ -43,7 +43,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytwo
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytwo.StarCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categorytwo.SunnyCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.AunnHounds;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.ByakurenSutra;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.HijiriSutra;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.DragonPassage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.EikiMoney;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.marisaexclusive.EirinElixir;
@@ -237,7 +237,7 @@ public class CardShopRoom extends SpecialRoom {
 
 		if (Dungeon.hero.heroClass == HeroClass.PLAYERMARISA) {
 			itemsToSpawn.add( new AunnHounds() );
-			itemsToSpawn.add( new ByakurenSutra() );
+			itemsToSpawn.add( new HijiriSutra() );
 			itemsToSpawn.add( new DragonPassage() );
 			itemsToSpawn.add( new EikiMoney() );
 			itemsToSpawn.add( new EirinElixir() );

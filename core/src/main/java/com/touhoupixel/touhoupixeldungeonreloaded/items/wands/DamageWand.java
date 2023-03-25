@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandEmpower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
@@ -80,7 +79,7 @@ public abstract class DamageWand extends Wand{
 		if (Statistics.card32) {
 			dmg *= 1.5f;
 		} //blank card
-		if (Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU) && Statistics.spellcarduse){
+		if (Dungeon.isChallenged(Challenges.KISUNA_JIGOKU_TACHI) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KISUNA_JIGOKU_TACHI) && Statistics.spellcarduse){
 			dmg *= 0.8f;
 		}
 

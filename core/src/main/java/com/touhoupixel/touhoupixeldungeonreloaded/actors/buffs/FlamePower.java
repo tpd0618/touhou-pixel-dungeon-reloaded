@@ -35,7 +35,7 @@ public class FlamePower extends FlavourBuff {
 
 	@Override
 	public int icon() {
-		return BuffIndicator.FLAME_POWER;
+		return BuffIndicator.ANKH;
 	}
 
 	@Override

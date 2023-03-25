@@ -18,7 +18,7 @@ public class Akyuu extends Mob {
 
         HP = HT = 16;
         defenseSkill = 5;
-        EXP = 3;
+        EXP = 2;
         maxLvl = 12;
 
         properties.add(Property.HUMAN);

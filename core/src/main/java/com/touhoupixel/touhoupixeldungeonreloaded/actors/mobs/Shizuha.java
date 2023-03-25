@@ -4,7 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -62,7 +62,7 @@ public class Shizuha extends Mob {
                 Buff.prolong(this, Might.class, Might.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }
         }
         return damage;

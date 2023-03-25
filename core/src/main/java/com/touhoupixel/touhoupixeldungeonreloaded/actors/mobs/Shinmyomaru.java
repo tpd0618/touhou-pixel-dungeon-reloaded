@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -66,10 +66,10 @@ public class Shinmyomaru extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, EvasiveCounterattack.class, EvasiveCounterattack.DURATION);
+                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);

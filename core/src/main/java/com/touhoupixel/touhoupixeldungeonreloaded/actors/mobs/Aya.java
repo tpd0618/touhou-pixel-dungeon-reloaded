@@ -20,7 +20,7 @@ public class Aya extends Mob {
 
         HP = HT = 62;
         defenseSkill = 17;
-        EXP = 12;
+        EXP = 11;
         maxLvl = 25;
 
         baseSpeed = 5f;

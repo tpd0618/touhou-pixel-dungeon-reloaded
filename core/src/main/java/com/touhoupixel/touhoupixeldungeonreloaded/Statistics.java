@@ -105,6 +105,7 @@ public class Statistics {
 	public static int nextvalue;
 
 	public static int mood;
+	public static int rank;
 	public static int nighttimecount;
 
 	public static int lifefragmentkill;
@@ -302,6 +303,7 @@ public class Statistics {
 		nextvalue = 500;
 
 		mood = 0;
+		rank = 0;
 		nighttimecount = 0;
 
 		lifefragmentkill = 0;
@@ -494,6 +496,7 @@ public class Statistics {
 	private static final String NEXTVALUE	= "nextvalue";
 
 	private static final String MOOD	= "mood";
+	private static final String RANK	= "rank";
 	private static final String NIGHTTIMECOUNT	= "nighttimecount";
 
 	private static final String LIFEFRAGMENTKILL	= "lifefragmentkill";
@@ -786,6 +789,7 @@ public class Statistics {
 		bundle.put( NEXTVALUE,	nextvalue );
 
 		bundle.put( MOOD, mood);
+		bundle.put( RANK, rank);
 		bundle.put( NIGHTCHECK, nightcheck);
 
 		bundle.put( LIFEFRAGMENTKILL,	lifefragmentkill );
@@ -888,6 +892,7 @@ public class Statistics {
 		nextvalue		= bundle.getInt( NEXTVALUE );
 
 		mood = bundle.getInt( MOOD );
+		rank = bundle.getInt( RANK );
 		nighttimecount = bundle.getInt( NIGHTTIMECOUNT );
 
 		lifefragmentkill		= bundle.getInt( LIFEFRAGMENTKILL );

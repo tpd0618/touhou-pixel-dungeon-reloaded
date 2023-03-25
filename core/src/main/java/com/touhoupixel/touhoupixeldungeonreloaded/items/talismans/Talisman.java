@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.talismans;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -86,12 +88,9 @@ abstract public class Talisman extends Item {
         quantity = 2;
         if (Random.Int(2) == 0) {
             quantity++;
-            if (Random.Int(3) == 0) {
+            if (Random.Int(2) == 0) {
                 quantity++;
-                if (Statistics.difficulty == 1) {
-                    quantity++;
-                }
-                if (Statistics.difficulty == 5) {
+                if (Dungeon.isChallenged(Challenges.MAX_POWER_MODE)) {
                     quantity--;
                 }
             }

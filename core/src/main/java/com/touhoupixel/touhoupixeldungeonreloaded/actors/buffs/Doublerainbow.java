@@ -35,7 +35,7 @@ public class Doublerainbow extends FlavourBuff {
 
 	@Override
 	public int icon() {
-		return BuffIndicator.DOUBLERAINBOW;
+		return BuffIndicator.DOUBLE_RAINBOW;
 	}
 
 	@Override

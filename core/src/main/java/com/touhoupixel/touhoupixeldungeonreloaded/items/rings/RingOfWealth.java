@@ -239,13 +239,13 @@ public class RingOfWealth extends Ring {
 		int floorset = (Dungeon.depth + level)/5;
 		switch (Random.Int(5)){
 			default: case 0: case 1:
-				Weapon w = Generator.randomWeapon(floorset);
+				Weapon w = Generator.randomWeapon();
 				if (!w.hasGoodEnchant() && Random.Int(10) < level)      w.enchant();
 				else if (w.hasCurseEnchant())                           w.enchant(null);
 				result = w;
 				break;
 			case 2:
-				Armor a = Generator.randomArmor(floorset);
+				Armor a = Generator.randomArmor();
 				if (!a.hasGoodGlyph() && Random.Int(10) < level)        a.inscribe();
 				else if (a.hasCurseGlyph())                             a.inscribe(null);
 				result = a;

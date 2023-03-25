@@ -164,6 +164,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLightning;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
@@ -178,6 +179,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JeweledBranch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
@@ -189,6 +191,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RingoDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SagumeWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSword;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
@@ -452,8 +455,10 @@ public class Generator {
 					WandOfAntiDoor.class,
 					WandOfSetsunatrip.class,
 					WandOfHealWounds.class,
-					WandOfRegrowth.class };
-			WAND.probs = new float[]{ 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+					WandOfRegrowth.class,
+					WandOfMindburst.class
+			};
+			WAND.probs = new float[]{ 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1 };
 
 			//see generator.randomWeapon
 			WEAPON.classes = new Class<?>[]{};
@@ -480,9 +485,11 @@ public class Generator {
 					SilkyHair.class,
 					KyoukoBroom.class,
 					NazrinRod.class,
-					KokoroFan.class
+					KokoroFan.class,
+					ShionFan.class,
+					JoonFan.class
 			};
-			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 3 };
 
 			WEP_T3.classes = new Class<?>[]{
 					SmallYingYangOrb.class,

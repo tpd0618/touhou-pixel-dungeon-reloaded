@@ -35,7 +35,7 @@ public class Doublespeed extends FlavourBuff {
 
 	@Override
 	public int icon() {
-		return BuffIndicator.DOUBLESPEED;
+		return BuffIndicator.DOUBLE_SPEED;
 	}
 
 	@Override

@@ -76,7 +76,7 @@ public class Bestiary {
 			case 21:
 			case 22:
 				return new ArrayList<>(Arrays.asList(
-						Futo.class, Kyouko.class, Ichirin.class, Shou.class, Miko.class, Byakuren.class));
+						Futo.class, Kyouko.class, Ichirin.class, Shou.class, Miko.class, Hijiri.class));
 			case 23:
 			case 24:
 			case 25:

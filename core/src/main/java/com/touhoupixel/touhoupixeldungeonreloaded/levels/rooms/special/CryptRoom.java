@@ -37,19 +37,19 @@ import com.watabou.utils.Point;
 public class CryptRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
-		
+
 		Painter.fill( level, this, Terrain.WALL );
 		Painter.fill( level, this, 1, Terrain.EMPTY );
 
 		Point c = center();
 		int cx = c.x;
 		int cy = c.y;
-		
+
 		Door entrance = entrance();
-		
+
 		entrance.set( Door.Type.LOCKED );
 		level.addItemToSpawn( new IronKey( Dungeon.depth ) );
-		
+
 		if (entrance.x == left) {
 			Painter.set( level, new Point( right-1, top+1 ), Terrain.STATUE );
 			Painter.set( level, new Point( right-1, bottom-1 ), Terrain.STATUE );
@@ -67,15 +67,15 @@ public class CryptRoom extends SpecialRoom {
 			Painter.set( level, new Point( right-1, top+1 ), Terrain.STATUE );
 			cy = top + 2;
 		}
-		
+
 		level.drop( prize( level ), cx + cy * level.width() ).type = Heap.Type.TOMB;
 	}
-	
+
 	private static Item prize( Level level ) {
-		
+
 		//1 floor set higher than normal
 		Armor prize = Generator.randomArmor( (Dungeon.depth/10) + 1);
-		
+
 		if (Challenges.isItemBlocked(prize)){
 			return new Gold().random();
 		}
@@ -89,7 +89,7 @@ public class CryptRoom extends SpecialRoom {
 			}
 		}
 		prize.cursed = prize.cursedKnown = true;
-		
+
 		return prize;
 	}
 }

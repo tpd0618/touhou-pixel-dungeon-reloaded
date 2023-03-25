@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -51,7 +51,7 @@ public class WandOfHealWounds extends Wand {
 
 	@Override
 	public void onZap(Ballistica beam) {
-		if ( curUser.buff(AntiHeal.class) != null ) {
+		if ( curUser.buff(Inversion.class) != null ) {
 			curUser.damage(curUser.HP / 2, curUser);
 		} else curUser.HP = Math.min(curUser.HP + curUser.HT/4, curUser.HT);
 		if (Random.Int(5) == 0 && curUser.HT > 3 && curUser.HP > 3) {

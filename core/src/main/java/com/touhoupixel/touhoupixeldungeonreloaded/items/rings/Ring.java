@@ -189,16 +189,15 @@ public class Ring extends KindofMisc {
 
 	@Override
 	public Item upgrade() {
-
-
 		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && this.level() > 2){
 			GLog.w(Messages.get(this, "ringing_upgradefail"));
 			Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
 		} else if (this.level() > 8){
 			GLog.w(Messages.get(this, "upgradefail"));
 			Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
-		} else
+		} else {
 			super.upgrade();
+		}
 
 		if (Random.Int(3) == 0) {
 			cursed = false;

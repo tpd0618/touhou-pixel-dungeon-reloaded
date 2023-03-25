@@ -540,8 +540,8 @@ public class ItemSpriteSheet {
 	public static final int WAND_TRANSFUSION    = WANDS+12;
 	public static final int WAND_REVERSEGRAVITY    = WANDS+13;
 	public static final int WAND_ANTIDOOR    = WANDS+14;
-	public static final int WAND_ANTIEMBER    = WANDS+15;
-	public static final int WAND_WISHING    = WANDS+304;
+	public static final int WAND_ACID    = WANDS+15;
+	public static final int WAND_MINDBURST    = WANDS+304;
 	public static final int WAND_HEALWOUNDS    = WANDS+305;
 	public static final int WAND_DESTORB    = WANDS+306;
 	public static final int WAND_DEATH    = WANDS+307;
@@ -604,6 +604,8 @@ public class ItemSpriteSheet {
 	public static final int KEIKI_ARMOR      = ARTIFACTS+25;
 	public static final int SATONO_ARMOR      = ARTIFACTS+26;
 	public static final int MAI_ARMOR      = ARTIFACTS+27;
+	public static final int SHION_FAN      = ARTIFACTS+28;
+	public static final int JOON_FAN      = ARTIFACTS+29;
 	static{
 		assignItemRect(ARTIFACT_CLOAK,      9,  15);
 		assignItemRect(ARTIFACT_ARMBAND,    16, 13);
@@ -633,6 +635,8 @@ public class ItemSpriteSheet {
 		assignItemRect(KEIKI_ARMOR,      9, 13);
 		assignItemRect(SATONO_ARMOR,      9, 13);
 		assignItemRect(MAI_ARMOR,      9, 13);
+		assignItemRect(SHION_FAN,      11, 15);
+		assignItemRect(JOON_FAN,      11, 15);
 	}
 
 	private static final int OTHERS          =                            xy(1, 18);  //16 slots
@@ -822,6 +826,8 @@ public class ItemSpriteSheet {
 	public static final int PATCHOULI_CARD     = GOLDEN_CARD +2;
 	public static final int STRENGTH_CARD     = GOLDEN_CARD +3;
 	public static final int UPGRADE_CARD     = GOLDEN_CARD +4;
+	public static final int FOUR_STAR_TICKET     = GOLDEN_CARD +5;
+	public static final int FIVE_STAR_TICKET     = GOLDEN_CARD +6;
 	static {
 		for (int i = GOLDEN_CARD; i < GOLDEN_CARD+16; i++)
 			assignItemRect(i, 15, 11);

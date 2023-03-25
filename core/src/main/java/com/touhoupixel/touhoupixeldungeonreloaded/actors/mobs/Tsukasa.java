@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -87,7 +87,7 @@ public class Tsukasa extends Mob {
                 new SummoningTrap().set(enemy.pos).activate();
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }
         }
         return damage;

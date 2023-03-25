@@ -27,13 +27,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiHealTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiSneakTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ZeroDexterityTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursedBlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
@@ -41,10 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrippingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Music;
@@ -114,9 +110,9 @@ public class HeavenLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				EnchantEraseTrap.class, FrostTrap.class, BlazingTrap.class, AlarmTrap.class, AntiHealTrap.class,
+				EnchantEraseTrap.class, FrostTrap.class, BlazingTrap.class, AlarmTrap.class, InversionTrap.class,
 				DegradeTrap.class, ExConfusionTrap.class, CursedBlowTrap.class, CorrosionTrap.class, RockfallTrap.class,
-				DisintegrationTrap.class, BalanceTrap.class, AntiSneakTrap.class, FlashingTrap.class, GrimTrap.class};
+				DisintegrationTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, FlashingTrap.class, GrimTrap.class};
 	}
 
 	@Override

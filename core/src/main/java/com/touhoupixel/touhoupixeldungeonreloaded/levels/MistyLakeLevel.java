@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiSneakTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ZeroDexterityTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
@@ -35,7 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
@@ -105,7 +104,7 @@ public class MistyLakeLevel extends RegularLevel {
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
 				EnchantEraseTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, FlockTrap.class,
-				SlowTrap.class, BalanceTrap.class, AntiSneakTrap.class, ToxicTrap.class, ConfusionTrap.class};
+				SlowTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, ToxicTrap.class, ConfusionTrap.class};
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public class FrostPower extends FlavourBuff {
 
 	@Override
 	public int icon() {
-		return BuffIndicator.FROST_POWER;
+		return BuffIndicator.ANKH;
 	}
 
 	@Override

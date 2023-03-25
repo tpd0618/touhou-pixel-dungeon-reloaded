@@ -49,13 +49,6 @@ public class PotionOfDango extends Potion {
 		Statistics.power += 100;
 		Buff.prolong(hero, GoldCreation.class, GoldCreation.DURATION);
 		Buff.prolong(hero, KeyHeal.class, KeyHeal.DURATION);
-		if (Dungeon.isChallenged(Challenges.SCALES_OF_JUSTICE)) {
-			if (Random.Int(2) == 0) {
-				Buff.prolong(curUser, MeleeNullify.class, MeleeNullify.DURATION);
-			} else {
-				Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION);
-			}
-		}
 		GLog.p(Messages.get(this, "ringo"));
 	}
 	

@@ -65,6 +65,7 @@ public class WandOfSetsunatrip extends DamageWand {
 		Char ch = Actor.findChar(cell);
 
 		if (ch != null) {
+			wandProc(ch, chargesPerCast());
 			ch.move(curUser.pos);
 			ch.sprite.move(cell, curUser.pos);
 			ScrollOfTeleportation.teleportToLocation(curUser, cell);

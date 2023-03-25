@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public enum Languages {
 	ENGLISH("english",      "",   Status.REVIEWED, null, null),
-	KOREAN("한국어",         "ko", Status.INCOMPLETE, null, null),
+	KOREAN("한국어",         "ko", Status.REVIEWED, null, null),
 	JAPANESE("日本語",       "ja", Status.INCOMPLETE, null, null);
 
 	public enum Status{

@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,35 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.watabou.noosa.audio.Sample;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class AntiSneakTrap extends Trap {
+public class JoonFan extends MeleeWeapon {
 
 	{
-		color = GREEN;
-		shape = DIAMOND;
+		image = ItemSpriteSheet.JOON_FAN;
+		hitSound = Assets.Sounds.HIT_MAGIC;
+		hitSoundPitch = 1f;
 
-		avoidsHallways = false;
+		tier = 2;
 	}
 
 	@Override
-	public void activate() {
-		Char c = Actor.findChar(pos);
-		if (c != null && c == Dungeon.hero) {
-			Buff.prolong(c, ZeroDexterity.class, ZeroDexterity.DURATION);
-		}
-		if (Dungeon.level.heroFOV[pos]) {
-			GameScene.flash(0x80FFFFFF);
-			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
-		}
+	public int max(int lvl) {
+		return  4*(tier+1) +    //12 base, down from 15
+				lvl*(tier+1);   //scaling unchanged
 	}
+
+	@Override
+	public int GodFactor( Char owner ) {
+		return 1;
+	}
+
+	//see equipableitem.java, we're gonna be rich!
 }

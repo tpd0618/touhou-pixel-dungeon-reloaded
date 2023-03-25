@@ -30,18 +30,20 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiShipBattery;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EvasiveCounterattack;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
@@ -62,25 +64,28 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
@@ -603,7 +608,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return !(this instanceof Wraith) && Dungeon.isChallenged(Challenges.UNCONSCIOUS_ROSE) && Dungeon.hero.justMoved || this instanceof BossHecatia && Statistics.eirinelixircount != 4;
+		return Dungeon.hero.buff(HinaCurse.class) != null && Dungeon.hero.justMoved || this instanceof BossHecatia && Statistics.eirinelixircount != 4;
 	}
 
 	@Override
@@ -626,16 +631,8 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && Dungeon.level.map[this.pos] == Terrain.WATER && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
-			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*1000f);
-		}
-
-		if (Dungeon.hero.buff(EvasiveCounterattack.class) != null){
-			Dungeon.hero.damage(this.damageRoll(), Youmu.class);
-			if (!Dungeon.hero.isAlive()) {
-				Dungeon.fail(Youmu.class);
-				GLog.n( Messages.get(Youmu.class, "snipe") );
-			}
+		if (Dungeon.isChallenged(Challenges.REINCARNATION_APPLE) && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
+			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10f);
 		}
 
 		return Messages.get(this, "def_verb");
@@ -643,13 +640,16 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int attackProc( Char enemy, int damage ) {
-
 		if (this.buff(MeleeNullify.class) != null) {
 			damage = 1;
 		}
 
 		if (buff(YuukaRage.class) != null){
 			damage += 50;
+		}
+
+		if (Dungeon.isChallenged(Challenges.MAX_POWER_MODE)) {
+			damage += Statistics.goldPickedup/25+Statistics.enemiesSlain/50;
 		}
 
 		if (Statistics.difficulty == 1) {
@@ -792,6 +792,16 @@ public abstract class Mob extends Char {
 			}
 		}
 
+		if (Dungeon.hero.buff(AntiShipBattery.class) != null){
+			Camera.main.shake( 5, 1f );
+			Dungeon.hero.damage(Dungeon.depth+5, Dungeon.hero);
+			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
+			if (enemy == Dungeon.hero && !Dungeon.hero.isAlive()) {
+				Dungeon.fail(Aya.class);
+				GLog.n(Messages.get(Aya.class, "ondeath"));
+			}
+		}
+
 		if (this.buff(Light.class) != null && Random.Int(5) == 0) {
 			Dungeon.level.drop(new Torch(), pos).sprite.drop();
 		}
@@ -813,6 +823,38 @@ public abstract class Mob extends Char {
 			//50% chance to round up, 50% to round down
 			if (EXP % 2 == 1) EXP += Random.Int(2);
 			EXP /= 2;
+		}
+
+		if (Dungeon.isChallenged(Challenges.HANAZONO_STREET_LIVE)) {
+			if (Random.Int(200) == 0) {
+				switch (Random.Int(3)) {
+					case 0:
+					default:
+						Dungeon.level.drop(new ThreeStarTicket(), pos).sprite.drop();
+						break;
+					case 1:
+						Dungeon.level.drop(new FourStarTicket(), pos).sprite.drop();
+						break;
+					case 2:
+						Dungeon.level.drop(new FiveStarTicket(), pos).sprite.drop();
+						break;
+				}
+			}
+		} else {
+			if (Random.Int(400) == 0) {
+				switch (Random.Int(3)) {
+					case 0:
+					default:
+						Dungeon.level.drop(new ThreeStarTicket(), pos).sprite.drop();
+						break;
+					case 1:
+						Dungeon.level.drop(new FourStarTicket(), pos).sprite.drop();
+						break;
+					case 2:
+						Dungeon.level.drop(new FiveStarTicket(), pos).sprite.drop();
+						break;
+				}
+			}
 		}
 
 		if (alignment == Alignment.ENEMY){

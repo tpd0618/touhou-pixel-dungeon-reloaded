@@ -25,17 +25,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
-public class AntiHealTrap extends Trap {
+public class ZeroDexterityTrap extends Trap {
 
 	{
-		color = RED;
+		color = GREEN;
 		shape = DIAMOND;
 
 		avoidsHallways = false;
@@ -45,10 +43,11 @@ public class AntiHealTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null && c == Dungeon.hero) {
-			Buff.prolong(c, AntiHeal.class, AntiHeal.DURATION);
+			Buff.prolong(c, ZeroDexterity.class, ZeroDexterity.DURATION);
 		}
-		GLog.w(Messages.get(this, "antiheal"));
-		GameScene.flash(0x80FFFFFF);
-		Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
+		if (Dungeon.level.heroFOV[pos]) {
+			GameScene.flash(0x80FFFFFF);
+			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
+		}
 	}
 }

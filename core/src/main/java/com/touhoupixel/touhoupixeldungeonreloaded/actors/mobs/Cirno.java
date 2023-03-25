@@ -23,7 +23,7 @@ public class Cirno extends Mob {
 
         HP = HT = 27;
         defenseSkill = 7;
-        EXP = 6;
+        EXP = 5;
         maxLvl = 15;
 
         properties.add(Property.WARP);

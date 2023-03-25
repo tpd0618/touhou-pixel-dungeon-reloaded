@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Difficulty;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -31,6 +32,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.Guidebook;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -74,13 +77,20 @@ public abstract class EquipableItem extends Item {
 		super.execute( hero, action );
 
 		if (action.equals( AC_EQUIP )) {
+
+			if (curItem instanceof ShionFan && Statistics.deepestFloor < 21){
+				Statistics.difficulty = 1;
+				GLog.w(Messages.get(EquipableItem.class, "shion"));
+			}
+
+			if (curItem instanceof JoonFan && Statistics.deepestFloor < 21){
+				Statistics.difficulty = 5;
+				GLog.w(Messages.get(EquipableItem.class, "joon"));
+			}
 			//In addition to equipping itself, item reassigns itself to the quickslot
 			//This is a special case as the item is being removed from inventory, but is staying with the hero.
 			int slot = Dungeon.quickslot.getSlot( this );
 			doEquip(hero);
-			if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
-				Statistics.mood += 1;
-			}
 			if (hero.buff(EquipmentIdentify.class) != null) {
 				curItem.identify();
 			}
