@@ -33,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class PotionOfHisou extends ExoticPotion {
 	
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_HISOU;
 	}
 	
 	@Override

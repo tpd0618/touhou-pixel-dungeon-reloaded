@@ -30,7 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 public class PotionOfEnlightenment extends ExoticPotion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_CHIMATA;
+		icon = ItemSpriteSheet.Icons.POTION_ENLIGHTMENT;
 	}
 
 	@Override

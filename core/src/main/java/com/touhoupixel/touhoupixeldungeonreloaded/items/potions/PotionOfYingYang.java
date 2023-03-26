@@ -34,7 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 public class PotionOfYingYang extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_YINGYANG;
 	}
 
 	@Override

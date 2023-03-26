@@ -41,7 +41,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 public class ScrollOfCurseRemoval extends InventoryScroll {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_REMCURSE;
+		icon = ItemSpriteSheet.Icons.SCROLL_CURSEREMOVAL;
 		preferredBag = Belongings.Backpack.class;
 	}
 

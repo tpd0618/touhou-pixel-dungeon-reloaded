@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class PotionOfReverseYingYang extends ExoticPotion {
 	
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_REVERSE_YINGYANG;
 	}
 	
 	@Override

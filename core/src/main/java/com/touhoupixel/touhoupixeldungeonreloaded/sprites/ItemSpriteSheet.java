@@ -1259,9 +1259,9 @@ public class ItemSpriteSheet {
 		//16 free slots
 
 		private static final int SCROLLS        =                            xy(1, 3);  //16 slots
-		public static final int SCROLL_UPGRADE  = SCROLLS+0;
+		public static final int SCROLL_FIXER = SCROLLS+0;
 		public static final int SCROLL_IDENTIFY = SCROLLS+1;
-		public static final int SCROLL_REMCURSE = SCROLLS+2;
+		public static final int SCROLL_CURSEREMOVAL = SCROLLS+2;
 		public static final int SCROLL_MIRRORIMG= SCROLLS+3;
 		public static final int SCROLL_RECHARGE = SCROLLS+4;
 		public static final int SCROLL_TELEPORT = SCROLLS+5;
@@ -1273,9 +1273,9 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_HDUEL= SCROLLS+11;
 		public static final int SCROLL_TRANSMUTE = SCROLLS+12;
 		static {
-			assignIconRect( SCROLL_UPGRADE,     7, 7 );
+			assignIconRect(SCROLL_FIXER,     7, 7 );
 			assignIconRect( SCROLL_IDENTIFY,    4, 7 );
-			assignIconRect( SCROLL_REMCURSE,    7, 7 );
+			assignIconRect(SCROLL_CURSEREMOVAL,    7, 7 );
 			assignIconRect( SCROLL_MIRRORIMG,   7, 5 );
 			assignIconRect( SCROLL_RECHARGE,    7, 5 );
 			assignIconRect( SCROLL_TELEPORT,    7, 7 );
@@ -1321,7 +1321,7 @@ public class ItemSpriteSheet {
 		//16 free slots
 
 		private static final int POTIONS        =                            xy(1, 6);  //16 slots
-		public static final int POTION_STRENGTH = POTIONS+0;
+		public static final int POTION_YINGYANG = POTIONS+0;
 		public static final int POTION_HEALING  = POTIONS+1;
 		public static final int POTION_MINDVIS  = POTIONS+2;
 		public static final int POTION_FROST    = POTIONS+3;
@@ -1337,8 +1337,10 @@ public class ItemSpriteSheet {
 		public static final int POTION_MIGHT    = POTIONS+13;
 		public static final int POTION_DOUBLESPEED = POTIONS+14;
 		public static final int POTION_LIGHTHEALING = POTIONS+15;
+		public static final int POTION_DANMAKU = POTIONS+16;
+		public static final int POTION_MAGIC = POTIONS+17;
 		static {
-			assignIconRect( POTION_STRENGTH,    7, 7 );
+			assignIconRect( POTION_YINGYANG,    7, 7 );
 			assignIconRect( POTION_HEALING,     6, 7 );
 			assignIconRect( POTION_MINDVIS,     7, 5 );
 			assignIconRect( POTION_FROST,       7, 7 );
@@ -1350,46 +1352,52 @@ public class ItemSpriteSheet {
 			assignIconRect( POTION_PARAGAS,     7, 7 );
 			assignIconRect( POTION_PURITY,      5, 7 );
 			assignIconRect( POTION_EXP,         7, 7 );
-			assignIconRect(POTION_DANGO,       3, 7 );
+			assignIconRect( POTION_DANGO,       3, 7 );
 			assignIconRect( POTION_MIGHT,       7, 7 );
-			assignIconRect( POTION_DOUBLESPEED,       6, 6 );
-			assignIconRect( POTION_LIGHTHEALING,       6, 7 );
+			assignIconRect( POTION_DOUBLESPEED, 6, 6 );
+			assignIconRect( POTION_LIGHTHEALING,6, 7 );
+			assignIconRect( POTION_DANMAKU,     7, 5 );
+			assignIconRect( POTION_MAGIC,       7, 6 );
 		}
 
-		private static final int EXOTIC_POTIONS =                            xy(1, 7);  //16 slots
-		public static final int POTION_NITORI   = EXOTIC_POTIONS+0;
-		public static final int POTION_SHIELDING= EXOTIC_POTIONS+1;
-		public static final int POTION_MAGISIGHT= EXOTIC_POTIONS+2;
-		public static final int POTION_SNAPFREEZ= EXOTIC_POTIONS+3;
-		public static final int POTION_MARISA= EXOTIC_POTIONS+4;
-		public static final int POTION_CORROGAS = EXOTIC_POTIONS+5;
-		public static final int POTION_STAMINA  = EXOTIC_POTIONS+6;
-		public static final int POTION_SHROUDFOG= EXOTIC_POTIONS+7;
-		public static final int POTION_STRMCLOUD= EXOTIC_POTIONS+8;
-		public static final int POTION_EARTHARMR= EXOTIC_POTIONS+9;
-		public static final int POTION_CLEANSE  = EXOTIC_POTIONS+10;
-		public static final int POTION_CONFUSIONHEAL   = EXOTIC_POTIONS+11;
-		public static final int POTION_PHILOSOPHER = EXOTIC_POTIONS+12;
-		public static final int POTION_BALANCE = EXOTIC_POTIONS+13;
-		public static final int POTION_LIGNIFICATION = EXOTIC_POTIONS+14;
-		public static final int POTION_CHIMATA = EXOTIC_POTIONS+15;
+		private static final int EXOTIC_POTIONS =                            xy(1, 8);  //16 slots
+		public static final int POTION_SHIELDING   = EXOTIC_POTIONS+0;
+		public static final int POTION_CORROGAS   = EXOTIC_POTIONS+1;
+		public static final int POTION_SNAPFREEZ   = EXOTIC_POTIONS+2;
+		public static final int POTION_STAMINA= EXOTIC_POTIONS+3;
+		public static final int POTION_PERFECT_MATH= EXOTIC_POTIONS+4;
+		public static final int POTION_SHROUDFOG= EXOTIC_POTIONS+5;
+		public static final int POTION_MAGISIGHT= EXOTIC_POTIONS+6;
+		public static final int POTION_STRMCLOUD = EXOTIC_POTIONS+7;
+		public static final int POTION_CONFUSIONHEAL  = EXOTIC_POTIONS+8;
+		public static final int POTION_CLEANSE= EXOTIC_POTIONS+9;
+		public static final int POTION_EARTHARMR= EXOTIC_POTIONS+10;
+		public static final int POTION_BALANCE= EXOTIC_POTIONS+11;
+		public static final int POTION_LIGHTREVERSE  = EXOTIC_POTIONS+12;
+		public static final int POTION_PHILOSOPHER   = EXOTIC_POTIONS+13;
+		public static final int POTION_ENLIGHTMENT = EXOTIC_POTIONS+14;
+		public static final int POTION_REVERSE_YINGYANG = EXOTIC_POTIONS+15;
+		public static final int POTION_HISOU = EXOTIC_POTIONS+16;
+		public static final int POTION_EXORCISM_ROD = EXOTIC_POTIONS+17;
 		static {
-			assignIconRect( POTION_NITORI,     7, 7 );
-			assignIconRect( POTION_SHIELDING,   6, 6 );
-			assignIconRect( POTION_MAGISIGHT,   7, 5 );
+			assignIconRect( POTION_SHIELDING,     6, 6 );
+			assignIconRect( POTION_CORROGAS,   7, 7 );
 			assignIconRect( POTION_SNAPFREEZ,   7, 7 );
-			assignIconRect( POTION_MARISA,   7, 7 );
-			assignIconRect( POTION_CORROGAS,    7, 7 );
-			assignIconRect( POTION_STAMINA,     6, 6 );
-			assignIconRect( POTION_SHROUDFOG,   7, 7 );
+			assignIconRect( POTION_STAMINA,   6, 6 );
+			assignIconRect( POTION_PERFECT_MATH,   7, 7 );
+			assignIconRect( POTION_SHROUDFOG,    7, 7 );
+			assignIconRect( POTION_MAGISIGHT,     7, 5 );
 			assignIconRect( POTION_STRMCLOUD,   7, 7 );
-			assignIconRect( POTION_EARTHARMR,   6, 6 );
-			assignIconRect( POTION_CLEANSE,     7, 7 );
-			assignIconRect( POTION_CONFUSIONHEAL,      4, 7 );
-			assignIconRect( POTION_PHILOSOPHER,   7, 7 );
-			assignIconRect( POTION_BALANCE,   5, 7 );
-			assignIconRect( POTION_LIGNIFICATION,   6, 6 );
-			assignIconRect( POTION_CHIMATA,   5, 7 );
+			assignIconRect( POTION_CONFUSIONHEAL,   4, 7 );
+			assignIconRect( POTION_CLEANSE,   7, 7 );
+			assignIconRect( POTION_EARTHARMR,     6, 6 );
+			assignIconRect( POTION_BALANCE,      5, 7 );
+			assignIconRect( POTION_LIGHTREVERSE,   7, 7 );
+			assignIconRect( POTION_PHILOSOPHER,   5, 7 );
+			assignIconRect( POTION_ENLIGHTMENT,   7, 7 );
+			assignIconRect( POTION_REVERSE_YINGYANG,   5, 5 );
+			assignIconRect( POTION_HISOU,   7, 7 );
+			assignIconRect( POTION_EXORCISM_ROD,   3, 7 );
 		}
 	}
 }

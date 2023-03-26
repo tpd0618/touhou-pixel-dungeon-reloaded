@@ -362,9 +362,9 @@ public class Generator {
 					PotionOfMight.class,
 					PotionOfDoublespeed.class,
 					PotionOfLightHealing.class,
+					PotionOfYingYang.class,
 					PotionOfMagic.class,
-					PotionOfDanmaku.class,
-					PotionOfYingYang.class};
+					PotionOfDanmaku.class};
 			POTION.defaultProbs = new float[]{ 6, 4, 4, 4, 4, 4, 4, 5, 4, 5, 1, 4, 4, 4, 4, 4, 4, 4 };
 			POTION.probs = POTION.defaultProbs.clone();
 

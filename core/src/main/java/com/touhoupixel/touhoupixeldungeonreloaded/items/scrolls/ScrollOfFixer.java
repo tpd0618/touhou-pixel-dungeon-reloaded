@@ -40,7 +40,7 @@ import com.watabou.noosa.particles.Emitter;
 public class ScrollOfFixer extends Scroll {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_ENCHANT;
+		icon = ItemSpriteSheet.Icons.SCROLL_FIXER;
 	}
 
 	@Override

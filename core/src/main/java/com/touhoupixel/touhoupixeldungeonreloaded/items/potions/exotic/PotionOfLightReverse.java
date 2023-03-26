@@ -34,7 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 public class PotionOfLightReverse extends ExoticPotion {
 	
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_LIGHTREVERSE;
 	}
 
 	@Override

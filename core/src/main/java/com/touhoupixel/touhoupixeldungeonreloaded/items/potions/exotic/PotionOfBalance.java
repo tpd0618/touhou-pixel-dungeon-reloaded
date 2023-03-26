@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -41,12 +42,6 @@ public class PotionOfBalance extends ExoticPotion {
 	public void apply(Hero hero) {
 		identify();
 		Buff.prolong(hero, BalanceBreak.class, BalanceBreak.DURATION);
-		if (hero.buff(Inversion.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-			if (hero == Dungeon.hero && !hero.isAlive()) {
-				Dungeon.fail(InversionTrap.class);
-				GLog.n( Messages.get(Inversion.class, "ondeath") );
-			}
-		} else hero.HP = Math.min(hero.HP + 10000, hero.HT);
+		Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION);
 	}
 }

@@ -34,7 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class PotionOfMagic extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+		icon = ItemSpriteSheet.Icons.POTION_MAGIC;
 	}
 
 	@Override

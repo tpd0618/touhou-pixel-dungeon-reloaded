@@ -11,7 +11,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class PotionOfExorcismRod extends ExoticPotion {
 
     {
-        icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
+        icon = ItemSpriteSheet.Icons.POTION_EXORCISM_ROD;
     }
 
     @Override

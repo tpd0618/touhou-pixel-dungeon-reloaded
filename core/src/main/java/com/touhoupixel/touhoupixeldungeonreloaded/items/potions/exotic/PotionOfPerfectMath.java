@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 public class PotionOfPerfectMath extends ExoticPotion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_NITORI;
+		icon = ItemSpriteSheet.Icons.POTION_PERFECT_MATH;
 	}
 
 	@Override
