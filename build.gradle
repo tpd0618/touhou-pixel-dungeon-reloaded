@@ -14,8 +14,8 @@ allprojects {
         appName = 'Touhou Pixel Dungeon: Reloaded'
         appPackageName = 'com.touhoupixel.touhoupixeldungeonreloaded'
 
-        appVersionCode = 650
-        appVersionName = '1.0.1'
+        appVersionCode = 655
+        appVersionName = '1.0.5'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 

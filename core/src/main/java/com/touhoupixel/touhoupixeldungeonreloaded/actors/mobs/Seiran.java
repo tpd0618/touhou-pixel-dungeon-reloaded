@@ -6,9 +6,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -63,7 +63,7 @@ public class Seiran extends Mob {
                 new EnchantEraseTrap().set(enemy.pos).activate();
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+                Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
             }
             ArrayList<Item> gazer = new ArrayList<>();
             if (hero.buff(LostInventory.class) == null) {

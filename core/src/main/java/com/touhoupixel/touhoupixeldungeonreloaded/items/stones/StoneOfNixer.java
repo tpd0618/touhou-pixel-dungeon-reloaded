@@ -19,58 +19,55 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.stones;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.EnergyParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Satono;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.particles.Emitter;
+import com.watabou.utils.Random;
 
-public class ScrollOfHeavenDuel extends Scroll {
-
+public class StoneOfNixer extends Runestone {
+	
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_HDUEL;
+		image = ItemSpriteSheet.STONE_NIXER;
 	}
 
 	@Override
-	public void doRead() {
+	protected void activate(int cell) {
 
-		Buff.prolong(curUser, Hisou.class, Hisou.DURATION);
-		Buff.prolong(curUser, HeavenSpeed.class, HeavenSpeed.DURATION);
+		if (Actor.findChar(cell) != null) {
 
-		GLog.p(Messages.get(this, "hduel"));
+			Char c = Actor.findChar(cell);
 
-		Sample.INSTANCE.play( Assets.Sounds.READ );
-		Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
+			if (c instanceof Mob && !c.properties().contains(Char.Property.MINIBOSS) && !c.properties().contains(Char.Property.BOSS)){
 
-		SpellSprite.show( curUser, SpellSprite.CHARGE );
-		identify();
+				switch (Random.Int(2)) {
+					case 0:
+					default:
+						Buff.affect(c, Corruption.class);
+						GLog.p( Messages.get(Satono.class, "nixersuccess") );
+						Sample.INSTANCE.play( Assets.Sounds.CHARMS );
+						break;
+					case 1:
+						Dungeon.hero.HP /= 2;
+						GLog.n( Messages.get(Satono.class, "nixerfailed") );
+						Sample.INSTANCE.play( Assets.Sounds.DEGRADE );
+						break;
+				}
 
-		readAnimation();
-	}
-	
-	public static void charge( Char user ) {
-		if (user.sprite != null) {
-			Emitter e = user.sprite.centerEmitter();
-			if (e != null) e.burst(EnergyParticle.FACTORY, 15);
+			}
+
 		}
-	}
-	
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+
 	}
 }

@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KasenSprite;
@@ -48,7 +48,7 @@ public class Kasen extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             new EnchantEraseTrap().set(enemy.pos).activate();
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, HeavenSpeed.class, HeavenSpeed.DURATION);

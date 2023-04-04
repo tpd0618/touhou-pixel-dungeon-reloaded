@@ -169,12 +169,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLig
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HecatiaStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
@@ -501,9 +503,11 @@ public class Generator {
 					AlchemySword.class,
 					WatermelonSword.class,
 					JeweledBranch.class,
-					HinaRibbon.class
+					HinaRibbon.class,
+					AkyuuBrush.class,
+					HecatiaStar.class
 			};
-			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T4.classes = new Class<?>[]{
 					MediumYingYangOrb.class,

@@ -26,24 +26,24 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int TUTORIAL             = 1;
-	public static final int MAX_POWER_MODE       = 2;
-	public static final int HANAZONO_STREET_LIVE = 4;
-	public static final int DISTORTION           = 8;
-	public static final int REINCARNATION_APPLE  = 16;
-	public static final int RINGING_BLOOM        = 32;
-	public static final int DREAM_LOGICAL_WORLD  = 64;
-	public static final int TIME_EATER           = 128;
-	public static final int KEYSTONE_MISSILE     = 256;
-	public static final int BUNBUN_DELIVERY      = 512;
-	public static final int KISUNA_JIGOKU_TACHI  = 1024;
+	public static final int TUTORIAL                   = 1;
+	public static final int MAX_POWER_MODE             = 2;
+	public static final int GIRLS_BLOSSOM_PROJECT      = 4;
+	public static final int DISTORTION                 = 8;
+	public static final int REINCARNATION_APPLE        = 16;
+	public static final int RINGING_BLOOM              = 32;
+	public static final int DREAM_LOGICAL_WORLD        = 64;
+	public static final int TIME_EATER                 = 128;
+	public static final int KEYSTONE_MISSILE           = 256;
+	public static final int BUNBUN_DELIVERY            = 512;
+	public static final int KETSUI_KISUNA_JIGOKU_TACHI = 1024;
 
-	public static final int MAX_VALUE            = 2047;
+	public static final int MAX_VALUE                  = 2047;
 
 	public static final String[] NAME_IDS = {
 			"tutorial",
 			"max_power_mode",
-			"hanazono_street_live",
+			"girls_blossom_project",
 			"distortion",
 			"reincarnation_apple",
 			"ringing_bloom",
@@ -51,12 +51,12 @@ public class Challenges {
 			"time_eater",
 			"keystone_missile",
 			"bunbun_delivery",
-			"kisuna_jigoku_tachi"
+			"ketsui_kisuna_jigoku_tachi"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, MAX_POWER_MODE, HANAZONO_STREET_LIVE, DISTORTION, REINCARNATION_APPLE, RINGING_BLOOM,
-			DREAM_LOGICAL_WORLD, TIME_EATER, KEYSTONE_MISSILE, BUNBUN_DELIVERY, KISUNA_JIGOKU_TACHI
+			TUTORIAL, MAX_POWER_MODE, GIRLS_BLOSSOM_PROJECT, DISTORTION, REINCARNATION_APPLE, RINGING_BLOOM,
+			DREAM_LOGICAL_WORLD, TIME_EATER, KEYSTONE_MISSILE, BUNBUN_DELIVERY, KETSUI_KISUNA_JIGOKU_TACHI
 	};
 
 	public static int activeChallenges(){

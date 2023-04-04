@@ -22,9 +22,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfNixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
@@ -93,6 +95,10 @@ public class SanzuRiverLevel extends RegularLevel {
 	public void create() {
 		itemsToSpawn.add( new Torch() );
 		itemsToSpawn.add( new FourStarTicket() );
+		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
+			itemsToSpawn.add(new StoneOfNixer());
+		}
+
 		super.create();
 	}
 	

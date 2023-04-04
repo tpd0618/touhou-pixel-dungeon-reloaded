@@ -26,19 +26,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BirukoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SekibankiSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -89,7 +85,7 @@ public class Sekibanki extends Mob {
             GLog.w(Messages.get(this, "fear"));
             Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Silence.class, Silence.DURATION);

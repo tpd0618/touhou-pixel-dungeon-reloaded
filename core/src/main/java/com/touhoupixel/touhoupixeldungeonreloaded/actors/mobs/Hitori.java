@@ -52,6 +52,7 @@ public class Hitori extends Mob {
         flying = true;
 
         properties.add(Property.HUMAN);
+        properties.add(Property.MINIBOSS);
 
         EXP = 0;
         maxLvl = 99;

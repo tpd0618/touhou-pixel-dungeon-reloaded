@@ -30,8 +30,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BlobImmunity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MurasaSprite;
@@ -200,7 +201,7 @@ public class Murasa extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-			Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+			Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
 			if (Statistics.difficulty > 2) {
 				Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
 			}

@@ -6,7 +6,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
@@ -110,9 +109,6 @@ public class NitoDismantleHammer extends Item {
                     Dungeon.energy += 2;
                 }
                 Buff.detach(curUser, DismantlePressure.class);
-                if (Dungeon.isChallenged(Challenges.HANAZONO_STREET_LIVE)) {
-                    Buff.prolong(curUser, Slow.class, Slow.DURATION*5f);
-                }
                 updateQuickslot();
 
                 Sample.INSTANCE.play(Assets.Sounds.DRINK);

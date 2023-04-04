@@ -3,10 +3,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleansingHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MystiaSprite;
@@ -60,7 +60,7 @@ public class Mystia extends Mob {
                 Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
         }
         return damage;

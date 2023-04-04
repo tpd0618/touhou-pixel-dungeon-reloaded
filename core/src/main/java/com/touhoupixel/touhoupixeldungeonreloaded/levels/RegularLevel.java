@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -315,7 +316,11 @@ public abstract class RegularLevel extends Level {
 	@Override
 	protected void createItems() {
 
-		int nItems = 8;
+		int nItems = 7;
+
+		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
+			nItems -= 2;
+		}
 
 		for (int i=0; i < nItems; i++) {
 

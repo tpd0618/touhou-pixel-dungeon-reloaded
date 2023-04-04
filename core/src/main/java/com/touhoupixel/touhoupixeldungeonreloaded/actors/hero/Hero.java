@@ -38,6 +38,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
@@ -67,13 +68,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
@@ -82,7 +81,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chimata;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Komachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
@@ -598,7 +596,7 @@ public class Hero extends Char {
 			dmg *= 1.4;
 		}
 
-		if (Dungeon.isChallenged(Challenges.KISUNA_JIGOKU_TACHI) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KISUNA_JIGOKU_TACHI) && Statistics.spellcarduse){
+		if (Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU_TACHI) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU_TACHI) && Statistics.spellcarduse){
 			dmg *= 0.8;
 		}
 
@@ -838,7 +836,7 @@ public class Hero extends Char {
 			} else if (curAction instanceof HeroAction.Buy) {
 				actResult = actBuy( (HeroAction.Buy)curAction );
 
-			}else if (curAction instanceof HeroAction.PickUp) {
+			} else if (curAction instanceof HeroAction.PickUp) {
 				actResult = actPickUp( (HeroAction.PickUp)curAction );
 
 			} else if (curAction instanceof HeroAction.OpenChest) {
@@ -1274,15 +1272,6 @@ public class Hero extends Char {
 			}
 		}
 
-		int sqrt = (int) Math.sqrt(this.HP);
-		if (this.buff(SquareRootSnipe.class) != null && sqrt * sqrt == this.HP){
-			this.damage(66, Chimata.class);
-			if (this == Dungeon.hero && !this.isAlive()) {
-				Dungeon.fail(Chimata.class);
-				GLog.n( Messages.get(Chimata.class, "snipe") );
-			}
-		}
-
 		if (Dungeon.hero.buff(DismantlePressure.class) != null){
 			Buff.prolong(Dungeon.hero, Slow.class, Slow.DURATION);
 		}
@@ -1350,7 +1339,6 @@ public class Hero extends Char {
 			WandOfBlastWave.throwChar(enemy, trajectory, 5, false, true, getClass());
 			Sample.INSTANCE.play(Assets.Sounds.CURSED);
 			CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-			GLog.w(Messages.get(this, "fear"));
 			return damage;
 		}
 

@@ -5,8 +5,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ReclaimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TewiSprite;
 import com.watabou.utils.Random;
@@ -46,7 +46,7 @@ public class Tewi extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+            Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
             }

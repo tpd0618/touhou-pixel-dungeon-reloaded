@@ -631,7 +631,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REINCARNATION_APPLE) && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
+		if (Dungeon.isChallenged(Challenges.REINCARNATION_APPLE) && Random.Int(2) == 0 && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10f);
 		}
 
@@ -657,11 +657,11 @@ public abstract class Mob extends Char {
 		}
 
 		if (Statistics.difficulty == 3 || Statistics.difficulty == 4) {
-			damage *= 1.2f;
+			damage *= 1.15f;
 		}
 
 		if (Statistics.difficulty == 5) {
-			damage *= 1.4f;
+			damage *= 1.3f;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
@@ -825,35 +825,18 @@ public abstract class Mob extends Char {
 			EXP /= 2;
 		}
 
-		if (Dungeon.isChallenged(Challenges.HANAZONO_STREET_LIVE)) {
-			if (Random.Int(200) == 0) {
-				switch (Random.Int(3)) {
-					case 0:
-					default:
-						Dungeon.level.drop(new ThreeStarTicket(), pos).sprite.drop();
-						break;
-					case 1:
-						Dungeon.level.drop(new FourStarTicket(), pos).sprite.drop();
-						break;
-					case 2:
-						Dungeon.level.drop(new FiveStarTicket(), pos).sprite.drop();
-						break;
-				}
-			}
-		} else {
-			if (Random.Int(400) == 0) {
-				switch (Random.Int(3)) {
-					case 0:
-					default:
-						Dungeon.level.drop(new ThreeStarTicket(), pos).sprite.drop();
-						break;
-					case 1:
-						Dungeon.level.drop(new FourStarTicket(), pos).sprite.drop();
-						break;
-					case 2:
-						Dungeon.level.drop(new FiveStarTicket(), pos).sprite.drop();
-						break;
-				}
+		if (Random.Int(400) == 0) {
+			switch (Random.Int(3)) {
+				case 0:
+				default:
+					Dungeon.level.drop(new ThreeStarTicket(), pos).sprite.drop();
+					break;
+				case 1:
+					Dungeon.level.drop(new FourStarTicket(), pos).sprite.drop();
+					break;
+				case 2:
+					Dungeon.level.drop(new FiveStarTicket(), pos).sprite.drop();
+					break;
 			}
 		}
 

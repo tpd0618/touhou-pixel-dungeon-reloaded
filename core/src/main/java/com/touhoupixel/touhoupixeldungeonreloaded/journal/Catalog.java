@@ -175,12 +175,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLig
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HecatiaStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HisoutenMankind;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
@@ -290,6 +292,9 @@ public enum Catalog {
 		WEAPONS.seen.put( NazrinRod.class,                       true);
 		WEAPONS.seen.put( KokoroFan.class,                       true);
 		//tier 3
+		WEAPONS.seen.put( AkyuuBrush.class,                      true);
+		WEAPONS.seen.put( HecatiaStar.class,                       true);
+
 		WEAPONS.seen.put( SmallYingYangOrb.class,                      true);
 		WEAPONS.seen.put( EikiRod.class,                       true);
 		WEAPONS.seen.put( PaleSword.class,                   true);

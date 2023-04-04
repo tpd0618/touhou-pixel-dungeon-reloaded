@@ -37,14 +37,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chimata;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
@@ -55,7 +53,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
@@ -230,15 +227,6 @@ public abstract class Wand extends Item {
 			if (!Dungeon.hero.isAlive()) {
 				Dungeon.fail(Star.class);
 				GLog.n( Messages.get(Star.class, "snipe") );
-			}
-		}
-
-		int sqrt = (int) Math.sqrt(Dungeon.hero.HP);
-		if (Dungeon.hero.buff(SquareRootSnipe.class) != null && sqrt * sqrt == Dungeon.hero.HP){
-			Dungeon.hero.damage(66, Chimata.class);
-			if (!Dungeon.hero.isAlive()) {
-				Dungeon.fail(Chimata.class);
-				GLog.n( Messages.get(Chimata.class, "snipe") );
 			}
 		}
 

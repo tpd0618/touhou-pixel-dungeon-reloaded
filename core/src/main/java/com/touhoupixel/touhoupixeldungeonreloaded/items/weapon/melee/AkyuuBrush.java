@@ -19,40 +19,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.stones;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.watabou.noosa.audio.Sample;
 
-public class StoneOfMadness extends Runestone {
-	
-	{
-		image = ItemSpriteSheet.STONE_MADNESS;
-	}
+public class AkyuuBrush extends MeleeWeapon {
 
-	@Override
-	protected void activate(int cell) {
+    {
+        image = ItemSpriteSheet.AKYUU_BRUSH;
+        hitSound = Assets.Sounds.HIT_STRONG;
+        hitSoundPitch = 1f;
 
-		if (Actor.findChar(cell) != null) {
+        tier = 3;
+    }
 
-			Char c = Actor.findChar(cell);
+    @Override
+    public int max(int lvl) {
+        return  4*(tier+1) +
+                lvl*(tier+1);
+    }
 
-			if (c instanceof Mob && !c.properties().contains(Char.Property.MINIBOSS) && !c.properties().contains(Char.Property.BOSS)){
+    @Override
+    public int HumanFactor( Char owner ) {
+        return 1;
+    }
 
-				Buff.prolong(c, HighStress.class, HighStress.DURATION);
-
-			}
-
-		}
-
-		Sample.INSTANCE.play( Assets.Sounds.LULLABY );
-
-	}
+    @Override
+    public int defenseFactor( Char owner ) {
+        return Dungeon.hero.buff(MindVision.class) != null ? 3 : 1;
+    }
 }

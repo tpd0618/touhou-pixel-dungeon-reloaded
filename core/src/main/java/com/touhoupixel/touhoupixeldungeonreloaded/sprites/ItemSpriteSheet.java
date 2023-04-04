@@ -290,8 +290,8 @@ public class ItemSpriteSheet {
 	public static final int YOUMU_HALF_PHANTOM = WEP_TIER3+3;
 	public static final int SKYSWORD = WEP_TIER3+4;
 	public static final int SHINMYOMARUNEEDLE = WEP_TIER3+5;
-	public static final int AKYUUBRUSH      = WEP_TIER3+6;
-	public static final int PURITYBEAM = WEP_TIER3+7;
+	public static final int AKYUU_BRUSH = WEP_TIER3+6;
+	public static final int PURITY_BEAM = WEP_TIER3+7;
 	static{
 		assignItemRect(SMALLYINGYANGORB,           9, 9);
 		assignItemRect(EIKIROD,            13, 13);
@@ -299,8 +299,8 @@ public class ItemSpriteSheet {
 		assignItemRect(YOUMU_HALF_PHANTOM,    14, 13);
 		assignItemRect(SKYSWORD,             13, 13);
 		assignItemRect(SHINMYOMARUNEEDLE,            13, 13);
-		assignItemRect(AKYUUBRUSH,      13, 13);
-		assignItemRect(PURITYBEAM, 16, 16);
+		assignItemRect(AKYUU_BRUSH,      13, 13);
+		assignItemRect(PURITY_BEAM, 16, 16);
 	}
 
 	private static final int WEP_TIER4      =                               xy(9, 8);   //8 slots
@@ -732,6 +732,7 @@ public class ItemSpriteSheet {
 	public static final int STONE_FLOCK         = STONES+9;
 	public static final int STONE_INTUITION     = STONES+10;
 	public static final int STONE_SHOCK         = STONES+11;
+	public static final int STONE_NIXER         = STONES+12;
 	static {
 		for (int i = STONES; i < STONES+16; i++)
 			assignItemRect(i, 14, 12);
@@ -989,17 +990,17 @@ public class ItemSpriteSheet {
 		assignItemRect(RENKOMEMO,       13, 16);
 	}
 
-	private static final int XYZ_WEAPON   =                               xy(1, 34);   //8 slots
-	public static final int FIREBRAND2    = XYZ_WEAPON+0;
-	public static final int FROSTBRAND2   = XYZ_WEAPON+1;
-	public static final int TURNABOUTSWORD   = XYZ_WEAPON+2;
-	public static final int EXHELLSCYTHE   = XYZ_WEAPON+3;
-	public static final int HELLKEYBOARD   = XYZ_WEAPON+4;
-	public static final int HELLMIC   = XYZ_WEAPON+5;
-	public static final int RANDOM_STAR   = XYZ_WEAPON+6;
-	public static final int EVE_KEYTAR = XYZ_WEAPON+7;
-	public static final int ARISA_KEYBOARD   = XYZ_WEAPON+8;
-	public static final int KANON_DRUMSTICK   = XYZ_WEAPON+9;
+	private static final int WEP_PART3 =                               xy(1, 34);   //8 slots
+	public static final int FIREBRAND2    = WEP_PART3 +0;
+	public static final int FROSTBRAND2   = WEP_PART3 +1;
+	public static final int TURNABOUTSWORD   = WEP_PART3 +2;
+	public static final int EXHELLSCYTHE   = WEP_PART3 +3;
+	public static final int HELLKEYBOARD   = WEP_PART3 +4;
+	public static final int HELLMIC   = WEP_PART3 +5;
+	public static final int RANDOM_STAR   = WEP_PART3 +6;
+	public static final int EVE_KEYTAR = WEP_PART3 +7;
+	public static final int ARISA_KEYBOARD   = WEP_PART3 +8;
+	public static final int KANON_DRUMSTICK   = WEP_PART3 +9;
 	static{
 		assignItemRect(FIREBRAND2, 13, 13);
 		assignItemRect(FROSTBRAND2,    13, 13);

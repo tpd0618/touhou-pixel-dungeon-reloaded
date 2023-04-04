@@ -4,11 +4,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SquareRootSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RemiliaSprite;
 import com.watabou.utils.Random;
@@ -53,7 +51,7 @@ public class Remilia extends Mob {
                 Buff.detach(enemy, Light.class);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, SquareRootSnipe.class, SquareRootSnipe.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
         }
         return damage;
