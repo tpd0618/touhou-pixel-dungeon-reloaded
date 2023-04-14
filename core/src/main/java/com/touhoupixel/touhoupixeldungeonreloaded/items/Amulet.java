@@ -54,6 +54,7 @@ public class Amulet extends Item {
 			Badges.validateChampion(Challenges.activeChallenges());
 			Badges.lifeBind();
 			Badges.bombBind();
+			Badges.torchBind();
 		}
 		return super.doPickUp(hero, pos);
 	}

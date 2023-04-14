@@ -319,7 +319,11 @@ public abstract class RegularLevel extends Level {
 		int nItems = 7;
 
 		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
-			nItems -= 2;
+			nItems -= 1;
+		}
+
+		if (Statistics.card65) {
+			nItems += 1;
 		}
 
 		for (int i=0; i < nItems; i++) {

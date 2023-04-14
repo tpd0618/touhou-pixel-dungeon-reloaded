@@ -83,6 +83,23 @@ public abstract class DamageWand extends Wand{
 			dmg *= 0.8f;
 		}
 
+		//potion of enlightenment
+		if (Statistics.wandpowerup == 1) {
+			dmg *= 1.2f;
+		}
+		if (Statistics.wandpowerup == 2) {
+			dmg *= 1.4f;
+		}
+		if (Statistics.wandpowerup == 3) {
+			dmg *= 1.6f;
+		}
+		if (Statistics.wandpowerup == 4) {
+			dmg *= 1.8f;
+		}
+		if (Statistics.wandpowerup >= 5) {
+			dmg *= 2.0f;
+		}
+
 		return dmg;
 	}
 

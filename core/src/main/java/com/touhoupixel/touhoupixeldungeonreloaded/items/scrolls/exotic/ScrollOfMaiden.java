@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,24 +19,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.TalismanCreation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class PotionOfEnlightenment extends ExoticPotion {
+public class ScrollOfMaiden extends ExoticScroll {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_ENLIGHTMENT;
+		icon = ItemSpriteSheet.Icons.SCROLL_MAIDEN;
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void doRead() {
+		Buff.prolong(curUser, TalismanCreation.class, TalismanCreation.DURATION);
+		GLog.p(Messages.get(this, "maiden"));
+
 		identify();
-		Statistics.wandpowerup += 1;
-		GLog.p(Messages.get(this, "wand_power_up"));
+		readAnimation();
 	}
 }

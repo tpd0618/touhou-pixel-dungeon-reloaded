@@ -52,6 +52,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.TalismanCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -653,15 +654,15 @@ public abstract class Mob extends Char {
 		}
 
 		if (Statistics.difficulty == 1) {
-			damage *= 0.8f;
+			damage *= 0.85f;
 		}
 
 		if (Statistics.difficulty == 3 || Statistics.difficulty == 4) {
-			damage *= 1.15f;
+			damage *= 1.1f;
 		}
 
 		if (Statistics.difficulty == 5) {
-			damage *= 1.3f;
+			damage *= 1.2f;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {

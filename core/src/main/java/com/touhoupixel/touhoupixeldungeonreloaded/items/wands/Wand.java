@@ -39,7 +39,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
@@ -244,12 +243,6 @@ public abstract class Wand extends Item {
 
 		if (Dungeon.hero.buff(Happy.class) != null){
 			Buff.prolong(curUser, Slow.class, Slow.DURATION);
-		}
-
-		if (Dungeon.hero.buff(YukariBorder.class) != null){
-			Statistics.playercorruption += 1;
-			Sample.INSTANCE.play(Assets.Sounds.CURSED);
-			GLog.w(Messages.get(Potion.class, "corruption"));
 		}
 
 		if (Statistics.card34) {

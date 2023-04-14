@@ -132,6 +132,7 @@ public class BuffIndicator extends Component {
 	public static final int HECATIA_RULE      = 87;
 	public static final int SQUARE_ROOT_SNIPE = 88;
 	public static final int HARD_SEARCH       = 89;
+	public static final int TALISMAN_CREATION = 90;
 	public static final int REBIRTH           = 91;
 	public static final int REBIRTH_DONE      = 92;
 	public static final int WAND_ZERO_DAMAGE  = 94;
@@ -149,6 +150,7 @@ public class BuffIndicator extends Component {
 	public static final int PURE              = 110;
 	public static final int HAPPY             = 111;
 	public static final int NIGHTTIME         = 112;
+	public static final int CONFIRM           = 113;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

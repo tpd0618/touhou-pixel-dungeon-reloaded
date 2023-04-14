@@ -61,7 +61,6 @@ public class NitoChecker extends Item {
 		info += "\n\n" + Messages.get( NitoChecker.class, "stats3", Statistics.lifefragment);
 		info += "\n\n" + Messages.get( NitoChecker.class, "stats4", Statistics.spellcard);
 		info += "\n\n" + Messages.get( NitoChecker.class, "stats5", Statistics.spellcardfragment);
-		info += "\n\n" + Messages.get( NitoChecker.class, "stats6", Statistics.playercorruption);
 		info += "\n\n" + Messages.get( NitoChecker.class, "statsdaynight", Statistics.nighttimecount);
 		if (Dungeon.isChallenged(Challenges.DISTORTION)){
 			info += "\n\n" + Messages.get( NitoChecker.class, "statsbocchi", Statistics.hitorilefttime);

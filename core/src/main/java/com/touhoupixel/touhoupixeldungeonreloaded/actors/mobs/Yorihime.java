@@ -53,8 +53,6 @@ public class Yorihime extends Mob {
 
 		properties.add(Property.WARP);
 
-		baseSpeed = 0.8f;
-
 		loot = new FiveStarTicket();
 		lootChance = 0.1f;
 	}

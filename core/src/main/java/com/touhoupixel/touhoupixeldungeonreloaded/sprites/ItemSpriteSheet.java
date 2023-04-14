@@ -1233,7 +1233,7 @@ public class ItemSpriteSheet {
 		public static final int RING_SHARPSHOOT = RINGS+8;
 		public static final int RING_TENACITY   = RINGS+9;
 		public static final int RING_WEALTH     = RINGS+10;
-		public static final int RING_YOKAISLAYER     = RINGS+11;
+		public static final int RING_MAIDEN     = RINGS+11;
 		public static final int RING_FLOATSLAYER     = RINGS+12;
 		public static final int RING_ANIMALSLAYER     = RINGS+13;
 		public static final int RING_GODSLAYER     = RINGS+14;
@@ -1250,7 +1250,7 @@ public class ItemSpriteSheet {
 			assignIconRect( RING_SHARPSHOOT,    7, 7 );
 			assignIconRect( RING_TENACITY,      6, 6 );
 			assignIconRect( RING_WEALTH,        7, 6 );
-			assignIconRect( RING_YOKAISLAYER,    7, 7 );
+			assignIconRect( RING_MAIDEN,    7, 7 );
 			assignIconRect( RING_FLOATSLAYER,    7, 7 );
 			assignIconRect( RING_ANIMALSLAYER,    7, 7 );
 			assignIconRect( RING_GODSLAYER,    7, 7 );
@@ -1291,7 +1291,7 @@ public class ItemSpriteSheet {
 
 		private static final int EXOTIC_SCROLLS =                            xy(1, 4);  //16 slots
 		public static final int SCROLL_ENCHANT  = EXOTIC_SCROLLS+0;
-		public static final int SCROLL_REDUCE_CORR = EXOTIC_SCROLLS+1;
+		public static final int SCROLL_MAIDEN = EXOTIC_SCROLLS+1;
 		public static final int SCROLL_ANTIMAGIC= EXOTIC_SCROLLS+2;
 		public static final int SCROLL_PRISIMG  = EXOTIC_SCROLLS+3;
 		public static final int SCROLL_MYSTENRG = EXOTIC_SCROLLS+4;
@@ -1305,7 +1305,7 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_EQUIPMENT_IDENTIFY = EXOTIC_SCROLLS+12;
 		static {
 			assignIconRect( SCROLL_ENCHANT,     7, 7 );
-			assignIconRect( SCROLL_REDUCE_CORR,    7, 7 );
+			assignIconRect(SCROLL_MAIDEN,    7, 7 );
 			assignIconRect( SCROLL_ANTIMAGIC,   7, 7 );
 			assignIconRect( SCROLL_PRISIMG,     5, 7 );
 			assignIconRect( SCROLL_MYSTENRG,    7, 5 );

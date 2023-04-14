@@ -4,11 +4,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.PurityHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
@@ -52,16 +57,26 @@ public class Keine extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && hero.HT/2 < hero.HP && Random.Int(4) == 0) {
-            Statistics.playercorruption += 1;
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            Artifact artifact = Dungeon.hero.belongings.getItem(Artifact.class);
+            if (artifact != null) {
+                artifact.charge = 0;
+                Item.updateQuickslot();
+                Sample.INSTANCE.play(Assets.Sounds.CURSED);
+                GLog.w(Messages.get(Reimu.class, "artifact_charge_lost"));
+            }
             if (Statistics.difficulty > 2) {
-                Statistics.playercorruption += 1;
+                GlassBottle waterskin = Dungeon.hero.belongings.getItem(GlassBottle.class);
+                if (waterskin != null) {
+                    waterskin.volume = 0;
+                    Sample.INSTANCE.play(Assets.Sounds.CURSED);
+                    GLog.w(Messages.get(Shizuha.class, "dry"));
+                    Item.updateQuickslot();
+                }
             }
             if (Statistics.difficulty > 4) {
-                Statistics.playercorruption += 1;
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            GLog.w(Messages.get(Potion.class, "corruption"));
         }
         return damage;
     }

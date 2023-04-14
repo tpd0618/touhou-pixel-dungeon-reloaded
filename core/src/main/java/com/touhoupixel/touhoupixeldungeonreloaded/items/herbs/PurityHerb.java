@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -51,7 +53,11 @@ public class PurityHerb extends Herb {
 			} else {
 				hero.HP = Math.min(hero.HP + 50, hero.HT);
 			}
-			Statistics.playercorruption -= 1;
+			GlassBottle waterskin = Dungeon.hero.belongings.getItem(GlassBottle.class);
+			if (waterskin != null) {
+				waterskin.volume = 5;
+				Item.updateQuickslot();
+			}
 		}
 	}
 }

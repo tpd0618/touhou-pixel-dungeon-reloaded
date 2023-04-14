@@ -25,6 +25,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AliceCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
@@ -70,12 +73,12 @@ public class Yatsuhashi extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Statistics.playercorruption += 1;
+            Buff.prolong(this, Hisou.class, Hisou.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Statistics.playercorruption += 1;
+                Buff.prolong(enemy, AliceCurse.class, AliceCurse.DURATION);
             }
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             GLog.w(Messages.get(Potion.class, "corruption"));

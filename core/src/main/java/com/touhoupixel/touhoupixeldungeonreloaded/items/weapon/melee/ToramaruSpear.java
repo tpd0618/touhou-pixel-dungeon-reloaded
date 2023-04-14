@@ -19,18 +19,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class KomachiDanmaku extends MissileWeapon {
+public class ToramaruSpear extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.KOMACHI_DANMAKU;
-		hitSound = Assets.Sounds.HIT_STAB;
+		image = ItemSpriteSheet.TORAMARU_SPEAR;
+		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 
 		tier = 5;
@@ -38,7 +40,17 @@ public class KomachiDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (4+Challenges.activeChallenges()+Dungeon.hero.lvl/3) * tier +                      //base
-				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
+		return  3*(tier+1) +
+				lvl*(tier+1);
+	}
+
+	@Override
+	public int YokaiFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
+	public int defenseFactor( Char owner ) {
+		return Statistics.murasasKilled;
 	}
 }

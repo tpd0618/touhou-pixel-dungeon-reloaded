@@ -103,6 +103,6 @@ public class Herb extends Item {
 
 	@Override
 	public int value() {
-		return 30 * quantity;
+		return 15 * quantity;
 	}
 }

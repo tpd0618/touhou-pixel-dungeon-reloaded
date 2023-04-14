@@ -195,6 +195,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SagumeWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ToramaruSpear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
@@ -241,7 +242,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ShardDanm
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.CircleDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.FlameDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.KomachiDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.LunaticDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.TewiDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.RiceDanmaku;
@@ -539,13 +540,14 @@ public class Generator {
 					SagumeWing.class,
 					HoshigumaHorn.class,
 					HorouBook.class,
+					ToramaruSpear.class,
 					RandomStar.class,
 					ArisaKeyboard.class,
 					EveKeytar.class,
 					YukinaMic.class,
 					KanonDrumstick.class
 			};
-			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};
@@ -630,7 +632,7 @@ public class Generator {
 
 			MIS_T5.classes = new Class<?>[]{
 					EikiDanmaku.class,
-					KomachiDanmaku.class,
+					LunaticDanmaku.class,
 					MedicineDanmaku.class,
 					TewiDanmaku.class
 			};

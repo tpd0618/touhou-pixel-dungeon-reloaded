@@ -72,9 +72,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MystiaWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YuyukoFoldingFan;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.KomachiDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.LunaticDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Sungrass;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.watabou.noosa.audio.Music;
@@ -343,7 +342,7 @@ public class TutorialLevel extends Level {
 		drop( new WandOfMagicMissile(), 1141 );
 
 		drop( new BulletDanmaku().quantity(5), 1281 );
-		drop( new KomachiDanmaku().quantity(5), 1282 );
+		drop( new LunaticDanmaku().quantity(5), 1282 );
 
 		drop( new PotionOfHealing(), 1212 );
 		drop( new ScrollOfFixer(), 1214 );

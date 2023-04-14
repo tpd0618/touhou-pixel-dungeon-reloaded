@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,37 +19,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class YukariBorder extends FlavourBuff {
-	
-	public static final float DURATION = 50f;
-	
+public class LunaticDanmaku extends MissileWeapon {
+
 	{
-		type = buffType.NEGATIVE;
-		announced = true;
-	}
-	
-	@Override
-	public int icon() {
-		return BuffIndicator.YUKARI_BORDER;
+		image = ItemSpriteSheet.KOMACHI_DANMAKU;
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 1f;
+
+		tier = 5;
 	}
 
 	@Override
-	public float iconFadePercent() {
-		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
-	}
-	
-	@Override
-	public String toString() {
-		return Messages.get(this, "name");
-	}
-	
-	@Override
-	public String desc() {
-		return Messages.get(this, "desc", dispTurns());
+	public int max(int lvl) {
+		return  (4+Challenges.activeChallenges()+Dungeon.hero.lvl/3) * tier +                      //base
+				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }

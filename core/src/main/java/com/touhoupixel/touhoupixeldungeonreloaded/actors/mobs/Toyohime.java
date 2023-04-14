@@ -58,8 +58,6 @@ public class Toyohime extends Mob implements Callback {
 
 		loot = new FiveStarTicket();
 		lootChance = 0.1f;
-
-		baseSpeed = 0.8f;
 	}
 
 	@Override

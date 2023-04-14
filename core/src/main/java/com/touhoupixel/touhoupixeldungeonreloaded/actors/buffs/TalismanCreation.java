@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,25 +19,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class ScrollOfCorruptingReduction extends ExoticScroll {
+public class TalismanCreation extends FlavourBuff {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_REDUCE_CORR;
+		type = buffType.POSITIVE;
+		announced = true;
+	}
+
+	public static final float DURATION = 2f;
+
+	@Override
+	public int icon() {
+		return BuffIndicator.TALISMAN_CREATION;
 	}
 
 	@Override
-	public void doRead() {
-		Statistics.playercorruption -= 1;
-		GLog.p(Messages.get(this, "reduce"));
-
-		identify();
-		readAnimation();
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
+
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
+	}
+	
 }

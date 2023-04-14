@@ -21,8 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -46,8 +44,10 @@ public class Badges {
 		CHAMPION_3                  ( 2 ),
 		CHAMPION_4                  ( 3 ),
 		CHAMPION_5                  ( 4 ),
-		NO_MISS                  ( 5 ),
-		NO_BOMB                  ( 6 );
+		NO_MISS                     ( 5 ),
+		NO_BOMB                     ( 6 ),
+		NO_TORCH                    ( 7 ),
+		LEARNED_YOUR_LESSON         ( 8 );
 
 		public boolean meta;
 
@@ -188,6 +188,21 @@ public class Badges {
 			badge = Badge.NO_BOMB;
 			local.add(badge);
 		}
+		displayBadge( badge );
+	}
+
+	public static void torchBind(){
+		Badge badge = null;
+		if (!Statistics.torchuse){
+			badge = Badge.NO_TORCH;
+			local.add(badge);
+		}
+		displayBadge( badge );
+	}
+
+	public static void learnedYourLesson() {
+		Badge badge = Badge.LEARNED_YOUR_LESSON;
+		local.add( badge );
 		displayBadge( badge );
 	}
 

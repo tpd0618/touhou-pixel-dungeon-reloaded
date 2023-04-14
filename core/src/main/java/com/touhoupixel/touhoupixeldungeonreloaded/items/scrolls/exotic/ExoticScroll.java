@@ -48,8 +48,8 @@ public abstract class ExoticScroll extends Scroll {
 	public static final HashMap<Class<?extends Scroll>, Class<?extends ExoticScroll>> regToExo = new HashMap<>();
 	public static final HashMap<Class<?extends ExoticScroll>, Class<?extends Scroll>> exoToReg = new HashMap<>();
 	static{
-		regToExo.put(ScrollOfIdentify.class, ScrollOfCorruptingReduction.class);
-		exoToReg.put(ScrollOfCorruptingReduction.class, ScrollOfIdentify.class);
+		regToExo.put(ScrollOfIdentify.class, ScrollOfMaiden.class);
+		exoToReg.put(ScrollOfMaiden.class, ScrollOfIdentify.class);
 		
 		regToExo.put(ScrollOfFixer.class, ScrollOfEnchantment.class);
 		exoToReg.put(ScrollOfEnchantment.class, ScrollOfFixer.class);

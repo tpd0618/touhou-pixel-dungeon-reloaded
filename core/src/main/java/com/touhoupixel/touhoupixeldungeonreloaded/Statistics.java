@@ -105,13 +105,11 @@ public class Statistics {
 	public static int nextvalue;
 
 	public static int mood;
-	public static int rank;
+	public static int wandpowerup;
 	public static int nighttimecount;
 
 	public static int lifefragmentkill;
 	public static int spellcardfragmentkill;
-
-	public static int playercorruption;
 	public static int hitoricount;
 	public static int hitorilefttime;
 
@@ -138,6 +136,7 @@ public class Statistics {
 
 	public static boolean lifelose = false;
 	public static boolean spellcarduse = false;
+	public static boolean torchuse = false;
 
 	//boss appear check
 	public static boolean boss1 = false;
@@ -303,13 +302,12 @@ public class Statistics {
 		nextvalue = 500;
 
 		mood = 0;
-		rank = 0;
+		wandpowerup = 0;
 		nighttimecount = 0;
 
 		lifefragmentkill = 0;
 		spellcardfragmentkill = 0;
 
-		playercorruption = 0;
 		hitoricount = 0;
 		hitorilefttime = 0;
 
@@ -335,6 +333,7 @@ public class Statistics {
 
 		lifelose = false;
 		spellcarduse = false;
+		torchuse = false;
 
 		boss1 = false;
 		boss2 = false;
@@ -496,13 +495,12 @@ public class Statistics {
 	private static final String NEXTVALUE	= "nextvalue";
 
 	private static final String MOOD	= "mood";
-	private static final String RANK	= "rank";
+	private static final String WANDPOWERUP	= "wandpowerup";
 	private static final String NIGHTTIMECOUNT	= "nighttimecount";
 
 	private static final String LIFEFRAGMENTKILL	= "lifefragmentkill";
 	private static final String SPELLCARDFRAGMENTKILL	= "spellcardfragmentkill";
 
-	private static final String PLAYERCORRUPTION	= "playercorruption";
 	private static final String HITORICOUNT	= "hitoricount";
 	private static final String HITORILEFTTIME	= "hitorilefttime";
 
@@ -528,6 +526,7 @@ public class Statistics {
 
 	private static final String LIFELOSE		= "lifelose";
 	private static final String SPELLCARDUSE		= "spellcarduse";
+	private static final String TORCHUSE		= "torchuse";
 
 	private static final String BOSS1		= "boss1";
 	private static final String BOSS2		= "boss2";
@@ -678,6 +677,7 @@ public class Statistics {
 
 		bundle.put( LIFELOSE,	lifelose );
 		bundle.put( SPELLCARDUSE,	spellcarduse );
+		bundle.put( TORCHUSE,	torchuse );
 
 		bundle.put( BOSS1,	boss1 );
 		bundle.put( BOSS2,	boss2 );
@@ -789,13 +789,12 @@ public class Statistics {
 		bundle.put( NEXTVALUE,	nextvalue );
 
 		bundle.put( MOOD, mood);
-		bundle.put( RANK, rank);
+		bundle.put( WANDPOWERUP, wandpowerup);
 		bundle.put( NIGHTCHECK, nightcheck);
 
 		bundle.put( LIFEFRAGMENTKILL,	lifefragmentkill );
 		bundle.put( SPELLCARDFRAGMENTKILL,	spellcardfragmentkill );
 
-		bundle.put( PLAYERCORRUPTION,	playercorruption );
 		bundle.put( HITORICOUNT,	hitoricount );
 		bundle.put( HITORILEFTTIME,	hitorilefttime );
 
@@ -892,13 +891,12 @@ public class Statistics {
 		nextvalue		= bundle.getInt( NEXTVALUE );
 
 		mood = bundle.getInt( MOOD );
-		rank = bundle.getInt( RANK );
+		wandpowerup = bundle.getInt( WANDPOWERUP );
 		nighttimecount = bundle.getInt( NIGHTTIMECOUNT );
 
 		lifefragmentkill		= bundle.getInt( LIFEFRAGMENTKILL );
 		spellcardfragmentkill		= bundle.getInt( SPELLCARDFRAGMENTKILL );
 
-		playercorruption		= bundle.getInt( PLAYERCORRUPTION );
 		hitoricount		= bundle.getInt( HITORICOUNT );
 		hitorilefttime		= bundle.getInt( HITORILEFTTIME );
 
@@ -924,6 +922,7 @@ public class Statistics {
 
 		lifelose	= bundle.getBoolean( LIFELOSE );
 		spellcarduse	= bundle.getBoolean( SPELLCARDUSE );
+		torchuse	= bundle.getBoolean( TORCHUSE );
 
 		boss1	= bundle.getBoolean( BOSS1 );
 		boss2	= bundle.getBoolean( BOSS2 );

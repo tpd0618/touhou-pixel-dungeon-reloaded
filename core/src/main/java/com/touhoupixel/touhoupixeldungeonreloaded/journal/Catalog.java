@@ -203,6 +203,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSw
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallSeiranHammer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ToramaruSpear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
@@ -323,10 +324,10 @@ public enum Catalog {
 		WEAPONS.seen.put( GoldenExorcismRod.class,                  true);
 		WEAPONS.seen.put( TenguSmartphone.class,                     true);
 		WEAPONS.seen.put( SeiranHammer.class,                   true);
-		WEAPONS.seen.put( JunkoSword.class,                true);
+		WEAPONS.seen.put( JunkoSword.class,                  true);
 
-		WEAPONS.seen.put( AyaFan.class,                   true);
-		WEAPONS.seen.put( Roukanken.class,                  true);
+		WEAPONS.seen.put( AyaFan.class,                      true);
+		WEAPONS.seen.put( Roukanken.class,                   true);
 		WEAPONS.seen.put( SevenStarSword.class,              true);
 		WEAPONS.seen.put( PortablePhoenixTail.class,         true);
 		WEAPONS.seen.put( ChimataCloak.class,                true);
@@ -336,6 +337,8 @@ public enum Catalog {
 		WEAPONS.seen.put( SagumeWing.class,                  true);
 		WEAPONS.seen.put( HoshigumaHorn.class,               true);
 		WEAPONS.seen.put( HorouBook.class,                   true);
+
+		WEAPONS.seen.put( ToramaruSpear.class,               true);
 
 		WEAPONS.seen.put( RandomStar.class,                  true);
 		WEAPONS.seen.put( ArisaKeyboard.class,               true);

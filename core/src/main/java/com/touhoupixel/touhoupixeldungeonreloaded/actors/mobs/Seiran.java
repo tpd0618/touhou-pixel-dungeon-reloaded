@@ -5,16 +5,23 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SeiranSprite;
@@ -56,41 +63,16 @@ public class Seiran extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+    public int defenseProc(Char enemy, int damage) {
+        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
+            Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             if (Statistics.difficulty > 2) {
-                new EnchantEraseTrap().set(enemy.pos).activate();
+                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
-            }
-            ArrayList<Item> gazer = new ArrayList<>();
-            if (hero.buff(LostInventory.class) == null) {
-                for (Item i : Dungeon.hero.belongings) {
-                    if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
-                        gazer.add(i);
-                    }
-                }
-                if (Random.Int(4) == 0) {
-                    Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
-                    if (!gazer.isEmpty()) {
-                        Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
-                        GLog.w(Messages.get(this, "gaze"));
-                        hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
-                        Sample.INSTANCE.play(Assets.Sounds.LULLABY);
-                        if (hypnotize instanceof Potion) {
-                            ((Potion) hypnotize).drink((Hero) hero);
-                        }
-                        if (hypnotize instanceof Herb) {
-                            hypnotize.execute((Hero) hero);
-                        }
-                    } else {
-                        GLog.w(Messages.get(this, "failtogaze"));
-                    }
-                }
+                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
             }
         }
-        return damage;
+        return super.defenseProc(enemy, damage);
     }
 }

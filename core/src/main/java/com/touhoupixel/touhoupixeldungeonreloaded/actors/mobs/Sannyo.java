@@ -27,8 +27,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -40,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SannyoSprite;
@@ -81,44 +88,17 @@ public class Sannyo extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
+    public int defenseProc(Char enemy, int damage) {
+        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
+            Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+            Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
             if (Statistics.difficulty > 2) {
-                Statistics.playercorruption += 1;
+                Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Dungeon.hero.STR--;
-                Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
-                Sample.INSTANCE.play( Assets.Sounds.CURSED );
-                GLog.w(Messages.get(Kanako.class, "str_reduce"));
-            }
-            ArrayList<Item> gazer = new ArrayList<>();
-            if (hero.buff(LostInventory.class) == null) {
-                for (Item i : Dungeon.hero.belongings) {
-                    if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
-                        gazer.add(i);
-                    }
-                }
-                if (Random.Int(5) == 0) {
-                    damage = Math.max(damage, hero.HP / 2);
-                    if (!gazer.isEmpty()) {
-                        Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
-                        GLog.w(Messages.get(this, "gaze"));
-                        hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
-                        Sample.INSTANCE.play(Assets.Sounds.LULLABY);
-                        if (hypnotize instanceof Potion) {
-                            ((Potion) hypnotize).drink((Hero) hero);
-                        }
-                        if (hypnotize instanceof Herb) {
-                            hypnotize.execute((Hero) hero);
-                        }
-                    } else {
-                        GLog.w(Messages.get(this, "failtogaze"));
-                    }
-                }
+                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             }
         }
-        return damage;
+        return super.defenseProc(enemy, damage);
     }
 }

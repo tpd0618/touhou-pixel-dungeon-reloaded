@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Difficulty;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
@@ -39,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.TalismanCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
@@ -79,8 +81,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorde
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YukariBorder;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Komachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
@@ -89,6 +89,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
@@ -98,6 +99,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowPartic
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap.Type;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -577,19 +579,6 @@ public class Hero extends Char {
 			Dungeon.hero.buff(Pure.class) != null && enemy.buff(Pure.class) != null ||
 			Dungeon.hero.buff(Happy.class) != null && enemy.buff(Happy.class) != null){
 			dmg *= 0.5;
-		}
-
-		if (Statistics.playercorruption == 1 && (Random.Int(100) == 0) ||
-			Statistics.playercorruption == 2 && (Random.Int(80) == 0) ||
-			Statistics.playercorruption == 3 && (Random.Int(60) == 0) ||
-			Statistics.playercorruption == 4 && (Random.Int(40) == 0) ||
-			Statistics.playercorruption == 5 && (Random.Int(20) == 0) ||
-			Statistics.playercorruption == 6 && (Random.Int(15) == 0) ||
-			Statistics.playercorruption == 7 && (Random.Int(10) == 0) ||
-			Statistics.playercorruption == 8 && (Random.Int(8) == 0) ||
-			Statistics.playercorruption == 9 && (Random.Int(6) == 0) ||
-			Statistics.playercorruption == 10 && (Random.Int(4) == 0)) {
-			dmg *= 0;
 		}
 
 		if (Dungeon.hero.buff(DanmakuPowerUp.class) != null && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
@@ -1321,12 +1310,6 @@ public class Hero extends Char {
 			Statistics.timetrackbuff += 1;
 		}
 
-		if (Dungeon.hero.buff(YukariBorder.class) != null){
-			Statistics.playercorruption += 1;
-			Sample.INSTANCE.play(Assets.Sounds.CURSED);
-			GLog.w(Messages.get(Potion.class, "corruption"));
-		}
-
 		if (buff(CursedBlow.class) != null && Dungeon.hero.belongings.weapon() instanceof MeleeWeapon){
 			CursedWand.cursedEffect(null, this, enemy);
 		}
@@ -1407,18 +1390,11 @@ public class Hero extends Char {
 		if (Dungeon.level.map[this.pos] == Terrain.IRON_TILES){
 			Buff.prolong(this, Light.class, Light.DURATION/4f);
 			Buff.prolong(enemy, Light.class, Light.DURATION);
-			if (Statistics.card64) {
-				Buff.prolong(this, Zen.class, Zen.DURATION);
-				Buff.prolong(this, DanmakuPowerUp.class, DanmakuPowerUp.DURATION);
-			}
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.SAND_TILES){
 			Buff.prolong(this, Cripple.class, Cripple.DURATION);
 			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
-			if (Statistics.card65) {
-				Statistics.value += 10;
-			}
 		}
 
 		if (Dungeon.level.map[this.pos] == Terrain.ICE_TILES){
@@ -1448,6 +1424,10 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.buff(HighStress.class) != null){
 			Dungeon.hero.HP = 1;
+		}
+
+		if (Dungeon.hero.buff(TalismanCreation.class) != null) {
+			Dungeon.level.drop(Generator.random(Generator.Category.TALISMAN), Dungeon.hero.pos).sprite.drop();
 		}
 
 		if (Statistics.card29 && Random.Int(17) == 0){
@@ -1931,6 +1911,10 @@ public class Hero extends Char {
 
 		Statistics.lifelose = true;
 
+		if (cause == Yuuka.class){
+			Badges.learnedYourLesson();
+		}
+
 		if (Statistics.card40 && Statistics.spellcard > 1){
 			interrupt();
 			resting = false;
@@ -2208,12 +2192,6 @@ public class Hero extends Char {
 		}
 		if (Statistics.spellcard < 0){
 			Statistics.spellcard = 0;
-		}
-		if (Statistics.playercorruption > 10){
-			Statistics.playercorruption = 10;
-		}
-		if (Statistics.playercorruption < 0){
-			Statistics.playercorruption = 0;
 		}
 
 		if (HP <= 0){

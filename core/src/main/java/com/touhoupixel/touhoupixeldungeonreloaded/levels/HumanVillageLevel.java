@@ -94,6 +94,8 @@ public class HumanVillageLevel extends RegularLevel {
 	@Override
 	public void create() {
 		itemsToSpawn.add( new Spellcard() );
+		itemsToSpawn.add( Generator.random(Generator.Category.POTION));
+		itemsToSpawn.add( Generator.random(Generator.Category.SCROLL));
 		itemsToSpawn.add( Generator.random(Generator.Category.TALISMAN));
 		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
 			itemsToSpawn.add(new StoneOfNixer());
@@ -115,14 +117,14 @@ public class HumanVillageLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				EnchantEraseTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, FlockTrap.class,
+				EnchantEraseTrap.class, ChillingTrap.class, TeleportationTrap.class, FlockTrap.class,
 				SlowTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, ToxicTrap.class, ConfusionTrap.class};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				3, 3, 3, 3, 3,
+				3, 3, 3, 3,
 				2, 2, 2, 2, 2};
 	}
 	

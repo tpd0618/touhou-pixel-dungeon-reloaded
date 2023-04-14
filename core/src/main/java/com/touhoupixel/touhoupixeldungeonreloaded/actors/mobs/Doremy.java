@@ -10,6 +10,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowPartic
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.DoremySprite;
@@ -53,10 +55,10 @@ public class Doremy extends Mob {
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             new FlockTrap().set(target).activate();
             if (Statistics.difficulty > 2) {
-                Statistics.playercorruption += 1;
+                new CorrosionTrap().set(target).activate();
             }
             if (Statistics.difficulty > 4) {
-                Statistics.playercorruption += 1;
+                new CursingTrap().set(target).activate();
             }
         }
         return damage;

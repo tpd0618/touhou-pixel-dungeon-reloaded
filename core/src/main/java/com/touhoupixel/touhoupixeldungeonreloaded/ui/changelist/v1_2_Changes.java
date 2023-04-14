@@ -29,8 +29,32 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_0_7_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.0.7", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.0.7 changes",
+				"_-_ Player corruption feature is removed from the game.\n" +
+						"_-_ Doremy, keine, megumu, sannyo, seiran, suwako, yatsuhashi, and yukari are reworked.\n" +
+						"_-_ Damage output from enemies above hard difficulties have been nerfed again.(H: 1.15x->1.1x, O: 1.3x->1.2x)\n" +
+						"_-_ Damage output from enemies for easy difficulty have been buffed.(0.8x->0.85x)\n" +
+						"_-_ Purity herb, sagume's wing, underground sun card, and item season card are reworked.\n" +
+						"_-_ Girls blossom project challenge, and cursing trap has been nerfed.\n" +
+						"_-_ Potion of enlightenment is reworked, for hakkero users.\n" +
+						"_-_ Herb price in shops are reduced.\n" +
+						"_-_ Removed spellcard of corrupting reduction, and replaced with spellcard of maiden.\n" +
+						"_-_ Fixed danmaku texts that has written the wrong infos.\n" +
+						"_-_ Burning traps now don't appear on floor 1~4.\n" +
+						"_-_ Added two new badges, no torch badge and learned your lesson badge. \n" +
+						"_-_ Added a weapon which is toramaru's spear, can you reach 100 extra defense for that weapon? \n" +
+						"_-_ Minor text improvements.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_0_5_Changes(ArrayList<ChangeInfo> changeInfos ) {

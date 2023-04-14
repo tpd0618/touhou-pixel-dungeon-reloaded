@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
@@ -83,7 +84,7 @@ public class Megumu extends Mob {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }
             if (hero.buff(NightTime.class) != null){
-                Statistics.playercorruption += 1;
+                Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 GLog.w(Messages.get(Potion.class, "corruption"));
             }

@@ -23,6 +23,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -55,6 +57,9 @@ public class MaxPower extends Item {
 	
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
+		if (Statistics.card64) {
+			Buff.prolong(hero, OneDefDamage.class, OneDefDamage.DURATION);
+		}
 
 		Statistics.power = 400;
 
