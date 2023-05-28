@@ -183,6 +183,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HecatiaStar
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.IdolStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
@@ -558,9 +559,10 @@ public class Generator {
 					ArisaKeyboard.class,
 					EveKeytar.class,
 					YukinaMic.class,
-					KanonDrumstick.class
+					KanonDrumstick.class,
+					IdolStick.class
 			};
-			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};

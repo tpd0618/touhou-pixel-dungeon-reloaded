@@ -333,7 +333,7 @@ public class ItemSpriteSheet {
 	public static final int JUNKOSWORD = WEP_TIER5+4;
 	public static final int AYAFAN = WEP_TIER5+5;
 	public static final int SWORDOFHISOU    = WEP_TIER5+6;
-	public static final int MIRACLEROD      = WEP_TIER5+7;
+	public static final int IDOL_STICK = WEP_TIER5+7;
 	public static final int KOMACHISCYTHE   = WEP_TIER5+8;
 	public static final int FULL_MOON_SCYTHE = WEP_TIER5+9;
 	public static final int JEWELEDBRANCH   = WEP_TIER5+10;
@@ -380,7 +380,7 @@ public class ItemSpriteSheet {
 		assignItemRect(JUNKOSWORD,  13, 13);
 		assignItemRect(AYAFAN,    13, 13);
 		assignItemRect(SWORDOFHISOU, 13, 13);
-		assignItemRect(MIRACLEROD,   13, 13);
+		assignItemRect(IDOL_STICK,   13, 13);
 		assignItemRect(KOMACHISCYTHE,16, 13);
 		assignItemRect(FULL_MOON_SCYTHE,    16, 13);
 		assignItemRect(JEWELEDBRANCH, 13, 13);

@@ -185,6 +185,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HisoutenMankind;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HoshigumaHorn;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.IdolStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
@@ -349,6 +350,8 @@ public enum Catalog {
 		WEAPONS.seen.put( EveKeytar.class,                   true);
 		WEAPONS.seen.put( YukinaMic.class,                   true);
 		WEAPONS.seen.put( KanonDrumstick.class,              true);
+
+		WEAPONS.seen.put( IdolStick.class,              true);
 
 		//armor
 		ARMORS.seen.put( ReimuArmor.class,                   true);

@@ -46,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.StyledButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndError;
+import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndStory;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.Camera;
