@@ -15,9 +15,9 @@ public class Koakuma extends Mob {
     {
         spriteClass = KoakumaSprite.class;
 
-        HP = HT = 32;
+        HP = HT = 37;
         defenseSkill = 15;
-        EXP = 9;
+        EXP = 6;
         maxLvl = 22;
 
         properties.add(Property.WARP);

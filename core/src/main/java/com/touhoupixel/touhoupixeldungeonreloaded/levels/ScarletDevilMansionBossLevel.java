@@ -52,8 +52,8 @@ public class ScarletDevilMansionBossLevel extends Level {
 				false);
 	}
 
-	private static int WIDTH = 23;
-	private static int HEIGHT = 22;
+	private static int WIDTH = 11;
+	private static int HEIGHT = 11;
 
 	private static boolean isCompleted = false;
 
@@ -71,8 +71,8 @@ public class ScarletDevilMansionBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
-		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
+		transitions.add(new LevelTransition(this, 93, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 16, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
 
@@ -81,34 +81,22 @@ public class ScarletDevilMansionBossLevel extends Level {
 
 	private static final short n = -1;
 	private static final short W = Terrain.WALL;
-	private static final short e = Terrain.EMPTY;
+	private static final short e = Terrain.WATER;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short s = Terrain.STATUE;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, s, s, s, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, s, s, s, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, s, s, s, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, e, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, e, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, L, W, W, W, W, W,
+			W, W, e, e, e, e, e, e, e, W, W,
+			W, W, e, W, e, e, e, W, e, W, W,
+			W, W, e, e, W, e, W, e, e, W, W,
+			W, W, e, e, e, W, e, e, e, W, W,
+			W, W, e, e, W, e, W, e, e, W, W,
+			W, W, e, W, e, e, e, W, e, W, W,
+			W, W, e, e, e, E, e, e, e, W, W,
+			W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W
 	};
 
 	private void buildLevel(){
@@ -144,12 +132,12 @@ public class ScarletDevilMansionBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 448, Terrain.EMPTY );
-		GameScene.updateMap( 448 );
+		set( 93, Terrain.WATER );
+		GameScene.updateMap( 93 );
 
 		BossRemilia boss = new BossRemilia();
 		boss.state = boss.WANDERING;
-		boss.pos = 287;
+		boss.pos = 49;
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
 
@@ -164,8 +152,8 @@ public class ScarletDevilMansionBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		set( 448, Terrain.ENTRANCE );
-		GameScene.updateMap( 448 );
+		set( 93, Terrain.ENTRANCE );
+		GameScene.updateMap( 93 );
 
 		isCompleted = true;
 

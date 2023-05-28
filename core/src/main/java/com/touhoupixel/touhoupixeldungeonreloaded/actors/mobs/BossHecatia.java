@@ -7,6 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
@@ -16,14 +17,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HecatiaRule;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EirinJunkoCounterElixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
@@ -57,7 +55,7 @@ public class BossHecatia extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(50), pos ).sprite.drop();
+        Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
 
         Buff.detach( Dungeon.hero, HecatiaRule.class );
@@ -135,48 +133,33 @@ public class BossHecatia extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            switch (Random.Int(14)) {
+            switch (Random.Int(9)) {
                 case 0:
                 default:
-                    Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
+                    Buff.affect(enemy, Poison.class).set(Math.round(Statistics.upgradesUsed/6f));
                     break;
                 case 1:
-                    Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);
+                    Buff.affect(enemy, Bleeding.class).set(8);
                     break;
                 case 2:
-                    Buff.affect(enemy, Poison.class).set(Math.round(Statistics.upgradesUsed/5f));
-                    break;
-                case 3:
-                    Buff.affect(enemy, Bleeding.class).set(14);
-                    break;
-                case 4:
                     Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
                     break;
-                case 5:
+                case 3:
                     Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
                     break;
-                case 6:
-                    Buff.prolong(enemy, SunnySnipe.class, SunnySnipe.DURATION);
-                    break;
-                case 7:
-                    Buff.prolong(enemy, LunaSnipe.class, LunaSnipe.DURATION);
-                    break;
-                case 8:
-                    Buff.prolong(enemy, StarSnipe.class, StarSnipe.DURATION);
-                    break;
-                case 9:
+                case 4:
                     Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
                     break;
-                case 10:
+                case 5:
                     Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
                     break;
-                case 11:
+                case 6:
                     Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
                     break;
-                case 12:
-                    Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
+                case 7:
+                    Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
                     break;
-                case 13:
+                case 8:
                     Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
                     break;
             }

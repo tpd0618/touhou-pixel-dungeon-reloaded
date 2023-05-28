@@ -14,10 +14,10 @@ public class Aunn extends Mob {
     {
         spriteClass = AunnSprite.class;
 
-        HP = HT = 8;
-        defenseSkill = 2;
-        EXP = 1;
-        maxLvl = 10;
+        HP = HT = 29;
+        defenseSkill = 7;
+        EXP = 3;
+        maxLvl = 15;
 
         properties.add(Property.YOKAI);
 
@@ -27,12 +27,12 @@ public class Aunn extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 5);
+        return Random.NormalIntRange(4, 7);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 7;
+        return 12;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Aunn extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment){
             Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
         }
         return damage;

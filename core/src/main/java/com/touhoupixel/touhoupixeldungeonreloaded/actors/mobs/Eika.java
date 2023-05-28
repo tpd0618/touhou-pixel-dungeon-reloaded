@@ -3,6 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
@@ -25,7 +26,7 @@ public class Eika extends Mob {
 
         HP = HT = 28;
         defenseSkill = 10;
-        EXP = 8;
+        EXP = 5;
         maxLvl = 17;
 
         properties.add(Property.WARP);
@@ -52,8 +53,8 @@ public class Eika extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(4) == 0) {
-            new RockfallTrap().set(pos).activate();
+        if (Random.Int(5) == 0) {
+            Buff.affect(enemy, Bleeding.class).set(3);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }

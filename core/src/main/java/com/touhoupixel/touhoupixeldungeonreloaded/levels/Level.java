@@ -215,7 +215,7 @@ public abstract class Level implements Bundlable {
 				addItemToSpawn( new StoneOfIntuition() );
 			}
 
-			if (Dungeon.depth > 40) {
+			if (Dungeon.depth > 35) {
 				feeling = Feeling.LARGE;
 			} else {
 				//50% chance of getting a level feeling
@@ -1359,21 +1359,6 @@ public abstract class Level implements Bundlable {
 				return Messages.get(Level.class, "bookshelf_name");
 			case Terrain.ALCHEMY:
 				return Messages.get(Level.class, "alchemy_name");
-
-			case Terrain.SUNNY_TILES:
-				return Messages.get(Level.class, "sunny_name");
-			case Terrain.LUNA_TILES:
-				return Messages.get(Level.class, "luna_name");
-			case Terrain.STAR_TILES:
-				return Messages.get(Level.class, "star_name");
-
-			case Terrain.IRON_TILES:
-				return Messages.get(Level.class, "iron_name");
-			case Terrain.SAND_TILES:
-				return Messages.get(Level.class, "sand_name");
-			case Terrain.ICE_TILES:
-				return Messages.get(Level.class, "ice_name");
-
 			default:
 				return Messages.get(Level.class, "default_name");
 		}
@@ -1415,21 +1400,6 @@ public abstract class Level implements Bundlable {
 				return Messages.get(Level.class, "statue_desc");
 			case Terrain.ALCHEMY:
 				return Messages.get(Level.class, "alchemy_desc");
-
-			case Terrain.SUNNY_TILES:
-				return Messages.get(Level.class, "sunny_desc");
-			case Terrain.LUNA_TILES:
-				return Messages.get(Level.class, "luna_desc");
-			case Terrain.STAR_TILES:
-				return Messages.get(Level.class, "star_desc");
-
-			case Terrain.IRON_TILES:
-				return Messages.get(Level.class, "iron_desc");
-			case Terrain.SAND_TILES:
-				return Messages.get(Level.class, "sand_desc");
-			case Terrain.ICE_TILES:
-				return Messages.get(Level.class, "ice_desc");
-
 			case Terrain.EMPTY_WELL:
 				return Messages.get(Level.class, "empty_well_desc");
 			default:

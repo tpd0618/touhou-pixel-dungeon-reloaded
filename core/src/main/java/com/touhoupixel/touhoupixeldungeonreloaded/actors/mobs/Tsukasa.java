@@ -38,10 +38,10 @@ public class Tsukasa extends Mob {
     {
         spriteClass = TsukasaSprite.class;
 
-        HP = HT = 149;
-        defenseSkill = 32;
-        EXP = 17;
-        maxLvl = 40;
+        HP = HT = 79;
+        defenseSkill = 20;
+        EXP = 10;
+        maxLvl = 27;
 
         properties.add(Property.YOKAI);
 
@@ -51,12 +51,12 @@ public class Tsukasa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(19, 26);
+        return Random.NormalIntRange(8, 13);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 37;
+        return 25;
     }
 
     @Override

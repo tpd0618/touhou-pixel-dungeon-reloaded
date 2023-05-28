@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HijiriSprite;
@@ -46,7 +46,7 @@ public class Hijiri extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(7) == 0) {
-            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/3f);
+            Buff.prolong(this, SuperHard.class, SuperHard.DURATION/3f);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }

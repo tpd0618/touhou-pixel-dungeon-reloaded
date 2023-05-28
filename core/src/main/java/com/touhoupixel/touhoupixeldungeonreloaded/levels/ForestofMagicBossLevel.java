@@ -88,31 +88,29 @@ public class ForestofMagicBossLevel extends Level {
 	private static final short W = Terrain.WALL;
 	private static final short e = Terrain.EMPTY;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short s = Terrain.SAND_TILES;
 	private static final short L = Terrain.LOCKED_EXIT;
-	private static final short k = Terrain.EMPTY;
 
 	private static short[] level = {
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, k, e, e, e, e, e, e, e, e, e, e, e, e, e, k, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, e, k, e, e, e, e, e, e, e, e, e, e, e, e, e, k, e, s, W, W,
-			W, W, s, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, s, W, W,
-			W, W, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, E, e, e, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, e, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 	};

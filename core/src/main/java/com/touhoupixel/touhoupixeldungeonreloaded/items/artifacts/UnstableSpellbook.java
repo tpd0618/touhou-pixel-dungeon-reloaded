@@ -35,7 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;

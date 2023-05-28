@@ -10,7 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class KnockbackTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.BLOWAWAY;
+        image = ItemSpriteSheet.KNOCKBACK;
     }
 
     @Override

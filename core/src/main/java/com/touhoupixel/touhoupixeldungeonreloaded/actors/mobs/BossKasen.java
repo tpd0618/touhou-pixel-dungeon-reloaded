@@ -33,7 +33,7 @@ public class BossKasen extends Mob {
     {
         spriteClass = KasenSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 450 : 300;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 750 : 500;
         defenseSkill = 20;
         EXP = 22;
         maxLvl = 99;
@@ -93,7 +93,7 @@ public class BossKasen extends Mob {
                         gazer.add(i);
                     }
                 }
-                if (Random.Int(5) == 0) {
+                if (Random.Int(4) == 0) {
                     if (!gazer.isEmpty()) {
                         Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
                         GLog.w(Messages.get(Reisen.class, "gaze"));

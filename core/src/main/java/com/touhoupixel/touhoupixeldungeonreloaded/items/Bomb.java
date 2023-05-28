@@ -46,7 +46,7 @@ import java.util.ArrayList;
 public class Bomb extends Item {
 
     {
-        image = ItemSpriteSheet.BOMB;
+        image = ItemSpriteSheet.YOKAI_VIAL;
 
         defaultAction = AC_LIGHTTHROW;
         usesTargeting = true;
@@ -161,7 +161,7 @@ public class Bomb extends Item {
                     continue;
                 }
 
-                int dmg = Random.NormalIntRange(6 + Dungeon.scalingDepth(), 10 + Dungeon.scalingDepth());
+                int dmg = Random.NormalIntRange(15 + Random.NormalIntRange(1, 5), 20 + Random.NormalIntRange(6, 10));
 
                 //those not at the center of the blast take less damage
                 if (ch.pos != cell){

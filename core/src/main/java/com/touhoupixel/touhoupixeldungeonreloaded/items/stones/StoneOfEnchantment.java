@@ -26,8 +26,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Enchanting;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -43,7 +43,8 @@ public class StoneOfEnchantment extends InventoryStone {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return ScrollOfEnchantment.enchantable(item);
+		return item instanceof MeleeWeapon ||
+				item instanceof Armor;
 	}
 	
 	@Override

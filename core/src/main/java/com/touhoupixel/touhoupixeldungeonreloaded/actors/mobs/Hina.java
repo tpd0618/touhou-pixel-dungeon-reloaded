@@ -40,10 +40,10 @@ public class Hina extends Mob {
     {
         spriteClass = HinaSprite.class;
 
-        HP = HT = 131;
-        defenseSkill = 30;
-        EXP = 15;
-        maxLvl = 37;
+        HP = HT = 93;
+        defenseSkill = 25;
+        EXP = 13;
+        maxLvl = 32;
 
         properties.add(Property.GOD);
 
@@ -53,12 +53,12 @@ public class Hina extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 22);
+        return Random.NormalIntRange(13, 21);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 35;
+        return 30;
     }
 
     @Override

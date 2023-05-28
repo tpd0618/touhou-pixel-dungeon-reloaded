@@ -1,6 +1,5 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.talismans;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
@@ -13,8 +12,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
@@ -22,7 +20,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class DefogTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.FOGPURGE;
+        image = ItemSpriteSheet.DEFOG;
     }
 
     @Override
@@ -42,7 +40,7 @@ public class DefogTalisman extends Talisman {
             Buff.detach(ch, MagicImmune.class);
             Buff.detach(ch, ReBirth.class);
             Buff.detach(ch, YuukaRage.class);
-            Buff.detach(ch, OneDefDamage.class);
+            Buff.detach(ch, SuperHard.class);
             Buff.detach(ch, AnkhInvulnerability.class);
         }
     }

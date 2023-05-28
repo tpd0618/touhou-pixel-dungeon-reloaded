@@ -24,7 +24,7 @@ public class BossTenshi extends Mob {
     {
         spriteClass = TenshiSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 1500 : 1000;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 2700 : 1800;
         defenseSkill = 40;
         EXP = 30;
         maxLvl = 99;
@@ -43,7 +43,7 @@ public class BossTenshi extends Mob {
         GameScene.bossSlain();
         super.die(cause);
         Dungeon.level.unseal();
-        Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
+        Dungeon.level.drop(new SkeletonKey(35), pos ).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
     }
 

@@ -32,15 +32,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LunaSnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StarSnipe;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SunnySnipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
@@ -50,7 +49,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.EirinJunkoCounterElixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -190,6 +188,10 @@ public abstract class Wand extends Item {
 	protected void wandProc(Char target, int chargesUsed){
 		wandProc(target, buffedLvl(), chargesUsed);
 
+		if (target instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
+			Dungeon.hero.HP = 1;
+		}
+
 		if (target instanceof BossTenshi){
 			Statistics.tenshiattackstep += 1;
 		}
@@ -207,28 +209,6 @@ public abstract class Wand extends Item {
 			}
 		}
 
-		if (Dungeon.hero.buff(SunnySnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.SUNNY_TILES){
-			Dungeon.hero.damage(666, Sunny.class);
-			if (!Dungeon.hero.isAlive()) {
-				Dungeon.fail(Sunny.class);
-				GLog.n( Messages.get(Sunny.class, "snipe") );
-			}
-		}
-		if (Dungeon.hero.buff(LunaSnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.LUNA_TILES){
-			Dungeon.hero.damage(666, Luna.class);
-			if (!Dungeon.hero.isAlive()) {
-				Dungeon.fail(Luna.class);
-				GLog.n( Messages.get(Luna.class, "snipe") );
-			}
-		}
-		if (Dungeon.hero.buff(StarSnipe.class) != null && Dungeon.level.map[Dungeon.hero.pos] == Terrain.STAR_TILES){
-			Dungeon.hero.damage(666, Star.class);
-			if (!Dungeon.hero.isAlive()) {
-				Dungeon.fail(Star.class);
-				GLog.n( Messages.get(Star.class, "snipe") );
-			}
-		}
-
 		if (Dungeon.hero.buff(DismantlePressure.class) != null){
 			Buff.prolong(Dungeon.hero, Slow.class, Slow.DURATION);
 		}
@@ -239,6 +219,8 @@ public abstract class Wand extends Item {
 
 		if (Dungeon.hero.buff(MagicDrain.class) != null && Dungeon.hero.HP > 3){
 			Dungeon.hero.HP /= 2;
+			GameScene.flash(-65536);
+			GLog.w(Messages.get(this, "magic_drain"));
 		}
 
 		if (Dungeon.hero.buff(Happy.class) != null){

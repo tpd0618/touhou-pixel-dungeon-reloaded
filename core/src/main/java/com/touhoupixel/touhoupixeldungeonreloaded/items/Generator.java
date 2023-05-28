@@ -93,7 +93,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
@@ -109,17 +108,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshootin
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfHeavenDuel;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
@@ -152,6 +148,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.NightingaleTal
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SwapTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CutterTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.AnimalVial;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.GodVial;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.HumanVial;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.Vial;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.WarpVial;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.YokaiVial;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
@@ -172,6 +174,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BlackFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
@@ -185,6 +188,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SuperMiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.NazrinRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
@@ -196,6 +200,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSw
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ToramaruSpear;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
@@ -240,7 +245,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.StarDanma
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ShardDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.CircleDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.FlameDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.LunaticDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.TewiDanmaku;
@@ -308,9 +312,10 @@ public class Generator {
 
 		SCROLL	( 6, 6, Scroll.class ),
 		STONE   ( 1, 1, Runestone.class),
-		TALISMAN( 5, 5, Talisman.class),
+		TALISMAN( 3, 3, Talisman.class),
+		VIAL    ( 1, 1, Vial.class),
 
-		GOLD	( 7, 7,   Gold.class );
+		GOLD	( 5, 5,   Gold.class );
 
 		public Class<?>[] classes;
 
@@ -361,14 +366,13 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class,
-					PotionOfDango.class,
 					PotionOfMight.class,
 					PotionOfDoublespeed.class,
 					PotionOfLightHealing.class,
 					PotionOfYingYang.class,
 					PotionOfMagic.class,
 					PotionOfDanmaku.class};
-			POTION.defaultProbs = new float[]{ 6, 4, 4, 4, 4, 4, 4, 5, 4, 5, 1, 4, 4, 4, 4, 4, 4, 4 };
+			POTION.defaultProbs = new float[]{ 4, 3, 3, 3, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4, 4};
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -384,25 +388,21 @@ public class Generator {
 					Earthroot.Seed.class,
 					Dreamfoil.Seed.class,
 					Starflower.Seed.class};
-			SEED.defaultProbs = new float[]{ 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2 };
+			SEED.defaultProbs = new float[]{ 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2 };
 			SEED.probs = SEED.defaultProbs.clone();
 
 			SCROLL.classes = new Class<?>[]{
-					ScrollOfFixer.class,
 					ScrollOfIdentify.class,
 					ScrollOfCurseRemoval.class,
 					ScrollOfMirrorImage.class,
 					ScrollOfRecharging.class,
-					ScrollOfTeleportation.class,
 					ScrollOfLullaby.class,
-					ScrollOfMagicMapping.class,
 					ScrollOfRage.class,
 					ScrollOfRetribution.class,
 					ScrollOfTerror.class,
-					ScrollOfTransmutation.class,
-					ScrollOfHeavenDuel.class
+					ScrollOfTransmutation.class
 			};
-			SCROLL.defaultProbs = new float[]{ 2, 8, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			SCROLL.defaultProbs = new float[]{ 3, 3, 2, 2, 2, 2, 2, 2, 2};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
@@ -419,7 +419,7 @@ public class Generator {
 					StoneOfFear.class,
 					StoneOfAugmentation.class  //1 is sold in each shop
 			};
-			STONE.defaultProbs = new float[]{ 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0 };
+			STONE.defaultProbs = new float[]{ 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0 };
 			STONE.probs = STONE.defaultProbs.clone();
 
 			TALISMAN.classes = new Class<?>[]{
@@ -442,6 +442,16 @@ public class Generator {
 			};
 			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
+
+			VIAL.classes = new Class<?>[]{
+					YokaiVial.class,
+					GodVial.class,
+					HumanVial.class,
+					AnimalVial.class,
+					WarpVial.class
+			};
+			VIAL.defaultProbs = new float[]{ 4, 4, 4, 4, 4 };
+			VIAL.probs = VIAL.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{
 					WandOfMagicMissile.class,
@@ -520,9 +530,12 @@ public class Generator {
 					YuukaUmbrella.class,
 					MurasaDipper.class,
 					YachieHorn.class,
-					YuyukoFoldingFan.class
+					YuyukoFoldingFan.class,
+					SuperMiracleMallet.class,
+					BlackFan.class,
+					TurnaboutCloak.class
 			};
-			WEP_T4.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T4.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T5.classes = new Class<?>[]{
 					BigYingYangOrb.class,
@@ -598,13 +611,12 @@ public class Generator {
 			MISSILE.probs = new float[]{};
 
 			MIS_T1.classes = new Class<?>[]{
-					ReimuTalisman.class,
 					ThrowingKnife.class
 			};
-			MIS_T1.probs = new float[]{ 5, 5 };
+			MIS_T1.probs = new float[]{ 5 };
 
 			MIS_T2.classes = new Class<?>[]{
-					CircleDanmaku.class,
+					ReimuTalisman.class,
 					FlameDanmaku.class,
 					KunaiDanmaku.class,
 					RiceDanmaku.class,

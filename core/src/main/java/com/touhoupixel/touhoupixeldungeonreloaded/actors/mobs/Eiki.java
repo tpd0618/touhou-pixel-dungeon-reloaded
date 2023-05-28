@@ -30,6 +30,9 @@ public class Eiki extends Mob {
 
         properties.add(Property.GOD);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new SpellcardFragment();
         lootChance = 0.05f;
     }

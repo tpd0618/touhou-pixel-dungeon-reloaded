@@ -27,9 +27,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.QuadDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandEmpower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -79,7 +82,7 @@ public abstract class DamageWand extends Wand{
 		if (Statistics.card32) {
 			dmg *= 1.5f;
 		} //blank card
-		if (Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU_TACHI) && Statistics.lifelose || Dungeon.isChallenged(Challenges.KETSUI_KISUNA_JIGOKU_TACHI) && Statistics.spellcarduse){
+		if (Dungeon.isChallenged(Challenges.LNN_PLAYER) && Statistics.lifelose || Dungeon.isChallenged(Challenges.LNN_PLAYER) && Statistics.spellcarduse){
 			dmg *= 0.8f;
 		}
 
@@ -98,6 +101,14 @@ public abstract class DamageWand extends Wand{
 		}
 		if (Statistics.wandpowerup >= 5) {
 			dmg *= 2.0f;
+		}
+
+		if (Dungeon.hero.buff(QuadDamage.class) != null) {
+			dmg *= 4f;
+		}
+
+		if (enemy instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
+			dmg *= 0.25f;
 		}
 
 		return dmg;

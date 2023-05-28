@@ -294,9 +294,6 @@ abstract public class Weapon extends KindOfWeapon {
 		int n = 0;
 		if (Random.Int(3) == 0) {
 			n++;
-			if (Random.Int(3) == 0) {
-				n++;
-			}
 		}
 		level(n);
 		

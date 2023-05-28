@@ -31,7 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Journal;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.InterlevelScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.IntroScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -96,12 +95,7 @@ public class WndStartGame extends Window {
 				ActionIndicator.action = null;
 				InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
 
-				if (SPDSettings.intro()) {
-					SPDSettings.intro(false);
-					Game.switchScene(IntroScene.class);
-				} else {
-					Game.switchScene(InterlevelScene.class);
-				}
+				Game.switchScene(InterlevelScene.class);
 			}
 
 			@Override

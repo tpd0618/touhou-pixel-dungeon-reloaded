@@ -30,9 +30,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -106,7 +111,7 @@ public class Potion extends Item {
 			put("spectral",ItemSpriteSheet.POTION_SPECTRAL);
 			put("green",ItemSpriteSheet.POTION_GREEN);
 			put("greentea_crimson",ItemSpriteSheet.GREENTEA_POTION_CRIMSON);
-			put("greentea_amber",ItemSpriteSheet.GREENTEA_POTION_AMBER);
+			//put("greentea_amber",ItemSpriteSheet.GREENTEA_POTION_AMBER);
 			//put("greentea_golden",ItemSpriteSheet.GREENTEA_POTION_GOLDEN);
 			//put("greentea_jade",ItemSpriteSheet.GREENTEA_POTION_JADE);
 			//put("greentea_turquoise",ItemSpriteSheet.GREENTEA_POTION_TURQUOISE);
@@ -134,7 +139,6 @@ public class Potion extends Item {
 		//exotic
 		mustThrowPots.add(PotionOfCorrosiveGas.class);
 		mustThrowPots.add(PotionOfSnapFreeze.class);
-		mustThrowPots.add(PotionOfShroudingFog.class);
 		mustThrowPots.add(PotionOfStormClouds.class);
 
 		//also all brews, hardcoded
@@ -311,12 +315,22 @@ public class Potion extends Item {
 	}
 
 	public void drink( Hero hero ) {
-		
-		detach( hero.belongings.backpack );
-		
-		hero.spend( TIME_TO_DRINK );
+
+		detach(hero.belongings.backpack);
+
+		hero.spend(TIME_TO_DRINK);
 		hero.busy();
-		apply( hero );
+		apply(hero);
+
+		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+				if (mob instanceof BossSeija) {
+					Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
+					Buff.detach(mob, SuperHard.class);
+					GLog.p( Messages.get(Potion.class, "cheat_break") );
+				}
+			}
+		} //for boss seija
 		
 		Sample.INSTANCE.play( Assets.Sounds.DRINK );
 		
@@ -442,7 +456,7 @@ public class Potion extends Item {
 	
 	@Override
 	public int value() {
-		return 50 * quantity;
+		return 30 * quantity;
 	}
 
 	@Override

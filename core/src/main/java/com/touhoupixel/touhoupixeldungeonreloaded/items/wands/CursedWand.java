@@ -49,7 +49,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowPartic
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;

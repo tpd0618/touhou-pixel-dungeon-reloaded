@@ -24,7 +24,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSanctuary;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class ElixirOfZen extends Elixir {
@@ -46,10 +47,10 @@ public class ElixirOfZen extends Elixir {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{ElixirOfDragonsBlood.class, ScrollOfSanctuary.class};
+			inputs =  new Class[]{PotionOfSnapFreeze.class, PotionOfMindVision.class};
 			inQuantity = new int[]{1, 1};
 			
-			cost = 6;
+			cost = 8;
 			
 			output = ElixirOfZen.class;
 			outQuantity = 1;

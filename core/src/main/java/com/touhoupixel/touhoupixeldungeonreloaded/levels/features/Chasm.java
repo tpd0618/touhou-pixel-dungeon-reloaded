@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels.features;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
@@ -34,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.FeatherFall;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;

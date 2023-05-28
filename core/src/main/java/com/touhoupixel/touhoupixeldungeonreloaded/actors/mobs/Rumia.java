@@ -26,6 +26,9 @@ public class Rumia extends Mob {
 
         properties.add(Property.YOKAI);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new Torch();
         lootChance = 0.05f;
     }

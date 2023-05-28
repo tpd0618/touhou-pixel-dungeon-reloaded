@@ -27,6 +27,9 @@ public class Yuyuko extends Mob {
 
         properties.add(Property.WARP);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new Food();
         lootChance = 0.1f;
     }

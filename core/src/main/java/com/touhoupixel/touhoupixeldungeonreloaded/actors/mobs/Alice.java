@@ -19,10 +19,13 @@ public class Alice extends Mob {
 
         HP = HT = 31;
         defenseSkill = 10;
-        EXP = 7;
+        EXP = 4;
         maxLvl = 17;
 
         properties.add(Property.WARP);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new PotionOfHealing();
         lootChance = 0.15f;
@@ -30,7 +33,7 @@ public class Alice extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 9);
+        return Random.NormalIntRange(6, 10);
     }
 
     @Override

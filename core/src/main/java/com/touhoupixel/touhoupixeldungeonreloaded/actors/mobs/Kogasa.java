@@ -25,10 +25,10 @@ public class Kogasa extends Mob {
     {
         spriteClass = KogasaSprite.class;
 
-        HP = HT = 13;
-        defenseSkill = 5;
-        EXP = 2;
-        maxLvl = 12;
+        HP = HT = 9;
+        defenseSkill = 2;
+        EXP = 1;
+        maxLvl = 10;
 
         properties.add(Property.YOKAI);
 
@@ -43,7 +43,7 @@ public class Kogasa extends Mob {
 
     @Override
     public int attackSkill(Char target) {
-        return 10;
+        return 7;
     }
 
     @Override
@@ -63,13 +63,6 @@ public class Kogasa extends Mob {
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
             GLog.w(Messages.get(this, "fear"));
-
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Hex.class, Hex.DURATION/5f);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION / 2f);
-            }
             return damage;
         }
         return damage;

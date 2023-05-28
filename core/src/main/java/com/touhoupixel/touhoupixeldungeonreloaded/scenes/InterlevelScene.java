@@ -46,7 +46,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.StyledButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndError;
-import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndStory;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.Camera;
@@ -378,10 +377,6 @@ public class InterlevelScene extends PixelScene {
 		if (Dungeon.hero == null) {
 			Mob.clearHeldAllies();
 			Dungeon.init();
-			if (noStory) {
-				Dungeon.chapters.add( WndStory.ID_1 );
-				noStory = false;
-			}
 			GameLog.wipe();
 
 			Level level = Dungeon.newLevel();

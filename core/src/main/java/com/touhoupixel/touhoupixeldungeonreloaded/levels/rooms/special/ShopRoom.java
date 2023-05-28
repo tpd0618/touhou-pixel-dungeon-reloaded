@@ -36,7 +36,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHou
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRice;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
@@ -206,10 +205,11 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.VIAL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.VIAL ) );
 
 		itemsToSpawn.add( new ScrollOfIdentify() );
 		itemsToSpawn.add( new ScrollOfCurseRemoval() );
-		itemsToSpawn.add( new ScrollOfMagicMapping() );
 
 		for (int i=0; i < 2; i++)
 			itemsToSpawn.add( Random.Int(2) == 0 ?
@@ -222,7 +222,6 @@ public class ShopRoom extends SpecialRoom {
 
 		itemsToSpawn.add( new Honeypot() );
 
-		itemsToSpawn.add( new ThreeStarTicket() );
 		itemsToSpawn.add( new ThreeStarTicket() );
 		itemsToSpawn.add( new ThreeStarTicket() );
 

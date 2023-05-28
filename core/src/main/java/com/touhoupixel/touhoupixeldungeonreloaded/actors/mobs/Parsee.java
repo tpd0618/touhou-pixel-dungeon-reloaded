@@ -25,9 +25,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -48,10 +53,10 @@ public class Parsee extends Mob {
     {
         spriteClass = ParseeSprite.class;
 
-        HP = HT = 168;
-        defenseSkill = 35;
-        EXP = 17;
-        maxLvl = 42;
+        HP = HT = 21;
+        defenseSkill = 7;
+        EXP = 3;
+        maxLvl = 15;
 
         properties.add(Property.YOKAI);
 
@@ -61,12 +66,12 @@ public class Parsee extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(20, 28);
+        return Random.NormalIntRange(5, 6);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 40;
+        return 12;
     }
 
     @Override
@@ -75,41 +80,17 @@ public class Parsee extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
-            if (meleeweapon != null && meleeweapon.level() > 9) {
-                if (Statistics.difficulty > 2) {
-                    Buff.prolong(enemy, Silence.class, Silence.DURATION);
-                }
-                if (Statistics.difficulty > 4) {
-                    Buff.detach(enemy, KeyHeal.class);
-                }
-                meleeweapon.enchantment = null;
-                ArrayList<Item> gazer = new ArrayList<>();
-                if (hero.buff(LostInventory.class) == null) {
-                    for (Item i : Dungeon.hero.belongings) {
-                        if (!i.unique && (i instanceof PotionOfHealing)) {
-                            gazer.add(i);
-                        }
-                    }
-                    if (Random.Int(4) == 0) {
-                        if (!gazer.isEmpty()) {
-                            Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
-                            GLog.w(Messages.get(this, "gaze"));
-                            hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
-                            Sample.INSTANCE.play(Assets.Sounds.LULLABY);
-                            if (hypnotize instanceof PotionOfHealing) {
-                                hypnotize.detach(Dungeon.hero.belongings.getItem(PotionBandolier.class));
-                            }
-                        } else {
-                            GLog.w(Messages.get(this, "failtogaze"));
-                        }
-                    }
-                }
+    public int defenseProc(Char enemy, int damage) {
+        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
+            Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+            GLog.w(Messages.get(this, "reflect"));
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+            }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, HighStress.class, HighStress.DURATION);
             }
         }
-        return damage;
+        return super.defenseProc(enemy, damage);
     }
 }

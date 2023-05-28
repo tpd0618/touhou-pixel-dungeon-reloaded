@@ -38,7 +38,7 @@ public class Benben extends Mob {
     {
         spriteClass = BenbenSprite.class;
 
-        HP = HT = 118;
+        HP = HT = 128;
         defenseSkill = 30;
         EXP = 15;
         maxLvl = 37;

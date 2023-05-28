@@ -10,7 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class NightingaleTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.MURASA;
+        image = ItemSpriteSheet.NIGHTINGALE;
     }
 
     @Override

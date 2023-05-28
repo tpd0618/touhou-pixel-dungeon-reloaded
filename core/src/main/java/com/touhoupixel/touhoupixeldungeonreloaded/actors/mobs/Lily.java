@@ -18,7 +18,7 @@ public class Lily extends Mob {
 
         HP = HT = 22;
         defenseSkill = 7;
-        EXP = 6;
+        EXP = 3;
         maxLvl = 15;
 
         flying = true;

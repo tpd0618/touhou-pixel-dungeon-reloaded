@@ -29,6 +29,9 @@ public class Reimu extends Mob {
 
         properties.add(Property.HUMAN);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new LifeFragment();
         lootChance = 0.05f;
     }

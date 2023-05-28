@@ -30,7 +30,7 @@ public class Keine extends Mob {
 
         HP = HT = 39;
         defenseSkill = 12;
-        EXP = 9;
+        EXP = 5;
         maxLvl = 20;
 
         properties.add(Property.ANIMAL);

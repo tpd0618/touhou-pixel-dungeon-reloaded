@@ -24,8 +24,14 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.SmokeScreen;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -42,6 +48,17 @@ public class PotionOfShroudingFog extends ExoticPotion {
 		
 		if (Dungeon.level.heroFOV[cell]) {
 			identify();
+
+			if (Statistics.card52){
+				GameScene.flash(0x80FFFFFF);
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+						if (!mob.properties().contains(Char.Property.BOSS) || !mob.properties().contains(Char.Property.MINIBOSS)) {
+							Buff.prolong(mob, BrainWash.class, BrainWash.DURATION);
+						}
+					}
+				}
+			}
 			
 			splash( cell );
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER );

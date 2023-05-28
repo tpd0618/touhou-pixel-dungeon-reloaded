@@ -26,23 +26,25 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Difficulty {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int EASY              = 1;
-	public static final int NORMAL            = 2;
-	public static final int HARD              = 4;
-	public static final int LUNATIC		      = 8;
-	public static final int OVERDRIVE         = 16;
+	public static final int EASY                = 1;
+	public static final int NORMAL              = 2;
+	public static final int HARD                = 4;
+	public static final int LUNATIC		        = 8;
+	public static final int OVERDRIVE           = 16;
+	public static final int GENSOKYO_EXTINCTION = 32;
 
-	public static final int MAX_VALUE         = 31;
+	public static final int MAX_VALUE           = 63;
 
 	public static final String[] NAME_IDS = {
 			"easy",
 			"normal",
 			"hard",
 			"lunatic",
-			"overdrive"
+			"overdrive",
+			"gensokyo_extinction"
 	};
 
 	public static final int[] MASKS = {
-			EASY, NORMAL, HARD, LUNATIC, OVERDRIVE
+			EASY, NORMAL, HARD, LUNATIC, OVERDRIVE, GENSOKYO_EXTINCTION
 	};
 }

@@ -1,7 +1,15 @@
 # Touhou Pixel Dungeon: Reloaded
 
-Sorry! TPD: Reloaded is now under construction! Please enjoy Touhou Pixel Dungeon instead!
-But however, you still want to enjoy new contents, you are welcome althrough this is unfinished alpha.
+For some reason, this game seems like weaker than old THPD, but this is intended.
+Most gimmicks are in non-heroines(enemies or items), not in heroines.
 
-Now this game is ascended to beta. You can enjoy things a lot but balancing may be broken.
+I had to reduce the whole floor to 40, since almost everyone seeks short-length game, not long one.
+As you see however, this game is highly inspired by touhou genso wanderer series and shiren 5.
+
+If you think this game is hard, calm down, and see items in your inventory.
+
+Warning: Saves prior to version 1.0.9 will not be compatible properly! If there is such a save, please delete it.
+
+Anyway, please enjoy THPD: reloaded well!
+
 For inquiry, contact https://twitter.com/touhoupd

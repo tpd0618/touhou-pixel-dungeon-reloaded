@@ -58,7 +58,7 @@ public class Statistics {
 
 	public static int limitBreak;
 
-	public static int happyworldCounter;
+	public static int hexcancel;
 
 	public static int cardDraw;
 	public static int cardDrawalt;
@@ -70,14 +70,14 @@ public class Statistics {
 	public static int yukariCount;
 
 	public static int healwoundsHTdown;
-	public static int extraSTRcheck2;
+	public static int dismantlecount;
 
 	public static int redscroll;
 	public static int purplescroll;
 	public static int greenscroll;
 	public static int scrollfragment;
 
-	public static int spawnersAlive;
+	public static int seija_roulette;
 
 	public static float duration;
 
@@ -118,6 +118,8 @@ public class Statistics {
 	public static boolean dinfocheck = false;
 
 	public static boolean elixirtrigger = false;
+
+	public static boolean remicountdown = false;
 
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
@@ -255,7 +257,7 @@ public class Statistics {
 
 		limitBreak   = 0;
 
-		happyworldCounter   = 0;
+		hexcancel = 0;
 
 		cardDraw   = 0;
 		cardDrawalt   = 0;
@@ -267,14 +269,14 @@ public class Statistics {
 		yukariCount = 0;
 
 		healwoundsHTdown = 0;
-		extraSTRcheck2   = 0;
+		dismantlecount = 0;
 
 		redscroll	= 0;
 		purplescroll	= 0;
 		greenscroll	= 0;
 		scrollfragment	= 0;
 
-		spawnersAlive   = 0;
+		seija_roulette = 5;
 
 		duration	= 0;
 
@@ -316,6 +318,8 @@ public class Statistics {
 		dinfocheck = false;
 
 		elixirtrigger = false;
+
+		remicountdown = false;
 
 		qualifiedForNoKilling = false;
 
@@ -448,7 +452,7 @@ public class Statistics {
 
 	private static final String LIMITBREAK		= "limitBreak";
 
-	private static final String HAPPYWORLDCOUNTER		= "happyworldCounter";
+	private static final String HEXCANCEL = "hexcancel";
 
 	private static final String CARDDRAW		= "cardDraw";
 	private static final String CARDDRAWALT		= "cardDrawalt";
@@ -460,14 +464,14 @@ public class Statistics {
 	private static final String YUKARICOUNT		= "yukaricount";
 
 	private static final String HEALWOUNDSHTDOWN		= "healwoundshtdown";
-	private static final String EXTRASTRCHECK2		= "extraSTRcheck2";
+	private static final String DISMANTLECOUNT = "dismantlecount";
 
 	private static final String REDSCROLL		= "redscroll";
 	private static final String PURPLESCROLL		= "purplescroll";
 	private static final String GREENSCROLL		= "greenscroll";
 	private static final String SCROLLFRAGMENT		= "scrolfragment";
 
-	private static final String SPAWNERS	= "spawnersAlive";
+	private static final String SEIJA_ROULETTE = "seija_roulette";
 
 	private static final String DURATION	= "duration";
 
@@ -509,6 +513,8 @@ public class Statistics {
 	private static final String DINFOCHECK	= "dinfocheck";
 
 	private static final String ELIXIRTRIGGER	= "elixirtrigger";
+
+	private static final String REMICOUNTDOWN	= "remicountdown";
 
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
@@ -645,7 +651,7 @@ public class Statistics {
 
 		bundle.put( LIMITBREAK,		limitBreak );
 
-		bundle.put( HAPPYWORLDCOUNTER,		happyworldCounter );
+		bundle.put( HEXCANCEL, hexcancel );
 
 		bundle.put( CARDDRAW,		cardDraw );
 		bundle.put( CARDDRAWALT,		cardDrawalt );
@@ -657,14 +663,14 @@ public class Statistics {
 		bundle.put( YUKARICOUNT, yukariCount);
 
 		bundle.put( HEALWOUNDSHTDOWN, healwoundsHTdown);
-		bundle.put( EXTRASTRCHECK2,	extraSTRcheck2 );
+		bundle.put(DISMANTLECOUNT, dismantlecount);
 
 		bundle.put( REDSCROLL,	redscroll );
 		bundle.put( PURPLESCROLL,	purplescroll );
 		bundle.put( GREENSCROLL,	greenscroll );
 		bundle.put( SCROLLFRAGMENT,	scrollfragment );
 
-		bundle.put( SPAWNERS,	spawnersAlive );
+		bundle.put(SEIJA_ROULETTE, seija_roulette);
 
 		bundle.put( SCORELIFE1,	scorelife1 );
 		bundle.put( SCORELIFE2,	scorelife2 );
@@ -804,6 +810,8 @@ public class Statistics {
 
 		bundle.put( ELIXIRTRIGGER, elixirtrigger );
 
+		bundle.put( REMICOUNTDOWN, remicountdown );
+
 		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
 		bundle.put( WON,        gameWon );
@@ -844,7 +852,7 @@ public class Statistics {
 
 		limitBreak   = bundle.getInt( LIMITBREAK );
 
-		happyworldCounter   = bundle.getInt( HAPPYWORLDCOUNTER );
+		hexcancel = bundle.getInt(HEXCANCEL);
 
 		cardDraw   = bundle.getInt( CARDDRAW );
 		cardDrawalt   = bundle.getInt( CARDDRAWALT );
@@ -856,14 +864,14 @@ public class Statistics {
 		yukariCount = bundle.getInt( YUKARICOUNT );
 
 		healwoundsHTdown = bundle.getInt( HEALWOUNDSHTDOWN );
-		extraSTRcheck2   = bundle.getInt( EXTRASTRCHECK2 );
+		dismantlecount = bundle.getInt(DISMANTLECOUNT);
 
 		redscroll   = bundle.getInt( REDSCROLL );
 		purplescroll   = bundle.getInt( PURPLESCROLL );
 		greenscroll   = bundle.getInt( GREENSCROLL );
 		scrollfragment   = bundle.getInt( SCROLLFRAGMENT );
 
-		spawnersAlive   = bundle.getInt( SPAWNERS );
+		seija_roulette = bundle.getInt(SEIJA_ROULETTE);
 
 		duration		= bundle.getFloat( DURATION );
 
@@ -905,6 +913,8 @@ public class Statistics {
 		dinfocheck = bundle.getBoolean( DINFOCHECK );
 
 		elixirtrigger = bundle.getBoolean( ELIXIRTRIGGER );
+
+		remicountdown = bundle.getBoolean( REMICOUNTDOWN );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 

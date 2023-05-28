@@ -7,19 +7,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ReisenSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -37,10 +32,13 @@ public class Reisen extends Mob {
 
         HP = HT = 49;
         defenseSkill = 12;
-        EXP = 9;
+        EXP = 5;
         maxLvl = 20;
 
         properties.add(Property.ANIMAL);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = Generator.Category.POTION;
         lootChance = 0.15f;

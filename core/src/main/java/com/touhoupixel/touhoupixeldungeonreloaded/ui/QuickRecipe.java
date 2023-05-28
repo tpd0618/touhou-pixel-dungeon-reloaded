@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ArcaneResin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
@@ -45,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOf
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfIcyTouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfMight;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfQuadDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfToxicEssence;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
@@ -318,6 +320,7 @@ public class QuickRecipe extends Component {
 				}
 				return result;
 			case 5:
+				result.add(new QuickRecipe(new Homunculus.Recipe()));
 				return result;
 			case 6:
 				result.add(new QuickRecipe( new LiquidMetal.Recipe(),
@@ -357,6 +360,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfZen.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfQuadDamage.Recipe()));
 				return result;
 			case 9:
 				result.add(new QuickRecipe(new TelekineticGrab.Recipe()));

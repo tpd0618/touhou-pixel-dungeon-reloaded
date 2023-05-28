@@ -20,10 +20,10 @@ public class Sunny extends Mob {
     {
         spriteClass = SunnySprite.class;
 
-        HP = HT = 20;
-        defenseSkill = 7;
-        EXP = 5;
-        maxLvl = 15;
+        HP = HT = 13;
+        defenseSkill = 5;
+        EXP = 2;
+        maxLvl = 12;
 
         properties.add(Property.WARP);
 
@@ -35,12 +35,12 @@ public class Sunny extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 7);
+        return Random.NormalIntRange(4, 6);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 12;
+        return 10;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Sunny extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (Random.Int(3) == 0) {
-            Buff.affect(enemy, Burning.class).reignite(enemy, 3f);
+            Buff.affect(enemy, Burning.class).reignite(enemy, 2f);
             Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Weakness.class, Weakness.DURATION);

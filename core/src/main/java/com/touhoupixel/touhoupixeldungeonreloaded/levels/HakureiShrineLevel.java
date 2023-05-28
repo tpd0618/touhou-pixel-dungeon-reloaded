@@ -85,21 +85,21 @@ public class HakureiShrineLevel extends RegularLevel {
 	@Override
 	protected Painter painter() {
 		return new TouhouPainter()
-				.setWater(feeling == Feeling.WATER ? 0.85f : 0.25f, 5)
-				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
-				.setSunny(0.20f, 4)
-				.setIron(0.20f, 4)
+				.setWater(feeling == Feeling.WATER ? 0.7f : 0.15f, 5)
+				.setGrass(feeling == Feeling.GRASS ? 0.7f : 0.15f, 5)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
 	@Override
 	public void create() {
 		itemsToSpawn.add( new Spellcard() );
-		itemsToSpawn.add( new StrengthCard() );
 		itemsToSpawn.add( Generator.random(Generator.Category.POTION));
 		itemsToSpawn.add( Generator.random(Generator.Category.SCROLL));
 		itemsToSpawn.add( Generator.random(Generator.Category.WAND));
 		itemsToSpawn.add( Generator.random(Generator.Category.TALISMAN));
+		if (Dungeon.isChallenged(Challenges.GENSOKYO_PALACE)) {
+			itemsToSpawn.add(Generator.random(Generator.Category.VIAL));
+		}
 		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
 			itemsToSpawn.add(new StoneOfNixer());
 		}

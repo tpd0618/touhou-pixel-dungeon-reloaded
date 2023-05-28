@@ -6,7 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MamizouSprite;
 import com.watabou.utils.Random;
@@ -17,9 +17,9 @@ public class Mamizou extends Mob {
         spriteClass = MamizouSprite.class;
 
         HP = HT = 47;
-        defenseSkill = 15;
-        EXP = 9;
-        maxLvl = 22;
+        defenseSkill = 12;
+        EXP = 6;
+        maxLvl = 20;
 
         properties.add(Property.YOKAI);
 
@@ -29,12 +29,12 @@ public class Mamizou extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 10);
+        return Random.NormalIntRange(5, 9);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 20;
+        return 17;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Mamizou extends Mob {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+                Buff.prolong(this, SuperHard.class, SuperHard.DURATION);
             }
         }
         return damage;

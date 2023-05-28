@@ -42,10 +42,10 @@ public class Mai extends Mob {
     {
         spriteClass = MaiSprite.class;
 
-        HP = HT = 176;
-        defenseSkill = 35;
-        EXP = 17;
-        maxLvl = 42;
+        HP = HT = 121;
+        defenseSkill = 30;
+        EXP = 14;
+        maxLvl = 37;
 
         properties.add(Property.HUMAN);
 
@@ -55,12 +55,12 @@ public class Mai extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(22, 30);
+        return Random.NormalIntRange(15, 20);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 40;
+        return 35;
     }
 
     @Override

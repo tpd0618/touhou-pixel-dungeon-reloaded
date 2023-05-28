@@ -51,13 +51,16 @@ public class Sanae extends Mob implements Callback {
 
         properties.add(Property.HUMAN);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new SpellcardFragment();
         lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 21);
+        return Random.NormalIntRange(15, 23);
     }
 
     @Override
@@ -111,7 +114,7 @@ public class Sanae extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 12, 19 );
+            int dmg = Random.NormalIntRange( 11, 15 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

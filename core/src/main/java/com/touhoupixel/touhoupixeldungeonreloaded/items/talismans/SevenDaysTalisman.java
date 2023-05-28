@@ -8,12 +8,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPhilosopher;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -21,7 +20,7 @@ import com.watabou.utils.Random;
 
 public class SevenDaysTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.CHAOS;
+        image = ItemSpriteSheet.SEVEN_DAYS;
     }
 
     @Override

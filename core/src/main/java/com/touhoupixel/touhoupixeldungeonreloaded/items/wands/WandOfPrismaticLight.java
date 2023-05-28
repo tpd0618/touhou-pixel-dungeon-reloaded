@@ -33,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.RainbowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;

@@ -18,12 +18,15 @@ public class Hatate extends Mob {
 
         HP = HT = 62;
         defenseSkill = 17;
-        EXP = 12;
+        EXP = 9;
         maxLvl = 25;
 
         flying = true;
 
         properties.add(Property.YOKAI);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = Generator.Category.SCROLL;
         lootChance = 0.1f;

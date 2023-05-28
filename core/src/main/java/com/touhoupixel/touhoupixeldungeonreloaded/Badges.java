@@ -47,7 +47,8 @@ public class Badges {
 		NO_MISS                     ( 5 ),
 		NO_BOMB                     ( 6 ),
 		NO_TORCH                    ( 7 ),
-		LEARNED_YOUR_LESSON         ( 8 );
+		LEARNED_YOUR_LESSON         ( 8 ),
+		LIVING_ANTIQUE_STORE        ( 9 );
 
 		public boolean meta;
 
@@ -203,6 +204,15 @@ public class Badges {
 	public static void learnedYourLesson() {
 		Badge badge = Badge.LEARNED_YOUR_LESSON;
 		local.add( badge );
+		displayBadge( badge );
+	}
+
+	public static void livingAntiqueStore(){
+		Badge badge = null;
+		if (Statistics.dismantlecount < 6){
+			badge = Badge.LIVING_ANTIQUE_STORE;
+			local.add(badge);
+		}
 		displayBadge( badge );
 	}
 

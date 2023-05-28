@@ -53,7 +53,7 @@ public class LastLevel extends Level {
 
 	@Override
 	public String tilesTex() {
-		return Assets.Environment.TILES_20;
+		return Assets.Environment.TILES_19;
 	}
 
 	@Override

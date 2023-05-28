@@ -18,10 +18,13 @@ public class Remilia extends Mob {
 
         HP = HT = 39;
         defenseSkill = 15;
-        EXP = 9;
+        EXP = 7;
         maxLvl = 22;
 
         properties.add(Property.WARP);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new SpellcardFragment();
         lootChance = 0.15f;

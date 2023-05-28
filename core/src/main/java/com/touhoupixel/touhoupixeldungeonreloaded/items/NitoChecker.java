@@ -86,6 +86,9 @@ public class NitoChecker extends Item {
 		if (Statistics.difficulty == 5) {
 			info += "\n\n" + Messages.get(NitoChecker.class, "overdrive");
 		}
+		if (Statistics.difficulty == 6) {
+			info += "\n\n" + Messages.get(NitoChecker.class, "gensokyo_extinction");
+		}
 		return info;
 	}
 

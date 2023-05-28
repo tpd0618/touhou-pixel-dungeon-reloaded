@@ -42,7 +42,7 @@ public class Kagerou extends Mob implements Callback {
 
         HP = HT = 45;
         defenseSkill = 12;
-        EXP = 9;
+        EXP = 6;
         maxLvl = 20;
 
         properties.add(Property.ANIMAL);

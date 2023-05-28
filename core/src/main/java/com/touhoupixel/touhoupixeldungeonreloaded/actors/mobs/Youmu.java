@@ -22,6 +22,9 @@ public class Youmu extends Mob {
 
         properties.add(Property.WARP);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new PotionOfPhilosopher();
         lootChance = 0.1f;
     }

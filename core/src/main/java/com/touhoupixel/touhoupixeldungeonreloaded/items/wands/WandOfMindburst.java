@@ -27,7 +27,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;

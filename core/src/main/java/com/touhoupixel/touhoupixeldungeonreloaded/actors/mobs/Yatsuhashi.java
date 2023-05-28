@@ -43,7 +43,7 @@ public class Yatsuhashi extends Mob {
     {
         spriteClass = YatsuhashiSprite.class;
 
-        HP = HT = 118;
+        HP = HT = 128;
         defenseSkill = 30;
         EXP = 15;
         maxLvl = 37;
@@ -81,7 +81,6 @@ public class Yatsuhashi extends Mob {
                 Buff.prolong(enemy, AliceCurse.class, AliceCurse.DURATION);
             }
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            GLog.w(Messages.get(Potion.class, "corruption"));
         }
         return damage;
     }

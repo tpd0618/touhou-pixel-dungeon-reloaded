@@ -15,10 +15,10 @@ public class Star extends Mob {
     {
         spriteClass = StarSprite.class;
 
-        HP = HT = 20;
-        defenseSkill = 7;
-        EXP = 5;
-        maxLvl = 15;
+        HP = HT = 31;
+        defenseSkill = 10;
+        EXP = 4;
+        maxLvl = 17;
 
         properties.add(Property.WARP);
 
@@ -30,12 +30,12 @@ public class Star extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 7);
+        return Random.NormalIntRange(7, 9);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 12;
+        return 15;
     }
 
     @Override

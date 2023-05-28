@@ -6,8 +6,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiShipBattery;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMaiden;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfAttraction;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YukariSprite;
 import com.watabou.utils.Random;
 
@@ -23,9 +23,12 @@ public class Yukari extends Mob {
 
         properties.add(Property.YOKAI);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         flying = true;
 
-        loot = new ScrollOfMaiden();
+        loot = new PotionOfAttraction();
         lootChance = 0.1f;
     }
 
@@ -53,7 +56,7 @@ public class Yukari extends Mob {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+                Buff.prolong(this, SuperHard.class, SuperHard.DURATION);
             }
         }
         return damage;

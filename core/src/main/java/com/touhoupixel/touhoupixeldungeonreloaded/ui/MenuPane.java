@@ -35,7 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndChallenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndGame;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndJournal;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndKeyBindings;
-import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndStory;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Game;
@@ -306,9 +305,6 @@ public class MenuPane extends Component {
 			keyIcon.am = journalIcon.am = 1;
 			if (flashingPage != null){
 				if (Document.ADVENTURERS_GUIDE.pageNames().contains(flashingPage)){
-					GameScene.show( new WndStory( WndJournal.GuideTab.iconForPage(flashingPage),
-							Document.ADVENTURERS_GUIDE.pageTitle(flashingPage),
-							Document.ADVENTURERS_GUIDE.pageBody(flashingPage) ));
 					Document.ADVENTURERS_GUIDE.readPage(flashingPage);
 				} else {
 					GameScene.show( new WndJournal() );

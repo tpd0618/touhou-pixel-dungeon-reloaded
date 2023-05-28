@@ -23,6 +23,9 @@ public class Miko extends Mob {
 
         properties.add(Property.ANIMAL);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new LifeFragment();
         lootChance = 0.01f;
     }

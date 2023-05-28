@@ -23,6 +23,9 @@ public class Kasen extends Mob {
 
         properties.add(Property.WARP);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = Generator.Category.ARMOR_T5;
         lootChance = 0.15f;
     }

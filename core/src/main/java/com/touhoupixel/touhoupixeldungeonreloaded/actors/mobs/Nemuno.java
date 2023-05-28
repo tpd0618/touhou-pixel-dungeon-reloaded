@@ -20,7 +20,7 @@ public class Nemuno extends Mob {
 
         HP = HT = 72;
         defenseSkill = 20;
-        EXP = 11;
+        EXP = 10;
         maxLvl = 27;
 
         properties.add(Property.YOKAI);
@@ -31,7 +31,7 @@ public class Nemuno extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(10, 15);
+        return Random.NormalIntRange(11, 14);
     }
 
     @Override

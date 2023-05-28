@@ -7,21 +7,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfBalance;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KeikiSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -38,6 +31,9 @@ public class Keiki extends Mob {
         maxLvl = 75;
 
         properties.add(Property.GOD);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new SpellcardFragment();
         lootChance = 0.05f;
@@ -65,8 +61,16 @@ public class Keiki extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.hero.buff(Burning.class) == null) {
             if (!(Dungeon.level.map[hero.pos] == Terrain.WATER)) {
-                damage = hero.HP + 1;
-                GLog.w(Messages.get(this, "idolatrize"));
+                Homunculus homunculus = Dungeon.hero.belongings.getItem(Homunculus.class);
+                if (homunculus != null) {
+                    homunculus.detach(Dungeon.hero.belongings.backpack);
+                    Sample.INSTANCE.play(Assets.Sounds.BEACON);
+                    GLog.w(Messages.get(Homunculus.class, "block_instakill"));
+                    Item.updateQuickslot();
+                } else {
+                    damage = hero.HP + 1;
+                    GLog.w(Messages.get(this, "idolatrize"));
+                }
             }
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);

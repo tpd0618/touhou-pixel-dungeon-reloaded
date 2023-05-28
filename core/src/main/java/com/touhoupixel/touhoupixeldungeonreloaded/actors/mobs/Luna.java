@@ -1,16 +1,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfAntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.LunaSprite;
 import com.watabou.utils.Random;
 
@@ -19,9 +15,9 @@ public class Luna extends Mob {
     {
         spriteClass = LunaSprite.class;
 
-        HP = HT = 20;
+        HP = HT = 24;
         defenseSkill = 7;
-        EXP = 5;
+        EXP = 3;
         maxLvl = 15;
 
         flying = true;
@@ -34,7 +30,7 @@ public class Luna extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 7);
+        return Random.NormalIntRange(3, 8);
     }
 
     @Override

@@ -21,22 +21,16 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BloodParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MaxwellArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;

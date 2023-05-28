@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowPartic
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.InventoryScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;

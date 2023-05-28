@@ -20,7 +20,7 @@ public class Mystia extends Mob {
 
         HP = HT = 27;
         defenseSkill = 10;
-        EXP = 7;
+        EXP = 4;
         maxLvl = 17;
 
         flying = true;

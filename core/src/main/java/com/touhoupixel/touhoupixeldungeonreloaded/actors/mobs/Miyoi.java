@@ -49,10 +49,10 @@ public class Miyoi extends Mob {
     {
         spriteClass = MiyoiSprite.class;
 
-        HP = HT = 175;
-        defenseSkill = 35;
-        EXP = 17;
-        maxLvl = 42;
+        HP = HT = 26;
+        defenseSkill = 7;
+        EXP = 3;
+        maxLvl = 15;
 
         properties.add(Property.YOKAI);
 
@@ -62,12 +62,12 @@ public class Miyoi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(20, 28);
+        return Random.NormalIntRange(3, 8);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 40;
+        return 12;
     }
 
     @Override
@@ -78,19 +78,17 @@ public class Miyoi extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            if (Random.Int(3) == 0 && Dungeon.energy > 9) {
-                Dungeon.energy -= 10;
-                if (Statistics.difficulty > 2) {
-                    Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
-                }
-                if (Statistics.difficulty > 4) {
-                    Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-                }
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-                GLog.w(Messages.get(this, "stole"));
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0 && Dungeon.gold > 29) {
+            Dungeon.gold -= 30;
+            if (Statistics.difficulty > 2) {
+                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }
+            if (Statistics.difficulty > 4) {
+                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
+            }
+            Sample.INSTANCE.play(Assets.Sounds.CURSED);
+            CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+            GLog.w(Messages.get(this, "stole"));
         }
         return damage;
     }

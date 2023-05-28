@@ -22,18 +22,26 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.UnstableSpellbook;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfAntiMagic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
@@ -42,7 +50,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlink;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfClairvoyance;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDeepSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDisarming;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
@@ -77,10 +84,6 @@ public abstract class Scroll extends Item {
 			put("ISAZ",ItemSpriteSheet.SCROLL_ISAZ);
 			put("MANNAZ",ItemSpriteSheet.SCROLL_MANNAZ);
 			put("NAUDIZ",ItemSpriteSheet.SCROLL_NAUDIZ);
-			put("BERKANAN",ItemSpriteSheet.SCROLL_BERKANAN);
-			put("ODAL",ItemSpriteSheet.SCROLL_ODAL);
-			put("TIWAZ",ItemSpriteSheet.SCROLL_TIWAZ);
-			put("GENSOKYO",ItemSpriteSheet.SCROLL_GENSOKYO);
 		}
 	};
 	
@@ -169,12 +172,22 @@ public abstract class Scroll extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			} else if (hero.buff(UnstableSpellbook.bookRecharge.class) != null
 					&& hero.buff(UnstableSpellbook.bookRecharge.class).isCursed()
-					&& !(this instanceof ScrollOfCurseRemoval || this instanceof ScrollOfAntiMagic)){
+					&& !(this instanceof ScrollOfCurseRemoval)){
 				GLog.n( Messages.get(this, "cursed") );
 			} else {
 				curUser = hero;
 				curItem = detach( hero.belongings.backpack );
 				doRead();
+
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+						if (mob instanceof BossSeija) {
+							Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
+							Buff.detach(mob, SuperHard.class);
+							GLog.p( Messages.get(Potion.class, "cheat_break") );
+						}
+					}
+				} //for boss seija
 			}
 		}
 	}
@@ -251,7 +264,7 @@ public abstract class Scroll extends Item {
 	
 	@Override
 	public int value() {
-		return 50 * quantity;
+		return 30 * quantity;
 	}
 
 	@Override
@@ -291,11 +304,10 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfRetribution.class,   StoneOfMadness.class);
 			stones.put(ScrollOfRage.class,          StoneOfAggression.class);
 			stones.put(ScrollOfRecharging.class,    StoneOfShock.class);
-			stones.put(ScrollOfCurseRemoval.class,   StoneOfDisarming.class);
+			stones.put(ScrollOfCurseRemoval.class,  StoneOfDisarming.class);
 			stones.put(ScrollOfTeleportation.class, StoneOfBlink.class);
 			stones.put(ScrollOfTerror.class,        StoneOfFear.class);
 			stones.put(ScrollOfTransmutation.class, StoneOfAugmentation.class);
-			stones.put(ScrollOfFixer.class,       StoneOfEnchantment.class);
 		}
 		
 		@Override

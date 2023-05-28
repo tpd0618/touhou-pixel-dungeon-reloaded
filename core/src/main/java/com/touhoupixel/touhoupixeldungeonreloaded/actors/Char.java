@@ -54,7 +54,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LifeLink;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
@@ -63,7 +63,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
@@ -466,7 +465,7 @@ public abstract class Char extends Actor {
             return;
         }
 
-        if (buff(OneDefDamage.class) != null ) {
+        if (buff(SuperHard.class) != null ) {
             dmg = 1;
         }
 
@@ -831,6 +830,7 @@ public abstract class Char extends Actor {
         NONE,
         ELIXIR,
         IMMOVABLE,
+        FUMO,
 
         //Mob property
         YOKAI,

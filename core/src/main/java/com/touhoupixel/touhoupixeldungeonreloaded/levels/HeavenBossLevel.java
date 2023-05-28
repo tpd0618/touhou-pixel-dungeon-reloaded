@@ -25,17 +25,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Alice;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossOkina;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Iku;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.LevitationHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -89,7 +83,8 @@ public class HeavenBossLevel extends Level {
 
 	private static final short n = -1;
 	private static final short W = Terrain.WALL;
-	private static final short e = Terrain.IRON_TILES;
+	private static final short e = Terrain.WATER;
+	private static final short E = Terrain.ENTRANCE;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
@@ -101,7 +96,7 @@ public class HeavenBossLevel extends Level {
 			W, W, e, e, e, W, e, e, e, W, W,
 			W, W, e, e, W, e, W, e, e, W, W,
 			W, W, e, W, e, e, e, W, e, W, W,
-			W, W, e, e, e, e, e, e, e, W, W,
+			W, W, e, e, e, E, e, e, e, W, W,
 			W, W, W, W, W, W, W, W, W, W, W,
 			W, W, W, W, W, W, W, W, W, W, W
 	};
@@ -143,7 +138,7 @@ public class HeavenBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 93, Terrain.IRON_TILES );
+		set( 93, Terrain.WATER );
 		GameScene.updateMap( 93 );
 
 		BossTenshi boss = new BossTenshi();

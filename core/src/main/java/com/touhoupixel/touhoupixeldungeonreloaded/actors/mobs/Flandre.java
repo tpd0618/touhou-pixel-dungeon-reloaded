@@ -42,6 +42,9 @@ public class Flandre extends Mob {
         properties.add(Property.WARP);
         properties.add(Property.MINIBOSS);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         EXP = 0;
         maxLvl = 99;
     }

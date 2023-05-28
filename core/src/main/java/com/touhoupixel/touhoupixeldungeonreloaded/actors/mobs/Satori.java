@@ -22,6 +22,9 @@ public class Satori extends Mob {
 
         properties.add(Property.YOKAI);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new PotionOfMindVision();
         lootChance = 0.05f;
     }

@@ -23,6 +23,9 @@ public class Kokoro extends Mob {
 
         properties.add(Property.YOKAI);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = Generator.Category.WEP_T2;
         lootChance = 0.15f;
     }

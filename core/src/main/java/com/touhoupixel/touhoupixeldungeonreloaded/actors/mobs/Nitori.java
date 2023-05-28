@@ -50,10 +50,13 @@ public class Nitori extends Mob implements Callback {
 
         HP = HT = 56;
         defenseSkill = 17;
-        EXP = 11;
+        EXP = 8;
         maxLvl = 25;
 
         properties.add(Property.YOKAI);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         flying = true;
 
@@ -111,7 +114,7 @@ public class Nitori extends Mob implements Callback {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }
 
-            int dmg = Random.NormalIntRange( 7, 12 );
+            int dmg = Random.NormalIntRange( 6, 10 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

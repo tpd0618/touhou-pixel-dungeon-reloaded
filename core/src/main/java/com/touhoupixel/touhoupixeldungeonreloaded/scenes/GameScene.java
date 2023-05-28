@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Chrome;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.GamesInProgress;
-import com.touhoupixel.touhoupixeldungeonreloaded.Rankings;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
@@ -45,10 +44,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.Guidebook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
-import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Journal;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -99,7 +96,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndInfoTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndKeyBindings;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndMessage;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
-import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndStory;
 import com.watabou.glwrap.Blending;
 import com.watabou.input.PointerEvent;
 import com.watabou.noosa.Camera;
@@ -390,38 +386,6 @@ public class GameScene extends PixelScene {
 				break;
 			case ASCEND:
 			case FALL:
-				switch (Dungeon.depth) {
-					case 1:
-						WndStory.showChapter(WndStory.ID_1);
-						break;
-					case 6:
-						WndStory.showChapter(WndStory.ID_2);
-						break;
-					case 11:
-						WndStory.showChapter(WndStory.ID_3);
-						break;
-					case 16:
-						WndStory.showChapter(WndStory.ID_4);
-						break;
-					case 21:
-						WndStory.showChapter(WndStory.ID_5);
-						break;
-					case 26:
-						WndStory.showChapter(WndStory.ID_6);
-						break;
-					case 31:
-						WndStory.showChapter(WndStory.ID_7);
-						break;
-					case 36:
-						WndStory.showChapter(WndStory.ID_8);
-						break;
-					case 41:
-						WndStory.showChapter(WndStory.ID_9);
-						break;
-					case 46:
-						WndStory.showChapter(WndStory.ID_10);
-						break;
-				}
 				if (Dungeon.hero.isAlive()) {
 				}
 				break;

@@ -30,7 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.MirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.watabou.utils.Bundle;

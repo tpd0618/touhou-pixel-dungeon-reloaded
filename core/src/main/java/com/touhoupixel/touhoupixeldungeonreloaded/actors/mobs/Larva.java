@@ -18,7 +18,7 @@ public class Larva extends Mob {
     {
         spriteClass = LarvaSprite.class;
 
-        HP = HT = 9;
+        HP = HT = 8;
         defenseSkill = 2;
         EXP = 1;
         maxLvl = 10;

@@ -27,12 +27,15 @@ public class Chen extends Mob {
 
         HP = HT = 38;
         defenseSkill = 10;
-        EXP = 7;
+        EXP = 4;
         maxLvl = 17;
 
         baseSpeed = 2f;
 
         properties.add(Property.ANIMAL);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         harmfulBuffs.add( Chill.class );
         harmfulBuffs.add( Frost.class );
@@ -52,7 +55,7 @@ public class Chen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 11);
+        return Random.NormalIntRange(8, 10);
     }
 
     @Override

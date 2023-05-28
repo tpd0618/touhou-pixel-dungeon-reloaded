@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfNixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
@@ -95,16 +96,16 @@ public class HakugyokurouLevel extends RegularLevel {
 	@Override
 	protected Painter painter() {
 		return new TouhouPainter()
-				.setWater(feeling == Feeling.WATER ? 0.85f : 0.25f, 5)
-				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 4)
-				.setSunny(0.20f, 4)
-				.setIron(0.20f, 4)
+				.setWater(feeling == Feeling.WATER ? 0.7f : 0.15f, 5)
+				.setGrass(feeling == Feeling.GRASS ? 0.7f : 0.15f, 5)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
 	@Override
 	public void create() {
-		itemsToSpawn.add( new Torch() );
+		if (Dungeon.isChallenged(Challenges.GENSOKYO_PALACE)) {
+			itemsToSpawn.add(Generator.random(Generator.Category.VIAL));
+		}
 		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
 			itemsToSpawn.add(new StoneOfNixer());
 		}

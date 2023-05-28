@@ -45,9 +45,9 @@ public class Sekibanki extends Mob {
     {
         spriteClass = SekibankiSprite.class;
 
-        HP = HT = 57;
+        HP = HT = 59;
         defenseSkill = 17;
-        EXP = 11;
+        EXP = 8;
         maxLvl = 25;
 
         properties.add(Property.YOKAI);

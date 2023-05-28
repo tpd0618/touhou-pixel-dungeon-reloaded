@@ -38,12 +38,15 @@ public class Seija extends Mob {
     {
         spriteClass = SeijaSprite.class;
 
-        HP = HT = 71;
+        HP = HT = 152;
         defenseSkill = 30;
         EXP = 16;
         maxLvl = 37;
 
         properties.add(Property.YOKAI);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = Generator.Category.MIS_T5;
         lootChance = 0.1f;

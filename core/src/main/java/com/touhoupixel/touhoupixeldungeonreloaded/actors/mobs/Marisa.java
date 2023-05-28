@@ -52,7 +52,7 @@ public class Marisa extends Mob {
 
         HP = HT = 26;
         defenseSkill = 10;
-        EXP = 7;
+        EXP = 5;
         maxLvl = 17;
 
         viewDistance = Light.DISTANCE;
@@ -60,6 +60,9 @@ public class Marisa extends Mob {
         HUNTING = new Hunting();
 
         properties.add(Property.HUMAN);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = Generator.Category.WAND;
         lootChance = 0.15f;
@@ -183,7 +186,6 @@ public class Marisa extends Mob {
                 if (ch instanceof Hero) {
                     Sample.INSTANCE.play(Assets.Sounds.CURSED);
                     CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-                    Buff.prolong(enemy, Light.class, Light.DURATION);
                     Buff.prolong(enemy, Paralysis.class, Paralysis.DURATION/5f);
                 }
 

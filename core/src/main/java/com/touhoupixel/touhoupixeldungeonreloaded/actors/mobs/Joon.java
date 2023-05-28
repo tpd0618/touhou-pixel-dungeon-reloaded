@@ -28,10 +28,13 @@ public class Joon extends Mob {
 
         HP = HT = 75;
         defenseSkill = 20;
-        EXP = 12;
+        EXP = 11;
         maxLvl = 27;
 
         properties.add(Property.GOD);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = Gold.class;
         lootChance = 0.1f;
@@ -55,9 +58,9 @@ public class Joon extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
-            if (Dungeon.gold > 2000) {
-                Dungeon.gold -= 2000;
+        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+            if (Dungeon.gold > 999) {
+                Dungeon.gold -= 1000;
                 PotionOfHealing poh = new PotionOfHealing();
                 poh.collect();
                 Sample.INSTANCE.play(Assets.Sounds.GOLD);

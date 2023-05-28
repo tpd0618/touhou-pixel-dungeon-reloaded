@@ -47,7 +47,7 @@ public class Grayswandir extends MeleeWeapon {
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Dungeon.depth > 45) {
+        if (Dungeon.depth > 37) {
             damage *= 2.2f;
         }
         return super.proc(attacker, defender, damage);

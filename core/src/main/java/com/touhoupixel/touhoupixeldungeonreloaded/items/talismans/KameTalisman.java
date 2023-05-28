@@ -10,7 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class KameTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.IMPEDE;
+        image = ItemSpriteSheet.KAME;
     }
 
     @Override

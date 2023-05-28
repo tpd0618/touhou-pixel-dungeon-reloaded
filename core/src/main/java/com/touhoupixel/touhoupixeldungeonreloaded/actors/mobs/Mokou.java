@@ -25,11 +25,14 @@ public class Mokou extends Mob {
 
         HP = HT = 36;
         defenseSkill = 12;
-        EXP = 10;
+        EXP = 5;
         maxLvl = 20;
 
         properties.add(Property.ELIXIR);
         properties.add(Property.HUMAN);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new LifeFragment();
         lootChance = 0.15f;
@@ -39,7 +42,7 @@ public class Mokou extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 8);
+        return Random.NormalIntRange(6, 10);
     }
 
     @Override

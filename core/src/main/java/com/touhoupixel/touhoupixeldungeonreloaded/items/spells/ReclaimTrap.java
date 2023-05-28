@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.spells;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.EnragingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;

@@ -21,15 +21,25 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.stones;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfEnchantment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.Brew;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.Elixir;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -47,7 +57,8 @@ public class StoneOfAugmentation extends InventoryStone {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return ScrollOfEnchantment.enchantable(item);
+		return item instanceof MeleeWeapon ||
+				item instanceof Armor;
 	}
 
 	@Override

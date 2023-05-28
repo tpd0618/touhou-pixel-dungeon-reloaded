@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiShipBattery;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
@@ -38,21 +39,25 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.TalismanCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -68,7 +73,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
@@ -427,7 +431,9 @@ public abstract class Mob extends Char {
 	}
 
 	protected boolean canAttack( Char enemy ) {
-		if (Dungeon.level.adjacent( pos, enemy.pos )){
+		if (this.buff(BrainWash.class) != null){
+			return false;
+		} else if (Dungeon.level.adjacent( pos, enemy.pos )){
 			return true;
 		}
 		return false;
@@ -609,7 +615,8 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return Dungeon.hero.buff(HinaCurse.class) != null && Dungeon.hero.justMoved || this instanceof BossHecatia && Statistics.eirinelixircount != 4;
+		return Dungeon.hero.buff(HinaCurse.class) != null && Dungeon.hero.justMoved ||
+				this instanceof BossHecatia && Statistics.eirinelixircount != 4;
 	}
 
 	@Override
@@ -657,12 +664,16 @@ public abstract class Mob extends Char {
 			damage *= 0.85f;
 		}
 
-		if (Statistics.difficulty == 3 || Statistics.difficulty == 4) {
+		if (Statistics.difficulty == 4) {
 			damage *= 1.1f;
 		}
 
 		if (Statistics.difficulty == 5) {
 			damage *= 1.2f;
+		}
+
+		if (Statistics.difficulty == 6) {
+			damage *= 1.25f;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
@@ -687,6 +698,14 @@ public abstract class Mob extends Char {
 			this.HP = 1;
 		}
 
+		if (this instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
+			Dungeon.hero.HP = 1;
+		}
+
+		if (this instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
+			damage *= 0.25;
+		}
+
 		if (enemy instanceof Hero
 				&& ((Hero) enemy).belongings.weapon() instanceof MissileWeapon){
 		}
@@ -708,6 +727,63 @@ public abstract class Mob extends Char {
 				|| (enemy != this.enemy && (Dungeon.level.distance(pos, enemy.pos) < Dungeon.level.distance(pos, this.enemy.pos)))) {
 			aggro(enemy);
 			target = enemy.pos;
+		}
+
+		if (this.buff(BrainWash.class) != null && enemy instanceof Hero) {
+			switch (Random.Int(4)) {
+				case 0:
+				default:
+					Dungeon.level.drop(new Gold().random(), Dungeon.hero.pos).sprite.drop();
+					Dungeon.level.drop(new Gold().random(), Dungeon.hero.pos).sprite.drop();
+					Dungeon.level.drop(new Gold().random(), Dungeon.hero.pos).sprite.drop();
+					//3x amount
+					GLog.p(Messages.get(this, "bw_gold"));
+					break;
+				case 1:
+					switch (Random.Int(5)) {
+						case 0:
+						default:
+							Dungeon.level.drop(Generator.random(Generator.Category.POTION), Dungeon.hero.pos).sprite.drop();
+							break;
+						case 1:
+							Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), Dungeon.hero.pos).sprite.drop();
+							break;
+						case 2:
+							Dungeon.level.drop(Generator.random(Generator.Category.HERB), Dungeon.hero.pos).sprite.drop();
+							break;
+						case 3:
+							Dungeon.level.drop(Generator.random(Generator.Category.TALISMAN), Dungeon.hero.pos).sprite.drop();
+							break;
+						case 4:
+							Dungeon.level.drop(Generator.random(Generator.Category.VIAL), Dungeon.hero.pos).sprite.drop();
+							break;
+					}
+					GLog.p(Messages.get(this, "bw_item"));
+					break;
+				case 2:
+					Dungeon.hero.HP = Math.min(Dungeon.hero.HP + Dungeon.hero.HT/4, Dungeon.hero.HT);
+					Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
+					GLog.p(Messages.get(this, "bw_heal"));
+					break;
+				case 3:
+					switch (Random.Int(4)) {
+						case 0:
+						default:
+							Buff.prolong(Dungeon.hero, Might.class, Might.DURATION);
+							break;
+						case 1:
+							Buff.prolong(Dungeon.hero, Hisou.class, Hisou.DURATION);
+							break;
+						case 2:
+							Buff.prolong(Dungeon.hero, Doublespeed.class, Doublespeed.DURATION);
+							break;
+						case 3:
+							Buff.prolong(Dungeon.hero, Doublerainbow.class, Doublerainbow.DURATION);
+							break;
+					}
+					GLog.p(Messages.get(this, "bw_buff"));
+					break;
+			}
 		}
 
 		return damage;

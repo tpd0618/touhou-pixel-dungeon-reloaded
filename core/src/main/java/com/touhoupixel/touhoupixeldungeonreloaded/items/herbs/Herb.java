@@ -25,13 +25,20 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EquipmentIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 import java.util.ArrayList;
@@ -79,9 +86,15 @@ public class Herb extends Item {
 				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
 			}
 
-			if (Statistics.card33){
-				Buff.prolong(curUser, EquipmentIdentify.class, EquipmentIdentify.DURATION/4f);
-			}
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+					if (mob instanceof BossSeija) {
+						Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
+						Buff.detach(mob, SuperHard.class);
+						GLog.p( Messages.get(Potion.class, "cheat_break") );
+					}
+				}
+			} //for boss seija
 
 			hero.spend(eatingTime());
 		}

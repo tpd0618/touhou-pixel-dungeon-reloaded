@@ -132,7 +132,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfAccuracy;
@@ -146,17 +145,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshooting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfHeavenDuel;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
@@ -178,6 +175,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BlackFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
@@ -203,7 +201,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SevenStarSw
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SmallSeiranHammer;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SuperMiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ToramaruSpear;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
@@ -319,6 +319,10 @@ public enum Catalog {
 		WEAPONS.seen.put( MurasaDipper.class,                   true);
 		WEAPONS.seen.put( YachieHorn.class,                   true);
 		WEAPONS.seen.put( YuyukoFoldingFan.class,                   true);
+
+		WEAPONS.seen.put( SuperMiracleMallet.class,                   true);
+		WEAPONS.seen.put( BlackFan.class,                   true);
+		WEAPONS.seen.put( TurnaboutCloak.class,                   true);
 		//tier 5
 		WEAPONS.seen.put( BigYingYangOrb.class,                 true);
 		WEAPONS.seen.put( GoldenExorcismRod.class,                  true);
@@ -496,7 +500,6 @@ public enum Catalog {
 		POTIONS.seen.put( PotionOfInvisibility.class,       true);
 		POTIONS.seen.put( PotionOfExperience.class,         true);
 		POTIONS.seen.put( PotionOfHaste.class,              true);
-		POTIONS.seen.put( PotionOfDango.class,         true);
 		POTIONS.seen.put( PotionOfMight.class,              true);
 		POTIONS.seen.put( PotionOfDoublespeed.class,        true);
 		POTIONS.seen.put( PotionOfLightHealing.class,       true);
@@ -505,17 +508,13 @@ public enum Catalog {
 		POTIONS.seen.put( PotionOfMagic.class,              true);
 
 		SCROLLS.seen.put( ScrollOfIdentify.class,           true);
-		SCROLLS.seen.put( ScrollOfFixer.class,              true);
 		SCROLLS.seen.put( ScrollOfCurseRemoval.class,        true);
-		SCROLLS.seen.put( ScrollOfMagicMapping.class,       true);
-		SCROLLS.seen.put( ScrollOfTeleportation.class,      true);
 		SCROLLS.seen.put( ScrollOfRecharging.class,         true);
 		SCROLLS.seen.put( ScrollOfMirrorImage.class,        true);
 		SCROLLS.seen.put( ScrollOfTerror.class,             true);
 		SCROLLS.seen.put( ScrollOfLullaby.class,            true);
 		SCROLLS.seen.put( ScrollOfRage.class,               true);
 		SCROLLS.seen.put( ScrollOfRetribution.class,        true);
-		SCROLLS.seen.put( ScrollOfHeavenDuel.class,         true);
 		SCROLLS.seen.put( ScrollOfTransmutation.class,      true);
 	}
 

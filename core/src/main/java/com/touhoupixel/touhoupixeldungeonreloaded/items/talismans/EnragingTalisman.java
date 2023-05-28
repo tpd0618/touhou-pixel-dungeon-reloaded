@@ -10,7 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class EnragingTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.DECOY;
+        image = ItemSpriteSheet.ENRAGING;
     }
 
     @Override

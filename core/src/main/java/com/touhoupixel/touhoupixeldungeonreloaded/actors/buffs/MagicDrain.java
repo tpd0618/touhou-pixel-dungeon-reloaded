@@ -47,6 +47,11 @@ public class MagicDrain extends FlavourBuff {
 	public String toString() {
 		return Messages.get(this, "name");
 	}
+
+	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
+	}
 	
 	@Override
 	public String desc() {

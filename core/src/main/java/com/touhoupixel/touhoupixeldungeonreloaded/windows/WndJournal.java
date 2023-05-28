@@ -289,9 +289,6 @@ public class WndJournal extends WndTabbed {
 
 			public boolean onClick( float x, float y ) {
 				if (inside( x, y ) && found) {
-					GameScene.show( new WndStory( iconForPage(page),
-							Document.ADVENTURERS_GUIDE.pageTitle(page),
-							Document.ADVENTURERS_GUIDE.pageBody(page) ));
 					Document.ADVENTURERS_GUIDE.readPage(page);
 					return true;
 				} else {

@@ -24,17 +24,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfHeavenDuel;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.watabou.utils.Reflection;
@@ -48,14 +44,14 @@ public abstract class ExoticScroll extends Scroll {
 	public static final HashMap<Class<?extends Scroll>, Class<?extends ExoticScroll>> regToExo = new HashMap<>();
 	public static final HashMap<Class<?extends ExoticScroll>, Class<?extends Scroll>> exoToReg = new HashMap<>();
 	static{
-		regToExo.put(ScrollOfIdentify.class, ScrollOfMaiden.class);
-		exoToReg.put(ScrollOfMaiden.class, ScrollOfIdentify.class);
+		regToExo.put(ScrollOfIdentify.class, ScrollOfTeleportation.class);
+		exoToReg.put(ScrollOfTeleportation.class, ScrollOfIdentify.class);
+
+		regToExo.put(ScrollOfTransmutation.class, ScrollOfDango.class);
+		exoToReg.put(ScrollOfDango.class, ScrollOfTransmutation.class);
 		
-		regToExo.put(ScrollOfFixer.class, ScrollOfEnchantment.class);
-		exoToReg.put(ScrollOfEnchantment.class, ScrollOfFixer.class);
-		
-		regToExo.put(ScrollOfCurseRemoval.class, ScrollOfAntiMagic.class);
-		exoToReg.put(ScrollOfAntiMagic.class, ScrollOfCurseRemoval.class);
+		regToExo.put(ScrollOfCurseRemoval.class, ScrollOfMagicMapping.class);
+		exoToReg.put(ScrollOfMagicMapping.class, ScrollOfCurseRemoval.class);
 		
 		regToExo.put(ScrollOfLullaby.class, ScrollOfSirensSong.class);
 		exoToReg.put(ScrollOfSirensSong.class, ScrollOfLullaby.class);
@@ -69,23 +65,11 @@ public abstract class ExoticScroll extends Scroll {
 		regToExo.put(ScrollOfRecharging.class, ScrollOfMysticalEnergy.class);
 		exoToReg.put(ScrollOfMysticalEnergy.class, ScrollOfRecharging.class);
 		
-		regToExo.put(ScrollOfMagicMapping.class, ScrollOfForesight.class);
-		exoToReg.put(ScrollOfForesight.class, ScrollOfMagicMapping.class);
-		
-		regToExo.put(ScrollOfTeleportation.class, ScrollOfSanctuary.class);
-		exoToReg.put(ScrollOfSanctuary.class, ScrollOfTeleportation.class);
-		
 		regToExo.put(ScrollOfRetribution.class, ScrollOfPsionicBlast.class);
 		exoToReg.put(ScrollOfPsionicBlast.class, ScrollOfRetribution.class);
 		
 		regToExo.put(ScrollOfMirrorImage.class, ScrollOfPrismaticImage.class);
 		exoToReg.put(ScrollOfPrismaticImage.class, ScrollOfMirrorImage.class);
-		
-		regToExo.put(ScrollOfTransmutation.class, ScrollOfEquipmentMastery.class);
-		exoToReg.put(ScrollOfEquipmentMastery.class, ScrollOfTransmutation.class);
-
-		regToExo.put(ScrollOfHeavenDuel.class, ScrollOfMassConfusion.class);
-		exoToReg.put(ScrollOfMassConfusion.class, ScrollOfHeavenDuel.class);
 	}
 	
 	@Override

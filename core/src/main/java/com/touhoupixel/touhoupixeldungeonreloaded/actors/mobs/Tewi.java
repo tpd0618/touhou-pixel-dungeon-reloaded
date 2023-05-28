@@ -18,10 +18,13 @@ public class Tewi extends Mob {
 
         HP = HT = 45;
         defenseSkill = 12;
-        EXP = 9;
+        EXP = 5;
         maxLvl = 20;
 
         properties.add(Property.ANIMAL);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new ReclaimTrap();
         lootChance = 0.15f;

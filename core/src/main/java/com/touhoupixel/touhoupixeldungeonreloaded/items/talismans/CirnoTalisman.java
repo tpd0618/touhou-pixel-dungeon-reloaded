@@ -10,7 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class CirnoTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.DECOY;
+        image = ItemSpriteSheet.CIRNO;
     }
 
     @Override

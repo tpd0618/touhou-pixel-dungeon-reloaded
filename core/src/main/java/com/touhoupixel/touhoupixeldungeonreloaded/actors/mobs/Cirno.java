@@ -23,10 +23,13 @@ public class Cirno extends Mob {
 
         HP = HT = 27;
         defenseSkill = 7;
-        EXP = 5;
+        EXP = 3;
         maxLvl = 15;
 
         properties.add(Property.WARP);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         flying = true;
 

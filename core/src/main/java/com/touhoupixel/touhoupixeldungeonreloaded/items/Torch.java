@@ -72,7 +72,11 @@ public class Torch extends Item {
 
 			Statistics.torchuse = true;
 
-			Buff.affect(hero, Light.class, Light.DURATION);
+			if (Statistics.difficulty == 6) {
+				Buff.affect(hero, Light.class, Light.DURATION/2f);
+			} else {
+				Buff.affect(hero, Light.class, Light.DURATION);
+			}
 			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 			
 			Emitter emitter = hero.sprite.centerEmitter();

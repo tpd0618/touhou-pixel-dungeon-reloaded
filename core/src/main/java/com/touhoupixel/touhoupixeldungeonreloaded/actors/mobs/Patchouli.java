@@ -6,7 +6,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.PatchouliSprite;
 import com.watabou.utils.Random;
@@ -18,13 +17,15 @@ public class Patchouli extends Mob {
 
         HP = HT = 47;
         defenseSkill = 15;
-        EXP = 9;
+        EXP = 6;
         maxLvl = 22;
 
         properties.add(Property.WARP);
 
-        loot = new ElixirOfZen();
-        lootChance = 0.02f;
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
+        //because of explosion, no loot
     }
 
     @Override

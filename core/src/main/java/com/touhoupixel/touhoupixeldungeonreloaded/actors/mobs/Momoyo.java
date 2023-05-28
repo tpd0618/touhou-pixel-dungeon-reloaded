@@ -37,10 +37,10 @@ public class Momoyo extends Mob {
     {
         spriteClass = MomoyoSprite.class;
 
-        HP = HT = 143;
-        defenseSkill = 32;
-        EXP = 17;
-        maxLvl = 40;
+        HP = HT = 82;
+        defenseSkill = 22;
+        EXP = 14;
+        maxLvl = 30;
 
         properties.add(Property.YOKAI);
 
@@ -50,12 +50,12 @@ public class Momoyo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(19, 26);
+        return Random.NormalIntRange(11, 21);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 37;
+        return 27;
     }
 
     @Override

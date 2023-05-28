@@ -10,7 +10,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class DisorientationTalisman extends Talisman {
     {
-        image = ItemSpriteSheet.VERTIGO;
+        image = ItemSpriteSheet.DISORIENTATION;
     }
 
     @Override

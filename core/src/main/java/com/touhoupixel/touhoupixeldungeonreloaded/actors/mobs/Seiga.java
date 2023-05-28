@@ -39,7 +39,7 @@ public class Seiga extends Mob {
 
         HP = HT = 74;
         defenseSkill = 20;
-        EXP = 11;
+        EXP = 10;
         maxLvl = 27;
 
         properties.add(Property.WARP);

@@ -69,32 +69,6 @@ public class DungeonTileSheet {
 
 
 
-
-
-
-
-
-	/**********************************************************************
-	 * Etc Tiles
-	 **********************************************************************/
-
-	private static final int ETC         =                               xy(1, 17);   //32 slots
-	public static final int SUNNY_TILES          = ETC +0;
-	public static final int LUNA_TILES           = ETC +1;
-	public static final int STAR_TILES           = ETC +2;
-
-	public static final int IRON_TILES           = ETC +3;
-	public static final int SAND_TILES           = ETC +4;
-	public static final int ICE_TILES            = ETC +5;
-
-
-
-
-
-
-
-
-
 	/**********************************************************************
 	 * Water Tiles
 	 **********************************************************************/
@@ -384,14 +358,6 @@ public class DungeonTileSheet {
 		directVisuals.put(Terrain.EXIT,             EXIT);
 		directVisuals.put(Terrain.EMBERS,           EMBERS);
 		directVisuals.put(Terrain.PEDESTAL,         PEDESTAL);
-
-		directVisuals.put(Terrain.SUNNY_TILES,         SUNNY_TILES);
-		directVisuals.put(Terrain.LUNA_TILES,         LUNA_TILES);
-		directVisuals.put(Terrain.STAR_TILES,         STAR_TILES);
-
-		directVisuals.put(Terrain.IRON_TILES,         IRON_TILES);
-		directVisuals.put(Terrain.SAND_TILES,         SAND_TILES);
-		directVisuals.put(Terrain.ICE_TILES,         ICE_TILES);
 
 		directVisuals.put(Terrain.EMPTY_SP,         FLOOR_SP);
 

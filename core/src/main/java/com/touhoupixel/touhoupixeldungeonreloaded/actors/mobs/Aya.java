@@ -20,12 +20,15 @@ public class Aya extends Mob {
 
         HP = HT = 62;
         defenseSkill = 17;
-        EXP = 11;
+        EXP = 9;
         maxLvl = 25;
 
         baseSpeed = 5f;
 
         properties.add(Property.YOKAI);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         flying = true;
 

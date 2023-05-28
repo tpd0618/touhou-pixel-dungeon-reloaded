@@ -39,10 +39,10 @@ public class Misumaru extends Mob {
     {
         spriteClass = MisumaruSprite.class;
 
-        HP = HT = 146;
-        defenseSkill = 32;
-        EXP = 18;
-        maxLvl = 40;
+        HP = HT = 49;
+        defenseSkill = 15;
+        EXP = 6;
+        maxLvl = 22;
 
         properties.add(Property.GOD);
 
@@ -52,12 +52,12 @@ public class Misumaru extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.gold/200, Dungeon.gold/100);
+        return Random.NormalIntRange(Dungeon.gold/80, Dungeon.gold/40);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 37;
+        return 20;
     }
 
     @Override

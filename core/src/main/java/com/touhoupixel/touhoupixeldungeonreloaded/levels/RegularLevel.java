@@ -167,7 +167,7 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 
 	protected int nTraps() {
-		return Random.NormalIntRange(4, 6);
+		return Statistics.difficulty == 6 ? Random.NormalIntRange(6, 8) : Random.NormalIntRange(4, 6);
 	}
 
 	protected Class<?>[] trapClasses(){
@@ -317,6 +317,14 @@ public abstract class RegularLevel extends Level {
 	protected void createItems() {
 
 		int nItems = 7;
+
+		if (Statistics.difficulty == 6){
+			nItems -= 1;
+		}
+
+		if (Dungeon.isChallenged(Challenges.GENSOKYO_PALACE)) {
+			nItems -= 1;
+		}
 
 		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
 			nItems -= 1;

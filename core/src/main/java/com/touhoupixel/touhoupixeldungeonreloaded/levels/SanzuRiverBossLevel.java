@@ -83,7 +83,7 @@ public class SanzuRiverBossLevel extends Level {
 	private static final short W = Terrain.WALL;
 	private static final short e = Terrain.EMPTY;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short s = Terrain.SUNNY_TILES;
+	private static final short s = Terrain.WATER;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {

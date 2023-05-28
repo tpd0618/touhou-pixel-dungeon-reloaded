@@ -31,6 +31,6 @@ public class ReimuTalisman extends MissileWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 
-		tier = 1;
+		tier = 2;
 	}
 }

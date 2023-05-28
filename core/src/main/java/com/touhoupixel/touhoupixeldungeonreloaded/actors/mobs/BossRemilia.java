@@ -2,9 +2,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HecatiaRule;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
@@ -19,7 +22,7 @@ public class BossRemilia extends Mob {
     {
         spriteClass = RemiliaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 300 : 200;
+        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 450 : 300;
         defenseSkill = 15;
         EXP = 20;
         maxLvl = 99;
@@ -42,6 +45,7 @@ public class BossRemilia extends Mob {
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(15), pos ).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
+        Statistics.remicountdown = true;
     }
 
     @Override
@@ -65,6 +69,7 @@ public class BossRemilia extends Mob {
         if (!BossHealthBar.isAssigned()) {
             BossHealthBar.assignBoss(this);
             yell(Messages.get(this, "boss"));
+            Buff.prolong(Dungeon.hero, RemiCountdown.class, RemiCountdown.DURATION);
         }
     }
 

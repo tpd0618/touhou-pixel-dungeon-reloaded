@@ -21,8 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfConfusionHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPerfectMath;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfAttraction;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.TitleScene;
@@ -79,10 +79,10 @@ public class ShatteredPixelDungeon extends Game {
 				com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge.class,
 				"com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfConfusion" );
 		com.watabou.utils.Bundle.addAlias(
-				PotionOfConfusionHeal.class,
+				PotionOfAttraction.class,
 				"com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfHolyFuror" );
 		com.watabou.utils.Bundle.addAlias(
-				PotionOfPerfectMath.class,
+				PotionOfMindVision.class,
 				"com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfAdrenalineSurge" );
 
 		//pre-v1.0.0

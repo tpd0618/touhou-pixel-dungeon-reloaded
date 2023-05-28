@@ -51,13 +51,16 @@ public class Ran extends Mob implements Callback {
 
         properties.add(Property.ANIMAL);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new SpellcardFragment();
         lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(22, 28);
+        return Random.NormalIntRange(24, 30);
     }
 
     @Override
@@ -111,7 +114,7 @@ public class Ran extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 21, 29 );
+            int dmg = Random.NormalIntRange( 15, 21 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.hero && !enemy.isAlive()) {

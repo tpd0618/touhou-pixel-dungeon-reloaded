@@ -17,10 +17,13 @@ public class Momiji extends Mob {
 
         HP = HT = 65;
         defenseSkill = 17;
-        EXP = 11;
+        EXP = 8;
         maxLvl = 25;
 
         properties.add(Property.ANIMAL);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         viewDistance = 10000;
 

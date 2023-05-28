@@ -22,10 +22,13 @@ public class Sakuya extends Mob {
 
         HP = HT = 40;
         defenseSkill = 15;
-        EXP = 10;
+        EXP = 7;
         maxLvl = 22;
 
         properties.add(Property.HUMAN);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new LifeFragment();
         lootChance = 0.15f;

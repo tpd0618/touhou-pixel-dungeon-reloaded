@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -50,12 +49,11 @@ public class Amulet extends Item {
 
 	@Override
 	public boolean doPickUp(Hero hero, int pos) {
-		if (!Dungeon.isChallenged(Challenges.TUTORIAL)) {
-			Badges.validateChampion(Challenges.activeChallenges());
-			Badges.lifeBind();
-			Badges.bombBind();
-			Badges.torchBind();
-		}
+		Badges.validateChampion(Challenges.activeChallenges());
+		Badges.lifeBind();
+		Badges.bombBind();
+		Badges.torchBind();
+		Badges.livingAntiqueStore();
 		return super.doPickUp(hero, pos);
 	}
 

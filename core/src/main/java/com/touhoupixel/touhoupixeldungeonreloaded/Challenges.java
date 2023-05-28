@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int TUTORIAL                   = 1;
+	public static final int GENSOKYO_PALACE            = 1;
 	public static final int MAX_POWER_MODE             = 2;
 	public static final int GIRLS_BLOSSOM_PROJECT      = 4;
 	public static final int DISTORTION                 = 8;
@@ -36,12 +36,12 @@ public class Challenges {
 	public static final int TIME_EATER                 = 128;
 	public static final int KEYSTONE_MISSILE           = 256;
 	public static final int BUNBUN_DELIVERY            = 512;
-	public static final int KETSUI_KISUNA_JIGOKU_TACHI = 1024;
+	public static final int LNN_PLAYER                 = 1024;
 
 	public static final int MAX_VALUE                  = 2047;
 
 	public static final String[] NAME_IDS = {
-			"tutorial",
+			"gensokyo_palace",
 			"max_power_mode",
 			"girls_blossom_project",
 			"distortion",
@@ -51,12 +51,12 @@ public class Challenges {
 			"time_eater",
 			"keystone_missile",
 			"bunbun_delivery",
-			"ketsui_kisuna_jigoku_tachi"
+			"lnn_player"
 	};
 
 	public static final int[] MASKS = {
-			TUTORIAL, MAX_POWER_MODE, GIRLS_BLOSSOM_PROJECT, DISTORTION, REINCARNATION_APPLE, RINGING_BLOOM,
-			DREAM_LOGICAL_WORLD, TIME_EATER, KEYSTONE_MISSILE, BUNBUN_DELIVERY, KETSUI_KISUNA_JIGOKU_TACHI
+			GENSOKYO_PALACE, MAX_POWER_MODE, GIRLS_BLOSSOM_PROJECT, DISTORTION, REINCARNATION_APPLE, RINGING_BLOOM,
+			DREAM_LOGICAL_WORLD, TIME_EATER, KEYSTONE_MISSILE, BUNBUN_DELIVERY, LNN_PLAYER
 	};
 
 	public static int activeChallenges(){

@@ -23,10 +23,9 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -55,7 +54,7 @@ public class YukinaMic extends MeleeWeapon {
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(12) == 0) {
             Buff.prolong(attacker, Bless.class, Bless.DURATION);
-            Buff.prolong(attacker, OneDefDamage.class, OneDefDamage.DURATION/2f);
+            Buff.prolong(attacker, SuperHard.class, SuperHard.DURATION/2f);
         }
         return super.proc(attacker, defender, damage);
     }

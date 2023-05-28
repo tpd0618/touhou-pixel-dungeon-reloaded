@@ -6,7 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuugiSprite;
@@ -47,7 +47,7 @@ public class Yuugi extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/3f);
+            Buff.prolong(this, SuperHard.class, SuperHard.DURATION/3f);
             Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Might.class, Might.DURATION);

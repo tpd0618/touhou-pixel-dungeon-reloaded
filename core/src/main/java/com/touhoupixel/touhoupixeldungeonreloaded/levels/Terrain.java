@@ -58,14 +58,6 @@ public class Terrain {
 	public static final int ALCHEMY			= 28;
 
 	public static final int WATER		    = 29;
-
-	public static final int SUNNY_TILES		    = 32;
-	public static final int LUNA_TILES		    = 33;
-	public static final int STAR_TILES		    = 34;
-
-	public static final int IRON_TILES		    = 35;
-	public static final int SAND_TILES		    = 36;
-	public static final int ICE_TILES		    = 37;
 	
 	public static final int PASSABLE		= 0x01;
 	public static final int LOS_BLOCKING	= 0x02;
@@ -80,14 +72,6 @@ public class Terrain {
 	static {
 		flags[CHASM]		= AVOID	| PIT;
 		flags[EMPTY]		= PASSABLE;
-
-		flags[SUNNY_TILES]	= PASSABLE;
-		flags[LUNA_TILES]	= PASSABLE;
-		flags[STAR_TILES]	= PASSABLE;
-
-		flags[IRON_TILES]	= PASSABLE;
-		flags[SAND_TILES]	= PASSABLE;
-		flags[ICE_TILES]	= PASSABLE | FLAMABLE;
 
 		flags[GRASS]		= PASSABLE | FLAMABLE;
 		flags[EMPTY_WELL]	= PASSABLE;

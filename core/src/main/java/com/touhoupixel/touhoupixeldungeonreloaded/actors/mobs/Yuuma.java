@@ -51,19 +51,23 @@ public class Yuuma extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
-            Dungeon.hero.STR--;
-            Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
-            Sample.INSTANCE.play( Assets.Sounds.CURSED );
-            GLog.w(Messages.get(Kanako.class, "str_reduce"));
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
-            Buff.prolong(this, Hisou.class, Hisou.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
+            if (Dungeon.depth == 40){
+                //do nothing
+            } else {
                 Dungeon.hero.STR--;
                 Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+                Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 GLog.w(Messages.get(Kanako.class, "str_reduce"));
+                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                Buff.prolong(this, Hisou.class, Hisou.DURATION);
+                if (Statistics.difficulty > 2) {
+                    Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
+                }
+                if (Statistics.difficulty > 4) {
+                    Dungeon.hero.STR--;
+                    Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
+                    GLog.w(Messages.get(Kanako.class, "str_reduce"));
+                }
             }
         }
         return damage;

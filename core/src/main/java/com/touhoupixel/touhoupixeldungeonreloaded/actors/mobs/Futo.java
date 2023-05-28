@@ -42,12 +42,15 @@ public class Futo extends Mob {
     {
         spriteClass = FutoSprite.class;
 
-        HP = HT = 76;
+        HP = HT = 79;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
 
         properties.add(Property.WARP);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new SpellcardFragment();
         lootChance = 0.01f;

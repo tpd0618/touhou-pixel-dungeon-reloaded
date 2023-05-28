@@ -20,12 +20,15 @@ public class Suika extends Mob {
     {
         spriteClass = SuikaSprite.class;
 
-        HP = HT = 55;
+        HP = HT = 214;
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;
 
         properties.add(Property.WARP);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = new PotionOfDanmaku();
         lootChance = 0.1f;

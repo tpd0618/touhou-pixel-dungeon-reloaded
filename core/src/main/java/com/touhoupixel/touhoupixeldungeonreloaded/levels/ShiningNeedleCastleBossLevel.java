@@ -25,10 +25,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.TrickCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -53,8 +52,8 @@ public class ShiningNeedleCastleBossLevel extends Level {
 				false);
 	}
 
-	private static int WIDTH = 23;
-	private static int HEIGHT = 22;
+	private static int WIDTH = 11;
+	private static int HEIGHT = 11;
 
 	private static boolean isCompleted = false;
 
@@ -72,8 +71,8 @@ public class ShiningNeedleCastleBossLevel extends Level {
 	protected boolean build() {
 		setSize(WIDTH, HEIGHT);
 
-		transitions.add(new LevelTransition(this, 448, LevelTransition.Type.REGULAR_EXIT));
-		transitions.add(new LevelTransition(this, 34, LevelTransition.Type.REGULAR_ENTRANCE));
+		transitions.add(new LevelTransition(this, 93, LevelTransition.Type.REGULAR_EXIT));
+		transitions.add(new LevelTransition(this, 16, LevelTransition.Type.REGULAR_ENTRANCE));
 
 		buildLevel();
 
@@ -82,36 +81,24 @@ public class ShiningNeedleCastleBossLevel extends Level {
 
 	private static final short n = -1;
 	private static final short W = Terrain.WALL;
-	private static final short e = Terrain.EMPTY;
+	private static final short e = Terrain.WATER;
+	private static final short x = Terrain.EMPTY;
+	private static final short f = Terrain.EMPTY_SP;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short s = Terrain.SUNNY_TILES;
-	private static final short d = Terrain.LUNA_TILES;
-	private static final short f = Terrain.STAR_TILES;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, W, W,
-			W, W, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, W, W,
-			W, W, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, W, W,
-			W, W, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, W, W,
-			W, W, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, W, W,
-			W, W, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, W, W,
-			W, W, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, W, W,
-			W, W, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, W, W,
-			W, W, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, W, W,
-			W, W, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, W, W,
-			W, W, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, W, W,
-			W, W, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, W, W,
-			W, W, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, W, W,
-			W, W, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, W, W,
-			W, W, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, W, W,
-			W, W, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, W, W,
-			W, W, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, f, s, d, W, W,
-			W, W, f, s, d, f, s, d, f, s, d, E, s, d, f, s, d, f, s, d, f, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
-			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W
+			W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, L, W, W, W, W, W,
+			W, W, e, e, e, e, e, e, e, W, W,
+			W, W, e, x, f, x, f, x, e, W, W,
+			W, W, e, f, x, f, x, f, e, W, W,
+			W, W, e, x, f, x, f, x, e, W, W,
+			W, W, e, f, x, f, x, f, e, W, W,
+			W, W, e, x, f, x, f, x, e, W, W,
+			W, W, e, e, e, E, e, e, e, W, W,
+			W, W, W, W, W, W, W, W, W, W, W,
+			W, W, W, W, W, W, W, W, W, W, W
 	};
 
 	private void buildLevel(){
@@ -131,6 +118,19 @@ public class ShiningNeedleCastleBossLevel extends Level {
 
 	@Override
 	protected void createItems() {
+		drop( new TrickCloak(), 24 );
+		drop( new TrickCloak(), 25 );
+		drop( new TrickCloak(), 26 );
+		drop( new TrickCloak(), 27 );
+		drop( new TrickCloak(), 28 );
+		drop( new TrickCloak(), 29 );
+		drop( new TrickCloak(), 30 );
+		drop( new TrickCloak(), 90 );
+		drop( new TrickCloak(), 91 );
+		drop( new TrickCloak(), 92 );
+		drop( new TrickCloak(), 94 );
+		drop( new TrickCloak(), 95 );
+		drop( new TrickCloak(), 96 );
 	}
 
 	@Override
@@ -147,12 +147,12 @@ public class ShiningNeedleCastleBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 448, Terrain.STAR_TILES );
-		GameScene.updateMap( 448 );
+		set( 93, Terrain.WATER );
+		GameScene.updateMap( 93 );
 
 		BossSeija boss = new BossSeija();
 		boss.state = boss.WANDERING;
-		boss.pos = 287;
+		boss.pos = 49;
 		GameScene.add( boss );
 		boss.beckon(Dungeon.hero.pos);
 
@@ -167,8 +167,8 @@ public class ShiningNeedleCastleBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		set( 448, Terrain.ENTRANCE );
-		GameScene.updateMap( 448 );
+		set( 93, Terrain.ENTRANCE );
+		GameScene.updateMap( 93 );
 
 		isCompleted = true;
 

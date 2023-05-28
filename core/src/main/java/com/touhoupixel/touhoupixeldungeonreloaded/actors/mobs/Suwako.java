@@ -54,6 +54,9 @@ public class Suwako extends Mob {
 
         properties.add(Property.GOD);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = Generator.Category.POTION;
         lootChance = 0.1f;
     }

@@ -25,25 +25,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Alice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKeiki;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKomachi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossOkina;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chen;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eika;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eiki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Junko;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mystia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Toyohime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yorihime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuma;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -97,10 +81,9 @@ public class HellBossLevel extends Level {
 
 	private static final short n = -1;
 	private static final short W = Terrain.WALL;
-	private static final short e = Terrain.LUNA_TILES;
 	private static final short E = Terrain.ENTRANCE;
-	private static final short d = Terrain.STAR_TILES;
-	private static final short x = Terrain.SUNNY_TILES;
+	private static final short d = Terrain.EMPTY;
+	private static final short x = Terrain.WATER;
 	private static final short L = Terrain.LOCKED_EXIT;
 
 	private static short[] level = {
@@ -108,20 +91,20 @@ public class HellBossLevel extends Level {
 			W, W, W, W, W, W, W, W, W, W, W, L, W, W, W, W, W, W, W, W, W, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
-			W, W, d, d, d, W, W, e, e, d, d, d, d, d, e, e, W, W, d, d, d, W, W,
-			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
-			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
-			W, W, e, e, x, e, e, W, e, d, d, d, d, d, e, W, e, e, x, e, e, W, W,
-			W, W, e, e, x, e, e, e, W, d, d, d, d, d, W, e, e, e, x, e, e, W, W,
-			W, W, e, e, x, e, e, e, e, W, x, x, x, W, e, e, e, e, x, e, e, W, W,
+			W, W, d, d, d, W, W, d, d, d, d, d, d, d, d, d, W, W, d, d, d, W, W,
+			W, W, d, d, W, d, d, d, d, d, W, W, W, d, d, d, d, d, W, d, d, W, W,
+			W, W, d, d, W, d, d, d, d, d, d, d, d, d, d, d, d, d, W, d, d, W, W,
+			W, W, d, d, x, d, d, W, d, d, d, d, d, d, d, W, d, d, x, d, d, W, W,
+			W, W, d, d, x, d, d, d, W, d, d, d, d, d, W, d, d, d, x, d, d, W, W,
+			W, W, d, d, x, d, d, d, d, W, x, x, x, W, d, d, d, d, x, d, d, W, W,
 			W, W, x, x, W, d, d, d, d, d, x, x, x, d, d, d, d, d, W, x, x, W, W,
 			W, W, x, x, W, d, d, d, d, d, x, x, x, d, d, d, d, d, W, x, x, W, W,
-			W, W, e, e, x, e, e, e, e, W, x, x, x, W, e, e, e, e, x, e, e, W, W,
-			W, W, e, e, x, e, e, e, W, d, d, d, d, d, W, e, e, e, x, e, e, W, W,
-			W, W, e, e, x, e, e, W, e, d, d, d, d, d, e, W, e, e, x, e, e, W, W,
-			W, W, e, e, W, e, e, e, e, d, d, d, d, d, e, e, e, e, W, e, e, W, W,
-			W, W, e, e, W, e, e, e, e, d, W, W, W, d, e, e, e, e, W, e, e, W, W,
-			W, W, d, d, d, W, W, e, e, d, d, d, d, d, e, e, W, W, d, d, d, W, W,
+			W, W, d, d, x, d, d, d, d, W, x, x, x, W, d, d, d, d, x, d, d, W, W,
+			W, W, d, d, x, d, d, d, W, d, d, d, d, d, W, d, d, d, x, d, d, W, W,
+			W, W, d, d, x, d, d, W, d, d, d, d, d, d, d, W, d, d, x, d, d, W, W,
+			W, W, d, d, W, d, d, d, d, d, d, d, d, d, d, d, d, d, W, d, d, W, W,
+			W, W, d, d, W, d, d, d, d, d, W, W, W, d, d, d, d, d, W, d, d, W, W,
+			W, W, d, d, d, W, W, d, d, d, d, d, d, d, d, d, W, W, d, d, d, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, E, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, W, W,
 			W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
@@ -161,7 +144,7 @@ public class HellBossLevel extends Level {
 	public void seal() {
 		super.seal();
 
-		set( 425, Terrain.SUNNY_TILES );
+		set( 425, Terrain.WATER );
 		GameScene.updateMap( 425 );
 
 		BossHecatia boss = new BossHecatia();

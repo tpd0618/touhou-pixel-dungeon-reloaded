@@ -40,7 +40,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDango;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfYingYang;
 import com.watabou.utils.Reflection;
@@ -69,8 +68,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfHaste.class, PotionOfStamina.class);
 		exoToReg.put(PotionOfStamina.class, PotionOfHaste.class);
 
-		regToExo.put(PotionOfLiquidFlame.class, PotionOfPerfectMath.class);
-		exoToReg.put(PotionOfPerfectMath.class, PotionOfLiquidFlame.class);
+		regToExo.put(PotionOfLiquidFlame.class, PotionOfLightReverse.class);
+		exoToReg.put(PotionOfLightReverse.class, PotionOfLiquidFlame.class);
 
 		regToExo.put(PotionOfInvisibility.class, PotionOfShroudingFog.class);
 		exoToReg.put(PotionOfShroudingFog.class, PotionOfInvisibility.class);
@@ -81,8 +80,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfLevitation.class, PotionOfStormClouds.class);
 		exoToReg.put(PotionOfStormClouds.class, PotionOfLevitation.class);
 
-		regToExo.put(PotionOfExperience.class, PotionOfConfusionHeal.class);
-		exoToReg.put(PotionOfConfusionHeal.class, PotionOfExperience.class);
+		regToExo.put(PotionOfExperience.class, PotionOfAttraction.class);
+		exoToReg.put(PotionOfAttraction.class, PotionOfExperience.class);
 
 		regToExo.put(PotionOfPurity.class, PotionOfCleansing.class);
 		exoToReg.put(PotionOfCleansing.class, PotionOfPurity.class);
@@ -90,14 +89,11 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfParalyticGas.class, PotionOfEarthenArmor.class);
 		exoToReg.put(PotionOfEarthenArmor.class, PotionOfParalyticGas.class);
 
-		regToExo.put(PotionOfMight.class, PotionOfBalance.class);
-		exoToReg.put(PotionOfBalance.class, PotionOfMight.class);
+		regToExo.put(PotionOfMight.class, PotionOfHexCancel.class);
+		exoToReg.put(PotionOfHexCancel.class, PotionOfMight.class);
 
-		regToExo.put(PotionOfDoublespeed.class, PotionOfLightReverse.class);
-		exoToReg.put(PotionOfLightReverse.class, PotionOfDoublespeed.class);
-
-		regToExo.put(PotionOfDango.class, PotionOfPhilosopher.class);
-		exoToReg.put(PotionOfPhilosopher.class, PotionOfDango.class);
+		regToExo.put(PotionOfDoublespeed.class, PotionOfPhilosopher.class);
+		exoToReg.put(PotionOfPhilosopher.class, PotionOfDoublespeed.class);
 
 		regToExo.put(PotionOfLightHealing.class, PotionOfEnlightenment.class);
 		exoToReg.put(PotionOfEnlightenment.class, PotionOfLightHealing.class);

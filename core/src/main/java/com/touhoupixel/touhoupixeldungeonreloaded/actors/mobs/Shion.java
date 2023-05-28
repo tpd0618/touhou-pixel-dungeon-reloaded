@@ -27,10 +27,13 @@ public class Shion extends Mob {
 
         HP = HT = 75;
         defenseSkill = 20;
-        EXP = 12;
+        EXP = 11;
         maxLvl = 27;
 
         properties.add(Property.GOD);
+
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
 
         loot = Gold.class;
         lootChance = 0.1f;
@@ -55,7 +58,7 @@ public class Shion extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            if (Dungeon.gold > 200) {
+            if (Dungeon.gold > 199) {
                 Dungeon.gold -= 200;
                 Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
