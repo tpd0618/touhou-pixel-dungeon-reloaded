@@ -30,7 +30,7 @@ public class Ringo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 6);
+        return Random.NormalIntRange(4, 5);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Ringo extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment){
             Statistics.power += 10;
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Vulnerable.class, Vulnerable.DURATION/5f);

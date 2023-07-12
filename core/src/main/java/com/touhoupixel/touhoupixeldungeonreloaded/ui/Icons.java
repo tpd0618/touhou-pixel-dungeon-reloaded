@@ -99,14 +99,14 @@ public enum Icons {
 	SLEEP,
 	ALERT,
 	LOST,
-	DEPTH,      //depth icons have two variants, for regular and seeded runs
-	DEPTH_CHASM,
-	DEPTH_WATER,
-	DEPTH_GRASS,
-	DEPTH_DARK,
-	DEPTH_LARGE,
-	DEPTH_TRAPS,
-	DEPTH_SECRETS,
+	FLOOR,      //floor icons have two variants, for regular and seeded runs
+	FLOOR_CHASM,
+	FLOOR_WATER,
+	FLOOR_GRASS,
+	FLOOR_DARK,
+	FLOOR_LARGE,
+	FLOOR_TRAPS,
+	FLOOR_SECRETS,
 	CHAL_COUNT,
 
 	//icons that appear in the about screen, variable spacing
@@ -307,35 +307,35 @@ public enum Icons {
 			case LOST:
 				icon.frame( icon.texture.uvRectBySize( 40, 72, 8, 8 ) );
 				break;
-			case DEPTH:
+			case FLOOR:
 				int ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 48, 64 + ofs, 6, 7 ) );
 				break;
-			case DEPTH_CHASM:
+			case FLOOR_CHASM:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 56, 64 + ofs, 7, 7 ) );
 				break;
-			case DEPTH_WATER:
+			case FLOOR_WATER:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 64, 64 + ofs, 7, 7 ) );
 				break;
-			case DEPTH_GRASS:
+			case FLOOR_GRASS:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 72, 64 + ofs, 7, 7 ) );
 				break;
-			case DEPTH_DARK:
+			case FLOOR_DARK:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 80, 64 + ofs, 7, 7 ) );
 				break;
-			case DEPTH_LARGE:
+			case FLOOR_LARGE:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 88, 64 + ofs, 7, 7 ) );
 				break;
-			case DEPTH_TRAPS:
+			case FLOOR_TRAPS:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 96, 64 + ofs, 7, 7 ) );
 				break;
-			case DEPTH_SECRETS:
+			case FLOOR_SECRETS:
 				ofs = Dungeon.daily ? 16 : (!Dungeon.customSeedText.isEmpty() ? 8 : 0);
 				icon.frame( icon.texture.uvRectBySize( 104, 64 + ofs, 7, 7 ) );
 				break;
@@ -399,21 +399,21 @@ public enum Icons {
 	public static Image get(Level.Feeling feeling){
 		switch (feeling){
 			case NONE: default:
-				return get(DEPTH);
+				return get(FLOOR);
 			case CHASM:
-				return get(DEPTH_CHASM);
+				return get(FLOOR_CHASM);
 			case WATER:
-				return get(DEPTH_WATER);
+				return get(FLOOR_WATER);
 			case GRASS:
-				return get(DEPTH_GRASS);
+				return get(FLOOR_GRASS);
 			case DARK:
-				return get(DEPTH_DARK);
+				return get(FLOOR_DARK);
 			case LARGE:
-				return get(DEPTH_LARGE);
+				return get(FLOOR_LARGE);
 			case TRAPS:
-				return get(DEPTH_TRAPS);
+				return get(FLOOR_TRAPS);
 			case SECRETS:
-				return get(DEPTH_SECRETS);
+				return get(FLOOR_SECRETS);
 		}
 	}
 }

@@ -55,14 +55,14 @@ public class RingOfForce extends Ring {
 		return tier;
 	}
 
-	public static int damageRoll( Hero hero ){
-		if (hero.buff(Force.class) != null) {
-			int level = getBuffedBonus(hero, Force.class);
-			float tier = tier(hero.STR());
+	public static int damageRoll( Hero heroine){
+		if (heroine.buff(Force.class) != null) {
+			int level = getBuffedBonus(heroine, Force.class);
+			float tier = tier(heroine.STR());
 			return Random.NormalIntRange(min(level, tier), max(level, tier));
 		} else {
 			//attack without any ring of force influence
-			return Random.NormalIntRange(1, Math.max(hero.STR()-8, 1));
+			return Random.NormalIntRange(1, Math.max(heroine.STR()-8, 1));
 		}
 	}
 
@@ -84,7 +84,7 @@ public class RingOfForce extends Ring {
 
 	@Override
 	public String statsInfo() {
-		float tier = tier(Dungeon.hero.STR());
+		float tier = tier(Dungeon.heroine.STR());
 		if (isIdentified()) {
 			int level = soloBuffedBonus();
 			return Messages.get(this, "stats", min(level, tier), max(level, tier), level);

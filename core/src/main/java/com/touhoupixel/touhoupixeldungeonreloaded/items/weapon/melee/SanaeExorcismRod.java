@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class SanaeExorcismRod extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.SANAEEXORCISMROD;
+		image = ItemSpriteSheet.SANAE_EXORCISM_ROD;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.3f;
 

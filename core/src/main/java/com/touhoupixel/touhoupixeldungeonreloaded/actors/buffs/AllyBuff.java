@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -48,7 +47,7 @@ public abstract class AllyBuff extends Buff{
 
 	//for when applying an ally buff should also cause that enemy to give exp/loot as if they had died
 	//consider that chars with the ally alignment do not drop items or award exp on death
-	public static void affectAndLoot(Mob enemy, Hero hero, Class<?extends AllyBuff> buffCls){
+	public static void affectAndLoot(Mob enemy, Hero heroine, Class<?extends AllyBuff> buffCls){
 		boolean droppingLoot = enemy.alignment != Char.Alignment.ALLY;
 		Buff.affect(enemy, buffCls);
 
@@ -56,11 +55,11 @@ public abstract class AllyBuff extends Buff{
 			if (droppingLoot) enemy.rollToDropLoot();
 			Statistics.enemiesSlain++;
 			Statistics.qualifiedForNoKilling = false;
-			if (enemy.EXP > 0 && hero.lvl <= enemy.maxLvl) {
-				hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", enemy.EXP));
-				hero.earnExp(enemy.EXP, enemy.getClass());
+			if (enemy.EXP > 0 && heroine.lvl <= enemy.maxLvl) {
+				heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", enemy.EXP));
+				heroine.earnExp(enemy.EXP, enemy.getClass());
 			} else {
-				hero.earnExp(0, enemy.getClass());
+				heroine.earnExp(0, enemy.getClass());
 			}
 		}
 	}

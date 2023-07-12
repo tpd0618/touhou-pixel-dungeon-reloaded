@@ -1,21 +1,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EikaSprite;
 import com.watabou.utils.Random;
 

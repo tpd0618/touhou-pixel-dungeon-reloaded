@@ -33,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShaftParticl
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes.Landmark;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -42,22 +42,22 @@ import com.watabou.noosa.audio.Sample;
 public class WaterOfHealth extends WellWater {
 	
 	@Override
-	protected boolean affectHero( Hero hero ) {
+	protected boolean affectHero( Hero heroine) {
 		
-		if (!hero.isAlive()) return false;
+		if (!heroine.isAlive()) return false;
 		
 		Sample.INSTANCE.play( Assets.Sounds.DRINK );
 
-		PotionOfHealing.cure( hero );
-		hero.belongings.uncurseEquipped();
-		hero.buff( Hunger.class ).satisfy( Hunger.STARVING );
+		PotionOfHealing.cure(heroine);
+		heroine.belongings.uncurseEquipped();
+		heroine.buff( Hunger.class ).satisfy( Hunger.STARVING );
 
-		hero.HP = hero.HT;
-		hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
+		heroine.HP = heroine.HT;
+		heroine.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
 		
-		CellEmitter.get( hero.pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+		CellEmitter.get( heroine.pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
 
-		Dungeon.hero.interrupt();
+		Dungeon.heroine.interrupt();
 	
 		GLog.p( Messages.get(this, "procced") );
 		
@@ -71,8 +71,8 @@ public class WaterOfHealth extends WellWater {
 			CellEmitter.get( pos ).start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
 			Sample.INSTANCE.play( Assets.Sounds.DRINK );
 			return item;
-		} else if (ScrollOfCurseRemoval.uncursable(item)) {
-			if (ScrollOfCurseRemoval.uncurse( null, item )){
+		} else if (ScrollOfExorcism.uncursable(item)) {
+			if (ScrollOfExorcism.uncurse( null, item )){
 				CellEmitter.get( pos ).start( ShadowParticle.UP, 0.05f, 10 );
 			}
 			Sample.INSTANCE.play( Assets.Sounds.DRINK );

@@ -122,8 +122,8 @@ public class Ring extends KindofMisc {
 	}
 
 	@Override
-	public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
-		if (super.doUnequip( hero, collect, single )) {
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
+		if (super.doUnequip(heroine, collect, single )) {
 
 			if (buff != null) {
 				buff.detach();
@@ -149,7 +149,7 @@ public class Ring extends KindofMisc {
 				handler.know(this);
 			}
 
-			if (Dungeon.hero.isAlive()) {
+			if (Dungeon.heroine.isAlive()) {
 				Catalog.setSeen(getClass());
 			}
 		}
@@ -165,7 +165,7 @@ public class Ring extends KindofMisc {
 		
 		String desc = isKnown() ? super.desc() : Messages.get(this, "unknown_desc");
 		
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (cursed && isEquipped( Dungeon.heroine)) {
 			desc += "\n\n" + Messages.get(Ring.class, "cursed_worn");
 			
 		} else if (cursed && cursedKnown) {
@@ -289,8 +289,8 @@ public class Ring extends KindofMisc {
 		levelsToID = bundle.getFloat( LEVELS_TO_ID );
 	}
 
-	public void onHeroGainExp( float levelPercent, Hero hero ){
-		if (isIdentified() || !isEquipped(hero)) return;
+	public void onHeroGainExp( float levelPercent, Hero heroine){
+		if (isIdentified() || !isEquipped(heroine)) return;
 		//becomes IDed after 1 level
 		levelsToID -= levelPercent;
 		if (levelsToID <= 0){
@@ -302,7 +302,7 @@ public class Ring extends KindofMisc {
 	@Override
 	public int buffedLvl() {
 		int lvl = super.buffedLvl();
-		if (Dungeon.hero.buff(EnhancedRings.class) != null){
+		if (Dungeon.heroine.buff(EnhancedRings.class) != null){
 			lvl++;
 		}
 		return lvl;

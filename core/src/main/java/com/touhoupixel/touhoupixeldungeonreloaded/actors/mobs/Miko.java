@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MikoSprite;
@@ -48,10 +49,10 @@ public class Miko extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION / 2f);
             if (Statistics.difficulty > 2) {
-                Buff.detach(enemy, KeyHeal.class);
+                Buff.prolong(enemy, Weakness.class, Weakness.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);

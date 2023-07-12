@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.scenes;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Rankings;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Flare;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
@@ -163,7 +162,7 @@ public class RankingsScene extends PixelScene {
 		private BitmapText position;
 		private RenderedTextBlock desc;
 		private Image steps;
-		private BitmapText depth;
+		private BitmapText floor;
 		private Image classIcon;
 		private BitmapText level;
 
@@ -193,21 +192,21 @@ public class RankingsScene extends PixelScene {
 				shield.view( ItemSpriteSheet.AMULET, null );
 				position.hardlight( TEXT_WIN[odd] );
 				desc.hardlight( TEXT_WIN[odd] );
-				depth.hardlight( TEXT_WIN[odd] );
+				floor.hardlight( TEXT_WIN[odd] );
 				level.hardlight( TEXT_WIN[odd] );
 			} else {
 				position.hardlight( TEXT_LOSE[odd] );
 				desc.hardlight( TEXT_LOSE[odd] );
-				depth.hardlight( TEXT_LOSE[odd] );
+				floor.hardlight( TEXT_LOSE[odd] );
 				level.hardlight( TEXT_LOSE[odd] );
 
-				if (rec.depth != 0){
-					depth.text( Integer.toString(rec.depth) );
-					depth.measure();
+				if (rec.floor != 0){
+					floor.text( Integer.toString(rec.floor) );
+					floor.measure();
 					steps.copy(Icons.STAIRS.get());
 
 					add(steps);
-					add(depth);
+					add(floor);
 				}
 
 			}
@@ -233,7 +232,7 @@ public class RankingsScene extends PixelScene {
 			desc = renderTextBlock( 7 );
 			add( desc );
 
-			depth = new BitmapText( PixelScene.pixelFont);
+			floor = new BitmapText( PixelScene.pixelFont);
 
 			steps = new Image();
 
@@ -272,9 +271,9 @@ public class RankingsScene extends PixelScene {
 			steps.y = shield.y + (16 - steps.height())/2f;
 			align(steps);
 
-			depth.x = steps.x + (steps.width - depth.width()) / 2f;
-			depth.y = steps.y + (steps.height - depth.height()) / 2f + 1;
-			align(depth);
+			floor.x = steps.x + (steps.width - floor.width()) / 2f;
+			floor.y = steps.y + (steps.height - floor.height()) / 2f + 1;
+			align(floor);
 
 			desc.maxWidth((int)(steps.x - (shield.x + shield.width + GAP)));
 			desc.setPos(shield.x + shield.width + GAP, shield.y + (shield.height - desc.height()) / 2f + 1);

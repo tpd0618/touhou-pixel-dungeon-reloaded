@@ -51,7 +51,7 @@ public class FullMoonScythe extends MeleeWeapon {
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Dungeon.hero.lvl % 2 == 1) {
+        if (Dungeon.heroine.lvl % 2 == 1) {
             damage *= 1.5f;
             Buff.affect(defender, Bleeding.class).set(12);
         }

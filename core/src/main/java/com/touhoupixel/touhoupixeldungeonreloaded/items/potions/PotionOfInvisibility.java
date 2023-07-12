@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -39,9 +37,9 @@ public class PotionOfInvisibility extends Potion {
 	}
 
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
-		Buff.affect(hero, Invisibility.class, Invisibility.DURATION/2f);
+		Buff.affect(heroine, Invisibility.class, Invisibility.DURATION/2f);
 		GLog.i(Messages.get(this, "invisible"));
 		Sample.INSTANCE.play(Assets.Sounds.MELD);
 	}

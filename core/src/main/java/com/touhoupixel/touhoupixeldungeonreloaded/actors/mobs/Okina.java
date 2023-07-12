@@ -72,10 +72,10 @@ public class Okina extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR){
-            Homunculus homunculus = Dungeon.hero.belongings.getItem(Homunculus.class);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR){
+            Homunculus homunculus = Dungeon.heroine.belongings.getItem(Homunculus.class);
             if (homunculus != null) {
-                homunculus.detach(Dungeon.hero.belongings.backpack);
+                homunculus.detach(Dungeon.heroine.belongings.backpack);
                 Sample.INSTANCE.play(Assets.Sounds.BEACON);
                 GLog.w(Messages.get(Homunculus.class, "block_instakill"));
                 Item.updateQuickslot();

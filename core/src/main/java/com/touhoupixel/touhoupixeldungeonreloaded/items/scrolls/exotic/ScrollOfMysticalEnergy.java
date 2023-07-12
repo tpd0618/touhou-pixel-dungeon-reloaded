@@ -39,7 +39,6 @@ public class ScrollOfMysticalEnergy extends ExoticScroll {
 	
 	@Override
 	public void doRead() {
-		
 		//append buff
 		Buff.affect(curUser, ArtifactRecharge.class).set( 30 ).ignoreHornOfPlenty = false;
 

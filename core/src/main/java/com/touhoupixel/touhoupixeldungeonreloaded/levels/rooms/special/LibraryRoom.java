@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
@@ -53,7 +53,7 @@ public class LibraryRoom extends SpecialRoom {
 			} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
 			Item item;
 			if (i == 0)
-				item = Random.Int(2) == 0 ? new ScrollOfIdentify() : new ScrollOfCurseRemoval();
+				item = Random.Int(2) == 0 ? new ScrollOfIdentify() : new ScrollOfExorcism();
 			else
 				item = prize( level );
 			level.drop( item, pos );
@@ -61,7 +61,7 @@ public class LibraryRoom extends SpecialRoom {
 		
 		entrance.set( Door.Type.LOCKED );
 		
-		level.addItemToSpawn( new IronKey( Dungeon.depth ) );
+		level.addItemToSpawn( new IronKey( Dungeon.floor) );
 	}
 	
 	private static Item prize( Level level ) {

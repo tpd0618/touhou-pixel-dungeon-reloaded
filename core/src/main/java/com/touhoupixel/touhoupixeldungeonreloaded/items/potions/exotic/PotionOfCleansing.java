@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -30,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlavourBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -45,10 +43,10 @@ public class PotionOfCleansing extends ExoticPotion {
 	}
 	
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
 		
-		cleanse( hero );
+		cleanse(heroine);
 	}
 	
 	@Override
@@ -75,8 +73,7 @@ public class PotionOfCleansing extends ExoticPotion {
 	public static void cleanse(Char ch, float duration){
 		for (Buff b : ch.buffs()){
 			if (b.type == Buff.buffType.NEGATIVE
-					&& !(b instanceof AllyBuff)
-					&& !(b instanceof LostInventory)){
+					&& !(b instanceof AllyBuff)){
 				b.detach();
 			}
 			if (b instanceof Hunger){

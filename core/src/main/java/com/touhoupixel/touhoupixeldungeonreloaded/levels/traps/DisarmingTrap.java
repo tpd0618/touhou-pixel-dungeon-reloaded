@@ -63,9 +63,9 @@ public class DisarmingTrap extends Trap{
 			}
 		}
 
-		if (Dungeon.hero.pos == pos && !Dungeon.hero.flying){
-			Hero hero = Dungeon.hero;
-			KindOfWeapon weapon = hero.belongings.weapon;
+		if (Dungeon.heroine.pos == pos && !Dungeon.heroine.flying){
+			Hero heroine = Dungeon.heroine;
+			KindOfWeapon weapon = heroine.belongings.weapon;
 
 			if (weapon != null && !weapon.cursed) {
 
@@ -78,7 +78,7 @@ public class DisarmingTrap extends Trap{
 					PathFinder.buildDistanceMap(pos, Dungeon.level.passable);
 				} while (cell == -1 || PathFinder.distance[cell] < 10 || PathFinder.distance[cell] > 20);
 
-				hero.belongings.weapon = null;
+				heroine.belongings.weapon = null;
 				Dungeon.quickslot.clearItem(weapon);
 				weapon.updateQuickslot();
 

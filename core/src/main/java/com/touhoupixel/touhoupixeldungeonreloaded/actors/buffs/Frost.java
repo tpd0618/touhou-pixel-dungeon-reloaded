@@ -57,25 +57,23 @@ public class Frost extends FlavourBuff {
 
 			if (target instanceof Hero) {
 
-				Hero hero = (Hero)target;
+				Hero heroine = (Hero) target;
 				ArrayList<Item> freezable = new ArrayList<>();
 				//does not reach inside of containers
-				if (hero.buff(LostInventory.class) == null) {
-					for (Item i : hero.belongings.backpack.items) {
-						if (!i.unique && (i instanceof Potion || i instanceof MysteryMeat)) {
-							freezable.add(i);
-						}
+				for (Item i : heroine.belongings.backpack.items) {
+					if (!i.unique && (i instanceof Potion || i instanceof MysteryMeat)) {
+						freezable.add(i);
 					}
 				}
 				
 				if (!freezable.isEmpty()){
-					Item toFreeze = Random.element(freezable).detach( hero.belongings.backpack );
+					Item toFreeze = Random.element(freezable).detach( heroine.belongings.backpack );
 					GLog.w( Messages.get(this, "freezes", toFreeze.toString()) );
 					if (toFreeze instanceof Potion){
-						((Potion) toFreeze).shatter(hero.pos);
+						((Potion) toFreeze).shatter(heroine.pos);
 					} else if (toFreeze instanceof MysteryMeat){
 						FrozenCarpaccio carpaccio = new FrozenCarpaccio();
-						if (!carpaccio.collect( hero.belongings.backpack )) {
+						if (!carpaccio.collect( heroine.belongings.backpack )) {
 							Dungeon.level.drop( carpaccio, target.pos ).sprite.drop();
 						}
 					}

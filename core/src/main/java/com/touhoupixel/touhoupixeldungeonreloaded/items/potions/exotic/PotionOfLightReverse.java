@@ -33,13 +33,13 @@ public class PotionOfLightReverse extends ExoticPotion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		if (hero.HT/5 > hero.HP) {
-			hero.HP = Math.min(hero.HP + 10000, hero.HT);
+		if (heroine.HT/5 > heroine.HP) {
+			heroine.HP = Math.min(heroine.HP + 10000, heroine.HT);
 			GLog.p(Messages.get(this, "lightreverse1"));
-		} else if (hero.HT/5 <= hero.HP) {
-			hero.HP = 1;
+		} else if (heroine.HT/5 <= heroine.HP) {
+			heroine.HP = 1;
 			GLog.p(Messages.get(this, "lightreverse2"));
 		}
 	}

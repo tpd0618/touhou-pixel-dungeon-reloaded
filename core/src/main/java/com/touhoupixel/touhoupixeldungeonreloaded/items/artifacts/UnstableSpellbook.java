@@ -36,7 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -92,24 +92,24 @@ public class UnstableSpellbook extends Artifact {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && charge > 0 && !cursed)
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && charge > 0 && !cursed)
 			actions.add(AC_READ);
-		if (isEquipped( hero ) && level() < levelCap && !cursed)
+		if (isEquipped(heroine) && level() < levelCap && !cursed)
 			actions.add(AC_ADD);
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_READ )) {
 
-			if (hero.buff( Blindness.class ) != null) GLog.w( Messages.get(this, "blinded") );
-			else if (!isEquipped( hero ))             GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			if (heroine.buff( Blindness.class ) != null) GLog.w( Messages.get(this, "blinded") );
+			else if (!isEquipped(heroine))             GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge <= 0)                     GLog.i( Messages.get(this, "no_charge") );
 			else if (cursed)                          GLog.i( Messages.get(this, "cursed") );
 			else {
@@ -121,20 +121,20 @@ public class UnstableSpellbook extends Artifact {
 				} while (scroll == null
 						//reduce the frequency of these scrolls by half
 						||((scroll instanceof ScrollOfIdentify ||
-							scroll instanceof ScrollOfCurseRemoval ||
+							scroll instanceof ScrollOfExorcism ||
 							scroll instanceof ScrollOfMagicMapping) && Random.Int(2) == 0)
 						//cannot roll transmutation
 						|| (scroll instanceof ScrollOfTransmutation));
 				
 				scroll.anonymize();
 				curItem = scroll;
-				curUser = hero;
+				curUser = heroine;
 
 				//if there are charges left and the scroll has been given to the book
 				if (charge > 0 && !scrolls.contains(scroll.getClass())) {
 					final Scroll fScroll = scroll;
 
-					final ExploitHandler handler = Buff.affect(hero, ExploitHandler.class);
+					final ExploitHandler handler = Buff.affect(heroine, ExploitHandler.class);
 					handler.scroll = scroll;
 
 					GameScene.show(new WndOptions(new ItemSprite(this),
@@ -179,7 +179,7 @@ public class UnstableSpellbook extends Artifact {
 
 		@Override
 		public boolean act() {
-			curUser = Dungeon.hero;
+			curUser = Dungeon.heroine;
 			curItem = scroll;
 			scroll.anonymize();
 			Game.runOnRenderThread(new Callback() {
@@ -238,7 +238,7 @@ public class UnstableSpellbook extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if (isEquipped(Dungeon.hero)) {
+		if (isEquipped(Dungeon.heroine)) {
 			if (cursed) {
 				desc += "\n\n" + Messages.get(this, "desc_cursed");
 			}
@@ -321,17 +321,17 @@ public class UnstableSpellbook extends Artifact {
 		@Override
 		public void onSelect(Item item) {
 			if (item != null && item instanceof Scroll && item.isIdentified()){
-				Hero hero = Dungeon.hero;
+				Hero heroine = Dungeon.heroine;
 				for (int i = 0; ( i <= 1 && i < scrolls.size() ); i++){
 					if (scrolls.get(i).equals(item.getClass())){
-						hero.sprite.operate( hero.pos );
-						hero.busy();
-						hero.spend( 2f );
+						heroine.sprite.operate( heroine.pos );
+						heroine.busy();
+						heroine.spend( 2f );
 						Sample.INSTANCE.play(Assets.Sounds.BURNING);
-						hero.sprite.emitter().burst( ElmoParticle.FACTORY, 12 );
+						heroine.sprite.emitter().burst( ElmoParticle.FACTORY, 12 );
 
 						scrolls.remove(i);
-						item.detach(hero.belongings.backpack);
+						item.detach(heroine.belongings.backpack);
 
 						upgrade();
 						GLog.i( Messages.get(UnstableSpellbook.class, "infuse_scroll") );

@@ -25,11 +25,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfFuror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.curses.Annoying;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.curses.Displacing;
@@ -52,6 +54,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Proj
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Shocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Unstable;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Vampiric;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.VentoraStick;
+import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -100,15 +104,16 @@ abstract public class Weapon extends KindOfWeapon {
 	public Enchantment enchantment;
 	public boolean curseInfusionBonus = false;
 	public boolean masteryPotionBonus = false;
+	public boolean plating = false;
 	
 	@Override
 	public int proc( Char attacker, Char defender, int damage ) {
 		
-		if (enchantment != null && attacker.buff(MagicImmune.class) == null) {
+		if (enchantment != null) {
 			damage = enchantment.proc( this, attacker, defender, damage );
 		}
 
-		if (!levelKnown && attacker == Dungeon.hero) {
+		if (!levelKnown && attacker == Dungeon.heroine) {
 			float uses = availableUsesToID;
 			availableUsesToID -= uses;
 			usesLeftToID -= uses;
@@ -121,9 +126,9 @@ abstract public class Weapon extends KindOfWeapon {
 		return damage;
 	}
 
-	public void onHeroGainExp( float levelPercent, Hero hero ){
+	public void onHeroGainExp( float levelPercent, Hero heroine){
 		levelPercent *= 1;
-		if (!levelKnown && isEquipped(hero) && availableUsesToID <= USES_TO_ID/2f) {
+		if (!levelKnown && isEquipped(heroine) && availableUsesToID <= USES_TO_ID/2f) {
 			//gains enough uses to ID over 0.5 levels
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID);
 		}
@@ -134,6 +139,7 @@ abstract public class Weapon extends KindOfWeapon {
 	private static final String ENCHANTMENT	    = "enchantment";
 	private static final String CURSE_INFUSION_BONUS = "curse_infusion_bonus";
 	private static final String MASTERY_POTION_BONUS = "mastery_potion_bonus";
+	private static final String PLATING = "plating";
 	private static final String AUGMENT	        = "augment";
 
 	@Override
@@ -144,6 +150,7 @@ abstract public class Weapon extends KindOfWeapon {
 		bundle.put( ENCHANTMENT, enchantment );
 		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
 		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
+		bundle.put( PLATING, plating );
 		bundle.put( AUGMENT, augment );
 	}
 	
@@ -155,6 +162,7 @@ abstract public class Weapon extends KindOfWeapon {
 		enchantment = (Enchantment)bundle.get( ENCHANTMENT );
 		curseInfusionBonus = bundle.getBoolean( CURSE_INFUSION_BONUS );
 		masteryPotionBonus = bundle.getBoolean( MASTERY_POTION_BONUS );
+		plating = bundle.getBoolean( PLATING );
 
 		augment = bundle.getEnum(AUGMENT, Augment.class);
 	}
@@ -171,7 +179,7 @@ abstract public class Weapon extends KindOfWeapon {
 		
 		int encumbrance = 0;
 		
-		if( owner instanceof Hero ){
+		if( owner instanceof Hero){
 			encumbrance = STRReq() - ((Hero)owner).STR();
 		}
 
@@ -217,15 +225,28 @@ abstract public class Weapon extends KindOfWeapon {
 
 	@Override
 	public int reachFactor(Char owner) {
-		if (owner.buff(ReachIncrease.class) != null && Statistics.card60){
-			return hasEnchant(Projecting.class, owner) ? RCH+3 : RCH+2;
-		} else if (owner.buff(ReachIncrease.class) == null && Statistics.card60){
-			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
-		} else if (owner.buff(ReachIncrease.class) != null && !Statistics.card60){
-			return hasEnchant(Projecting.class, owner) ? RCH+2 : RCH+1;
-		} else {
-			return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;
+		int reach = RCH;
+
+		if (owner.buff(ReachIncrease.class) != null) {
+			reach++;
 		}
+		if (hasEnchant(Projecting.class, owner)) {
+			reach++;
+		}
+		if (Statistics.card60) {
+			reach++;
+		}
+
+		if (Dungeon.heroine.belongings.weapon() instanceof VentoraStick) {
+			int ironKeyCount = Notes.keyCount(new IronKey(Dungeon.floor));
+			int goldenKeyCount = Notes.keyCount(new GoldenKey(Dungeon.floor));
+			int crystalKeyCount = Notes.keyCount(new CrystalKey(Dungeon.floor));
+
+			reach += ironKeyCount;
+			reach += goldenKeyCount;
+			reach += crystalKeyCount;
+		}
+		return reach;
 	}
 
 	public int STRReq(){
@@ -253,7 +274,7 @@ abstract public class Weapon extends KindOfWeapon {
 	//overrides as other things can equip these
 	@Override
 	public int buffedLvl() {
-		if (isEquipped( Dungeon.hero ) || Dungeon.hero.belongings.contains( this )){
+		if (isEquipped( Dungeon.heroine) || Dungeon.heroine.belongings.contains( this )){
 			return super.buffedLvl();
 		} else {
 			return level();
@@ -326,7 +347,7 @@ abstract public class Weapon extends KindOfWeapon {
 	}
 
 	public boolean hasEnchant(Class<?extends Enchantment> type, Char owner) {
-		return enchantment != null && enchantment.getClass() == type && owner.buff(MagicImmune.class) == null;
+		return enchantment != null && enchantment.getClass() == type;
 	}
 	
 	//these are not used to process specific enchant effects, so magic immune doesn't affect them

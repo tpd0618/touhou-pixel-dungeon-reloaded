@@ -45,23 +45,23 @@ public class PrismaticGuard extends Buff {
 	@Override
 	public boolean act() {
 		
-		Hero hero = (Hero)target;
+		Hero heroine = (Hero)target;
 		
 		Mob closest = null;
-		int v = hero.visibleEnemies();
+		int v = heroine.visibleEnemies();
 		for (int i=0; i < v; i++) {
-			Mob mob = hero.visibleEnemy( i );
-			if ( mob.isAlive() && mob.state != mob.PASSIVE && mob.state != mob.WANDERING && mob.state != mob.SLEEPING && !hero.mindVisionEnemies.contains(mob)
-					&& (closest == null || Dungeon.level.distance(hero.pos, mob.pos) < Dungeon.level.distance(hero.pos, closest.pos))) {
+			Mob mob = heroine.visibleEnemy( i );
+			if ( mob.isAlive() && mob.state != mob.PASSIVE && mob.state != mob.WANDERING && mob.state != mob.SLEEPING && !heroine.mindVisionEnemies.contains(mob)
+					&& (closest == null || Dungeon.level.distance(heroine.pos, mob.pos) < Dungeon.level.distance(heroine.pos, closest.pos))) {
 				closest = mob;
 			}
 		}
 		
-		if (closest != null && Dungeon.level.distance(hero.pos, closest.pos) < 5){
+		if (closest != null && Dungeon.level.distance(heroine.pos, closest.pos) < 5){
 			//spawn guardian
 			int bestPos = -1;
 			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
-				int p = hero.pos + PathFinder.NEIGHBOURS8[i];
+				int p = heroine.pos + PathFinder.NEIGHBOURS8[i];
 				if (Actor.findChar( p ) == null && Dungeon.level.passable[p]) {
 					if (bestPos == -1 || Dungeon.level.trueDistance(p, closest.pos) < Dungeon.level.trueDistance(bestPos, closest.pos)){
 						bestPos = p;
@@ -70,7 +70,7 @@ public class PrismaticGuard extends Buff {
 			}
 			if (bestPos != -1) {
 				PrismaticImage pris = new PrismaticImage();
-				pris.duplicate(hero, (int)Math.floor(HP) );
+				pris.duplicate(heroine, (int)Math.floor(HP) );
 				pris.state = pris.HUNTING;
 				GameScene.add(pris, 1);
 				ScrollOfTeleportation.appear(pris, bestPos);
@@ -101,8 +101,8 @@ public class PrismaticGuard extends Buff {
 		return maxHP((Hero)target);
 	}
 	
-	public static int maxHP( Hero hero ){
-		return 10 + (int)Math.floor(hero.lvl * 2.5f); //half of hero's HP
+	public static int maxHP( Hero heroine){
+		return 10 + (int)Math.floor(heroine.lvl * 2.5f); //half of hero's HP
 	}
 	
 	@Override

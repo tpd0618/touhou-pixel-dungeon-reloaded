@@ -85,7 +85,7 @@ public class WandOfHealWounds extends Wand {
 
 	@Override
 	public String statsDesc() {
-		int selfDMG = Math.round(Dungeon.hero.HT*0.05f);
+		int selfDMG = Math.round(Dungeon.heroine.HT*0.05f);
 		if (levelKnown)
 			return Messages.get(this, "stats_desc", selfDMG, selfDMG + 3*buffedLvl(), 5+buffedLvl(), 3+buffedLvl()/2, 6+ buffedLvl());
 		else

@@ -49,7 +49,7 @@ public class Alice extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
             new SummoningTrap().set(pos).activate();
             Buff.prolong(enemy, AliceCurse.class, AliceCurse.DURATION);
             if (Statistics.difficulty > 2) {

@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
@@ -74,16 +75,8 @@ public class Sekibanki extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
-            Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-            //trim it to just be the part that goes past them
-            trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-            //knock them back along that ballistica
-            WandOfBlastWave.throwChar(enemy, trajectory, 5, false, true, getClass());
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            GLog.w(Messages.get(this, "fear"));
-            Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+            Buff.prolong(enemy, ExtremeFear.class, ExtremeFear.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }

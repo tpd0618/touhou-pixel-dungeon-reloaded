@@ -58,7 +58,7 @@ public class LloydsBeacon extends Artifact {
 	public static final String AC_SET		= "SET";
 	public static final String AC_RETURN	= "RETURN";
 	
-	public int returnDepth	= -1;
+	public int returnFloor = -1;
 	public int returnPos;
 	
 	{
@@ -73,14 +73,14 @@ public class LloydsBeacon extends Artifact {
 		usesTargeting = true;
 	}
 	
-	private static final String DEPTH	= "depth";
+	private static final String FLOOR = "floor";
 	private static final String POS		= "pos";
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle( bundle );
-		bundle.put( DEPTH, returnDepth );
-		if (returnDepth != -1) {
+		bundle.put(FLOOR, returnFloor);
+		if (returnFloor != -1) {
 			bundle.put( POS, returnPos );
 		}
 	}
@@ -88,36 +88,36 @@ public class LloydsBeacon extends Artifact {
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle(bundle);
-		returnDepth	= bundle.getInt( DEPTH );
+		returnFloor = bundle.getInt(FLOOR);
 		returnPos	= bundle.getInt( POS );
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_ZAP );
 		actions.add( AC_SET );
-		if (returnDepth != -1) {
+		if (returnFloor != -1) {
 			actions.add( AC_RETURN );
 		}
 		return actions;
 	}
 	
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action == AC_SET || action == AC_RETURN) {
 			
 			if (Dungeon.bossLevel() || !Dungeon.interfloorTeleportAllowed()) {
-				hero.spend( LloydsBeacon.TIME_TO_USE );
+				heroine.spend( LloydsBeacon.TIME_TO_USE );
 				GLog.w( Messages.get(this, "preventing") );
 				return;
 			}
 			
 			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
-				Char ch = Actor.findChar(hero.pos + PathFinder.NEIGHBOURS8[i]);
+				Char ch = Actor.findChar(heroine.pos + PathFinder.NEIGHBOURS8[i]);
 				if (ch != null && ch.alignment == Char.Alignment.ENEMY) {
 					GLog.w( Messages.get(this, "creatures") );
 					return;
@@ -127,10 +127,10 @@ public class LloydsBeacon extends Artifact {
 
 		if (action == AC_ZAP ){
 
-			curUser = hero;
-			int chargesToUse = Dungeon.depth > 20 ? 2 : 1;
+			curUser = heroine;
+			int chargesToUse = Dungeon.floor > 20 ? 2 : 1;
 
-			if (!isEquipped( hero )) {
+			if (!isEquipped(heroine)) {
 				GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 				QuickSlotButton.cancel();
 
@@ -144,23 +144,23 @@ public class LloydsBeacon extends Artifact {
 
 		} else if (action == AC_SET) {
 			
-			returnDepth = Dungeon.depth;
-			returnPos = hero.pos;
+			returnFloor = Dungeon.floor;
+			returnPos = heroine.pos;
 			
-			hero.spend( LloydsBeacon.TIME_TO_USE );
-			hero.busy();
+			heroine.spend( LloydsBeacon.TIME_TO_USE );
+			heroine.busy();
 			
-			hero.sprite.operate( hero.pos );
+			heroine.sprite.operate( heroine.pos );
 			Sample.INSTANCE.play( Assets.Sounds.BEACON );
 			
 			GLog.i( Messages.get(this, "return") );
 			
 		} else if (action == AC_RETURN) {
 			
-			if (returnDepth == Dungeon.depth) {
-				ScrollOfTeleportation.appear( hero, returnPos );
+			if (returnFloor == Dungeon.floor) {
+				ScrollOfTeleportation.appear(heroine, returnPos );
 				for(Mob m : Dungeon.level.mobs){
-					if (m.pos == hero.pos){
+					if (m.pos == heroine.pos){
 						//displace mob
 						for(int i : PathFinder.NEIGHBOURS8){
 							if (Actor.findChar(m.pos+i) == null && Dungeon.level.passable[m.pos + i]){
@@ -171,18 +171,18 @@ public class LloydsBeacon extends Artifact {
 						}
 					}
 				}
-				Dungeon.level.occupyCell(hero );
+				Dungeon.level.occupyCell(heroine);
 				Dungeon.observe();
 				GameScene.updateFog();
 			} else {
 
-				TimekeepersHourglass.timeFreeze timeFreeze = Dungeon.hero.buff(TimekeepersHourglass.timeFreeze.class);
+				TimekeepersHourglass.timeFreeze timeFreeze = Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class);
 				if (timeFreeze != null) timeFreeze.disarmPressedTraps();
-				Swiftthistle.TimeBubble timeBubble = Dungeon.hero.buff(Swiftthistle.TimeBubble.class);
+				Swiftthistle.TimeBubble timeBubble = Dungeon.heroine.buff(Swiftthistle.TimeBubble.class);
 				if (timeBubble != null) timeBubble.disarmPressedTraps();
 
 				InterlevelScene.mode = InterlevelScene.Mode.RETURN;
-				InterlevelScene.returnDepth = returnDepth;
+				InterlevelScene.returnFloor = returnFloor;
 				InterlevelScene.returnPos = returnPos;
 				Game.switchScene( InterlevelScene.class );
 			}
@@ -199,7 +199,7 @@ public class LloydsBeacon extends Artifact {
 			if (target == null) return;
 
 			Invisibility.dispel();
-			charge -= Dungeon.scalingDepth() > 20 ? 2 : 1;
+			charge -= Dungeon.scalingFloor() > 20 ? 2 : 1;
 			updateQuickslot();
 
 			if (Actor.findChar(target) == curUser){
@@ -299,8 +299,8 @@ public class LloydsBeacon extends Artifact {
 	@Override
 	public String desc() {
 		String desc = super.desc();
-		if (returnDepth != -1){
-			desc += "\n\n" + Messages.get(this, "desc_set", returnDepth);
+		if (returnFloor != -1){
+			desc += "\n\n" + Messages.get(this, "desc_set", returnFloor);
 		}
 		return desc;
 	}
@@ -309,7 +309,7 @@ public class LloydsBeacon extends Artifact {
 	
 	@Override
 	public Glowing glowing() {
-		return returnDepth != -1 ? WHITE : null;
+		return returnFloor != -1 ? WHITE : null;
 	}
 
 	public class beaconRecharge extends ArtifactBuff{

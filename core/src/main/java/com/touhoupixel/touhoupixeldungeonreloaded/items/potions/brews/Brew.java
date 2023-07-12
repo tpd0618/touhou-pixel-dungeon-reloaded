@@ -30,8 +30,8 @@ import java.util.ArrayList;
 public abstract class Brew extends Potion {
 	
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.remove( AC_DRINK );
 		return actions;
 	}
@@ -43,7 +43,7 @@ public abstract class Brew extends Potion {
 	
 	
 	@Override
-	public void doThrow(Hero hero) {
+	public void doThrow(Hero heroine) {
 		GameScene.selectCell(thrower);
 	}
 	

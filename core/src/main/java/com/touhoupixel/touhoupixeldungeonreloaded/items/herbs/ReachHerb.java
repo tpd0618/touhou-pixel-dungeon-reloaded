@@ -33,12 +33,12 @@ public class ReachHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			Buff.prolong(hero, ReachIncrease.class, ReachIncrease.DURATION/2f);
+			Buff.prolong(heroine, ReachIncrease.class, ReachIncrease.DURATION/2f);
 		}
 	}
 }

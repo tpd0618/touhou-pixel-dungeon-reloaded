@@ -33,7 +33,7 @@ public class SevenDaysTalisman extends Talisman {
             switch (Random.Int(7)) {
                 case 0:
                 default:
-                    Buff.affect(ch, Poison.class).set(Dungeon.depth);
+                    Buff.affect(ch, Poison.class).set(Dungeon.floor);
                     break;
                 case 1:
                     Buff.prolong(ch, Vertigo.class, Vertigo.DURATION);

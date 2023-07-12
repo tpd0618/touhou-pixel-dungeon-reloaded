@@ -8,7 +8,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
@@ -59,11 +58,11 @@ public class Keiki extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.hero.buff(Burning.class) == null) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.heroine.buff(Burning.class) == null) {
             if (!(Dungeon.level.map[hero.pos] == Terrain.WATER)) {
-                Homunculus homunculus = Dungeon.hero.belongings.getItem(Homunculus.class);
+                Homunculus homunculus = Dungeon.heroine.belongings.getItem(Homunculus.class);
                 if (homunculus != null) {
-                    homunculus.detach(Dungeon.hero.belongings.backpack);
+                    homunculus.detach(Dungeon.heroine.belongings.backpack);
                     Sample.INSTANCE.play(Assets.Sounds.BEACON);
                     GLog.w(Messages.get(Homunculus.class, "block_instakill"));
                     Item.updateQuickslot();
@@ -76,7 +75,7 @@ public class Keiki extends Mob {
                 Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Dungeon.hero.STR--;
+                Dungeon.heroine.STR--;
                 Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
                 GLog.w(Messages.get(Kanako.class, "str_reduce"));

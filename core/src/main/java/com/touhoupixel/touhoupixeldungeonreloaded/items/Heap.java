@@ -76,10 +76,10 @@ public class Heap implements Bundlable {
 	
 	public LinkedList<Item> items = new LinkedList<>();
 	
-	public void open( Hero hero ) {
+	public void open( Hero heroine) {
 		switch (type) {
 		case TOMB:
-			Wraith.spawnAround( hero.pos );
+			Wraith.spawnAround( heroine.pos );
 			break;
 		case REMAINS:
 		case SKELETON:
@@ -90,14 +90,14 @@ public class Heap implements Bundlable {
 		
 		if (haunted){
 			if (Wraith.spawnAt( pos ) == null) {
-				hero.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
-				hero.damage( hero.HP / 2, this );
+				heroine.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+				heroine.damage( heroine.HP / 2, this );
 			}
 			Sample.INSTANCE.play( Assets.Sounds.CURSED );
 		}
 
 		type = Type.HEAP;
-		ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(hero, 1);
+		ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(heroine, 1);
 		if (bonus != null && !bonus.isEmpty()) {
 			items.addAll(0, bonus);
 			RingOfWealth.showFlareForBonusDrop(sprite);
@@ -156,7 +156,7 @@ public class Heap implements Bundlable {
 		}
 
 		//lost backpack must always be on top of a heap
-		if ((item.dropsDownHeap && type != Type.FOR_SALE) || peek() instanceof LostBackpack) {
+		if ((item.dropsDownHeap && type != Type.FOR_SALE)) {
 			items.add( item );
 		} else {
 			items.addFirst( item );

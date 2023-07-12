@@ -26,6 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WellFed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -56,39 +59,42 @@ public class Food extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_EAT );
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_EAT )) {
 
-			detach( hero.belongings.backpack );
+			detach( heroine.belongings.backpack );
 
-			satisfy(hero);
+			satisfy(heroine);
 			GLog.i( Messages.get(this, "eat_msg") );
 
-			hero.sprite.operate( hero.pos );
-			hero.busy();
-			SpellSprite.show( hero, SpellSprite.FOOD );
+			heroine.sprite.operate( heroine.pos );
+			heroine.busy();
+			SpellSprite.show(heroine, SpellSprite.FOOD );
 			Sample.INSTANCE.play( Assets.Sounds.EAT );
 
-			if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+			if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 				Statistics.mood += 1;
 			}
 
-			hero.spend( eatingTime() );
+			Buff.detach(curUser, ExtremeHunger.class);
+			Buff.detach(curUser, DistortedAvarice.class);
+
+			heroine.spend( eatingTime() );
 
 			Statistics.foodEaten++;
 
 			if (Statistics.card41){
-				Buff.affect(hero, WellFed.class).reset();
+				Buff.affect(heroine, WellFed.class).reset();
 			}
 
 			if (Statistics.card67){
@@ -101,8 +107,8 @@ public class Food extends Item {
 		return TIME_TO_EAT;
 	}
 
-	protected void satisfy( Hero hero ){
-		Buff.affect(hero, Hunger.class).satisfy(energy);
+	protected void satisfy( Hero heroine){
+		Buff.affect(heroine, Hunger.class).satisfy(energy);
 	}
 
 	@Override

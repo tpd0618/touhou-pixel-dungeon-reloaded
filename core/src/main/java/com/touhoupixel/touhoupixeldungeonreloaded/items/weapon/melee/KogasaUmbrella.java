@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class KogasaUmbrella extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.KOGASAUMBRELLA;
+		image = ItemSpriteSheet.KOGASA_UMBRELLA;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 

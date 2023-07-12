@@ -44,8 +44,8 @@ abstract public class Abilitycards extends Item {
     protected MissileWeapon parent;
 
     @Override
-    public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = super.actions(hero);
+    public ArrayList<String> actions(Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         actions.remove(AC_DROP);
         actions.remove(AC_THROW);
         return actions;
@@ -58,12 +58,12 @@ abstract public class Abilitycards extends Item {
     }
 
     @Override
-    public boolean doPickUp(Hero hero, int pos) {
+    public boolean doPickUp(Hero heroine, int pos) {
         parent = null;
 
         Shopkeeper shopkeeper = new Shopkeeper();
         shopkeeper.destroy();
-        return super.doPickUp(hero, pos);
+        return super.doPickUp(heroine, pos);
     }
 
     @Override

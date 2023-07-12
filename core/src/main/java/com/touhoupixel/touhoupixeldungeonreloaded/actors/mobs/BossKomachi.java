@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KomachiCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
@@ -23,7 +23,7 @@ public class BossKomachi extends Mob {
     {
         spriteClass = KomachiSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 1350 : 900;
+        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 1800 : 900;
         defenseSkill = 25;
         EXP = 24;
         maxLvl = 99;
@@ -44,7 +44,7 @@ public class BossKomachi extends Mob {
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(25), pos).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
-        Buff.detach(Dungeon.hero, KomachiCurse.class);
+        Buff.detach(Dungeon.heroine, KomachiCurse.class);
     }
 
     @Override
@@ -74,11 +74,11 @@ public class BossKomachi extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             ScrollOfTeleportation.teleportChar(this);
             Buff.prolong(enemy, KomachiCurse.class, KomachiCurse.DURATION);
             if (this.HP < this.HT / 2) {
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION * 1000f);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 1000f);
                 Buff.prolong(this, Hisou.class, Hisou.DURATION * 1000f);
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION * 1000f);
             }

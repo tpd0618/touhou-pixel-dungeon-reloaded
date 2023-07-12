@@ -105,9 +105,9 @@ public class Minoriko extends Mob {
         return damage;
     }
 
-    protected boolean steal(Hero hero) {
+    protected boolean steal(Hero heroine) {
 
-        Item toSteal = hero.belongings.randomUnequipped();
+        Item toSteal = heroine.belongings.randomUnequipped();
 
         if (toSteal != null && !toSteal.unique && toSteal.level() < 1) {
 
@@ -118,7 +118,7 @@ public class Minoriko extends Mob {
             }
             Item.updateQuickslot();
 
-            item = toSteal.detach(hero.belongings.backpack);
+            item = toSteal.detach(heroine.belongings.backpack);
             return true;
         } else {
             return false;

@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
@@ -111,7 +110,7 @@ public class ScrollOfChallenge extends ExoticScroll {
 		public void setup(int pos){
 
 			int dist;
-			if (Dungeon.depth == 5 || Dungeon.depth == 10 || Dungeon.depth == 20){
+			if (Dungeon.floor == 5 || Dungeon.floor == 10 || Dungeon.floor == 20){
 				dist = 1; //smaller boss arenas
 			} else {
 

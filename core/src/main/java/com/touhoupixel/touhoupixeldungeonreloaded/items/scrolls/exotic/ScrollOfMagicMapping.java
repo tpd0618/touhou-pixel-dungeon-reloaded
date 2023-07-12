@@ -22,12 +22,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -38,13 +36,13 @@ import com.watabou.noosa.audio.Sample;
 public class ScrollOfMagicMapping extends ExoticScroll {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_MAGICMAP;
+		icon = ItemSpriteSheet.Icons.SCROLL_MAGIC_MAPPING;
 	}
 
 	@Override
 	public void doRead() {
 
-		if (Dungeon.depth > 35) {
+		if (Dungeon.floor > 35) {
 			GLog.w(Messages.get(this, "unable"));
 		} else {
 			int length = Dungeon.level.length();

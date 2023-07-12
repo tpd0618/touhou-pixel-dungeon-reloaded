@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerabili
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -45,7 +44,7 @@ public class Miracle extends Item {
 	public static final String AC_SHOOT = "SHOOT";
 
 	{
-		image = ItemSpriteSheet.SPIRIT_BOW;
+		image = ItemSpriteSheet.MIRACLE_ARROW;
 
 		defaultAction = AC_SHOOT;
 
@@ -54,8 +53,8 @@ public class Miracle extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.remove(AC_DROP);
 		actions.remove(AC_THROW);
 		actions.add(AC_SHOOT);
@@ -63,9 +62,9 @@ public class Miracle extends Item {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_SHOOT)) {
 			if (Statistics.card66) {
@@ -79,7 +78,7 @@ public class Miracle extends Item {
 					} else {
 						Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
 					}
-					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+					if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 						Statistics.mood += 1;
 					}
 					Statistics.spellcard -= 1;
@@ -92,7 +91,7 @@ public class Miracle extends Item {
 					} else {
 						Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 					}
-					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+					if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 						Statistics.mood += 1;
 					}
 					curUser.HP -= 4;
@@ -113,11 +112,11 @@ public class Miracle extends Item {
 					} else {
 						Buff.prolong(curUser, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 					}
-					if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+					if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 						Statistics.mood += 1;
 					}
 					for (Mob mob : Dungeon.level.mobs){
-						if (Dungeon.depth == 50 && mob instanceof BossHecatia && mob.isAlive()) {
+						if (Dungeon.floor == 50 && mob instanceof BossHecatia && mob.isAlive()) {
 							Buff.prolong(mob, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
 							GLog.w(Messages.get(this, "bomb_barrier"));
 						}
@@ -129,5 +128,10 @@ public class Miracle extends Item {
 				}
 			}
 		}
+	}
+
+	@Override
+	public boolean isUpgradable() {
+		return false;
 	}
 }

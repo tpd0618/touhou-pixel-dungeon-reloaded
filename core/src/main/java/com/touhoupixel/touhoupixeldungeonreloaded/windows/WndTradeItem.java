@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
@@ -129,7 +128,7 @@ public class WndTradeItem extends WndInfoItem {
 
 		pos = btnBuy.bottom();
 
-		final MasterThievesArmband.Thievery thievery = Dungeon.hero.buff(MasterThievesArmband.Thievery.class);
+		final MasterThievesArmband.Thievery thievery = Dungeon.heroine.buff(MasterThievesArmband.Thievery.class);
 		if (thievery != null && !thievery.isCursed() && thievery.chargesToUse(item) > 0) {
 			final float chance = thievery.stealChance(item);
 			final int chargesToUse = thievery.chargesToUse(item);
@@ -137,11 +136,11 @@ public class WndTradeItem extends WndInfoItem {
 				@Override
 				protected void onClick() {
 					if (thievery.steal(item)) {
-						Hero hero = Dungeon.hero;
+						Hero heroine = Dungeon.heroine;
 						Item item = heap.pickUp();
 						hide();
 
-						if (!item.doPickUp(hero)) {
+						if (!item.doPickUp(heroine)) {
 							Dungeon.level.drop(item, heap.pos).sprite.drop();
 						}
 					} else {
@@ -180,17 +179,17 @@ public class WndTradeItem extends WndInfoItem {
 	
 	public static void sell( Item item ) {
 		
-		Hero hero = Dungeon.hero;
+		Hero heroine = Dungeon.heroine;
 		
-		if (item.isEquipped( hero ) && !((EquipableItem)item).doUnequip( hero, false )) {
+		if (item.isEquipped(heroine) && !((EquipableItem)item).doUnequip(heroine, false )) {
 			return;
 		}
-		item.detachAll( hero.belongings.backpack );
+		item.detachAll( heroine.belongings.backpack );
 
 		//selling items in the sell interface doesn't spend time
-		hero.spend(-hero.cooldown());
+		heroine.spend(-heroine.cooldown());
 
-		new Gold( item.value() ).doPickUp( hero );
+		new Gold( item.value() ).doPickUp(heroine);
 	}
 
 	public static void sellOne( Item item ) {
@@ -199,14 +198,14 @@ public class WndTradeItem extends WndInfoItem {
 			sell( item );
 		} else {
 			
-			Hero hero = Dungeon.hero;
+			Hero heroine = Dungeon.heroine;
 			
-			item = item.detach( hero.belongings.backpack );
+			item = item.detach( heroine.belongings.backpack );
 
 			//selling items in the sell interface doesn't spend time
-			hero.spend(-hero.cooldown());
+			heroine.spend(-heroine.cooldown());
 
-			new Gold( item.value() ).doPickUp( hero );
+			new Gold( item.value() ).doPickUp(heroine);
 		}
 	}
 	
@@ -218,7 +217,7 @@ public class WndTradeItem extends WndInfoItem {
 		int price = Shopkeeper.sellPrice( item );
 		Dungeon.gold -= price;
 
-		if (!item.doPickUp( Dungeon.hero )) {
+		if (!item.doPickUp( Dungeon.heroine)) {
 			Dungeon.level.drop( item, heap.pos ).sprite.drop();
 		}
 	}

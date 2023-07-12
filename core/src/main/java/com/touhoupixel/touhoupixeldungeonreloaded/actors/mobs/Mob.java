@@ -40,7 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
@@ -48,6 +48,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
@@ -70,16 +72,20 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfAccuracy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
@@ -212,7 +218,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 
-		if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
+		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
 			switch (Random.Int(4)) {
 				case 0:
 				default:
@@ -301,7 +307,7 @@ public abstract class Mob extends Char {
 		if ( enemy == null || !enemy.isAlive() || !Actor.chars().contains(enemy) || state == WANDERING) {
 			newEnemy = true;
 			//We are amoked and current enemy is the hero
-		} else if (buff( Amok.class ) != null && enemy == Dungeon.hero) {
+		} else if (buff( Amok.class ) != null && enemy == Dungeon.heroine) {
 			newEnemy = true;
 			//We are charmed and current enemy is what charmed us
 		} else if (buff(Charm.class) != null && buff(Charm.class).object == enemy.id()) {
@@ -342,8 +348,8 @@ public abstract class Mob extends Char {
 
 					if (enemies.isEmpty()) {
 						//try to find the hero third
-						if (fieldOfView[Dungeon.hero.pos] && Dungeon.hero.invisible <= 0) {
-							enemies.add(Dungeon.hero);
+						if (fieldOfView[Dungeon.heroine.pos] && Dungeon.heroine.invisible <= 0) {
+							enemies.add(Dungeon.heroine);
 						}
 					}
 				}
@@ -368,8 +374,8 @@ public abstract class Mob extends Char {
 						enemies.add(mob);
 
 				//and look for the hero
-				if (fieldOfView[Dungeon.hero.pos] && Dungeon.hero.invisible <= 0) {
-					enemies.add(Dungeon.hero);
+				if (fieldOfView[Dungeon.heroine.pos] && Dungeon.heroine.invisible <= 0) {
+					enemies.add(Dungeon.heroine);
 				}
 
 			}
@@ -392,7 +398,7 @@ public abstract class Mob extends Char {
 				for (Char curr : enemies){
 					if (closest == null
 							|| Dungeon.level.distance(pos, curr.pos) < Dungeon.level.distance(pos, closest.pos)
-							|| Dungeon.level.distance(pos, curr.pos) == Dungeon.level.distance(pos, closest.pos) && curr == Dungeon.hero){
+							|| Dungeon.level.distance(pos, curr.pos) == Dungeon.level.distance(pos, closest.pos) && curr == Dungeon.heroine){
 						closest = curr;
 					}
 				}
@@ -589,8 +595,8 @@ public abstract class Mob extends Char {
 	@Override
 	public void updateSpriteState() {
 		super.updateSpriteState();
-		if (Dungeon.hero.buff(TimekeepersHourglass.timeFreeze.class) != null
-				|| Dungeon.hero.buff(Swiftthistle.TimeBubble.class) != null)
+		if (Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) != null
+				|| Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) != null)
 			sprite.add( CharSprite.State.PARALYSED );
 	}
 
@@ -615,7 +621,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return Dungeon.hero.buff(HinaCurse.class) != null && Dungeon.hero.justMoved ||
+		return Dungeon.heroine.buff(HinaCurse.class) != null && Dungeon.heroine.justMoved ||
 				this instanceof BossHecatia && Statistics.eirinelixircount != 4;
 	}
 
@@ -630,7 +636,7 @@ public abstract class Mob extends Char {
 	public int defenseSkill( Char enemy ) {
 		if ( !surprisedBy(enemy)
 				&& paralysed == 0
-				&& !(alignment == Alignment.ALLY && enemy == Dungeon.hero)) {
+				&& !(alignment == Alignment.ALLY && enemy == Dungeon.heroine)) {
 			return this.defenseSkill;
 		} else {
 			return 0;
@@ -639,7 +645,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REINCARNATION_APPLE) && Random.Int(2) == 0 && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
+		if (Dungeon.isChallenged(Challenges.RE_BIRTH_DAY) && Random.Int(2) == 0 && buff(ReBirthDone.class) == null && !properties().contains(Property.BOSS) && !(this instanceof Wraith)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10f);
 		}
 
@@ -656,7 +662,7 @@ public abstract class Mob extends Char {
 			damage += 50;
 		}
 
-		if (Dungeon.isChallenged(Challenges.MAX_POWER_MODE)) {
+		if (Dungeon.isChallenged(Challenges.BLESSING_CHORD)) {
 			damage += Statistics.goldPickedup/25+Statistics.enemiesSlain/50;
 		}
 
@@ -698,11 +704,11 @@ public abstract class Mob extends Char {
 			this.HP = 1;
 		}
 
-		if (this instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
-			Dungeon.hero.HP = 1;
+		if (this instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
+			Dungeon.heroine.HP = 1;
 		}
 
-		if (this instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
+		if (this instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
 			damage *= 0.25;
 		}
 
@@ -714,7 +720,7 @@ public abstract class Mob extends Char {
 			Statistics.sneakAttacks++;
 			//TODO this is somewhat messy, it would be nicer to not have to manually handle delays here
 			// playing the strong hit sound might work best as another property of weapon?
-			if (Dungeon.hero.belongings.weapon() instanceof Dart){
+			if (Dungeon.heroine.belongings.weapon() instanceof Dart){
 				Sample.INSTANCE.playDelayed(Assets.Sounds.HIT_STRONG, 0.125f);
 			} else {
 				Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG);
@@ -733,9 +739,9 @@ public abstract class Mob extends Char {
 			switch (Random.Int(4)) {
 				case 0:
 				default:
-					Dungeon.level.drop(new Gold().random(), Dungeon.hero.pos).sprite.drop();
-					Dungeon.level.drop(new Gold().random(), Dungeon.hero.pos).sprite.drop();
-					Dungeon.level.drop(new Gold().random(), Dungeon.hero.pos).sprite.drop();
+					Dungeon.level.drop(new Gold().random(), Dungeon.heroine.pos).sprite.drop();
+					Dungeon.level.drop(new Gold().random(), Dungeon.heroine.pos).sprite.drop();
+					Dungeon.level.drop(new Gold().random(), Dungeon.heroine.pos).sprite.drop();
 					//3x amount
 					GLog.p(Messages.get(this, "bw_gold"));
 					break;
@@ -743,42 +749,42 @@ public abstract class Mob extends Char {
 					switch (Random.Int(5)) {
 						case 0:
 						default:
-							Dungeon.level.drop(Generator.random(Generator.Category.POTION), Dungeon.hero.pos).sprite.drop();
+							Dungeon.level.drop(Generator.random(Generator.Category.POTION), Dungeon.heroine.pos).sprite.drop();
 							break;
 						case 1:
-							Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), Dungeon.hero.pos).sprite.drop();
+							Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), Dungeon.heroine.pos).sprite.drop();
 							break;
 						case 2:
-							Dungeon.level.drop(Generator.random(Generator.Category.HERB), Dungeon.hero.pos).sprite.drop();
+							Dungeon.level.drop(Generator.random(Generator.Category.HERB), Dungeon.heroine.pos).sprite.drop();
 							break;
 						case 3:
-							Dungeon.level.drop(Generator.random(Generator.Category.TALISMAN), Dungeon.hero.pos).sprite.drop();
+							Dungeon.level.drop(Generator.random(Generator.Category.TALISMAN), Dungeon.heroine.pos).sprite.drop();
 							break;
 						case 4:
-							Dungeon.level.drop(Generator.random(Generator.Category.VIAL), Dungeon.hero.pos).sprite.drop();
+							Dungeon.level.drop(Generator.random(Generator.Category.VIAL), Dungeon.heroine.pos).sprite.drop();
 							break;
 					}
 					GLog.p(Messages.get(this, "bw_item"));
 					break;
 				case 2:
-					Dungeon.hero.HP = Math.min(Dungeon.hero.HP + Dungeon.hero.HT/4, Dungeon.hero.HT);
-					Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
+					Dungeon.heroine.HP = Math.min(Dungeon.heroine.HP + Dungeon.heroine.HT/4, Dungeon.heroine.HT);
+					Dungeon.heroine.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 					GLog.p(Messages.get(this, "bw_heal"));
 					break;
 				case 3:
 					switch (Random.Int(4)) {
 						case 0:
 						default:
-							Buff.prolong(Dungeon.hero, Might.class, Might.DURATION);
+							Buff.prolong(Dungeon.heroine, Might.class, Might.DURATION);
 							break;
 						case 1:
-							Buff.prolong(Dungeon.hero, Hisou.class, Hisou.DURATION);
+							Buff.prolong(Dungeon.heroine, Hisou.class, Hisou.DURATION);
 							break;
 						case 2:
-							Buff.prolong(Dungeon.hero, Doublespeed.class, Doublespeed.DURATION);
+							Buff.prolong(Dungeon.heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
 							break;
 						case 3:
-							Buff.prolong(Dungeon.hero, Doublerainbow.class, Doublerainbow.DURATION);
+							Buff.prolong(Dungeon.heroine, Doublerainbow.class, Doublerainbow.DURATION);
 							break;
 					}
 					GLog.p(Messages.get(this, "bw_buff"));
@@ -791,7 +797,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public float speed() {
-		if (Dungeon.hero.buff(HeavenSpeed.class) != null){
+		if (Dungeon.heroine.buff(HeavenSpeed.class) != null){
 			return super.speed()*2f;
 		}
 		return super.speed();
@@ -802,7 +808,7 @@ public abstract class Mob extends Char {
 	}
 
 	public boolean surprisedBy( Char enemy, boolean attacking ){
-		return enemy == Dungeon.hero
+		return enemy == Dungeon.heroine
 				&& (enemy.invisible > 0 || !enemySeen)
 				&& (!attacking || ((Hero)enemy).canSurpriseAttack());
 	}
@@ -838,22 +844,41 @@ public abstract class Mob extends Char {
 
 		Dungeon.level.mobs.remove( this );
 
-		if (Dungeon.hero.buff(MindVision.class) != null){
+		if (Dungeon.heroine.buff(MindVision.class) != null){
 			Dungeon.observe();
 			GameScene.updateFog(pos, 2);
 		}
 
-		if (Dungeon.hero.isAlive()) {
+		if (Dungeon.heroine.isAlive()) {
 
 			if (alignment == Alignment.ENEMY) {
 				Statistics.enemiesSlain++;
 				Statistics.qualifiedForNoKilling = false;
 
-				int exp = Dungeon.hero.lvl <= maxLvl ? EXP : 0;
+				int exp = Dungeon.heroine.lvl <= maxLvl ? EXP : 0;
 				if (exp > 0) {
-					Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "exp", exp));
+					Dungeon.heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "exp", exp));
 				}
-				Dungeon.hero.earnExp(exp, getClass());
+				Dungeon.heroine.earnExp(exp, getClass());
+			}
+		}
+	}
+
+	public void exterminate() {
+
+		super.destroy();
+
+		Dungeon.level.mobs.remove(this);
+
+		if (Dungeon.heroine.buff(MindVision.class) != null) {
+			Dungeon.observe();
+			GameScene.updateFog(pos, 2);
+		}
+
+		if (Dungeon.heroine.isAlive()) {
+
+			if (alignment == Alignment.ENEMY) {
+				Statistics.qualifiedForNoKilling = false;
 			}
 		}
 	}
@@ -861,7 +886,7 @@ public abstract class Mob extends Char {
 	@Override
 	public void die( Object cause ) {
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			if (Dungeon.hero.buff(Pure.class) == null) {
+			if (Dungeon.heroine.buff(Pure.class) == null) {
 				Statistics.power += 5;
 			}
 			if (Statistics.card44) {
@@ -869,22 +894,18 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (Dungeon.hero.buff(AntiShipBattery.class) != null){
+		if (Dungeon.heroine.buff(AntiShipBattery.class) != null){
 			Camera.main.shake( 5, 1f );
-			Dungeon.hero.damage(Dungeon.depth+5, Dungeon.hero);
+			Dungeon.heroine.damage(Dungeon.floor +5, Dungeon.heroine);
 			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
-			if (enemy == Dungeon.hero && !Dungeon.hero.isAlive()) {
+			if (enemy == Dungeon.heroine && !Dungeon.heroine.isAlive()) {
 				Dungeon.fail(Aya.class);
 				GLog.n(Messages.get(Aya.class, "ondeath"));
 			}
 		}
 
-		if (this.buff(Light.class) != null && Random.Int(5) == 0) {
-			Dungeon.level.drop(new Torch(), pos).sprite.drop();
-		}
-
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
-			if (Dungeon.hero.buff(Pure.class) == null) {
+			if (Dungeon.heroine.buff(Pure.class) == null) {
 				Statistics.value += Random.NormalIntRange(10, 20);
 			}
 		}
@@ -894,10 +915,18 @@ public abstract class Mob extends Char {
 			Buff.detach(this, ReBirth.class);
 			Buff.prolong(this, ReBirthDone.class, ReBirthDone.DURATION*10000f);
 			this.HP = this.HT;
-		} else super.die( cause );
+		} else {
+			super.die(cause);
+		}
 
 		if (cause == Chasm.class){
 			//50% chance to round up, 50% to round down
+			if (EXP % 2 == 1) EXP += Random.Int(2);
+			EXP /= 2;
+		}
+
+		if (Statistics.difficulty == 6){
+			//persona series risky difficulty
 			if (EXP % 2 == 1) EXP += Random.Int(2);
 			EXP /= 2;
 		}
@@ -919,12 +948,12 @@ public abstract class Mob extends Char {
 
 		if (alignment == Alignment.ENEMY){
 			rollToDropLoot();
-			if (Dungeon.hero.buff(GoldCreation.class) != null){
+			if (Dungeon.heroine.buff(GoldCreation.class) != null){
 				Dungeon.level.drop(new Gold().random(), pos ).sprite.drop();
 			}
 		}
 
-		if (Dungeon.hero.isAlive() && !Dungeon.level.heroFOV[pos]) {
+		if (Dungeon.heroine.isAlive() && !Dungeon.level.heroFOV[pos]) {
 			GLog.i( Messages.get(this, "died") );
 		}
 	}
@@ -932,13 +961,13 @@ public abstract class Mob extends Char {
 	public float lootChance(){
 		float lootChance = this.lootChance;
 
-		lootChance *= RingOfWealth.dropChanceMultiplier( Dungeon.hero );
+		lootChance *= RingOfWealth.dropChanceMultiplier( Dungeon.heroine);
 
 		return lootChance;
 	}
 
 	public void rollToDropLoot(){
-		if (Dungeon.hero.lvl > maxLvl + 2) return;
+		if (Dungeon.heroine.lvl > maxLvl + 2) return;
 
 		MasterThievesArmband.StolenTracker stolen = buff(MasterThievesArmband.StolenTracker.class);
 		if (stolen == null || !stolen.itemWasStolen()) {
@@ -951,11 +980,11 @@ public abstract class Mob extends Char {
 		}
 
 		//ring of wealth logic
-		if (Ring.getBuffedBonus(Dungeon.hero, RingOfWealth.Wealth.class) > 0) {
+		if (Ring.getBuffedBonus(Dungeon.heroine, RingOfWealth.Wealth.class) > 0) {
 			int rolls = 1;
 			if (properties.contains(Property.BOSS)) rolls = 15;
 			else if (properties.contains(Property.MINIBOSS)) rolls = 5;
-			ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(Dungeon.hero, rolls);
+			ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(Dungeon.heroine, rolls);
 			if (bonus != null && !bonus.isEmpty()) {
 				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
 				RingOfWealth.showFlareForBonusDrop(sprite);
@@ -1032,7 +1061,7 @@ public abstract class Mob extends Char {
 
 	//returns true when a mob sees the hero, and is currently targeting them.
 	public boolean focusingHero() {
-		return enemySeen && (target == Dungeon.hero.pos);
+		return enemySeen && (target == Dungeon.heroine.pos);
 	}
 
 	public interface AiState {
@@ -1244,7 +1273,7 @@ public abstract class Mob extends Char {
 	private static ArrayList<Mob> heldAllies = new ArrayList<>();
 
 	public static void holdAllies( Level level ){
-		holdAllies(level, Dungeon.hero.pos);
+		holdAllies(level, Dungeon.heroine.pos);
 	}
 
 	public static void holdAllies( Level level, int holdFromPos ){

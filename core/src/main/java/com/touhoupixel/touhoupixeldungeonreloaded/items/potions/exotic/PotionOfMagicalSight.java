@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSight;
@@ -35,9 +34,9 @@ public class PotionOfMagicalSight extends ExoticPotion {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		Buff.affect(hero, MagicalSight.class, MagicalSight.DURATION);
+		Buff.affect(heroine, MagicalSight.class, MagicalSight.DURATION);
 		Dungeon.observe();
 		
 	}

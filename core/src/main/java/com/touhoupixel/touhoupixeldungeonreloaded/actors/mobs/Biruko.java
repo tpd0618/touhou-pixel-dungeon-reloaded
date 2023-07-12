@@ -25,20 +25,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BirukoSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MomoyoSprite;
 import com.watabou.utils.Random;
 
 public class Biruko extends Mob {
@@ -75,7 +66,7 @@ public class Biruko extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             Buff.prolong(this, Vertigo.class, Vertigo.DURATION);
             Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             if (Statistics.difficulty > 2) {

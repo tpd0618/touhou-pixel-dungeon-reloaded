@@ -139,7 +139,7 @@ public class WandOfBlastWave extends DamageWand {
 				if (finalCollided && ch.isAlive()) {
 					ch.damage(Random.NormalIntRange(finalDist, 2*finalDist), this);
 					Paralysis.prolong(ch, Paralysis.class, 1 + finalDist/2f);
-					if (ch == Dungeon.hero && !ch.isAlive()){
+					if (ch == Dungeon.heroine && !ch.isAlive()){
 						if ( cause == WandOfBlastWave.class){
 						}
 						Dungeon.fail(cause);
@@ -149,7 +149,7 @@ public class WandOfBlastWave extends DamageWand {
 					Door.leave(oldPos);
 				}
 				Dungeon.level.occupyCell(ch);
-				if (ch == Dungeon.hero){
+				if (ch == Dungeon.heroine){
 					Dungeon.observe();
 				}
 			}
@@ -214,7 +214,7 @@ public class WandOfBlastWave extends DamageWand {
 		}
 
 		public static void blast(int pos) {
-			Group parent = Dungeon.hero.sprite.parent;
+			Group parent = Dungeon.heroine.sprite.parent;
 			BlastWave b = (BlastWave) parent.recycle(BlastWave.class);
 			parent.bringToFront(b);
 			b.reset(pos);

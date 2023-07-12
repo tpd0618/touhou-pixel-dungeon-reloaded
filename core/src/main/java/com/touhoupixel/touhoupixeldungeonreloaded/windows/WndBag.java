@@ -130,7 +130,7 @@ public class WndBag extends WndTabbed {
 		resize( windowWidth, windowHeight );
 
 		int i = 1;
-		for (Bag b : Dungeon.hero.belongings.getBags()) {
+		for (Bag b : Dungeon.heroine.belongings.getBags()) {
 			if (b != null) {
 				BagTab tab = new BagTab( b, i++ );
 				add( tab );
@@ -143,23 +143,23 @@ public class WndBag extends WndTabbed {
 	
 	public static WndBag lastBag( ItemSelector selector ) {
 		
-		if (lastBag != null && Dungeon.hero.belongings.backpack.contains( lastBag )) {
+		if (lastBag != null && Dungeon.heroine.belongings.backpack.contains( lastBag )) {
 			
 			return new WndBag( lastBag, selector );
 			
 		} else {
 			
-			return new WndBag( Dungeon.hero.belongings.backpack, selector );
+			return new WndBag( Dungeon.heroine.belongings.backpack, selector );
 			
 		}
 	}
 
 	public static WndBag getBag( ItemSelector selector ) {
 		if (selector.preferredBag() == Belongings.Backpack.class){
-			return new WndBag( Dungeon.hero.belongings.backpack, selector );
+			return new WndBag( Dungeon.heroine.belongings.backpack, selector );
 
 		} else if (selector.preferredBag() != null){
-			Bag bag = Dungeon.hero.belongings.getItem( selector.preferredBag() );
+			Bag bag = Dungeon.heroine.belongings.getItem( selector.preferredBag() );
 			if (bag != null) return new WndBag( bag, selector );
 		}
 
@@ -236,7 +236,7 @@ public class WndBag extends WndTabbed {
 	protected void placeItems( Bag container ) {
 		
 		// Equipped items
-		Belongings stuff = Dungeon.hero.belongings;
+		Belongings stuff = Dungeon.heroine.belongings;
 		placeItem( stuff.weapon != null ? stuff.weapon : new Placeholder( ItemSpriteSheet.WEAPON_HOLDER ) );
 		placeItem( stuff.armor != null ? stuff.armor : new Placeholder( ItemSpriteSheet.ARMOR_HOLDER ) );
 		placeItem( stuff.artifact != null ? stuff.artifact : new Placeholder( ItemSpriteSheet.ARTIFACT_HOLDER ) );
@@ -244,7 +244,7 @@ public class WndBag extends WndTabbed {
 		placeItem( stuff.ring != null ? stuff.ring : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
 
 		//the container itself if it's not the root backpack
-		if (container != Dungeon.hero.belongings.backpack){
+		if (container != Dungeon.heroine.belongings.backpack){
 			placeItem(container);
 			count--; //don't count this one, as it's not actually inside of itself
 		}
@@ -274,7 +274,7 @@ public class WndBag extends WndTabbed {
 		InventorySlot slot = new InventorySlot( item ){
 			@Override
 			protected void onClick() {
-				if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.hero)){
+				if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)){
 
 					hide();
 
@@ -292,7 +292,7 @@ public class WndBag extends WndTabbed {
 
 			@Override
 			protected void onRightClick() {
-				if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.hero)){
+				if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)){
 
 					hide();
 
@@ -462,7 +462,7 @@ public class WndBag extends WndTabbed {
 		}
 		
 		@Override
-		public boolean isEquipped( Hero hero ) {
+		public boolean isEquipped( Hero heroine) {
 			return true;
 		}
 	}

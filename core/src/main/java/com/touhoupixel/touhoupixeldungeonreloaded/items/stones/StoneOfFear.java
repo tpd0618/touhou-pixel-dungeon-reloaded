@@ -47,7 +47,7 @@ public class StoneOfFear extends Runestone {
 			Buff.affect( ch, Terror.class, Terror.DURATION ).object = curUser.id();
 		}
 
-		new Flare( 5, 16 ).color( 0xFF0000, true ).show(Dungeon.hero.sprite.parent, DungeonTilemap.tileCenterToWorld(cell), 2f );
+		new Flare( 5, 16 ).color( 0xFF0000, true ).show(Dungeon.heroine.sprite.parent, DungeonTilemap.tileCenterToWorld(cell), 2f );
 		Sample.INSTANCE.play( Assets.Sounds.READ );
 		
 	}

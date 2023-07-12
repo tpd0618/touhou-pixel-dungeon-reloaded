@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -40,21 +39,21 @@ public class Amulet extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		//actions.remove(AC_DROP);
 		//actions.remove(AC_THROW);
 		return actions;
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 		Badges.validateChampion(Challenges.activeChallenges());
 		Badges.lifeBind();
 		Badges.bombBind();
 		Badges.torchBind();
 		Badges.livingAntiqueStore();
-		return super.doPickUp(hero, pos);
+		return super.doPickUp(heroine, pos);
 	}
 
 	@Override

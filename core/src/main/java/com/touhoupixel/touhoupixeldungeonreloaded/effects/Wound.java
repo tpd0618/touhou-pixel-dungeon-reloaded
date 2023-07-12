@@ -89,7 +89,7 @@ public class Wound extends Image {
 	}
 	
 	public static void hit( int pos, float angle ) {
-		Group parent = Dungeon.hero.sprite.parent;
+		Group parent = Dungeon.heroine.sprite.parent;
 		Wound w = (Wound)parent.recycle( Wound.class );
 		parent.bringToFront( w );
 		w.reset( pos );

@@ -21,7 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 public class MaiArmor extends Armor {
 
@@ -35,4 +39,11 @@ public class MaiArmor extends Armor {
 		super( 5 );
 	}
 
+	@Override
+	public int proc(Char attacker, Char defender, int damage) {
+		if (Random.Int(30) == 0){
+			Buff.prolong(defender, DoubleSpeed.class, DoubleSpeed.DURATION);
+		}
+		return super.proc(attacker, defender, damage);
+	}
 }

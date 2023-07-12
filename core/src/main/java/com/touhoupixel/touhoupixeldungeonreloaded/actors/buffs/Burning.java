@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
@@ -87,7 +86,7 @@ public class Burning extends Buff implements Hero.Doom {
 		
 		if (target.isAlive() && !target.isImmune(getClass())) {
 			
-			int damage = Random.NormalIntRange( 1, 3 + Dungeon.depth/4 );
+			int damage = Random.NormalIntRange( 1, 3 + Dungeon.floor /4 );
 			Buff.detach( target, Chill.class);
 
 			if (target.buff(Zen.class) != null){
@@ -96,35 +95,34 @@ public class Burning extends Buff implements Hero.Doom {
 
 			if (target instanceof Hero && target.buff(TimekeepersHourglass.timeStasis.class) == null) {
 				
-				Hero hero = (Hero)target;
+				Hero heroine = (Hero)target;
 
-				hero.damage( damage, this );
+				heroine.damage( damage, this );
 				burnIncrement++;
 
 				//at 4+ turns, there is a (turns-3)/3 chance an item burns
-				if (Random.Int(3) < (burnIncrement - 3)){
+				if (Random.Int(3) < (burnIncrement - 3)) {
 					burnIncrement = 0;
 
 					ArrayList<Item> burnable = new ArrayList<>();
 					//does not reach inside of containers
-					if (hero.buff(LostInventory.class) == null) {
-						for (Item i : hero.belongings.backpack.items) {
-							if (!i.unique && (i instanceof Scroll || i instanceof MysteryMeat || i instanceof FrozenCarpaccio)) {
-								burnable.add(i);
-							}
+
+					for (Item i : heroine.belongings.backpack.items) {
+						if (!i.unique && (i instanceof Scroll || i instanceof MysteryMeat || i instanceof FrozenCarpaccio)) {
+							burnable.add(i);
 						}
 					}
 
 					if (!burnable.isEmpty()){
-						Item toBurn = Random.element(burnable).detach(hero.belongings.backpack);
+						Item toBurn = Random.element(burnable).detach(heroine.belongings.backpack);
 						GLog.w( Messages.get(this, "burnsup", Messages.capitalize(toBurn.toString())) );
 						if (toBurn instanceof MysteryMeat || toBurn instanceof FrozenCarpaccio){
 							ChargrilledMeat steak = new ChargrilledMeat();
-							if (!steak.collect( hero.belongings.backpack )) {
-								Dungeon.level.drop( steak, hero.pos ).sprite.drop();
+							if (!steak.collect( heroine.belongings.backpack )) {
+								Dungeon.level.drop( steak, heroine.pos ).sprite.drop();
 							}
 						}
-						Heap.burnFX( hero.pos );
+						Heap.burnFX( heroine.pos );
 					}
 				}
 				

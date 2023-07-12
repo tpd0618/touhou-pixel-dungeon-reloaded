@@ -63,18 +63,18 @@ public class CursingTrap extends Trap {
 			}
 		}
 
-		if (Dungeon.hero.pos == pos && !Dungeon.hero.flying){
-			curse(Dungeon.hero);
+		if (Dungeon.heroine.pos == pos && !Dungeon.heroine.flying){
+			curse(Dungeon.heroine);
 		}
 	}
 
-	public static void curse(Hero hero){
+	public static void curse(Hero heroine){
 		//items the trap wants to curse because it will create a more negative effect
 		ArrayList<Item> priorityCurse = new ArrayList<>();
 		//items the trap can curse if nothing else is available.
 		ArrayList<Item> canCurse = new ArrayList<>();
 
-		KindOfWeapon weapon = hero.belongings.weapon();
+		KindOfWeapon weapon = heroine.belongings.weapon();
 		if (weapon instanceof Weapon && !(weapon instanceof MarisaStaff)){
 			if (((Weapon) weapon).enchantment == null)
 				priorityCurse.add(weapon);
@@ -82,7 +82,7 @@ public class CursingTrap extends Trap {
 				canCurse.add(weapon);
 		}
 
-		Armor armor = hero.belongings.armor();
+		Armor armor = heroine.belongings.armor();
 		if (armor != null){
 			if (armor.glyph == null)
 				priorityCurse.add(armor);
@@ -99,7 +99,7 @@ public class CursingTrap extends Trap {
 			curse(canCurse.remove(0));
 		}
 
-		EquipableItem.equipCursed(hero);
+		EquipableItem.equipCursed(heroine);
 		GLog.n( Messages.get(CursingTrap.class, "curse") );
 	}
 

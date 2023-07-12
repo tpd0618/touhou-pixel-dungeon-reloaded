@@ -106,7 +106,7 @@ public abstract class SpecialRoom extends Room {
 	public static ArrayList<Class<? extends Room>> runSpecials = new ArrayList<>();
 	public static ArrayList<Class<? extends Room>> floorSpecials = new ArrayList<>();
 	
-	private static int pitNeededDepth = -1;
+	private static int pitNeededFloor = -1;
 	
 	public static void initForRun() {
 		runSpecials = new ArrayList<>();
@@ -127,14 +127,14 @@ public abstract class SpecialRoom extends Room {
 			if (!runConsSpecials.isEmpty())     runSpecials.add(runConsSpecials.remove(0));
 		}
 
-		pitNeededDepth = -1;
+		pitNeededFloor = -1;
 	}
 	
 	public static void initForFloor(){
 		floorSpecials = (ArrayList<Class<?extends Room>>) runSpecials.clone();
 		
 		//laboratory rooms spawn at set intervals every chapter
-		if (Dungeon.depth % 5 == (Dungeon.seed % 3 + 2)){
+		if (Dungeon.floor % 5 == (Dungeon.seed % 3 + 2)){
 			floorSpecials.add(0, LaboratoryRoom.class);
 		}
 	}
@@ -153,12 +153,12 @@ public abstract class SpecialRoom extends Room {
 	}
 
 	public static void resetPitRoom(int depth){
-		if (pitNeededDepth == depth) pitNeededDepth = -1;
+		if (pitNeededFloor == depth) pitNeededFloor = -1;
 	}
 	
 	public static SpecialRoom createRoom(){
-		if (Dungeon.depth == pitNeededDepth){
-			pitNeededDepth = -1;
+		if (Dungeon.floor == pitNeededFloor){
+			pitNeededFloor = -1;
 			
 			useType( PitRoom.class );
 			return new PitRoom();
@@ -194,11 +194,11 @@ public abstract class SpecialRoom extends Room {
 			initForRun();
 			ShatteredPixelDungeon.reportException(new Exception("specials array didn't exist!"));
 		}
-		pitNeededDepth = bundle.getInt(PIT);
+		pitNeededFloor = bundle.getInt(PIT);
 	}
 	
 	public static void storeRoomsInBundle( Bundle bundle ) {
 		bundle.put( ROOMS, runSpecials.toArray(new Class[0]) );
-		bundle.put( PIT, pitNeededDepth );
+		bundle.put( PIT, pitNeededFloor);
 	}
 }

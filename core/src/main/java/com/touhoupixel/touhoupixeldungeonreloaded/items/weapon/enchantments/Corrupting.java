@@ -51,11 +51,11 @@ public class Corrupting extends Weapon.Enchantment {
 				&& defender.isAlive()){
 			
 			Mob enemy = (Mob) defender;
-			Hero hero = (attacker instanceof Hero) ? (Hero) attacker : Dungeon.hero;
+			Hero heroine = (attacker instanceof Hero) ? (Hero) attacker : Dungeon.heroine;
 
 			Corruption.corruptionHeal(enemy);
 
-			AllyBuff.affectAndLoot(enemy, hero, Corruption.class);
+			AllyBuff.affectAndLoot(enemy, heroine, Corruption.class);
 			
 			return 0;
 		}

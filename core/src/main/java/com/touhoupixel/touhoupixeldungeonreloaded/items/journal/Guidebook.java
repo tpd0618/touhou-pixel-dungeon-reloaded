@@ -27,7 +27,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndJournal;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
@@ -39,7 +38,7 @@ public class Guidebook extends Item {
 	}
 
 	@Override
-	public final boolean doPickUp(Hero hero, int pos) {
+	public final boolean doPickUp(Hero heroine, int pos) {
 		GameScene.pickUpJournal(this, pos);
 		String page = Document.GUIDE_INTRO;
 		Game.runOnRenderThread(new Callback() {
@@ -49,7 +48,7 @@ public class Guidebook extends Item {
 		});
 		Document.ADVENTURERS_GUIDE.readPage(Document.GUIDE_INTRO);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 		return true;
 	}
 

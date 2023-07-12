@@ -35,7 +35,7 @@ public class HighStress extends FlavourBuff {
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.HIGHSTRESS;
+		return BuffIndicator.HIGH_STRESS;
 	}
 
 	@Override

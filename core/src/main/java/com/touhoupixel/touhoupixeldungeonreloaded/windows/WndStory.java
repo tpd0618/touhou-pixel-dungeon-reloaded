@@ -1,29 +1,6 @@
-/*
- * Pixel Dungeon
- * Copyright (C) 2012-2015 Oleg Dolya
- *
- * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
- */
-
 package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Chrome;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
@@ -31,27 +8,18 @@ import com.watabou.input.PointerEvent;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.PointerArea;
-import com.watabou.utils.SparseArray;
 
 public class WndStory extends Window {
 
     private static final int WIDTH_P = 125;
-    private static final int WIDTH_L = 160;
+    private static final int WIDTH_L = 180;
     private static final int MARGIN = 2;
-
-    private static final float bgR	= 0.77f;
-    private static final float bgG	= 0.73f;
-    private static final float bgB	= 0.62f;
-
-    private static final SparseArray<String> CHAPTERS = new SparseArray<>();
-
-    static {
-    }
 
     private IconTitle ttl;
     private RenderedTextBlock tf;
 
-    private float delay;
+    private float appearDelay;
+    private float disappearDelay;
 
     public WndStory( String text ) {
         this( null, null, text );
@@ -86,36 +54,39 @@ public class WndStory extends Window {
         blocker.camera = PixelScene.uiCamera;
         add(blocker);
 
-        resize( (int)(tf.width() + MARGIN * 2), (int)Math.min( tf.bottom()+MARGIN, 180 ) );
+        resize( width + 2*MARGIN, (int)(tf.bottom()+MARGIN) );
+    }
+
+    public WndStory setDelays(float appearDelay, float disappearDelay){
+        this.appearDelay = appearDelay;
+        if (appearDelay > 0){
+            shadow.visible = chrome.visible = tf.visible = false;
+            if (ttl != null) ttl.visible = false;
+        }
+
+        this.disappearDelay = disappearDelay;
+        return this;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (appearDelay <= 0 && disappearDelay <= 0) {
+            super.onBackPressed();
+        }
     }
 
     @Override
     public void update() {
         super.update();
 
-        if (delay > 0 && (delay -= Game.elapsed) <= 0) {
-            shadow.visible = chrome.visible = tf.visible = true;
-            if (ttl != null) ttl.visible = true;
-        }
-    }
-
-    public static void showChapter( int id ) {
-
-        if (Dungeon.chapters.contains( id )) {
-            return;
-        }
-
-        String text = Messages.get(WndStory.class, CHAPTERS.get( id ));
-        if (text != null) {
-            WndStory wnd = new WndStory( text );
-            if ((wnd.delay = 0.6f) > 0) {
-                wnd.shadow.visible = wnd.chrome.visible = wnd.tf.visible = false;
-                if (wnd.ttl != null) wnd.ttl.visible = false;
+        if (appearDelay > 0) {
+            appearDelay -= Game.elapsed;
+            if (appearDelay <= 0) {
+                shadow.visible = chrome.visible = tf.visible = true;
+                if (ttl != null) ttl.visible = true;
             }
-
-            Game.scene().add( wnd );
-
-            Dungeon.chapters.add( id );
+        } else if (disappearDelay > 0){
+            disappearDelay -= Game.elapsed;
         }
     }
 }

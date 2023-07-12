@@ -42,43 +42,43 @@ abstract public class KindOfWeapon extends EquipableItem {
 	protected float hitSoundPitch = 1f;
 	
 	@Override
-	public boolean isEquipped( Hero hero ) {
-		return hero.belongings.weapon() == this;
+	public boolean isEquipped( Hero heroine) {
+		return heroine.belongings.weapon() == this;
 	}
 	
 	@Override
-	public boolean doEquip( Hero hero ) {
+	public boolean doEquip( Hero heroine) {
 
-		detachAll( hero.belongings.backpack );
+		detachAll( heroine.belongings.backpack );
 		
-		if (hero.belongings.weapon == null || hero.belongings.weapon.doUnequip( hero, true )) {
+		if (heroine.belongings.weapon == null || heroine.belongings.weapon.doUnequip(heroine, true )) {
 			
-			hero.belongings.weapon = this;
-			activate( hero );
+			heroine.belongings.weapon = this;
+			activate(heroine);
 			ActionIndicator.updateIcon();
 			updateQuickslot();
 			
 			cursedKnown = true;
 			if (cursed) {
-				equipCursed( hero );
+				equipCursed(heroine);
 				GLog.n( Messages.get(KindOfWeapon.class, "equip_cursed") );
 			}
 			
-			hero.spendAndNext( TIME_TO_EQUIP );
+			heroine.spendAndNext( TIME_TO_EQUIP );
 			return true;
 			
 		} else {
 			
-			collect( hero.belongings.backpack );
+			collect( heroine.belongings.backpack );
 			return false;
 		}
 	}
 
 	@Override
-	public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
-		if (super.doUnequip( hero, collect, single )) {
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
+		if (super.doUnequip(heroine, collect, single )) {
 
-			hero.belongings.weapon = null;
+			heroine.belongings.weapon = null;
 			return true;
 
 		} else {

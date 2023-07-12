@@ -65,18 +65,18 @@ public class TalismanOfForesight extends Artifact {
 	public static final String AC_SCRY = "SCRY";
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && !cursed) actions.add(AC_SCRY);
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && !cursed) actions.add(AC_SCRY);
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
-		super.execute(hero, action);
+	public void execute(Hero heroine, String action ) {
+		super.execute(heroine, action);
 
 		if (action.equals(AC_SCRY)){
-			if (!isEquipped(hero))  GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			if (!isEquipped(heroine))  GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge < 5)    GLog.i( Messages.get(this, "low_charge") );
 			else                    GameScene.selectCell(scry);
 		}
@@ -104,7 +104,7 @@ public class TalismanOfForesight extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if ( isEquipped( Dungeon.hero ) ){
+		if ( isEquipped( Dungeon.heroine) ){
 			if (!cursed) {
 				desc += "\n\n" + Messages.get(this, "desc_worn");
 
@@ -212,7 +212,7 @@ public class TalismanOfForesight extends Artifact {
 				}
 				updateQuickslot();
 				Dungeon.observe();
-				Dungeon.hero.checkVisibleMobs();
+				Dungeon.heroine.checkVisibleMobs();
 				GameScene.updateFog();
 
 				curUser.sprite.zap(target);
@@ -376,10 +376,10 @@ public class TalismanOfForesight extends Artifact {
 	public static class HeapAwareness extends FlavourBuff {
 
 		public int pos;
-		public int depth = Dungeon.depth;
+		public int floor = Dungeon.floor;
 
 		private static final String POS = "pos";
-		private static final String DEPTH = "depth";
+		private static final String FLOOR = "floor";
 
 		@Override
 		public void detach() {
@@ -392,14 +392,14 @@ public class TalismanOfForesight extends Artifact {
 		public void restoreFromBundle(Bundle bundle) {
 			super.restoreFromBundle(bundle);
 			pos = bundle.getInt(POS);
-			depth = bundle.getInt(DEPTH);
+			floor = bundle.getInt(FLOOR);
 		}
 
 		@Override
 		public void storeInBundle(Bundle bundle) {
 			super.storeInBundle(bundle);
 			bundle.put(POS, pos);
-			bundle.put(DEPTH, depth);
+			bundle.put(FLOOR, floor);
 		}
 	}
 

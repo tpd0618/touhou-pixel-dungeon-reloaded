@@ -36,132 +36,132 @@ public class DragonHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
 			Sample.INSTANCE.play(Assets.Sounds.BLAST);
-			hero.sprite.emitter().burst( Speck.factory( Speck.CROWN), 12 );
+			heroine.sprite.emitter().burst( Speck.factory( Speck.CROWN), 12 );
 
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob.pos == hero.pos + 1){
-					mob.damage(6 * Dungeon.depth, hero);
+				if (mob.pos == heroine.pos + 1){
+					mob.damage(6 * Dungeon.floor, heroine);
 					mob.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob2 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob2.pos == hero.pos - 1){
-					mob2.damage(6 * Dungeon.depth, hero);
+				if (mob2.pos == heroine.pos - 1){
+					mob2.damage(6 * Dungeon.floor, heroine);
 					mob2.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob3 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob3.pos == hero.pos + 2){
-					mob3.damage(6 * Dungeon.depth, hero);
+				if (mob3.pos == heroine.pos + 2){
+					mob3.damage(6 * Dungeon.floor, heroine);
 					mob3.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob4 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob4.pos == hero.pos - 2){
-					mob4.damage(6 * Dungeon.depth, hero);
+				if (mob4.pos == heroine.pos - 2){
+					mob4.damage(6 * Dungeon.floor, heroine);
 					mob4.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob5 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob5.pos == hero.pos + 3){
-					mob5.damage(6 * Dungeon.depth, hero);
+				if (mob5.pos == heroine.pos + 3){
+					mob5.damage(6 * Dungeon.floor, heroine);
 					mob5.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob6 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob6.pos == hero.pos - 3){
-					mob6.damage(6 * Dungeon.depth, hero);
+				if (mob6.pos == heroine.pos - 3){
+					mob6.damage(6 * Dungeon.floor, heroine);
 					mob6.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob7 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob7.pos == hero.pos + 4) {
-					mob7.damage(6 * Dungeon.depth, hero);
+				if (mob7.pos == heroine.pos + 4) {
+					mob7.damage(6 * Dungeon.floor, heroine);
 					mob7.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6);
 				}
 			}
 			for (Mob mob8 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob8.pos == hero.pos - 4){
-					mob8.damage(6 * Dungeon.depth, hero);
+				if (mob8.pos == heroine.pos - 4){
+					mob8.damage(6 * Dungeon.floor, heroine);
 					mob8.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob9 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob9.pos == hero.pos + 5){
-					mob9.damage(6 * Dungeon.depth, hero);
+				if (mob9.pos == heroine.pos + 5){
+					mob9.damage(6 * Dungeon.floor, heroine);
 					mob9.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob10 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob10.pos == hero.pos - 5){
-					mob10.damage(6 * Dungeon.depth, hero);
+				if (mob10.pos == heroine.pos - 5){
+					mob10.damage(6 * Dungeon.floor, heroine);
 					mob10.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob11 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob11.pos == hero.pos + 6){
-					mob11.damage(6 * Dungeon.depth, hero);
+				if (mob11.pos == heroine.pos + 6){
+					mob11.damage(6 * Dungeon.floor, heroine);
 					mob11.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob12 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob12.pos == hero.pos - 6){
-					mob12.damage(6 * Dungeon.depth, hero);
+				if (mob12.pos == heroine.pos - 6){
+					mob12.damage(6 * Dungeon.floor, heroine);
 					mob12.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob13 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob13.pos == hero.pos + 7){
-					mob13.damage(6 * Dungeon.depth, hero);
+				if (mob13.pos == heroine.pos + 7){
+					mob13.damage(6 * Dungeon.floor, heroine);
 					mob13.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob14 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob14.pos == hero.pos - 7){
-					mob14.damage(6 * Dungeon.depth, hero);
+				if (mob14.pos == heroine.pos - 7){
+					mob14.damage(6 * Dungeon.floor, heroine);
 					mob14.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob15 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob15.pos == hero.pos + 8){
-					mob15.damage(6 * Dungeon.depth, hero);
+				if (mob15.pos == heroine.pos + 8){
+					mob15.damage(6 * Dungeon.floor, heroine);
 					mob15.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob16 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob16.pos == hero.pos - 8){
-					mob16.damage(6 * Dungeon.depth, hero);
+				if (mob16.pos == heroine.pos - 8){
+					mob16.damage(6 * Dungeon.floor, heroine);
 					mob16.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob17 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob17.pos == hero.pos + 9){
-					mob17.damage(6 * Dungeon.depth, hero);
+				if (mob17.pos == heroine.pos + 9){
+					mob17.damage(6 * Dungeon.floor, heroine);
 					mob17.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob16 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob16.pos == hero.pos - 9){
-					mob16.damage(6 * Dungeon.depth, hero);
+				if (mob16.pos == heroine.pos - 9){
+					mob16.damage(6 * Dungeon.floor, heroine);
 					mob16.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 
 			for (Mob mob19 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob19.pos == hero.pos + 10){
-					mob19.damage(6 * Dungeon.depth, hero);
+				if (mob19.pos == heroine.pos + 10){
+					mob19.damage(6 * Dungeon.floor, heroine);
 					mob19.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}
 			for (Mob mob20 : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob20.pos == hero.pos - 10){
-					mob20.damage(6 * Dungeon.depth, hero);
+				if (mob20.pos == heroine.pos - 10){
+					mob20.damage(6 * Dungeon.floor, heroine);
 					mob20.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 				}
 			}

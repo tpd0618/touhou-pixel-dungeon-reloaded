@@ -137,7 +137,7 @@ public class SurfaceScene extends PixelScene {
 			window.add( patch );
 		}
 
-		Avatar a = new Avatar( Dungeon.hero.heroClass );
+		Avatar a = new Avatar( Dungeon.heroine.heroClass );
 		// Removing semitransparent contour
 		a.am = 2; a.aa = -1;
 		a.x = (SKY_WIDTH - a.width) / 2;
@@ -154,10 +154,10 @@ public class SurfaceScene extends PixelScene {
 		//Rose level is halved because it's easier to upgrade
 		CharSprite allySprite = null;
 
-		int earthLevel = Dungeon.hero.belongings.getItem(WandOfLivingEarth.class) == null ? 0 : Dungeon.hero.belongings.getItem(WandOfLivingEarth.class).level();
-		int wardLevel = Dungeon.hero.belongings.getItem(WandOfWarding.class) == null ? 0 : Dungeon.hero.belongings.getItem(WandOfWarding.class).level();
+		int earthLevel = Dungeon.heroine.belongings.getItem(WandOfLivingEarth.class) == null ? 0 : Dungeon.heroine.belongings.getItem(WandOfLivingEarth.class).level();
+		int wardLevel = Dungeon.heroine.belongings.getItem(WandOfWarding.class) == null ? 0 : Dungeon.heroine.belongings.getItem(WandOfWarding.class).level();
 
-		MarisaStaff staff = Dungeon.hero.belongings.getItem(MarisaStaff.class);
+		MarisaStaff staff = Dungeon.heroine.belongings.getItem(MarisaStaff.class);
 		if (staff != null){
 			if (staff.wandClass() == WandOfLivingEarth.class){
 				earthLevel = Math.max(earthLevel, staff.level());

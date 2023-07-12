@@ -2,27 +2,17 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreCooldown;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.FlandreSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KeineSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -32,8 +22,8 @@ public class Flandre extends Mob {
     {
         spriteClass = FlandreSprite.class;
 
-        HP = HT = Dungeon.depth*10;
-        defenseSkill = Dungeon.depth;
+        HP = HT = Dungeon.floor*10+30;
+        defenseSkill = Dungeon.floor+5;
 
         state = PASSIVE;
 
@@ -51,29 +41,29 @@ public class Flandre extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.depth, Dungeon.depth+5);
+        return Random.NormalIntRange(Dungeon.floor, Dungeon.floor+10);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return Dungeon.depth+5;
+        return Dungeon.floor+10;
     }
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(0, 4);
     }
 
     @Override
     public void beckon( int cell ) {
-        // Do nothing
+        //Do nothing
     }
 
     @Override
     public void die( Object cause ) {
-        Dungeon.level.drop(new Life(), pos ).sprite.drop();
-        Dungeon.level.drop(new Spellcard(), pos ).sprite.drop();
+        Dungeon.level.drop(new ThreeStarTicket(), pos ).sprite.drop();
         Dungeon.level.drop(new FourStarTicket(), pos ).sprite.drop();
+        Dungeon.level.drop(new FiveStarTicket(), pos ).sprite.drop();
         super.die( cause );
     }
 
@@ -97,13 +87,13 @@ public class Flandre extends Mob {
 
     @Override
     protected boolean act() {
-        if (Dungeon.level.heroFOV[pos] && this.HP != this.HT && this.buff(FlandreCooldown.class) == null) {
-            Dungeon.hero.damage(Dungeon.depth+20, this);
+        if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING && this.HP != this.HT && this.buff(FlandreCooldown.class) == null) {
+            Dungeon.heroine.damage(Dungeon.floor+20, this);
             GameScene.flash(-65536);
             Buff.prolong(this, FlandreCooldown.class, FlandreCooldown.DURATION);
             Sample.INSTANCE.play( Assets.Sounds.BLAST );
             GLog.w(Messages.get(this, "destruction_wave"));
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail(Flandre.class);
             }
         }

@@ -50,11 +50,11 @@ public class Junko extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             if (Statistics.life == 0) {
-                Homunculus homunculus = Dungeon.hero.belongings.getItem(Homunculus.class);
+                Homunculus homunculus = Dungeon.heroine.belongings.getItem(Homunculus.class);
                 if (homunculus != null) {
-                    homunculus.detach(Dungeon.hero.belongings.backpack);
+                    homunculus.detach(Dungeon.heroine.belongings.backpack);
                     Sample.INSTANCE.play(Assets.Sounds.BEACON);
                     GLog.w(Messages.get(Homunculus.class, "block_instakill"));
                     Item.updateQuickslot();

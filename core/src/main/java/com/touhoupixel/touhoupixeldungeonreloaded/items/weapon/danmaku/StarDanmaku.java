@@ -46,7 +46,7 @@ public class StarDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (6+Dungeon.hero.lvl/3) * tier +                      //base
+		return  (6+Dungeon.heroine.lvl/3) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 	
@@ -54,14 +54,14 @@ public class StarDanmaku extends MissileWeapon {
 	protected void rangedHit(Char enemy, int cell) {
 		decrementDurability();
 		if (durability > 0){
-			Buff.append(Dungeon.hero, CircleBack.class).setup(this, cell, Dungeon.hero.pos, Dungeon.depth);
+			Buff.append(Dungeon.heroine, CircleBack.class).setup(this, cell, Dungeon.heroine.pos, Dungeon.floor);
 		}
 	}
 	
 	@Override
 	protected void rangedMiss(int cell) {
 		parent = null;
-		Buff.append(Dungeon.hero, CircleBack.class).setup(this, cell, Dungeon.hero.pos, Dungeon.depth);
+		Buff.append(Dungeon.heroine, CircleBack.class).setup(this, cell, Dungeon.heroine.pos, Dungeon.floor);
 	}
 	
 	public static class CircleBack extends Buff {
@@ -73,7 +73,7 @@ public class StarDanmaku extends MissileWeapon {
 		private MissileWeapon boomerang;
 		private int thrownPos;
 		private int returnPos;
-		private int returnDepth;
+		private int returnFloor;
 		
 		private int left;
 		
@@ -81,7 +81,7 @@ public class StarDanmaku extends MissileWeapon {
 			this.boomerang = boomerang;
 			this.thrownPos = thrownPos;
 			this.returnPos = returnPos;
-			this.returnDepth = returnDepth;
+			this.returnFloor = returnDepth;
 			left = 3;
 		}
 		
@@ -94,18 +94,18 @@ public class StarDanmaku extends MissileWeapon {
 			return boomerang;
 		}
 
-		public int activeDepth(){
-			return returnDepth;
+		public int activeFloor(){
+			return returnFloor;
 		}
 		
 		@Override
 		public boolean act() {
-			if (returnDepth == Dungeon.depth){
+			if (returnFloor == Dungeon.floor){
 				left--;
 				if (left <= 0){
 					final Char returnTarget = Actor.findChar(returnPos);
 					final Char target = this.target;
-					MissileSprite visual = ((MissileSprite) Dungeon.hero.sprite.parent.recycle(MissileSprite.class));
+					MissileSprite visual = ((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class));
 					visual.reset( thrownPos,
 									returnPos,
 									boomerang,
@@ -148,7 +148,7 @@ public class StarDanmaku extends MissileWeapon {
 		private static final String BOOMERANG = "boomerang";
 		private static final String THROWN_POS = "thrown_pos";
 		private static final String RETURN_POS = "return_pos";
-		private static final String RETURN_DEPTH = "return_depth";
+		private static final String RETURN_FLOOR = "return_floor";
 		
 		@Override
 		public void storeInBundle(Bundle bundle) {
@@ -156,7 +156,7 @@ public class StarDanmaku extends MissileWeapon {
 			bundle.put(BOOMERANG, boomerang);
 			bundle.put(THROWN_POS, thrownPos);
 			bundle.put(RETURN_POS, returnPos);
-			bundle.put(RETURN_DEPTH, returnDepth);
+			bundle.put(RETURN_FLOOR, returnFloor);
 		}
 		
 		@Override
@@ -165,7 +165,7 @@ public class StarDanmaku extends MissileWeapon {
 			boomerang = (MissileWeapon) bundle.get(BOOMERANG);
 			thrownPos = bundle.getInt(THROWN_POS);
 			returnPos = bundle.getInt(RETURN_POS);
-			returnDepth = bundle.getInt(RETURN_DEPTH);
+			returnFloor = bundle.getInt(RETURN_FLOOR);
 		}
 	}
 }

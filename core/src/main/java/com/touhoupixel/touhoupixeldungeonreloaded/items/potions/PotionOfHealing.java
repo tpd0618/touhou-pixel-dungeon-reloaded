@@ -55,10 +55,10 @@ public class PotionOfHealing extends Potion {
 	}
 	
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
-		cure( hero );
-		heal( hero );
+		cure(heroine);
+		heal(heroine);
 		if (Statistics.card62){
 			GameScene.flash(0x80FFFFFF);
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
@@ -74,14 +74,14 @@ public class PotionOfHealing extends Potion {
 	public static void heal( Char ch ) {
 		if (ch.buff(Inversion.class) != null) {
 			ch.damage(ch.HT / 2, ch);
-			if (ch == Dungeon.hero && !ch.isAlive()) {
+			if (ch == Dungeon.heroine && !ch.isAlive()) {
 				Dungeon.fail(InversionTrap.class);
 				GLog.n( Messages.get(Inversion.class, "ondeath") );
 			}
 		} else {
 			Buff.affect(ch, Healing.class).setHeal((int) (0.8f * ch.HT + 14), 0.25f, 0);
 		}
-		if (ch == Dungeon.hero) {
+		if (ch == Dungeon.heroine) {
 			GLog.p(Messages.get(PotionOfHealing.class, "heal"));
 		}
 	}

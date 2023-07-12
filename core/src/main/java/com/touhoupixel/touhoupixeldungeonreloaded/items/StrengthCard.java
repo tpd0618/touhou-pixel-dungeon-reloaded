@@ -43,20 +43,20 @@ public class StrengthCard extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add(AC_DRINK);
 		return actions;
 	}
 
 	@Override
-	public void execute(final Hero hero, String action) {
+	public void execute(final Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_DRINK)) {
-			hero.STR++;
-			hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "msg_1"));
+			heroine.STR++;
+			heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "msg_1"));
 			GLog.p(Messages.get(this, "msg_2"));
 
 			curUser.spendAndNext(1f);

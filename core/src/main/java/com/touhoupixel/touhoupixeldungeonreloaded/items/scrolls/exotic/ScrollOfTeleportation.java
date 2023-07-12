@@ -50,7 +50,7 @@ import java.util.ArrayList;
 public class ScrollOfTeleportation extends ExoticScroll {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_TELEPORT;
+		icon = ItemSpriteSheet.Icons.SCROLL_TELEPORTATION;
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class ScrollOfTeleportation extends ExoticScroll {
 		if ((PathFinder.distance[ch.pos] == Integer.MAX_VALUE
 				|| (!Dungeon.level.passable[pos] && !Dungeon.level.avoid[pos])
 				|| Actor.findChar(pos) != null) && !(curItem instanceof TransientTalisman)) {
-			if (ch == Dungeon.hero) {
+			if (ch == Dungeon.heroine) {
 				GLog.w(Messages.get(ScrollOfTeleportation.class, "cant_reach"));
 			}
 			return false;
@@ -78,7 +78,7 @@ public class ScrollOfTeleportation extends ExoticScroll {
 
 		appear(ch, pos);
 		Dungeon.level.occupyCell(ch);
-		if (ch == Dungeon.hero) {
+		if (ch == Dungeon.heroine) {
 			Dungeon.observe();
 			GameScene.updateFog();
 		}
@@ -86,8 +86,8 @@ public class ScrollOfTeleportation extends ExoticScroll {
 
 	}
 
-	public static boolean teleportHero(Hero hero) {
-		return teleportChar(hero);
+	public static boolean teleportHero(Hero heroine) {
+		return teleportChar(heroine);
 	}
 
 	public static boolean teleportChar(Char ch) {
@@ -120,22 +120,22 @@ public class ScrollOfTeleportation extends ExoticScroll {
 			appear(ch, pos);
 			Dungeon.level.occupyCell(ch);
 
-			if (ch == Dungeon.hero) {
+			if (ch == Dungeon.heroine) {
 				GLog.i(Messages.get(ScrollOfTeleportation.class, "tele"));
 
 				Dungeon.observe();
 				GameScene.updateFog();
-				Dungeon.hero.interrupt();
+				Dungeon.heroine.interrupt();
 			}
 			return true;
 
 		}
 	}
 
-	public static boolean teleportPreferringUnseen(Hero hero) {
+	public static boolean teleportPreferringUnseen(Hero heroine) {
 
 		if (!(Dungeon.level instanceof RegularLevel)) {
-			return teleportInNonRegularLevel(hero, true);
+			return teleportInNonRegularLevel(heroine, true);
 		}
 
 		RegularLevel level = (RegularLevel) Dungeon.level;
@@ -167,7 +167,7 @@ public class ScrollOfTeleportation extends ExoticScroll {
 		}
 
 		if (candidates.isEmpty()) {
-			return teleportChar(hero);
+			return teleportChar(heroine);
 		} else {
 			int pos = Random.element(candidates);
 			boolean secretDoor = false;
@@ -188,8 +188,8 @@ public class ScrollOfTeleportation extends ExoticScroll {
 				}
 			}
 			GLog.i(Messages.get(ScrollOfTeleportation.class, "tele"));
-			appear(hero, pos);
-			Dungeon.level.occupyCell(hero);
+			appear(heroine, pos);
+			Dungeon.level.occupyCell(heroine);
 			if (secretDoor && level.map[doorPos] == Terrain.SECRET_DOOR) {
 				Sample.INSTANCE.play(Assets.Sounds.SECRET);
 				int oldValue = Dungeon.level.map[doorPos];
@@ -251,12 +251,12 @@ public class ScrollOfTeleportation extends ExoticScroll {
 		appear(ch, pos);
 		Dungeon.level.occupyCell(ch);
 
-		if (ch == Dungeon.hero) {
+		if (ch == Dungeon.heroine) {
 			GLog.i(Messages.get(ScrollOfTeleportation.class, "tele"));
 
 			Dungeon.observe();
 			GameScene.updateFog();
-			Dungeon.hero.interrupt();
+			Dungeon.heroine.interrupt();
 		}
 
 		return true;
@@ -271,7 +271,7 @@ public class ScrollOfTeleportation extends ExoticScroll {
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 		}
 
-		if (Dungeon.level.heroFOV[ch.pos] && ch != Dungeon.hero) {
+		if (Dungeon.level.heroFOV[ch.pos] && ch != Dungeon.heroine) {
 			CellEmitter.get(ch.pos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 		}
 
@@ -283,7 +283,7 @@ public class ScrollOfTeleportation extends ExoticScroll {
 			ch.sprite.parent.add(new AlphaTweener(ch.sprite, 1, 0.4f));
 		}
 
-		if (Dungeon.level.heroFOV[pos] || ch == Dungeon.hero) {
+		if (Dungeon.level.heroFOV[pos] || ch == Dungeon.heroine) {
 			ch.sprite.emitter().start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 		}
 	}

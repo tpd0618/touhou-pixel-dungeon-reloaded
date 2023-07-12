@@ -54,8 +54,8 @@ public class Reimu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            Artifact artifact = Dungeon.hero.belongings.getItem(Artifact.class);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+            Artifact artifact = Dungeon.heroine.belongings.getItem(Artifact.class);
             if (artifact != null) {
                 artifact.charge = 0;
                 Item.updateQuickslot();

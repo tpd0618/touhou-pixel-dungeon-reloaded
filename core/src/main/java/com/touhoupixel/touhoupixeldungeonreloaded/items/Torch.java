@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
@@ -50,36 +48,36 @@ public class Torch extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_LIGHT );
 		return actions;
 	}
 	
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 		
 		if (action.equals( AC_LIGHT )) {
 			
-			hero.spend( TIME_TO_LIGHT );
-			hero.busy();
+			heroine.spend( TIME_TO_LIGHT );
+			heroine.busy();
 			
-			hero.sprite.operate( hero.pos );
+			heroine.sprite.operate( heroine.pos );
 			
-			detach( hero.belongings.backpack );
+			detach( heroine.belongings.backpack );
 
 			Statistics.torchuse = true;
 
 			if (Statistics.difficulty == 6) {
-				Buff.affect(hero, Light.class, Light.DURATION/2f);
+				Buff.affect(heroine, Light.class, Light.DURATION/2f);
 			} else {
-				Buff.affect(hero, Light.class, Light.DURATION);
+				Buff.affect(heroine, Light.class, Light.DURATION);
 			}
 			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 			
-			Emitter emitter = hero.sprite.centerEmitter();
+			Emitter emitter = heroine.sprite.centerEmitter();
 			emitter.start( FlameParticle.FACTORY, 0.2f, 3 );
 			
 		}

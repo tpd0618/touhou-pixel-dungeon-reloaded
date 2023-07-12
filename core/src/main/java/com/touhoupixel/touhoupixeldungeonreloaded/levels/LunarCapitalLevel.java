@@ -22,11 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfNixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
@@ -105,13 +101,6 @@ public class LunarCapitalLevel extends RegularLevel {
 	@Override
 	public void create() {
 		itemsToSpawn.add( new FiveStarTicket() );
-		if (Dungeon.isChallenged(Challenges.GENSOKYO_PALACE)) {
-			itemsToSpawn.add(Generator.random(Generator.Category.VIAL));
-		}
-		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
-			itemsToSpawn.add(new StoneOfNixer());
-		}
-
 		super.create();
 	}
 

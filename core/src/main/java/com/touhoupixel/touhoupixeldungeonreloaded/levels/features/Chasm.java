@@ -55,12 +55,12 @@ public class Chasm implements Hero.Doom {
 	public static boolean jumpConfirmed = false;
 	private static int heroPos;
 
-	public static void heroJump( final Hero hero ) {
-		heroPos = hero.pos;
+	public static void heroJump( final Hero heroine) {
+		heroPos = heroine.pos;
 		Game.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
-				if (Dungeon.hero.buff(BalanceBreak.class) == null) {
+				if (Dungeon.heroine.buff(BalanceBreak.class) == null) {
 					GameScene.show(
 							new WndOptions(new Image(Dungeon.level.tilesTex(), 48, 48, 16, 16),
 									Messages.get(Chasm.class, "chasm"),
@@ -70,26 +70,26 @@ public class Chasm implements Hero.Doom {
 								@Override
 								protected void onSelect(int index) {
 									if (index == 0) {
-										if (Dungeon.hero.pos == heroPos) {
-											if (Dungeon.depth == 1){
-												ScrollOfTeleportation.teleportChar(hero);
+										if (Dungeon.heroine.pos == heroPos) {
+											if (Dungeon.floor == 1){
+												ScrollOfTeleportation.teleportChar(heroine);
 												GLog.n( Messages.get(Tenshi.class, "depthonefall") );
 											} else {
 												jumpConfirmed = true;
-												hero.resume();
+												heroine.resume();
 											}
 										}
 									}
 								}
 							}
 					);
-				} else if (Dungeon.hero.pos == heroPos) {
-					if (Dungeon.depth == 1){
-						ScrollOfTeleportation.teleportChar(hero);
+				} else if (Dungeon.heroine.pos == heroPos) {
+					if (Dungeon.floor == 1){
+						ScrollOfTeleportation.teleportChar(heroine);
 						GLog.n( Messages.get(Tenshi.class, "depthonefall") );
 					} else {
 						jumpConfirmed = true;
-						hero.resume();
+						heroine.resume();
 					}
 				}
 			}
@@ -102,25 +102,25 @@ public class Chasm implements Hero.Doom {
 
 		Sample.INSTANCE.play( Assets.Sounds.FALLING );
 
-		TimekeepersHourglass.timeFreeze timeFreeze = Dungeon.hero.buff(TimekeepersHourglass.timeFreeze.class);
+		TimekeepersHourglass.timeFreeze timeFreeze = Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class);
 		if (timeFreeze != null) timeFreeze.disarmPressedTraps();
-		Swiftthistle.TimeBubble timeBubble = Dungeon.hero.buff(Swiftthistle.TimeBubble.class);
+		Swiftthistle.TimeBubble timeBubble = Dungeon.heroine.buff(Swiftthistle.TimeBubble.class);
 		if (timeBubble != null) timeBubble.disarmPressedTraps();
 
-		if (Dungeon.hero.isAlive()) {
+		if (Dungeon.heroine.isAlive()) {
 			InterlevelScene.mode = InterlevelScene.Mode.FALL;
 			if (Dungeon.level instanceof RegularLevel) {
 				InterlevelScene.fallIntoPit = false;
 			}
-			if (Dungeon.depth == 1) {
-				ScrollOfTeleportation.teleportChar(Dungeon.hero);
+			if (Dungeon.floor == 1) {
+				ScrollOfTeleportation.teleportChar(Dungeon.heroine);
 				GLog.n(Messages.get(Tenshi.class, "depthonefall"));
 			} else {
-				Dungeon.hero.interrupt();
+				Dungeon.heroine.interrupt();
 				Game.switchScene(InterlevelScene.class);
 			}
 		} else {
-			Dungeon.hero.sprite.visible = false;
+			Dungeon.heroine.sprite.visible = false;
 		}
 	}
 
@@ -132,29 +132,29 @@ public class Chasm implements Hero.Doom {
 
 	public static void heroLand() {
 
-		Hero hero = Dungeon.hero;
+		Hero heroine = Dungeon.heroine;
 
-		FeatherFall.FeatherBuff b = hero.buff(FeatherFall.FeatherBuff.class);
+		FeatherFall.FeatherBuff b = heroine.buff(FeatherFall.FeatherBuff.class);
 
 		if (b != null){
-			hero.sprite.emitter().burst( Speck.factory( Speck.JET ), 20);
+			heroine.sprite.emitter().burst( Speck.factory( Speck.JET ), 20);
 			b.detach();
 			return;
 		}
 
 		Camera.main.shake( 4, 1f );
 
-		Dungeon.level.occupyCell(hero );
+		Dungeon.level.occupyCell(heroine);
 		if (!Statistics.card53) {
-			Buff.prolong(hero, Cripple.class, Cripple.DURATION);
+			Buff.prolong(heroine, Cripple.class, Cripple.DURATION);
 		}
 
 		//The lower the hero's HP, the more bleed and the less upfront damage.
 		//Hero has a 50% chance to bleed out at 66% HP, and begins to risk instant-death at 25%
 		if (!Statistics.card53) {
-			Buff.affect(hero, FallBleed.class).set(Math.round(hero.HT / (6f + (6f * (hero.HP / (float) hero.HT)))));
+			Buff.affect(heroine, FallBleed.class).set(Math.round(heroine.HT / (6f + (6f * (heroine.HP / (float) heroine.HT)))));
 		}
-		hero.damage(Math.max(hero.HP / 2, Random.NormalIntRange(hero.HP / 2, hero.HT / 4)), new Chasm());
+		heroine.damage(Math.max(heroine.HP / 2, Random.NormalIntRange(heroine.HP / 2, heroine.HT / 4)), new Chasm());
 	}
 
 	public static void mobFall( Mob mob ) {

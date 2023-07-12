@@ -92,7 +92,7 @@ public class WndStartGame extends Window {
 				super.onClick();
 
 				GamesInProgress.curSlot = slot;
-				Dungeon.hero = null;
+				Dungeon.heroine = null;
 				ActionIndicator.action = null;
 				InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
 

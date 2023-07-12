@@ -34,8 +34,8 @@ import com.watabou.noosa.audio.Sample;
 public abstract class InventorySpell extends Spell {
 	
 	@Override
-	protected void onCast(Hero hero) {
-		curItem = detach( hero.belongings.backpack );
+	protected void onCast(Hero heroine) {
+		curItem = detach( heroine.belongings.backpack );
 		GameScene.selectItem( itemSelector );
 	}
 

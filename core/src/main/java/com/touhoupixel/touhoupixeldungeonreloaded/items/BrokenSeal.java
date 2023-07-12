@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -79,16 +78,16 @@ public class BrokenSeal extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions =  super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions =  super.actions(heroine);
 		actions.add(AC_AFFIX);
 		return actions;
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_AFFIX)){
 			curItem = this;
@@ -146,19 +145,19 @@ public class BrokenSeal extends Item {
 							//if index is 1, then the glyph transfer happens in affixSeal
 
 							GLog.p(Messages.get(BrokenSeal.class, "affix"));
-							Dungeon.hero.sprite.operate(Dungeon.hero.pos);
+							Dungeon.heroine.sprite.operate(Dungeon.heroine.pos);
 							Sample.INSTANCE.play(Assets.Sounds.UNLOCK);
 							armor.affixSeal(seal);
-							seal.detach(Dungeon.hero.belongings.backpack);
+							seal.detach(Dungeon.heroine.belongings.backpack);
 						}
 					});
 
 				} else {
 					GLog.p(Messages.get(BrokenSeal.class, "affix"));
-					Dungeon.hero.sprite.operate(Dungeon.hero.pos);
+					Dungeon.heroine.sprite.operate(Dungeon.heroine.pos);
 					Sample.INSTANCE.play(Assets.Sounds.UNLOCK);
 					armor.affixSeal((BrokenSeal)curItem);
-					curItem.detach(Dungeon.hero.belongings.backpack);
+					curItem.detach(Dungeon.heroine.belongings.backpack);
 				}
 			}
 		}

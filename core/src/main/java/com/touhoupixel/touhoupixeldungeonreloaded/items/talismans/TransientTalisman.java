@@ -20,7 +20,7 @@ public class TransientTalisman extends Talisman {
         Char ch = Actor.findChar(cell);
 
         if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)) {
-            if (ch != Dungeon.hero) {
+            if (ch != Dungeon.heroine) {
                 if (Actor.findChar(Dungeon.level.exit()) == null) {
                     ScrollOfTeleportation.teleportToLocation(ch, Dungeon.level.exit());
                     Buff.prolong(ch, Paralysis.class, Paralysis.DURATION * 10f);

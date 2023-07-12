@@ -35,8 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.Brew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.Elixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.InventoryScroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
@@ -87,22 +85,22 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		} else {
 			if (result != item) {
 				int slot = Dungeon.quickslot.getSlot(item);
-				if (item.isEquipped(Dungeon.hero)) {
+				if (item.isEquipped(Dungeon.heroine)) {
 					item.cursed = false; //to allow it to be unequipped
-					((EquipableItem) item).doUnequip(Dungeon.hero, false);
-					((EquipableItem) result).doEquip(Dungeon.hero);
+					((EquipableItem) item).doUnequip(Dungeon.heroine, false);
+					((EquipableItem) result).doEquip(Dungeon.heroine);
 				} else {
-					item.detach(Dungeon.hero.belongings.backpack);
+					item.detach(Dungeon.heroine.belongings.backpack);
 					if (!result.collect()) {
 						Dungeon.level.drop(result, curUser.pos).sprite.drop();
-					} else if (Dungeon.hero.belongings.getSimilar(result) != null) {
-						result = Dungeon.hero.belongings.getSimilar(result);
+					} else if (Dungeon.heroine.belongings.getSimilar(result) != null) {
+						result = Dungeon.heroine.belongings.getSimilar(result);
 					}
 				}
 				if (slot != -1
 						&& result.defaultAction != null
 						&& !Dungeon.quickslot.isNonePlaceholder(slot)
-						&& Dungeon.hero.belongings.contains(result)) {
+						&& Dungeon.heroine.belongings.contains(result)) {
 					Dungeon.quickslot.setSlot(slot, result);
 				}
 			}

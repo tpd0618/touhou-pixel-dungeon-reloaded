@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.GamesInProgress;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
@@ -31,7 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Bundle;
@@ -85,48 +84,23 @@ public class Belongings implements Iterable<Item> {
 		//no point in lost invent check, if it's assigned it must be usable
 		if (thrownWeapon != null) return thrownWeapon;
 
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-		if (!lostInvent || (weapon != null && weapon.keptThoughLostInvent)){
-			return weapon;
-		} else {
-			return null;
-		}
+		return weapon;
 	}
 
 	public Armor armor(){
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-		if (!lostInvent || (armor != null && armor.keptThoughLostInvent)){
-			return armor;
-		} else {
-			return null;
-		}
+		return armor;
 	}
 
 	public Artifact artifact(){
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-		if (!lostInvent || (artifact != null && artifact.keptThoughLostInvent)){
-			return artifact;
-		} else {
-			return null;
-		}
+		return artifact;
 	}
 
 	public KindofMisc misc(){
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-		if (!lostInvent || (misc != null && misc.keptThoughLostInvent)){
-			return misc;
-		} else {
-			return null;
-		}
+		return misc;
 	}
 
 	public Ring ring(){
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-		if (!lostInvent || (ring != null && ring.keptThoughLostInvent)){
-			return ring;
-		} else {
-			return null;
-		}
+		return ring;
 	}
 
 	// ***
@@ -196,13 +170,9 @@ public class Belongings implements Iterable<Item> {
 	@SuppressWarnings("unchecked")
 	public<T extends Item> T getItem( Class<T> itemClass ) {
 
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-
 		for (Item item : this) {
 			if (itemClass.isInstance( item )) {
-				if (!lostInvent || item.keptThoughLostInvent) {
-					return (T) item;
-				}
+				return (T) item;
 			}
 		}
 
@@ -212,13 +182,9 @@ public class Belongings implements Iterable<Item> {
 	public<T extends Item> ArrayList<T> getAllItems( Class<T> itemClass ) {
 		ArrayList<T> result = new ArrayList<>();
 
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-
 		for (Item item : this) {
 			if (itemClass.isInstance( item )) {
-				if (!lostInvent || item.keptThoughLostInvent) {
-					result.add((T) item);
-				}
+				result.add((T) item);
 			}
 		}
 
@@ -227,13 +193,9 @@ public class Belongings implements Iterable<Item> {
 
 	public boolean contains( Item contains ){
 
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-
 		for (Item item : this) {
 			if (contains == item) {
-				if (!lostInvent || item.keptThoughLostInvent) {
-					return true;
-				}
+				return true;
 			}
 		}
 
@@ -242,13 +204,9 @@ public class Belongings implements Iterable<Item> {
 
 	public Item getSimilar( Item similar ){
 
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-
 		for (Item item : this) {
 			if (similar != item && similar.isSimilar(item)) {
-				if (!lostInvent || item.keptThoughLostInvent) {
-					return item;
-				}
+				return item;
 			}
 		}
 
@@ -258,13 +216,9 @@ public class Belongings implements Iterable<Item> {
 	public ArrayList<Item> getAllSimilar( Item similar ){
 		ArrayList<Item> result = new ArrayList<>();
 
-		boolean lostInvent = owner != null && owner.buff(LostInventory.class) != null;
-
 		for (Item item : this) {
 			if (item != similar && similar.isSimilar(item)) {
-				if (!lostInvent || item.keptThoughLostInvent) {
-					result.add(item);
-				}
+				result.add(item);
 			}
 		}
 
@@ -303,12 +257,10 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public void uncurseEquipped() {
-		ScrollOfCurseRemoval.uncurse( owner, armor(), weapon(), artifact(), misc(), ring());
+		ScrollOfExorcism.uncurse( owner, armor(), weapon(), artifact(), misc(), ring());
 	}
 
 	public Item randomUnequipped() {
-		if (owner.buff(LostInventory.class) != null) return null;
-
 		return Random.element( backpack.items );
 	}
 

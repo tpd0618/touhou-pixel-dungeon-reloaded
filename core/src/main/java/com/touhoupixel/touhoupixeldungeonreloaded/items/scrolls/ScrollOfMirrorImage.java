@@ -60,12 +60,12 @@ public class ScrollOfMirrorImage extends Scroll {
 	}
 	
 	//returns the number of images spawned
-	public static int spawnImages( Hero hero, int nImages ){
+	public static int spawnImages(Hero heroine, int nImages ){
 		
 		ArrayList<Integer> respawnPoints = new ArrayList<>();
 		
 		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
-			int p = hero.pos + PathFinder.NEIGHBOURS8[i];
+			int p = heroine.pos + PathFinder.NEIGHBOURS8[i];
 			if (Actor.findChar( p ) == null && Dungeon.level.passable[p]) {
 				respawnPoints.add( p );
 			}
@@ -76,7 +76,7 @@ public class ScrollOfMirrorImage extends Scroll {
 			int index = Random.index( respawnPoints );
 			
 			MirrorImage mob = new MirrorImage();
-			mob.duplicate( hero );
+			mob.duplicate(heroine);
 			GameScene.add( mob );
 			ScrollOfTeleportation.appear( mob, respawnPoints.get( index ) );
 			

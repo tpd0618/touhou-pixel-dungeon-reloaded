@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.food;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
@@ -44,35 +44,35 @@ public class MysteryMeat extends Food {
 	}
 	
 	@Override
-	protected void satisfy(Hero hero) {
-		super.satisfy(hero);
-		effect(hero);
+	protected void satisfy(Hero heroine) {
+		super.satisfy(heroine);
+		effect(heroine);
 	}
 
 	public int value() {
 		return 5 * quantity;
 	}
 
-	public static void effect(Hero hero){
+	public static void effect(Hero heroine){
 		if (Statistics.card22){
-			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
+			Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
 		} else {
 			switch (Random.Int(5)) {
 				case 0:
 					GLog.w(Messages.get(MysteryMeat.class, "hot"));
-					Buff.affect(hero, Burning.class).reignite(hero);
+					Buff.affect(heroine, Burning.class).reignite(heroine);
 					break;
 				case 1:
 					GLog.w(Messages.get(MysteryMeat.class, "legs"));
-					Buff.prolong(hero, Roots.class, Roots.DURATION * 2f);
+					Buff.prolong(heroine, Roots.class, Roots.DURATION * 2f);
 					break;
 				case 2:
 					GLog.w(Messages.get(MysteryMeat.class, "not_well"));
-					Buff.affect(hero, Poison.class).set(hero.HT / 5);
+					Buff.affect(heroine, Poison.class).set(heroine.HT / 5);
 					break;
 				case 3:
 					GLog.w(Messages.get(MysteryMeat.class, "stuffed"));
-					Buff.prolong(hero, Slow.class, Slow.DURATION);
+					Buff.prolong(heroine, Slow.class, Slow.DURATION);
 					break;
 			}
 		}

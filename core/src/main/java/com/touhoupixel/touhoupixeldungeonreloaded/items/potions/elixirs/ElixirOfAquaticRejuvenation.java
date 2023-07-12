@@ -42,8 +42,8 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
-		Buff.affect(hero, AquaHealing.class).set(Math.round(hero.HT * 1.5f));
+	public void apply(Hero heroine) {
+		Buff.affect(heroine, AquaHealing.class).set(Math.round(heroine.HT * 1.5f));
 	}
 	
 	@Override

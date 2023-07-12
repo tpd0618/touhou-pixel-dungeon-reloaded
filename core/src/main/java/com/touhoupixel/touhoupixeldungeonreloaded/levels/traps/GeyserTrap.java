@@ -85,7 +85,7 @@ public class GeyserTrap extends Trap {
 			int targetpos = -1;
 			if (centerKnockBackDirection != -1){
 				targetpos = centerKnockBackDirection;
-			} else if (ch == Dungeon.hero){
+			} else if (ch == Dungeon.heroine){
 				//if it is the hero, random direction that isn't into a hazard
 				ArrayList<Integer> candidates = new ArrayList<>();
 				for (int i : PathFinder.NEIGHBOURS8){

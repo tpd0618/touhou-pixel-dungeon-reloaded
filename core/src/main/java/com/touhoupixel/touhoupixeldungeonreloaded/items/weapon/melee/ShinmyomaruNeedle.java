@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class ShinmyomaruNeedle extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.SHINMYOMARUNEEDLE;
+		image = ItemSpriteSheet.SHINMYOMARU_NEEDLE;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 

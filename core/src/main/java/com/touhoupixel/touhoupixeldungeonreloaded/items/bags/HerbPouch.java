@@ -21,22 +21,20 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Blandfruit;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.Vial;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class HerbPouch extends Bag {
 
 	{
-		image = ItemSpriteSheet.HAKUREIHOLD;
+		image = ItemSpriteSheet.HAKUREI_HOLD;
 	}
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Herb || item instanceof PatchouliCard || item instanceof Honeypot || item instanceof Blandfruit){
+		if (item instanceof Herb || item instanceof Vial){
 			return super.canHold(item);
 		} else {
 			return false;

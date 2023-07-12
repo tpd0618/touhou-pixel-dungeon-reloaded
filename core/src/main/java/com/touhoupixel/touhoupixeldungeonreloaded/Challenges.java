@@ -26,37 +26,37 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int GENSOKYO_PALACE            = 1;
-	public static final int MAX_POWER_MODE             = 2;
-	public static final int GIRLS_BLOSSOM_PROJECT      = 4;
-	public static final int DISTORTION                 = 8;
-	public static final int REINCARNATION_APPLE        = 16;
-	public static final int RINGING_BLOOM              = 32;
-	public static final int DREAM_LOGICAL_WORLD        = 64;
-	public static final int TIME_EATER                 = 128;
-	public static final int KEYSTONE_MISSILE           = 256;
-	public static final int BUNBUN_DELIVERY            = 512;
-	public static final int LNN_PLAYER                 = 1024;
+	public static final int TOWER_OF_FORTUNE = 1;
+	public static final int DISTORTION       = 2;
+	public static final int RE_BIRTH_DAY     = 4;
+	public static final int RINGING_BLOOM    = 8;
+	public static final int BLESSING_CHORD   = 16;
+	public static final int CALL_THE_SHOTS   = 32;
+	public static final int RE_HOURAI_ELIXIR = 64;
+	public static final int LAST_SURPRISE    = 128;
+	public static final int INF_TIME_EATER   = 256;
+	public static final int DOUBLE_SPOILER   = 512;
+	public static final int LUNATIC_PERFECT  = 1024;
 
-	public static final int MAX_VALUE                  = 2047;
+	public static final int MAX_VALUE        = 2047;
 
 	public static final String[] NAME_IDS = {
-			"gensokyo_palace",
-			"max_power_mode",
-			"girls_blossom_project",
+			"tower_of_fortune",
 			"distortion",
-			"reincarnation_apple",
+			"re_birth_day",
 			"ringing_bloom",
-			"dream_logical_world",
-			"time_eater",
-			"keystone_missile",
-			"bunbun_delivery",
-			"lnn_player"
+			"blessing_chord",
+			"call_the_shots",
+			"re_hourai_elixir",
+			"last_surprise",
+			"inf_time_eater",
+			"double_spoiler",
+			"lunatic_perfect"
 	};
 
 	public static final int[] MASKS = {
-			GENSOKYO_PALACE, MAX_POWER_MODE, GIRLS_BLOSSOM_PROJECT, DISTORTION, REINCARNATION_APPLE, RINGING_BLOOM,
-			DREAM_LOGICAL_WORLD, TIME_EATER, KEYSTONE_MISSILE, BUNBUN_DELIVERY, LNN_PLAYER
+			TOWER_OF_FORTUNE, DISTORTION, RE_BIRTH_DAY, RINGING_BLOOM, BLESSING_CHORD, CALL_THE_SHOTS,
+			RE_HOURAI_ELIXIR, LAST_SURPRISE, INF_TIME_EATER, DOUBLE_SPOILER, LUNATIC_PERFECT
 	};
 
 	public static int activeChallenges(){

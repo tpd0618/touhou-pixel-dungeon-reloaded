@@ -93,7 +93,7 @@ public class HighGrass {
 				}
 				
 				// Dew, scales from 1/6 to 1/3
-				GlassBottle flask = Dungeon.hero.belongings.getItem(GlassBottle.class);
+				GlassBottle flask = Dungeon.heroine.belongings.getItem(GlassBottle.class);
 
 				if (Random.Int(24 - naturalismLevel*3) <= 3) {
 					if (flask != null && !flask.isFull() && ch instanceof Hero) {
@@ -116,9 +116,9 @@ public class HighGrass {
 
 			//Camouflage
 			if (ch instanceof Hero) {
-				Hero hero = (Hero) ch;
-				if (hero.belongings.armor() != null && hero.belongings.armor().hasGlyph(Camouflage.class, hero)) {
-					Camouflage.activate(hero, hero.belongings.armor.buffedLvl());
+				Hero heroine = (Hero) ch;
+				if (heroine.belongings.armor() != null && heroine.belongings.armor().hasGlyph(Camouflage.class, heroine)) {
+					Camouflage.activate(heroine, heroine.belongings.armor.buffedLvl());
 				}
 			}
 		}

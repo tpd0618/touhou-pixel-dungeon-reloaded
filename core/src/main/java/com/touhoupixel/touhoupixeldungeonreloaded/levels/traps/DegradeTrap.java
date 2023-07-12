@@ -44,7 +44,7 @@ public class DegradeTrap extends Trap {
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null && c == Dungeon.hero) {
+		if (c != null && c == Dungeon.heroine) {
 			Buff.prolong(c, Degrade.class, Degrade.DURATION);
 			GLog.w(Messages.get(this, "degrade"));
 		}

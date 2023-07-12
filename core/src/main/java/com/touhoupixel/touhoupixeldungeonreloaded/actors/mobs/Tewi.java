@@ -48,7 +48,7 @@ public class Tewi extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);

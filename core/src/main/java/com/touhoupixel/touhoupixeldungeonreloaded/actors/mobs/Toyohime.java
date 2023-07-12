@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -49,7 +48,7 @@ public class Toyohime extends Mob implements Callback {
 
 		HP = HT = 500;
 		defenseSkill = 50;
-		EXP = 25;
+		EXP = 24;
 		maxLvl = 99;
 
 		flying = true;
@@ -72,7 +71,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int drRoll() {
-		return Dungeon.depth == 50 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
+		return Dungeon.floor == 50 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
 	}
 
 	@Override
@@ -107,14 +106,14 @@ public class Toyohime extends Mob implements Callback {
 
 		if (hit(this, enemy, true)) {
 			//TODO would be nice for this to work on ghost/statues too
-			if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+			if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
 				Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
 				Sample.INSTANCE.play(Assets.Sounds.DEBUFF);
 				if (Statistics.difficulty > 2) {
 					Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
 				}
 				if (Statistics.difficulty > 4) {
-					Dungeon.hero.STR--;
+					Dungeon.heroine.STR--;
 					Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
 					Sample.INSTANCE.play( Assets.Sounds.CURSED );
 					GLog.w(Messages.get(Kanako.class, "str_reduce"));
@@ -124,7 +123,7 @@ public class Toyohime extends Mob implements Callback {
 			int dmg = Random.NormalIntRange(26, 32);
 			enemy.damage(dmg, new DarkBolt());
 
-			if (enemy == Dungeon.hero && !enemy.isAlive()) {
+			if (enemy == Dungeon.heroine && !enemy.isAlive()) {
 				Dungeon.fail(getClass());
 				GLog.n(Messages.get(this, "bolt_kill"));
 			}

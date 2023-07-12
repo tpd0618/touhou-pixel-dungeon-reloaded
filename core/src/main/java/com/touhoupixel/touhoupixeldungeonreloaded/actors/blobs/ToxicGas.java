@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -37,7 +36,7 @@ public class ToxicGas extends Blob implements Hero.Doom {
 	protected void evolve() {
 		super.evolve();
 
-		int damage = 1 + Dungeon.scalingDepth()/5;
+		int damage = 1 + Dungeon.scalingFloor()/5;
 
 		Char ch;
 		int cell;

@@ -35,7 +35,7 @@ public class AquaBlast extends TargetedSpell {
 	}
 	
 	@Override
-	protected void affectTarget(Ballistica bolt, Hero hero) {
+	protected void affectTarget(Ballistica bolt, Hero heroine) {
 		int cell = bolt.collisionPos;
 
 		GeyserTrap geyser = new GeyserTrap();

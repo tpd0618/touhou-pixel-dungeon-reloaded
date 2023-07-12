@@ -47,7 +47,7 @@ public class WaterOfTransmutation extends WellWater {
 	}
 	
 	@Override
-	protected boolean affectHero(Hero hero) {
+	protected boolean affectHero(Hero heroine) {
 		return false;
 	}
 	

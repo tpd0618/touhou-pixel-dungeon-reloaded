@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StairsSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
@@ -70,11 +69,7 @@ public class HeroAction {
 	
 	public static class LvlTransition extends HeroAction {
 		public LvlTransition(int stairs ) {
-			if (Dungeon.hero.buff(StairsSeal.class) != null) {
-				GLog.w(Messages.get(this, "stairs_sealed"));
-			} else {
-				this.dst = stairs;
-			}
+			this.dst = stairs;
 		}
 	}
 	

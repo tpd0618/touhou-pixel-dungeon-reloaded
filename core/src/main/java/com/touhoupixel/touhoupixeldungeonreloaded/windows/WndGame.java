@@ -86,13 +86,13 @@ public class WndGame extends Window {
 		}
 
 		// Restart
-		if (Dungeon.hero == null || !Dungeon.hero.isAlive()) {
+		if (Dungeon.heroine == null || !Dungeon.heroine.isAlive()) {
 
 			addButton( curBtn = new RedButton( Messages.get(this, "start") ) {
 				@Override
 				protected void onClick() {
 					InterlevelScene.noStory = true;
-					GamesInProgress.selectedClass = Dungeon.hero.heroClass;
+					GamesInProgress.selectedClass = Dungeon.heroine.heroClass;
 					GamesInProgress.curSlot = GamesInProgress.firstEmpty();
 					ShatteredPixelDungeon.switchScene(HeroSelectScene.class);
 				}

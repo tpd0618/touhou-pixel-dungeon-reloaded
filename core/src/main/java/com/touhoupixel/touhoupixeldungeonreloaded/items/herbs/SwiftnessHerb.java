@@ -22,7 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -33,12 +33,12 @@ public class SwiftnessHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
+			Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
 		}
 	}
 }

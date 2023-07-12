@@ -26,12 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakiSprite;
 import com.watabou.utils.Random;
 
@@ -69,13 +66,13 @@ public class Saki extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(2) == 0) {
             Buff.prolong(enemy, Slow.class, Slow.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
             }
         }
         return damage;

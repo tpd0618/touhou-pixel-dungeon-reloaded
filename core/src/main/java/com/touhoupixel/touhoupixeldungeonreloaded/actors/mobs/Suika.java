@@ -4,15 +4,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SuikaSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Suika extends Mob {
@@ -20,28 +19,42 @@ public class Suika extends Mob {
     {
         spriteClass = SuikaSprite.class;
 
-        HP = HT = 214;
-        defenseSkill = 22;
-        EXP = 13;
-        maxLvl = 30;
+        HP = HT = 6; //gitan mamel minus 6HP
+        defenseSkill = 40;
+        EXP = 19;
+        maxLvl = 47;
+
+        state = WANDERING;
 
         properties.add(Property.WARP);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff
 
-        loot = new PotionOfDanmaku();
-        lootChance = 0.1f;
+        loot = Gold.class;
+        lootChance = 1f;
+    }
+
+    @Override
+    protected boolean act() {
+        boolean result = super.act();
+        if (buff(SuperHard.class) == null) {
+            Buff.prolong(this, SuperHard.class, SuperHard.DURATION * 10000f);
+        }
+        if (buff(DoubleSpeed.class) == null) {
+            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 10000f);
+        }
+        return result;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 16);
+        return Random.NormalIntRange(28, 33);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 45;
     }
 
     @Override
@@ -50,19 +63,16 @@ public class Suika extends Mob {
     }
 
     @Override
-    public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
-            enemy.damage(damage, target);
-            Buff.prolong(this, Might.class, Might.DURATION);
-            Buff.prolong(this, Hisou.class, Hisou.DURATION);
-            GLog.w(Messages.get(this, "reflect"));
+    public int attackProc( Char hero, int damage ) {
+        damage = super.attackProc( enemy, damage );
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
+                Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
         }
-        return super.defenseProc(enemy, damage);
+        return damage;
     }
 }

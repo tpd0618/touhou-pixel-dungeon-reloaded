@@ -74,8 +74,8 @@ public class Electricity extends Blob {
 							Buff.prolong( ch, Paralysis.class, cur[cell]);
 						}
 						if (cur[cell] % 2 == 1) {
-							ch.damage(Math.round(Random.Float(2 + Dungeon.scalingDepth() / 5f)), this);
-							if (!ch.isAlive() && ch == Dungeon.hero){
+							ch.damage(Math.round(Random.Float(2 + Dungeon.scalingFloor() / 5f)), this);
+							if (!ch.isAlive() && ch == Dungeon.heroine){
 								Dungeon.fail( getClass() );
 								GLog.n( Messages.get(this, "ondeath") );
 							}

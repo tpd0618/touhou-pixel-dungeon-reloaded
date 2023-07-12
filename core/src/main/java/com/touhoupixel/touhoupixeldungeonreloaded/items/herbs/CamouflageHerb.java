@@ -33,12 +33,12 @@ public class CamouflageHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			Buff.prolong(hero, Invisibility.class, Invisibility.DURATION / 4f);
+			Buff.prolong(heroine, Invisibility.class, Invisibility.DURATION / 4f);
 		}
 	}
 }

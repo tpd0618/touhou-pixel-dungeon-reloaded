@@ -104,7 +104,7 @@ public class Sanae extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(2) == 0) {
+            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(2) == 0) {
                 Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/5f);
                 if (Statistics.difficulty > 2) {
                     Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
@@ -117,7 +117,7 @@ public class Sanae extends Mob implements Callback {
             int dmg = Random.NormalIntRange( 11, 15 );
             enemy.damage( dmg, new DarkBolt() );
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }

@@ -51,22 +51,22 @@ public class ChaliceOfBlood extends Artifact {
 	public static final String AC_PRICK = "PRICK";
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && level() < levelCap && !cursed && Dungeon.hero.buff(SuperHard.class) == null && !hero.isInvulnerable(getClass()))
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && level() < levelCap && !cursed && Dungeon.heroine.buff(SuperHard.class) == null && !heroine.isInvulnerable(getClass()))
 			actions.add(AC_PRICK);
 		return actions;
 	}
 
 	@Override
-	public void execute(Hero hero, String action ) {
-		super.execute(hero, action);
+	public void execute(Hero heroine, String action ) {
+		super.execute(heroine, action);
 
 		if (action.equals(AC_PRICK)){
 
 			int damage = 3*(level()*level());
 
-			if (damage > hero.HP*0.75) {
+			if (damage > heroine.HP*0.75) {
 
 				GameScene.show(
 					new WndOptions(new ItemSprite(this),
@@ -77,46 +77,46 @@ public class ChaliceOfBlood extends Artifact {
 						@Override
 						protected void onSelect(int index) {
 							if (index == 0)
-								prick(Dungeon.hero);
+								prick(Dungeon.heroine);
 						}
 					}
 				);
 
 			} else {
-				prick(hero);
+				prick(heroine);
 			}
 		}
 	}
 
-	private void prick(Hero hero){
+	private void prick(Hero heroine){
 		int damage = 3*(level()*level());
 
-		Earthroot.Armor armor = hero.buff(Earthroot.Armor.class);
+		Earthroot.Armor armor = heroine.buff(Earthroot.Armor.class);
 		if (armor != null) {
 			damage = armor.absorb(damage);
 		}
 
-		WandOfLivingEarth.RockArmor rockArmor = hero.buff(WandOfLivingEarth.RockArmor.class);
+		WandOfLivingEarth.RockArmor rockArmor = heroine.buff(WandOfLivingEarth.RockArmor.class);
 		if (rockArmor != null) {
 			damage = rockArmor.absorb(damage);
 		}
 
-		damage -= hero.drRoll();
+		damage -= heroine.drRoll();
 
-		hero.sprite.operate( hero.pos );
-		hero.busy();
-		hero.spend(3f);
+		heroine.sprite.operate( heroine.pos );
+		heroine.busy();
+		heroine.spend(3f);
 		GLog.w( Messages.get(this, "onprick") );
 		if (damage <= 0){
 			damage = 1;
 		} else {
 			Sample.INSTANCE.play(Assets.Sounds.CURSED);
-			hero.sprite.emitter().burst( ShadowParticle.CURSE, 4+(damage/10) );
+			heroine.sprite.emitter().burst( ShadowParticle.CURSE, 4+(damage/10) );
 		}
 
-		hero.damage(damage, this);
+		heroine.damage(damage, this);
 
-		if (!hero.isAlive()) {
+		if (!heroine.isAlive()) {
 			Dungeon.fail( getClass() );
 			GLog.n( Messages.get(this, "ondeath") );
 		} else {
@@ -158,7 +158,7 @@ public class ChaliceOfBlood extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if (isEquipped (Dungeon.hero)){
+		if (isEquipped (Dungeon.heroine)){
 			desc += "\n\n";
 			if (cursed)
 				desc += Messages.get(this, "desc_cursed");

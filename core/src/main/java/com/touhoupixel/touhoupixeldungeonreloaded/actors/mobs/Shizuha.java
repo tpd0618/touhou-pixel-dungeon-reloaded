@@ -50,10 +50,10 @@ public class Shizuha extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            GlassBottle waterskin = Dungeon.hero.belongings.getItem(GlassBottle.class);
-            if (waterskin != null) {
-                waterskin.volume = 0;
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+            GlassBottle waterSkin = Dungeon.heroine.belongings.getItem(GlassBottle.class);
+            if (waterSkin != null) {
+                waterSkin.volume = 0;
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 GLog.w(Messages.get(this, "dry"));
                 Item.updateQuickslot();

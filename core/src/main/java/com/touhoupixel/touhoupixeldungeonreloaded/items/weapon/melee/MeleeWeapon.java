@@ -22,10 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.watabou.utils.Random;
@@ -65,6 +68,29 @@ public class MeleeWeapon extends Weapon {
 		
 		return damage;
 	}
+
+	@Override
+	public void onThrow( int cell ) {
+		Heap heap = Dungeon.level.drop( this, cell );
+		Char ch = (Char) Actor.findChar(cell);
+		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine) {
+			MeleeWeapon meleeWeapon = (MeleeWeapon) curItem;
+			ch.damage(Random.NormalIntRange(Dungeon.heroine.STR+(meleeWeapon.min()*(meleeWeapon.level()+1))+8*meleeWeapon.tier,
+					Dungeon.heroine.STR+(meleeWeapon.max()*(meleeWeapon.level()+1))+8*meleeWeapon.tier), curUser);
+			//high damage
+			Heap[] equipHeaps = new Heap[1];
+			equipHeaps[0] = Dungeon.level.heaps.get(ch.pos);
+			for (Heap h : equipHeaps) {
+				for (Item i : h.items.toArray(new Item[0])){
+					if (i == curItem){
+						h.remove(i);
+					}
+				}
+			}
+		} else {
+			heap.sprite.drop( cell );
+		}
+	}
 	
 	@Override
 	public String info() {
@@ -73,14 +99,14 @@ public class MeleeWeapon extends Weapon {
 
 		if (levelKnown) {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), STRReq());
-			if (STRReq() > Dungeon.hero.STR()) {
+			if (STRReq() > Dungeon.heroine.STR()) {
 				info += " " + Messages.get(Weapon.class, "too_heavy");
-			} else if (Dungeon.hero.STR() > STRReq()){
-				info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
+			} else if (Dungeon.heroine.STR() > STRReq()){
+				info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.heroine.STR() - STRReq());
 			}
 		} else {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), STRReq(0));
-			if (STRReq(0) > Dungeon.hero.STR()) {
+			if (STRReq(0) > Dungeon.heroine.STR()) {
 				info += " " + Messages.get(MeleeWeapon.class, "probably_too_heavy");
 			}
 		}
@@ -103,7 +129,11 @@ public class MeleeWeapon extends Weapon {
 			info += " " + enchantment.desc();
 		}
 
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (plating) {
+			info += "\n\n" + Messages.get(Weapon.class, "plating");
+		}
+
+		if (cursed && isEquipped( Dungeon.heroine)) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
 		} else if (cursedKnown && cursed) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed");

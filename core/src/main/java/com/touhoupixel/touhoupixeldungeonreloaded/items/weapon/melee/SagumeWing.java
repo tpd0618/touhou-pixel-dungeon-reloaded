@@ -23,14 +23,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class SagumeWing extends MeleeWeapon {
@@ -57,7 +53,7 @@ public class SagumeWing extends MeleeWeapon {
     @Override
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(10) == 0) {
-            GlassBottle waterskin = Dungeon.hero.belongings.getItem(GlassBottle.class);
+            GlassBottle waterskin = Dungeon.heroine.belongings.getItem(GlassBottle.class);
             if (waterskin != null && waterskin.volume < 20) {
                 waterskin.volume += 1;
                 Item.updateQuickslot();

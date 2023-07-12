@@ -42,7 +42,7 @@ public class BalanceTrap extends Trap {
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null && c == Dungeon.hero) {
+		if (c != null && c == Dungeon.heroine) {
 			Buff.prolong(c, BalanceBreak.class, BalanceBreak.DURATION);
 		}
 		if (Dungeon.level.heroFOV[pos]) {

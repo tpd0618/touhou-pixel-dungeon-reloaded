@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDAction;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
@@ -117,15 +116,14 @@ public class Toolbar extends Component {
 					return;
 				}
 
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
 
 					String[] slotNames = new String[6];
 					Image[] slotIcons = new Image[6];
 					for (int i = 0; i < 6; i++){
 						Item item = Dungeon.quickslot.getItem(i);
 
-						if (item != null && !Dungeon.quickslot.isPlaceholder(i) &&
-								(Dungeon.hero.buff(LostInventory.class) == null || item.keptThoughLostInvent)){
+						if (item != null && !Dungeon.quickslot.isPlaceholder(i)){
 							slotNames[i] = Messages.titleCase(item.name());
 							slotIcons[i] = new ItemSprite(item);
 						} else {
@@ -151,7 +149,6 @@ public class Toolbar extends Component {
 							Item item = Dungeon.quickslot.getItem(idx);
 
 							if (item == null || Dungeon.quickslot.isPlaceholder(idx)
-									|| (Dungeon.hero.buff(LostInventory.class) != null && !item.keptThoughLostInvent)
 									|| alt){
 								//TODO would be nice to use a radial menu for this too
 								// Also a bunch of code could be moved out of here into subclasses of RadialMenu
@@ -176,7 +173,7 @@ public class Toolbar extends Component {
 								});
 							} else {
 
-								item.execute(Dungeon.hero);
+								item.execute(Dungeon.heroine);
 								if (item.usesTargeting) {
 									QuickSlotButton.useTargeting(idx);
 								}
@@ -197,9 +194,9 @@ public class Toolbar extends Component {
 		add(btnWait = new Tool(24, 0, 20, 26) {
 			@Override
 			protected void onClick() {
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
 					examining = false;
-					Dungeon.hero.rest(false);
+					Dungeon.heroine.rest(false);
 				}
 			}
 			
@@ -219,9 +216,9 @@ public class Toolbar extends Component {
 			}
 
 			protected boolean onLongClick() {
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
 					examining = false;
-					Dungeon.hero.rest(true);
+					Dungeon.heroine.rest(true);
 				}
 				return true;
 			}
@@ -231,9 +228,9 @@ public class Toolbar extends Component {
 		add(new Button(){
 			@Override
 			protected void onClick() {
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
 					examining = false;
-					Dungeon.hero.rest(true);
+					Dungeon.heroine.rest(true);
 				}
 			}
 
@@ -248,21 +245,21 @@ public class Toolbar extends Component {
 		add(new Button(){
 			@Override
 			protected void onClick() {
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
-					if (Dungeon.level.heaps.get(Dungeon.hero.pos) != null
-						&& Dungeon.hero.handle(Dungeon.hero.pos)){
-						Dungeon.hero.next();
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
+					if (Dungeon.level.heaps.get(Dungeon.heroine.pos) != null
+						&& Dungeon.heroine.handle(Dungeon.heroine.pos)){
+						Dungeon.heroine.next();
 					} else {
 						examining = false;
-						Dungeon.hero.rest(false);
+						Dungeon.heroine.rest(false);
 					}
 				}
 			}
 
 			protected boolean onLongClick() {
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
 					examining = false;
-					Dungeon.hero.rest(true);
+					Dungeon.heroine.rest(true);
 				}
 				return true;
 			}
@@ -277,13 +274,13 @@ public class Toolbar extends Component {
 		add(btnSearch = new Tool(44, 0, 20, 26) {
 			@Override
 			protected void onClick() {
-				if (Dungeon.hero.ready) {
+				if (Dungeon.heroine.ready) {
 					if (!examining && !GameScene.cancel()) {
 						GameScene.selectCell(informer);
 						examining = true;
 					} else if (examining) {
 						informer.onSelect(null);
-						Dungeon.hero.search(true);
+						Dungeon.heroine.search(true);
 					}
 				}
 			}
@@ -300,7 +297,7 @@ public class Toolbar extends Component {
 			
 			@Override
 			protected boolean onLongClick() {
-				Dungeon.hero.search(true);
+				Dungeon.heroine.search(true);
 				return true;
 			}
 		});
@@ -312,12 +309,12 @@ public class Toolbar extends Component {
 
 			@Override
 			protected void onClick() {
-				if (Dungeon.hero.ready || !Dungeon.hero.isAlive()) {
+				if (Dungeon.heroine.ready || !Dungeon.heroine.isAlive()) {
 					if (SPDSettings.interfaceSize() == 2) {
 						GameScene.toggleInvPane();
 					} else {
 						if (!GameScene.cancel()) {
-							GameScene.show(new WndBag(Dungeon.hero.belongings.backpack));
+							GameScene.show(new WndBag(Dungeon.heroine.belongings.backpack));
 						}
 					}
 				}
@@ -372,8 +369,8 @@ public class Toolbar extends Component {
 		add(new Button(){
 			@Override
 			protected void onClick() {
-				if (Dungeon.hero.ready && !GameScene.cancel()) {
-					ArrayList<Bag> bags = Dungeon.hero.belongings.getBags();
+				if (Dungeon.heroine.ready && !GameScene.cancel()) {
+					ArrayList<Bag> bags = Dungeon.heroine.belongings.getBags();
 					String[] names = new String[bags.size()];
 					Image[] images = new Image[bags.size()];
 					for (int i = 0; i < bags.size(); i++){
@@ -398,11 +395,10 @@ public class Toolbar extends Component {
 
 							for(Item i : bag.items){
 								if (i instanceof Bag) items.remove(i);
-								if (Dungeon.hero.buff(LostInventory.class) != null && !i.keptThoughLostInvent) items.remove(i);
 							}
 
 							if (idx == 0){
-								Belongings b = Dungeon.hero.belongings;
+								Belongings b = Dungeon.heroine.belongings;
 								if (b.ring() != null) items.add(0, b.ring());
 								if (b.misc() != null) items.add(0, b.misc());
 								if (b.artifact() != null) items.add(0, b.artifact());
@@ -439,7 +435,7 @@ public class Toolbar extends Component {
 									super.onSelect(idx, alt);
 									Item item = items.get(idx);
 									if (alt && item.defaultAction != null) {
-										item.execute(Dungeon.hero);
+										item.execute(Dungeon.heroine);
 										if (item.usesTargeting) {
 											QuickSlotButton.useTargeting(idx);
 										}
@@ -623,8 +619,8 @@ public class Toolbar extends Component {
 	public void update() {
 		super.update();
 		
-		if (lastEnabled != (Dungeon.hero.ready && Dungeon.hero.isAlive())) {
-			lastEnabled = (Dungeon.hero.ready && Dungeon.hero.isAlive());
+		if (lastEnabled != (Dungeon.heroine.ready && Dungeon.heroine.isAlive())) {
+			lastEnabled = (Dungeon.heroine.ready && Dungeon.heroine.isAlive());
 			
 			for (Gizmo tool : members.toArray(new Gizmo[0])) {
 				if (tool instanceof Tool) {
@@ -633,7 +629,7 @@ public class Toolbar extends Component {
 			}
 		}
 		
-		if (!Dungeon.hero.isAlive()) {
+		if (!Dungeon.heroine.isAlive()) {
 			btnInventory.enable(true);
 		}
 	}

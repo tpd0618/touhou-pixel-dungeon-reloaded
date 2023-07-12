@@ -35,14 +35,14 @@ public class CleansingHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			PotionOfHealing.cure(hero);
-			Buff.detach(hero, Inversion.class);
-			Buff.detach(hero, CursedBlow.class);
+			PotionOfHealing.cure(heroine);
+			Buff.detach(heroine, Inversion.class);
+			Buff.detach(heroine, CursedBlow.class);
 		}
 	}
 }

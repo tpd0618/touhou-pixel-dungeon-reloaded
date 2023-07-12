@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2023 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,9 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
@@ -40,8 +42,11 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Bomb extends Item {
 
@@ -161,14 +166,18 @@ public class Bomb extends Item {
                     continue;
                 }
 
-                int dmg = Random.NormalIntRange(15 + Random.NormalIntRange(1, 5), 20 + Random.NormalIntRange(6, 10));
+                int dmg = Random.NormalIntRange(5 + Dungeon.scalingFloor()/2, 10 + Dungeon.scalingFloor());
 
                 //those not at the center of the blast take less damage
                 if (ch.pos != cell){
                     dmg = Math.round(dmg*0.67f);
                 }
 
-                if (ch instanceof Mob || ch.buff(Zen.class) != null){
+                if (ch instanceof Mob){
+                    dmg *= 0.5f;
+                }
+
+                if (ch.buff(Zen.class) != null){
                     dmg *= 0;
                 }
 
@@ -178,7 +187,8 @@ public class Bomb extends Item {
                     ch.damage(dmg, this);
                 }
 
-                if (ch == Dungeon.hero && !ch.isAlive()) {
+                if (ch == Dungeon.heroine && !ch.isAlive()) {
+                    GLog.n(Messages.get(this, "ondeath"));
                     Dungeon.fail(Bomb.class);
                 }
             }
@@ -197,6 +207,11 @@ public class Bomb extends Item {
     @Override
     public boolean isIdentified() {
         return true;
+    }
+
+    @Override
+    public Item random() {
+        return this;
     }
 
     @Override
@@ -232,6 +247,8 @@ public class Bomb extends Item {
             Actor.add( fuse = ((Fuse)bundle.get(FUSE)).ignite(this) );
     }
 
+    //used to track the death from friendly magic badge
+    public static class MagicalBomb extends Bomb{};
 
     public static class Fuse extends Actor{
 
@@ -262,6 +279,7 @@ public class Bomb extends Item {
                     //FIXME this is a bit hacky, might want to generalize the functionality
                     //of bombs that don't explode instantly when their fuse ends
                     heap.remove(bomb);
+
                     bomb.explode(heap.pos);
 
                     diactivate();

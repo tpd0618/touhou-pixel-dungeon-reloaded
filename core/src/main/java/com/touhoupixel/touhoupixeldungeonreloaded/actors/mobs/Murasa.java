@@ -30,8 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BlobImmunity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
@@ -64,8 +63,8 @@ public class Murasa extends Mob {
 	public Murasa() {
 		super();
 		
-		HP = HT = 10 + Dungeon.depth * 5;
-		defenseSkill = 10 + Dungeon.depth * 2;
+		HP = HT = 10 + Dungeon.floor * 5;
+		defenseSkill = 10 + Dungeon.floor * 2;
 	}
 	
 	@Override
@@ -81,22 +80,22 @@ public class Murasa extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( Dungeon.depth, 4 + Dungeon.depth * 2 );
+		return Random.NormalIntRange( Dungeon.floor, 4 + Dungeon.floor * 2 );
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return 20 + Dungeon.depth * 2;
+		return 20 + Dungeon.floor * 2;
 	}
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, Dungeon.depth);
+		return Random.NormalIntRange(0, Dungeon.floor);
 	}
 
 	@Override
 	public boolean surprisedBy(Char enemy, boolean attacking) {
-		if (enemy == Dungeon.hero && (!attacking || ((Hero)enemy).canSurpriseAttack())){
+		if (enemy == Dungeon.heroine && (!attacking || ((Hero)enemy).canSurpriseAttack())){
 			if (fieldOfView == null || fieldOfView.length != Dungeon.level.length()){
 				fieldOfView = new boolean[Dungeon.level.length()];
 				Dungeon.level.updateFieldOfView( this, fieldOfView );
@@ -200,8 +199,8 @@ public class Murasa extends Mob {
 	@Override
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
-		if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-			Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+		if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+			Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
 			if (Statistics.difficulty > 2) {
 				Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
 			}

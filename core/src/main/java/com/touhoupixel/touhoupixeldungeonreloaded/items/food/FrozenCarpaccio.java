@@ -41,34 +41,34 @@ public class FrozenCarpaccio extends Food {
 	}
 	
 	@Override
-	protected void satisfy(Hero hero) {
-		super.satisfy(hero);
-		effect(hero);
+	protected void satisfy(Hero heroine) {
+		super.satisfy(heroine);
+		effect(heroine);
 	}
 	
 	public int value() {
 		return 10 * quantity;
 	}
 
-	public static void effect(Hero hero){
+	public static void effect(Hero heroine){
 		switch (Random.Int( 5 )) {
 			case 0:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "invis") );
-				Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
+				Buff.affect(heroine, Invisibility.class, Invisibility.DURATION );
 				break;
 			case 1:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "hard") );
-				Buff.affect( hero, Barkskin.class ).set( hero.HT / 4, 1 );
+				Buff.affect(heroine, Barkskin.class ).set( heroine.HT / 4, 1 );
 				break;
 			case 2:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
-				PotionOfHealing.cure(hero);
+				PotionOfHealing.cure(heroine);
 				break;
 			case 3:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "better") );
-				if (hero.HP < hero.HT) {
-					hero.HP = Math.min( hero.HP + hero.HT / 4, hero.HT );
-					hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+				if (heroine.HP < heroine.HT) {
+					heroine.HP = Math.min( heroine.HP + heroine.HT / 4, heroine.HT );
+					heroine.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 				}
 				break;
 		}

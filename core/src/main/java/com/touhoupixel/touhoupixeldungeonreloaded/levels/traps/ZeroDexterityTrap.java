@@ -42,7 +42,7 @@ public class ZeroDexterityTrap extends Trap {
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		if (c != null && c == Dungeon.hero) {
+		if (c != null && c == Dungeon.heroine) {
 			Buff.prolong(c, ZeroDexterity.class, ZeroDexterity.DURATION);
 		}
 		if (Dungeon.level.heroFOV[pos]) {

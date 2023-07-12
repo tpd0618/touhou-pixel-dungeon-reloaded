@@ -57,18 +57,18 @@ public class CloakOfShadows extends Artifact {
 	public static final String AC_STEALTH = "STEALTH";
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if ((isEquipped( hero ))) {
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if ((isEquipped(heroine))) {
 			actions.add(AC_STEALTH);
 		}
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_STEALTH )) {
 
@@ -76,17 +76,17 @@ public class CloakOfShadows extends Artifact {
 				if (cursed)       GLog.i( Messages.get(this, "cursed") );
 				else if (charge <= 0)  GLog.i( Messages.get(this, "no_charge") );
 				else {
-					hero.spend( 1f );
-					hero.busy();
+					heroine.spend( 1f );
+					heroine.busy();
 					Sample.INSTANCE.play(Assets.Sounds.MELD);
 					activeBuff = activeBuff();
-					activeBuff.attachTo(hero);
-					hero.sprite.operate(hero.pos);
+					activeBuff.attachTo(heroine);
+					heroine.sprite.operate(heroine.pos);
 				}
 			} else {
 				activeBuff.detach();
 				activeBuff = null;
-				hero.sprite.operate( hero.pos );
+				heroine.sprite.operate( heroine.pos );
 			}
 
 		}
@@ -101,15 +101,15 @@ public class CloakOfShadows extends Artifact {
 	}
 
 	@Override
-	public boolean doUnequip(Hero hero, boolean collect, boolean single) {
-		if (super.doUnequip(hero, collect, single)){
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single) {
+		if (super.doUnequip(heroine, collect, single)){
 			if (!collect){
 				if (activeBuff != null){
 					activeBuff.detach();
 					activeBuff = null;
 				}
 			} else {
-				activate(hero);
+				activate(heroine);
 			}
 
 			return true;
@@ -197,7 +197,7 @@ public class CloakOfShadows extends Artifact {
 					float turnsToCharge = (45 - missing);
 					turnsToCharge /= RingOfEnergy.artifactChargeMultiplier(target);
 					float chargeToGain = (1f / turnsToCharge);
-					if (!isEquipped(Dungeon.hero)){
+					if (!isEquipped(Dungeon.heroine)){
 						chargeToGain *= 0.75f;
 					}
 					partialCharge += chargeToGain;

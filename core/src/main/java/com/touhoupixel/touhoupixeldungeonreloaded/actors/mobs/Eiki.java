@@ -1,3 +1,24 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015 Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2022 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
@@ -5,16 +26,26 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreCooldown;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EikaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EikiSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SannyoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
@@ -27,6 +58,8 @@ public class Eiki extends Mob {
         defenseSkill = 50;
         EXP = 25;
         maxLvl = 99;
+
+        state = WANDERING;
 
         properties.add(Property.GOD);
 
@@ -49,18 +82,21 @@ public class Eiki extends Mob {
     }
 
     @Override
-
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
     }
+
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment){
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Hisou.class, Hisou.DURATION);
+    protected boolean act() {
+        if (this.state != SLEEPING && this.state != FLEEING) {
+            if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
+                if (Random.Int(6) == 0) {
+                    Dungeon.heroine.damage(Statistics.difficulty > 4 ? 50 : 25, this);
+                    CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 4);
+                    GLog.w(Messages.get(this, "abyss_dragon"));
+                }
             }
         }
-        return damage;
+        return super.act();
     }
 }

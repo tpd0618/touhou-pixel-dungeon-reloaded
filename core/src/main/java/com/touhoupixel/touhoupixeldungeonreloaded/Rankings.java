@@ -30,14 +30,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.quest.CorpseDust;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Toolbar;
-import com.watabou.noosa.Game;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
@@ -77,14 +75,14 @@ public enum Rankings {
 
 		rec.cause = cause;
 		rec.win		= win;
-		rec.heroClass	= Dungeon.hero.heroClass;
-		rec.armorTier	= Dungeon.hero.tier();
-		rec.herolevel	= Dungeon.hero.lvl;
+		rec.heroClass	= Dungeon.heroine.heroClass;
+		rec.armorTier	= Dungeon.heroine.tier();
+		rec.herolevel	= Dungeon.heroine.lvl;
 		if (Statistics.highestAscent == 0){
-			rec.depth = Statistics.deepestFloor;
+			rec.floor = Statistics.highestFloor;
 			rec.ascending = false;
 		} else {
-			rec.depth = Statistics.highestAscent;
+			rec.floor = Statistics.highestAscent;
 			rec.ascending = true;
 		}
 		rec.score       = calculateScore();
@@ -131,17 +129,17 @@ public enum Rankings {
 	}
 
 	private int score( boolean win ) {
-		return (Statistics.goldCollected + Dungeon.hero.lvl * (win ? 26 : Dungeon.depth ) * 100) * (win ? 2 : 1);
+		return (Statistics.goldCollected + Dungeon.heroine.lvl * (win ? 26 : Dungeon.floor) * 100) * (win ? 2 : 1);
 	}
 
 	//assumes a ranking is loaded, or game is ending
 	public int calculateScore(){
 
-			Statistics.progressScore = Dungeon.hero.lvl;
+			Statistics.progressScore = Dungeon.heroine.lvl;
 
 			Statistics.treasureScore = Statistics.goldCollected + Statistics.heldItemValue;
 
-			Statistics.exploreScore = Statistics.deepestFloor;
+			Statistics.exploreScore = Statistics.highestFloor;
 
 		Statistics.chalMultiplier = (float)Math.pow(1.15, Challenges.activeChallenges());
 		Statistics.chalMultiplier = Math.round(Statistics.chalMultiplier*20f)/20f;
@@ -166,7 +164,7 @@ public enum Rankings {
 	public void saveGameData(Record rec){
 		rec.gameData = new Bundle();
 
-		Belongings belongings = Dungeon.hero.belongings;
+		Belongings belongings = Dungeon.heroine.belongings;
 
 		//save the hero and belongings
 		ArrayList<Item> allItems = (ArrayList<Item>) belongings.backpack.items.clone();
@@ -183,11 +181,11 @@ public enum Rankings {
 		}
 
 		//remove all buffs (ones tied to equipment will be re-applied)
-		for(Buff b : Dungeon.hero.buffs()){
-			Dungeon.hero.remove(b);
+		for(Buff b : Dungeon.heroine.buffs()){
+			Dungeon.heroine.remove(b);
 		}
 
-		rec.gameData.put( HERO, Dungeon.hero );
+		rec.gameData.put( HERO, Dungeon.heroine);
 
 		//save stats
 		Bundle stats = new Bundle();
@@ -226,7 +224,7 @@ public enum Rankings {
 		Bundle data = rec.gameData;
 
 		Actor.clear();
-		Dungeon.hero = null;
+		Dungeon.heroine = null;
 		Dungeon.level = null;
 		Generator.fullReset();
 		Notes.reset();
@@ -241,7 +239,7 @@ public enum Rankings {
 
 		Badges.loadLocal(data.getBundle(BADGES));
 
-		Dungeon.hero = (Hero)data.get(HERO);
+		Dungeon.heroine = (Hero)data.get(HERO);
 
 		Statistics.restoreFromBundle(data.getBundle(STATS));
 
@@ -358,7 +356,7 @@ public enum Rankings {
 		private static final String CLASS	= "class";
 		private static final String TIER	= "tier";
 		private static final String LEVEL	= "level";
-		private static final String DEPTH	= "depth";
+		private static final String FLOOR   = "floor";
 		private static final String ASCEND	= "ascending";
 		private static final String DATA	= "gameData";
 		private static final String ID      = "gameID";
@@ -371,7 +369,7 @@ public enum Rankings {
 		public HeroClass heroClass;
 		public int armorTier;
 		public int herolevel;
-		public int depth;
+		public int floor;
 		public boolean ascending;
 
 		public Bundle gameData;
@@ -419,7 +417,7 @@ public enum Rankings {
 			heroClass	= bundle.getEnum( CLASS, HeroClass.class );
 			armorTier	= bundle.getInt( TIER );
 			herolevel   = bundle.getInt( LEVEL );
-			depth       = bundle.getInt( DEPTH );
+			floor = bundle.getInt(FLOOR);
 			ascending   = bundle.getBoolean( ASCEND );
 
 			if (bundle.contains(DATA))  gameData = bundle.getBundle(DATA);
@@ -442,7 +440,7 @@ public enum Rankings {
 			bundle.put( CLASS, heroClass );
 			bundle.put( TIER, armorTier );
 			bundle.put( LEVEL, herolevel );
-			bundle.put( DEPTH, depth );
+			bundle.put(FLOOR, floor);
 			bundle.put( ASCEND, ascending );
 
 			if (gameData != null) bundle.put( DATA, gameData );

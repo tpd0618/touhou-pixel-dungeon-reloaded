@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -34,12 +33,12 @@ public class HeavenHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			Buff.prolong(hero, Hisou.class, Hisou.DURATION / 2f);
+			Buff.prolong(heroine, Hisou.class, Hisou.DURATION / 2f);
 		}
 	}
 }

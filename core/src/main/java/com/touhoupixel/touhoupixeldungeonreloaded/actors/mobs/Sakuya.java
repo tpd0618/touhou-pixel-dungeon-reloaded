@@ -1,17 +1,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SakuyaDaggerTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakuyaSprite;
 import com.watabou.utils.Random;
 
@@ -58,7 +53,7 @@ public class Sakuya extends Mob {
                 Buff.prolong(this, Haste.class, Haste.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
             }
         }
         return damage;

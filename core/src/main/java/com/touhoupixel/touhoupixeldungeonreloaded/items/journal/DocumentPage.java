@@ -50,7 +50,7 @@ public abstract class DocumentPage extends Item {
 	}
 	
 	@Override
-	public final boolean doPickUp(Hero hero, int pos) {
+	public final boolean doPickUp(Hero heroine, int pos) {
 		GameScene.pickUpJournal(this, pos);
 		GameScene.flashForDocument(page());
 		if (document() == Document.ALCHEMY_GUIDE){
@@ -61,7 +61,7 @@ public abstract class DocumentPage extends Item {
 		}
 		document().findPage(page);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 		return true;
 	}
 

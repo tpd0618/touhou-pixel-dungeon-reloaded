@@ -27,7 +27,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -84,6 +83,11 @@ public abstract class Scroll extends Item {
 			put("ISAZ",ItemSpriteSheet.SCROLL_ISAZ);
 			put("MANNAZ",ItemSpriteSheet.SCROLL_MANNAZ);
 			put("NAUDIZ",ItemSpriteSheet.SCROLL_NAUDIZ);
+			put("BERKANAN",ItemSpriteSheet.SCROLL_BERKANAN);
+			put("ODAL",ItemSpriteSheet.SCROLL_ODAL);
+			put("TIWAZ",ItemSpriteSheet.SCROLL_TIWAZ);
+			put("GENSOKYO",ItemSpriteSheet.SCROLL_GENSOKYO);
+			put("ZUN",ItemSpriteSheet.SCROLL_ZUN);
 		}
 	};
 	
@@ -151,32 +155,30 @@ public abstract class Scroll extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_READ );
 		return actions;
 	}
 	
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_READ )) {
 			
-			if (hero.buff(MagicImmune.class) != null){
-				GLog.w( Messages.get(this, "no_magic") );
-			} else if (hero.buff( Blindness.class ) != null) {
+			if (heroine.buff( Blindness.class ) != null) {
 				GLog.w( Messages.get(this, "blinded") );
-			} else if (hero.buff( Silence.class ) != null) {
+			} else if (heroine.buff( Silence.class ) != null) {
 				GLog.w(Messages.get(this, "silence"));
-			} else if (hero.buff(UnstableSpellbook.bookRecharge.class) != null
-					&& hero.buff(UnstableSpellbook.bookRecharge.class).isCursed()
-					&& !(this instanceof ScrollOfCurseRemoval)){
+			} else if (heroine.buff(UnstableSpellbook.bookRecharge.class) != null
+					&& heroine.buff(UnstableSpellbook.bookRecharge.class).isCursed()
+					&& !(this instanceof ScrollOfExorcism)){
 				GLog.n( Messages.get(this, "cursed") );
 			} else {
-				curUser = hero;
-				curItem = detach( hero.belongings.backpack );
+				curUser = heroine;
+				curItem = detach( heroine.belongings.backpack );
 				doRead();
 
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
@@ -212,7 +214,7 @@ public abstract class Scroll extends Item {
 				updateQuickslot();
 			}
 			
-			if (Dungeon.hero.isAlive()) {
+			if (Dungeon.heroine.isAlive()) {
 				Catalog.setSeen(getClass());
 			}
 		}
@@ -304,7 +306,7 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfRetribution.class,   StoneOfMadness.class);
 			stones.put(ScrollOfRage.class,          StoneOfAggression.class);
 			stones.put(ScrollOfRecharging.class,    StoneOfShock.class);
-			stones.put(ScrollOfCurseRemoval.class,  StoneOfDisarming.class);
+			stones.put(ScrollOfExorcism.class,  StoneOfDisarming.class);
 			stones.put(ScrollOfTeleportation.class, StoneOfBlink.class);
 			stones.put(ScrollOfTerror.class,        StoneOfFear.class);
 			stones.put(ScrollOfTransmutation.class, StoneOfAugmentation.class);

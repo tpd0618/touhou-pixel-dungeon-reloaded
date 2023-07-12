@@ -21,12 +21,9 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
-
-import java.awt.Color;
 
 public class Cool extends FlavourBuff {
 	

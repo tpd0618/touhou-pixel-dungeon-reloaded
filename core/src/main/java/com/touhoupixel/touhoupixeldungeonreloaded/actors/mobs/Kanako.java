@@ -69,8 +69,8 @@ public class Kanako extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !hero.flying && Random.Int(5) == 0) {
-            Dungeon.hero.STR--;
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && !hero.flying && Random.Int(5) == 0) {
+            Dungeon.heroine.STR--;
             Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
             Sample.INSTANCE.play( Assets.Sounds.CURSED );
             GLog.w(Messages.get(Kanako.class, "str_reduce"));
@@ -78,7 +78,7 @@ public class Kanako extends Mob {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Dungeon.hero.STR--;
+                Dungeon.heroine.STR--;
                 Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
                 GLog.w(Messages.get(Kanako.class, "str_reduce"));
             }

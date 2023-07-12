@@ -97,14 +97,14 @@ public class Kagerou extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
+            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
                 new AlarmTrap().set(enemy.pos).activate();
             }
 
-            int dmg = Random.NormalIntRange( 4, 7 );
+            int dmg = Random.NormalIntRange( 2, 4 );
             enemy.damage( dmg, new DarkBolt() );
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }

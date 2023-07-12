@@ -33,9 +33,9 @@ public class GoldenKey extends Key {
 		this( 0 );
 	}
 	
-	public GoldenKey( int depth ) {
+	public GoldenKey( int floor ) {
 		super();
-		this.depth = depth;
+		this.floor = floor;
 	}
 
 }

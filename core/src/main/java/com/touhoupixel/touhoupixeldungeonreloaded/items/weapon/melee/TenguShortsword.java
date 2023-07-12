@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class TenguShortsword extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.TENGUSHORTSWORD;
+		image = ItemSpriteSheet.TENGU_SHORTSWORD;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1.1f;
 

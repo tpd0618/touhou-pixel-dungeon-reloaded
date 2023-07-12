@@ -6,7 +6,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
@@ -23,7 +22,7 @@ public class Tenshi extends Mob {
 
         HP = HT = 244;
         defenseSkill = 40;
-        EXP = 20;
+        EXP = 18;
         maxLvl = 47;
 
         properties.add(Property.WARP);
@@ -53,10 +52,10 @@ public class Tenshi extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !hero.flying && Random.Int(4) == 0) {
-            Homunculus homunculus = Dungeon.hero.belongings.getItem(Homunculus.class);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && !hero.flying && Random.Int(4) == 0) {
+            Homunculus homunculus = Dungeon.heroine.belongings.getItem(Homunculus.class);
             if (homunculus != null) {
-                homunculus.detach(Dungeon.hero.belongings.backpack);
+                homunculus.detach(Dungeon.heroine.belongings.backpack);
                 Sample.INSTANCE.play(Assets.Sounds.BEACON);
                 GLog.w(Messages.get(Homunculus.class, "block_instakill"));
                 Item.updateQuickslot();

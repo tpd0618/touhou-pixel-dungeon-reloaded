@@ -29,11 +29,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.Guidebook;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
@@ -56,16 +56,16 @@ public abstract class EquipableItem extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		actions.add( isEquipped( hero ) ? AC_UNEQUIP : AC_EQUIP );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		actions.add( isEquipped(heroine) ? AC_UNEQUIP : AC_EQUIP );
 		actions.add( AC_DISMANTLE );
 		return actions;
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
-		if (super.doPickUp(hero, pos)){
+	public boolean doPickUp(Hero heroine, int pos) {
+		if (super.doPickUp(heroine, pos)){
 			if (!isIdentified() && !Document.ADVENTURERS_GUIDE.isPageRead(Document.GUIDE_IDING)){
 				GLog.p(Messages.get(Guidebook.class, "hint"));
 				GameScene.flashForDocument(Document.GUIDE_IDING);
@@ -77,39 +77,41 @@ public abstract class EquipableItem extends Item {
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_EQUIP )) {
 
-			if (curItem instanceof ShionFan && Statistics.deepestFloor < 21){
+			if (curItem instanceof ShionFan && Statistics.highestFloor < 21){
 				Statistics.difficulty = 1;
 				GLog.w(Messages.get(EquipableItem.class, "shion"));
 			}
 
-			if (curItem instanceof JoonFan && Statistics.deepestFloor < 21){
+			if (curItem instanceof JoonFan && Statistics.highestFloor < 21){
 				Statistics.difficulty = 5;
 				GLog.w(Messages.get(EquipableItem.class, "joon"));
 			}
 			//In addition to equipping itself, item reassigns itself to the quickslot
 			//This is a special case as the item is being removed from inventory, but is staying with the hero.
 			int slot = Dungeon.quickslot.getSlot( this );
-			doEquip(hero);
+			doEquip(heroine);
 			if (slot != -1) {
 				Dungeon.quickslot.setSlot( slot, this );
 				updateQuickslot();
 			}
 		} else if (action.equals( AC_UNEQUIP )) {
-			doUnequip( hero, true );
+			doUnequip(heroine, true );
 		}
 		if (action.equals(AC_DISMANTLE)){
-			if (hero.buff(Degrade.class) != null) {
+			if (heroine.buff(Degrade.class) != null) {
 				GLog.w( Messages.get(this, "degrade"));
-			} else if (curItem.isEquipped( hero )) {
+			} else if (curItem.isEquipped(heroine)) {
 				GLog.w( Messages.get(this, "unequip_first"));
 			} else if (curItem instanceof Artifact) {
 				GLog.w( Messages.get(this, "artifact"));
+			} else if (curItem instanceof MissileWeapon) {
+				GLog.w( Messages.get(this, "danmaku"));
 			} else {
 				curItem.detach(curUser.belongings.backpack);
 				if (curItem.level() > 0) {
@@ -120,12 +122,12 @@ public abstract class EquipableItem extends Item {
 				Buff.detach(curUser, DismantlePressure.class);
 				updateQuickslot();
 
-				hero.spend( 1f );
+				heroine.spend( 1f );
 
 				Statistics.dismantlecount += 1;
 
 				if (Statistics.card33 && Random.Int(3) == 0){
-					Buff.prolong(hero, KeyHeal.class, KeyHeal.DURATION/3f);
+					Buff.prolong(heroine, KeyHeal.class, KeyHeal.DURATION/3f);
 				}
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
@@ -135,14 +137,14 @@ public abstract class EquipableItem extends Item {
 	}
 
 	@Override
-	public void doDrop( Hero hero ) {
-		if (!isEquipped( hero ) || doUnequip( hero, false, false )) {
-			super.doDrop( hero );
+	public void doDrop( Hero heroine) {
+		if (!isEquipped(heroine) || doUnequip(heroine, false, false )) {
+			super.doDrop(heroine);
 		}
 	}
 
 	@Override
-	public void cast( final Hero user, int dst ) {
+	public void cast(final Hero user, int dst ) {
 
 		if (isEquipped( user )) {
 			if (quantity == 1 && !this.doUnequip( user, false, false )) {
@@ -153,46 +155,46 @@ public abstract class EquipableItem extends Item {
 		super.cast( user, dst );
 	}
 
-	public static void equipCursed( Hero hero ) {
-		hero.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+	public static void equipCursed( Hero heroine) {
+		heroine.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
 		Sample.INSTANCE.play( Assets.Sounds.CURSED );
 	}
 
-	protected float time2equip( Hero hero ) {
+	protected float time2equip( Hero heroine) {
 		return 1;
 	}
 
-	public abstract boolean doEquip( Hero hero );
+	public abstract boolean doEquip( Hero heroine);
 
-	public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
 
-		if (cursed && hero.buff(MagicImmune.class) == null) {
-			GLog.w(Messages.get(EquipableItem.class, "unequip_cursed"));
+		if (Dungeon.floor == 20){
+			GLog.w(Messages.get(EquipableItem.class, "kasen_floor"));
 			return false;
-		}
+		} //kasen floor
 
 		if (single) {
-			hero.spendAndNext( time2equip( hero ) );
+			heroine.spendAndNext( time2equip(heroine) );
 		} else {
-			hero.spend( time2equip( hero ) );
+			heroine.spend( time2equip(heroine) );
 		}
 
 		//temporarily keep this item so it can be collected
 		boolean wasKept = keptThoughLostInvent;
 		keptThoughLostInvent = true;
-		if (!collect || !collect( hero.belongings.backpack )) {
+		if (!collect || !collect( heroine.belongings.backpack )) {
 			onDetach();
 			Dungeon.quickslot.clearItem(this);
 			updateQuickslot();
-			if (collect) Dungeon.level.drop( this, hero.pos );
+			if (collect) Dungeon.level.drop( this, heroine.pos );
 		}
 		keptThoughLostInvent = wasKept;
 
 		return true;
 	}
 
-	final public boolean doUnequip( Hero hero, boolean collect ) {
-		return doUnequip( hero, collect, true );
+	final public boolean doUnequip(Hero heroine, boolean collect ) {
+		return doUnequip(heroine, collect, true );
 	}
 
 	public void activate( Char ch ){}

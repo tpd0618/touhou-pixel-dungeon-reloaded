@@ -21,8 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -35,9 +33,9 @@ public class PotionOfMight extends Potion {
 	}
 
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
-		Buff.affect(hero, Might.class, Might.DURATION);
+		Buff.affect(heroine, Might.class, Might.DURATION);
 	}
 	
 	@Override

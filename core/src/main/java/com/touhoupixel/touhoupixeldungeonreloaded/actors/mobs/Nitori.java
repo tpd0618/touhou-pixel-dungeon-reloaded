@@ -25,12 +25,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -110,14 +107,14 @@ public class Nitori extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+            if (enemy == Dungeon.heroine && Notes.keyCount(new IronKey(Dungeon.floor)) > 0 || Notes.keyCount(new GoldenKey(Dungeon.floor)) > 0 || Notes.keyCount(new CrystalKey(Dungeon.floor)) > 0) {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }
 
             int dmg = Random.NormalIntRange( 6, 10 );
             enemy.damage( dmg, new DarkBolt() );
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }
@@ -134,34 +131,5 @@ public class Nitori extends Mob implements Callback {
     @Override
     public void call() {
         next();
-    }
-
-    @Override
-    public Item createLoot(){
-
-        // 1/6 chance for healing, scaling to 0 over 8 drops
-        if (Random.Int(3) == 0 && Random.Int(8) > Dungeon.LimitedDrops.WARLOCK_HP.count ){
-            Dungeon.LimitedDrops.WARLOCK_HP.count++;
-            return new PotionOfHealing();
-        } else {
-            Item i = Generator.randomUsingDefaults(Generator.Category.POTION);
-            int healingTried = 0;
-            while (i instanceof PotionOfHealing){
-                healingTried++;
-                i = Generator.randomUsingDefaults(Generator.Category.POTION);
-            }
-
-            //return the attempted healing potion drops to the pool
-            if (healingTried > 0){
-                for (int j = 0; j < Generator.Category.POTION.classes.length; j++){
-                    if (Generator.Category.POTION.classes[j] == PotionOfHealing.class){
-                        Generator.Category.POTION.probs[j] += healingTried;
-                    }
-                }
-            }
-
-            return i;
-        }
-
     }
 }

@@ -45,7 +45,7 @@ public class Eirin extends Mob implements Callback {
 
         HP = HT = 259;
         defenseSkill = 42;
-        EXP = 21;
+        EXP = 19;
         maxLvl = 50;
 
         properties.add(Property.ELIXIR);
@@ -104,7 +104,7 @@ public class Eirin extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
                 Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
                 if (Statistics.difficulty > 2) {
                     Dungeon.level.drop(new Dewdrop(), enemy.pos).sprite.drop();
@@ -117,7 +117,7 @@ public class Eirin extends Mob implements Callback {
             int dmg = Random.NormalIntRange( 13, 18 );
             enemy.damage( dmg, new DarkBolt() );
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }

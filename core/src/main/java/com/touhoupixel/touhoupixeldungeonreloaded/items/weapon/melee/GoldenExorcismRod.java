@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class GoldenExorcismRod extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GOLDENEXORCISMROD;
+		image = ItemSpriteSheet.GOLDEN_EXORCISM_ROD;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 

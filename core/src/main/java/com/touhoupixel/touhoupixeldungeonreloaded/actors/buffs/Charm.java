@@ -85,7 +85,7 @@ public class Charm extends FlavourBuff {
 
 	public void recover(Object src) {
 		if (ignoreHeroAllies && src instanceof Char){
-			if (src != Dungeon.hero && ((Char) src).alignment == Char.Alignment.ALLY){
+			if (src != Dungeon.heroine && ((Char) src).alignment == Char.Alignment.ALLY){
 				return;
 			}
 		}

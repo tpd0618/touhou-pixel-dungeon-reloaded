@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BlobImmunity;
@@ -90,9 +89,9 @@ public class PotionOfPurity extends Potion {
 	}
 	
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		GLog.w( Messages.get(this, "protected") );
-		Buff.prolong( hero, BlobImmunity.class, BlobImmunity.DURATION );
+		Buff.prolong(heroine, BlobImmunity.class, BlobImmunity.DURATION );
 		identify();
 	}
 	

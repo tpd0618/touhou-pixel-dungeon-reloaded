@@ -38,9 +38,9 @@ public class MeatPie extends Food {
 	}
 	
 	@Override
-	protected void satisfy(Hero hero) {
-		super.satisfy( hero );
-		Buff.affect(hero, WellFed.class).reset();
+	protected void satisfy(Hero heroine) {
+		super.satisfy(heroine);
+		Buff.affect(heroine, WellFed.class).reset();
 	}
 	
 	@Override

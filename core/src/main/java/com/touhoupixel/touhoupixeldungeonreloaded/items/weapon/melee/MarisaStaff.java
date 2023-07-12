@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -63,7 +62,7 @@ public class MarisaStaff extends MeleeWeapon {
 	private static final float STAFF_SCALE_FACTOR = 0.75f;
 
 	{
-		image = ItemSpriteSheet.MARISASTAFF;
+		image = ItemSpriteSheet.MARISA_STAFF;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 
@@ -96,8 +95,8 @@ public class MarisaStaff extends MeleeWeapon {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add(AC_IMBUE);
 		if (wand!= null && wand.curCharges > 0) {
 			actions.add( AC_ZAP );
@@ -111,13 +110,13 @@ public class MarisaStaff extends MeleeWeapon {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_IMBUE)) {
 
-			curUser = hero;
+			curUser = heroine;
 			GameScene.selectItem(itemSelector);
 
 		} else if (action.equals(AC_ZAP)){
@@ -129,7 +128,7 @@ public class MarisaStaff extends MeleeWeapon {
 
 			if (cursed || hasCurseEnchant()) wand.cursed = true;
 			else                             wand.cursed = false;
-			wand.execute(hero, AC_ZAP);
+			wand.execute(heroine, AC_ZAP);
 		}
 	}
 
@@ -191,8 +190,8 @@ public class MarisaStaff extends MeleeWeapon {
 		wand.curCharges = Math.min(wand.maxCharges, wand.curCharges+oldStaffcharges);
 		if (owner != null){
 			applyWandChargeBuff(owner);
-		} else if (Dungeon.hero.belongings.contains(this)){
-			applyWandChargeBuff(Dungeon.hero);
+		} else if (Dungeon.heroine.belongings.contains(this)){
+			applyWandChargeBuff(Dungeon.heroine);
 		}
 
 		//This is necessary to reset any particles.

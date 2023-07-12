@@ -84,11 +84,11 @@ public class AboutScene extends PixelScene {
 		content.add(shpx);
 
 		CreditsBlock alex = new CreditsBlock(false, Window.SHPX_COLOR,
-				"Hero Art & Design:",
-				Icons.ALEKS.get(),
-				"Aleksandar Komitov",
-				"alekskomitov.com",
-				"https://www.alekskomitov.com");
+				"(Waiting For Someone, For The Arts)",
+				Icons.CHALLENGE_ON.get(),
+				"?",
+				"null",
+				"https://twitter.com/touhoupd");
 		alex.setSize(colWidth/2f, 0);
 		if (landscape()){
 			alex.setPos(shpx.right(), shpx.top() + (shpx.height() - alex.height()*2)/2f);
@@ -97,23 +97,23 @@ public class AboutScene extends PixelScene {
 		}
 		content.add(alex);
 
-		CreditsBlock charlie = new CreditsBlock(false, Window.SHPX_COLOR,
-				"Sound Effects:",
-				Icons.CELESTI.get(),
-				"Celesti",
-				"s9menine.itch.io",
-				"https://s9menine.itch.io");
-		charlie.setRect(alex.right(), alex.top(), colWidth/2f, 0);
-		content.add(charlie);
+		CreditsBlock tpd0618 = new CreditsBlock(false, Window.SHPX_COLOR,
+				"General Design",
+				Icons.CHALLENGE_ON.get(),
+				"tpd0618",
+				"twitter link",
+				"https://twitter.com/touhoupd");
+		tpd0618.setRect(alex.right(), alex.top(), colWidth/2f, 0);
+		content.add(tpd0618);
 
-		CreditsBlock kristjan = new CreditsBlock(false, Window.SHPX_COLOR,
-				"Music:",
-				Icons.KRISTJAN.get(),
-				"Kristjan Haaristo",
-				"youtube.com/user/...",
-				"https://www.youtube.com/channel/UCL1e7SgzSWbD_DQxB_5YcLA");
-		kristjan.setRect(alex.right() - colWidth/4f, alex.bottom() + 5, colWidth/2f, 0);
-		content.add(kristjan);
+		CreditsBlock hashinuke = new CreditsBlock(false, Window.SHPX_COLOR,
+				"English Translations(v1.1):",
+				Icons.CHALLENGE_ON.get(),
+				"Nuke Hashigawa",
+				"no link",
+				"https://twitter.com/touhoupd");
+		hashinuke.setRect(alex.right() - colWidth/4f, alex.bottom() + 5, colWidth/2f, 0);
+		content.add(hashinuke);
 
 		//*** Pixel Dungeon Credits ***
 
@@ -125,9 +125,9 @@ public class AboutScene extends PixelScene {
 				"pixeldungeon.watabou.ru",
 				"http://pixeldungeon.watabou.ru");
 		if (landscape()){
-			wata.setRect(shpx.left(), kristjan.bottom() + 8, colWidth, 0);
+			wata.setRect(shpx.left(), hashinuke.bottom() + 8, colWidth, 0);
 		} else {
-			wata.setRect(shpx.left(), kristjan.bottom() + 8, colWidth, 0);
+			wata.setRect(shpx.left(), hashinuke.bottom() + 8, colWidth, 0);
 		}
 		content.add(wata);
 

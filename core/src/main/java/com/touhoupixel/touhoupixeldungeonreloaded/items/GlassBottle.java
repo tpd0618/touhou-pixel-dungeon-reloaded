@@ -73,8 +73,8 @@ public class GlassBottle extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		if (volume > 0) {
 			actions.add( AC_DRINK );
 		}
@@ -82,42 +82,42 @@ public class GlassBottle extends Item {
 	}
 
 	@Override
-	public void execute( final Hero hero, String action ) {
+	public void execute(final Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_DRINK )) {
 
-			if (hero.buff(Inversion.class) != null) {
-				hero.damage(hero.HT / 2, hero);
-				if (hero == Dungeon.hero && !hero.isAlive()) {
+			if (heroine.buff(Inversion.class) != null) {
+				heroine.damage(heroine.HT / 2, heroine);
+				if (heroine == Dungeon.heroine && !heroine.isAlive()) {
 					Dungeon.fail(InversionTrap.class);
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else if (volume > 0) {
 
-				float missingHealthPercent = 1f - (hero.HP / (float)hero.HT);
+				float missingHealthPercent = 1f - (heroine.HP / (float) heroine.HT);
 
 				int curShield = 0;
-				if (hero.buff(Barrier.class) != null) curShield = hero.buff(Barrier.class).shielding();
-				int maxShield = Math.round(hero.HT *0.2f);
+				if (heroine.buff(Barrier.class) != null) curShield = heroine.buff(Barrier.class).shielding();
+				int maxShield = Math.round(heroine.HT *0.2f);
 
 				//trimming off 0.01 drops helps with floating point errors
 				int dropsNeeded = (int)Math.ceil((missingHealthPercent / 0.05f) - 0.01f);
 				dropsNeeded = (int)GameMath.gate(1, dropsNeeded, volume);
 
-				if (Dewdrop.consumeDew(dropsNeeded, hero, true)){
+				if (Dewdrop.consumeDew(dropsNeeded, heroine, true)){
 					volume -= dropsNeeded;
 
-					hero.spend(TIME_TO_DRINK);
-					hero.busy();
+					heroine.spend(TIME_TO_DRINK);
+					heroine.busy();
 
 					if (Statistics.card58) {
-						ScrollOfTeleportation.teleportChar(hero);
+						ScrollOfTeleportation.teleportChar(heroine);
 					}
 
 					Sample.INSTANCE.play(Assets.Sounds.DRINK);
-					hero.sprite.operate(hero.pos);
+					heroine.sprite.operate(heroine.pos);
 
 					updateQuickslot();
 				}

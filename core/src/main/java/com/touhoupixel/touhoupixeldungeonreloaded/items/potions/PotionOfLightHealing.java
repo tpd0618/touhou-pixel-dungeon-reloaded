@@ -43,19 +43,19 @@ public class PotionOfLightHealing extends Potion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
 		if (Statistics.card26){
 			Buff.detach(curUser, Degrade.class);
 		}
-		if (hero.buff(Inversion.class) != null) {
-			hero.damage(hero.HT / 2, hero);
-			if (hero == Dungeon.hero && !hero.isAlive()) {
+		if (heroine.buff(Inversion.class) != null) {
+			heroine.damage(heroine.HT / 2, heroine);
+			if (heroine == Dungeon.heroine && !heroine.isAlive()) {
 				Dungeon.fail(InversionTrap.class);
 				GLog.n( Messages.get(Inversion.class, "ondeath") );
 			}
 		} else {
-			hero.HP = Math.min(hero.HP + 50*(Notes.keyCount(new IronKey(Dungeon.depth))+1), hero.HT);
+			heroine.HP = Math.min(heroine.HP + 50*(Notes.keyCount(new IronKey(Dungeon.floor))+1), heroine.HT);
 			GLog.p(Messages.get(this, "lightheal"));
 		}
 	}

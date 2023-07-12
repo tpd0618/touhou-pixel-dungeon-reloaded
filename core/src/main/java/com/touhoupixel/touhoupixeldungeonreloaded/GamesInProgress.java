@@ -45,8 +45,8 @@ public class GamesInProgress {
 
 	private static final String GAME_FOLDER = "game%d";
 	private static final String GAME_FILE	= "game.dat";
-	private static final String DEPTH_FILE	= "depth%d.dat";
-	private static final String DEPTH_BRANCH_FILE	= "depth%d-branch%d.dat";
+	private static final String FLOOR_FILE = "depth%d.dat";
+	private static final String FLOOR_BRANCH_FILE = "depth%d-branch%d.dat";
 
 	public static boolean gameExists( int slot ){
 		return FileUtils.dirExists(gameFolder(slot))
@@ -61,11 +61,11 @@ public class GamesInProgress {
 		return gameFolder(slot) + "/" + GAME_FILE;
 	}
 
-	public static String depthFile( int slot, int depth, int branch ) {
+	public static String floorFile(int slot, int floor, int branch ) {
 		if (branch == 0) {
-			return gameFolder(slot) + "/" + Messages.format(DEPTH_FILE, depth);
+			return gameFolder(slot) + "/" + Messages.format(FLOOR_FILE, floor);
 		} else {
-			return gameFolder(slot) + "/" + Messages.format(DEPTH_BRANCH_FILE, depth, branch);
+			return gameFolder(slot) + "/" + Messages.format(FLOOR_BRANCH_FILE, floor, branch);
 		}
 	}
 
@@ -126,29 +126,29 @@ public class GamesInProgress {
 	}
 
 	public static void set(int slot, int depth, int challenges, long seed, String customSeed, boolean daily,
-						   Hero hero) {
+						   Hero heroine) {
 		Info info = new Info();
 		info.slot = slot;
 
-		info.depth = depth;
+		info.floor = depth;
 		info.challenges = challenges;
 
 		info.seed = seed;
 		info.customSeed = customSeed;
 		info.daily = daily;
 
-		info.level = hero.lvl;
-		info.str = hero.STR;
-		info.strBonus = hero.STR() - hero.STR;
-		info.exp = hero.exp;
-		info.hp = hero.HP;
-		info.ht = hero.HT;
-		info.shld = hero.shielding();
-		info.heroClass = hero.heroClass;
-		info.armorTier = hero.tier();
+		info.level = heroine.lvl;
+		info.str = heroine.STR;
+		info.strBonus = heroine.STR() - heroine.STR;
+		info.exp = heroine.exp;
+		info.hp = heroine.HP;
+		info.ht = heroine.HT;
+		info.shld = heroine.shielding();
+		info.heroClass = heroine.heroClass;
+		info.armorTier = heroine.tier();
 
 		info.goldCollected = Statistics.goldCollected;
-		info.maxDepth = Statistics.deepestFloor;
+		info.maxFloor = Statistics.highestFloor;
 
 		slotStates.put( slot, info );
 	}
@@ -164,7 +164,7 @@ public class GamesInProgress {
 	public static class Info {
 		public int slot;
 
-		public int depth;
+		public int floor;
 		public int version;
 		public int challenges;
 
@@ -183,14 +183,14 @@ public class GamesInProgress {
 		public int armorTier;
 
 		public int goldCollected;
-		public int maxDepth;
+		public int maxFloor;
 	}
 
 	public static final Comparator<GamesInProgress.Info> scoreComparator = new Comparator<GamesInProgress.Info>() {
 		@Override
 		public int compare(GamesInProgress.Info lhs, GamesInProgress.Info rhs ) {
-			int lScore = (lhs.level * lhs.maxDepth * 100) + lhs.goldCollected;
-			int rScore = (rhs.level * rhs.maxDepth * 100) + rhs.goldCollected;
+			int lScore = (lhs.level * lhs.maxFloor * 100) + lhs.goldCollected;
+			int rScore = (rhs.level * rhs.maxFloor * 100) + rhs.goldCollected;
 			return (int)Math.signum( rScore - lScore );
 		}
 	};

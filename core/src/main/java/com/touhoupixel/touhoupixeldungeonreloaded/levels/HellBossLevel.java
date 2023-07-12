@@ -151,13 +151,13 @@ public class HellBossLevel extends Level {
 		boss.state = boss.WANDERING;
 		boss.pos = 287;
 		GameScene.add( boss );
-		boss.beckon(Dungeon.hero.pos);
+		boss.beckon(Dungeon.heroine.pos);
 
 		Junko junko = new Junko();
 		junko.state = junko.WANDERING;
 		junko.pos = 57;
 		GameScene.add( junko );
-		junko.beckon(Dungeon.hero.pos);
+		junko.beckon(Dungeon.heroine.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();

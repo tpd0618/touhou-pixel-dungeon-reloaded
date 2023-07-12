@@ -31,16 +31,16 @@ public class TenshiCard extends Item {
     }
 
     @Override
-    public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = super.actions(hero);
+    public ArrayList<String> actions(Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         actions.add(AC_DRINK);
         return actions;
     }
 
     @Override
-    public void execute(final Hero hero, String action) {
+    public void execute(final Hero heroine, String action) {
 
-        super.execute(hero, action);
+        super.execute(heroine, action);
 
         if (action.equals(AC_DRINK)) {
             GameScene.selectItem(itemSelector);

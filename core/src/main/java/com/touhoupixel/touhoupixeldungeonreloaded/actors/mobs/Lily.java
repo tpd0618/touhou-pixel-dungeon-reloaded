@@ -3,7 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
@@ -48,7 +48,7 @@ public class Lily extends Mob {
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(4) == 0) {
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
             Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             if (!(Statistics.difficulty > 2)) {
                 Buff.prolong(enemy, Haste.class, Haste.DURATION);

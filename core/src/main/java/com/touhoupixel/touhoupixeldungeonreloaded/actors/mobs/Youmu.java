@@ -47,7 +47,7 @@ public class Youmu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             enemy.damage(15, this);
             if (Statistics.difficulty > 2) {
                 Buff.affect(enemy, Burning.class).reignite(enemy, 15f);

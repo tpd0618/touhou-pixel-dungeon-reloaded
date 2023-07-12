@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 
 public abstract class Elixir extends Potion {
 	
-	public abstract void apply( Hero hero );
+	public abstract void apply( Hero heroine);
 	
 	@Override
 	public boolean isKnown() {

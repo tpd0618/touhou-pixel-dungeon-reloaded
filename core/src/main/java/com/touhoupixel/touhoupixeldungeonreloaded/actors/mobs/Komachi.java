@@ -27,12 +27,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Chains;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -100,7 +97,7 @@ public class Komachi extends Mob {
                 if (sprite.visible || enemy.sprite.visible) {
                     yell(Messages.get(this, "distance"));
                     new Item().throwSound();
-                    Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                    Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
                     if (Statistics.difficulty > 2) {
                         Buff.prolong(this, Hisou.class, Hisou.DURATION);
                     }
@@ -131,8 +128,8 @@ public class Komachi extends Mob {
         enemy.pos = pullPos;
         enemy.sprite.place(pullPos);
         Dungeon.level.occupyCell(enemy);
-        if (enemy == Dungeon.hero) {
-            Dungeon.hero.interrupt();
+        if (enemy == Dungeon.heroine) {
+            Dungeon.heroine.interrupt();
             Dungeon.observe();
             GameScene.updateFog();
         }
@@ -146,19 +143,6 @@ public class Komachi extends Mob {
     @Override
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
-    }
-
-    @Override
-    public float lootChance() {
-        //each drop makes future drops 1/2 as likely
-        // so loot chance looks like: 1/5, 1/10, 1/20, 1/40, etc.
-        return super.lootChance() * (float)Math.pow(1/2f, Dungeon.LimitedDrops.GUARD_ARM.count);
-    }
-
-    @Override
-    public Item createLoot() {
-        Dungeon.LimitedDrops.GUARD_ARM.count++;
-        return super.createLoot();
     }
 
     private final String CHAINSUSED = "chainsused";

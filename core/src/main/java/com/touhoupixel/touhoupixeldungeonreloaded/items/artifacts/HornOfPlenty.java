@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -67,32 +66,32 @@ public class HornOfPlenty extends Artifact {
 	public static final String AC_STORE = "STORE";
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && charge > 0) {
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && charge > 0) {
 			actions.add(AC_SNACK);
 			actions.add(AC_EAT);
 		}
-		if (isEquipped( hero ) && level() < levelCap && !cursed) {
+		if (isEquipped(heroine) && level() < levelCap && !cursed) {
 			actions.add(AC_STORE);
 		}
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_EAT) || action.equals(AC_SNACK)){
 
-			if (!isEquipped(hero)) GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			if (!isEquipped(heroine)) GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge == 0)  GLog.i( Messages.get(this, "no_food") );
 			else {
 				//consume as much food as it takes to be full, to a minimum of 1
 				int satietyPerCharge = (int) (Hunger.STARVING/5f);
 
-				Hunger hunger = Buff.affect(Dungeon.hero, Hunger.class);
+				Hunger hunger = Buff.affect(Dungeon.heroine, Hunger.class);
 				int chargesToUse = Math.max( 1, hunger.hunger() / satietyPerCharge);
 				if (chargesToUse > charge) chargesToUse = charge;
 
@@ -107,13 +106,13 @@ public class HornOfPlenty extends Artifact {
 
 				charge -= chargesToUse;
 
-				hero.sprite.operate(hero.pos);
-				hero.busy();
-				SpellSprite.show(hero, SpellSprite.FOOD);
+				heroine.sprite.operate(heroine.pos);
+				heroine.busy();
+				SpellSprite.show(heroine, SpellSprite.FOOD);
 				Sample.INSTANCE.play(Assets.Sounds.EAT);
 				GLog.i( Messages.get(this, "eat") );
 
-				hero.spend(Food.TIME_TO_EAT);
+				heroine.spend(Food.TIME_TO_EAT);
 
 				int oldImage = image;
 				if (charge >= 15)       image = ItemSpriteSheet.ARTIFACT_HORN4;
@@ -164,7 +163,7 @@ public class HornOfPlenty extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if ( isEquipped( Dungeon.hero ) ){
+		if ( isEquipped( Dungeon.heroine) ){
 			if (!cursed) {
 				if (level() < levelCap)
 					desc += "\n\n" +Messages.get(this, "desc_hint");
@@ -288,13 +287,13 @@ public class HornOfPlenty extends Artifact {
 				if (item instanceof Blandfruit && ((Blandfruit) item).potionAttrib == null){
 					GLog.w( Messages.get(HornOfPlenty.class, "reject") );
 				} else {
-					Hero hero = Dungeon.hero;
-					hero.sprite.operate( hero.pos );
-					hero.busy();
-					hero.spend( Food.TIME_TO_EAT );
+					Hero heroine = Dungeon.heroine;
+					heroine.sprite.operate( heroine.pos );
+					heroine.busy();
+					heroine.spend( Food.TIME_TO_EAT );
 
 					((HornOfPlenty)curItem).gainFoodValue(((Food)item));
-					item.detach(hero.belongings.backpack);
+					item.detach(heroine.belongings.backpack);
 				}
 
 			}

@@ -75,18 +75,13 @@ public class Megumu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.prolong(enemy, Silence.class, Silence.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
-            }
-            if (hero.buff(NightTime.class) != null){
-                Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                GLog.w(Messages.get(Potion.class, "corruption"));
             }
         }
         return damage;

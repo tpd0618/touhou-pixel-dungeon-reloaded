@@ -39,8 +39,7 @@ public class Corruption extends AllyBuff {
 	public static void corruptionHeal(Char target){
 		target.HP = target.HT;
 		for (Buff buff : target.buffs()) {
-			if (buff.type == buffType.NEGATIVE
-					&& !(buff instanceof SoulMark)) {
+			if (buff.type == buffType.NEGATIVE) {
 				buff.detach();
 			}
 		}

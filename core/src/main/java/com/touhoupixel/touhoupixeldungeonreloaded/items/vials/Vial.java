@@ -21,9 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.vials;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -31,9 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -55,8 +49,8 @@ abstract public class Vial extends Item {
     protected MissileWeapon parent;
 
     @Override
-    public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = super.actions(hero);
+    public ArrayList<String> actions(Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         return actions;
     }
 
@@ -67,9 +61,9 @@ abstract public class Vial extends Item {
     }
 
     @Override
-    public void doThrow(Hero hero) {
+    public void doThrow(Hero heroine) {
         parent = null;
-        super.doThrow(hero);
+        super.doThrow(heroine);
     }
 
     @Override
@@ -87,9 +81,9 @@ abstract public class Vial extends Item {
     }
 
     @Override
-    public boolean doPickUp(Hero hero, int pos) {
+    public boolean doPickUp(Hero heroine, int pos) {
         parent = null;
-        return super.doPickUp(hero, pos);
+        return super.doPickUp(heroine, pos);
     }
 
     @Override

@@ -46,9 +46,9 @@ public class MenuPane extends Component {
 
 	private Image bg;
 
-	private Image depthIcon;
-	private BitmapText depthText;
-	private Button depthButton;
+	private Image floorIcon;
+	private BitmapText floorText;
+	private Button floorButton;
 
 	private Image challengeIcon;
 	private BitmapText challengeText;
@@ -72,15 +72,15 @@ public class MenuPane extends Component {
 		bg = new Image(Assets.Interfaces.MENU);
 		add(bg);
 
-		depthIcon = Icons.get(Dungeon.level.feeling);
-		add(depthIcon);
+		floorIcon = Icons.get(Dungeon.level.feeling);
+		add(floorIcon);
 
-		depthText = new BitmapText( Integer.toString( Dungeon.depth ), PixelScene.pixelFont);
-		depthText.hardlight( 0xCACFC2 );
-		depthText.measure();
-		add( depthText );
+		floorText = new BitmapText( Integer.toString( Dungeon.floor), PixelScene.pixelFont);
+		floorText.hardlight( 0xCACFC2 );
+		floorText.measure();
+		add(floorText);
 
-		depthButton = new Button(){
+		floorButton = new Button(){
 			@Override
 			protected String hoverText() {
 				switch (Dungeon.level.feeling) {
@@ -102,7 +102,7 @@ public class MenuPane extends Component {
 				GameScene.show( new WndJournal() );
 			}
 		};
-		add(depthButton);
+		add(floorButton);
 
 		if (Challenges.activeChallenges() > 0){
 			challengeIcon = Icons.get(Icons.CHAL_COUNT);
@@ -154,17 +154,17 @@ public class MenuPane extends Component {
 
 		btnJournal.setPos( btnMenu.left() - btnJournal.width() + 2, y );
 
-		depthIcon.x = btnJournal.left() - 7 + (7 - depthIcon.width())/2f - 0.1f;
-		depthIcon.y = y + 1;
-		if (SPDSettings.interfaceSize() == 0) depthIcon.y++;
-		PixelScene.align(depthIcon);
+		floorIcon.x = btnJournal.left() - 7 + (7 - floorIcon.width())/2f - 0.1f;
+		floorIcon.y = y + 1;
+		if (SPDSettings.interfaceSize() == 0) floorIcon.y++;
+		PixelScene.align(floorIcon);
 
-		depthText.scale.set(PixelScene.align(0.67f));
-		depthText.x = depthIcon.x + (depthIcon.width() - depthText.width())/2f;
-		depthText.y = depthIcon.y + depthIcon.height();
-		PixelScene.align(depthText);
+		floorText.scale.set(PixelScene.align(0.67f));
+		floorText.x = floorIcon.x + (floorIcon.width() - floorText.width())/2f;
+		floorText.y = floorIcon.y + floorIcon.height();
+		PixelScene.align(floorText);
 
-		depthButton.setRect(depthIcon.x, depthIcon.y, depthIcon.width(), depthIcon.height() + depthText.height());
+		floorButton.setRect(floorIcon.x, floorIcon.y, floorIcon.width(), floorIcon.height() + floorText.height());
 
 		if (challengeIcon != null){
 			challengeIcon.x = btnJournal.left() - 14 + (7 - challengeIcon.width())/2f - 0.1f;

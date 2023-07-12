@@ -52,32 +52,32 @@ public class Honeypot extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_SHATTER );
 		return actions;
 	}
 
 	@Override
-	public void execute( final Hero hero, String action ) {
+	public void execute(final Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_SHATTER )) {
 
-			hero.sprite.zap( hero.pos );
+			heroine.sprite.zap( heroine.pos );
 
-			detach( hero.belongings.backpack );
+			detach( heroine.belongings.backpack );
 
-			Item item = shatter( hero, hero.pos );
+			Item item = shatter(heroine, heroine.pos );
 			if (!item.collect()){
-				Dungeon.level.drop(item, hero.pos);
+				Dungeon.level.drop(item, heroine.pos);
 				if (item instanceof ShatteredPot){
-					((ShatteredPot) item).dropPot(hero, hero.pos);
+					((ShatteredPot) item).dropPot(heroine, heroine.pos);
 				}
 			}
 
-			hero.next();
+			heroine.next();
 
 		}
 	}
@@ -114,7 +114,7 @@ public class Honeypot extends Item {
 
 		if (newPos != -1) {
 			Medicine bee = new Medicine();
-			bee.spawn( Dungeon.depth );
+			bee.spawn( Dungeon.floor);
 			bee.setPotInfo( pos, owner );
 			bee.HP = bee.HT;
 			bee.pos = newPos;
@@ -156,9 +156,9 @@ public class Honeypot extends Item {
 		}
 
 		@Override
-		public boolean doPickUp(Hero hero, int pos) {
-			if ( super.doPickUp(hero, pos) ){
-				pickupPot( hero );
+		public boolean doPickUp(Hero heroine, int pos) {
+			if ( super.doPickUp(heroine, pos) ){
+				pickupPot(heroine);
 				return true;
 			} else {
 				return false;
@@ -166,9 +166,9 @@ public class Honeypot extends Item {
 		}
 
 		@Override
-		public void doDrop(Hero hero) {
-			super.doDrop(hero);
-			dropPot(hero, hero.pos);
+		public void doDrop(Hero heroine) {
+			super.doDrop(heroine);
+			dropPot(heroine, heroine.pos);
 		}
 
 		@Override

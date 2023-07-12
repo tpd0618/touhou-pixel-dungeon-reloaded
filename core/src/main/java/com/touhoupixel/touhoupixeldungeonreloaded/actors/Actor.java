@@ -21,21 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.NightTime;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.Camera;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.SparseArray;
@@ -182,7 +172,7 @@ public abstract class Actor implements Bundlable {
 			a.time -= min;
 		}
 
-		if (Dungeon.hero != null && all.contains( Dungeon.hero )) {
+		if (Dungeon.heroine != null && all.contains( Dungeon.heroine)) {
 			Statistics.duration += min;
 		}
 		now -= min;
@@ -190,7 +180,7 @@ public abstract class Actor implements Bundlable {
 
 	public static void init() {
 
-		add( Dungeon.hero );
+		add( Dungeon.heroine);
 
 		for (Mob mob : Dungeon.level.mobs) {
 			add( mob );
@@ -287,7 +277,7 @@ public abstract class Actor implements Bundlable {
 					current = null;
 				} else {
 					doNext = acting.act();
-					if (doNext && (Dungeon.hero == null || !Dungeon.hero.isAlive())) {
+					if (doNext && (Dungeon.heroine == null || !Dungeon.heroine.isAlive())) {
 						doNext = false;
 						current = null;
 					}

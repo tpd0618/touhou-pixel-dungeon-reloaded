@@ -24,11 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.watabou.utils.Random;
 
 public class Grayswandir extends MeleeWeapon {
 
@@ -47,7 +43,7 @@ public class Grayswandir extends MeleeWeapon {
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Dungeon.depth > 37) {
+        if (Dungeon.floor > 37) {
             damage *= 2.2f;
         }
         return super.proc(attacker, defender, damage);

@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfM
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
@@ -56,7 +56,7 @@ public class SecretLibraryRoom extends SecretRoom {
 	private static HashMap<Class<? extends Scroll>, Float> scrollChances = new HashMap<>();
 	static{
 		scrollChances.put( ScrollOfIdentify.class,      1f );
-		scrollChances.put( ScrollOfCurseRemoval.class,   2f );
+		scrollChances.put( ScrollOfExorcism.class,   2f );
 		scrollChances.put( ScrollOfMirrorImage.class,   3f );
 		scrollChances.put( ScrollOfRecharging.class,    3f );
 		scrollChances.put( ScrollOfTeleportation.class, 3f );

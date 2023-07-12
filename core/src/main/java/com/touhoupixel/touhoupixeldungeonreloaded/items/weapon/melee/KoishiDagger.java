@@ -31,7 +31,7 @@ import com.watabou.utils.Random;
 public class KoishiDagger extends MeleeWeapon {
 	
 	{
-		image = ItemSpriteSheet.KOISHIDAGGER;
+		image = ItemSpriteSheet.THROWING_KNIFE;
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 1.1f;
 
@@ -49,14 +49,14 @@ public class KoishiDagger extends MeleeWeapon {
 	@Override
 	public int damageRoll(Char owner) {
 		if (owner instanceof Hero) {
-			Hero hero = (Hero)owner;
-			Char enemy = hero.enemy();
-			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)) {
+			Hero heroine = (Hero)owner;
+			Char enemy = heroine.enemy();
+			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(heroine)) {
 				int diff = max() - min();
 				int damage = augment.damageFactor(Random.NormalIntRange(
 						min() + Math.round(diff*0.75f),
 						max()));
-				int exStr = hero.STR() - STRReq();
+				int exStr = heroine.STR() - STRReq();
 				if (exStr > 0) {
 					damage += Random.IntRange(0, exStr);
 				}

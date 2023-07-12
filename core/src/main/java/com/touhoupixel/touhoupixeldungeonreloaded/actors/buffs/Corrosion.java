@@ -21,10 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorrosion;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -108,7 +106,7 @@ public class Corrosion extends Buff implements Hero.Doom {
 	public boolean act() {
 		if (target.isAlive()) {
 			target.damage((int)damage, this);
-			if (damage < (Dungeon.scalingDepth()/2)+2) {
+			if (damage < (Dungeon.scalingFloor()/2)+2) {
 				damage++;
 			} else {
 				damage += 0.5f;

@@ -21,11 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.curses.Sacrificial;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -108,7 +105,7 @@ public class Bleeding extends Buff {
 							target.sprite.blood(), Math.min( 10 * dmg / target.HT, 10 ) );
 				}
 
-				if (target == Dungeon.hero && !target.isAlive()) {
+				if (target == Dungeon.heroine && !target.isAlive()) {
 					Dungeon.fail( getClass() );
 					GLog.n( Messages.get(this, "ondeath") );
 				}

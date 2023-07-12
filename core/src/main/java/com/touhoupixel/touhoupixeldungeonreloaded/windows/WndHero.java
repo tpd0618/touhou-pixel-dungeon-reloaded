@@ -22,17 +22,14 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIcon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.IconButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Icons;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.ScrollPane;
@@ -44,7 +41,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class WndHero extends WndTabbed {
 
@@ -118,7 +114,7 @@ public class WndHero extends WndTabbed {
 			}
 			clear();
 
-			Hero hero = Dungeon.hero;
+			Hero heroine = Dungeon.heroine;
 
 			IconTitle title = new IconTitle();
 			title.color(Window.TITLE_COLOR);
@@ -127,12 +123,12 @@ public class WndHero extends WndTabbed {
 
 			pos = 1;
 
-			int strBonus = hero.STR() - hero.STR;
-			if (strBonus > 0)           statSlot( Messages.get(this, "str"), hero.STR + " + " + strBonus );
-			else if (strBonus < 0)      statSlot( Messages.get(this, "str"), hero.STR + " - " + -strBonus );
-			else                        statSlot( Messages.get(this, "str"), hero.STR() );
-			if (hero.shielding() > 0)   statSlot( Messages.get(this, "health"), hero.HP + "+" + hero.shielding() + "/" + hero.HT );
-			else                        statSlot( Messages.get(this, "health"), (hero.HP) + "/" + hero.HT );
+			int strBonus = heroine.STR() - heroine.STR;
+			if (strBonus > 0)           statSlot( Messages.get(this, "str"), heroine.STR + " + " + strBonus );
+			else if (strBonus < 0)      statSlot( Messages.get(this, "str"), heroine.STR + " - " + -strBonus );
+			else                        statSlot( Messages.get(this, "str"), heroine.STR() );
+			if (heroine.shielding() > 0)   statSlot( Messages.get(this, "health"), heroine.HP + "+" + heroine.shielding() + "/" + heroine.HT );
+			else                        statSlot( Messages.get(this, "health"), (heroine.HP) + "/" + heroine.HT );
 			if (Dungeon.daily){
 				statSlot( Messages.get(this, "daily_for"), "_" + Dungeon.customSeedText + "_" );
 			} else if (!Dungeon.customSeedText.isEmpty()){
@@ -140,7 +136,7 @@ public class WndHero extends WndTabbed {
 			} else {
 				statSlot( Messages.get(this, "dungeon_seed"), DungeonSeed.convertToCode(Dungeon.seed) );
 			}
-			statSlot( Messages.get(this, "exp"), hero.exp + "/" + hero.maxExp() );
+			statSlot( Messages.get(this, "exp"), heroine.exp + "/" + heroine.maxExp() );
 
 			pos += GAP;
 
@@ -207,7 +203,7 @@ public class WndHero extends WndTabbed {
 
 		private void setupList() {
 			Component content = buffList.content();
-			for (Buff buff : Dungeon.hero.buffs()) {
+			for (Buff buff : Dungeon.heroine.buffs()) {
 				if (buff.icon() != BuffIndicator.NONE) {
 					BuffSlot slot = new BuffSlot(buff);
 					slot.setRect(0, pos, WIDTH, slot.icon.height());

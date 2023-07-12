@@ -314,9 +314,9 @@ public class AlchemyScene extends PixelScene {
 					for (int i = 0; i < inputs.length; i++) {
 						if (inputs[i].item() == null) {
 							if (item instanceof LiquidMetal){
-								inputs[i].item(item.detachAll(Dungeon.hero.belongings.backpack));
+								inputs[i].item(item.detachAll(Dungeon.heroine.belongings.backpack));
 							} else {
-								inputs[i].item(item.detach(Dungeon.hero.belongings.backpack));
+								inputs[i].item(item.detach(Dungeon.heroine.belongings.backpack));
 							}
 							break;
 						}
@@ -437,7 +437,7 @@ public class AlchemyScene extends PixelScene {
 
 			int resultQuantity = result.quantity();
 			if (!result.collect()){
-				Dungeon.level.drop(result, Dungeon.hero.pos);
+				Dungeon.level.drop(result, Dungeon.heroine.pos);
 			}
 
 			Statistics.itemsCrafted++;
@@ -519,7 +519,7 @@ public class AlchemyScene extends PixelScene {
 				if (inputs[i] != null && inputs[i].item() != null) {
 					Item item = inputs[i].item();
 					if (!item.collect()) {
-						Dungeon.level.drop(item, Dungeon.hero.pos);
+						Dungeon.level.drop(item, Dungeon.heroine.pos);
 					}
 					inputs[i].item(null);
 				}
@@ -581,7 +581,7 @@ public class AlchemyScene extends PixelScene {
 					Item item = InputButton.this.item;
 					if (item != null) {
 						if (!item.collect()) {
-							Dungeon.level.drop(item, Dungeon.hero.pos);
+							Dungeon.level.drop(item, Dungeon.heroine.pos);
 						}
 						InputButton.this.item(null);
 						updateState();

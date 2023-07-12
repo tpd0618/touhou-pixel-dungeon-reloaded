@@ -46,7 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOf
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfIcyTouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfMight;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfQuadDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfBossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfToxicEssence;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
@@ -113,7 +113,7 @@ public class QuickRecipe extends Component {
 				}
 			};
 			
-			ArrayList<Item> similar = Dungeon.hero.belongings.getAllSimilar(in);
+			ArrayList<Item> similar = Dungeon.heroine.belongings.getAllSimilar(in);
 			int quantity = 0;
 			for (Item sim : similar) {
 				//if we are looking for a specific item, it must be IDed
@@ -245,7 +245,7 @@ public class QuickRecipe extends Component {
 				}
 			}
 			
-			((AlchemyScene)ShatteredPixelDungeon.scene()).populate(ingredients, Dungeon.hero.belongings);
+			((AlchemyScene)ShatteredPixelDungeon.scene()).populate(ingredients, Dungeon.heroine.belongings);
 		}
 		
 		public void hardlightText(int color ){
@@ -360,7 +360,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfZen.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfQuadDamage.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfBossKiller.Recipe()));
 				return result;
 			case 9:
 				result.add(new QuickRecipe(new TelekineticGrab.Recipe()));

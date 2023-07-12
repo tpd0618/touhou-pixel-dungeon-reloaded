@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -51,17 +49,17 @@ public class Spellcard extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
+	public ArrayList<String> actions( Hero heroine) {
 		return new ArrayList<>();
 	}
 	
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 
 		Statistics.spellcard += 1;
 
 		GameScene.pickUp( this, pos );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 		
 		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
 		updateQuickslot();

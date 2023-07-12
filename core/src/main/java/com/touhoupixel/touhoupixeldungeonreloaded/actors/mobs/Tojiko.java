@@ -108,7 +108,7 @@ public class Tojiko extends Mob implements Callback {
 					enemy.sprite.flash();
 				}
 
-				if (enemy == Dungeon.hero) {
+				if (enemy == Dungeon.heroine) {
 
 					Camera.main.shake( 2, 0.3f );
 

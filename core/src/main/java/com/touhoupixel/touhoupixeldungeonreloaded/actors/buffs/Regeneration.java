@@ -21,16 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
-import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 
 public class Regeneration extends Buff {
 	
@@ -61,7 +56,7 @@ public class Regeneration extends Buff {
 				}
 			}
 
-			ChaliceOfBlood.chaliceRegen regenBuff = Dungeon.hero.buff( ChaliceOfBlood.chaliceRegen.class);
+			ChaliceOfBlood.chaliceRegen regenBuff = Dungeon.heroine.buff( ChaliceOfBlood.chaliceRegen.class);
 
 			float delay = REGENERATION_DELAY;
 			if (regenBuff != null) {

@@ -41,10 +41,10 @@ public class ElixirOfHoneyedHealing extends Elixir {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
-		PotionOfHealing.cure(hero);
-		PotionOfHealing.heal(hero);
-		Buff.affect(hero, Hunger.class).satisfy(Hunger.HUNGRY/2f);
+	public void apply(Hero heroine) {
+		PotionOfHealing.cure(heroine);
+		PotionOfHealing.heal(heroine);
+		Buff.affect(heroine, Hunger.class).satisfy(Hunger.HUNGRY/2f);
 	}
 	
 	@Override

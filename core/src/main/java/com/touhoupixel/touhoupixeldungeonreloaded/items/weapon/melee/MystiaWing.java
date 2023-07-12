@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class MystiaWing extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.MYSTIAWING;
+		image = ItemSpriteSheet.MYSTIA_WING;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 

@@ -64,18 +64,18 @@ public class SandalsOfNature extends Artifact {
 	public ArrayList<Class> seeds = new ArrayList<>();
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && level() < 3 && !cursed)
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && level() < 3 && !cursed)
 			actions.add(AC_FEED);
-		if (isEquipped( hero ) && charge > 0)
+		if (isEquipped(heroine) && charge > 0)
 			actions.add(AC_ROOT);
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
-		super.execute(hero, action);
+	public void execute(Hero heroine, String action ) {
+		super.execute(heroine, action);
 
 		if (action.equals(AC_FEED)){
 
@@ -83,12 +83,12 @@ public class SandalsOfNature extends Artifact {
 
 		} else if (action.equals(AC_ROOT) && level() > 0){
 
-			if (!isEquipped( hero )) GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			if (!isEquipped(heroine)) GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge == 0)    GLog.i( Messages.get(this, "no_charge") );
 			else {
-				Buff.prolong(hero, Roots.class, Roots.DURATION);
-				Buff.affect(hero, Earthroot.Armor.class).level(charge);
-				CellEmitter.bottom(hero.pos).start(EarthParticle.FACTORY, 0.05f, 8);
+				Buff.prolong(heroine, Roots.class, Roots.DURATION);
+				Buff.affect(heroine, Earthroot.Armor.class).level(charge);
+				CellEmitter.bottom(heroine.pos).start(EarthParticle.FACTORY, 0.05f, 8);
 				Camera.main.shake(1, 0.4f);
 				charge = 0;
 				updateQuickslot();
@@ -116,7 +116,7 @@ public class SandalsOfNature extends Artifact {
 	public String desc() {
 		String desc = Messages.get(this, "desc_" + (level()+1));
 
-		if ( isEquipped ( Dungeon.hero ) ){
+		if ( isEquipped ( Dungeon.heroine) ){
 			desc += "\n\n";
 
 			if (!cursed)
@@ -209,11 +209,11 @@ public class SandalsOfNature extends Artifact {
 				} else {
 					seeds.add(item.getClass());
 
-					Hero hero = Dungeon.hero;
-					hero.sprite.operate( hero.pos );
+					Hero heroine = Dungeon.heroine;
+					heroine.sprite.operate( heroine.pos );
 					Sample.INSTANCE.play( Assets.Sounds.PLANT );
-					hero.busy();
-					hero.spend( 2f );
+					heroine.busy();
+					heroine.spend( 2f );
 					if (seeds.size() >= 3+(level()*3)){
 						seeds.clear();
 						upgrade();
@@ -224,7 +224,7 @@ public class SandalsOfNature extends Artifact {
 					} else {
 						GLog.i( Messages.get(SandalsOfNature.class, "absorb_seed") );
 					}
-					item.detach(hero.belongings.backpack);
+					item.detach(heroine.belongings.backpack);
 				}
 			}
 		}

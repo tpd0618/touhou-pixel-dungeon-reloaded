@@ -43,7 +43,7 @@ public class Sungrass extends Plant {
 	@Override
 	public void activate( Char ch ) {
 		
-		if (ch == Dungeon.hero) {
+		if (ch == Dungeon.heroine) {
 			Buff.affect(ch, Health.class).boost(ch.HT);
 		}
 		

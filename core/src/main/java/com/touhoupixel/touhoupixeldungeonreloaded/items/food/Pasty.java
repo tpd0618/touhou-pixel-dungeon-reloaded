@@ -86,29 +86,29 @@ public class Pasty extends Food {
 				image = ItemSpriteSheet.PASTY;
 				break;
 			case HWEEN:
-				image = ItemSpriteSheet.PUMPKIN_PIE;
+				image = ItemSpriteSheet.WAFFLE;
 				break;
 			case XMAS:
-				image = ItemSpriteSheet.CANDY_CANE;
+				image = ItemSpriteSheet.MIRACLE_FRUIT;
 				break;
 		}
 	}
 	
 	@Override
-	protected void satisfy(Hero hero) {
-		super.satisfy(hero);
+	protected void satisfy(Hero heroine) {
+		super.satisfy(heroine);
 		
 		switch(holiday){
 			case NONE:
 				break; //do nothing extra
 			case HWEEN:
 				//heals for 10% max hp
-				hero.HP = Math.min(hero.HP + hero.HT/10, hero.HT);
-				hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+				heroine.HP = Math.min(heroine.HP + heroine.HT/10, heroine.HT);
+				heroine.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 				break;
 			case XMAS:
-				Buff.affect( hero, Recharging.class, 2f ); //half of a charge
-				ScrollOfRecharging.charge( hero );
+				Buff.affect(heroine, Recharging.class, 2f ); //half of a charge
+				ScrollOfRecharging.charge(heroine);
 				break;
 		}
 	}

@@ -33,7 +33,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
@@ -41,9 +40,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Luna;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Star;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sunny;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EirinJunkoCounterElixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -100,8 +96,8 @@ public abstract class Wand extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		if (curCharges > 0 || !curChargeKnown) {
 			actions.add( AC_ZAP );
 		}
@@ -110,13 +106,13 @@ public abstract class Wand extends Item {
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_ZAP )) {
 
-			curUser = hero;
+			curUser = heroine;
 			curItem = this;
 			GameScene.selectCell( zapper );
 		}
@@ -131,14 +127,9 @@ public abstract class Wand extends Item {
 
 	public abstract void onHit(MarisaStaff staff, Char attacker, Char defender, int damage);
 
-	public boolean tryToZap( Hero owner, int target ){
+	public boolean tryToZap(Hero owner, int target ){
 
-		if (owner.buff(MagicImmune.class) != null){
-			GLog.w( Messages.get(this, "no_magic") );
-			return false;
-		}
-
-		if ( curCharges >= (cursed ? 1 : chargesPerCast()) && !(Dungeon.level.map[Dungeon.hero.pos] == Terrain.PEDESTAL)){
+		if ( curCharges >= (cursed ? 1 : chargesPerCast()) && !(Dungeon.level.map[Dungeon.heroine.pos] == Terrain.PEDESTAL)){
 			return true;
 		} else {
 			GLog.w(Messages.get(this, "fizzles"));
@@ -188,8 +179,8 @@ public abstract class Wand extends Item {
 	protected void wandProc(Char target, int chargesUsed){
 		wandProc(target, buffedLvl(), chargesUsed);
 
-		if (target instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
-			Dungeon.hero.HP = 1;
+		if (target instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
+			Dungeon.heroine.HP = 1;
 		}
 
 		if (target instanceof BossTenshi){
@@ -197,33 +188,33 @@ public abstract class Wand extends Item {
 		}
 
 		if (target instanceof BossHecatia){
-			new SummoningTrap().set(Dungeon.hero.pos).activate();
-			if (target.HP < target.HT / 2 && !Statistics.elixirtrigger){
+			new SummoningTrap().set(Dungeon.heroine.pos).activate();
+			if (target.HP < target.HT / 2 && !Statistics.elixir_trigger){
 				Dungeon.level.drop(new EirinJunkoCounterElixir(), 57).sprite.drop();
 				Dungeon.level.drop(new EirinJunkoCounterElixir(), 232).sprite.drop();
 				Dungeon.level.drop(new EirinJunkoCounterElixir(), 273).sprite.drop();
 				Dungeon.level.drop(new EirinJunkoCounterElixir(), 448).sprite.drop();
 				Statistics.eirinelixircount = 0;
-				Statistics.elixirtrigger = true;
+				Statistics.elixir_trigger = true;
 				GLog.w(Messages.get(this, "hecatia_barrier"));
 			}
 		}
 
-		if (Dungeon.hero.buff(DismantlePressure.class) != null){
-			Buff.prolong(Dungeon.hero, Slow.class, Slow.DURATION);
+		if (Dungeon.heroine.buff(DismantlePressure.class) != null){
+			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
 		}
 
-		if (Dungeon.hero.buff(AliceCurse.class) != null) {
-			new DisarmingTrap().set(Dungeon.hero.pos).activate();
+		if (Dungeon.heroine.buff(AliceCurse.class) != null) {
+			new DisarmingTrap().set(Dungeon.heroine.pos).activate();
 		}
 
-		if (Dungeon.hero.buff(MagicDrain.class) != null && Dungeon.hero.HP > 3){
-			Dungeon.hero.HP /= 2;
+		if (Dungeon.heroine.buff(MagicDrain.class) != null && Dungeon.heroine.HP > 3){
+			Dungeon.heroine.HP /= 2;
 			GameScene.flash(-65536);
 			GLog.w(Messages.get(this, "magic_drain"));
 		}
 
-		if (Dungeon.hero.buff(Happy.class) != null){
+		if (Dungeon.heroine.buff(Happy.class) != null){
 			Buff.prolong(curUser, Slow.class, Slow.DURATION);
 		}
 
@@ -263,7 +254,7 @@ public abstract class Wand extends Item {
 		return this;
 	}
 	
-	public void onHeroGainExp( float levelPercent, Hero hero ){
+	public void onHeroGainExp( float levelPercent, Hero heroine){
 		if (!isIdentified() && availableUsesToID <= USES_TO_ID/2f) {
 			//gains enough uses to ID over 1 level
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID/2f);
@@ -419,8 +410,8 @@ public abstract class Wand extends Item {
 
 		//if the wand is owned by the hero, but not in their inventory, it must be in the staff
 		if (charger != null
-				&& charger.target == Dungeon.hero
-				&& !Dungeon.hero.belongings.contains(this)) {
+				&& charger.target == Dungeon.heroine
+				&& !Dungeon.heroine.belongings.contains(this)) {
 		}
 
 		if (Statistics.card28 && Random.Int(2) == 0) {

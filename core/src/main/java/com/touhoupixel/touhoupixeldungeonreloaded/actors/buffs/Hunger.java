@@ -73,7 +73,7 @@ public class Hunger extends Buff implements Hero.Doom {
 
 		if (target.isAlive() && target instanceof Hero) {
 
-			Hero hero = (Hero)target;
+			Hero heroine = (Hero)target;
 
 			if (isStarving()) {
 
@@ -90,10 +90,10 @@ public class Hunger extends Buff implements Hero.Doom {
 				if (newLevel >= STARVING) {
 
 					GLog.n( Messages.get(this, "onstarving") );
-					hero.resting = false;
-					hero.damage( 1, this );
+					heroine.resting = false;
+					heroine.damage( 1, this );
 
-					hero.interrupt();
+					heroine.interrupt();
 
 				} else if (newLevel >= HUNGRY && level < HUNGRY) {
 

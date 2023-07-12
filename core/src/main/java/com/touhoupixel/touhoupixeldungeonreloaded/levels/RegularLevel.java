@@ -131,7 +131,7 @@ public abstract class RegularLevel extends Level {
 			initRooms.add(s);
 		}
 
-		int secrets = SecretRoom.secretsForFloor(Dungeon.depth);
+		int secrets = SecretRoom.secretsForFloor(Dungeon.floor);
 		//one additional secret for secret levels
 		if (feeling == Feeling.SECRETS) secrets++;
 		for (int i = 0; i < secrets; i++) {
@@ -180,7 +180,7 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	public int mobLimit() {
-		int mobs = 4 + Dungeon.depth % 10 + Random.Int(3);
+		int mobs = 7 + Random.Int(3);
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.25f);
 		}
@@ -190,6 +190,9 @@ public abstract class RegularLevel extends Level {
 		if (Statistics.card5){
 			mobs = (int)Math.ceil(mobs * 0.85f);
 		}
+		//if (Dungeon.pandemoniumLevel()){
+			//mobs = 100;
+		//}
 		return mobs;
 	}
 
@@ -199,7 +202,7 @@ public abstract class RegularLevel extends Level {
 
 		ArrayList<Room> stdRooms = new ArrayList<>();
 		for (Room room : rooms) {
-			if (room instanceof StandardRoom && room != roomEntrance) {
+			if (room instanceof StandardRoom) {
 				for (int i = 0; i < ((StandardRoom) room).sizeCat.roomValue; i++) {
 					stdRooms.add(room);
 				}
@@ -322,14 +325,6 @@ public abstract class RegularLevel extends Level {
 			nItems -= 1;
 		}
 
-		if (Dungeon.isChallenged(Challenges.GENSOKYO_PALACE)) {
-			nItems -= 1;
-		}
-
-		if (Dungeon.isChallenged(Challenges.GIRLS_BLOSSOM_PROJECT)) {
-			nItems -= 1;
-		}
-
 		if (Statistics.card65) {
 			nItems += 1;
 		}
@@ -357,7 +352,7 @@ public abstract class RegularLevel extends Level {
 				type = Heap.Type.CHEST;
 				break;
 			case 5:
-				if (Dungeon.depth > 1 && findMob(cell) == null){
+				if (Dungeon.floor > 1 && findMob(cell) == null){
 					mobs.add(Mimic.spawnAt(cell, toDrop));
 					continue;
 				}
@@ -377,7 +372,7 @@ public abstract class RegularLevel extends Level {
 					Heap dropped = drop(toDrop, cell);
 					if (heaps.get(cell) == dropped) {
 						dropped.type = Heap.Type.LOCKED_CHEST;
-						addItemToSpawn(new GoldenKey(Dungeon.depth));
+						addItemToSpawn(new GoldenKey(Dungeon.floor));
 					}
 				}
 			} else {
@@ -416,7 +411,7 @@ public abstract class RegularLevel extends Level {
 		missingPages.remove(Document.GUIDE_SEARCHING);
 
 		//chance to find a page is 0/25/50/75/100% for floors 1/2/3/4/5+
-		float dropChance = 0.25f*(Dungeon.depth-1);
+		float dropChance = 0.25f*(Dungeon.floor -1);
 		if (!missingPages.isEmpty() && Random.Float() < dropChance){
 			GuidePage p = new GuidePage();
 			p.page(missingPages.get(0));

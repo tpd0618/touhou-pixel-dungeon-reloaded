@@ -36,7 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOf
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfIcyTouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfMight;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfQuadDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfBossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfToxicEssence;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
@@ -187,7 +187,7 @@ public abstract class Recipe {
 		new ElixirOfHoneyedHealing.Recipe(),
 		new ElixirOfToxicEssence.Recipe(),
 		new ElixirOfZen.Recipe(),
-		new ElixirOfQuadDamage.Recipe(),
+		new ElixirOfBossKiller.Recipe(),
 		new BlizzardBrew.Recipe(),
 		new InfernalBrew.Recipe(),
 		new ShockingBrew.Recipe(),

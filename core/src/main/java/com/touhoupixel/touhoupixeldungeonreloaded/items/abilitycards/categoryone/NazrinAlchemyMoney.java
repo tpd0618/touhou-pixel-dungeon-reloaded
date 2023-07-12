@@ -44,15 +44,15 @@ public class NazrinAlchemyMoney extends Abilitycards {
 
     //allows multiple purchases
     @Override
-    public boolean doPickUp(Hero hero, int pos) {
+    public boolean doPickUp(Hero heroine, int pos) {
         Statistics.card2 = true;
-        Dungeon.energy += 6 * Dungeon.depth;
-        return super.doPickUp(hero, pos);
+        Dungeon.energy += 6 * Dungeon.floor;
+        return super.doPickUp(heroine, pos);
     }
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
-        ArrayList<String> actions = super.actions( hero );
+    public ArrayList<String> actions( Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         return actions;
     }
 }

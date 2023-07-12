@@ -50,7 +50,7 @@ public class Hatate extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(6) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(6) == 0) {
             new FlashingTrap().set(enemy.pos).activate();
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);

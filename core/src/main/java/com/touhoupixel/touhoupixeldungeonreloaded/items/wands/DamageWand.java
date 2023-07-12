@@ -27,9 +27,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.QuadDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandEmpower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
@@ -59,21 +58,12 @@ public abstract class DamageWand extends Wand{
 
 	public int damageRoll(int lvl){
 		int dmg = Random.NormalIntRange(min(lvl), max(lvl));
-		WandEmpower emp = Dungeon.hero.buff(WandEmpower.class);
-		if (emp != null){
-			dmg += emp.dmgBoost;
-			emp.left--;
-			if (emp.left <= 0) {
-				emp.detach();
-			}
-			Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG, 0.75f, 1.2f);
-		}
-		Hero hero = (Hero) curUser;
-		Char enemy = hero.enemy();
-		if (hero.buff(WandZeroDamage.class) != null){
+		Hero heroine = (Hero) curUser;
+		Char enemy = heroine.enemy();
+		if (heroine.buff(WandZeroDamage.class) != null){
 			dmg *= 0f;
 		}
-		if (hero.buff(MagicBuff.class) != null) {
+		if (heroine.buff(MagicBuff.class) != null) {
 			dmg *= 1.25f;
 		}
 		if (Statistics.card31) {
@@ -82,7 +72,7 @@ public abstract class DamageWand extends Wand{
 		if (Statistics.card32) {
 			dmg *= 1.5f;
 		} //blank card
-		if (Dungeon.isChallenged(Challenges.LNN_PLAYER) && Statistics.lifelose || Dungeon.isChallenged(Challenges.LNN_PLAYER) && Statistics.spellcarduse){
+		if (Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.lifelose || Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.spellcarduse){
 			dmg *= 0.8f;
 		}
 
@@ -103,11 +93,12 @@ public abstract class DamageWand extends Wand{
 			dmg *= 2.0f;
 		}
 
-		if (Dungeon.hero.buff(QuadDamage.class) != null) {
-			dmg *= 4f;
+		if (Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.MINIBOSS) ||
+			Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.BOSS)){
+			dmg *= 2f;
 		}
 
-		if (enemy instanceof BossSeija && Dungeon.hero.buff(RouletteStop.class) == null){
+		if (enemy instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
 			dmg *= 0.25f;
 		}
 

@@ -51,21 +51,21 @@ public class WildEnergy extends TargetedSpell {
 	}
 	
 	@Override
-	protected void affectTarget(Ballistica bolt, final Hero hero) {
+	protected void affectTarget(Ballistica bolt, final Hero heroine) {
 		Sample.INSTANCE.play( Assets.Sounds.LIGHTNING );
 		Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
-		ScrollOfRecharging.charge(hero);
-		SpellSprite.show(hero, SpellSprite.CHARGE);
+		ScrollOfRecharging.charge(heroine);
+		SpellSprite.show(heroine, SpellSprite.CHARGE);
 
-		hero.belongings.charge(1f);
-		for (Buff b : hero.buffs()){
+		heroine.belongings.charge(1f);
+		for (Buff b : heroine.buffs()){
 			if (b instanceof Artifact.ArtifactBuff){
-				if (!((Artifact.ArtifactBuff) b).isCursed()) ((Artifact.ArtifactBuff) b).charge(hero, 4);
+				if (!((Artifact.ArtifactBuff) b).isCursed()) ((Artifact.ArtifactBuff) b).charge(heroine, 4);
 			}
 		}
 
-		Buff.affect(hero, Recharging.class, 8f);
-		Buff.affect(hero, ArtifactRecharge.class).prolong( 8 ).ignoreHornOfPlenty = false;
+		Buff.affect(heroine, Recharging.class, 8f);
+		Buff.affect(heroine, ArtifactRecharge.class).prolong( 8 ).ignoreHornOfPlenty = false;
 	}
 	
 	@Override

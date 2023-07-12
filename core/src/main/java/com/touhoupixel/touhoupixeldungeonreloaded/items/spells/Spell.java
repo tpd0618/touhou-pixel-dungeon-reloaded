@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.spells;
 
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -40,25 +39,20 @@ public abstract class Spell extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_CAST );
 		return actions;
 	}
 	
 	@Override
-	public void execute( final Hero hero, String action ) {
+	public void execute(final Hero heroine, String action ) {
 		
-		super.execute( hero, action );
+		super.execute(heroine, action );
 		
 		if (action.equals( AC_CAST )) {
-			
-			if (curUser.buff(MagicImmune.class) != null){
-				GLog.w( Messages.get(this, "no_magic") );
-				return;
-			}
-			
-			onCast( hero );
+
+			onCast(heroine);
 			
 		}
 	}
@@ -73,6 +67,6 @@ public abstract class Spell extends Item {
 		return false;
 	}
 	
-	protected abstract void onCast(Hero hero );
+	protected abstract void onCast(Hero heroine);
 	
 }

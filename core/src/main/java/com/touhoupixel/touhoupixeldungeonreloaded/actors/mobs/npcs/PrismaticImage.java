@@ -61,7 +61,7 @@ public class PrismaticImage extends NPC {
 		actPriority = MOB_PRIO + 1;
 	}
 	
-	private Hero hero;
+	private Hero heroine;
 	private int heroID;
 	public int armTier;
 	
@@ -89,17 +89,17 @@ public class PrismaticImage extends NPC {
 			sprite.resetColor();
 		}
 		
-		if ( hero == null ){
-			hero = (Hero) Actor.findById(heroID);
-			if ( hero == null ){
+		if ( heroine == null ){
+			heroine = (Hero) Actor.findById(heroID);
+			if ( heroine == null ){
 				destroy();
 				sprite.die();
 				return true;
 			}
 		}
 		
-		if (hero.tier() != armTier){
-			armTier = hero.tier();
+		if (heroine.tier() != armTier){
+			armTier = heroine.tier();
 			((PrismaticSprite)sprite).updateArmor( armTier );
 		}
 		
@@ -135,17 +135,17 @@ public class PrismaticImage extends NPC {
 		deathTimer = bundle.getInt( TIMER );
 	}
 	
-	public void duplicate( Hero hero, int HP ) {
-		this.hero = hero;
-		heroID = this.hero.id();
+	public void duplicate(Hero heroine, int HP ) {
+		this.heroine = heroine;
+		heroID = this.heroine.id();
 		this.HP = HP;
-		HT = PrismaticGuard.maxHP( hero );
+		HT = PrismaticGuard.maxHP(heroine);
 	}
 	
 	@Override
 	public int damageRoll() {
-		if (hero != null) {
-			return Random.NormalIntRange( 2 + hero.lvl/4, 4 + hero.lvl/2 );
+		if (heroine != null) {
+			return Random.NormalIntRange( 2 + heroine.lvl/4, 4 + heroine.lvl/2 );
 		} else {
 			return Random.NormalIntRange( 2, 4 );
 		}
@@ -153,8 +153,8 @@ public class PrismaticImage extends NPC {
 	
 	@Override
 	public int attackSkill( Char target ) {
-		if (hero != null) {
-			return hero.attackSkill(target);
+		if (heroine != null) {
+			return heroine.attackSkill(target);
 		} else {
 			return 0;
 		}
@@ -162,9 +162,9 @@ public class PrismaticImage extends NPC {
 	
 	@Override
 	public int defenseSkill(Char enemy) {
-		if (hero != null) {
-			int baseEvasion = 4 + hero.lvl;
-			int heroEvasion = hero.defenseSkill(enemy);
+		if (heroine != null) {
+			int baseEvasion = 4 + heroine.lvl;
+			int heroEvasion = heroine.defenseSkill(enemy);
 			
 			//if the hero has more/less evasion, 50% of it is applied
 			return super.defenseSkill(enemy) * (baseEvasion + heroEvasion) / 2;
@@ -175,8 +175,8 @@ public class PrismaticImage extends NPC {
 	
 	@Override
 	public int drRoll() {
-		if (hero != null){
-			return hero.drRoll();
+		if (heroine != null){
+			return heroine.drRoll();
 		} else {
 			return 0;
 		}
@@ -185,8 +185,8 @@ public class PrismaticImage extends NPC {
 	@Override
 	public int defenseProc(Char enemy, int damage) {
 		damage = super.defenseProc(enemy, damage);
-		if (hero != null && hero.belongings.armor() != null){
-			return hero.belongings.armor().proc( enemy, this, damage );
+		if (heroine != null && heroine.belongings.armor() != null){
+			return heroine.belongings.armor().proc( enemy, this, damage );
 		} else {
 			return damage;
 		}
@@ -196,9 +196,9 @@ public class PrismaticImage extends NPC {
 	public void damage(int dmg, Object src) {
 		
 		//TODO improve this when I have proper damage source logic
-		if (hero != null && hero.belongings.armor() != null && hero.belongings.armor().hasGlyph(AntiMagic.class, this)
+		if (heroine != null && heroine.belongings.armor() != null && heroine.belongings.armor().hasGlyph(AntiMagic.class, this)
 				&& AntiMagic.RESISTS.contains(src.getClass())){
-			dmg -= AntiMagic.drRoll(hero.belongings.armor().buffedLvl());
+			dmg -= AntiMagic.drRoll(heroine.belongings.armor().buffedLvl());
 		}
 		
 		super.damage(dmg, src);
@@ -206,8 +206,8 @@ public class PrismaticImage extends NPC {
 	
 	@Override
 	public float speed() {
-		if (hero != null && hero.belongings.armor() != null){
-			return hero.belongings.armor().speedFactor(this, super.speed());
+		if (heroine != null && heroine.belongings.armor() != null){
+			return heroine.belongings.armor().speedFactor(this, super.speed());
 		}
 		return super.speed();
 	}
@@ -226,9 +226,9 @@ public class PrismaticImage extends NPC {
 	public CharSprite sprite() {
 		CharSprite s = super.sprite();
 		
-		hero = (Hero)Actor.findById(heroID);
-		if (hero != null) {
-			armTier = hero.tier();
+		heroine = (Hero)Actor.findById(heroID);
+		if (heroine != null) {
+			armTier = heroine.tier();
 		}
 		((PrismaticSprite)s).updateArmor( armTier );
 		return s;
@@ -237,9 +237,9 @@ public class PrismaticImage extends NPC {
 	@Override
 	public boolean isImmune(Class effect) {
 		if (effect == Burning.class
-				&& hero != null
-				&& hero.belongings.armor() != null
-				&& hero.belongings.armor().hasGlyph(Brimstone.class, this)){
+				&& heroine != null
+				&& heroine.belongings.armor() != null
+				&& heroine.belongings.armor().hasGlyph(Brimstone.class, this)){
 			return true;
 		}
 		return super.isImmune(effect);
@@ -257,7 +257,7 @@ public class PrismaticImage extends NPC {
 		@Override
 		public boolean act(boolean enemyInFOV, boolean justAlerted) {
 			if (!enemyInFOV){
-				Buff.affect(hero, PrismaticGuard.class).set( HP );
+				Buff.affect(heroine, PrismaticGuard.class).set( HP );
 				destroy();
 				CellEmitter.get(pos).start( Speck.factory(Speck.LIGHT), 0.2f, 3 );
 				sprite.die();

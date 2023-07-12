@@ -21,8 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -37,11 +35,11 @@ public class PotionOfHaste extends Potion {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
 		
 		GLog.w( Messages.get(this, "energetic") );
-		Buff.prolong( hero, Haste.class, Haste.DURATION);
+		Buff.prolong(heroine, Haste.class, Haste.DURATION);
 	}
 	
 	@Override

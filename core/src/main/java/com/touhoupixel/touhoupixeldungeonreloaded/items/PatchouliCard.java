@@ -54,20 +54,20 @@ public class PatchouliCard extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_INSCRIBE );
 		return actions;
 	}
 	
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals(AC_INSCRIBE)) {
 
-			curUser = hero;
+			curUser = heroine;
 			GameScene.selectItem( itemSelector );
 			
 		}

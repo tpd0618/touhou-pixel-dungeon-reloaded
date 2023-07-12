@@ -7,7 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KaguyaSprite;
@@ -53,12 +53,12 @@ public class Kaguya extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-            if (Dungeon.hero.HP % 10 == 0 || Dungeon.hero.HP % 10 == 1) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+            if (Dungeon.heroine.HP % 10 == 0 || Dungeon.heroine.HP % 10 == 1) {
                 damage *= 2;
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
                 if (Statistics.difficulty > 2) {
-                    Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                    Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
                     Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);

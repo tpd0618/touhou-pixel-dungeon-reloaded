@@ -1,8 +1,5 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -15,9 +12,9 @@ public class PotionOfExorcismRod extends ExoticPotion {
     }
 
     @Override
-    public void apply( Hero hero ) {
+    public void apply( Hero heroine) {
         identify();
-        Buff.prolong( hero, ReachIncrease.class, ReachIncrease.DURATION);
+        Buff.prolong(heroine, ReachIncrease.class, ReachIncrease.DURATION);
     }
 
 }

@@ -42,17 +42,17 @@ public class PhoenixTail extends Abilitycards {
     }
 
     @Override
-    public boolean doPickUp(Hero hero, int pos) {
+    public boolean doPickUp(Hero heroine, int pos) {
         if (!Statistics.card42) {
             Statistics.card42 = true;
             Statistics.life += 3;
-            return super.doPickUp(hero, pos);
+            return super.doPickUp(heroine, pos);
         } else return false;
     }
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
-        ArrayList<String> actions = super.actions( hero );
+    public ArrayList<String> actions( Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         return actions;
     }
 }

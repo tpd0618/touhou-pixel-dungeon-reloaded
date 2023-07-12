@@ -20,8 +20,8 @@ public class Rumia extends Mob {
         spriteClass = RumiaSprite.class;
 
         HP = HT = 315;
-        defenseSkill = 45;
-        EXP = 23;
+        defenseSkill = 40;
+        EXP = 17;
         maxLvl = 75;
 
         properties.add(Property.YOKAI);
@@ -35,12 +35,12 @@ public class Rumia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(31, 38);
+        return Random.NormalIntRange(30, 37);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 50;
+        return 45;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Rumia extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             Buff.detach(enemy, Light.class);
             Buff.affect(enemy, Bleeding.class).set(8);
             Sample.INSTANCE.play( Assets.Sounds.CURSED );

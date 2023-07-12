@@ -49,20 +49,20 @@ public class EnergyCrystal extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
+	public ArrayList<String> actions(Hero heroine) {
 		return new ArrayList<>();
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 
 		Dungeon.energy += quantity;
 		//TODO Statistics.goldCollected += quantity;
 		//Badges.validateGoldCollected();
 
 		GameScene.pickUp( this, pos );
-		hero.sprite.showStatus( 0x44CCFF, TXT_VALUE, quantity );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.sprite.showStatus( 0x44CCFF, TXT_VALUE, quantity );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
 

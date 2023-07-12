@@ -27,16 +27,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.HecatiaArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HecatiaSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -46,7 +42,7 @@ public class Hecatia extends Mob {
 	{
 		spriteClass = HecatiaSprite.class;
 
-		HP = HT = Dungeon.depth*5;
+		HP = HT = Dungeon.floor*5;
 		defenseSkill = 0;
 
 		flying = true;
@@ -59,12 +55,12 @@ public class Hecatia extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(Dungeon.depth, Dungeon.depth+2);
+		return Random.NormalIntRange(Dungeon.floor, Dungeon.floor +2);
 	}
 
 	@Override
 	public int attackSkill(Char target) {
-		return Dungeon.depth+5;
+		return Dungeon.floor+5;
 	}
 
 	@Override
@@ -75,13 +71,13 @@ public class Hecatia extends Mob {
 	@Override
 	public int attackProc(Char hero, int damage) {
 		damage = super.attackProc(enemy, damage);
-		if (!(Dungeon.hero.belongings.armor() instanceof HecatiaArmor) || !(Dungeon.depth == 45)) {
-			if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(6) == 0) {
+		if (!(Dungeon.heroine.belongings.armor() instanceof HecatiaArmor) || !(Dungeon.floor == 40)) {
+			if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
 				Sample.INSTANCE.play(Assets.Sounds.READ);
 				CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 					mob.beckon(enemy.pos);
-					Buff.prolong(mob, Doublespeed.class, Doublespeed.DURATION * 1000f);
+					Buff.prolong(mob, DoubleSpeed.class, DoubleSpeed.DURATION * 1000f);
 					Buff.prolong(mob, Might.class, Might.DURATION * 1000f);
 					if (Statistics.difficulty > 2) {
 						Buff.prolong(mob, Doublerainbow.class, Doublerainbow.DURATION);

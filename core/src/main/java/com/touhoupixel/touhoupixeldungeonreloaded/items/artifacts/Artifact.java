@@ -56,17 +56,17 @@ public class Artifact extends KindofMisc {
 	protected int cooldown = 0;
 
 	@Override
-	public boolean doEquip( final Hero hero ) {
+	public boolean doEquip( final Hero heroine) {
 
-		if ((hero.belongings.artifact != null && hero.belongings.artifact.getClass() == this.getClass())
-				|| (hero.belongings.misc != null && hero.belongings.misc.getClass() == this.getClass())){
+		if ((heroine.belongings.artifact != null && heroine.belongings.artifact.getClass() == this.getClass())
+				|| (heroine.belongings.misc != null && heroine.belongings.misc.getClass() == this.getClass())){
 
 			GLog.w( Messages.get(Artifact.class, "cannot_wear_two") );
 			return false;
 
 		} else {
 
-			if (super.doEquip( hero )){
+			if (super.doEquip(heroine)){
 
 				identify();
 				return true;
@@ -91,8 +91,8 @@ public class Artifact extends KindofMisc {
 	}
 
 	@Override
-	public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
-		if (super.doUnequip( hero, collect, single )) {
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
+		if (super.doUnequip(heroine, collect, single )) {
 
 			if (passiveBuff != null) {
 				passiveBuff.detach();
@@ -136,10 +136,10 @@ public class Artifact extends KindofMisc {
 
 	@Override
 	public String info() {
-		if (cursed && cursedKnown && !isEquipped( Dungeon.hero )) {
+		if (cursed && cursedKnown && !isEquipped( Dungeon.heroine)) {
 			return desc() + "\n\n" + Messages.get(Artifact.class, "curse_known");
 			
-		} else if (!isIdentified() && cursedKnown && !isEquipped( Dungeon.hero)) {
+		} else if (!isIdentified() && cursedKnown && !isEquipped( Dungeon.heroine)) {
 			return desc()+ "\n\n" + Messages.get(Artifact.class, "not_cursed");
 			
 		} else {

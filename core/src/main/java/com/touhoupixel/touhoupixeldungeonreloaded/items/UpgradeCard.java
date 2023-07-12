@@ -36,16 +36,16 @@ public class UpgradeCard extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add(AC_DRINK);
 		return actions;
 	}
 
 	@Override
-	public void execute(final Hero hero, String action) {
+	public void execute(final Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_DRINK)) {
 			GameScene.selectItem(itemSelector);
@@ -156,25 +156,25 @@ public class UpgradeCard extends Item {
 				curUser.spendAndNext(1f);
 
 				if (Statistics.card30 && Random.Int(2) == 0) {
-					curUser.HP = Math.min(curUser.HP + Dungeon.depth, curUser.HT);
-					Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
+					curUser.HP = Math.min(curUser.HP + Dungeon.floor, curUser.HT);
+					Dungeon.heroine.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 				}
 
 				curItem.detach(curUser.belongings.backpack);
 			}
 		}
 	};
-	public static void upgrade( Hero hero ) {
-		hero.sprite.emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
+	public static void upgrade( Hero heroine) {
+		heroine.sprite.emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
 	}
 
-	public static void weakenCurse( Hero hero ){
+	public static void weakenCurse( Hero heroine){
 		GLog.p( Messages.get(UpgradeCard.class, "weaken_curse") );
-		hero.sprite.emitter().start( ShadowParticle.UP, 0.05f, 5 );
+		heroine.sprite.emitter().start( ShadowParticle.UP, 0.05f, 5 );
 	}
 
-	public static void removeCurse( Hero hero ){
+	public static void removeCurse( Hero heroine){
 		GLog.p( Messages.get(UpgradeCard.class, "remove_curse") );
-		hero.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10 );
+		heroine.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10 );
 	}
 }

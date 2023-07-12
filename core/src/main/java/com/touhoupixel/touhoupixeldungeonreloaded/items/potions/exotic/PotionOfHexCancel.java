@@ -33,8 +33,8 @@ public class PotionOfHexCancel extends ExoticPotion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		Buff.prolong(hero, HexCancel.class, HexCancel.DURATION);
+		Buff.prolong(heroine, HexCancel.class, HexCancel.DURATION);
 	}
 }

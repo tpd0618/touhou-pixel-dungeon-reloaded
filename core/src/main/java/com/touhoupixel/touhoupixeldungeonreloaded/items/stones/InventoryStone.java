@@ -42,17 +42,17 @@ public abstract class InventoryStone extends Runestone {
 	public static final String AC_USE	= "USE";
 	
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_USE );
 		return actions;
 	}
 	
 	@Override
-	public void execute(Hero hero, String action) {
-		super.execute(hero, action);
+	public void execute(Hero heroine, String action) {
+		super.execute(heroine, action);
 		if (action.equals(AC_USE)){
-			curItem = detach( hero.belongings.backpack );
+			curItem = detach( heroine.belongings.backpack );
 			activate(curUser.pos);
 		}
 	}

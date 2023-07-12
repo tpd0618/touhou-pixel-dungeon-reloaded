@@ -26,8 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
@@ -59,50 +58,47 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfHealing.class, PotionOfShielding.class);
 		exoToReg.put(PotionOfShielding.class, PotionOfHealing.class);
 
-		regToExo.put(PotionOfToxicGas.class, PotionOfCorrosiveGas.class);
-		exoToReg.put(PotionOfCorrosiveGas.class, PotionOfToxicGas.class);
+		regToExo.put(PotionOfMindVision.class, PotionOfMagicalSight.class);
+		exoToReg.put(PotionOfMagicalSight.class, PotionOfMindVision.class);
 
 		regToExo.put(PotionOfFrost.class, PotionOfSnapFreeze.class);
 		exoToReg.put(PotionOfSnapFreeze.class, PotionOfFrost.class);
 
-		regToExo.put(PotionOfHaste.class, PotionOfStamina.class);
-		exoToReg.put(PotionOfStamina.class, PotionOfHaste.class);
-
 		regToExo.put(PotionOfLiquidFlame.class, PotionOfLightReverse.class);
 		exoToReg.put(PotionOfLightReverse.class, PotionOfLiquidFlame.class);
+
+		regToExo.put(PotionOfToxicGas.class, PotionOfCorrosiveGas.class);
+		exoToReg.put(PotionOfCorrosiveGas.class, PotionOfToxicGas.class);
+
+		regToExo.put(PotionOfHaste.class, PotionOfStamina.class);
+		exoToReg.put(PotionOfStamina.class, PotionOfHaste.class);
 
 		regToExo.put(PotionOfInvisibility.class, PotionOfShroudingFog.class);
 		exoToReg.put(PotionOfShroudingFog.class, PotionOfInvisibility.class);
 
-		regToExo.put(PotionOfMindVision.class, PotionOfMagicalSight.class);
-		exoToReg.put(PotionOfMagicalSight.class, PotionOfMindVision.class);
-
 		regToExo.put(PotionOfLevitation.class, PotionOfStormClouds.class);
 		exoToReg.put(PotionOfStormClouds.class, PotionOfLevitation.class);
-
-		regToExo.put(PotionOfExperience.class, PotionOfAttraction.class);
-		exoToReg.put(PotionOfAttraction.class, PotionOfExperience.class);
-
-		regToExo.put(PotionOfPurity.class, PotionOfCleansing.class);
-		exoToReg.put(PotionOfCleansing.class, PotionOfPurity.class);
 
 		regToExo.put(PotionOfParalyticGas.class, PotionOfEarthenArmor.class);
 		exoToReg.put(PotionOfEarthenArmor.class, PotionOfParalyticGas.class);
 
+		regToExo.put(PotionOfPurity.class, PotionOfCleansing.class);
+		exoToReg.put(PotionOfCleansing.class, PotionOfPurity.class);
+
+		regToExo.put(PotionOfExperience.class, PotionOfAttraction.class);
+		exoToReg.put(PotionOfAttraction.class, PotionOfExperience.class);
+
 		regToExo.put(PotionOfMight.class, PotionOfHexCancel.class);
 		exoToReg.put(PotionOfHexCancel.class, PotionOfMight.class);
 
-		regToExo.put(PotionOfDoublespeed.class, PotionOfPhilosopher.class);
-		exoToReg.put(PotionOfPhilosopher.class, PotionOfDoublespeed.class);
+		regToExo.put(PotionOfDoubleSpeed.class, PotionOfPhilosopher.class);
+		exoToReg.put(PotionOfPhilosopher.class, PotionOfDoubleSpeed.class);
 
 		regToExo.put(PotionOfLightHealing.class, PotionOfEnlightenment.class);
 		exoToReg.put(PotionOfEnlightenment.class, PotionOfLightHealing.class);
 
 		regToExo.put(PotionOfYingYang.class, PotionOfReverseYingYang.class);
 		exoToReg.put(PotionOfReverseYingYang.class, PotionOfYingYang.class);
-
-		regToExo.put(PotionOfDanmaku.class, PotionOfHisou.class);
-		exoToReg.put(PotionOfHisou.class, PotionOfDanmaku.class);
 
 		regToExo.put(PotionOfMagic.class, PotionOfExorcismRod.class);
 		exoToReg.put(PotionOfExorcismRod.class, PotionOfMagic.class);
@@ -118,9 +114,9 @@ public class ExoticPotion extends Potion {
 		if (!isKnown()) {
 			handler.know(exoToReg.get(this.getClass()));
 			updateQuickslot();
-			Potion p = Dungeon.hero.belongings.getItem(getClass());
+			Potion p = Dungeon.heroine.belongings.getItem(getClass());
 			if (p != null)  p.setAction();
-			p = Dungeon.hero.belongings.getItem(exoToReg.get(this.getClass()));
+			p = Dungeon.heroine.belongings.getItem(exoToReg.get(this.getClass()));
 			if (p != null)  p.setAction();
 		}
 	}

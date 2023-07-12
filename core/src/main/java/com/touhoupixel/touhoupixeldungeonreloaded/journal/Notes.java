@@ -34,10 +34,10 @@ public class Notes {
 	
 	public static abstract class Record implements Comparable<Record>, Bundlable {
 		
-		protected int depth;
+		protected int floor;
 
-		public int depth(){
-			return depth;
+		public int floor(){
+			return floor;
 		}
 		
 		public abstract String desc();
@@ -47,19 +47,19 @@ public class Notes {
 		
 		@Override
 		public int compareTo( Record another ) {
-			return another.depth() - depth();
+			return another.floor() - floor();
 		}
 		
-		private static final String DEPTH	= "depth";
+		private static final String FLOOR = "floor";
 		
 		@Override
 		public void restoreFromBundle( Bundle bundle ) {
-			depth = bundle.getInt( DEPTH );
+			floor = bundle.getInt(FLOOR);
 		}
 
 		@Override
 		public void storeInBundle( Bundle bundle ) {
-			bundle.put( DEPTH, depth );
+			bundle.put(FLOOR, floor);
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class Notes {
 		
 		public LandmarkRecord(Landmark landmark, int depth ) {
 			this.landmark = landmark;
-			this.depth = depth;
+			this.floor = depth;
 		}
 		
 		@Override
@@ -102,7 +102,7 @@ public class Notes {
 		public boolean equals(Object obj) {
 			return (obj instanceof LandmarkRecord)
 					&& landmark == ((LandmarkRecord) obj).landmark
-					&& depth() == ((LandmarkRecord) obj).depth();
+					&& floor() == ((LandmarkRecord) obj).floor();
 		}
 		
 		private static final String LANDMARK	= "landmark";
@@ -131,8 +131,8 @@ public class Notes {
 		}
 		
 		@Override
-		public int depth() {
-			return key.depth;
+		public int floor() {
+			return key.floor;
 		}
 		
 		@Override
@@ -193,9 +193,9 @@ public class Notes {
 	}
 	
 	public static boolean add( Landmark landmark ) {
-		LandmarkRecord l = new LandmarkRecord( landmark, Dungeon.depth );
+		LandmarkRecord l = new LandmarkRecord( landmark, Dungeon.floor);
 		if (!records.contains(l)) {
-			boolean result = records.add(new LandmarkRecord(landmark, Dungeon.depth));
+			boolean result = records.add(new LandmarkRecord(landmark, Dungeon.floor));
 			Collections.sort(records);
 			return result;
 		}
@@ -203,7 +203,7 @@ public class Notes {
 	}
 	
 	public static boolean remove( Landmark landmark ) {
-		return records.remove( new LandmarkRecord(landmark, Dungeon.depth) );
+		return records.remove( new LandmarkRecord(landmark, Dungeon.floor) );
 	}
 	
 	public static boolean add( Key key ){

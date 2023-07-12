@@ -21,16 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.curses.AntiEntropy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.curses.Bulk;
@@ -72,7 +71,7 @@ import java.util.Arrays;
 public class Armor extends EquipableItem {
 
 	protected static final String AC_DETACH       = "DETACH";
-	
+
 	public enum Augment {
 		EVASION (2f , -1f),
 		DEFENSE (-2f, 1f),
@@ -100,6 +99,7 @@ public class Armor extends EquipableItem {
 	public Glyph glyph;
 	public boolean curseInfusionBonus = false;
 	public boolean masteryPotionBonus = false;
+	public boolean plating = false;
 	
 	private BrokenSeal seal;
 	
@@ -118,6 +118,7 @@ public class Armor extends EquipableItem {
 	private static final String GLYPH			= "glyph";
 	private static final String CURSE_INFUSION_BONUS = "curse_infusion_bonus";
 	private static final String MASTERY_POTION_BONUS = "mastery_potion_bonus";
+	private static final String PLATING = "plating";
 	private static final String SEAL            = "seal";
 	private static final String AUGMENT			= "augment";
 
@@ -129,6 +130,7 @@ public class Armor extends EquipableItem {
 		bundle.put( GLYPH, glyph );
 		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
 		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
+		bundle.put( PLATING, plating );
 		bundle.put( SEAL, seal);
 		bundle.put( AUGMENT, augment);
 	}
@@ -141,6 +143,7 @@ public class Armor extends EquipableItem {
 		inscribe((Glyph) bundle.get(GLYPH));
 		curseInfusionBonus = bundle.getBoolean( CURSE_INFUSION_BONUS );
 		masteryPotionBonus = bundle.getBoolean( MASTERY_POTION_BONUS );
+		plating = bundle.getBoolean( PLATING );
 		seal = (BrokenSeal)bundle.get(SEAL);
 		
 		augment = bundle.getEnum(AUGMENT, Augment.class);
@@ -156,19 +159,19 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		if (seal != null) actions.add(AC_DETACH);
 		return actions;
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_DETACH) && seal != null){
-			BrokenSeal.WarriorShield sealBuff = hero.buff(BrokenSeal.WarriorShield.class);
+			BrokenSeal.WarriorShield sealBuff = heroine.buff(BrokenSeal.WarriorShield.class);
 			if (sealBuff != null) sealBuff.setArmor(null);
 
 			BrokenSeal detaching = seal;
@@ -181,36 +184,36 @@ public class Armor extends EquipableItem {
 				detaching.setGlyph(null);
 			}
 			GLog.i( Messages.get(Armor.class, "detach_seal") );
-			hero.sprite.operate(hero.pos);
+			heroine.sprite.operate(heroine.pos);
 			if (!detaching.collect()){
-				Dungeon.level.drop(detaching, hero.pos);
+				Dungeon.level.drop(detaching, heroine.pos);
 			}
 		}
 	}
 
 	@Override
-	public boolean doEquip( Hero hero ) {
+	public boolean doEquip( Hero heroine) {
 		
-		detach(hero.belongings.backpack);
+		detach(heroine.belongings.backpack);
 
-		if (hero.belongings.armor == null || hero.belongings.armor.doUnequip( hero, true, false )) {
+		if (heroine.belongings.armor == null || heroine.belongings.armor.doUnequip(heroine, true, false )) {
 			
-			hero.belongings.armor = this;
+			heroine.belongings.armor = this;
 			
 			cursedKnown = true;
 			if (cursed) {
-				equipCursed( hero );
+				equipCursed(heroine);
 				GLog.n( Messages.get(Armor.class, "equip_cursed") );
 			}
 			
-			((HeroSprite)hero.sprite).updateArmor();
-			activate(hero);
-			hero.spendAndNext( time2equip( hero ) );
+			((HeroSprite) heroine.sprite).updateArmor();
+			activate(heroine);
+			heroine.spendAndNext( time2equip(heroine) );
 			return true;
 			
 		} else {
 			
-			collect( hero.belongings.backpack );
+			collect( heroine.belongings.backpack );
 			return false;
 			
 		}
@@ -231,8 +234,8 @@ public class Armor extends EquipableItem {
 		if (seal.getGlyph() != null){
 			inscribe(seal.getGlyph());
 		}
-		if (isEquipped(Dungeon.hero)){
-			Buff.affect(Dungeon.hero, BrokenSeal.WarriorShield.class).setArmor(this);
+		if (isEquipped(Dungeon.heroine)){
+			Buff.affect(Dungeon.heroine, BrokenSeal.WarriorShield.class).setArmor(this);
 		}
 	}
 
@@ -241,13 +244,13 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
-		if (super.doUnequip( hero, collect, single )) {
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
+		if (super.doUnequip(heroine, collect, single )) {
 
-			hero.belongings.armor = null;
-			((HeroSprite)hero.sprite).updateArmor();
+			heroine.belongings.armor = null;
+			((HeroSprite) heroine.sprite).updateArmor();
 
-			BrokenSeal.WarriorShield sealBuff = hero.buff(BrokenSeal.WarriorShield.class);
+			BrokenSeal.WarriorShield sealBuff = heroine.buff(BrokenSeal.WarriorShield.class);
 			if (sealBuff != null) sealBuff.setArmor(null);
 
 			return true;
@@ -260,8 +263,8 @@ public class Armor extends EquipableItem {
 	}
 	
 	@Override
-	public boolean isEquipped( Hero hero ) {
-		return hero.belongings.armor() == this;
+	public boolean isEquipped( Hero heroine) {
+		return heroine.belongings.armor() == this;
 	}
 
 	public final int DRMax(){
@@ -366,11 +369,34 @@ public class Armor extends EquipableItem {
 		if (curseInfusionBonus) level += 1 + level/6;
 		return level;
 	}
-	
+
+	@Override
+	public void onThrow( int cell ) {
+		Heap heap = Dungeon.level.drop( this, cell );
+		Char ch = (Char) Actor.findChar(cell);
+		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine) {
+			Armor armor = (Armor) curItem;
+			ch.damage(Random.NormalIntRange(Dungeon.heroine.STR+(3*armor.DRMin()*(armor.level()+1))+8*armor.tier,
+					Dungeon.heroine.STR+(3*armor.DRMax()*(armor.level()+1))+8*armor.tier), curUser);
+			//high damage
+			Heap[] equipHeaps = new Heap[1];
+			equipHeaps[0] = Dungeon.level.heaps.get(ch.pos);
+			for (Heap h : equipHeaps) {
+				for (Item i : h.items.toArray(new Item[0])){
+					if (i == curItem){
+						h.remove(i);
+					}
+				}
+			}
+		} else {
+			heap.sprite.drop( cell );
+		}
+	}
+
 	//other things can equip these, for now we assume only the hero can be affected by levelling debuffs
 	@Override
 	public int buffedLvl() {
-		if (isEquipped( Dungeon.hero ) || Dungeon.hero.belongings.contains( this )){
+		if (isEquipped( Dungeon.heroine) || Dungeon.heroine.belongings.contains( this )){
 			return super.buffedLvl();
 		} else {
 			return level();
@@ -406,11 +432,11 @@ public class Armor extends EquipableItem {
 	
 	public int proc( Char attacker, Char defender, int damage ) {
 		
-		if (glyph != null && defender.buff(MagicImmune.class) == null) {
+		if (glyph != null) {
 			damage = glyph.proc( this, attacker, defender, damage );
 		}
 
-		if (!levelKnown && defender == Dungeon.hero) {
+		if (!levelKnown && defender == Dungeon.heroine) {
 			float uses = availableUsesToID;
 			availableUsesToID -= uses;
 			usesLeftToID -= uses;
@@ -424,9 +450,9 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public void onHeroGainExp(float levelPercent, Hero hero) {
+	public void onHeroGainExp(float levelPercent, Hero heroine) {
 		levelPercent *= 1;
-		if (!levelKnown && isEquipped(hero) && availableUsesToID <= USES_TO_ID/2f) {
+		if (!levelKnown && isEquipped(heroine) && availableUsesToID <= USES_TO_ID/2f) {
 			//gains enough uses to ID over 0.5 levels
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID);
 		}
@@ -444,13 +470,13 @@ public class Armor extends EquipableItem {
 		if (levelKnown) {
 			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", DRMin(), DRMax(), STRReq());
 			
-			if (STRReq() > Dungeon.hero.STR()) {
+			if (STRReq() > Dungeon.heroine.STR()) {
 				info += " " + Messages.get(Armor.class, "too_heavy");
 			}
 		} else {
 			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", DRMin(0), DRMax(0), STRReq(0));
 
-			if (STRReq(0) > Dungeon.hero.STR()) {
+			if (STRReq(0) > Dungeon.heroine.STR()) {
 				info += " " + Messages.get(Armor.class, "probably_too_heavy");
 			}
 		}
@@ -469,8 +495,12 @@ public class Armor extends EquipableItem {
 			info += "\n\n" +  Messages.get(Armor.class, "inscribed", glyph.name());
 			info += " " + glyph.desc();
 		}
+
+		if (plating) {
+			info += "\n\n" + Messages.get(Armor.class, "plating");
+		}
 		
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (cursed && isEquipped( Dungeon.heroine)) {
 			info += "\n\n" + Messages.get(Armor.class, "cursed_worn");
 		} else if (cursedKnown && cursed) {
 			info += "\n\n" + Messages.get(Armor.class, "cursed");
@@ -572,7 +602,7 @@ public class Armor extends EquipableItem {
 	}
 
 	public boolean hasGlyph(Class<?extends Glyph> type, Char owner) {
-		return glyph != null && glyph.getClass() == type && owner.buff(MagicImmune.class) == null;
+		return glyph != null && glyph.getClass() == type;
 	}
 
 	//these are not used to process specific glyph effects, so magic immune doesn't affect them

@@ -37,20 +37,20 @@ public class HealingHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			if (hero.buff(Inversion.class) != null) {
-				hero.damage(hero.HT / 2, hero);
-				if (hero == Dungeon.hero && !hero.isAlive()) {
+			if (heroine.buff(Inversion.class) != null) {
+				heroine.damage(heroine.HT / 2, heroine);
+				if (heroine == Dungeon.heroine && !heroine.isAlive()) {
 					Dungeon.fail(InversionTrap.class);
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else {
-				hero.HP = Math.min(hero.HP + 100, hero.HT);
-				Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
+				heroine.HP = Math.min(heroine.HP + 100, heroine.HT);
+				Dungeon.heroine.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 			}
 		}
 	}

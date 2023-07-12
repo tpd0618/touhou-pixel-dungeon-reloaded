@@ -5,7 +5,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
@@ -51,8 +50,8 @@ public class Sagume extends Mob {
     public void die(Object cause) {
         super.die(cause);
         for (int i : PathFinder.NEIGHBOURS8) {
-            if (cause == Dungeon.hero && enemy.pos == this.pos + i) {
-                Dungeon.hero.HP = 1;
+            if (cause == Dungeon.heroine && enemy.pos == this.pos + i) {
+                Dungeon.heroine.HP = 1;
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
                 GLog.w(Messages.get(this, "reverse"));
             }
@@ -62,7 +61,7 @@ public class Sagume extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0){
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }

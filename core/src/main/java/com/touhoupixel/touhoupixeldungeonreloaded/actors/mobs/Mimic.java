@@ -138,21 +138,21 @@ public class Mimic extends Mob {
 
 	@Override
 	public boolean interact(Char c) {
-		if (alignment != Alignment.NEUTRAL || c != Dungeon.hero){
+		if (alignment != Alignment.NEUTRAL || c != Dungeon.heroine){
 			return super.interact(c);
 		}
 		stopHiding();
 
-		Dungeon.hero.busy();
-		Dungeon.hero.sprite.operate(pos);
-		if (Dungeon.hero.invisible <= 0
-				&& Dungeon.hero.buff(Swiftthistle.TimeBubble.class) == null
-				&& Dungeon.hero.buff(TimekeepersHourglass.timeFreeze.class) == null){
-			return doAttack(Dungeon.hero);
+		Dungeon.heroine.busy();
+		Dungeon.heroine.sprite.operate(pos);
+		if (Dungeon.heroine.invisible <= 0
+				&& Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) == null
+				&& Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) == null){
+			return doAttack(Dungeon.heroine);
 		} else {
 			sprite.idle();
 			alignment = Alignment.ENEMY;
-			Dungeon.hero.spendAndNext(1f);
+			Dungeon.heroine.spendAndNext(1f);
 			return true;
 		}
 	}
@@ -162,7 +162,7 @@ public class Mimic extends Mob {
 		super.onAttackComplete();
 		if (alignment == Alignment.NEUTRAL){
 			alignment = Alignment.ENEMY;
-			Dungeon.hero.spendAndNext(1f);
+			Dungeon.heroine.spendAndNext(1f);
 		}
 	}
 
@@ -179,8 +179,8 @@ public class Mimic extends Mob {
 		state = HUNTING;
 		if (sprite != null) sprite.idle();
 		if (Actor.chars().contains(this) && Dungeon.level.heroFOV[pos]) {
-			enemy = Dungeon.hero;
-			target = Dungeon.hero.pos;
+			enemy = Dungeon.heroine;
+			target = Dungeon.heroine.pos;
 			enemySeen = true;
 			GLog.w(Messages.get(this, "reveal") );
 			CellEmitter.get(pos).burst(Speck.factory(Speck.STAR), 10);
@@ -275,7 +275,7 @@ public class Mimic extends Mob {
 		}
 
 		m.items = new ArrayList<>( items );
-		m.setLevel( Dungeon.depth );
+		m.setLevel( Dungeon.floor);
 		m.pos = pos;
 
 		//generate an extra reward for killing the mimic

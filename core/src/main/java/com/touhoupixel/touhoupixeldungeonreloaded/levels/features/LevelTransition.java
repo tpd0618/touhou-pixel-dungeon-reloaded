@@ -38,7 +38,7 @@ public class LevelTransition extends Rect implements Bundlable {
     }
 
     public Type type;
-    public int destDepth;
+    public int destFloor;
     public int destBranch;
     public Type destType;
 
@@ -49,12 +49,12 @@ public class LevelTransition extends Rect implements Bundlable {
         super();
     }
 
-    public LevelTransition(Level level, int cell, Type type, int destDepth, int destBranch, Type destType){
+    public LevelTransition(Level level, int cell, Type type, int destFloor, int destBranch, Type destType){
         centerCell = cell;
         Point p = level.cellToPoint(cell);
         set(p.x, p.y, p.x, p.y);
         this.type = type;
-        this.destDepth = destDepth;
+        this.destFloor = destFloor;
         this.destBranch = destBranch;
         this.destType = destType;
     }
@@ -67,17 +67,17 @@ public class LevelTransition extends Rect implements Bundlable {
         this.type = type;
         switch (type){
             case REGULAR_EXIT: default:
-                destDepth = Dungeon.depth-1;
+                destFloor = Dungeon.floor -1;
                 destBranch = Dungeon.branch;
                 destType = Type.REGULAR_ENTRANCE;
                 break;
             case REGULAR_ENTRANCE:
-                destDepth = Dungeon.depth+1;
+                destFloor = Dungeon.floor +1;
                 destBranch = Dungeon.branch;
                 destType = Type.REGULAR_EXIT;
                 break;
             case SURFACE:
-                destDepth = 0;
+                destFloor = 0;
                 destBranch = 0;
                 destType = null;
                 break;
@@ -118,7 +118,7 @@ public class LevelTransition extends Rect implements Bundlable {
     }
 
     public static final String TYPE = "type";
-    public static final String DEST_DEPTH = "dest_depth";
+    public static final String DEST_FLOOR = "dest_floor";
     public static final String DEST_BRANCH = "dest_branch";
     public static final String DEST_TYPE = "dest_type";
 
@@ -132,7 +132,7 @@ public class LevelTransition extends Rect implements Bundlable {
         bundle.put( "center", centerCell );
 
         bundle.put(TYPE, type);
-        bundle.put(DEST_DEPTH, destDepth);
+        bundle.put(DEST_FLOOR, destFloor);
         bundle.put(DEST_BRANCH, destBranch);
         bundle.put(DEST_TYPE, destType);
     }
@@ -147,7 +147,7 @@ public class LevelTransition extends Rect implements Bundlable {
         centerCell = bundle.getInt( "center" );
 
         type = bundle.getEnum(TYPE, Type.class);
-        destDepth = bundle.getInt(DEST_DEPTH);
+        destFloor = bundle.getInt(DEST_FLOOR);
         destBranch = bundle.getInt(DEST_BRANCH);
         if (bundle.contains(DEST_TYPE)) destType = bundle.getEnum(DEST_TYPE, Type.class);
     }

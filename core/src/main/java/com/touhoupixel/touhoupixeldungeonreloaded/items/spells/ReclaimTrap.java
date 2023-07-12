@@ -48,8 +48,8 @@ public class ReclaimTrap extends TargetedSpell {
 	private Class<?extends Trap> storedTrap = null;
 	
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		//prevents exploits
 		if (storedTrap != null){
 			actions.remove(AC_DROP);
@@ -59,7 +59,7 @@ public class ReclaimTrap extends TargetedSpell {
 	}
 
 	@Override
-	protected void affectTarget(Ballistica bolt, Hero hero) {
+	protected void affectTarget(Ballistica bolt, Hero heroine) {
 		if (storedTrap == null) {
 			quantity++; //storing a trap doesn't consume the spell
 			Trap t = Dungeon.level.traps.get(bolt.collisionPos);
@@ -67,7 +67,7 @@ public class ReclaimTrap extends TargetedSpell {
 				t.disarm(); //even disarms traps that normally wouldn't be
 				
 				Sample.INSTANCE.play(Assets.Sounds.LIGHTNING);
-				ScrollOfRecharging.charge(hero);
+				ScrollOfRecharging.charge(heroine);
 				storedTrap = t.getClass();
 				
 			} else {

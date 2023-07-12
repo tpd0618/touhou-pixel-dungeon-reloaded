@@ -45,7 +45,7 @@ public class Akyuu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0){
             Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION / 2f);

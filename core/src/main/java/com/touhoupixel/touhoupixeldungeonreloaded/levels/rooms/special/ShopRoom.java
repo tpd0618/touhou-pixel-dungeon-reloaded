@@ -36,7 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHou
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.SmallRice;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
@@ -152,7 +152,7 @@ public class ShopRoom extends SpecialRoom {
 
 		MeleeWeapon w;
 		Armor a;
-		switch (Dungeon.depth) {
+		switch (Dungeon.floor) {
 		default: case 6:
 			w = (MeleeWeapon) Generator.random(Generator.wepTiers[1]);
 			a = (Armor) Generator.random(Generator.armorTiers[1]);
@@ -171,7 +171,7 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add( Generator.random(Generator.misTiers[3]).quantity(3).identify(false) );
 			break;
 
-		case 36: case 46:
+		case 36:
 			w = (MeleeWeapon) Generator.random(Generator.wepTiers[4]);
 			a = (Armor) Generator.random(Generator.armorTiers[4]);
 			itemsToSpawn.add( Generator.random(Generator.misTiers[4]).quantity(3).identify(false) );
@@ -187,7 +187,7 @@ public class ShopRoom extends SpecialRoom {
 		a.identify(false);
 		itemsToSpawn.add(a);
 		
-		itemsToSpawn.add( TippedDart.randomTipped(2) );
+		itemsToSpawn.add( TippedDart.randomTipped(3) );
 
 		itemsToSpawn.add( new TenshiCard() );
 
@@ -209,7 +209,7 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.VIAL ) );
 
 		itemsToSpawn.add( new ScrollOfIdentify() );
-		itemsToSpawn.add( new ScrollOfCurseRemoval() );
+		itemsToSpawn.add( new ScrollOfExorcism() );
 
 		for (int i=0; i < 2; i++)
 			itemsToSpawn.add( Random.Int(2) == 0 ?
@@ -228,7 +228,7 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new StoneOfAugmentation());
 		itemsToSpawn.add(new StoneOfAugmentation());
 
-		TimekeepersHourglass hourglass = Dungeon.hero.belongings.getItem(TimekeepersHourglass.class);
+		TimekeepersHourglass hourglass = Dungeon.heroine.belongings.getItem(TimekeepersHourglass.class);
 		if (hourglass != null && hourglass.isIdentified() && !hourglass.cursed){
 			int bags = 0;
 			//creates the given float percent of the remaining bags to be dropped.

@@ -35,7 +35,7 @@ public class NitoChecker extends Item {
 	private static final String AC_DRINK = "DRINK";
 
 	{
-		image = ItemSpriteSheet.NITO_CHECKER;
+		image = ItemSpriteSheet.TOKEN;
 
 		defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class NitoChecker extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.remove(AC_DROP);
 		actions.remove(AC_THROW);
 		actions.remove(AC_DRINK);
@@ -56,38 +56,28 @@ public class NitoChecker extends Item {
 
 		String info = desc();
 
-		info += "\n\n" + Messages.get( NitoChecker.class, "stats1", Statistics.power);
-		info += "\n\n" + Messages.get( NitoChecker.class, "stats2", Statistics.life);
-		info += "\n\n" + Messages.get( NitoChecker.class, "stats3", Statistics.lifefragment);
-		info += "\n\n" + Messages.get( NitoChecker.class, "stats4", Statistics.spellcard);
-		info += "\n\n" + Messages.get( NitoChecker.class, "stats5", Statistics.spellcardfragment);
-		info += "\n\n" + Messages.get( NitoChecker.class, "statsdaynight", Statistics.nighttimecount);
-		if (Dungeon.isChallenged(Challenges.DISTORTION)){
-			info += "\n\n" + Messages.get( NitoChecker.class, "statsbocchi", Statistics.hitorilefttime);
-		}
-		if (Dungeon.isChallenged(Challenges.KEYSTONE_MISSILE)){
-			info += "\n\n" + Messages.get( NitoChecker.class, "stats7", Statistics.tenshiEarthquake);
-		}
-		if (Dungeon.isChallenged(Challenges.TIME_EATER)){
-			info += "\n\n" + Messages.get( NitoChecker.class, "stats8", Statistics.timetrackbuff);
-		}
+		info += "\n\n" + Messages.get( this, "stats1", Statistics.power);
+		info += "\n\n" + Messages.get( this, "stats2", Statistics.life);
+		info += "\n\n" + Messages.get( this, "stats3", Statistics.lifefragment);
+		info += "\n\n" + Messages.get( this, "stats4", Statistics.spellcard);
+		info += "\n\n" + Messages.get( this, "stats5", Statistics.spellcardfragment);
 		if (Statistics.difficulty == 1) {
-			info += "\n\n" + Messages.get(NitoChecker.class, "easy");
+			info += "\n\n" + Messages.get(this, "easy");
 		}
 		if (Statistics.difficulty == 2) {
-			info += "\n\n" + Messages.get(NitoChecker.class, "normal");
+			info += "\n\n" + Messages.get(this, "normal");
 		}
 		if (Statistics.difficulty == 3) {
-			info += "\n\n" + Messages.get(NitoChecker.class, "hard");
+			info += "\n\n" + Messages.get(this, "hard");
 		}
 		if (Statistics.difficulty == 4) {
-			info += "\n\n" + Messages.get(NitoChecker.class, "lunatic");
+			info += "\n\n" + Messages.get(this, "lunatic");
 		}
 		if (Statistics.difficulty == 5) {
-			info += "\n\n" + Messages.get(NitoChecker.class, "overdrive");
+			info += "\n\n" + Messages.get(this, "overdrive");
 		}
 		if (Statistics.difficulty == 6) {
-			info += "\n\n" + Messages.get(NitoChecker.class, "gensokyo_extinction");
+			info += "\n\n" + Messages.get(this, "risky");
 		}
 		return info;
 	}

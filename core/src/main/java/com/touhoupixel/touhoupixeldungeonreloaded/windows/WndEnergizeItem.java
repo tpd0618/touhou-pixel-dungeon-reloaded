@@ -108,12 +108,12 @@ public class WndEnergizeItem extends WndInfoItem {
 
 	public static void energize( Item item ) {
 
-		Hero hero = Dungeon.hero;
+		Hero heroine = Dungeon.heroine;
 
-		if (item.isEquipped( hero ) && !((EquipableItem)item).doUnequip( hero, false )) {
+		if (item.isEquipped(heroine) && !((EquipableItem)item).doUnequip(heroine, false )) {
 			return;
 		}
-		item.detachAll( hero.belongings.backpack );
+		item.detachAll( heroine.belongings.backpack );
 
 		if (ShatteredPixelDungeon.scene() instanceof AlchemyScene){
 
@@ -123,9 +123,9 @@ public class WndEnergizeItem extends WndInfoItem {
 		} else {
 
 			//selling items in the sell interface doesn't spend time
-			hero.spend(-hero.cooldown());
+			heroine.spend(-heroine.cooldown());
 
-			new EnergyCrystal(item.energyVal()).doPickUp(hero);
+			new EnergyCrystal(item.energyVal()).doPickUp(heroine);
 
 		}
 	}
@@ -136,9 +136,9 @@ public class WndEnergizeItem extends WndInfoItem {
 			energize( item );
 		} else {
 
-			Hero hero = Dungeon.hero;
+			Hero heroine = Dungeon.heroine;
 
-			item = item.detach( hero.belongings.backpack );
+			item = item.detach( heroine.belongings.backpack );
 
 			if (ShatteredPixelDungeon.scene() instanceof AlchemyScene){
 
@@ -148,9 +148,9 @@ public class WndEnergizeItem extends WndInfoItem {
 			} else {
 
 				//selling items in the sell interface doesn't spend time
-				hero.spend(-hero.cooldown());
+				heroine.spend(-heroine.cooldown());
 
-				new EnergyCrystal(item.energyVal()).doPickUp(hero);
+				new EnergyCrystal(item.energyVal()).doPickUp(heroine);
 			}
 		}
 	}

@@ -6,10 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.watabou.utils.Random;
 
@@ -32,7 +29,7 @@ public class Aya extends Mob {
 
         flying = true;
 
-        loot = new PotionOfDoublespeed();
+        loot = new PotionOfDoubleSpeed();
         lootChance = 0.1f;
     }
 
@@ -54,7 +51,7 @@ public class Aya extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }

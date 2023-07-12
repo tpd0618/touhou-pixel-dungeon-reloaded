@@ -16,10 +16,12 @@ public class Hijiri extends Mob {
     {
         spriteClass = HijiriSprite.class;
 
-        HP = HT = 98;
+        HP = HT = 4; //cave mamel minus 2HP
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
+
+        state = WANDERING;
 
         properties.add(Property.WARP);
 
@@ -28,8 +30,17 @@ public class Hijiri extends Mob {
     }
 
     @Override
+    protected boolean act() {
+        boolean result = super.act();
+        if (buff(SuperHard.class) == null) {
+            Buff.prolong(this, SuperHard.class, SuperHard.DURATION * 10000f);
+        }
+        return result;
+    }
+
+    @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 19);
+        return Random.NormalIntRange(14, 20);
     }
 
     @Override
@@ -45,8 +56,7 @@ public class Hijiri extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(7) == 0) {
-            Buff.prolong(this, SuperHard.class, SuperHard.DURATION/3f);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }

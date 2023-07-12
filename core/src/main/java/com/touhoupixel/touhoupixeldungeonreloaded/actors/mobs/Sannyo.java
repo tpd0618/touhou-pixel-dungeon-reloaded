@@ -26,35 +26,23 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreCooldown;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SannyoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
-
-import java.util.ArrayList;
 
 public class Sannyo extends Mob {
 
@@ -65,6 +53,10 @@ public class Sannyo extends Mob {
         defenseSkill = 32;
         EXP = 17;
         maxLvl = 40;
+
+        flying = Statistics.difficulty > 2;
+
+        baseSpeed = Statistics.difficulty > 4 ? 2f : 1f;
 
         properties.add(Property.YOKAI);
 
@@ -88,17 +80,17 @@ public class Sannyo extends Mob {
     }
 
     @Override
-    public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
-            Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
-            Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
+    protected boolean act() {
+        if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING && Dungeon.heroine.belongings.backpack.items.size()+5 > Dungeon.heroine.belongings.backpack.capacity()) {
+            Item toDelete = Dungeon.heroine.belongings.randomUnequipped();
+            if (toDelete != null && !toDelete.unique) {
+                GameScene.flash(-65536);
+                Sample.INSTANCE.play( Assets.Sounds.BLAST );
+                GLog.w(Messages.get(this, "item_delete"));
+                toDelete.detach(Dungeon.heroine.belongings.backpack);
+                Item.updateQuickslot();
             }
         }
-        return super.defenseProc(enemy, damage);
+        return super.act();
     }
 }

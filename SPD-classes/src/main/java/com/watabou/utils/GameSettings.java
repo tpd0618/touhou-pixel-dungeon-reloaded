@@ -117,6 +117,17 @@ public class GameSettings {
 			return defValue;
 		}
 	}
+
+	private static final String BUNDLABLE="b";
+
+	public static <T extends Bundlable> T getBundlable(String key, T defValue){
+		try {
+			Bundle b = Bundle.fromString(getString(key,""));
+			return (T)b.get(BUNDLABLE);
+		} catch (Exception e) {
+			return defValue;
+		}
+	}
 	
 	public static void put( String key, int value ) {
 		get().putInteger(key, value);

@@ -24,12 +24,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
@@ -38,14 +36,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.MoodHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.AnimalVial;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.IdolStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -58,21 +53,22 @@ public enum HeroClass {
 	PLAYERYOUMU(),
 	PLAYERSAKUYA();
 
-	public void initHero( Hero hero ) {
+	public void initHero( Hero heroine) {
 
 		//test, too many will trigger a certain bug
 
 		//test, too many will trigger a certain bug
 
-		if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
-			MoodHerb moodHerb = new MoodHerb();
-			moodHerb.quantity(50).identify().collect();
+		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
+			HeartHerb heartHerb = new HeartHerb();
+			heartHerb.quantity(30).identify().collect();
 		}
 
-		if (Statistics.difficulty == 1){
-			PotionOfHealing poh = new PotionOfHealing();
-			poh.quantity(3).identify().collect();
-		}
+		OminousGap ominousGap = new OminousGap();
+		ominousGap.quantity(5).collect();
+
+		PotionOfHealing potionOfHealing = new PotionOfHealing();
+		potionOfHealing.quantity(3).identify().collect();
 
 		ThrowingKnife throwingKnife = new ThrowingKnife();
 		throwingKnife.quantity(3).collect();
@@ -81,22 +77,19 @@ public enum HeroClass {
 		Food food = new Food();
 		food.collect();
 
-		Torch torch = new Torch();
-		torch.collect();
-
-		hero.heroClass = this;
+		heroine.heroClass = this;
 
 		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
 		reimuExorcismRod.identify().collect();
 
 		MarisaStaff staff;
 		staff = new MarisaStaff(new WandOfMagicMissile());
-		(hero.belongings.weapon = staff).identify();
-		hero.belongings.weapon.activate(hero);
+		(heroine.belongings.weapon = staff).identify();
+		heroine.belongings.weapon.activate(heroine);
 		Dungeon.quickslot.setSlot(0, staff);
 
 		Item i = new ReimuArmor().identify();
-		if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ReimuArmor)i;
+		if (!Challenges.isItemBlocked(i)) heroine.belongings.armor = (ReimuArmor)i;
 
 		GlassBottle glassBottle = new GlassBottle();
 		glassBottle.collect();

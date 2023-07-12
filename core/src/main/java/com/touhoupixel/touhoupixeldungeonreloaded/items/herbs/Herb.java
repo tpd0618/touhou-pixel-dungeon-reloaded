@@ -58,31 +58,31 @@ public class Herb extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_EAT );
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_EAT )) {
 
-			detach(hero.belongings.backpack);
+			detach(heroine.belongings.backpack);
 
-			hero.sprite.operate(hero.pos);
-			hero.busy();
-			SpellSprite.show(hero, SpellSprite.FOOD);
+			heroine.sprite.operate(heroine.pos);
+			heroine.busy();
+			SpellSprite.show(heroine, SpellSprite.FOOD);
 			Sample.INSTANCE.play(Assets.Sounds.EAT);
 
-			if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+			if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 				Statistics.mood += 1;
 			}
 
-			if (hero.buff(HerbDegrade.class) != null){
+			if (heroine.buff(HerbDegrade.class) != null){
 				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
 			}
 
@@ -96,7 +96,7 @@ public class Herb extends Item {
 				}
 			} //for boss seija
 
-			hero.spend(eatingTime());
+			heroine.spend(eatingTime());
 		}
 	}
 

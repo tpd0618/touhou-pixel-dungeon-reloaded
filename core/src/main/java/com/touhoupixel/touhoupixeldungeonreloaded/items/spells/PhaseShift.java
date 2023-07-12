@@ -43,7 +43,7 @@ public class PhaseShift extends TargetedSpell {
 	}
 	
 	@Override
-	protected void affectTarget(Ballistica bolt, Hero hero) {
+	protected void affectTarget(Ballistica bolt, Hero heroine) {
 		final Char ch = Actor.findChar(bolt.collisionPos);
 		
 		if (ch != null) {

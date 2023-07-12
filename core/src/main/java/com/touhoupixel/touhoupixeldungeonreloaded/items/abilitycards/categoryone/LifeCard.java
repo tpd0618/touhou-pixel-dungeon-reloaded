@@ -43,15 +43,15 @@ public class LifeCard extends Abilitycards {
 
     //allows multiple purchases
     @Override
-    public boolean doPickUp(Hero hero, int pos) {
+    public boolean doPickUp(Hero heroine, int pos) {
         Statistics.card3 = true;
         Statistics.life += 1;
-        return super.doPickUp(hero, pos);
+        return super.doPickUp(heroine, pos);
     }
 
     @Override
-    public ArrayList<String> actions( Hero hero ) {
-        ArrayList<String> actions = super.actions( hero );
+    public ArrayList<String> actions( Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         return actions;
     }
 }

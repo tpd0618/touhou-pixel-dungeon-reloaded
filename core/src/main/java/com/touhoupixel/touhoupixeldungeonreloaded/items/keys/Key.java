@@ -22,10 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.keys;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -44,39 +40,39 @@ public abstract class Key extends Item {
 		unique = true;
 	}
 	
-	public int depth;
+	public int floor;
 	
 	@Override
 	public boolean isSimilar( Item item ) {
-		return super.isSimilar(item) && ((Key)item).depth == depth;
+		return super.isSimilar(item) && ((Key)item).floor == floor;
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 		GameScene.pickUpJournal(this, pos);
-		if (hero.buff(KeyHeal.class) != null){
-			hero.HP = Math.min(hero.HP + 35, hero.HT);
+		if (heroine.buff(KeyHeal.class) != null){
+			heroine.HP = Math.min(heroine.HP + 35, heroine.HT);
 		}
 		WndJournal.last_index = 2;
 		Notes.add(this);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 		GameScene.updateKeyDisplay();
 		return true;
 	}
 
-	private static final String DEPTH = "depth";
+	private static final String FLOOR = "floor";
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle( bundle );
-		bundle.put( DEPTH, depth );
+		bundle.put(FLOOR, floor);
 	}
 	
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
-		depth = bundle.getInt( DEPTH );
+		floor = bundle.getInt(FLOOR);
 	}
 	
 	@Override

@@ -49,9 +49,9 @@ public class Dewdrop extends Item {
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 
-		GlassBottle flask = hero.belongings.getItem(GlassBottle.class);
+		GlassBottle flask = heroine.belongings.getItem(GlassBottle.class);
 
 		if (flask != null && !flask.isFull()) {
 
@@ -61,7 +61,7 @@ public class Dewdrop extends Item {
 		} else {
 
 			int terr = Dungeon.level.map[pos];
-			if (!consumeDew(1, hero, terr == Terrain.ENTRANCE || terr == Terrain.EXIT || terr == Terrain.UNLOCKED_EXIT)) {
+			if (!consumeDew(1, heroine, terr == Terrain.ENTRANCE || terr == Terrain.EXIT || terr == Terrain.UNLOCKED_EXIT)) {
 				return false;
 			}
 
@@ -72,33 +72,33 @@ public class Dewdrop extends Item {
 		}
 
 		Sample.INSTANCE.play(Assets.Sounds.DEWDROP);
-		hero.spendAndNext(TIME_TO_PICK_UP);
+		heroine.spendAndNext(TIME_TO_PICK_UP);
 
 		return true;
 	}
 
-	public static boolean consumeDew(int quantity, Hero hero, boolean force) {
+	public static boolean consumeDew(int quantity, Hero heroine, boolean force) {
 		//20 drops for a full heal
-		int heal = Math.round(hero.HT * 0.05f * quantity);
+		int heal = Math.round(heroine.HT * 0.05f * quantity);
 
-		int effect = Math.min(hero.HT - hero.HP, heal);
+		int effect = Math.min(heroine.HT - heroine.HP, heal);
 		int shield = 0;
 		if (effect > 0 || shield > 0) {
-			if (hero.buff(Inversion.class) != null) {
-				hero.damage(hero.HT / 2, hero);
-				if (hero == Dungeon.hero && !hero.isAlive()) {
+			if (heroine.buff(Inversion.class) != null) {
+				heroine.damage(heroine.HT / 2, heroine);
+				if (heroine == Dungeon.heroine && !heroine.isAlive()) {
 					Dungeon.fail(InversionTrap.class);
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
-			} else hero.HP += effect;
-			if (shield > 0) Buff.affect(hero, Barrier.class).incShield(shield);
-			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+			} else heroine.HP += effect;
+			if (shield > 0) Buff.affect(heroine, Barrier.class).incShield(shield);
+			heroine.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
 			if (effect > 0 && shield > 0) {
-				hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Dewdrop.class, "both", effect, shield));
+				heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Dewdrop.class, "both", effect, shield));
 			} else if (effect > 0) {
-				hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Dewdrop.class, "heal", effect));
+				heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Dewdrop.class, "heal", effect));
 			} else {
-				hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Dewdrop.class, "shield", shield));
+				heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Dewdrop.class, "shield", shield));
 			}
 
 		} else if (!force) {

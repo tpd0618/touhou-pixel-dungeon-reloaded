@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class AyaDanmaku extends MissileWeapon {
@@ -39,7 +39,7 @@ public class AyaDanmaku extends MissileWeapon {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage ) {
-		Buff.prolong(attacker, Doublespeed.class, Doublespeed.DURATION/5f);
+		Buff.prolong(attacker, DoubleSpeed.class, DoubleSpeed.DURATION/5f);
 		return super.proc( attacker, defender, damage );
 	}
 }

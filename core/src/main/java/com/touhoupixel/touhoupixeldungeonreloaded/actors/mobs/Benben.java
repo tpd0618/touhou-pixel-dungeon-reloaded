@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BenbenSprite;
@@ -40,7 +40,7 @@ public class Benben extends Mob {
 
         HP = HT = 128;
         defenseSkill = 30;
-        EXP = 15;
+        EXP = 13;
         maxLvl = 37;
 
         properties.add(Property.YOKAI);
@@ -67,8 +67,8 @@ public class Benben extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(3) == 0) {
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
+            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
             Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);

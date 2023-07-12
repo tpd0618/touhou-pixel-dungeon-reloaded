@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
@@ -117,7 +116,7 @@ public class Renko extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
                 if (Statistics.difficulty > 2) {
                     Buff.prolong(this, Might.class, Might.DURATION);
                 }
@@ -138,27 +137,26 @@ public class Renko extends Mob implements Callback {
                         Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
                         break;
                     case 2:
-                        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+                        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
                             ArrayList<Item> gazer = new ArrayList<>();
-                            if (Dungeon.hero.buff(LostInventory.class) == null) {
-                                for (Item i : Dungeon.hero.belongings) {
-                                    if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
-                                        gazer.add(i);
-                                    }
+                            for (Item i : Dungeon.heroine.belongings) {
+                                if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
+                                    gazer.add(i);
                                 }
-                                    if (!gazer.isEmpty()) {
-                                        Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
-                                        GLog.w(Messages.get(Reisen.class, "gaze"));
-                                        Dungeon.hero.sprite.emitter().start( Speck.factory( Speck.BUBBLE ), 0.2f, 3 );
-                                        Sample.INSTANCE.play(Assets.Sounds.LULLABY);
-                                        if (hypnotize instanceof Potion) {
-                                            ((Potion) hypnotize).drink(Dungeon.hero);
-                                        }
-                                        if (hypnotize instanceof Herb) {
-                                            hypnotize.execute(Dungeon.hero);
-                                        }
-                                    } else {
-                                        GLog.w(Messages.get(Reisen.class, "failtogaze"));}
+                            }
+                            if (!gazer.isEmpty()) {
+                                Item hypnotize = Random.element(gazer).detach(Dungeon.heroine.belongings.backpack);
+                                GLog.w(Messages.get(Reisen.class, "gaze"));
+                                Dungeon.heroine.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
+                                Sample.INSTANCE.play(Assets.Sounds.LULLABY);
+                                if (hypnotize instanceof Potion) {
+                                    ((Potion) hypnotize).drink(Dungeon.heroine);
+                                }
+                                if (hypnotize instanceof Herb) {
+                                    hypnotize.execute(Dungeon.heroine);
+                                }
+                            } else {
+                                GLog.w(Messages.get(Reisen.class, "failtogaze"));
                             }
                         }
                         break;
@@ -171,7 +169,7 @@ public class Renko extends Mob implements Callback {
                 }
             }
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }

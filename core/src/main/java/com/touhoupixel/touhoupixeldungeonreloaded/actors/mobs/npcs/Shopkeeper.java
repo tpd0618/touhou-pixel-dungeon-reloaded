@@ -57,7 +57,7 @@ public class Shopkeeper extends NPC {
 			Notes.add(Notes.Landmark.SHOP);
 		}
 		
-		sprite.turnTo( pos, Dungeon.hero.pos );
+		sprite.turnTo( pos, Dungeon.heroine.pos );
 		spend( TICK );
 		return super.act();
 	}
@@ -115,7 +115,7 @@ public class Shopkeeper extends NPC {
 		if (item.value() <= 0)                                              return false;
 		if (item.unique && !item.stackable)                                 return false;
 		if (item instanceof Armor && ((Armor) item).checkSeal() != null)    return false;
-		if (item.isEquipped(Dungeon.hero) && item.cursed)                   return false;
+		if (item.isEquipped(Dungeon.heroine) && item.cursed)                   return false;
 		if (item.isIdentified() && item.level() > 0)                        return false;
 		if (item instanceof Abilitycards)                                   return false;
 		if (item instanceof StrengthCard)                                   return false;
@@ -146,7 +146,7 @@ public class Shopkeeper extends NPC {
 
 	@Override
 	public boolean interact(Char c) {
-		if (c != Dungeon.hero) {
+		if (c != Dungeon.heroine) {
 			return true;
 		}
 		Game.runOnRenderThread(new Callback() {

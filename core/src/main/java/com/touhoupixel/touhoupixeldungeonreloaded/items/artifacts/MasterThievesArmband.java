@@ -65,20 +65,20 @@ public class MasterThievesArmband extends Artifact {
 	public static final String AC_STEAL = "STEAL";
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
-		if (isEquipped(hero) && charge > 0 && !cursed) actions.add(AC_STEAL);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && charge > 0 && !cursed) actions.add(AC_STEAL);
 		return actions;
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
-		super.execute(hero, action);
+	public void execute(Hero heroine, String action) {
+		super.execute(heroine, action);
 		if (action.equals(AC_STEAL)){
 
-			curUser = hero;
+			curUser = heroine;
 
-			if (!isEquipped( hero )) {
+			if (!isEquipped(heroine)) {
 				GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 				usesTargeting = false;
 
@@ -134,7 +134,7 @@ public class MasterThievesArmband extends Artifact {
 
 							float lootChance = ((Mob) ch).lootChance() * lootMultiplier;
 
-							if (Dungeon.hero.lvl > ((Mob) ch).maxLvl + 2) {
+							if (Dungeon.heroine.lvl > ((Mob) ch).maxLvl + 2) {
 								lootChance = 0;
 							} else if (ch.buff(StolenTracker.class) != null){
 								lootChance = 0;
@@ -223,7 +223,7 @@ public class MasterThievesArmband extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if ( isEquipped (Dungeon.hero) ){
+		if ( isEquipped (Dungeon.heroine) ){
 			if (cursed){
 				desc += "\n\n" + Messages.get(this, "desc_cursed");
 			} else {

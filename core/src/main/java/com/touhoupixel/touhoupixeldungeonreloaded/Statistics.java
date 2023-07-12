@@ -28,7 +28,7 @@ public class Statistics {
 
 	public static int goldCollected;
 	public static int goldPickedup;
-	public static int deepestFloor;
+	public static int highestFloor;
 	public static int highestAscent;
 	public static int enemiesSlain;
 	public static int foodEaten;
@@ -59,6 +59,7 @@ public class Statistics {
 	public static int limitBreak;
 
 	public static int hexcancel;
+	public static int hourai_cycle;
 
 	public static int cardDraw;
 	public static int cardDrawalt;
@@ -106,7 +107,6 @@ public class Statistics {
 
 	public static int mood;
 	public static int wandpowerup;
-	public static int nighttimecount;
 
 	public static int lifefragmentkill;
 	public static int spellcardfragmentkill;
@@ -115,11 +115,14 @@ public class Statistics {
 
 	public static int difficulty;
 
+	public static int double_speed_upgrade;
+	public static int extermination_number;
+
 	public static boolean dinfocheck = false;
 
-	public static boolean elixirtrigger = false;
+	public static boolean elixir_trigger = false;
 
-	public static boolean remicountdown = false;
+	public static boolean remi_countdown = false;
 
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
@@ -150,7 +153,6 @@ public class Statistics {
 	public static boolean boss7 = false;
 	public static boolean boss8 = false;
 	public static boolean boss9 = false;
-	public static boolean boss10 = false;
 
 	//ability cards
 	public static boolean card1 = false;
@@ -230,7 +232,7 @@ public class Statistics {
 
 		goldCollected	= 0;
 		goldPickedup	= 0;
-		deepestFloor	= 0;
+		highestFloor = 0;
 		highestAscent	= 0;
 		enemiesSlain	= 0;
 		foodEaten		= 0;
@@ -258,6 +260,7 @@ public class Statistics {
 		limitBreak   = 0;
 
 		hexcancel = 0;
+		hourai_cycle = 0;
 
 		cardDraw   = 0;
 		cardDrawalt   = 0;
@@ -305,7 +308,6 @@ public class Statistics {
 
 		mood = 0;
 		wandpowerup = 0;
-		nighttimecount = 0;
 
 		lifefragmentkill = 0;
 		spellcardfragmentkill = 0;
@@ -313,13 +315,16 @@ public class Statistics {
 		hitoricount = 0;
 		hitorilefttime = 0;
 
-		difficulty = 0;
+		difficulty = 1; //easy
+
+		double_speed_upgrade = 0;
+		extermination_number = 0;
 
 		dinfocheck = false;
 
-		elixirtrigger = false;
+		elixir_trigger = false;
 
-		remicountdown = false;
+		remi_countdown = false;
 
 		qualifiedForNoKilling = false;
 
@@ -348,7 +353,6 @@ public class Statistics {
 		boss7 = false;
 		boss8 = false;
 		boss9 = false;
-		boss10 = false;
 
 		card1 = false;
 		card2 = false;
@@ -453,6 +457,7 @@ public class Statistics {
 	private static final String LIMITBREAK		= "limitBreak";
 
 	private static final String HEXCANCEL = "hexcancel";
+	private static final String HOURAI_CYCLE = "hourai_cycle";
 
 	private static final String CARDDRAW		= "cardDraw";
 	private static final String CARDDRAWALT		= "cardDrawalt";
@@ -500,7 +505,6 @@ public class Statistics {
 
 	private static final String MOOD	= "mood";
 	private static final String WANDPOWERUP	= "wandpowerup";
-	private static final String NIGHTTIMECOUNT	= "nighttimecount";
 
 	private static final String LIFEFRAGMENTKILL	= "lifefragmentkill";
 	private static final String SPELLCARDFRAGMENTKILL	= "spellcardfragmentkill";
@@ -509,6 +513,9 @@ public class Statistics {
 	private static final String HITORILEFTTIME	= "hitorilefttime";
 
 	private static final String DIFFICULTY	= "difficulty";
+
+	private static final String DOUBLE_SPEED_UPGRADE	= "double_speed_upgrade";
+	private static final String EXTERMINATION_NUMBER	= "extermination_number";
 
 	private static final String DINFOCHECK	= "dinfocheck";
 
@@ -543,7 +550,6 @@ public class Statistics {
 	private static final String BOSS7		= "boss7";
 	private static final String BOSS8		= "boss8";
 	private static final String BOSS9		= "boss9";
-	private static final String BOSS10		= "boss10";
 
 	private static final String CARD1		= "card1";
 	private static final String CARD2		= "card2";
@@ -621,7 +627,7 @@ public class Statistics {
 	public static void storeInBundle( Bundle bundle ) {
 		bundle.put( GOLD,		goldCollected );
 		bundle.put( GOLDPICKEDUP,		goldPickedup );
-		bundle.put( DEEPEST,	deepestFloor );
+		bundle.put( DEEPEST, highestFloor);
 		bundle.put( HIGHEST,	highestAscent );
 		bundle.put( SLAIN,		enemiesSlain );
 		bundle.put( FOOD,		foodEaten );
@@ -652,6 +658,7 @@ public class Statistics {
 		bundle.put( LIMITBREAK,		limitBreak );
 
 		bundle.put( HEXCANCEL, hexcancel );
+		bundle.put( HOURAI_CYCLE, hourai_cycle );
 
 		bundle.put( CARDDRAW,		cardDraw );
 		bundle.put( CARDDRAWALT,		cardDrawalt );
@@ -694,7 +701,6 @@ public class Statistics {
 		bundle.put( BOSS7,	boss7 );
 		bundle.put( BOSS8,	boss8 );
 		bundle.put( BOSS9,	boss9 );
-		bundle.put( BOSS10,	boss10 );
 
 		bundle.put( CARD1,	card1 );
 		bundle.put( CARD2,	card2 );
@@ -767,8 +773,6 @@ public class Statistics {
 		bundle.put( CARD69,	card69 );
 		bundle.put( CARD70,	card70 );
 
-		bundle.put( NIGHTTIMECOUNT,	nighttimecount );
-
 		bundle.put( DURATION,	duration );
 
 		bundle.put( POWERFULRES,powerfulres );
@@ -806,11 +810,14 @@ public class Statistics {
 
 		bundle.put( DIFFICULTY,	difficulty );
 
+		bundle.put( DOUBLE_SPEED_UPGRADE,	double_speed_upgrade );
+		bundle.put( EXTERMINATION_NUMBER,	extermination_number );
+
 		bundle.put( DINFOCHECK, dinfocheck );
 
-		bundle.put( ELIXIRTRIGGER, elixirtrigger );
+		bundle.put( ELIXIRTRIGGER, elixir_trigger);
 
-		bundle.put( REMICOUNTDOWN, remicountdown );
+		bundle.put( REMICOUNTDOWN, remi_countdown);
 
 		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
@@ -821,7 +828,7 @@ public class Statistics {
 	public static void restoreFromBundle( Bundle bundle ) {
 		goldCollected	= bundle.getInt( GOLD );
 		goldPickedup	= bundle.getInt( GOLDPICKEDUP );
-		deepestFloor	= bundle.getInt( DEEPEST );
+		highestFloor = bundle.getInt( DEEPEST );
 		highestAscent   = bundle.getInt( HIGHEST );
 		enemiesSlain	= bundle.getInt( SLAIN );
 		foodEaten		= bundle.getInt( FOOD );
@@ -853,6 +860,7 @@ public class Statistics {
 		limitBreak   = bundle.getInt( LIMITBREAK );
 
 		hexcancel = bundle.getInt(HEXCANCEL);
+		hourai_cycle = bundle.getInt(HOURAI_CYCLE);
 
 		cardDraw   = bundle.getInt( CARDDRAW );
 		cardDrawalt   = bundle.getInt( CARDDRAWALT );
@@ -900,7 +908,6 @@ public class Statistics {
 
 		mood = bundle.getInt( MOOD );
 		wandpowerup = bundle.getInt( WANDPOWERUP );
-		nighttimecount = bundle.getInt( NIGHTTIMECOUNT );
 
 		lifefragmentkill		= bundle.getInt( LIFEFRAGMENTKILL );
 		spellcardfragmentkill		= bundle.getInt( SPELLCARDFRAGMENTKILL );
@@ -910,11 +917,14 @@ public class Statistics {
 
 		difficulty		= bundle.getInt( DIFFICULTY );
 
+		double_speed_upgrade		= bundle.getInt( DOUBLE_SPEED_UPGRADE );
+		extermination_number		= bundle.getInt( EXTERMINATION_NUMBER );
+
 		dinfocheck = bundle.getBoolean( DINFOCHECK );
 
-		elixirtrigger = bundle.getBoolean( ELIXIRTRIGGER );
+		elixir_trigger = bundle.getBoolean( ELIXIRTRIGGER );
 
-		remicountdown = bundle.getBoolean( REMICOUNTDOWN );
+		remi_countdown = bundle.getBoolean( REMICOUNTDOWN );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 
@@ -943,7 +953,6 @@ public class Statistics {
 		boss7	= bundle.getBoolean( BOSS7 );
 		boss8	= bundle.getBoolean( BOSS8 );
 		boss9	= bundle.getBoolean( BOSS9 );
-		boss10  = bundle.getBoolean( BOSS10 );
 
 		card1	= bundle.getBoolean( CARD1 );
 		card2	= bundle.getBoolean( CARD2 );
@@ -1021,6 +1030,6 @@ public class Statistics {
 
 	public static void preview( GamesInProgress.Info info, Bundle bundle ){
 		info.goldCollected  = bundle.getInt( GOLD );
-		info.maxDepth       = bundle.getInt( DEEPEST );
+		info.maxFloor = bundle.getInt( DEEPEST );
 	}
 }

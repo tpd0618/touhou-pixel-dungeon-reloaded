@@ -23,8 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Difficulty;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.Rankings;
@@ -33,14 +31,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BadgesGrid;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BadgesList;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.CheckBox;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.IconButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Icons;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.ItemSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RedButton;
@@ -54,7 +49,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Button;
 import com.watabou.noosa.ui.Component;
-import com.watabou.utils.DeviceCompat;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -85,7 +79,7 @@ public class WndRanking extends WndTabbed {
 		try {
 			Badges.loadGlobal();
 			Rankings.INSTANCE.loadGameData( rec );
-			if (Dungeon.hero != null) {
+			if (Dungeon.heroine != null) {
 				createControls();
 			} else {
 				hide();
@@ -154,8 +148,8 @@ public class WndRanking extends WndTabbed {
 			super();
 
 			IconTitle title = new IconTitle();
-			title.icon( HeroSprite.avatar( Dungeon.hero.heroClass, Dungeon.hero.tier() ) );
-			title.label( Messages.get(this, "title", Dungeon.hero.lvl, Dungeon.hero.heroClass ).toUpperCase( Locale.ENGLISH ) );
+			title.icon( HeroSprite.avatar( Dungeon.heroine.heroClass, Dungeon.heroine.tier() ) );
+			title.label( Messages.get(this, "title", Dungeon.heroine.lvl, Dungeon.heroine.heroClass ).toUpperCase( Locale.ENGLISH ) );
 			title.color(Window.TITLE_COLOR);
 			title.setRect( 0, 0, WIDTH, 0 );
 			add( title );
@@ -164,13 +158,13 @@ public class WndRanking extends WndTabbed {
 
 			NumberFormat num = NumberFormat.getInstance(Locale.US);
 
-			int strBonus = Dungeon.hero.STR() - Dungeon.hero.STR;
-			if (strBonus > 0)       pos = statSlot(this, Messages.get(this, "str"), Dungeon.hero.STR + " + " + strBonus, pos);
-			else if (strBonus < 0)  pos = statSlot(this, Messages.get(this, "str"), Dungeon.hero.STR + " - " + -strBonus, pos );
-			else                    pos = statSlot(this, Messages.get(this, "str"), Integer.toString(Dungeon.hero.STR), pos);
+			int strBonus = Dungeon.heroine.STR() - Dungeon.heroine.STR;
+			if (strBonus > 0)       pos = statSlot(this, Messages.get(this, "str"), Dungeon.heroine.STR + " + " + strBonus, pos);
+			else if (strBonus < 0)  pos = statSlot(this, Messages.get(this, "str"), Dungeon.heroine.STR + " - " + -strBonus, pos );
+			else                    pos = statSlot(this, Messages.get(this, "str"), Integer.toString(Dungeon.heroine.STR), pos);
 			pos = statSlot( this, Messages.get(this, "duration"), num.format( (int)Statistics.duration ), pos );
 			if (Statistics.highestAscent == 0) {
-				pos = statSlot(this, Messages.get(this, "depth"), num.format(Statistics.deepestFloor), pos);
+				pos = statSlot(this, Messages.get(this, "depth"), num.format(Statistics.highestFloor), pos);
 			} else {
 				pos = statSlot(this, Messages.get(this, "ascent"), num.format(Statistics.highestAscent), pos);
 			}
@@ -250,7 +244,7 @@ public class WndRanking extends WndTabbed {
 		public ItemsTab() {
 			super();
 
-			Belongings stuff = Dungeon.hero.belongings;
+			Belongings stuff = Dungeon.heroine.belongings;
 			if (stuff.weapon != null) {
 				addItem( stuff.weapon );
 			}

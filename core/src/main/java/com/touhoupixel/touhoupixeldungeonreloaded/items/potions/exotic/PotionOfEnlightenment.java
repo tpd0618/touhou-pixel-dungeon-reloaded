@@ -34,7 +34,7 @@ public class PotionOfEnlightenment extends ExoticPotion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
 		Statistics.wandpowerup += 1;
 		GLog.p(Messages.get(this, "wand_power_up"));

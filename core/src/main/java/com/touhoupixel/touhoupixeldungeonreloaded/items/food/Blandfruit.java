@@ -81,7 +81,7 @@ public class Blandfruit extends Food {
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
 		if (action.equals( Potion.AC_CHOOSE )){
 
@@ -97,11 +97,11 @@ public class Blandfruit extends Food {
 
 		}
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT ) && potionAttrib != null){
 
-			potionAttrib.apply(hero);
+			potionAttrib.apply(heroine);
 
 		}
 	}

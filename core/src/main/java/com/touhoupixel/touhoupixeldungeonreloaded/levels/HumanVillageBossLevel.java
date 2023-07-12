@@ -27,7 +27,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossKosuzu;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -140,7 +139,7 @@ public class HumanVillageBossLevel extends Level {
 		boss.state = boss.WANDERING;
 		boss.pos = 170;
 		GameScene.add( boss );
-		boss.beckon(Dungeon.hero.pos);
+		boss.beckon(Dungeon.heroine.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();

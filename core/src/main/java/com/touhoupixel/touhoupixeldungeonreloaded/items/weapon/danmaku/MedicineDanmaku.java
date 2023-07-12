@@ -40,7 +40,7 @@ public class MedicineDanmaku extends MissileWeapon {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage ) {
-		Buff.affect(defender, Poison.class).set(Math.round(Dungeon.depth/2f));
+		Buff.affect(defender, Poison.class).set(Math.round(Dungeon.floor /2f));
 		return super.proc( attacker, defender, damage );
 	}
 }

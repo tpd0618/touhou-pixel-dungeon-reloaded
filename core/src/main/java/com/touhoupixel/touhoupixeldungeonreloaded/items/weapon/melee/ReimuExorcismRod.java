@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class ReimuExorcismRod extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.REIMUEXORCISMROD;
+		image = ItemSpriteSheet.REIMU_GOHEI;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1.1f;
 

@@ -22,8 +22,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.herbs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -39,25 +41,21 @@ public class PurityHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			if (hero.buff(Inversion.class) != null) {
-				hero.damage(hero.HT / 2, hero);
-				if (hero == Dungeon.hero && !hero.isAlive()) {
+			if (heroine.buff(Inversion.class) != null) {
+				heroine.damage(heroine.HT / 2, heroine);
+				if (heroine == Dungeon.heroine && !heroine.isAlive()) {
 					Dungeon.fail(InversionTrap.class);
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else {
-				hero.HP = Math.min(hero.HP + 50, hero.HT);
+				heroine.HP = Math.min(heroine.HP + 50, heroine.HT);
 			}
-			GlassBottle waterskin = Dungeon.hero.belongings.getItem(GlassBottle.class);
-			if (waterskin != null) {
-				waterskin.volume = 5;
-				Item.updateQuickslot();
-			}
+			Buff.affect(curUser, KeyHeal.class, KeyHeal.DURATION);
 		}
 	}
 }

@@ -31,7 +31,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
@@ -48,7 +49,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOf
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCorrosiveGas;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfShroudingFog;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfStormClouds;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
@@ -110,7 +110,7 @@ public class Potion extends Item {
 			put("yellow",ItemSpriteSheet.POTION_YELLOW);
 			put("spectral",ItemSpriteSheet.POTION_SPECTRAL);
 			put("green",ItemSpriteSheet.POTION_GREEN);
-			put("greentea_crimson",ItemSpriteSheet.GREENTEA_POTION_CRIMSON);
+			//put("greentea_crimson",ItemSpriteSheet.GREENTEA_POTION_CRIMSON);
 			//put("greentea_amber",ItemSpriteSheet.GREENTEA_POTION_AMBER);
 			//put("greentea_golden",ItemSpriteSheet.GREENTEA_POTION_GOLDEN);
 			//put("greentea_jade",ItemSpriteSheet.GREENTEA_POTION_JADE);
@@ -242,16 +242,16 @@ public class Potion extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_DRINK );
 		return actions;
 	}
 	
 	@Override
-	public void execute( final Hero hero, String action ) {
+	public void execute(final Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 		
 		if (action.equals( AC_CHOOSE )){
 			
@@ -259,9 +259,9 @@ public class Potion extends Item {
 			
 		} else if (action.equals( AC_DRINK )) {
 
-			if (hero.buff(Silence.class) != null) {
+			if (heroine.buff(Silence.class) != null) {
 				GLog.w(Messages.get(this, "silence"));
-			} else if (hero.buff(PotionFreeze.class) != null) {
+			} else if (heroine.buff(PotionFreeze.class) != null) {
 				GLog.w(Messages.get(this, "potionfreeze"));
 			} else if (isKnown() && mustThrowPots.contains(getClass())) {
 				
@@ -273,15 +273,15 @@ public class Potion extends Item {
 							@Override
 							protected void onSelect(int index) {
 								if (index == 0) {
-									drink( hero );
+									drink(heroine);
 								}
 							}
 						}
 					);
 					
 				} else {
-					drink( hero );
-				if (Dungeon.isChallenged(Challenges.DREAM_LOGICAL_WORLD)) {
+					drink(heroine);
+				if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 					Statistics.mood += 1;
 				}
 			}
@@ -289,7 +289,7 @@ public class Potion extends Item {
 	}
 	
 	@Override
-	public void doThrow( final Hero hero ) {
+	public void doThrow( final Hero heroine) {
 
 		if (isKnown()
 				&& !mustThrowPots.contains(this.getClass())
@@ -303,38 +303,48 @@ public class Potion extends Item {
 					@Override
 					protected void onSelect(int index) {
 						if (index == 0) {
-							Potion.super.doThrow( hero );
+							Potion.super.doThrow(heroine);
 						}
 					}
 				}
 			);
 			
 		} else {
-			super.doThrow( hero );
+			super.doThrow(heroine);
 		}
 	}
 
-	public void drink( Hero hero ) {
+	public void drink( Hero heroine) {
 
-		detach(hero.belongings.backpack);
+		detach(heroine.belongings.backpack);
 
-		hero.spend(TIME_TO_DRINK);
-		hero.busy();
-		apply(hero);
+		heroine.spend(TIME_TO_DRINK);
+		heroine.busy();
+		apply(heroine);
 
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
 				if (mob instanceof BossSeija) {
 					Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
 					Buff.detach(mob, SuperHard.class);
-					GLog.p( Messages.get(Potion.class, "cheat_break") );
+					GLog.p(Messages.get(Potion.class, "cheat_break"));
 				}
 			}
 		} //for boss seija
+
+		Sample.INSTANCE.play(Assets.Sounds.DRINK);
+
+		if (Dungeon.isChallenged(Challenges.RE_HOURAI_ELIXIR)) {
+			if (Statistics.hourai_cycle > 3) {
+				Buff.prolong(curUser, ExtremeHunger.class, ExtremeHunger.DURATION);
+				Statistics.hourai_cycle = 0;
+			} else {
+				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
+				Statistics.hourai_cycle += 1;
+			}
+		}
 		
-		Sample.INSTANCE.play( Assets.Sounds.DRINK );
-		
-		hero.sprite.operate( hero.pos );
+		heroine.sprite.operate( heroine.pos );
 	}
 	
 	@Override
@@ -351,8 +361,8 @@ public class Potion extends Item {
 		}
 	}
 	
-	public void apply( Hero hero ) {
-		shatter( hero.pos );
+	public void apply( Hero heroine) {
+		shatter( heroine.pos );
 	}
 	
 	public void shatter( int cell ) {
@@ -364,7 +374,7 @@ public class Potion extends Item {
 	}
 
 	@Override
-	public void cast( final Hero user, int dst ) {
+	public void cast(final Hero user, int dst ) {
 			super.cast(user, dst);
 	}
 	
@@ -377,15 +387,15 @@ public class Potion extends Item {
 			if (!isKnown()) {
 				handler.know(this);
 				updateQuickslot();
-				Potion p = Dungeon.hero.belongings.getItem(getClass());
+				Potion p = Dungeon.heroine.belongings.getItem(getClass());
 				if (p != null)  p.setAction();
 				if (ExoticPotion.regToExo.get(getClass()) != null) {
-					p = Dungeon.hero.belongings.getItem(ExoticPotion.regToExo.get(getClass()));
+					p = Dungeon.heroine.belongings.getItem(ExoticPotion.regToExo.get(getClass()));
 					if (p != null) p.setAction();
 				}
 			}
 			
-			if (Dungeon.hero.isAlive()) {
+			if (Dungeon.heroine.isAlive()) {
 				Catalog.setSeen(getClass());
 			}
 		}

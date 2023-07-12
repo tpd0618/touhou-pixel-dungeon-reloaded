@@ -8,7 +8,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -62,7 +61,7 @@ public class Reisen extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
@@ -70,27 +69,25 @@ public class Reisen extends Mob {
                 Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
             }
             ArrayList<Item> gazer = new ArrayList<>();
-            if (hero.buff(LostInventory.class) == null) {
-                for (Item i : Dungeon.hero.belongings) {
-                    if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
-                        gazer.add(i);
-                    }
+            for (Item i : Dungeon.heroine.belongings) {
+                if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
+                    gazer.add(i);
                 }
-                if (Random.Int(5) == 0) {
-                    if (!gazer.isEmpty()) {
-                        Item hypnotize = Random.element(gazer).detach(Dungeon.hero.belongings.backpack);
-                        GLog.w(Messages.get(this, "gaze"));
-                        hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
-                        Sample.INSTANCE.play(Assets.Sounds.LULLABY);
-                        if (hypnotize instanceof Potion) {
-                            ((Potion) hypnotize).drink((Hero) hero);
-                        }
-                        if (hypnotize instanceof Herb) {
-                            hypnotize.execute((Hero) hero);
-                        }
-                    } else {
-                        GLog.w(Messages.get(this, "failtogaze"));
+            }
+            if (Random.Int(4) == 0) {
+                if (!gazer.isEmpty()) {
+                    Item hypnotize = Random.element(gazer).detach(Dungeon.heroine.belongings.backpack);
+                    GLog.w(Messages.get(this, "gaze"));
+                    hero.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
+                    Sample.INSTANCE.play(Assets.Sounds.LULLABY);
+                    if (hypnotize instanceof Potion) {
+                        ((Potion) hypnotize).drink((Hero) hero);
                     }
+                    if (hypnotize instanceof Herb) {
+                        hypnotize.execute((Hero) hero);
+                    }
+                } else {
+                    GLog.w(Messages.get(this, "failtogaze"));
                 }
             }
         }

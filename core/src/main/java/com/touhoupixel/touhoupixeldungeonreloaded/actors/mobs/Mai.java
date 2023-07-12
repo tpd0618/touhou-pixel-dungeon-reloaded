@@ -78,7 +78,7 @@ public class Mai extends Mob {
         if (Statistics.difficulty > 4) {
             Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
         }
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR) {
             Statistics.spellcard = 0;
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             GLog.w(Messages.get(this, "spellcardzero"));

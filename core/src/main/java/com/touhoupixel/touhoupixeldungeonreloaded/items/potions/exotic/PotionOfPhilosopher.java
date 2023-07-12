@@ -33,8 +33,8 @@ public class PotionOfPhilosopher extends ExoticPotion {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		Buff.prolong( hero, YokaiBorder.class, YokaiBorder.DURATION);
+		Buff.prolong(heroine, YokaiBorder.class, YokaiBorder.DURATION);
 	}
 }

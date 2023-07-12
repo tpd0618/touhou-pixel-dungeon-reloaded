@@ -55,24 +55,24 @@ public class MirrorImage extends NPC {
 		actPriority = MOB_PRIO + 1;
 	}
 	
-	private Hero hero;
+	private Hero heroine;
 	private int heroID;
 	public int armTier;
 	
 	@Override
 	protected boolean act() {
 		
-		if ( hero == null ){
-			hero = (Hero)Actor.findById(heroID);
-			if ( hero == null ){
+		if ( heroine == null ){
+			heroine = (Hero)Actor.findById(heroID);
+			if ( heroine == null ){
 				die(null);
 				sprite.killAndErase();
 				return true;
 			}
 		}
 		
-		if (hero.tier() != armTier){
-			armTier = hero.tier();
+		if (heroine.tier() != armTier){
+			armTier = heroine.tier();
 			((MirrorSprite)sprite).updateArmor( armTier );
 		}
 		
@@ -93,33 +93,33 @@ public class MirrorImage extends NPC {
 		heroID = bundle.getInt( HEROID );
 	}
 	
-	public void duplicate( Hero hero ) {
-		this.hero = hero;
-		heroID = this.hero.id();
+	public void duplicate( Hero heroine) {
+		this.heroine = heroine;
+		heroID = this.heroine.id();
 		Buff.affect(this, MirrorInvis.class, Short.MAX_VALUE);
 	}
 	
 	@Override
 	public int damageRoll() {
 		int damage;
-		if (hero.belongings.weapon() != null){
-			damage = hero.belongings.weapon().damageRoll(this);
+		if (heroine.belongings.weapon() != null){
+			damage = heroine.belongings.weapon().damageRoll(this);
 		} else {
-			damage = hero.damageRoll(); //handles ring of force
+			damage = heroine.damageRoll(); //handles ring of force
 		}
 		return (damage+1)/2; //half hero damage, rounded up
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return hero.attackSkill(target);
+		return heroine.attackSkill(target);
 	}
 	
 	@Override
 	public int defenseSkill(Char enemy) {
-		if (hero != null) {
-			int baseEvasion = 4 + hero.lvl;
-			int heroEvasion = hero.defenseSkill(enemy);
+		if (heroine != null) {
+			int baseEvasion = 4 + heroine.lvl;
+			int heroEvasion = heroine.defenseSkill(enemy);
 			
 			//if the hero has more/less evasion, 50% of it is applied
 			return super.defenseSkill(enemy) * (baseEvasion + heroEvasion) / 2;
@@ -130,18 +130,18 @@ public class MirrorImage extends NPC {
 	
 	@Override
 	public float attackDelay() {
-		return hero.attackDelay(); //handles ring of furor
+		return heroine.attackDelay(); //handles ring of furor
 	}
 	
 	@Override
 	protected boolean canAttack(Char enemy) {
-		return super.canAttack(enemy) || (hero.belongings.weapon() != null && hero.belongings.weapon().canReach(this, enemy.pos));
+		return super.canAttack(enemy) || (heroine.belongings.weapon() != null && heroine.belongings.weapon().canReach(this, enemy.pos));
 	}
 	
 	@Override
 	public int drRoll() {
-		if (hero != null && hero.belongings.weapon() != null){
-			return Random.NormalIntRange(0, hero.belongings.weapon().defenseFactor(this)/2);
+		if (heroine != null && heroine.belongings.weapon() != null){
+			return Random.NormalIntRange(0, heroine.belongings.weapon().defenseFactor(this)/2);
 		} else {
 			return 0;
 		}
@@ -159,9 +159,9 @@ public class MirrorImage extends NPC {
 		if (enemy instanceof Mob) {
 			((Mob)enemy).aggro( this );
 		}
-		if (hero.belongings.weapon() != null){
-			damage = hero.belongings.weapon().proc( this, enemy, damage );
-			if (!enemy.isAlive() && enemy == Dungeon.hero){
+		if (heroine.belongings.weapon() != null){
+			damage = heroine.belongings.weapon().proc( this, enemy, damage );
+			if (!enemy.isAlive() && enemy == Dungeon.heroine){
 				Dungeon.fail(getClass());
 				GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", name())) );
 			}
@@ -175,9 +175,9 @@ public class MirrorImage extends NPC {
 	public CharSprite sprite() {
 		CharSprite s = super.sprite();
 		
-		hero = (Hero)Actor.findById(heroID);
-		if (hero != null) {
-			armTier = hero.tier();
+		heroine = (Hero)Actor.findById(heroID);
+		if (heroine != null) {
+			armTier = heroine.tier();
 		}
 		((MirrorSprite)s).updateArmor( armTier );
 		return s;

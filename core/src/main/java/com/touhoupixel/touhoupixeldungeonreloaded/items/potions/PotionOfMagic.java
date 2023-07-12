@@ -21,17 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AliceCurse;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiShipBattery;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeedResist;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.QuadDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.StairsSeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -42,10 +37,10 @@ public class PotionOfMagic extends Potion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
 
-		Buff.prolong(hero, MagicBuff.class, MagicBuff.DURATION);
+		Buff.prolong(heroine, MagicBuff.class, MagicBuff.DURATION);
 
 		//buff test zone//
 

@@ -67,8 +67,8 @@ public class ResumeIndicator extends Tag {
 
 	@Override
 	protected void onClick() {
-		if (Dungeon.hero.ready) {
-			Dungeon.hero.resume();
+		if (Dungeon.heroine.ready) {
+			Dungeon.heroine.resume();
 		}
 	}
 
@@ -79,10 +79,10 @@ public class ResumeIndicator extends Tag {
 
 	@Override
 	public void update() {
-		if (!Dungeon.hero.isAlive())
+		if (!Dungeon.heroine.isAlive())
 			visible = false;
-		else if (visible != (Dungeon.hero.lastAction != null)){
-			visible = Dungeon.hero.lastAction != null;
+		else if (visible != (Dungeon.heroine.lastAction != null)){
+			visible = Dungeon.heroine.lastAction != null;
 			if (visible)
 				flash();
 		}

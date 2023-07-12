@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.ConfusionGas;
@@ -56,9 +55,9 @@ public class PotionOfLevitation extends Potion {
 	}
 	
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
-		Buff.affect(hero, Levitation.class, Levitation.DURATION/4f);
+		Buff.affect(heroine, Levitation.class, Levitation.DURATION/4f);
 		GLog.i( Messages.get(this, "float") );
 	}
 	

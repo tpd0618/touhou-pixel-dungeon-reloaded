@@ -39,8 +39,8 @@ public class RemiCountdown extends FlavourBuff {
 	@Override
 	public void detach() {
 		super.detach();
-		if (!Statistics.remicountdown){
-			Dungeon.hero.die(BossRemilia.class);
+		if (!Statistics.remi_countdown){
+			Dungeon.heroine.die(BossRemilia.class);
 		}
 	}
 	

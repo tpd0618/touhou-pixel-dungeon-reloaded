@@ -4,7 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
@@ -51,12 +51,12 @@ public class Yuuka extends Mob {
 
     @Override
     public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
+        if (Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
             enemy.damage(damage/2, target);
             Buff.prolong(this, Bless.class, Bless.DURATION*10000f);
             Buff.prolong(this, YuukaRage.class, YuukaRage.DURATION);
             Buff.prolong(this, Haste.class, Haste.DURATION*10000f);
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION*10000f);
+            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION*10000f);
             GLog.w(Messages.get(this, "reflect"));
         }
         return super.defenseProc(enemy, damage);

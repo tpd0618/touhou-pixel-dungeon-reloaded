@@ -20,7 +20,7 @@ public class Sunny extends Mob {
     {
         spriteClass = SunnySprite.class;
 
-        HP = HT = 13;
+        HP = HT = 8;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;

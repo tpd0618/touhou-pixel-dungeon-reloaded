@@ -26,7 +26,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
@@ -41,7 +45,7 @@ public class ScrollOfIdentify extends InventoryScroll {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return !item.isIdentified();
+		return !item.unique && !(item instanceof Plant.Seed) && !(item instanceof MissileWeapon) && !(item instanceof Herb) && !(item instanceof Talisman);
 	}
 
 	@Override

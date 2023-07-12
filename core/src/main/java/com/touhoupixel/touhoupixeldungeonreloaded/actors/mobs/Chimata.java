@@ -5,23 +5,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChimataSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -34,7 +24,7 @@ public class Chimata extends Mob {
 
         HP = HT = 229;
         defenseSkill = 40;
-        EXP = 19;
+        EXP = 17;
         maxLvl = 47;
 
         properties.add(Property.GOD);
@@ -61,9 +51,9 @@ public class Chimata extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0) {
-            MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
-            Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+            MeleeWeapon meleeweapon = Dungeon.heroine.belongings.getItem(MeleeWeapon.class);
+            Armor armor = Dungeon.heroine.belongings.getItem(Armor.class);
             if (meleeweapon != null) {
                 meleeweapon.downgrade();
                 meleeweapon.enchantment = null;
@@ -80,7 +70,7 @@ public class Chimata extends Mob {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
+                Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
             }
         }
         return damage;

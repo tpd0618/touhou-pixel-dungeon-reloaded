@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KutakaSprite;
 import com.watabou.utils.Random;
 
@@ -69,7 +68,7 @@ public class Kutaka extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Cripple.class, Cripple.DURATION);

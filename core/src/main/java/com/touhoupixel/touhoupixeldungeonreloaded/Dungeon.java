@@ -1,24 +1,3 @@
-/*
- * Pixel Dungeon
- * Copyright (C) 2012-2015 Oleg Dolya
- *
- * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
- */
-
 package com.touhoupixel.touhoupixeldungeonreloaded;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -69,6 +48,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionBoss
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ScarletDevilMansionLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.ShiningNeedleCastleLevel;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.TrueLastBossLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.YokaiMountainLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.secret.SecretRoom;
@@ -104,30 +84,10 @@ public class Dungeon {
 		STRENGTH_CARDS,
 		UPGRADE_CARDS,
 		PATCHOULI_CARD,
-		WEAPON,
-		ARMOR,
-		HAKKERO,
-		DANMAKU,
 
-		//Health potion sources
-		//enemies
-		SWARM_HP,
-		NECRO_HP,
-		BAT_HP,
-		WARLOCK_HP,
-		//Demon spawners are already limited in their spawnrate, no need to limit their health drops
 		//alchemy
 		COOKING_HP,
-		BLANDFRUIT_SEED,
-
-		//Other limited enemy drops
-		SLIME_WEP,
-		SKELE_WEP,
-		THEIF_MISC,
-		GUARD_ARM,
-		SHAMAN_WAND,
-		DM200_EQUIP,
-		GOLEM_EQUIP;
+		BLAND_FRUIT_SEED;
 
 		public int count = 0;
 
@@ -161,22 +121,17 @@ public class Dungeon {
 
 			}
 		}
-
 	}
 
 	public static int challenges;
-	public static int difficulty;
 	public static int mobsToChampion;
 
-	public static Hero hero;
+	public static Hero heroine;
 	public static Level level;
 
 	public static QuickSlot quickslot = new QuickSlot();
 
-	public static int depth;
-	//determines path the hero is on. Current uses:
-	// 0 is the default path
-	// Other numbers are currently unused
+	public static int floor;
 	public static int branch;
 
 	public static int gold;
@@ -199,7 +154,6 @@ public class Dungeon {
 
 		initialVersion = version = Game.versionCode;
 		challenges = SPDSettings.challenges();
-		difficulty = SPDSettings.difficulty();
 		mobsToChampion = -1;
 
 		if (daily) {
@@ -239,7 +193,7 @@ public class Dungeon {
 		QuickSlotButton.reset();
 		Toolbar.swappedQuickslots = false;
 
-		depth = 1;
+		floor = 1;
 		branch = 0;
 
 		gold = 5; //to buy an ability card on floor 1
@@ -252,20 +206,16 @@ public class Dungeon {
 
 		chapters = new HashSet<>();
 
-		hero = new Hero();
-		hero.live();
+		heroine = new Hero();
+		heroine.live();
 
 		Badges.reset();
 
-		GamesInProgress.selectedClass.initHero( hero );
+		GamesInProgress.selectedClass.initHero(heroine);
 	}
 
 	public static boolean isChallenged( int mask ) {
 		return (challenges & mask) != 0;
-	}
-
-	public static boolean isDifficulty( int mask ) {
-		return (difficulty & mask) != 0;
 	}
 
 	public static Level newLevel() {
@@ -273,8 +223,8 @@ public class Dungeon {
 		Dungeon.level = null;
 		Actor.clear();
 
-		if (depth > Statistics.deepestFloor) {
-			Statistics.deepestFloor = depth;
+		if (floor > Statistics.highestFloor) {
+			Statistics.highestFloor = floor;
 
 			if (Statistics.qualifiedForNoKilling) {
 				Statistics.completedWithNoKilling = true;
@@ -284,13 +234,18 @@ public class Dungeon {
 		}
 
 		Level level;
-		switch (depth) {
+		switch (floor) {
 			case 1:
 			case 2:
+			case 42:
+			case 43:
 				level = new HakureiShrineLevel();
 				break;
 			case 3:
 			case 4:
+			case 44:
+			case 45:
+			case 46:
 				level = new HumanVillageLevel();
 				break;
 			case 5:
@@ -298,10 +253,16 @@ public class Dungeon {
 				break;
 			case 6:
 			case 7:
+			case 47:
+			case 48:
+			case 49:
 				level = new MistyLakeLevel();
 				break;
 			case 8:
 			case 9:
+			case 50:
+			case 51:
+			case 52:
 				level = new ForestofMagicLevel();
 				break;
 			case 10:
@@ -309,10 +270,16 @@ public class Dungeon {
 				break;
 			case 11:
 			case 12:
+			case 53:
+			case 54:
+			case 55:
 				level = new BambooForestLevel();
 				break;
 			case 13:
 			case 14:
+			case 56:
+			case 57:
+			case 58:
 				level = new ScarletDevilMansionLevel();
 				break;
 			case 15:
@@ -320,10 +287,17 @@ public class Dungeon {
 				break;
 			case 16:
 			case 17:
+			case 59:
+			case 60:
+			case 61:
 				level = new YokaiMountainLevel();
 				break;
 			case 18:
 			case 19:
+			case 62:
+			case 63:
+			case 64:
+			case 65:
 				level = new GardenoftheSunLevel();
 				break;
 			case 20:
@@ -331,10 +305,18 @@ public class Dungeon {
 				break;
 			case 21:
 			case 22:
+			case 66:
+			case 67:
+			case 68:
+			case 69:
 				level = new MyourenTempleLevel();
 				break;
 			case 23:
 			case 24:
+			case 70:
+			case 71:
+			case 72:
+			case 73:
 				level = new SanzuRiverLevel();
 				break;
 			case 25:
@@ -342,10 +324,18 @@ public class Dungeon {
 				break;
 			case 26:
 			case 27:
+			case 74:
+			case 75:
+			case 76:
+			case 77:
 				level = new MoriyaShrineLevel();
 				break;
 			case 28:
 			case 29:
+			case 78:
+			case 79:
+			case 80:
+			case 81:
 				level = new ShiningNeedleCastleLevel();
 				break;
 			case 30:
@@ -353,10 +343,18 @@ public class Dungeon {
 				break;
 			case 31:
 			case 32:
+			case 82:
+			case 83:
+			case 84:
+			case 85:
 				level = new HakugyokurouLevel();
 				break;
 			case 33:
 			case 34:
+			case 86:
+			case 87:
+			case 88:
+			case 89:
 				level = new HeavenLevel();
 				break;
 			case 35:
@@ -364,21 +362,36 @@ public class Dungeon {
 				break;
 			case 36:
 			case 37:
+			case 90:
+			case 91:
+			case 92:
+			case 93:
 				level = new LunarCapitalLevel();
 				break;
 			case 38:
 			case 39:
+			case 94:
+			case 95:
+			case 96:
+			case 97:
 				level = new HellLevel();
 				break;
 			case 40:
 				level = new HellBossLevel();
 				break;
 			case 41:
+				//level = Dungeon.isChallenged(Challenges.TOWER_OF_FORTUNE) ? new HakureiShrineLevel() : new LastLevel();
 				level = new LastLevel();
 				break;
+			case 98:
+				level = new TrueLastBossLevel();
+				break;
+			//case 99:
+				//level = new LastLevel();
+				//break;
 			default:
 				level = new DeadEndLevel();
-				Statistics.deepestFloor--;
+				Statistics.highestFloor--;
 		}
 
 		level.create();
@@ -396,13 +409,13 @@ public class Dungeon {
 		switchLevel( level, level.entrance() );
 	}
 
-	public static long seedCurDepth(){
-		return seedForDepth(depth, branch);
+	public static long seedCurFloor(){
+		return seedForFloor(floor, branch);
 	}
 
-	public static long seedForDepth(int depth, int branch){
-		int lookAhead = depth;
-		lookAhead += 30*branch; //Assumes depth is always 1-30, and branch is always 0 or higher
+	public static long seedForFloor(int floor, int branch){
+		int lookAhead = floor;
+		lookAhead += 30*branch; //Assumes floor is always 1-30, and branch is always 0 or higher
 
 		Random.pushGenerator( seed );
 
@@ -416,27 +429,31 @@ public class Dungeon {
 	}
 
 	public static boolean shopOnLevel() {
-		return depth == 6 || depth == 16 || depth == 26 || depth == 36;
+		return floor == 6 || floor == 16 || floor == 26 || floor == 36 || floor == 45 || floor == 65 || floor == 85;
 	}
 
 	public static boolean cardShopOnLevel() {
-		return depth == 1 || depth == 11 || depth == 21 || depth == 31;
+		return floor == 1 || floor == 11 || floor == 21 || floor == 31;
 	}
+
+	//public static boolean pandemoniumLevel() {
+		//return floor == 50 || floor == 60 || floor == 70 || floor == 80 || floor == 90;
+	//}
 
 	public static boolean bossLevel() {
-		return bossLevel( depth );
+		return bossLevel(floor);
 	}
 
-	public static boolean bossLevel( int depth ) {
-		return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == 30 || depth == 35 || depth == 40;
+	public static boolean bossLevel( int floor ) {
+		return floor == 5 || floor == 10 || floor == 15 || floor == 20 || floor == 25 || floor == 30 || floor == 35 || floor == 40 || floor == 98;
 	}
 
-	public static int scalingDepth(){
-		return depth;
+	public static int scalingFloor(){
+		return floor;
 	}
 
 	public static boolean interfloorTeleportAllowed(){
-		if (Dungeon.level.locked || (Dungeon.hero != null && Dungeon.hero.belongings.getItem(Amulet.class) != null)){
+		if (Dungeon.level.locked || (Dungeon.heroine != null && Dungeon.heroine.belongings.getItem(Amulet.class) != null)){
 			return false;
 		}
 		return true;
@@ -456,7 +473,7 @@ public class Dungeon {
 		PathFinder.setMapSize(level.width(), level.height());
 
 		Dungeon.level = level;
-		hero.pos = pos;
+		heroine.pos = pos;
 
 		Mob.restoreAllies( level, pos );
 
@@ -465,7 +482,7 @@ public class Dungeon {
 		level.addRespawner();
 
 		for(Mob m : level.mobs){
-			if (m.pos == hero.pos){
+			if (m.pos == heroine.pos){
 				//displace mob
 				for(int i : PathFinder.NEIGHBOURS8){
 					if (Actor.findChar(m.pos+i) == null && level.passable[m.pos + i]){
@@ -476,10 +493,10 @@ public class Dungeon {
 			}
 		}
 
-		Light light = hero.buff( Light.class );
-		hero.viewDistance = light == null ? level.viewDistance : Math.max( Light.DISTANCE, level.viewDistance );
+		Light light = heroine.buff( Light.class );
+		heroine.viewDistance = light == null ? level.viewDistance : Math.max( Light.DISTANCE, level.viewDistance );
 
-		hero.curAction = hero.lastAction = null;
+		heroine.curAction = heroine.lastAction = null;
 
 		observe();
 		try {
@@ -492,7 +509,7 @@ public class Dungeon {
 	}
 
 	public static void dropToChasm( Item item ) {
-		int depth = Dungeon.depth + 1;
+		int depth = Dungeon.floor - 1; //should minus this
 		ArrayList<Item> dropped = Dungeon.droppedItems.get( depth );
 		if (dropped == null) {
 			Dungeon.droppedItems.put( depth, dropped = new ArrayList<>() );
@@ -502,35 +519,27 @@ public class Dungeon {
 
 	public static boolean strengthNeeded() {
 		//2 POS each floor set
-		int posLeftThisSet = 2 - (LimitedDrops.STRENGTH_CARDS.count - (depth / 5) * 2);
-		if (posLeftThisSet <= 0 || Dungeon.depth > 50) return false;
+		int posLeftThisSet = 4 - (LimitedDrops.STRENGTH_CARDS.count - (floor / 5) * 4);
+		if (posLeftThisSet <= 0) return false;
 
-		int floorThisSet = (depth % 5);
-
-		//pos drops every two floors, (numbers 1-2, and 3-4) with a 50% chance for the earlier one each time.
-		int targetPOSLeft = 2 - floorThisSet/2;
-		if (floorThisSet % 2 == 1 && Random.Int(2) == 0) targetPOSLeft --;
-
-		if (targetPOSLeft < posLeftThisSet) return true;
-		else return false;
-
+		int floorThisSet = (floor % 5);
+		return Random.Int(5 - floorThisSet) < posLeftThisSet;
 	}
 
 	public static boolean upgradeNeeded() {
 		int souLeftThisSet;
-		souLeftThisSet = 3 - (LimitedDrops.UPGRADE_CARDS.count - (depth / 5) * 3);
-		if (souLeftThisSet <= 0 || Dungeon.depth > 50) return false;
+		souLeftThisSet = 4 - (LimitedDrops.UPGRADE_CARDS.count - (floor / 5) * 4);
+		if (souLeftThisSet <= 0) return false;
 
-		int floorThisSet = (depth % 5);
-		//chance is floors left / scrolls left
+		int floorThisSet = (floor % 5);
 		return Random.Int(5 - floorThisSet) < souLeftThisSet;
 	}
 
 	public static boolean patchouliNeeded() {
-		int asLeftThisSet = 1 - (LimitedDrops.PATCHOULI_CARD.count - (depth / 5));
-		if (asLeftThisSet <= 0 || Dungeon.depth > 50) return false;
+		int asLeftThisSet = 1 - (LimitedDrops.PATCHOULI_CARD.count - (floor / 5));
+		if (asLeftThisSet <= 0) return false;
 
-		int floorThisSet = (depth % 5);
+		int floorThisSet = (floor % 5);
 		return Random.Int(5 - floorThisSet) < asLeftThisSet;
 	}
 
@@ -542,7 +551,7 @@ public class Dungeon {
 	private static final String CHALLENGES	= "challenges";
 	private static final String MOBS_TO_CHAMPION	= "mobs_to_champion";
 	private static final String HERO		= "hero";
-	private static final String DEPTH		= "depth";
+	private static final String FLOOR       = "floor";
 	private static final String BRANCH		= "branch";
 	private static final String GOLD		= "gold";
 	private static final String ENERGY		= "energy";
@@ -565,8 +574,8 @@ public class Dungeon {
 			bundle.put( DAILY, daily );
 			bundle.put( CHALLENGES, challenges );
 			bundle.put( MOBS_TO_CHAMPION, mobsToChampion );
-			bundle.put( HERO, hero );
-			bundle.put( DEPTH, depth );
+			bundle.put( HERO, heroine);
+			bundle.put(FLOOR, floor);
 			bundle.put( BRANCH, branch );
 
 			bundle.put( GOLD, gold );
@@ -622,18 +631,18 @@ public class Dungeon {
 		Bundle bundle = new Bundle();
 		bundle.put( LEVEL, level );
 
-		FileUtils.bundleToFile(GamesInProgress.depthFile( save, depth, branch ), bundle);
+		FileUtils.bundleToFile(GamesInProgress.floorFile( save, floor, branch ), bundle);
 	}
 
 	public static void saveAll() throws IOException {
-		if (hero != null && (hero.isAlive())) {
+		if (heroine != null && (heroine.isAlive())) {
 
 			Actor.fixTime();
 			updateLevelExplored();
 			saveGame( GamesInProgress.curSlot );
 			saveLevel( GamesInProgress.curSlot );
 
-			GamesInProgress.set( GamesInProgress.curSlot, depth, challenges, seed, customSeedText, daily, hero );
+			GamesInProgress.set( GamesInProgress.curSlot, floor, challenges, seed, customSeedText, daily, heroine);
 
 		}
 	}
@@ -670,7 +679,7 @@ public class Dungeon {
 		Dungeon.mobsToChampion = bundle.getInt( MOBS_TO_CHAMPION );
 
 		Dungeon.level = null;
-		Dungeon.depth = -1;
+		Dungeon.floor = -1;
 
 		Scroll.restore( bundle );
 		Potion.restore( bundle );
@@ -712,10 +721,10 @@ public class Dungeon {
 
 		Notes.restoreFromBundle( bundle );
 
-		hero = null;
-		hero = (Hero)bundle.get( HERO );
+		heroine = null;
+		heroine = (Hero)bundle.get( HERO );
 
-		depth = bundle.getInt( DEPTH );
+		floor = bundle.getInt(FLOOR);
 		branch = bundle.getInt( BRANCH );
 
 		gold = bundle.getInt( GOLD );
@@ -726,7 +735,7 @@ public class Dungeon {
 
 		droppedItems = new SparseArray<>();
 		portedItems = new SparseArray<>();
-		for (int i=1; i <= 99; i++) {
+		for (int i=1; i <= 100; i++) {
 
 			//dropped items
 			ArrayList<Item> items = new ArrayList<>();
@@ -755,7 +764,7 @@ public class Dungeon {
 		Dungeon.level = null;
 		Actor.clear();
 
-		Bundle bundle = FileUtils.bundleFromFile( GamesInProgress.depthFile( save, depth, branch ));
+		Bundle bundle = FileUtils.bundleFromFile( GamesInProgress.floorFile( save, floor, branch ));
 
 		Level level = (Level)bundle.get( LEVEL );
 
@@ -783,7 +792,7 @@ public class Dungeon {
 	}
 
 	public static void preview( GamesInProgress.Info info, Bundle bundle ) {
-		info.depth = bundle.getInt( DEPTH );
+		info.floor = bundle.getInt(FLOOR);
 		info.version = bundle.getInt( VERSION );
 		info.challenges = bundle.getInt( CHALLENGES );
 		info.seed = bundle.getLong( SEED );
@@ -801,22 +810,22 @@ public class Dungeon {
 
 	public static void win( Class cause ) {
 		updateLevelExplored();
-		hero.belongings.identify();
+		heroine.belongings.identify();
 		Rankings.INSTANCE.submit(true, cause);
 	}
 
 	public static void updateLevelExplored(){
 		if (branch == 0 && level instanceof RegularLevel && !Dungeon.bossLevel()){
-			Statistics.floorsExplored.put( depth, level.isLevelExplored(depth));
+			Statistics.floorsExplored.put(floor, level.isLevelExplored(floor));
 		}
 	}
 
 	//default to recomputing based on max hero vision, in case vision just shrank/grew
 	public static void observe(){
-		int dist = Math.max(Dungeon.hero.viewDistance, 8);
+		int dist = Math.max(Dungeon.heroine.viewDistance, 8);
 		dist *= 1f;
 
-		if (Dungeon.hero.buff(MagicalSight.class) != null){
+		if (Dungeon.heroine.buff(MagicalSight.class) != null){
 			dist = Math.max( dist, MagicalSight.DISTANCE );
 		}
 
@@ -829,10 +838,10 @@ public class Dungeon {
 			return;
 		}
 
-		level.updateFieldOfView(hero, level.heroFOV);
+		level.updateFieldOfView(heroine, level.heroFOV);
 
-		int x = hero.pos % level.width();
-		int y = hero.pos / level.width();
+		int x = heroine.pos % level.width();
+		int y = heroine.pos / level.width();
 
 		//left, right, top, bottom
 		int l = Math.max( 0, x - dist );
@@ -852,7 +861,7 @@ public class Dungeon {
 
 		GameScene.updateFog(l, t, width, height);
 
-		if (hero.buff(MindVision.class) != null){
+		if (heroine.buff(MindVision.class) != null){
 			for (Mob m : level.mobs.toArray(new Mob[0])){
 				BArray.or( level.visited, level.heroFOV, m.pos - 1 - level.width(), 3, level.visited );
 				BArray.or( level.visited, level.heroFOV, m.pos - 1, 3, level.visited );
@@ -862,7 +871,7 @@ public class Dungeon {
 			}
 		}
 
-		if (hero.buff(Awareness.class) != null){
+		if (heroine.buff(Awareness.class) != null){
 			for (Heap h : level.heaps.valueList()){
 				BArray.or( level.visited, level.heroFOV, h.pos - 1 - level.width(), 3, level.visited );
 				BArray.or( level.visited, level.heroFOV, h.pos - 1, 3, level.visited );
@@ -871,7 +880,7 @@ public class Dungeon {
 			}
 		}
 
-		for (TalismanOfForesight.CharAwareness c : hero.buffs(TalismanOfForesight.CharAwareness.class)){
+		for (TalismanOfForesight.CharAwareness c : heroine.buffs(TalismanOfForesight.CharAwareness.class)){
 			Char ch = (Char) Actor.findById(c.charID);
 			if (ch == null || !ch.isAlive()) continue;
 			BArray.or( level.visited, level.heroFOV, ch.pos - 1 - level.width(), 3, level.visited );
@@ -880,16 +889,16 @@ public class Dungeon {
 			GameScene.updateFog(ch.pos, 2);
 		}
 
-		for (TalismanOfForesight.HeapAwareness h : hero.buffs(TalismanOfForesight.HeapAwareness.class)){
-			if (Dungeon.depth != h.depth) continue;
+		for (TalismanOfForesight.HeapAwareness h : heroine.buffs(TalismanOfForesight.HeapAwareness.class)){
+			if (Dungeon.floor != h.floor) continue;
 			BArray.or( level.visited, level.heroFOV, h.pos - 1 - level.width(), 3, level.visited );
 			BArray.or( level.visited, level.heroFOV, h.pos - 1, 3, level.visited );
 			BArray.or( level.visited, level.heroFOV, h.pos - 1 + level.width(), 3, level.visited );
 			GameScene.updateFog(h.pos, 2);
 		}
 
-		for (RevealedArea a : hero.buffs(RevealedArea.class)){
-			if (Dungeon.depth != a.depth) continue;
+		for (RevealedArea a : heroine.buffs(RevealedArea.class)){
+			if (Dungeon.floor != a.floor) continue;
 			BArray.or( level.visited, level.heroFOV, a.pos - 1 - level.width(), 3, level.visited );
 			BArray.or( level.visited, level.heroFOV, a.pos - 1, 3, level.visited );
 			BArray.or( level.visited, level.heroFOV, a.pos - 1 + level.width(), 3, level.visited );

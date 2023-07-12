@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class MagicalContainer extends Bag {
 
 	{
-		image = ItemSpriteSheet.HAKUREIHOLD;
+		image = ItemSpriteSheet.HAKUREI_HOLD;
 	}
 
 	@Override

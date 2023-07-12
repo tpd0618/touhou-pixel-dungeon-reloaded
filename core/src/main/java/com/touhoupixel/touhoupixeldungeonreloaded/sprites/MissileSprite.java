@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ScaleDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
@@ -134,7 +133,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		}
 		
 		float speed = SPEED;
-		if (item instanceof Dart && Dungeon.hero.belongings.weapon() instanceof YukariUmbrella){
+		if (item instanceof Dart && Dungeon.heroine.belongings.weapon() instanceof YukariUmbrella){
 			speed *= 3f;
 		}
 		

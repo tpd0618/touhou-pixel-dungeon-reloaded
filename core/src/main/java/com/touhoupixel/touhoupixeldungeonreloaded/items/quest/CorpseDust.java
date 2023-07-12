@@ -50,7 +50,7 @@ public class CorpseDust extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
+	public ArrayList<String> actions(Hero heroine) {
 		return new ArrayList<>(); //yup, no dropping this one
 	}
 
@@ -65,10 +65,10 @@ public class CorpseDust extends Item {
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
-		if (super.doPickUp(hero, pos)){
+	public boolean doPickUp(Hero heroine, int pos) {
+		if (super.doPickUp(heroine, pos)){
 			GLog.n( Messages.get( this, "chill") );
-			Buff.affect(hero, DustGhostSpawner.class);
+			Buff.affect(heroine, DustGhostSpawner.class);
 			return true;
 		}
 		return false;
@@ -76,7 +76,7 @@ public class CorpseDust extends Item {
 
 	@Override
 	protected void onDetach() {
-		DustGhostSpawner spawner = Dungeon.hero.buff(DustGhostSpawner.class);
+		DustGhostSpawner spawner = Dungeon.heroine.buff(DustGhostSpawner.class);
 		if (spawner != null){
 			spawner.dispel();
 		}

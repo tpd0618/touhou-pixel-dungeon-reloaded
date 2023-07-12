@@ -45,7 +45,7 @@ public class Swiftthistle extends Plant {
 	
 	@Override
 	public void activate( Char ch ) {
-		if (ch == Dungeon.hero) {
+		if (ch == Dungeon.heroine) {
 			Buff.affect(ch, TimeBubble.class).reset();
 		}
 	}

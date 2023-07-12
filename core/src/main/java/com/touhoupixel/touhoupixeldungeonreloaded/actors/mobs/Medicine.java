@@ -120,7 +120,7 @@ public class Medicine extends Mob {
 	@Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
-		if (enemy == Dungeon.hero && enemy.alignment != this.alignment && !enemy.properties().contains(Char.Property.BOSS)) {
+		if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && !enemy.properties().contains(Char.Property.BOSS)) {
 			if (Random.Int(4) == 0) {
 				new PoisonDartTrap().set(enemy.pos).activate();
 			}
@@ -175,8 +175,8 @@ public class Medicine extends Mob {
 				if (!enemies.isEmpty()){
 					return Random.element(enemies);
 				} else {
-					if (alignment != Alignment.ALLY && Dungeon.level.distance(Dungeon.hero.pos, potPos) <= 3){
-						return Dungeon.hero;
+					if (alignment != Alignment.ALLY && Dungeon.level.distance(Dungeon.heroine.pos, potPos) <= 3){
+						return Dungeon.heroine;
 					} else {
 						return null;
 					}
@@ -193,7 +193,7 @@ public class Medicine extends Mob {
 	@Override
 	protected boolean getCloser(int target) {
 		if (alignment == Alignment.ALLY && enemy == null && buffs(AllyBuff.class).isEmpty()){
-			target = Dungeon.hero.pos;
+			target = Dungeon.heroine.pos;
 		} else if (enemy != null && Actor.findById(potHolder) == enemy) {
 			target = enemy.pos;
 		} else if (potPos != -1 && (state == WANDERING || Dungeon.level.distance(target, potPos) > 3))

@@ -29,10 +29,36 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_0_Changes(changeInfos);
 		add_v1_0_9_Changes(changeInfos);
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_0_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.0", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.0 changes",
+				"_-_ Fallen items now move to down floor.(bug fix)\n" +
+						"_-_ Strength cards and upgrade cards now appear on every non-boss floor.\n" +
+						"_-_ Equipments can now be thrown and deal damage, like shiren series.\n" +
+						"_-_ Preparations for 1.2.0 TLB update are working.(Distorted 7 debuffs and more)\n" +
+						"_-_ New artifact, kaguya's hyperdimentional chest is added.\n" +
+						"_-_ Various buffs and debuffs are added in the game.\n" +
+						"_-_ Some spellcards(anchor, fate, earth, fixer, and n.s.) were added.\n" +
+						"_-_ Charge herb now replaces nocturnal herb.\n" +
+						"_-_ Inaccurate talisman now replaces defog talisman.\n" +
+						"_-_ Many armors(tier 5 armors) were added.\n" +
+						"_-_ Difficulty now can be changed via ominous gaps in your inventory.\n" +
+						"_-_ Elixir of boss killer now replaces elixir of quad damage.\n" +
+						"_-_ Many mobs are changed into, more likely shiren monsters. Abyss dragon is here.\n" +
+						"_-_ Warning: Saves prior to version 1.1.0 will not be compatible properly! If there is such a save, please delete it.\n" +
+						"_-_ Major text improvements.\n" +
+						"_-_ Other things were changed but hard to write since there are too many.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_0_9_Changes(ArrayList<ChangeInfo> changeInfos ) {
@@ -43,13 +69,12 @@ public class v1_2_Changes {
 		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.0.9 changes",
 				"_-_ 6 special tiles were completely removed from the game.\n" +
 						"_-_ Homunculus and 5 vial items were added.\n" +
-						"_-_ Potions and spellcards are massively changed.\n" +
+						"_-_ Potions and spellcards are changed.\n" +
 						"_-_ Some weapons are added.\n" +
 						"_-_ Some ability cards are changed.\n" +
 						"_-_ Nito dismantle hammer is now located at dismantle command.\n" +
 						"_-_ New difficulty, gensokyo extinction is added.\n" +
 						"_-_ Total floors are reduced to 40f. Because 50f was too long.\n" +
-						"_-_ Potions and spellcards are massively changed.\n" +
 						"_-_ New buff, brainwash, is added to a certain ability card.\n" +
 						"_-_ Bestiary were changed a little.\n" +
 						"_-_ Remilia boss and seija boss has slightly changed.\n" +

@@ -64,27 +64,27 @@ public class EtherealChains extends Artifact {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped(hero) && charge > 0 && !cursed)
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && charge > 0 && !cursed)
 			actions.add(AC_CAST);
 		return actions;
 	}
 
-	public int targetingPos( Hero user, int dst ){
+	public int targetingPos(Hero user, int dst ){
 		return dst;
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_CAST)){
 
-			curUser = hero;
+			curUser = heroine;
 
-			if (!isEquipped( hero )) {
+			if (!isEquipped(heroine)) {
 				GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 				usesTargeting = false;
 
@@ -136,7 +136,7 @@ public class EtherealChains extends Artifact {
 	};
 	
 	//pulls an enemy to a position along the chain's path, as close to the hero as possible
-	private void chainEnemy( Ballistica chain, final Hero hero, final Char enemy ){
+	private void chainEnemy(Ballistica chain, final Hero heroine, final Char enemy ){
 		
 		if (enemy.properties().contains(Char.Property.IMMOVABLE)) {
 			GLog.w( Messages.get(this, "cant_pull") );
@@ -170,10 +170,10 @@ public class EtherealChains extends Artifact {
 			updateQuickslot();
 		}
 		
-		hero.busy();
+		heroine.busy();
 		throwSound();
 		Sample.INSTANCE.play( Assets.Sounds.CHAINS );
-		hero.sprite.parent.add(new Chains(hero.sprite.center(), enemy.sprite.center(), new Callback() {
+		heroine.sprite.parent.add(new Chains(heroine.sprite.center(), enemy.sprite.center(), new Callback() {
 			public void call() {
 				Actor.add(new Pushing(enemy, enemy.pos, pulledPos, new Callback() {
 					public void call() {
@@ -181,19 +181,19 @@ public class EtherealChains extends Artifact {
 						Dungeon.level.occupyCell(enemy);
 						Dungeon.observe();
 						GameScene.updateFog();
-						hero.spendAndNext(1f);
+						heroine.spendAndNext(1f);
 					}
 				}));
-				hero.next();
+				heroine.next();
 			}
 		}));
 	}
 	
 	//pulls the hero along the chain to the collisionPos, if possible.
-	private void chainLocation( Ballistica chain, final Hero hero ){
+	private void chainLocation( Ballistica chain, final Hero heroine){
 
 		//don't pull if rooted
-		if (hero.rooted){
+		if (heroine.rooted){
 			GLog.w( Messages.get(EtherealChains.class, "rooted") );
 			return;
 		}
@@ -220,7 +220,7 @@ public class EtherealChains extends Artifact {
 		
 		final int newHeroPos = chain.collisionPos;
 		
-		int chargeUse = Dungeon.level.distance(hero.pos, newHeroPos);
+		int chargeUse = Dungeon.level.distance(heroine.pos, newHeroPos);
 		if (chargeUse > charge){
 			GLog.w( Messages.get(EtherealChains.class, "no_charge") );
 			return;
@@ -229,21 +229,21 @@ public class EtherealChains extends Artifact {
 			updateQuickslot();
 		}
 		
-		hero.busy();
+		heroine.busy();
 		throwSound();
 		Sample.INSTANCE.play( Assets.Sounds.CHAINS );
-		hero.sprite.parent.add(new Chains(hero.sprite.center(), DungeonTilemap.raisedTileCenterToWorld(newHeroPos), new Callback() {
+		heroine.sprite.parent.add(new Chains(heroine.sprite.center(), DungeonTilemap.raisedTileCenterToWorld(newHeroPos), new Callback() {
 			public void call() {
-				Actor.add(new Pushing(hero, hero.pos, newHeroPos, new Callback() {
+				Actor.add(new Pushing(heroine, heroine.pos, newHeroPos, new Callback() {
 					public void call() {
-						hero.pos = newHeroPos;
-						Dungeon.level.occupyCell(hero);
-						hero.spendAndNext(1f);
+						heroine.pos = newHeroPos;
+						Dungeon.level.occupyCell(heroine);
+						heroine.spendAndNext(1f);
 						Dungeon.observe();
 						GameScene.updateFog();
 					}
 				}));
-				hero.next();
+				heroine.next();
 			}
 		}));
 	}
@@ -270,7 +270,7 @@ public class EtherealChains extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if (isEquipped( Dungeon.hero )){
+		if (isEquipped( Dungeon.heroine)){
 			desc += "\n\n";
 			if (cursed)
 				desc += Messages.get(this, "desc_cursed");

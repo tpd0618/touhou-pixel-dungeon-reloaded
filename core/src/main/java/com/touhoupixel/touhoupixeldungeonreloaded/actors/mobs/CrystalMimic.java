@@ -114,8 +114,8 @@ public class CrystalMimic extends Mimic {
 			Buff.affect(this, Haste.class, 1f);
 		}
 		if (Actor.chars().contains(this) && Dungeon.level.heroFOV[pos]) {
-			enemy = Dungeon.hero;
-			target = Dungeon.hero.pos;
+			enemy = Dungeon.heroine;
+			target = Dungeon.heroine.pos;
 			enemySeen = true;
 			GLog.w(Messages.get(this, "reveal") );
 			CellEmitter.get(pos).burst(Speck.factory(Speck.STAR), 10);
@@ -125,8 +125,8 @@ public class CrystalMimic extends Mimic {
 
 	@Override
 	public int attackProc(Char enemy, int damage) {
-		if (alignment == Alignment.NEUTRAL && enemy == Dungeon.hero){
-			steal( Dungeon.hero );
+		if (alignment == Alignment.NEUTRAL && enemy == Dungeon.heroine){
+			steal( Dungeon.heroine);
 
 		} else {
 			ArrayList<Integer> candidates = new ArrayList<>();
@@ -145,12 +145,12 @@ public class CrystalMimic extends Mimic {
 		return super.attackProc(enemy, damage);
 	}
 
-	protected void steal( Hero hero ) {
+	protected void steal( Hero heroine) {
 
 		int tries = 10;
 		Item item;
 		do {
-			item = hero.belongings.randomUnequipped();
+			item = heroine.belongings.randomUnequipped();
 		} while (tries-- > 0 && (item == null || item.unique || item.level() > 0));
 
 		if (item != null && !item.unique && item.level() < 1 ) {
@@ -163,9 +163,9 @@ public class CrystalMimic extends Mimic {
 
 			if (item instanceof Honeypot){
 				items.add(((Honeypot)item).shatter(this, this.pos));
-				item.detach( hero.belongings.backpack );
+				item.detach( heroine.belongings.backpack );
 			} else {
-				items.add(item.detach( hero.belongings.backpack ));
+				items.add(item.detach( heroine.belongings.backpack ));
 				if ( item instanceof Honeypot.ShatteredPot)
 					((Honeypot.ShatteredPot)item).pickupPot(this);
 			}
@@ -191,7 +191,7 @@ public class CrystalMimic extends Mimic {
 				if (enemySeen) {
 					sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Mob.class, "rage"));
 					state = HUNTING;
-				} else if (!Dungeon.level.heroFOV[pos] && Dungeon.level.distance(Dungeon.hero.pos, pos) >= 6) {
+				} else if (!Dungeon.level.heroFOV[pos] && Dungeon.level.distance(Dungeon.heroine.pos, pos) >= 6) {
 					GLog.n( Messages.get(CrystalMimic.class, "escaped"));
 					if (Dungeon.level.heroFOV[pos]) CellEmitter.get(pos).burst(Speck.factory(Speck.WOOL), 6);
 					destroy();

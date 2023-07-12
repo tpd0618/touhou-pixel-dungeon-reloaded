@@ -34,10 +34,10 @@ public class PotionOfReverseYingYang extends ExoticPotion {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		if (hero.HP % 2 == 1) {
-			Buff.prolong( hero, Invisibility.class, Invisibility.DURATION);
-		} else ScrollOfTeleportation.teleportChar(hero);
+		if (heroine.HP % 2 == 1) {
+			Buff.prolong(heroine, Invisibility.class, Invisibility.DURATION);
+		} else ScrollOfTeleportation.teleportChar(heroine);
 	}
 }

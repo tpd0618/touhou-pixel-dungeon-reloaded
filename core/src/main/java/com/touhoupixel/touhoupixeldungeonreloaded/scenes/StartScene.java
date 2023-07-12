@@ -122,7 +122,7 @@ public class StartScene extends PixelScene {
 		private RenderedTextBlock name;
 		
 		private Image steps;
-		private BitmapText depth;
+		private BitmapText floor;
 		private Image classIcon;
 		private BitmapText level;
 		
@@ -152,8 +152,8 @@ public class StartScene extends PixelScene {
 					hero = null;
 					remove(steps);
 					steps = null;
-					remove(depth);
-					depth = null;
+					remove(floor);
+					floor = null;
 					remove(classIcon);
 					classIcon = null;
 					remove(level);
@@ -169,8 +169,8 @@ public class StartScene extends PixelScene {
 					
 					steps = new Image(Icons.get(Icons.STAIRS));
 					add(steps);
-					depth = new BitmapText(PixelScene.pixelFont);
-					add(depth);
+					floor = new BitmapText(PixelScene.pixelFont);
+					add(floor);
 					
 					classIcon = new Image(Icons.get(info.heroClass));
 					add(classIcon);
@@ -182,19 +182,19 @@ public class StartScene extends PixelScene {
 					classIcon.copy(Icons.get(info.heroClass));
 				}
 				
-				depth.text(Integer.toString(info.depth));
-				depth.measure();
+				floor.text(Integer.toString(info.floor));
+				floor.measure();
 				
 				level.text(Integer.toString(info.level));
 				level.measure();
 				
 				if (info.challenges > 0){
 					name.hardlight(Window.TITLE_COLOR);
-					depth.hardlight(Window.TITLE_COLOR);
+					floor.hardlight(Window.TITLE_COLOR);
 					level.hardlight(Window.TITLE_COLOR);
 				} else {
 					name.resetColor();
-					depth.resetColor();
+					floor.resetColor();
 					level.resetColor();
 				}
 
@@ -240,9 +240,9 @@ public class StartScene extends PixelScene {
 				steps.y = y + (height - steps.height())/2f;
 				align(steps);
 				
-				depth.x = steps.x + (steps.width() - depth.width()) / 2f;
-				depth.y = steps.y + (steps.height() - depth.height()) / 2f + 1;
-				align(depth);
+				floor.x = steps.x + (steps.width() - floor.width()) / 2f;
+				floor.y = steps.y + (steps.height() - floor.height()) / 2f + 1;
+				align(floor);
 				
 			} else {
 				name.setPos(

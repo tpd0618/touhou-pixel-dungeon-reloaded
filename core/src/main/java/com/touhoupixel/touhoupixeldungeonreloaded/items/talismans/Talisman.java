@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.talismans;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -55,8 +54,8 @@ abstract public class Talisman extends Item {
     protected MissileWeapon parent;
 
     @Override
-    public ArrayList<String> actions(Hero hero) {
-        ArrayList<String> actions = super.actions(hero);
+    public ArrayList<String> actions(Hero heroine) {
+        ArrayList<String> actions = super.actions(heroine);
         return actions;
     }
 
@@ -67,9 +66,9 @@ abstract public class Talisman extends Item {
     }
 
     @Override
-    public void doThrow(Hero hero) {
+    public void doThrow(Hero heroine) {
         parent = null;
-        super.doThrow(hero);
+        super.doThrow(heroine);
     }
 
     @Override
@@ -90,7 +89,7 @@ abstract public class Talisman extends Item {
             quantity++;
             if (Random.Int(2) == 0) {
                 quantity++;
-                if (Dungeon.isChallenged(Challenges.MAX_POWER_MODE)) {
+                if (Dungeon.isChallenged(Challenges.BLESSING_CHORD)) {
                     quantity--;
                 }
             }
@@ -104,9 +103,9 @@ abstract public class Talisman extends Item {
     }
 
     @Override
-    public boolean doPickUp(Hero hero, int pos) {
+    public boolean doPickUp(Hero heroine, int pos) {
         parent = null;
-        return super.doPickUp(hero, pos);
+        return super.doPickUp(heroine, pos);
     }
 
     @Override
@@ -122,7 +121,7 @@ abstract public class Talisman extends Item {
     public static class PlaceHolder extends Talisman {
 
         {
-            image = ItemSpriteSheet.HAKUREIHOLD;
+            image = ItemSpriteSheet.HAKUREI_HOLD;
         }
 
         @Override

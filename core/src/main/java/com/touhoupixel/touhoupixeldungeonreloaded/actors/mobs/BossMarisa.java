@@ -14,7 +14,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfDisintegration;
@@ -34,7 +33,7 @@ public class BossMarisa extends Mob {
     {
         spriteClass = BossMarisaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 225 : 150;
+        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 300 : 150;
         defenseSkill = 10;
         EXP = 18;
         maxLvl = 99;
@@ -207,7 +206,7 @@ public class BossMarisa extends Mob {
                     CellEmitter.center( pos ).burst( PurpleParticle.BURST, Random.IntRange( 1, 2 ) );
                 }
 
-                if (!ch.isAlive() && ch == Dungeon.hero) {
+                if (!ch.isAlive() && ch == Dungeon.heroine) {
                     Dungeon.fail( getClass() );
                     GLog.n( Messages.get(this, "deathgaze_kill") );
                 }

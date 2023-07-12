@@ -178,14 +178,14 @@ public class GameScene extends PixelScene {
 	@Override
 	public void create() {
 
-		if (Dungeon.hero == null || Dungeon.level == null) {
+		if (Dungeon.heroine == null || Dungeon.level == null) {
 			ShatteredPixelDungeon.switchNoFade(TitleScene.class);
 			return;
 		}
 
 		Dungeon.level.playLevelMusic();
 
-		SPDSettings.lastClass(Dungeon.hero.heroClass.ordinal());
+		SPDSettings.lastClass(Dungeon.heroine.heroClass.ordinal());
 
 		super.create();
 		Camera.main.zoom(GameMath.gate(minZoom, defaultZoom + SPDSettings.zoom(), maxZoom));
@@ -219,7 +219,7 @@ public class GameScene extends PixelScene {
 		ripples = new Group();
 		terrain.add(ripples);
 
-		DungeonTileSheet.setupVariance(Dungeon.level.map.length, Dungeon.seedCurDepth());
+		DungeonTileSheet.setupVariance(Dungeon.level.map.length, Dungeon.seedCurFloor());
 
 		tiles = new DungeonTerrainTilemap();
 		terrain.add(tiles);
@@ -260,7 +260,7 @@ public class GameScene extends PixelScene {
 		add(mobs);
 
 		hero = new HeroSprite();
-		hero.place(Dungeon.hero.pos);
+		hero.place(Dungeon.heroine.pos);
 		hero.updateArmor();
 		mobs.add(hero);
 
@@ -377,21 +377,21 @@ public class GameScene extends PixelScene {
 		switch (InterlevelScene.mode) {
 			case RESURRECT:
 				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-				ScrollOfTeleportation.appear(Dungeon.hero, Dungeon.hero.pos);
-				SpellSprite.show(Dungeon.hero, SpellSprite.ANKH);
+				ScrollOfTeleportation.appear(Dungeon.heroine, Dungeon.heroine.pos);
+				SpellSprite.show(Dungeon.heroine, SpellSprite.ANKH);
 				new Flare(5, 16).color(0xFFFF00, true).show(hero, 4f);
 				break;
 			case RETURN:
-				ScrollOfTeleportation.appear(Dungeon.hero, Dungeon.hero.pos);
+				ScrollOfTeleportation.appear(Dungeon.heroine, Dungeon.heroine.pos);
 				break;
 			case ASCEND:
 			case FALL:
-				if (Dungeon.hero.isAlive()) {
+				if (Dungeon.heroine.isAlive()) {
 				}
 				break;
 		}
 
-		ArrayList<Item> dropped = Dungeon.droppedItems.get(Dungeon.depth);
+		ArrayList<Item> dropped = Dungeon.droppedItems.get(Dungeon.floor);
 		if (dropped != null) {
 			for (Item item : dropped) {
 				int pos = Dungeon.level.randomRespawnCell(null);
@@ -403,10 +403,10 @@ public class GameScene extends PixelScene {
 					Dungeon.level.drop(item, pos);
 				}
 			}
-			Dungeon.droppedItems.remove(Dungeon.depth);
+			Dungeon.droppedItems.remove(Dungeon.floor);
 		}
 
-		ArrayList<Item> ported = Dungeon.portedItems.get(Dungeon.depth);
+		ArrayList<Item> ported = Dungeon.portedItems.get(Dungeon.floor);
 		if (ported != null) {
 			//TODO currently items are only ported to boss rooms, so this works well
 			//might want to have a 'near entrance' function if items can be ported elsewhere
@@ -422,10 +422,10 @@ public class GameScene extends PixelScene {
 			}
 			Dungeon.level.heaps.get(pos).type = Heap.Type.CHEST;
 			Dungeon.level.heaps.get(pos).sprite.link(); //sprite reset to show chest
-			Dungeon.portedItems.remove(Dungeon.depth);
+			Dungeon.portedItems.remove(Dungeon.floor);
 		}
 
-		Dungeon.hero.next();
+		Dungeon.heroine.next();
 
 		switch (InterlevelScene.mode) {
 			case FALL:
@@ -442,17 +442,17 @@ public class GameScene extends PixelScene {
 		Camera.main.panTo(hero.center(), 2.5f);
 
 		if (InterlevelScene.mode != InterlevelScene.Mode.NONE) {
-			if (Dungeon.depth == Statistics.deepestFloor
+			if (Dungeon.floor == Statistics.highestFloor
 					&& (InterlevelScene.mode == InterlevelScene.Mode.ASCEND || InterlevelScene.mode == InterlevelScene.Mode.FALL)) {
-				GLog.h(Messages.get(this, "ascend"), Dungeon.depth);
+				GLog.h(Messages.get(this, "ascend"), Dungeon.floor);
 				Sample.INSTANCE.play(Assets.Sounds.DESCEND);
 
 			} else if (InterlevelScene.mode == InterlevelScene.Mode.RESET) {
 				GLog.h(Messages.get(this, "warp"));
 			} else if (InterlevelScene.mode == InterlevelScene.Mode.RESURRECT) {
-				GLog.h(Messages.get(this, "resurrect"), Dungeon.depth);
+				GLog.h(Messages.get(this, "resurrect"), Dungeon.floor);
 			} else {
-				GLog.h(Messages.get(this, "descend"), Dungeon.depth);
+				GLog.h(Messages.get(this, "descend"), Dungeon.floor);
 			}
 
 			switch (Dungeon.level.feeling) {
@@ -485,7 +485,7 @@ public class GameScene extends PixelScene {
 		if (!invVisible) toggleInvPane();
 		fadeIn();
 
-		if (!Dungeon.hero.isAlive()) {
+		if (!Dungeon.heroine.isAlive()) {
 			gameOver();
 		}
 	}
@@ -563,7 +563,7 @@ public class GameScene extends PixelScene {
 			InventoryPane.refresh();
 		}
 
-		if (Dungeon.hero == null || scene == null) {
+		if (Dungeon.heroine == null || scene == null) {
 			return;
 		}
 
@@ -573,7 +573,7 @@ public class GameScene extends PixelScene {
 
 		if (!Emitter.freezeEmitters) water.offset( 0, -5 * Game.elapsed );
 
-		if (!Actor.processing() && Dungeon.hero.isAlive()) {
+		if (!Actor.processing() && Dungeon.heroine.isAlive()) {
 			if (actorThread == null || !actorThread.isAlive()) {
 
 				actorThread = new Thread() {
@@ -599,7 +599,7 @@ public class GameScene extends PixelScene {
 			}
 		}
 
-		if (Dungeon.hero.ready && Dungeon.hero.paralysed == 0) {
+		if (Dungeon.heroine.ready && Dungeon.heroine.paralysed == 0) {
 			log.newLine();
 		}
 
@@ -622,7 +622,7 @@ public class GameScene extends PixelScene {
 			if (tagAppearing) layoutTags();
 		}
 
-		cellSelector.enable(Dungeon.hero.ready);
+		cellSelector.enable(Dungeon.heroine.ready);
 
 		for (Gizmo g : toDestroy){
 			g.destroy();
@@ -1094,7 +1094,7 @@ public class GameScene extends PixelScene {
 			@Override
 			protected void onClick() {
 				InterlevelScene.noStory = true;
-				GamesInProgress.selectedClass = Dungeon.hero.heroClass;
+				GamesInProgress.selectedClass = Dungeon.heroine.heroClass;
 				GamesInProgress.curSlot = GamesInProgress.firstEmpty();
 				ShatteredPixelDungeon.switchScene(HeroSelectScene.class);
 			}
@@ -1140,7 +1140,7 @@ public class GameScene extends PixelScene {
 	}
 
 	public static void bossSlain() {
-		if (Dungeon.hero.isAlive()) {
+		if (Dungeon.heroine.isAlive()) {
 			Banner bossSlain = new Banner( BannerSprites.get( BannerSprites.Type.BOSS_SLAIN ) );
 			bossSlain.show( 0xFFFFFF, 0.3f, 5f );
 			scene.showBanner( bossSlain );
@@ -1158,7 +1158,7 @@ public class GameScene extends PixelScene {
 			cellSelector.listener.onSelect(null);
 		}
 		cellSelector.listener = listener;
-		cellSelector.enabled = Dungeon.hero.ready;
+		cellSelector.enabled = Dungeon.heroine.ready;
 		if (scene != null) {
 			scene.prompt(listener.prompt());
 		}
@@ -1193,10 +1193,10 @@ public class GameScene extends PixelScene {
 	}
 
 	public static boolean cancel() {
-		if (Dungeon.hero != null && (Dungeon.hero.curAction != null || Dungeon.hero.resting)) {
+		if (Dungeon.heroine != null && (Dungeon.heroine.curAction != null || Dungeon.heroine.resting)) {
 
-			Dungeon.hero.curAction = null;
-			Dungeon.hero.resting = false;
+			Dungeon.heroine.curAction = null;
+			Dungeon.heroine.resting = false;
 			return true;
 
 		} else {
@@ -1254,8 +1254,8 @@ public class GameScene extends PixelScene {
 	private static ArrayList<Object> getObjectsAtCell( int cell ){
 		ArrayList<Object> objects = new ArrayList<>();
 
-		if (cell == Dungeon.hero.pos) {
-			objects.add(Dungeon.hero);
+		if (cell == Dungeon.heroine.pos) {
+			objects.add(Dungeon.heroine);
 
 		} else if (Dungeon.level.heroFOV[cell]) {
 			Mob mob = (Mob) Actor.findChar(cell);
@@ -1286,7 +1286,7 @@ public class GameScene extends PixelScene {
 	}
 
 	public static void examineObject(Object o){
-		if (o == Dungeon.hero){
+		if (o == Dungeon.heroine){
 			GameScene.show( new WndHero() );
 		} else if ( o instanceof Mob ){
 			GameScene.show(new WndInfoMob((Mob) o));
@@ -1305,8 +1305,8 @@ public class GameScene extends PixelScene {
 	private static final CellSelector.Listener defaultCellListener = new CellSelector.Listener() {
 		@Override
 		public void onSelect( Integer cell ) {
-			if (Dungeon.hero.handle( cell )) {
-				Dungeon.hero.next();
+			if (Dungeon.heroine.handle( cell )) {
+				Dungeon.heroine.next();
 			}
 		}
 

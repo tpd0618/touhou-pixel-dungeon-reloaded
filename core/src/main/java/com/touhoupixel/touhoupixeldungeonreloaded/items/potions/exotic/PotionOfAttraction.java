@@ -33,8 +33,8 @@ public class PotionOfAttraction extends ExoticPotion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		Buff.prolong(hero, FumoLover.class, FumoLover.DURATION);
+		Buff.prolong(heroine, FumoLover.class, FumoLover.DURATION);
 	}
 }

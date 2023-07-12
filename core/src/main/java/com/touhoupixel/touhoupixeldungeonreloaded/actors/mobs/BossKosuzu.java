@@ -23,7 +23,7 @@ public class BossKosuzu extends Mob {
     {
         spriteClass = KosuzuSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 150 : 100;
+        HP = HT = 100;
         defenseSkill = 5;
         EXP = 13;
         maxLvl = 99;
@@ -73,15 +73,17 @@ public class BossKosuzu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        for (int offset : PathFinder.NEIGHBOURS9){
-            GameScene.add(Blob.seed(enemy.pos + offset, 1, Fire.class));
-        }
-        if (Dungeon.level.map[enemy.pos] == Terrain.EMBERS) {
-            Buff.prolong(enemy, Inversion.class, Inversion.DURATION/3f);
-            yell(Messages.get(this, "nobookshelf"));
-        }
-        if (this.HP < this.HT/2) {
-            Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION/2f);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+            for (int offset : PathFinder.NEIGHBOURS9) {
+                GameScene.add(Blob.seed(enemy.pos + offset, 1, Fire.class));
+            }
+            if (Dungeon.level.map[enemy.pos] == Terrain.EMBERS) {
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION / 3f);
+                yell(Messages.get(this, "nobookshelf"));
+            }
+            if (this.HP < this.HT / 2) {
+                Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION / 2f);
+            }
         }
         return damage;
     }

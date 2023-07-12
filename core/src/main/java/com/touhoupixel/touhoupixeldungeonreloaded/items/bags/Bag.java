@@ -21,10 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -48,8 +46,8 @@ public class Bag extends Item implements Iterable<Item> {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.remove(AC_DROP);
 		actions.remove(AC_THROW);
 		return actions;
@@ -64,9 +62,9 @@ public class Bag extends Item implements Iterable<Item> {
 	}
 	
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals( AC_OPEN ) && !items.isEmpty()) {
 			
@@ -173,11 +171,6 @@ public class Bag extends Item implements Iterable<Item> {
 	}
 
 	public boolean canHold( Item item ){
-		if (!loading && owner != null && owner.buff(LostInventory.class) != null
-			&& !item.keptThoughLostInvent){
-			return false;
-		}
-
 		if (items.contains(item) || item instanceof Bag || items.size() < capacity()){
 			return true;
 		} else if (item.stackable) {

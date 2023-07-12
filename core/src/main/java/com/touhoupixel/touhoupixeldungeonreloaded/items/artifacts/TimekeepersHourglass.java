@@ -69,22 +69,22 @@ public class TimekeepersHourglass extends Artifact {
 	public int sandBags = 0;
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && !cursed && (charge > 0 || activeBuff != null)) {
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (isEquipped(heroine) && !cursed && (charge > 0 || activeBuff != null)) {
 			actions.add(AC_ACTIVATE);
 		}
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals(AC_ACTIVATE)){
 
-			if (!isEquipped( hero ))        GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			if (!isEquipped(heroine))        GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (activeBuff != null) {
 				if (activeBuff instanceof timeStasis) { //do nothing
 				} else {
@@ -107,14 +107,14 @@ public class TimekeepersHourglass extends Artifact {
 									Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 
 									activeBuff = new timeStasis();
-									activeBuff.attachTo(Dungeon.hero);
+									activeBuff.attachTo(Dungeon.heroine);
 								} else if (index == 1) {
 									GLog.i( Messages.get(TimekeepersHourglass.class, "onfreeze") );
 									GameScene.flash(0x80FFFFFF);
 									Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 
 									activeBuff = new timeFreeze();
-									activeBuff.attachTo(Dungeon.hero);
+									activeBuff.attachTo(Dungeon.heroine);
 									((timeFreeze)activeBuff).processTime(0f);
 								}
 							}
@@ -131,8 +131,8 @@ public class TimekeepersHourglass extends Artifact {
 	}
 
 	@Override
-	public boolean doUnequip(Hero hero, boolean collect, boolean single) {
-		if (super.doUnequip(hero, collect, single)){
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single) {
+		if (super.doUnequip(heroine, collect, single)){
 			if (activeBuff != null){
 				activeBuff.detach();
 				activeBuff = null;
@@ -174,7 +174,7 @@ public class TimekeepersHourglass extends Artifact {
 	public String desc() {
 		String desc = super.desc();
 
-		if (isEquipped( Dungeon.hero )){
+		if (isEquipped( Dungeon.heroine)){
 			if (!cursed) {
 				if (level() < levelCap )
 					desc += "\n\n" + Messages.get(this, "desc_hint");
@@ -278,7 +278,7 @@ public class TimekeepersHourglass extends Artifact {
 
 				updateQuickslot();
 
-				if (Dungeon.hero != null) {
+				if (Dungeon.heroine != null) {
 					Dungeon.observe();
 				}
 
@@ -446,8 +446,8 @@ public class TimekeepersHourglass extends Artifact {
 		}
 
 		@Override
-		public boolean doPickUp(Hero hero, int pos) {
-			TimekeepersHourglass hourglass = hero.belongings.getItem( TimekeepersHourglass.class );
+		public boolean doPickUp(Hero heroine, int pos) {
+			TimekeepersHourglass hourglass = heroine.belongings.getItem( TimekeepersHourglass.class );
 			if (hourglass != null && !hourglass.cursed) {
 				hourglass.upgrade();
 				Sample.INSTANCE.play( Assets.Sounds.DEWDROP );
@@ -456,7 +456,7 @@ public class TimekeepersHourglass extends Artifact {
 				else
 					GLog.i( Messages.get(this, "levelup") );
 				GameScene.pickUp(this, pos);
-				hero.spendAndNext(TIME_TO_PICK_UP);
+				heroine.spendAndNext(TIME_TO_PICK_UP);
 				return true;
 			} else {
 				GLog.w( Messages.get(this, "no_hourglass") );

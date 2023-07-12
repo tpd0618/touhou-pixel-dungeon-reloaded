@@ -42,7 +42,7 @@ public class Earthroot extends Plant {
 	@Override
 	public void activate( Char ch ) {
 		
-		if (ch == Dungeon.hero) {
+		if (ch == Dungeon.heroine) {
 			Buff.affect(ch, Armor.class).level(ch.HT);
 		}
 		
@@ -90,7 +90,7 @@ public class Earthroot extends Plant {
 		}
 		
 		private static int blocking(){
-			return (Dungeon.depth + 5)/2;
+			return (Dungeon.floor + 5)/2;
 		}
 		
 		public int absorb( int damage ) {

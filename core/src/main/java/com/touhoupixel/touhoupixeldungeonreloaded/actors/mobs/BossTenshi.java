@@ -24,7 +24,7 @@ public class BossTenshi extends Mob {
     {
         spriteClass = TenshiSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 2700 : 1800;
+        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 3600 : 1800;
         defenseSkill = 40;
         EXP = 30;
         maxLvl = 99;
@@ -74,16 +74,16 @@ public class BossTenshi extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             if (Statistics.tenshiattackstep == 1){
                 GLog.w(Messages.get(this, "charge"));
             }
             if (Statistics.tenshiattackstep > 3){
                 Statistics.tenshiattackstep = -1;
                 Camera.main.shake( 30, 1f );
-                if (!Dungeon.hero.flying) {
-                    Dungeon.hero.damage(50, this);
-                    if (!Dungeon.hero.isAlive()) {
+                if (!Dungeon.heroine.flying) {
+                    Dungeon.heroine.damage(50, this);
+                    if (!Dungeon.heroine.isAlive()) {
                         Dungeon.fail(BossTenshi.class);
                         GLog.n( Messages.get(BossTenshi.class, "ondeath") );
                     }

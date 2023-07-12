@@ -24,9 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -53,6 +50,6 @@ public class AkyuuBrush extends MeleeWeapon {
 
     @Override
     public int defenseFactor( Char owner ) {
-        return Dungeon.hero.buff(MindVision.class) != null ? 3 : 1;
+        return Dungeon.heroine.buff(MindVision.class) != null ? 3 : 1;
     }
 }

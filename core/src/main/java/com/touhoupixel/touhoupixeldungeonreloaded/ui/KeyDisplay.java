@@ -73,10 +73,10 @@ public class KeyDisplay extends Visual {
 		keys = new int[keyMap.size()+1];
 		
 		for (Notes.KeyRecord rec : Notes.getRecords(Notes.KeyRecord.class)){
-			if (rec.depth() < Dungeon.depth){
+			if (rec.floor() < Dungeon.floor){
 				//only ever 1 black key
 				keys[0] = 1;
-			} else if (rec.depth() == Dungeon.depth){
+			} else if (rec.floor() == Dungeon.floor){
 				keys[keyMap.get(rec.type())] += rec.quantity();
 			}
 		}

@@ -4,7 +4,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Chains;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -96,8 +95,8 @@ public class Mike extends Mob {
         enemy.pos = pullPos;
         enemy.sprite.place(pullPos);
         Dungeon.level.occupyCell(enemy);
-        if (enemy == Dungeon.hero) {
-            Dungeon.hero.interrupt();
+        if (enemy == Dungeon.heroine) {
+            Dungeon.heroine.interrupt();
             Dungeon.observe();
             GameScene.updateFog();
         }
@@ -111,19 +110,6 @@ public class Mike extends Mob {
     @Override
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
-    }
-
-    @Override
-    public float lootChance() {
-        //each drop makes future drops 1/2 as likely
-        // so loot chance looks like: 1/5, 1/10, 1/20, 1/40, etc.
-        return super.lootChance() * (float)Math.pow(1/2f, Dungeon.LimitedDrops.GUARD_ARM.count);
-    }
-
-    @Override
-    public Item createLoot() {
-        Dungeon.LimitedDrops.GUARD_ARM.count++;
-        return super.createLoot();
     }
 
     private final String CHAINSUSED = "chainsused";

@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
@@ -59,15 +58,15 @@ public class Dart extends MissileWeapon {
 	protected static final String AC_TIP = "TIP";
 	
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_TIP );
 		return actions;
 	}
 	
 	@Override
-	public void execute(Hero hero, String action) {
-		super.execute(hero, action);
+	public void execute(Hero heroine, String action) {
+		super.execute(heroine, action);
 		if (action.equals(AC_TIP)){
 			GameScene.selectItem(itemSelector);
 		}
@@ -98,15 +97,15 @@ public class Dart extends MissileWeapon {
 	private static YukariUmbrella bow;
 	
 	private void updateCrossbow(){
-		if (Dungeon.hero.belongings.weapon() instanceof YukariUmbrella){
-			bow = (YukariUmbrella) Dungeon.hero.belongings.weapon();
+		if (Dungeon.heroine.belongings.weapon() instanceof YukariUmbrella){
+			bow = (YukariUmbrella) Dungeon.heroine.belongings.weapon();
 		} else {
 			bow = null;
 		}
 	}
 
 	public boolean crossbowHasEnchant( Char owner ){
-		return bow != null && bow.enchantment != null && owner.buff(MagicImmune.class) == null;
+		return bow != null && bow.enchantment != null;
 	}
 	
 	@Override

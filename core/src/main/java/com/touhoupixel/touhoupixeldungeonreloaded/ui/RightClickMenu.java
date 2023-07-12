@@ -50,7 +50,7 @@ public class RightClickMenu extends Component {
 	private Item item;
 
 	public RightClickMenu(Item item){
-		ArrayList<String> actions = item.actions(Dungeon.hero);
+		ArrayList<String> actions = item.actions(Dungeon.heroine);
 		if (actions.remove(item.defaultAction)) {
 			actions.add(0, item.defaultAction);
 		}
@@ -102,7 +102,7 @@ public class RightClickMenu extends Component {
 				protected void onClick() {
 					super.onClick();
 					if (item != null){
-						item.execute(Dungeon.hero, options[finalI]);
+						item.execute(Dungeon.heroine, options[finalI]);
 
 						if (options[finalI].equals(item.defaultAction) && item.usesTargeting){
 							InventoryPane.useTargeting();
@@ -117,7 +117,7 @@ public class RightClickMenu extends Component {
 				if (options[i].equals(item.defaultAction)) {
 					buttons[i].textColor(Window.TITLE_COLOR);
 				}
-				buttons[i].text(item.actionName(options[i], Dungeon.hero));
+				buttons[i].text(item.actionName(options[i], Dungeon.heroine));
 			}
 			add(buttons[i]);
 		}

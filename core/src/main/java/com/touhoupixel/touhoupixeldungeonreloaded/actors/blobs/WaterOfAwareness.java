@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -42,12 +41,12 @@ import com.watabou.noosa.audio.Sample;
 public class WaterOfAwareness extends WellWater {
 
 	@Override
-	protected boolean affectHero( Hero hero ) {
+	protected boolean affectHero( Hero heroine) {
 		
 		Sample.INSTANCE.play( Assets.Sounds.DRINK );
-		emitter.parent.add( new Identification( hero.sprite.center() ) );
+		emitter.parent.add( new Identification( heroine.sprite.center() ) );
 		
-		hero.belongings.observe();
+		heroine.belongings.observe();
 		
 		for (int i=0; i < Dungeon.level.length(); i++) {
 			
@@ -62,10 +61,10 @@ public class WaterOfAwareness extends WellWater {
 			}
 		}
 		
-		Buff.affect( hero, Awareness.class, Awareness.DURATION );
+		Buff.affect(heroine, Awareness.class, Awareness.DURATION );
 		Dungeon.observe();
 
-		Dungeon.hero.interrupt();
+		Dungeon.heroine.interrupt();
 	
 		GLog.p( Messages.get(this, "procced") );
 		

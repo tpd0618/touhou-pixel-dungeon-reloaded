@@ -26,8 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -48,9 +46,9 @@ public class EnchantEraseTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (!Statistics.card36) {
-			if (c != null && c == Dungeon.hero) {
-				MeleeWeapon meleeweapon = Dungeon.hero.belongings.getItem(MeleeWeapon.class);
-				Armor armor = Dungeon.hero.belongings.getItem(Armor.class);
+			if (c != null && c == Dungeon.heroine) {
+				MeleeWeapon meleeweapon = Dungeon.heroine.belongings.getItem(MeleeWeapon.class);
+				Armor armor = Dungeon.heroine.belongings.getItem(Armor.class);
 				if (meleeweapon != null) {
 					meleeweapon.enchantment = null;
 					GLog.w(Messages.get(this, "weaponenchanterase"));

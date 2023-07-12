@@ -36,9 +36,9 @@ public class ElixirOfIcyTouch extends Elixir {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
-		Buff.affect(hero, FrostImbue.class, FrostImbue.DURATION);
-		hero.sprite.emitter().burst(SnowParticle.FACTORY, 5);
+	public void apply(Hero heroine) {
+		Buff.affect(heroine, FrostImbue.class, FrostImbue.DURATION);
+		heroine.sprite.emitter().burst(SnowParticle.FACTORY, 5);
 	}
 	
 	@Override

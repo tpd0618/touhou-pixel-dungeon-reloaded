@@ -7,7 +7,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfExorcismRod;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KyoukoSprite;
@@ -47,7 +46,7 @@ public class Kyouko extends Mob {
 
     @Override
     public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
+        if (Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
             enemy.damage(damage / 2, target);
             GLog.w(Messages.get(this, "reflect"));
             if (Statistics.difficulty > 2) {

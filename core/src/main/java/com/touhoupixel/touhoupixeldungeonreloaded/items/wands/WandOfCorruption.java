@@ -47,7 +47,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SoulMark;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
@@ -108,7 +107,6 @@ public class WandOfCorruption extends Wand {
 		MAJOR_DEBUFFS.put(Dread.class,          0f);
 		MAJOR_DEBUFFS.put(Charm.class,          0f);
 		MAJOR_DEBUFFS.put(MagicalSleep.class,   0f);
-		MAJOR_DEBUFFS.put(SoulMark.class,       0f);
 		MAJOR_DEBUFFS.put(Corrosion.class,      0f);
 		MAJOR_DEBUFFS.put(Frost.class,          0f);
 		MAJOR_DEBUFFS.put(Doom.class,           0f);
@@ -131,12 +129,12 @@ public class WandOfCorruption extends Wand {
 			//base enemy resistance is usually based on their exp, but in special cases it is based on other criteria
 			float enemyResist = 1 + enemy.EXP;
 			if (ch instanceof Mimic){
-				enemyResist = 1 + Dungeon.depth;
+				enemyResist = 1 + Dungeon.floor;
 			} else if (ch instanceof Murasa || ch instanceof Medicine) {
-				enemyResist = 1 + Dungeon.depth/2f;
+				enemyResist = 1 + Dungeon.floor /2f;
 			} else if (ch instanceof Wraith) {
 				//divide by 5 as wraiths are always at full HP and are therefore ~5x harder to corrupt
-				enemyResist = (1f + Dungeon.depth/3f) / 5f;
+				enemyResist = (1f + Dungeon.floor /3f) / 5f;
 			}
 			
 			//100% health: 5x resist   75%: 3.25x resist   50%: 2x resist   25%: 1.25x resist

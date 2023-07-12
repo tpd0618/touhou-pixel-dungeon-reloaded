@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -71,12 +70,12 @@ public class InventorySlot extends ItemSlot {
 
 		if (item != null) {
 
-			boolean equipped = item.isEquipped(Dungeon.hero) ||
-					item == Dungeon.hero.belongings.weapon ||
-					item == Dungeon.hero.belongings.armor ||
-					item == Dungeon.hero.belongings.artifact ||
-					item == Dungeon.hero.belongings.misc ||
-					item == Dungeon.hero.belongings.ring;
+			boolean equipped = item.isEquipped(Dungeon.heroine) ||
+					item == Dungeon.heroine.belongings.weapon ||
+					item == Dungeon.heroine.belongings.armor ||
+					item == Dungeon.heroine.belongings.artifact ||
+					item == Dungeon.heroine.belongings.misc ||
+					item == Dungeon.heroine.belongings.ring;
 
 			bg.texture( TextureCache.createSolid( equipped ? EQUIPPED : NORMAL ) );
 			bg.resetColor();
@@ -94,9 +93,6 @@ public class InventorySlot extends ItemSlot {
 
 			if (item.name() == null) {
 				enable( false );
-			} else if (Dungeon.hero.buff(LostInventory.class) != null
-					&& !item.keptThoughLostInvent){
-				enable(false);
 			}
 		} else {
 			bg.texture( TextureCache.createSolid( NORMAL ) );

@@ -27,7 +27,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
@@ -190,7 +189,7 @@ public class Shou extends Mob {
 					CellEmitter.center( pos ).burst( PurpleParticle.BURST, Random.IntRange( 1, 2 ) );
 				}
 
-				if (!ch.isAlive() && ch == Dungeon.hero) {
+				if (!ch.isAlive() && ch == Dungeon.heroine) {
 					Dungeon.fail( getClass() );
 					GLog.n( Messages.get(this, "deathgaze_kill") );
 				}

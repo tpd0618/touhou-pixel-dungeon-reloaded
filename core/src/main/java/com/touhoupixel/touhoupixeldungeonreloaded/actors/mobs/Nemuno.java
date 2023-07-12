@@ -47,7 +47,7 @@ public class Nemuno extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             if (Random.Int(5) == 0 && hero.HP > 3 && enemy instanceof Hero) {
                 damage = Math.max(damage, hero.HP / 2);
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);

@@ -36,9 +36,9 @@ public class ElixirOfToxicEssence extends Elixir {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
-		Buff.affect(hero, ToxicImbue.class).set(ToxicImbue.DURATION);
-		hero.sprite.emitter().burst(PoisonParticle.SPLASH, 10);
+	public void apply(Hero heroine) {
+		Buff.affect(heroine, ToxicImbue.class).set(ToxicImbue.DURATION);
+		heroine.sprite.emitter().burst(PoisonParticle.SPLASH, 10);
 	}
 	
 	@Override

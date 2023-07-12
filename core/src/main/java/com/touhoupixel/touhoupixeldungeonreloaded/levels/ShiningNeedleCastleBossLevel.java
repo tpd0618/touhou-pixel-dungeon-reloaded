@@ -154,7 +154,7 @@ public class ShiningNeedleCastleBossLevel extends Level {
 		boss.state = boss.WANDERING;
 		boss.pos = 49;
 		GameScene.add( boss );
-		boss.beckon(Dungeon.hero.pos);
+		boss.beckon(Dungeon.heroine.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();

@@ -30,6 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
@@ -37,21 +38,19 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlamePower;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FloatSlayer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostImbue;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostPower;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Fury;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LifeLink;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
@@ -182,8 +181,8 @@ public abstract class Char extends Actor {
 
         c.spend( 1 / c.speed() );
 
-        if (c == Dungeon.hero){
-            Dungeon.hero.busy();
+        if (c == Dungeon.heroine){
+            Dungeon.heroine.busy();
         }
 
         return true;
@@ -324,16 +323,16 @@ public abstract class Char extends Actor {
             enemy.sprite.flash();
 
             if (!enemy.isAlive() && visibleFight) {
-                if (enemy == Dungeon.hero) {
+                if (enemy == Dungeon.heroine) {
 
-                    if (this == Dungeon.hero) {
+                    if (this == Dungeon.heroine) {
                         return true;
                     }
 
                     Dungeon.fail( getClass() );
                     GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", name())) );
 
-                } else if (this == Dungeon.hero) {
+                } else if (this == Dungeon.heroine) {
                     GLog.i( Messages.capitalize(Messages.get(Char.class, "defeat", enemy.name())) );
                 }
             }
@@ -377,15 +376,13 @@ public abstract class Char extends Actor {
         float acuRoll = Random.Float( acuStat );
         if (attacker.buff(Bless.class) != null) acuRoll *= 1.25f;
         if (attacker.buff(Doublerainbow.class) != null) acuRoll *= 1.45f;
-        if (attacker.buff(FlamePower.class) != null && attacker.buff(Burning.class) != null) acuRoll *= 1.85f;
-        if (attacker.buff(FrostPower.class) != null && attacker.buff(Chill.class) != null) acuRoll *= 1.85f;
+        if (attacker.buff(HeatRiser.class) != null) acuRoll *= 1.5f; //heat riser
         if (attacker.buff(Hex.class) != null) acuRoll *= 0.8f;
 
         float defRoll = Random.Float( defStat );
         if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
         if (defender.buff(Doublerainbow.class) != null) defRoll *= 1.45f;
-        if (defender.buff(FlamePower.class) != null && defender.buff(Burning.class) != null) acuRoll *= 1.85f;
-        if (defender.buff(FrostPower.class) != null && defender.buff(Chill.class) != null) acuRoll *= 1.85f;
+        if (attacker.buff(HeatRiser.class) != null) defRoll *= 1.5f; //heat riser
         if (defender.buff(Hex.class) != null) defRoll *= 0.8f;
 
         return (acuRoll * accMulti) >= defRoll;
@@ -423,6 +420,9 @@ public abstract class Char extends Actor {
         }
         if (buff(Hisou.class) != null && !enemy.flying ){
             damage *= 1.5f;
+        }
+        if (buff(FloatSlayer.class) != null && enemy.flying ){
+            damage *= 1.4f;
         }
 
         return damage;
@@ -469,35 +469,9 @@ public abstract class Char extends Actor {
             dmg = 1;
         }
 
-        if (buff(FlamePower.class) != null && buff(Burning.class) != null) {
-            dmg = 1;
-        }
-
-        if (buff(FrostPower.class) != null && buff(Chill.class) != null) {
-            dmg = 1;
-        }
-
         if(isInvulnerable(src.getClass())){
             sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
             return;
-        }
-
-        if (!(src instanceof LifeLink) && buff(LifeLink.class) != null){
-            HashSet<LifeLink> links = buffs(LifeLink.class);
-            for (LifeLink link : links.toArray(new LifeLink[0])){
-                if (Actor.findById(link.object) == null){
-                    links.remove(link);
-                    link.detach();
-                }
-            }
-            dmg = (int)Math.ceil(dmg / (float)(links.size()+1));
-            for (LifeLink link : links){
-                Char ch = (Char)Actor.findById(link.object);
-                ch.damage(dmg, link);
-                if (!ch.isAlive()){
-                    link.detach();
-                }
-            }
         }
 
         Terror t = buff(Terror.class);
@@ -605,15 +579,15 @@ public abstract class Char extends Actor {
         } else if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
         }
-        if (Dungeon.isChallenged(Challenges.BUNBUN_DELIVERY)) {
-            if (buff(Doublespeed.class) != null && this instanceof Hero) {
+        if (Dungeon.isChallenged(Challenges.DOUBLE_SPOILER)) {
+            if (buff(DoubleSpeed.class) != null && this instanceof Hero) {
                 timeScale *= 1.5f;
             }
-            if (buff(Doublespeed.class) != null && this instanceof Mob) {
+            if (buff(DoubleSpeed.class) != null && this instanceof Mob) {
                 timeScale *= 2.5f;
             }
         } else {
-            if (buff(Doublespeed.class) != null) {
+            if (buff(DoubleSpeed.class) != null) {
                 timeScale *= 2.0f;
             }
         }
@@ -662,8 +636,7 @@ public abstract class Char extends Actor {
 
         if (buff(PotionOfCleansing.Cleanse.class) != null) { //cleansing buff
             if (buff.type == Buff.buffType.NEGATIVE
-                    && !(buff instanceof AllyBuff)
-                    && !(buff instanceof LostInventory)){
+                    && !(buff instanceof AllyBuff)){
                 return;
             }
         }
@@ -742,7 +715,7 @@ public abstract class Char extends Actor {
 
         pos = step;
 
-        if (this != Dungeon.hero) {
+        if (this != Dungeon.heroine) {
             sprite.visible = Dungeon.level.heroFOV[pos];
         }
 
@@ -824,9 +797,9 @@ public abstract class Char extends Actor {
 
     public enum Property{
         BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Paralysis.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class)),
-                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
+                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
         MINIBOSS ( new HashSet<Class>(),
-                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
+                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
         NONE,
         ELIXIR,
         IMMOVABLE,

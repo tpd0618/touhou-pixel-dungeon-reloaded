@@ -49,13 +49,13 @@ public class Yamame extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.affect(hero, Poison.class).set(Math.round(Statistics.upgradesUsed/5f));
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Dungeon.hero.STR--;
+                Dungeon.heroine.STR--;
                 Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
                 GLog.w(Messages.get(Kanako.class, "str_reduce"));

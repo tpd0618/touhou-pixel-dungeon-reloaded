@@ -41,17 +41,17 @@ public class FeatherFall extends Spell {
 	}
 	
 	@Override
-	protected void onCast(Hero hero) {
-		Buff.append(hero, FeatherBuff.class, FeatherBuff.DURATION);
-		hero.sprite.operate(hero.pos);
+	protected void onCast(Hero heroine) {
+		Buff.append(heroine, FeatherBuff.class, FeatherBuff.DURATION);
+		heroine.sprite.operate(heroine.pos);
 		Sample.INSTANCE.play(Assets.Sounds.READ );
-		hero.sprite.emitter().burst( Speck.factory( Speck.JET ), 20);
+		heroine.sprite.emitter().burst( Speck.factory( Speck.JET ), 20);
 		
 		GLog.p(Messages.get(this, "light"));
 		
 		detach( curUser.belongings.backpack );
 		updateQuickslot();
-		hero.spendAndNext( 1f );
+		heroine.spendAndNext( 1f );
 	}
 	
 	public static class FeatherBuff extends FlavourBuff {

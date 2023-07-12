@@ -221,7 +221,7 @@ public class CardShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new BlankCard() );
 		itemsToSpawn.add( new PhoenixTail() );
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERREIMU) {
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERREIMU) {
 			itemsToSpawn.add( new AncientMagatama() );
 			itemsToSpawn.add( new AnnoyingUfo() );
 			itemsToSpawn.add( new LarvaScale() );
@@ -235,7 +235,7 @@ public class CardShopRoom extends SpecialRoom {
 			itemsToSpawn.add( new YingYangOrbNeedle() );
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERMARISA) {
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERMARISA) {
 			itemsToSpawn.add( new AunnHounds() );
 			itemsToSpawn.add( new HijiriSutra() );
 			itemsToSpawn.add( new DragonPassage() );
@@ -249,7 +249,7 @@ public class CardShopRoom extends SpecialRoom {
 			itemsToSpawn.add( new RingoBrandDango() );
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERSANAE) {
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERSANAE) {
 			itemsToSpawn.add( new DanmakuGhost() );
 			itemsToSpawn.add( new DragonPipe() );
 			itemsToSpawn.add( new KaguyaStash() );
@@ -263,7 +263,7 @@ public class CardShopRoom extends SpecialRoom {
 			itemsToSpawn.add( new YachieThreat() );
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERYOUMU) {
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERYOUMU) {
 			itemsToSpawn.add( new ClownpieceMoon() );
 			itemsToSpawn.add( new HalfGhost() );
 			itemsToSpawn.add( new HalfGhostSpare() );
@@ -277,7 +277,7 @@ public class CardShopRoom extends SpecialRoom {
 			itemsToSpawn.add( new TenshiKeystone() );
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.PLAYERSAKUYA) {
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA) {
 			itemsToSpawn.add( new ItemSeason() );
 			itemsToSpawn.add( new KomachiDetour() );
 			itemsToSpawn.add( new MaidKnife() );

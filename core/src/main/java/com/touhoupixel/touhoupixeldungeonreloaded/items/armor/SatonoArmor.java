@@ -21,7 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 public class SatonoArmor extends Armor {
 
@@ -35,4 +39,11 @@ public class SatonoArmor extends Armor {
 		super( 5 );
 	}
 
+	@Override
+	public int proc(Char attacker, Char defender, int damage) {
+		if (Random.Int(15) == 0){
+			Buff.prolong(defender, Might.class, Might.DURATION);
+		}
+		return super.proc(attacker, defender, damage);
+	}
 }

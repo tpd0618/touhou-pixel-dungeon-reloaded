@@ -1,24 +1,3 @@
-/*
- * Pixel Dungeon
- * Copyright (C) 2012-2015 Oleg Dolya
- *
- * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
- */
-
 package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDAction;
@@ -169,7 +148,7 @@ public class ScrollPane extends Component {
 			super( 0, 0, 0, 0 );
 			dragThreshold = PixelScene.defaultZoom * 8;
 		}
-		
+
 		@Override
 		protected void onScroll(ScrollEvent event) {
 			PointF newPt = new PointF(lastPos);
@@ -210,11 +189,11 @@ public class ScrollPane extends Component {
 
 			}
 		}
-		
+
 		private void scroll( PointF current ){
-			
+
 			Camera c = content.camera;
-			
+
 			c.shift( PointF.diff( lastPos, current ).invScale( c.zoom ) );
 			if (c.scroll.x + width > content.width()) {
 				c.scroll.x = content.width() - width;
@@ -228,12 +207,12 @@ public class ScrollPane extends Component {
 			if (c.scroll.y < 0) {
 				c.scroll.y = 0;
 			}
-			
+
 			thumb.y = y + height * c.scroll.y / content.height();
-			
+
 			lastPos.set( current );
-			
+
 		}
-		
+
 	}
 }

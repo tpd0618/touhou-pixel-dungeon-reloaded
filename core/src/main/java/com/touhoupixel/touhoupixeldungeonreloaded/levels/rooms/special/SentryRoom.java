@@ -181,9 +181,9 @@ public class SentryRoom extends SpecialRoom {
 		//1 floor set higher in probability, never cursed
 		do {
 			if (Random.Int(2) == 0) {
-				prize = Generator.randomWeapon((Dungeon.depth / 5) + 1);
+				prize = Generator.randomWeapon((Dungeon.floor / 5) + 1);
 			} else {
-				prize = Generator.randomArmor((Dungeon.depth / 5) + 1);
+				prize = Generator.randomArmor((Dungeon.floor / 5) + 1);
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;
@@ -235,29 +235,29 @@ public class SentryRoom extends SpecialRoom {
 				throwItems();
 			}
 
-			if (Dungeon.hero != null){
-				if (fieldOfView[Dungeon.hero.pos]
-						&& Dungeon.level.map[Dungeon.hero.pos] == Terrain.EMPTY_SP
-						&& room.inside(Dungeon.level.cellToPoint(Dungeon.hero.pos))){
+			if (Dungeon.heroine != null){
+				if (fieldOfView[Dungeon.heroine.pos]
+						&& Dungeon.level.map[Dungeon.heroine.pos] == Terrain.EMPTY_SP
+						&& room.inside(Dungeon.level.cellToPoint(Dungeon.heroine.pos))){
 
 					if (curChargeDelay > 0.001f){ //helps prevent rounding errors
 						if (curChargeDelay == initialChargeDelay) {
 							((SentrySprite) sprite).charge();
 						}
-						curChargeDelay -= Dungeon.hero.cooldown();
+						curChargeDelay -= Dungeon.heroine.cooldown();
 						//pity mechanic so mistaps don't get people instakilled
-						if (Dungeon.hero.cooldown() >= 0.34f){
-							Dungeon.hero.interrupt();
+						if (Dungeon.heroine.cooldown() >= 0.34f){
+							Dungeon.heroine.interrupt();
 						}
 					}
 
 					if (curChargeDelay <= .001f){
 						curChargeDelay = 1f;
-						sprite.zap(Dungeon.hero.pos);
+						sprite.zap(Dungeon.heroine.pos);
 						((SentrySprite) sprite).charge();
 					}
 
-					spend(Dungeon.hero.cooldown());
+					spend(Dungeon.heroine.cooldown());
 					return true;
 
 				} else {
@@ -265,7 +265,7 @@ public class SentryRoom extends SpecialRoom {
 					sprite.idle();
 				}
 
-				spend(Dungeon.hero.cooldown());
+				spend(Dungeon.heroine.cooldown());
 			} else {
 				spend(1f);
 			}
@@ -273,8 +273,8 @@ public class SentryRoom extends SpecialRoom {
 		}
 
 		public void onZapComplete(){
-			Dungeon.hero.damage(Random.NormalIntRange(2+Dungeon.depth/2, 4+Dungeon.depth), new Shou.DeathGaze());
-			if (!Dungeon.hero.isAlive()){
+			Dungeon.heroine.damage(Random.NormalIntRange(2+Dungeon.floor /2, 4+Dungeon.floor), new Shou.DeathGaze());
+			if (!Dungeon.heroine.isAlive()){
 				GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", name())) );
 				Dungeon.fail( getClass() );
 			}

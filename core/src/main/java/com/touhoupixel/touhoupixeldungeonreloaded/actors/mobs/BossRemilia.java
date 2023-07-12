@@ -5,7 +5,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HecatiaRule;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
@@ -22,7 +21,7 @@ public class BossRemilia extends Mob {
     {
         spriteClass = RemiliaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 450 : 300;
+        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 350 : 175;
         defenseSkill = 15;
         EXP = 20;
         maxLvl = 99;
@@ -45,12 +44,12 @@ public class BossRemilia extends Mob {
         Dungeon.level.unseal();
         Dungeon.level.drop(new SkeletonKey(15), pos ).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
-        Statistics.remicountdown = true;
+        Statistics.remi_countdown = true;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 10);
+        return Random.NormalIntRange(4, 9);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class BossRemilia extends Mob {
         if (!BossHealthBar.isAssigned()) {
             BossHealthBar.assignBoss(this);
             yell(Messages.get(this, "boss"));
-            Buff.prolong(Dungeon.hero, RemiCountdown.class, RemiCountdown.DURATION);
+            Buff.prolong(Dungeon.heroine, RemiCountdown.class, RemiCountdown.DURATION);
         }
     }
 

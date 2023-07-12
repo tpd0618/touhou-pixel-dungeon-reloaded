@@ -35,8 +35,8 @@ public class ElixirOfZen extends Elixir {
 	}
 	
 	@Override
-	public void apply(Hero hero) {
-		Buff.prolong(hero, Zen.class, Zen.DURATION);
+	public void apply(Hero heroine) {
+		Buff.prolong(heroine, Zen.class, Zen.DURATION);
 	}
 	
 	@Override

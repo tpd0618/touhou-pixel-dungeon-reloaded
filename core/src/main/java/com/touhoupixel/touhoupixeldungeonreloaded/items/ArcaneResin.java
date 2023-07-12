@@ -54,20 +54,20 @@ public class ArcaneResin extends Item {
 	private static final String AC_APPLY = "APPLY";
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.add( AC_APPLY );
 		return actions;
 	}
 
 	@Override
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
-		super.execute( hero, action );
+		super.execute(heroine, action );
 
 		if (action.equals(AC_APPLY)) {
 
-			curUser = hero;
+			curUser = heroine;
 			GameScene.selectItem( itemSelector );
 
 		}
@@ -126,7 +126,7 @@ public class ArcaneResin extends Item {
 					if (resinToUse < quantity()){
 						quantity(quantity()-resinToUse);
 					} else {
-						detachAll(Dungeon.hero.belongings.backpack);
+						detachAll(Dungeon.heroine.belongings.backpack);
 					}
 
 					w.resinBonus++;

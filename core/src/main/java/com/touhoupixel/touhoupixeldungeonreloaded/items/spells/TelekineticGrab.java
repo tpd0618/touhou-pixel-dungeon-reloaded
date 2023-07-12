@@ -55,7 +55,7 @@ public class TelekineticGrab extends TargetedSpell {
 	}
 
 	@Override
-	protected void affectTarget(Ballistica bolt, Hero hero) {
+	protected void affectTarget(Ballistica bolt, Hero heroine) {
 		Char ch = Actor.findChar(bolt.collisionPos);
 
 		//special logic for DK when he is on his throne
@@ -70,8 +70,8 @@ public class TelekineticGrab extends TargetedSpell {
 
 			Item item = ch.buff(PinCushion.class).grabOne();
 
-			if (item.doPickUp(hero, ch.pos)){
-				hero.spend(-Item.TIME_TO_PICK_UP); //casting the spell already takes a turn
+			if (item.doPickUp(heroine, ch.pos)){
+				heroine.spend(-Item.TIME_TO_PICK_UP); //casting the spell already takes a turn
 
 			} else {
 				GLog.w(Messages.get(this, "cant_grab"));
@@ -91,9 +91,9 @@ public class TelekineticGrab extends TargetedSpell {
 
 			Item item = h.peek();
 
-			if (item.doPickUp(hero, h.pos)){
+			if (item.doPickUp(heroine, h.pos)){
 				h.pickUp();
-				hero.spend(-Item.TIME_TO_PICK_UP); //casting the spell already takes a turn
+				heroine.spend(-Item.TIME_TO_PICK_UP); //casting the spell already takes a turn
 
 			} else {
 				GLog.w(Messages.get(this, "cant_grab"));

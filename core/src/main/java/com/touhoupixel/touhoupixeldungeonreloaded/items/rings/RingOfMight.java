@@ -37,9 +37,9 @@ public class RingOfMight extends Ring {
 	}
 
 	@Override
-	public boolean doEquip(Hero hero) {
-		if (super.doEquip(hero)){
-			hero.updateHT( false );
+	public boolean doEquip(Hero heroine) {
+		if (super.doEquip(heroine)){
+			heroine.updateHT( false );
 			return true;
 		} else {
 			return false;
@@ -47,9 +47,9 @@ public class RingOfMight extends Ring {
 	}
 
 	@Override
-	public boolean doUnequip(Hero hero, boolean collect, boolean single) {
-		if (super.doUnequip(hero, collect, single)){
-			hero.updateHT( false );
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single) {
+		if (super.doUnequip(heroine, collect, single)){
+			heroine.updateHT( false );
 			return true;
 		} else {
 			return false;

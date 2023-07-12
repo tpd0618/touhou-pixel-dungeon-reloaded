@@ -6,11 +6,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
@@ -57,14 +55,8 @@ public class Shion extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            if (Dungeon.gold > 199) {
-                Dungeon.gold -= 200;
-                Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-                GLog.w(Messages.get(this, "losemoney"));
-            }
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+            Buff.prolong(enemy, ExtremeHunger.class, ExtremeHunger.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Silence.class, Silence.DURATION);
             }

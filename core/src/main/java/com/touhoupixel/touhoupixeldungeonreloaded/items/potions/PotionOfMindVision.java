@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
@@ -37,9 +36,9 @@ public class PotionOfMindVision extends Potion {
 	}
 
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
-		Buff.affect( hero, MindVision.class, MindVision.DURATION );
+		Buff.affect(heroine, MindVision.class, MindVision.DURATION );
 		Dungeon.observe();
 		
 		if (Dungeon.level.mobs.size() > 0) {

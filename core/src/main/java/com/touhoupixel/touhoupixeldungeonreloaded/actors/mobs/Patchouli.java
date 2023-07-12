@@ -4,6 +4,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
@@ -25,7 +26,7 @@ public class Patchouli extends Mob {
         properties.add(Property.FUMO);
         //used for fumo lover buff
 
-        //because of explosion, no loot
+        //because of her explosion upon death, no loot
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Patchouli extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment && Random.Int(5) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }

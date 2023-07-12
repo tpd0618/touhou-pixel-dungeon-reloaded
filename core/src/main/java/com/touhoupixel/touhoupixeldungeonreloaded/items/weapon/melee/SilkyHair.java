@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
@@ -53,14 +52,14 @@ public class SilkyHair extends MeleeWeapon {
     @Override
     public int damageRoll(Char owner) {
         if (owner instanceof Hero) {
-            Hero hero = (Hero)owner;
-            Char enemy = hero.enemy();
-            if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)) {
+            Hero heroine = (Hero)owner;
+            Char enemy = heroine.enemy();
+            if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(heroine)) {
                 int diff = max() - min();
                 int damage = augment.damageFactor(Random.NormalIntRange(
                         min() + Math.round(diff*0.8f),
                         max()));
-                int exStr = hero.STR() - STRReq();
+                int exStr = heroine.STR() - STRReq();
                 if (exStr > 0) {
                     damage += Random.IntRange(0, exStr);
                 }

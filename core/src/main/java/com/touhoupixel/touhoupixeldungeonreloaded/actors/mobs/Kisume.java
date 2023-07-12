@@ -28,10 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -105,8 +101,8 @@ public class Kisume extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
-                Buff.affect(enemy, Burning.class).reignite(enemy, 10f);
+            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+                Buff.affect(enemy, Burning.class).reignite(enemy, 3f);
                 if (Statistics.difficulty > 2) {
                     Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
                 }
@@ -115,10 +111,10 @@ public class Kisume extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 9, 14 );
+            int dmg = Random.NormalIntRange( 2, 5 );
             enemy.damage( dmg, new DarkBolt() );
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }

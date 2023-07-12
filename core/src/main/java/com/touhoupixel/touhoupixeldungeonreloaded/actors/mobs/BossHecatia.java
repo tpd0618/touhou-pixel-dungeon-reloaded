@@ -13,16 +13,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HecatiaRule;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EirinJunkoCounterElixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
@@ -38,7 +35,7 @@ public class BossHecatia extends Mob {
     {
         spriteClass = HecatiaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.RINGING_BLOOM) ? 7500 : 5000;
+        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 7000 : 3500;
         defenseSkill = 50;
         EXP = 50;
         maxLvl = 99;
@@ -58,7 +55,7 @@ public class BossHecatia extends Mob {
         Dungeon.level.drop(new SkeletonKey(40), pos ).sprite.drop();
         yell(Messages.get(this, "bossdefeat"));
 
-        Buff.detach( Dungeon.hero, HecatiaRule.class );
+        Buff.detach( Dungeon.heroine, HecatiaRule.class );
 
         for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])){
             if (mob instanceof Reimu){
@@ -109,7 +106,7 @@ public class BossHecatia extends Mob {
         if (!BossHealthBar.isAssigned()) {
             BossHealthBar.assignBoss(this);
             yell(Messages.get(this, "boss"));
-            Buff.prolong(Dungeon.hero, HecatiaRule.class, HecatiaRule.DURATION*66666f);
+            Buff.prolong(Dungeon.heroine, HecatiaRule.class, HecatiaRule.DURATION*66666f);
             Statistics.eirinelixircount = 4;
         }
     }
@@ -117,13 +114,13 @@ public class BossHecatia extends Mob {
     @Override
     public int defenseProc(Char enemy, int damage) {
         new SummoningTrap().set(enemy.pos).activate();
-        if (this.HP < this.HT / 2 && !Statistics.elixirtrigger){
+        if (this.HP < this.HT / 2 && !Statistics.elixir_trigger){
             Dungeon.level.drop(new EirinJunkoCounterElixir(), 57).sprite.drop();
             Dungeon.level.drop(new EirinJunkoCounterElixir(), 232).sprite.drop();
             Dungeon.level.drop(new EirinJunkoCounterElixir(), 273).sprite.drop();
             Dungeon.level.drop(new EirinJunkoCounterElixir(), 448).sprite.drop();
             Statistics.eirinelixircount = 0;
-            Statistics.elixirtrigger = true;
+            Statistics.elixir_trigger = true;
             GLog.w(Messages.get(this, "hecatia_barrier"));
         }
         return super.defenseProc(enemy, damage);
@@ -132,7 +129,7 @@ public class BossHecatia extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.hero && enemy.alignment != this.alignment) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             switch (Random.Int(9)) {
                 case 0:
                 default:
@@ -164,7 +161,7 @@ public class BossHecatia extends Mob {
                     break;
             }
             if (this.HP < this.HT / 2){
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION * 1000f);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 1000f);
                 Buff.prolong(this, Hisou.class, Hisou.DURATION * 1000f);
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION * 1000f);
             }

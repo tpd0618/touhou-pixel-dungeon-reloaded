@@ -62,16 +62,16 @@ public abstract class TippedDart extends Dart {
 	private static final String AC_CLEAN = "CLEAN";
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.remove( AC_TIP );
 		actions.add( AC_CLEAN );
 		return actions;
 	}
 
 	@Override
-	public void execute(final Hero hero, String action) {
-		super.execute(hero, action);
+	public void execute(final Hero heroine, String action) {
+		super.execute(heroine, action);
 		if (action.equals( AC_CLEAN )){
 
 			GameScene.show(new WndOptions(new ItemSprite(this),
@@ -83,22 +83,22 @@ public abstract class TippedDart extends Dart {
 				@Override
 				protected void onSelect(int index) {
 					if (index == 0){
-						detachAll(hero.belongings.backpack);
+						detachAll(heroine.belongings.backpack);
 						new Dart().quantity(quantity).collect();
 
-						hero.spend( 1f );
-						hero.busy();
-						hero.sprite.operate(hero.pos);
+						heroine.spend( 1f );
+						heroine.busy();
+						heroine.sprite.operate(heroine.pos);
 					} else if (index == 1){
-						detach(hero.belongings.backpack);
-						if (!new Dart().collect()) Dungeon.level.drop(new Dart(), hero.pos).sprite.drop();
+						detach(heroine.belongings.backpack);
+						if (!new Dart().collect()) Dungeon.level.drop(new Dart(), heroine.pos).sprite.drop();
 
 						//reset durability if there are darts left in the stack
 						durability = MAX_DURABILITY;
 
-						hero.spend( 1f );
-						hero.busy();
-						hero.sprite.operate(hero.pos);
+						heroine.spend( 1f );
+						heroine.busy();
+						heroine.sprite.operate(heroine.pos);
 					}
 				}
 			});
@@ -149,7 +149,7 @@ public abstract class TippedDart extends Dart {
 			}
 			targetPos = -1;
 		}
-		int p = curUser == null ? Dungeon.hero.pos : curUser.pos;
+		int p = curUser == null ? Dungeon.heroine.pos : curUser.pos;
 		for (Char ch : Actor.chars()){
 			if (ch instanceof WandOfRegrowth.Lotus){
 				WandOfRegrowth.Lotus l = (WandOfRegrowth.Lotus) ch;

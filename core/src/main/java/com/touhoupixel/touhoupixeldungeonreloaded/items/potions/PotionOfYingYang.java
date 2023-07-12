@@ -38,20 +38,20 @@ public class PotionOfYingYang extends Potion {
 	}
 
 	@Override
-	public void apply(Hero hero) {
+	public void apply(Hero heroine) {
 		identify();
-		if (hero.HP % 2 == 1) {
-			if (hero.buff(Inversion.class) != null && hero.HP % 2 == 1) {
-				hero.damage(hero.HT / 2, hero);
-				if (hero == Dungeon.hero && !hero.isAlive()) {
+		if (heroine.HP % 2 == 1) {
+			if (heroine.buff(Inversion.class) != null && heroine.HP % 2 == 1) {
+				heroine.damage(heroine.HT / 2, heroine);
+				if (heroine == Dungeon.heroine && !heroine.isAlive()) {
 					Dungeon.fail(InversionTrap.class);
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else {
-				hero.HP = Math.min(hero.HP + 150, hero.HT);
+				heroine.HP = Math.min(heroine.HP + 150, heroine.HT);
 				GLog.p(Messages.get(this, "yingyangheal"));
 			}
-		} else Buff.affect( hero, Drowsy.class );
+		} else Buff.affect(heroine, Drowsy.class );
 	}
 
 	@Override

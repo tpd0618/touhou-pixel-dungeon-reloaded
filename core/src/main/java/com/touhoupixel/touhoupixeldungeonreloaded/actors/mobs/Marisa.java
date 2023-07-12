@@ -39,7 +39,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MarisaSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ShouSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
@@ -194,7 +193,7 @@ public class Marisa extends Mob {
                     CellEmitter.center( pos ).burst( PurpleParticle.BURST, Random.IntRange( 1, 2 ) );
                 }
 
-                if (!ch.isAlive() && ch == Dungeon.hero) {
+                if (!ch.isAlive() && ch == Dungeon.heroine) {
                     Dungeon.fail( getClass() );
                     GLog.n( Messages.get(this, "deathgaze_kill") );
                 }

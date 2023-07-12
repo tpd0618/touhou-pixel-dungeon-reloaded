@@ -196,7 +196,7 @@ public class CursedWand {
 			case 1:
 				final Char target = Actor.findChar( targetPos );
 				if (target != null) {
-					int damage = Dungeon.depth * 2;
+					int damage = Dungeon.floor * 2;
 					Char toHeal, toDamage;
 
 					if (Random.Int(2) == 0){
@@ -211,7 +211,7 @@ public class CursedWand {
 					toDamage.damage(damage, origin == null ? toHeal : origin);
 					toDamage.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
 
-					if (toDamage == Dungeon.hero){
+					if (toDamage == Dungeon.heroine){
 						Sample.INSTANCE.play(Assets.Sounds.CURSED);
 						if (!toDamage.isAlive()) {
 							if (origin != null) {
@@ -374,10 +374,10 @@ public class CursedWand {
 			//random transmogrification
 			case 3:
 				//skips this effect if there is no item to transmogrify
-				if (origin == null || user != Dungeon.hero || !Dungeon.hero.belongings.contains(origin)){
+				if (origin == null || user != Dungeon.heroine || !Dungeon.heroine.belongings.contains(origin)){
 					return cursedEffect(origin, user, targetPos);
 				}
-				origin.detach(Dungeon.hero.belongings.backpack);
+				origin.detach(Dungeon.heroine.belongings.backpack);
 				Item result;
 				do {
 					result = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR,

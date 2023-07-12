@@ -93,7 +93,7 @@ public class WndGameInProgress extends Window {
 		
 		pos += GAP;
 		statSlot( Messages.get(this, "gold"), info.goldCollected );
-		statSlot( Messages.get(this, "depth"), info.maxDepth );
+		statSlot( Messages.get(this, "depth"), info.maxFloor);
 		if (info.daily) {
 			statSlot( Messages.get(this, "daily_for"), "_" + info.customSeed + "_" );
 		} else if (!info.customSeed.isEmpty()){
@@ -111,7 +111,7 @@ public class WndGameInProgress extends Window {
 				
 				GamesInProgress.curSlot = slot;
 				
-				Dungeon.hero = null;
+				Dungeon.heroine = null;
 				Dungeon.daily = false;
 				ActionIndicator.action = null;
 				InterlevelScene.mode = InterlevelScene.Mode.CONTINUE;

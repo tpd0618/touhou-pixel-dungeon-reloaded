@@ -70,7 +70,7 @@ public class GrimTrap extends Trap {
 			int damage;
 			
 			//almost kill the player
-			if (finalTarget == Dungeon.hero && ((float)finalTarget.HP/finalTarget.HT) >= 0.9f){
+			if (finalTarget == Dungeon.heroine && ((float)finalTarget.HP/finalTarget.HT) >= 0.9f){
 				if (Statistics.card63) {
 					damage = 6;
 				} else {
@@ -101,7 +101,7 @@ public class GrimTrap extends Trap {
 								@Override
 								public void call() {
 									finalTarget.damage(finalDmg, trap);
-									if (finalTarget == Dungeon.hero) {
+									if (finalTarget == Dungeon.heroine) {
 										Sample.INSTANCE.play(Assets.Sounds.CURSED);
 										if (!finalTarget.isAlive()) {
 											Dungeon.fail( GrimTrap.class );

@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class MediumYingYangOrb extends MeleeWeapon {
 	
 	{
-		image = ItemSpriteSheet.MEDIUMYINGYANGORB;
+		image = ItemSpriteSheet.MEDIUM_YING_YANG_ORB;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 

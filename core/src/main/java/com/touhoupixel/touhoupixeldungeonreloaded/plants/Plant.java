@@ -22,9 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.plants;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -125,8 +123,8 @@ public abstract class Plant implements Bundlable {
 		protected Class<? extends Plant> plantClass;
 
 		@Override
-		public ArrayList<String> actions( Hero hero ) {
-			ArrayList<String> actions = super.actions( hero );
+		public ArrayList<String> actions( Hero heroine) {
+			ArrayList<String> actions = super.actions(heroine);
 			actions.add( AC_PLANT );
 			return actions;
 		}
@@ -143,17 +141,17 @@ public abstract class Plant implements Bundlable {
 		}
 
 		@Override
-		public void execute( Hero hero, String action ) {
+		public void execute(Hero heroine, String action ) {
 
-			super.execute (hero, action );
+			super.execute (heroine, action );
 
 			if (action.equals( AC_PLANT )) {
 
-				hero.busy();
-				((Seed)detach( hero.belongings.backpack )).onThrow( hero.pos );
-				hero.spend( TIME_TO_PLANT );
+				heroine.busy();
+				((Seed)detach( heroine.belongings.backpack )).onThrow( heroine.pos );
+				heroine.spend( TIME_TO_PLANT );
 
-				hero.sprite.operate( hero.pos );
+				heroine.sprite.operate( heroine.pos );
 
 			}
 		}

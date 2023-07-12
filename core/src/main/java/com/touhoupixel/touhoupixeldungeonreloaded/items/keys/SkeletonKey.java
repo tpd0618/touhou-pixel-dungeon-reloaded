@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.keys;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndSupportPrompt;
@@ -43,13 +42,13 @@ public class SkeletonKey extends Key {
 		this( 0 );
 	}
 	
-	public SkeletonKey( int depth ) {
+	public SkeletonKey( int floor ) {
 		super();
-		this.depth = depth;
+		this.floor = floor;
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 
 		if(!SPDSettings.supportNagged()){
 			try {
@@ -66,7 +65,7 @@ public class SkeletonKey extends Key {
 			
 		}
 		
-		return super.doPickUp(hero, pos);
+		return super.doPickUp(heroine, pos);
 	}
 
 }

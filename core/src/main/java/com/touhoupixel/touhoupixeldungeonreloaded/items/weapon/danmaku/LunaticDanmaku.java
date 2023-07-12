@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class LunaticDanmaku extends MissileWeapon {
 
 	{
-		image = ItemSpriteSheet.KOMACHI_DANMAKU;
+		image = ItemSpriteSheet.LUNATIC_DANMAKU;
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 1f;
 
@@ -38,7 +38,7 @@ public class LunaticDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (4+Challenges.activeChallenges()+Dungeon.hero.lvl/3) * tier +                      //base
+		return  (4+Challenges.activeChallenges()+Dungeon.heroine.lvl/3) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }

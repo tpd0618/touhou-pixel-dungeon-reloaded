@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -58,8 +58,8 @@ public class Utsuho extends Mob implements Callback {
     @Override
     protected boolean act() {
         boolean result = super.act();
-        if (buff(Doublespeed.class) == null && Statistics.difficulty > 2) {
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION * 10000f);
+        if (buff(DoubleSpeed.class) == null && Statistics.difficulty > 2) {
+            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 10000f);
         }
         return result;
     }
@@ -122,7 +122,7 @@ public class Utsuho extends Mob implements Callback {
             //TODO would be nice for this to work on ghost/statues too
             new ExplosiveTrap().set(enemy.pos).activate();
 
-            if (enemy == Dungeon.hero && !enemy.isAlive()) {
+            if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
                 GLog.n( Messages.get(this, "bolt_kill") );
             }

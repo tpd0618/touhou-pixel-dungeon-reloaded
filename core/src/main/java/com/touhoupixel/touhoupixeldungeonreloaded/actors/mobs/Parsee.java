@@ -21,32 +21,19 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ParseeSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
-
-import java.util.ArrayList;
 
 public class Parsee extends Mob {
 
@@ -81,11 +68,11 @@ public class Parsee extends Mob {
 
     @Override
     public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.hero.belongings.weapon() instanceof MeleeWeapon) {
+        if (Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
             Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             GLog.w(Messages.get(this, "reflect"));
             if (Statistics.difficulty > 2) {
-                Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, HighStress.class, HighStress.DURATION);

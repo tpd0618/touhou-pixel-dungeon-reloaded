@@ -51,20 +51,20 @@ public class MaxPower extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
+	public ArrayList<String> actions( Hero heroine) {
 		return new ArrayList<>();
 	}
 	
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 		if (Statistics.card64) {
-			Buff.prolong(hero, SuperHard.class, SuperHard.DURATION);
+			Buff.prolong(heroine, SuperHard.class, SuperHard.DURATION);
 		}
 
 		Statistics.power = 400;
 
 		GameScene.pickUp( this, pos );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 		
 		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
 		updateQuickslot();

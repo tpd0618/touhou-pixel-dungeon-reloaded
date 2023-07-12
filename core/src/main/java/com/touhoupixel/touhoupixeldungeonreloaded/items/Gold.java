@@ -22,11 +22,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -55,32 +54,40 @@ public class Gold extends Item {
 	}
 	
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
+	public ArrayList<String> actions( Hero heroine) {
 		return new ArrayList<>();
 	}
 	
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
-		
-		Dungeon.gold += quantity;
+	public boolean doPickUp(Hero heroine, int pos) {
+
+		if (Dungeon.floor > 85){
+			Dungeon.heroine.HP += Math.min(quantity, heroine.HT);
+		} else {
+			Dungeon.gold += quantity;
+		}
 		Statistics.goldCollected += quantity;
 
 		if (Statistics.card46) {
-			Dungeon.gold += quantity;
+			if (Dungeon.floor > 85){
+				Dungeon.heroine.HP += Math.min(quantity, heroine.HT);
+			} else {
+				Dungeon.gold += quantity;
+			}
 			Statistics.goldCollected += quantity;
 		}
 
 		if (Statistics.card69) {
-			Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
+			Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
 		}
 
 		if (Statistics.card70) {
-			Buff.prolong(hero, ReachIncrease.class, ReachIncrease.DURATION);
+			Buff.prolong(heroine, ReachIncrease.class, ReachIncrease.DURATION);
 		}
 
 		GameScene.pickUp( this, pos );
-		hero.sprite.showStatus( CharSprite.NEUTRAL, TXT_VALUE, quantity );
-		hero.spendAndNext( TIME_TO_PICK_UP );
+		heroine.sprite.showStatus( CharSprite.NEUTRAL, TXT_VALUE, quantity );
+		heroine.spendAndNext( TIME_TO_PICK_UP );
 		
 		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
 		updateQuickslot();

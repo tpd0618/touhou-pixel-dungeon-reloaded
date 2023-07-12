@@ -23,14 +23,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfZen;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSnapFreeze;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 import java.util.ArrayList;
 
@@ -48,8 +42,8 @@ public class Homunculus extends Item {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		//actions.add(AC_DRINK);
 		return actions;
 	}
@@ -67,7 +61,7 @@ public class Homunculus extends Item {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{ScrollOfCurseRemoval.class, PotionOfHealing.class};
+			inputs =  new Class[]{ScrollOfExorcism.class, PotionOfHealing.class};
 			inQuantity = new int[]{1, 1};
 
 			cost = 4;

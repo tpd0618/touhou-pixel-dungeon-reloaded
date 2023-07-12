@@ -93,9 +93,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclus
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclusive.ScreenBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclusive.SuikaGourd;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclusive.TenshiKeystone;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.FutabaArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.HollowArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.IroncladArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.JokerArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KeikiArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.KogasaArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MaiArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MorfonicaArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MorganaArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.MurasaArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.NarukamiYuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.NarumiArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.NitoriArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.OkinaArmor;
@@ -117,9 +125,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.SharkArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ToyohimeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YorihimeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YuyukoArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoublespeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
@@ -145,15 +152,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshooting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfAnchor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEarth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfCurseRemoval;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
@@ -180,6 +190,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloa
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.GreenBamboo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HecatiaStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.HisoutenMankind;
@@ -206,6 +217,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SuperMiracl
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ToramaruSpear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.VentoraStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
@@ -296,6 +308,7 @@ public enum Catalog {
 		//tier 3
 		WEAPONS.seen.put( AkyuuBrush.class,                      true);
 		WEAPONS.seen.put( HecatiaStar.class,                       true);
+		WEAPONS.seen.put( GreenBamboo.class,                     true);
 
 		WEAPONS.seen.put( SmallYingYangOrb.class,                      true);
 		WEAPONS.seen.put( EikiRod.class,                       true);
@@ -351,7 +364,8 @@ public enum Catalog {
 		WEAPONS.seen.put( YukinaMic.class,                   true);
 		WEAPONS.seen.put( KanonDrumstick.class,              true);
 
-		WEAPONS.seen.put( IdolStick.class,              true);
+		WEAPONS.seen.put( IdolStick.class,                   true);
+		WEAPONS.seen.put( VentoraStick.class,                true);
 
 		//armor
 		ARMORS.seen.put( ReimuArmor.class,                   true);
@@ -382,8 +396,18 @@ public enum Catalog {
 		ARMORS.seen.put( KeikiArmor.class,                   true);
 		//non-res. armor
 		ARMORS.seen.put( HecatiaArmor.class,                 true);
-		ARMORS.seen.put( SatonoArmor.class,                  true);
 		ARMORS.seen.put( MaiArmor.class,                     true);
+		ARMORS.seen.put( SatonoArmor.class,                  true);
+
+		ARMORS.seen.put( HollowArmor.class,                  true);
+		ARMORS.seen.put( IroncladArmor.class,                true);
+		ARMORS.seen.put( KogasaArmor.class,                  true);
+		ARMORS.seen.put( MurasaArmor.class,                  true);
+		ARMORS.seen.put( MorganaArmor.class,                 true);
+
+		ARMORS.seen.put( FutabaArmor.class,                  true);
+		ARMORS.seen.put( NarukamiYuArmor.class,              true);
+		ARMORS.seen.put( JokerArmor.class,                   true);
 
 		WANDS.seen.put( WandOfMagicMissile.class,           true);
 		WANDS.seen.put( WandOfLightning.class,              true);
@@ -504,14 +528,18 @@ public enum Catalog {
 		POTIONS.seen.put( PotionOfExperience.class,         true);
 		POTIONS.seen.put( PotionOfHaste.class,              true);
 		POTIONS.seen.put( PotionOfMight.class,              true);
-		POTIONS.seen.put( PotionOfDoublespeed.class,        true);
+		POTIONS.seen.put( PotionOfDoubleSpeed.class,        true);
 		POTIONS.seen.put( PotionOfLightHealing.class,       true);
-		POTIONS.seen.put( PotionOfYingYang.class,       true);
-		POTIONS.seen.put( PotionOfDanmaku.class,        true);
+		POTIONS.seen.put( PotionOfYingYang.class,           true);
 		POTIONS.seen.put( PotionOfMagic.class,              true);
 
 		SCROLLS.seen.put( ScrollOfIdentify.class,           true);
-		SCROLLS.seen.put( ScrollOfCurseRemoval.class,        true);
+		SCROLLS.seen.put( ScrollOfAnchor.class,             true);
+		SCROLLS.seen.put( ScrollOfFate.class,               true);
+		SCROLLS.seen.put( ScrollOfEarth.class,              true);
+		SCROLLS.seen.put( ScrollOfFixer.class,            true);
+		SCROLLS.seen.put( ScrollOfNamelessStory.class,      true);
+		SCROLLS.seen.put( ScrollOfExorcism.class,           true);
 		SCROLLS.seen.put( ScrollOfRecharging.class,         true);
 		SCROLLS.seen.put( ScrollOfMirrorImage.class,        true);
 		SCROLLS.seen.put( ScrollOfTerror.class,             true);

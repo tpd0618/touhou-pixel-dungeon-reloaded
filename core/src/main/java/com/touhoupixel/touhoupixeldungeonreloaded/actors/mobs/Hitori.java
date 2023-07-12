@@ -21,24 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublespeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.HecatiaArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BirukoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HitoriSprite;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Hitori extends Mob {
@@ -46,8 +34,8 @@ public class Hitori extends Mob {
     {
         spriteClass = HitoriSprite.class;
 
-        HP = HT = Dungeon.depth*4;
-        defenseSkill = Dungeon.depth;
+        HP = HT = Dungeon.floor *4;
+        defenseSkill = Dungeon.floor;
 
         flying = true;
 
@@ -61,20 +49,20 @@ public class Hitori extends Mob {
     @Override
     protected boolean act() {
         boolean result = super.act();
-        if (buff(Doublespeed.class) == null) {
-            Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION * 10000f);
+        if (buff(DoubleSpeed.class) == null) {
+            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 10000f);
         }
         return result;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.depth+5+Statistics.hitoricount, Dungeon.depth+6+Statistics.hitoricount);
+        return Random.NormalIntRange(Dungeon.floor +5+Statistics.hitoricount, Dungeon.floor +6+Statistics.hitoricount);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return Dungeon.depth+5+Statistics.hitoricount;
+        return Dungeon.floor +5+Statistics.hitoricount;
     }
 
     @Override

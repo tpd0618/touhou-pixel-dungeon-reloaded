@@ -70,7 +70,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int min() {
-		return Math.max(0, min( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
+		return Math.max(0, min( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) ));
 	}
 
 	@Override
@@ -81,12 +81,12 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int max() {
-		return Math.max(0, max( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
+		return Math.max(0, max( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) ));
 	}
 
 	@Override
 	public int max(int lvl) {
-		return  (5+Dungeon.hero.lvl/3) * tier +                      //base
+		return  (5+Dungeon.heroine.lvl/3) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 
@@ -107,16 +107,16 @@ abstract public class MissileWeapon extends Weapon {
 
 				//try to put the upgraded into inventory, if it didn't already merge
 				if (upgraded.quantity() == 1 && !upgraded.collect()) {
-					Dungeon.level.drop(upgraded, Dungeon.hero.pos);
+					Dungeon.level.drop(upgraded, Dungeon.heroine.pos);
 				}
 				updateQuickslot();
 				return upgraded;
 			} else {
 				super.upgrade();
 
-				Item similar = Dungeon.hero.belongings.getSimilar(this);
+				Item similar = Dungeon.heroine.belongings.getSimilar(this);
 				if (similar != null){
-					detach(Dungeon.hero.belongings.backpack);
+					detach(Dungeon.heroine.belongings.backpack);
 					Item result = similar.merge(this);
 					updateQuickslot();
 					return result;
@@ -131,8 +131,8 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions( Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
 		actions.remove( AC_EQUIP );
 		return actions;
 	}
@@ -162,9 +162,9 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	@Override
-	public void doThrow(Hero hero) {
+	public void doThrow(Hero heroine) {
 		parent = null; //reset parent before throwing, just incase
-		super.doThrow(hero);
+		super.doThrow(heroine);
 	}
 
 	@Override
@@ -184,7 +184,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
-		if (Dungeon.hero.buff(Cool.class) != null){
+		if (Dungeon.heroine.buff(Cool.class) != null){
 			damage *= 0;
 		}
 
@@ -252,7 +252,7 @@ abstract public class MissileWeapon extends Weapon {
 			usages *= MagicalHolster.HOLSTER_DURABILITY_FACTOR;
 		}
 
-		usages *= RingOfSharpshooting.durabilityMultiplier( Dungeon.hero );
+		usages *= RingOfSharpshooting.durabilityMultiplier( Dungeon.heroine);
 
 		//at 100 uses, items just last forever.
 		if (usages >= 100f) return 0;
@@ -339,9 +339,9 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	@Override
-	public boolean doPickUp(Hero hero, int pos) {
+	public boolean doPickUp(Hero heroine, int pos) {
 		parent = null;
-		return super.doPickUp(hero, pos);
+		return super.doPickUp(heroine, pos);
 	}
 
 	@Override
@@ -360,10 +360,10 @@ abstract public class MissileWeapon extends Weapon {
 				Math.round(augment.damageFactor(max())),
 				STRReq());
 
-		if (STRReq() > Dungeon.hero.STR()) {
+		if (STRReq() > Dungeon.heroine.STR()) {
 			info += " " + Messages.get(Weapon.class, "too_heavy");
-		} else if (Dungeon.hero.STR() > STRReq()){
-			info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
+		} else if (Dungeon.heroine.STR() > STRReq()){
+			info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.heroine.STR() - STRReq());
 		}
 
 		if (enchantment != null && (cursedKnown || !enchantment.curse())){
@@ -371,7 +371,7 @@ abstract public class MissileWeapon extends Weapon {
 			info += " " + Messages.get(enchantment, "desc");
 		}
 
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (cursed && isEquipped( Dungeon.heroine)) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
 		} else if (cursedKnown && cursed) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed");

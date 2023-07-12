@@ -31,8 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eika;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mystia;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.MagicalFireRoom;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -155,31 +153,31 @@ public class ForestofMagicBossLevel extends Level {
 		boss.state = boss.WANDERING;
 		boss.pos = 287;
 		GameScene.add( boss );
-		boss.beckon(Dungeon.hero.pos);
+		boss.beckon(Dungeon.heroine.pos);
 
 		Alice alice = new Alice();
 		alice.state = alice.WANDERING;
 		alice.pos = 96;
 		GameScene.add( alice );
-		alice.beckon(Dungeon.hero.pos);
+		alice.beckon(Dungeon.heroine.pos);
 
 		Mystia mystia = new Mystia();
 		mystia.state = mystia.WANDERING;
 		mystia.pos = 110;
 		GameScene.add( mystia );
-		mystia.beckon(Dungeon.hero.pos);
+		mystia.beckon(Dungeon.heroine.pos);
 
 		Chen chen = new Chen();
 		chen.state = chen.WANDERING;
 		chen.pos = 395;
 		GameScene.add( chen );
-		chen.beckon(Dungeon.hero.pos);
+		chen.beckon(Dungeon.heroine.pos);
 
 		Eika eika = new Eika();
 		eika.state = eika.WANDERING;
 		eika.pos = 409;
 		GameScene.add( eika );
-		eika.beckon(Dungeon.hero.pos);
+		eika.beckon(Dungeon.heroine.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();

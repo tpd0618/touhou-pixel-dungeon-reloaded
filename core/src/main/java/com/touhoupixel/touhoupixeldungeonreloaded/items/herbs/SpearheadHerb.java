@@ -33,12 +33,12 @@ public class SpearheadHerb extends Herb {
 	}
 
 	@Override
-	public void execute(Hero hero, String action) {
+	public void execute(Hero heroine, String action) {
 
-		super.execute(hero, action);
+		super.execute(heroine, action);
 
 		if (action.equals( AC_EAT )) {
-			Buff.prolong(hero, HomingBlade.class, HomingBlade.DURATION);
+			Buff.prolong(heroine, HomingBlade.class, HomingBlade.DURATION);
 		}
 	}
 }

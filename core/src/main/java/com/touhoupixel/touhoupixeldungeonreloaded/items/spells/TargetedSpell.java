@@ -39,11 +39,11 @@ public abstract class TargetedSpell extends Spell {
 	protected int collisionProperties = Ballistica.PROJECTILE;
 	
 	@Override
-	protected void onCast(Hero hero) {
+	protected void onCast(Hero heroine) {
 		GameScene.selectCell(targeter);
 	}
 	
-	protected abstract void affectTarget( Ballistica bolt, Hero hero );
+	protected abstract void affectTarget( Ballistica bolt, Hero heroine);
 	
 	protected void fx( Ballistica bolt, Callback callback ) {
 		MagicMissile.boltFromChar( curUser.sprite.parent,

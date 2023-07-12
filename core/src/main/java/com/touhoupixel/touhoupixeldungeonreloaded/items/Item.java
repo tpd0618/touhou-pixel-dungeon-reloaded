@@ -96,27 +96,27 @@ public class Item implements Bundlable {
 		}
 	};
 
-	public ArrayList<String> actions( Hero hero ) {
+	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = new ArrayList<>();
 		actions.add( AC_DROP );
 		actions.add( AC_THROW );
 		return actions;
 	}
 
-	public String actionName(String action, Hero hero){
+	public String actionName(String action, Hero heroine){
 		return Messages.get(this, "ac_" + action);
 	}
 
-	public final boolean doPickUp( Hero hero ) {
-		return doPickUp( hero, hero.pos );
+	public final boolean doPickUp( Hero heroine) {
+		return doPickUp(heroine, heroine.pos );
 	}
 
-	public boolean doPickUp(Hero hero, int pos) {
-		if (collect( hero.belongings.backpack )) {
+	public boolean doPickUp(Hero heroine, int pos) {
+		if (collect( heroine.belongings.backpack )) {
 			
 			GameScene.pickUp( this, pos );
 			Sample.INSTANCE.play( Assets.Sounds.ITEM );
-			hero.spendAndNext( TIME_TO_PICK_UP );
+			heroine.spendAndNext( TIME_TO_PICK_UP );
 			return true;
 			
 		} else {
@@ -124,10 +124,10 @@ public class Item implements Bundlable {
 		}
 	}
 	
-	public void doDrop( Hero hero ) {
-		hero.spendAndNext(TIME_TO_DROP);
-		int pos = hero.pos;
-		Dungeon.level.drop(detachAll(hero.belongings.backpack), pos).sprite.drop(pos);
+	public void doDrop( Hero heroine) {
+		heroine.spendAndNext(TIME_TO_DROP);
+		int pos = heroine.pos;
+		Dungeon.level.drop(detachAll(heroine.belongings.backpack), pos).sprite.drop(pos);
 	}
 
 	//resets an item's properties, to ensure consistency between runs
@@ -135,33 +135,33 @@ public class Item implements Bundlable {
 		keptThoughLostInvent = false;
 	}
 
-	public void doThrow( Hero hero ) {
+	public void doThrow(Hero heroine) {
 		GameScene.selectCell(thrower);
 	}
 
-	public void execute( Hero hero, String action ) {
+	public void execute(Hero heroine, String action ) {
 
 		GameScene.cancel();
-		curUser = hero;
+		curUser = heroine;
 		curItem = this;
 
 		if (action.equals( AC_DROP )) {
 
-			if (hero.belongings.backpack.contains(this) || isEquipped(hero)) {
-				doDrop(hero);
+			if (heroine.belongings.backpack.contains(this) || isEquipped(heroine)) {
+				doDrop(heroine);
 			}
 
 		} else if (action.equals( AC_THROW )) {
 
-			if (hero.belongings.backpack.contains(this) || isEquipped(hero)) {
-				doThrow(hero);
+			if (heroine.belongings.backpack.contains(this) || isEquipped(heroine)) {
+				doThrow(heroine);
 			}
 
 		}
 	}
 
-	public void execute( Hero hero ) {
-		execute( hero, defaultAction );
+	public void execute( Hero heroine) {
+		execute(heroine, defaultAction );
 	}
 	
 	protected void onThrow( int cell ) {
@@ -209,7 +209,7 @@ public class Item implements Bundlable {
 				if (isSimilar( item )) {
 					item.merge( this );
 					item.updateQuickslot();
-					if (Dungeon.hero != null && Dungeon.hero.isAlive()) {
+					if (Dungeon.heroine != null && Dungeon.heroine.isAlive()) {
 						if (isIdentified()) Catalog.setSeen(getClass());
 					}
 					return true;
@@ -217,7 +217,7 @@ public class Item implements Bundlable {
 			}
 		}
 
-		if (Dungeon.hero != null && Dungeon.hero.isAlive()) {
+		if (Dungeon.heroine != null && Dungeon.heroine.isAlive()) {
 			if (isIdentified()) Catalog.setSeen(getClass());
 		}
 
@@ -230,7 +230,7 @@ public class Item implements Bundlable {
 	}
 	
 	public boolean collect() {
-		return collect( Dungeon.hero.belongings.backpack );
+		return collect( Dungeon.heroine.belongings.backpack );
 	}
 	
 	//returns a new item if the split was sucessful and there are now 2 items, otherwise null
@@ -322,7 +322,7 @@ public class Item implements Bundlable {
 	//returns the level of the item, after it may have been modified by temporary boosts/reductions
 	//note that not all item properties should care about buffs/debuffs! (e.g. str requirement)
 	public int buffedLvl() {
-		if (Dungeon.hero.buff(Degrade.class) != null) {
+		if (Dungeon.heroine.buff(Degrade.class) != null) {
 			return Degrade.reduceLevel(level());
 		}
 		return level();
@@ -395,7 +395,7 @@ public class Item implements Bundlable {
 		return levelKnown && cursedKnown;
 	}
 	
-	public boolean isEquipped( Hero hero ) {
+	public boolean isEquipped( Hero heroine) {
 		return false;
 	}
 
@@ -405,7 +405,7 @@ public class Item implements Bundlable {
 
 	public Item identify( boolean byHero ) {
 
-		if (byHero && Dungeon.hero != null && Dungeon.hero.isAlive()){
+		if (byHero && Dungeon.heroine != null && Dungeon.heroine.isAlive()){
 			Catalog.setSeen(getClass());
 		}
 
@@ -416,12 +416,12 @@ public class Item implements Bundlable {
 		return this;
 	}
 	
-	public void onHeroGainExp( float levelPercent, Hero hero ){
+	public void onHeroGainExp( float levelPercent, Hero heroine){
 		//do nothing by default
 	}
 	
-	public static void evoke( Hero hero ) {
-		hero.sprite.emitter().burst( Speck.factory( Speck.EVOKE ), 5 );
+	public static void evoke( Hero heroine) {
+		heroine.sprite.emitter().burst( Speck.factory( Speck.EVOKE ), 5 );
 	}
 	
 	@Override
@@ -542,7 +542,7 @@ public class Item implements Bundlable {
 		cursed	= bundle.getBoolean( CURSED );
 
 		//only want to populate slot on first load.
-		if (Dungeon.hero == null) {
+		if (Dungeon.heroine == null) {
 			if (bundle.contains(QUICKSLOT)) {
 				Dungeon.quickslot.setSlot(bundle.getInt(QUICKSLOT), this);
 			}
@@ -551,11 +551,11 @@ public class Item implements Bundlable {
 		keptThoughLostInvent = bundle.getBoolean( KEPT_LOST );
 	}
 
-	public int targetingPos( Hero user, int dst ){
+	public int targetingPos(Hero user, int dst ){
 		return throwPos( user, dst );
 	}
 
-	public int throwPos( Hero user, int dst){
+	public int throwPos(Hero user, int dst){
 		return new Ballistica( user.pos, dst, Ballistica.PROJECTILE ).collisionPos;
 	}
 
@@ -563,7 +563,7 @@ public class Item implements Bundlable {
 		Sample.INSTANCE.play(Assets.Sounds.MISS, 0.6f, 0.6f, 1.5f);
 	}
 	
-	public void cast( final Hero user, final int dst ) {
+	public void cast(final Hero user, final int dst ) {
 		
 		final int cell = throwPos( user, dst );
 		user.sprite.zap( cell );

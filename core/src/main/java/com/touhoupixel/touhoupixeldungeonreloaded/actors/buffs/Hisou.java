@@ -31,7 +31,7 @@ public class Hisou extends FlavourBuff {
 		announced = true;
 	}
 
-	public static final float DURATION = 20f;
+	public static final float DURATION = 40f;
 
 	@Override
 	public int icon() {

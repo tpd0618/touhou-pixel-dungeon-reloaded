@@ -43,22 +43,22 @@ public class ElixirOfMight extends Elixir {
 	}
 	
 	@Override
-	public void apply( Hero hero ) {
+	public void apply( Hero heroine) {
 		identify();
 		
-		hero.STR++;
+		heroine.STR++;
 		
-		Buff.affect(hero, HTBoost.class).reset();
-		HTBoost boost = Buff.affect(hero, HTBoost.class);
+		Buff.affect(heroine, HTBoost.class).reset();
+		HTBoost boost = Buff.affect(heroine, HTBoost.class);
 		boost.reset();
 		
-		hero.updateHT( true );
-		hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(this, "msg_1", boost.boost() ));
+		heroine.updateHT( true );
+		heroine.sprite.showStatus( CharSprite.POSITIVE, Messages.get(this, "msg_1", boost.boost() ));
 		GLog.p( Messages.get(this, "msg_2") );
 	}
 	
 	public String desc() {
-		return Messages.get(this, "desc", HTBoost.boost(Dungeon.hero.HT));
+		return Messages.get(this, "desc", HTBoost.boost(Dungeon.heroine.HT));
 	}
 	
 	@Override

@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDAction;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CircleArc;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
@@ -35,7 +34,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndHero;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndKeyBindings;
 import com.watabou.input.GameAction;
-import com.watabou.input.KeyBindings;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
@@ -44,8 +42,6 @@ import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.ui.Component;
 import com.watabou.utils.ColorMath;
-
-import java.util.ArrayList;
 
 public class StatusPane extends Component {
 
@@ -93,7 +89,7 @@ public class StatusPane extends Component {
 		heroInfo = new Button() {
 			@Override
 			protected void onClick() {
-				Camera.main.panTo(Dungeon.hero.sprite.center(), 5f);
+				Camera.main.panTo(Dungeon.heroine.sprite.center(), 5f);
 				GameScene.show(new WndHero());
 			}
 
@@ -109,7 +105,7 @@ public class StatusPane extends Component {
 		};
 		add(heroInfo);
 
-		avatar = HeroSprite.avatar(Dungeon.hero.heroClass, lastTier);
+		avatar = HeroSprite.avatar(Dungeon.heroine.heroClass, lastTier);
 		add(avatar);
 
 		talentBlink = 0;
@@ -134,7 +130,7 @@ public class StatusPane extends Component {
 		heroInfoOnBar = new Button() {
 			@Override
 			protected void onClick() {
-				Camera.main.panTo(Dungeon.hero.sprite.center(), 5f);
+				Camera.main.panTo(Dungeon.heroine.sprite.center(), 5f);
 				GameScene.show(new WndHero());
 			}
 		};
@@ -155,7 +151,7 @@ public class StatusPane extends Component {
 		level.hardlight(0xFFFFAA);
 		add(level);
 
-		buffs = new BuffIndicator(Dungeon.hero, large);
+		buffs = new BuffIndicator(Dungeon.heroine, large);
 		add(buffs);
 
 		busy = new BusyIndicator();
@@ -233,11 +229,11 @@ public class StatusPane extends Component {
 	public void update() {
 		super.update();
 
-		int health = Dungeon.hero.HP;
-		int shield = Dungeon.hero.shielding();
-		int max = Dungeon.hero.HT;
+		int health = Dungeon.heroine.HP;
+		int shield = Dungeon.heroine.shielding();
+		int max = Dungeon.heroine.HT;
 
-		if (!Dungeon.hero.isAlive()) {
+		if (!Dungeon.heroine.isAlive()) {
 			avatar.tint(0x000000, 0.5f);
 		} else if ((health / (float) max) < 0.3f) {
 			warning += Game.elapsed * 5f * (0.4f - (health / (float) max));
@@ -266,26 +262,26 @@ public class StatusPane extends Component {
 		}
 
 		if (large) {
-			exp.scale.x = (128 / exp.width) * Dungeon.hero.exp / Dungeon.hero.maxExp();
+			exp.scale.x = (128 / exp.width) * Dungeon.heroine.exp / Dungeon.heroine.maxExp();
 
 			hpText.measure();
 			hpText.x = hp.x + (128 - hpText.width()) / 2f;
 
-			expText.text(Dungeon.hero.exp + "/" + Dungeon.hero.maxExp());
+			expText.text(Dungeon.heroine.exp + "/" + Dungeon.heroine.maxExp());
 			expText.measure();
 			expText.x = hp.x + (128 - expText.width()) / 2f;
 
 		} else {
-			exp.scale.x = (width / exp.width) * Dungeon.hero.exp / Dungeon.hero.maxExp();
+			exp.scale.x = (width / exp.width) * Dungeon.heroine.exp / Dungeon.heroine.maxExp();
 		}
 
-		if (Dungeon.hero.lvl != lastLvl) {
+		if (Dungeon.heroine.lvl != lastLvl) {
 
 			if (lastLvl != -1) {
 				showStarParticles();
 			}
 
-			lastLvl = Dungeon.hero.lvl;
+			lastLvl = Dungeon.heroine.lvl;
 
 			if (large) {
 				level.text("lv. " + lastLvl);
@@ -301,10 +297,10 @@ public class StatusPane extends Component {
 			PixelScene.align(level);
 		}
 
-		int tier = Dungeon.hero.tier();
+		int tier = Dungeon.heroine.tier();
 		if (tier != lastTier) {
 			lastTier = tier;
-			avatar.copy(HeroSprite.avatar(Dungeon.hero.heroClass, tier));
+			avatar.copy(HeroSprite.avatar(Dungeon.heroine.heroClass, tier));
 		}
 
 		counter.setSweep((1f - Actor.now() % 1f) % 1f);
