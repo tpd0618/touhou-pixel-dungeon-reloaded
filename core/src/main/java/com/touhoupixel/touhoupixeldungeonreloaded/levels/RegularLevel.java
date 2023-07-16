@@ -319,13 +319,17 @@ public abstract class RegularLevel extends Level {
 	@Override
 	protected void createItems() {
 
-		int nItems = 7;
+		int nItems = 8;
 
 		if (Statistics.difficulty == 6){
 			nItems -= 1;
 		}
 
 		if (Statistics.card65) {
+			nItems += 1;
+		}
+
+		if (Dungeon.floor > 40) {
 			nItems += 1;
 		}
 

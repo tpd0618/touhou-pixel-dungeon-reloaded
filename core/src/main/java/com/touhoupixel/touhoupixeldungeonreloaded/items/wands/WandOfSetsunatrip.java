@@ -38,7 +38,7 @@ import com.watabou.utils.Random;
 public class WandOfSetsunatrip extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_SETSUNATRIP;
+		image = ItemSpriteSheet.WAND_SETSUNA_TRIP;
 
 		collisionProperties = Ballistica.MAGIC_BOLT;
 	}

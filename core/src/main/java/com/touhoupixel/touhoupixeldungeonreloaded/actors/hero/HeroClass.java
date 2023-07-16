@@ -41,7 +41,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.DenjiChainsaw;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
@@ -54,7 +56,6 @@ public enum HeroClass {
 	PLAYERSAKUYA();
 
 	public void initHero( Hero heroine) {
-
 		//test, too many will trigger a certain bug
 
 		//test, too many will trigger a certain bug

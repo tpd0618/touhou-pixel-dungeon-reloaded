@@ -43,7 +43,7 @@ public class GreenBamboo extends MeleeWeapon {
 
     @Override
     public int max(int lvl) {
-        return  5*(tier+1) +
+        return  6*(tier+1) +
                 lvl*(tier+1);
     }
 

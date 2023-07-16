@@ -519,29 +519,29 @@ public class ItemSpriteSheet {
 
 	//16 free slots
 
-	private static final int WANDS              =                           xy(1, 14);  //16 slots
-	public static final int WAND_MAGIC_MISSILE  = WANDS+0;
-	public static final int WAND_FIREBOLT       = WANDS+1;
-	public static final int WAND_FROST          = WANDS+2;
-	public static final int WAND_LIGHTNING      = WANDS+3;
-	public static final int WAND_DISINTEGRATION = WANDS+4;
+	private static final int WANDS              =                           xy(1, 44);  //16 slots
+	public static final int WAND_FIREBOLT  = WANDS+0;
+	public static final int WAND_CORROSION  = WANDS+1;
+	public static final int WAND_LIGHTNING          = WANDS+2;
+	public static final int WAND_REGROWTH       = WANDS+3;
+	public static final int WAND_FROST = WANDS+4;
 	public static final int WAND_PRISMATIC_LIGHT= WANDS+5;
-	public static final int WAND_CORROSION      = WANDS+6;
+	public static final int WAND_MAGIC_MISSILE      = WANDS+6;
 	public static final int WAND_LIVING_EARTH   = WANDS+7;
 	public static final int WAND_BLAST_WAVE     = WANDS+8;
 	public static final int WAND_CORRUPTION     = WANDS+9;
 	public static final int WAND_WARDING        = WANDS+10;
-	public static final int WAND_REGROWTH       = WANDS+11;
-	public static final int WAND_TRANSFUSION    = WANDS+12;
-	public static final int WAND_REVERSEGRAVITY    = WANDS+13;
-	public static final int WAND_ANTIDOOR    = WANDS+14;
+	public static final int WAND_DISINTEGRATION      = WANDS+11;
+	public static final int WAND_CHESS               = WANDS+12;
+	public static final int WAND_ANTI_DOOR    = WANDS+13;
+	public static final int WAND_REVERSE_GRAVITY    = WANDS+14;
 	public static final int WAND_ACID    = WANDS+15;
-	public static final int WAND_MINDBURST    = WANDS+304;
-	public static final int WAND_HEALWOUNDS    = WANDS+305;
-	public static final int WAND_DESTORB    = WANDS+306;
-	public static final int WAND_DEATH    = WANDS+307;
-	public static final int WAND_STABLENESS    = WANDS+308;
-	public static final int WAND_SETSUNATRIP    = WANDS+309;
+	public static final int WAND_MIND_BURST = WANDS+16;
+	public static final int WAND_HEAL_WOUNDS = WANDS+17;
+	public static final int WAND_DEST_ORB    = WANDS+18;
+	public static final int WAND_DEATH    = WANDS+19;
+	public static final int WAND_STABLENESS    = WANDS+20;
+	public static final int WAND_SETSUNA_TRIP = WANDS+21;
 	static {
 		for (int i = WANDS; i < WANDS+312; i++)
 			assignItemRect(i, 14, 14);
@@ -980,6 +980,8 @@ public class ItemSpriteSheet {
 	public static final int EVE_KEYTAR = WEP_PART3 +7;
 	public static final int ARISA_KEYBOARD   = WEP_PART3 +8;
 	public static final int KANON_DRUMSTICK   = WEP_PART3 +9;
+	public static final int QUINTESSENTIAL_FAN   = WEP_PART3 +10;
+	public static final int DENJI_CHAINSAW   = WEP_PART3 +11;
 	static{
 		assignItemRect(FIREBRAND2, 13, 13);
 		assignItemRect(FROSTBRAND2,    13, 13);
@@ -991,6 +993,8 @@ public class ItemSpriteSheet {
 		assignItemRect(EVE_KEYTAR,    10, 15);
 		assignItemRect(ARISA_KEYBOARD,    13, 13);
 		assignItemRect(KANON_DRUMSTICK,    13, 13);
+		assignItemRect(QUINTESSENTIAL_FAN,    13, 13);
+		assignItemRect(DENJI_CHAINSAW,    7, 15);
 	}
 
 	private static final int WEP_TIER5_PART2   =                               xy(1, 35);   //8 slots

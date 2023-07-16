@@ -108,6 +108,7 @@ public enum Icons {
 	FLOOR_TRAPS,
 	FLOOR_SECRETS,
 	CHAL_COUNT,
+	SP_CHALLENGE,
 
 	//icons that appear in the about screen, variable spacing
 	LIBGDX,
@@ -341,6 +342,9 @@ public enum Icons {
 				break;
 			case CHAL_COUNT:
 				icon.frame( icon.texture.uvRectBySize( 112, 64, 7, 7 ) );
+				break;
+			case SP_CHALLENGE:
+				icon.frame( icon.texture.uvRectBySize( 119, 63, 9, 7 ) );
 				break;
 		
 			case LIBGDX:

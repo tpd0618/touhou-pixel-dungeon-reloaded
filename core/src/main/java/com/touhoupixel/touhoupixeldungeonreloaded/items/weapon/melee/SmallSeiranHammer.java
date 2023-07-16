@@ -38,12 +38,6 @@ public class SmallSeiranHammer extends MeleeWeapon {
     }
 
     @Override
-    public int max(int lvl) {
-        return  4*(tier+1) +
-                lvl*(tier+1);
-    }
-
-    @Override
     public int proc(Char attacker, Char defender, int damage) {
         Buff.affect(defender, Bleeding.class).set(2);
         return super.proc(attacker, defender, damage);

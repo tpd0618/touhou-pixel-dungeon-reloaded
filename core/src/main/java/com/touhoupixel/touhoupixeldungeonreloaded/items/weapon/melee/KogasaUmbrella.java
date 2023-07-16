@@ -40,10 +40,4 @@ public class KogasaUmbrella extends MeleeWeapon {
 	public int GodFactor( Char owner ) {
 		return 1;
 	}
-
-	@Override
-	public int max(int lvl) {
-		return  4*(tier+1) +    //12 base, down from 15
-				lvl*(tier+1);   //scaling unchanged
-	}
 }

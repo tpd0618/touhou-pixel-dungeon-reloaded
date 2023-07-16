@@ -45,12 +45,6 @@ public class BlackFan extends MeleeWeapon {
 	}
 
 	@Override
-	public int max(int lvl) {
-		return  4*(tier+1) +
-				lvl*(tier);
-	}
-
-	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		if (Random.Int(12) == 0) {
 			Buff.prolong(attacker, HexCancel.class, HexCancel.DURATION);

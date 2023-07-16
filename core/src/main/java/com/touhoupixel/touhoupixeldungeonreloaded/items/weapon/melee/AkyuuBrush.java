@@ -38,12 +38,6 @@ public class AkyuuBrush extends MeleeWeapon {
     }
 
     @Override
-    public int max(int lvl) {
-        return  4*(tier+1) +
-                lvl*(tier+1);
-    }
-
-    @Override
     public int HumanFactor( Char owner ) {
         return 1;
     }

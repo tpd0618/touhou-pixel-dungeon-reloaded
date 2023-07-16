@@ -187,6 +187,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySwor
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BlackFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.DenjiChainsaw;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.EveKeytar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.FullMoonScythe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Grayswandir;
@@ -205,6 +206,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.NazrinRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.PortablePhoenixTail;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RanTail;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RandomStar;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RingoDango;
@@ -366,6 +368,8 @@ public enum Catalog {
 
 		WEAPONS.seen.put( IdolStick.class,                   true);
 		WEAPONS.seen.put( VentoraStick.class,                true);
+		WEAPONS.seen.put( QuintessentialFan.class,           true);
+		WEAPONS.seen.put( DenjiChainsaw.class,               true);
 
 		//armor
 		ARMORS.seen.put( ReimuArmor.class,                   true);

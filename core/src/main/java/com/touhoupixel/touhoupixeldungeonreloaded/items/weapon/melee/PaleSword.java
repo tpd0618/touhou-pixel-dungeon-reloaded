@@ -40,10 +40,4 @@ public class PaleSword extends MeleeWeapon {
 	public int HumanFactor( Char owner ) {
 		return 1;
 	}
-
-	@Override
-	public int max(int lvl) {
-		return  4*(tier+1) +    //16 base, down from 20
-				lvl*(tier+1);   //scaling unchanged
-	}
 }

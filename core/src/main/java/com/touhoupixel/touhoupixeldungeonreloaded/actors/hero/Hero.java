@@ -35,6 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CelestialBody;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeedResist;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
@@ -559,6 +560,10 @@ public class Hero extends Char {
 		if (Dungeon.heroine.buff(ExtremeHunger.class) != null) {
 			dmg *= 0.1f;
 		} //extreme hunger
+
+		if (Dungeon.heroine.buff(DistortedAvarice.class) != null) {
+			dmg *= 0.05f;
+		} //distorted avarice
 
 		if (Dungeon.heroine.buff(HeatRiser.class) != null) {
 			dmg *= 1.5f;

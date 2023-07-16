@@ -39,12 +39,6 @@ public class SilkyHair extends MeleeWeapon {
     }
 
     @Override
-    public int max(int lvl) {
-        return  4*(tier+1) +
-                lvl*(tier+1);
-    }
-
-    @Override
     public int GodFactor( Char owner ) {
         return 1;
     }

@@ -40,12 +40,6 @@ public class KyoukoBroom extends MeleeWeapon {
     }
 
     @Override
-    public int max(int lvl) {
-        return  3*(tier+1) +
-                lvl*(tier+1);
-    }
-
-    @Override
     public int HumanFactor( Char owner ) {
         return 1;
     }

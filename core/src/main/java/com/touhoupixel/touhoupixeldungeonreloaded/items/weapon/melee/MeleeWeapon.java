@@ -129,10 +129,6 @@ public class MeleeWeapon extends Weapon {
 			info += " " + enchantment.desc();
 		}
 
-		if (plating) {
-			info += "\n\n" + Messages.get(Weapon.class, "plating");
-		}
-
 		if (cursed && isEquipped( Dungeon.heroine)) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
 		} else if (cursedKnown && cursed) {

@@ -42,7 +42,7 @@ import com.watabou.utils.Random;
 public class WandOfAntiDoor extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_ANTIDOOR;
+		image = ItemSpriteSheet.WAND_ANTI_DOOR;
 
 		collisionProperties = Ballistica.MAGIC_BOLT;
 	}

@@ -38,7 +38,7 @@ import com.watabou.utils.Random;
 public class WandOfMindburst extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_MINDBURST;
+		image = ItemSpriteSheet.WAND_MIND_BURST;
 
 		collisionProperties = Ballistica.MAGIC_BOLT;
 	}

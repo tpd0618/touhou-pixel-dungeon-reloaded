@@ -41,10 +41,4 @@ public class YukariUmbrella extends MeleeWeapon {
 	public int YokaiFactor( Char owner ) {
 		return 1;
 	}
-	
-	@Override
-	public int max(int lvl) {
-		return  4*(tier+1) +
-				lvl*(tier);
-	}
 }

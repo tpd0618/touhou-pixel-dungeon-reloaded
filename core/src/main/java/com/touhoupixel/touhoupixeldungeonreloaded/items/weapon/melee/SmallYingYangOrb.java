@@ -39,5 +39,4 @@ public class SmallYingYangOrb extends MeleeWeapon {
 	public int YokaiFactor( Char owner ) {
 		return 1;
 	}
-
 }

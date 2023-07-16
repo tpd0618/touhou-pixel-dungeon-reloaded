@@ -33,6 +33,7 @@ import com.watabou.noosa.ui.Component;
 
 public class Archs extends Component {
 
+	//todo to fix rainbow-ish error
 	private static final float SCROLL_SPEED	= -6f;
 
 	private SkinnedBlock arcsBg;

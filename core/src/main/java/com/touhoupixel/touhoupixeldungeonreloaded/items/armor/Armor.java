@@ -99,7 +99,6 @@ public class Armor extends EquipableItem {
 	public Glyph glyph;
 	public boolean curseInfusionBonus = false;
 	public boolean masteryPotionBonus = false;
-	public boolean plating = false;
 	
 	private BrokenSeal seal;
 	
@@ -118,7 +117,6 @@ public class Armor extends EquipableItem {
 	private static final String GLYPH			= "glyph";
 	private static final String CURSE_INFUSION_BONUS = "curse_infusion_bonus";
 	private static final String MASTERY_POTION_BONUS = "mastery_potion_bonus";
-	private static final String PLATING = "plating";
 	private static final String SEAL            = "seal";
 	private static final String AUGMENT			= "augment";
 
@@ -130,7 +128,6 @@ public class Armor extends EquipableItem {
 		bundle.put( GLYPH, glyph );
 		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
 		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
-		bundle.put( PLATING, plating );
 		bundle.put( SEAL, seal);
 		bundle.put( AUGMENT, augment);
 	}
@@ -143,7 +140,6 @@ public class Armor extends EquipableItem {
 		inscribe((Glyph) bundle.get(GLYPH));
 		curseInfusionBonus = bundle.getBoolean( CURSE_INFUSION_BONUS );
 		masteryPotionBonus = bundle.getBoolean( MASTERY_POTION_BONUS );
-		plating = bundle.getBoolean( PLATING );
 		seal = (BrokenSeal)bundle.get(SEAL);
 		
 		augment = bundle.getEnum(AUGMENT, Augment.class);
@@ -494,10 +490,6 @@ public class Armor extends EquipableItem {
 		if (glyph != null  && (cursedKnown || !glyph.curse())) {
 			info += "\n\n" +  Messages.get(Armor.class, "inscribed", glyph.name());
 			info += " " + glyph.desc();
-		}
-
-		if (plating) {
-			info += "\n\n" + Messages.get(Armor.class, "plating");
 		}
 		
 		if (cursed && isEquipped( Dungeon.heroine)) {

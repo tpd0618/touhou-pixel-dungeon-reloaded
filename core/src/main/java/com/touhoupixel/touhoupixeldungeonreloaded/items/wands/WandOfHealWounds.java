@@ -39,7 +39,7 @@ import com.watabou.utils.Random;
 public class WandOfHealWounds extends Wand {
 
 	{
-		image = ItemSpriteSheet.WAND_HEALWOUNDS;
+		image = ItemSpriteSheet.WAND_HEAL_WOUNDS;
 
 		collisionProperties = Ballistica.PROJECTILE;
 

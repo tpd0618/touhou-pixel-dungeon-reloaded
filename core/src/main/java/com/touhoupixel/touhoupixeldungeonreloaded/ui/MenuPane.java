@@ -51,6 +51,7 @@ public class MenuPane extends Component {
 	private Button floorButton;
 
 	private Image challengeIcon;
+	private Image sp_icon;
 	private BitmapText challengeText;
 	private Button challengeButton;
 
@@ -103,6 +104,11 @@ public class MenuPane extends Component {
 			}
 		};
 		add(floorButton);
+
+		if (Dungeon.isChallenged(Challenges.TOWER_OF_FORTUNE)) {
+			sp_icon = Icons.get(Icons.SP_CHALLENGE);
+			add(sp_icon);
+		}
 
 		if (Challenges.activeChallenges() > 0){
 			challengeIcon = Icons.get(Icons.CHAL_COUNT);
@@ -178,6 +184,13 @@ public class MenuPane extends Component {
 			PixelScene.align(challengeText);
 
 			challengeButton.setRect(challengeIcon.x, challengeIcon.y, challengeIcon.width(), challengeIcon.height() + challengeText.height());
+		}
+
+		if (sp_icon != null){
+			sp_icon.x = btnJournal.left() - 23 + (7 - sp_icon.width())/2f - 0.1f;
+			sp_icon.y = y + 1;
+			if (SPDSettings.interfaceSize() == 0) sp_icon.y++;
+			PixelScene.align(sp_icon);
 		}
 
 		version.scale.set(PixelScene.align(0.5f));
