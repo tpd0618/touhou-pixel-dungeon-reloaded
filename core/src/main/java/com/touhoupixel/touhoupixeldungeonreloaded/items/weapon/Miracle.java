@@ -96,7 +96,7 @@ public class Miracle extends Item {
 					}
 					curUser.HP -= 4;
 					curUser.HT -= 4;
-					Statistics.healwoundsHTdown -= 4;
+					Statistics.maxHP_down -= 4;
 					Statistics.spellcarduse = true;
 					GameScene.flash(0x80FFFFFF);
 					Sample.INSTANCE.play(Assets.Sounds.BLAST);
@@ -122,6 +122,7 @@ public class Miracle extends Item {
 						}
 					}
 					Statistics.spellcard -= 1;
+					Statistics.bomb_count += 1;
 					Statistics.spellcarduse = true;
 					GameScene.flash(0x80FFFFFF);
 					Sample.INSTANCE.play(Assets.Sounds.BLAST);

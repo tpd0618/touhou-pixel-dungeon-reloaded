@@ -18,7 +18,7 @@ public class Yuugi extends Mob {
         spriteClass = YuugiSprite.class;
 
         HP = HT = 248;
-        defenseSkill = 40;
+        defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
 

@@ -18,8 +18,8 @@ public class Seiran extends Mob {
         spriteClass = SeiranSprite.class;
 
         HP = HT = 269;
-        defenseSkill = 42;
-        EXP = 19;
+        defenseSkill = 37;
+        EXP = 20;
         maxLvl = 50;
 
         properties.add(Property.WARP);

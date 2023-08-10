@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
@@ -53,6 +54,8 @@ public class ScrollOfIdentify extends InventoryScroll {
 		curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
 		item.identify();
 		GLog.i(Messages.get(this, "it_is", item));
+		Statistics.identify_use = true;
+		updateQuickslot();
 	}
 	
 	@Override

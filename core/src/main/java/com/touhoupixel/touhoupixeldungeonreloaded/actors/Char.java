@@ -28,11 +28,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
@@ -53,6 +51,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
@@ -71,12 +70,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.Vial;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.DamageWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -280,9 +282,6 @@ public abstract class Char extends Actor {
 
             dmg = Math.round(dmg*dmgMulti);
 
-            Berserk berserk = buff(Berserk.class);
-            if (berserk != null) dmg = berserk.damageFactor(dmg);
-
             if (buff( Fury.class ) != null) {
                 dmg *= 1.5f;
             }
@@ -377,12 +376,14 @@ public abstract class Char extends Actor {
         if (attacker.buff(Bless.class) != null) acuRoll *= 1.25f;
         if (attacker.buff(Doublerainbow.class) != null) acuRoll *= 1.45f;
         if (attacker.buff(HeatRiser.class) != null) acuRoll *= 1.5f; //heat riser
+        if (attacker.buff(Randomizer.class) != null) acuRoll *= 0.5f; //randomizer
         if (attacker.buff(Hex.class) != null) acuRoll *= 0.8f;
 
         float defRoll = Random.Float( defStat );
         if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
         if (defender.buff(Doublerainbow.class) != null) defRoll *= 1.45f;
         if (attacker.buff(HeatRiser.class) != null) defRoll *= 1.5f; //heat riser
+        if (attacker.buff(Randomizer.class) != null) defRoll *= 0.5f; //randomizer
         if (defender.buff(Hex.class) != null) defRoll *= 0.8f;
 
         return (acuRoll * accMulti) >= defRoll;
@@ -796,10 +797,12 @@ public abstract class Char extends Actor {
     }
 
     public enum Property{
-        BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Paralysis.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class)),
-                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
+        BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Paralysis.class)),
+                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
         MINIBOSS ( new HashSet<Class>(),
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
+        MITAMA ( new HashSet<Class>(),
+                new HashSet<Class>( Arrays.asList(DamageWand.class, Mob.class, Vial.class, Grim.class, Trap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
         NONE,
         ELIXIR,
         IMMOVABLE,

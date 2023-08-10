@@ -19,8 +19,8 @@ public class Sumireko extends Mob {
         spriteClass = SumirekoSprite.class;
 
         HP = HT = 187;
-        defenseSkill = 45;
-        EXP = 23;
+        defenseSkill = 37;
+        EXP = 22;
         maxLvl = 75;
 
         properties.add(Property.HUMAN);

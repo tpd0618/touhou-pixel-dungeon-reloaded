@@ -19,7 +19,7 @@ public class Junko extends Mob {
         spriteClass = JunkoSprite.class;
 
         HP = HT = 269;
-        defenseSkill = 42;
+        defenseSkill = 37;
         EXP = 22;
         maxLvl = 50;
 

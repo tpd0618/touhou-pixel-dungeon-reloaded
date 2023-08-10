@@ -294,14 +294,14 @@ import java.util.LinkedHashMap;
 public class Generator {
 
 	public enum Category {
-		WEAPON	( 3, 3, MeleeWeapon.class),
+		WEAPON	( 3, 2, MeleeWeapon.class),
 		WEP_T1	( 0, 0, MeleeWeapon.class),
 		WEP_T2	( 0, 0, MeleeWeapon.class),
 		WEP_T3	( 0, 0, MeleeWeapon.class),
 		WEP_T4	( 0, 0, MeleeWeapon.class),
 		WEP_T5	( 0, 0, MeleeWeapon.class),
 
-		ARMOR	    ( 3, 3, Armor.class ),
+		ARMOR	    ( 3, 2, Armor.class ),
 		ARMOR_T1	( 0, 0, Armor.class ),
 		ARMOR_T2	( 0, 0, Armor.class ),
 		ARMOR_T3	( 0, 0, Armor.class ),
@@ -330,7 +330,7 @@ public class Generator {
 		TALISMAN( 3, 3, Talisman.class),
 		VIAL    ( 1, 1, Vial.class),
 
-		GOLD	( 5, 5,   Gold.class );
+		GOLD	( 5, 4, Gold.class );
 
 		public Class<?>[] classes;
 
@@ -519,7 +519,7 @@ public class Generator {
 					ShionFan.class,
 					JoonFan.class
 			};
-			WEP_T2.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 3 };
+			WEP_T2.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3 };
 
 			WEP_T3.classes = new Class<?>[]{
 					SmallYingYangOrb.class,
@@ -536,7 +536,7 @@ public class Generator {
 					HecatiaStar.class,
 					GreenBamboo.class
 			};
-			WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T3.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T4.classes = new Class<?>[]{
 					MediumYingYangOrb.class,
@@ -553,7 +553,7 @@ public class Generator {
 					BlackFan.class,
 					TurnaboutCloak.class
 			};
-			WEP_T4.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T4.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T5.classes = new Class<?>[]{
 					BigYingYangOrb.class,
@@ -582,7 +582,7 @@ public class Generator {
 					QuintessentialFan.class,
 					DenjiChainsaw.class
 			};
-			WEP_T5.probs = new float[]{ 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};

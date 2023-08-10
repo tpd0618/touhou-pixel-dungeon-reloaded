@@ -21,19 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 //for wands that directly damage a target
@@ -76,30 +72,25 @@ public abstract class DamageWand extends Wand{
 			dmg *= 0.8f;
 		}
 
-		//potion of enlightenment
-		if (Statistics.wandpowerup == 1) {
-			dmg *= 1.2f;
+		if (Statistics.wand_power_up == 1) {
+			dmg *= 1.06f;
 		}
-		if (Statistics.wandpowerup == 2) {
-			dmg *= 1.4f;
+		if (Statistics.wand_power_up == 2) {
+			dmg *= 1.12f;
 		}
-		if (Statistics.wandpowerup == 3) {
-			dmg *= 1.6f;
+		if (Statistics.wand_power_up == 3) {
+			dmg *= 1.18f;
 		}
-		if (Statistics.wandpowerup == 4) {
-			dmg *= 1.8f;
+		if (Statistics.wand_power_up == 4) {
+			dmg *= 1.24f;
 		}
-		if (Statistics.wandpowerup >= 5) {
-			dmg *= 2.0f;
-		}
+		if (Statistics.wand_power_up >= 5) {
+			dmg *= 1.3f;
+		} //potion of enlightenment
 
 		if (Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.MINIBOSS) ||
 			Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.BOSS)){
 			dmg *= 2f;
-		}
-
-		if (enemy instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
-			dmg *= 0.25f;
 		}
 
 		return dmg;

@@ -8,7 +8,7 @@ As you see however, this game is highly inspired by touhou genso wanderer series
 
 If you think this game is hard, calm down, and see items in your inventory.
 
-Warning: Saves prior to version 1.0.9 will not be compatible properly! If there is such a save, please delete it.
+Warning: Saves prior to version 1.1.0 will not be compatible properly! If there is such a save, please delete it.
 
 Anyway, please enjoy THPD: reloaded well!
 

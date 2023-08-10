@@ -35,7 +35,7 @@ public class Bestiary {
 					return new ArrayList<>(Arrays.asList(
 							Wriggle.class, Nazrin.class, Mike.class, Larva.class));
 				} else return new ArrayList<>(Arrays.asList(
-					Wriggle.class, Nazrin.class, Mike.class, Larva.class, Kogasa.class));
+						Wriggle.class, Nazrin.class, Mike.class, Larva.class, Kogasa.class));
 			case 3:
 			case 4:
 			case 5:

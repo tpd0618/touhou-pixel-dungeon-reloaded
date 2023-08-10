@@ -20,7 +20,7 @@ public class Rumia extends Mob {
         spriteClass = RumiaSprite.class;
 
         HP = HT = 315;
-        defenseSkill = 40;
+        defenseSkill = 35;
         EXP = 17;
         maxLvl = 75;
 

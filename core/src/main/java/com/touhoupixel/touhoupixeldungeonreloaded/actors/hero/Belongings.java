@@ -45,7 +45,7 @@ public class Belongings implements Iterable<Item> {
 
 	public static class Backpack extends Bag {
 		{
-			image = ItemSpriteSheet.BACKPACK;
+			image = ItemSpriteSheet.POUCH;
 		}
 		public int capacity(){
 			int cap = super.capacity();

@@ -63,7 +63,7 @@ public class PotionOfHealing extends Potion {
 			GameScene.flash(0x80FFFFFF);
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-					if (!mob.properties().contains(Char.Property.BOSS) || !mob.properties().contains(Char.Property.MINIBOSS)) {
+					if (!mob.properties().contains(Char.Property.BOSS) && !mob.properties().contains(Char.Property.MINIBOSS)) {
 						mob.HP = Math.max(3, mob.HP/2);
 					}
 				}

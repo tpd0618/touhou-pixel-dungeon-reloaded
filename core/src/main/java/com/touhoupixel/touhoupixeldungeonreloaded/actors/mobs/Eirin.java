@@ -44,8 +44,8 @@ public class Eirin extends Mob implements Callback {
         spriteClass = EirinSprite.class;
 
         HP = HT = 259;
-        defenseSkill = 42;
-        EXP = 19;
+        defenseSkill = 37;
+        EXP = 20;
         maxLvl = 50;
 
         properties.add(Property.ELIXIR);

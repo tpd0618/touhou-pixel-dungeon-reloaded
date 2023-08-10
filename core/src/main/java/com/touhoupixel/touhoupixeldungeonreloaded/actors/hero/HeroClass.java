@@ -29,6 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
@@ -36,12 +37,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfAnchor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEarth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.DenjiChainsaw;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
@@ -56,6 +67,8 @@ public enum HeroClass {
 	PLAYERSAKUYA();
 
 	public void initHero( Hero heroine) {
+		//mobs bestiary flavor text todo
+
 		//test, too many will trigger a certain bug
 
 		//test, too many will trigger a certain bug

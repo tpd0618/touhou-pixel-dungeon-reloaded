@@ -180,7 +180,7 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	public int mobLimit() {
-		int mobs = 7 + Random.Int(3);
+		int mobs = 8 + Random.Int(3);
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.25f);
 		}
@@ -318,7 +318,6 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	protected void createItems() {
-
 		int nItems = 8;
 
 		if (Statistics.difficulty == 6){

@@ -104,6 +104,10 @@ public class WandOfBlastWave extends DamageWand {
 			power /= 2;
 		}
 
+		if (ch.properties().contains(Char.Property.MITAMA)) {
+			power *= 0;
+		} //to prevent kill mitama with blast wave
+
 		int dist = Math.min(trajectory.dist, power);
 
 		boolean collided = dist == trajectory.dist;

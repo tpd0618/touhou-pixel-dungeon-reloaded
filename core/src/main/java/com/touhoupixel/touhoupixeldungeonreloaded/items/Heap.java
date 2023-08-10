@@ -23,7 +23,17 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -47,6 +57,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -79,8 +90,49 @@ public class Heap implements Bundlable {
 	public void open( Hero heroine) {
 		switch (type) {
 		case TOMB:
-			Wraith.spawnAround( heroine.pos );
-			break;
+			if (Statistics.card54) {
+				if (Random.Int(2) == 0) {
+					switch (Random.Int(4)) {
+						case 0:
+						default:
+							MitamaAra.spawnAround(heroine.pos);
+							break;
+						case 1:
+							MitamaKusi.spawnAround(heroine.pos);
+							break;
+						case 2:
+							MitamaNigi.spawnAround(heroine.pos);
+							break;
+						case 3:
+							MitamaSaki.spawnAround(heroine.pos);
+							break;
+					}
+				} else {
+					Wraith.spawnAround(heroine.pos);
+					break;
+				}
+			} else {
+				if (Random.Int(5) == 0) {
+					switch (Random.Int(4)) {
+						case 0:
+						default:
+							MitamaAra.spawnAround(heroine.pos);
+							break;
+						case 1:
+							MitamaKusi.spawnAround(heroine.pos);
+							break;
+						case 2:
+							MitamaNigi.spawnAround(heroine.pos);
+							break;
+						case 3:
+							MitamaSaki.spawnAround(heroine.pos);
+							break;
+					}
+				} else {
+					Wraith.spawnAround(heroine.pos);
+					break;
+				}
+			}
 		case REMAINS:
 		case SKELETON:
 			CellEmitter.center( pos ).start(Speck.factory(Speck.RATTLE), 0.1f, 3);
@@ -260,7 +312,7 @@ public class Heap implements Bundlable {
 			for (Item item : items.toArray( new Item[0] )) {
 
 				//unique items aren't affect by explosions
-				if (item.unique || (item instanceof Armor && ((Armor) item).checkSeal() != null)){
+				if (item.unique){
 					continue;
 				}
 

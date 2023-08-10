@@ -16,8 +16,8 @@ public class Koishi extends Mob {
         spriteClass = KoishiSprite.class;
 
         HP = HT = 249;
-        defenseSkill = 45;
-        EXP = 23;
+        defenseSkill = 32;
+        EXP = 15;
         maxLvl = 75;
 
         state = WANDERING;

@@ -23,12 +23,15 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Transmuting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.Brew;
@@ -37,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPot
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
@@ -62,15 +66,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return item instanceof MeleeWeapon ||
-				(item instanceof MissileWeapon && (!(item instanceof Dart) || item instanceof TippedDart)) ||
-				(item instanceof Potion && !(item instanceof Elixir || item instanceof Brew || item instanceof AlchemicalCatalyst)) ||
-				item instanceof Scroll ||
-				item instanceof Ring ||
-				item instanceof Wand ||
-				item instanceof Plant.Seed ||
-				item instanceof Runestone ||
-				item instanceof Artifact;
+		return !item.unique && !(item instanceof Plant.Seed) && !(item instanceof MissileWeapon) && !(item instanceof Herb) && !(item instanceof Talisman);
 	}
 
 	@Override
@@ -78,40 +74,54 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 		Item result = changeItem(item);
 
-		if (result == null) {
-			//This shouldn't ever trigger
-			GLog.n(Messages.get(this, "nothing"));
-			curItem.collect(curUser.belongings.backpack);
-		} else {
-			if (result != item) {
-				int slot = Dungeon.quickslot.getSlot(item);
-				if (item.isEquipped(Dungeon.heroine)) {
-					item.cursed = false; //to allow it to be unequipped
-					((EquipableItem) item).doUnequip(Dungeon.heroine, false);
-					((EquipableItem) result).doEquip(Dungeon.heroine);
-				} else {
-					item.detach(Dungeon.heroine.belongings.backpack);
-					if (!result.collect()) {
-						Dungeon.level.drop(result, curUser.pos).sprite.drop();
-					} else if (Dungeon.heroine.belongings.getSimilar(result) != null) {
-						result = Dungeon.heroine.belongings.getSimilar(result);
+		if (item instanceof MeleeWeapon ||
+				(item instanceof MissileWeapon && (!(item instanceof Dart) || item instanceof TippedDart)) ||
+				(item instanceof Potion && !(item instanceof Elixir || item instanceof Brew || item instanceof AlchemicalCatalyst)) ||
+				item instanceof Scroll ||
+				item instanceof Ring ||
+				item instanceof Wand ||
+				item instanceof Plant.Seed ||
+				item instanceof Runestone ||
+				item instanceof Artifact) {
+			if (result == null) {
+				//This shouldn't ever trigger
+				GLog.n(Messages.get(this, "nothing"));
+				curItem.collect(curUser.belongings.backpack);
+			} else {
+				if (result != item) {
+					int slot = Dungeon.quickslot.getSlot(item);
+					if (item.isEquipped(Dungeon.heroine)) {
+						item.cursed = false; //to allow it to be unequipped
+						((EquipableItem) item).doUnequip(Dungeon.heroine, false);
+						((EquipableItem) result).doEquip(Dungeon.heroine);
+					} else {
+						item.detach(Dungeon.heroine.belongings.backpack);
+						if (!result.collect()) {
+							Dungeon.level.drop(result, curUser.pos).sprite.drop();
+						} else if (Dungeon.heroine.belongings.getSimilar(result) != null) {
+							result = Dungeon.heroine.belongings.getSimilar(result);
+						}
+					}
+					if (slot != -1
+							&& result.defaultAction != null
+							&& !Dungeon.quickslot.isNonePlaceholder(slot)
+							&& Dungeon.heroine.belongings.contains(result)) {
+						Dungeon.quickslot.setSlot(slot, result);
 					}
 				}
-				if (slot != -1
-						&& result.defaultAction != null
-						&& !Dungeon.quickslot.isNonePlaceholder(slot)
-						&& Dungeon.heroine.belongings.contains(result)) {
-					Dungeon.quickslot.setSlot(slot, result);
+				if (result.isIdentified()) {
+					Catalog.setSeen(result.getClass());
 				}
+				Transmuting.show(curUser, item, result);
+				curUser.sprite.emitter().start(Speck.factory(Speck.CHANGE), 0.2f, 10);
+				GLog.p(Messages.get(this, "morph"));
 			}
-			if (result.isIdentified()) {
-				Catalog.setSeen(result.getClass());
-			}
-			Transmuting.show(curUser, item, result);
-			curUser.sprite.emitter().start(Speck.factory(Speck.CHANGE), 0.2f, 10);
-			GLog.p(Messages.get(this, "morph"));
+		} else {
+			curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
+			GLog.w(Messages.get(this, "not_transmute_target"));
 		}
-
+		Statistics.transmute_use = true;
+		updateQuickslot();
 	}
 
 	public static Item changeItem(Item item) {

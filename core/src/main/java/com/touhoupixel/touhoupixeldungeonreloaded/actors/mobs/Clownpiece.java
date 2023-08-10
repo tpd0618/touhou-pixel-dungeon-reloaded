@@ -17,7 +17,7 @@ public class Clownpiece extends Mob {
         spriteClass = ClownpieceSprite.class;
 
         HP = HT = 167;
-        defenseSkill = 40;
+        defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
 

@@ -194,7 +194,7 @@ public class Badges {
 
 	public static void torchBind(){
 		Badge badge = null;
-		if (!Statistics.torchuse){
+		if (!Statistics.torch_use){
 			badge = Badge.NO_TORCH;
 			local.add(badge);
 		}
@@ -209,7 +209,7 @@ public class Badges {
 
 	public static void livingAntiqueStore(){
 		Badge badge = null;
-		if (Statistics.dismantlecount < 6){
+		if (Statistics.dismantle_count < 6){
 			badge = Badge.LIVING_ANTIQUE_STORE;
 			local.add(badge);
 		}

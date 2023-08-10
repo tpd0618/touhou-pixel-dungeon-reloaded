@@ -43,7 +43,7 @@ import java.util.LinkedHashMap;
 public class BuffIndicator extends Component {
 
 	//transparent icon
-	public static final int NONE    = 119;
+	public static final int NONE    = 134;
 
 	//FIXME this is becoming a mess, should do a big cleaning pass on all of these
 	//and think about tinting options
@@ -108,7 +108,6 @@ public class BuffIndicator extends Component {
 	public static final int SILENCE       = 59;
 	public static final int HISOU         = 60;
 	public static final int HIGH_STRESS   = 61;
-	public static final int HEAT_RISER    = 62;
 	public static final int INVERSION     = 63;
 	public static final int GOLD_CREATION = 64;
 	public static final int DANMAKU_POWER_UP  = 65;
@@ -165,6 +164,19 @@ public class BuffIndicator extends Component {
 	public static final int DISTORTED_AVARICE   = 117;
 	public static final int DISTORTED_ENVY      = 118;
 	public static final int DISTORTED_PRIDE     = 119;
+	public static final int NEW_MOON            = 120;
+	public static final int NEW_ONE             = 121;
+	public static final int NEW_TWO             = 122;
+	public static final int NEW_THREE           = 123;
+	public static final int NEW_FOUR            = 124;
+	public static final int FULL_MOON           = 125;
+	public static final int FULL_ONE            = 126;
+	public static final int FULL_TWO            = 127;
+	public static final int FULL_THREE          = 128;
+	public static final int FULL_FOUR           = 129;
+	public static final int HEAT_RISER          = 130;
+	public static final int RANDOMIZER          = 131;
+	public static final int MAGATSUHI           = 132;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

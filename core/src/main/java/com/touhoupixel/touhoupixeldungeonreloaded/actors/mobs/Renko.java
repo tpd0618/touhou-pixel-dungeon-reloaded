@@ -57,8 +57,8 @@ public class Renko extends Mob implements Callback {
         spriteClass = RenkoSprite.class;
 
         HP = HT = 229;
-        defenseSkill = 45;
-        EXP = 10;
+        defenseSkill = 37;
+        EXP = 22;
         maxLvl = 75;
 
         properties.add(Property.HUMAN);

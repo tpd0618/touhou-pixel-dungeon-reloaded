@@ -21,8 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.categoryone;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.SpyGlass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -46,8 +49,7 @@ public class KeikiCreation extends Abilitycards {
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
         Statistics.card4 = true;
-        PotionOfHealing poh = new PotionOfHealing();
-        poh.quantity(3).identify().collect();
+        Dungeon.level.drop(new SpyGlass().quantity(10), Dungeon.heroine.pos).sprite.drop();
         return super.doPickUp(heroine, pos);
     }
 

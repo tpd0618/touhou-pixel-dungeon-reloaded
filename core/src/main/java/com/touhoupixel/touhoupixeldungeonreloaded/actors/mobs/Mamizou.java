@@ -45,7 +45,7 @@ public class Mamizou extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION/2f);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);

@@ -49,7 +49,7 @@ public class GlassBottle extends Item {
 	private static final String TXT_STATUS	= "%d/%d";
 
 	{
-		image = ItemSpriteSheet.GLASSBOTTLE;
+		image = ItemSpriteSheet.GLASS_BOTTLE;
 
 		defaultAction = AC_DRINK;
 

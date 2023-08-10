@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
@@ -65,6 +66,8 @@ public class ScrollOfEarth extends InventoryScroll {
 			curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
 			GLog.w(Messages.get(this, "not_armor"));
 		}
+		Statistics.earth_use = true;
+		updateQuickslot();
 	}
 
 	@Override

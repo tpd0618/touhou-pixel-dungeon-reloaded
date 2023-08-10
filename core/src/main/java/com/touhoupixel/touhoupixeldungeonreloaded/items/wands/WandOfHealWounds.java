@@ -57,7 +57,7 @@ public class WandOfHealWounds extends Wand {
 		if (Random.Int(5) == 0 && curUser.HT > 3 && curUser.HP > 3) {
 			curUser.HP -= 3;
 			curUser.HT -= 3;
-			Statistics.healwoundsHTdown -= 3;
+			Statistics.maxHP_down -= 3;
 		}
 	}
 

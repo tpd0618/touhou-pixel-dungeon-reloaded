@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -67,6 +68,8 @@ public class ScrollOfFate extends InventoryScroll {
 			curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
 			GLog.w(Messages.get(this, "not_weapon"));
 		}
+		Statistics.fate_use = true;
+		updateQuickslot();
 	}
 
 	@Override

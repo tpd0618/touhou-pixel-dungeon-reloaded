@@ -7,8 +7,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.TargetedCell;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BloodParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SacrificialParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ReclaimTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TewiSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Tewi extends Mob {
@@ -46,12 +55,68 @@ public class Tewi extends Mob {
     }
 
     @Override
+    public void die(Object cause) {
+        if (this.pos - 1 == Dungeon.heroine.pos ||
+            this.pos + 1 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width() == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width() == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width() - 1 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width() + 1 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width() - 1 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width() + 1 == Dungeon.heroine.pos ||
+            this.pos - 2 == Dungeon.heroine.pos ||
+            this.pos + 2 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width()*2 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width()*2 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width()*2 - 2 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width()*2 + 2 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width()*2 - 2 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width()*2 + 2 == Dungeon.heroine.pos ||
+            this.pos - 3 == Dungeon.heroine.pos ||
+            this.pos + 3 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width()*3 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width()*3 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width()*3 - 3 == Dungeon.heroine.pos ||
+            this.pos - Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width()*3 - 3 == Dungeon.heroine.pos ||
+            this.pos + Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos) {
+            Dungeon.heroine.damage(30, this);
+            GLog.w(Messages.get(this, "star_damage"));
+        }
+
+        sprite.parent.addToBack(new TargetedCell(this.pos - 1, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + 1, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width(), 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width(), 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width() - 1, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width() + 1, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width() - 1, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width() + 1, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - 2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + 2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2 - 2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2 + 2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2 - 2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2 + 2, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - 3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + 3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3 - 3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3 + 3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3 - 3, 0xFF0000));
+        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3 + 3, 0xFF0000));
+        super.die(cause);
+    }
+
+    @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-            Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);

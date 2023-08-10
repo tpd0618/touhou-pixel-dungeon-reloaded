@@ -26,8 +26,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -100,8 +103,6 @@ public class Armor extends EquipableItem {
 	public boolean curseInfusionBonus = false;
 	public boolean masteryPotionBonus = false;
 	
-	private BrokenSeal seal;
-	
 	public int tier;
 	
 	private static final int USES_TO_ID = 10;
@@ -117,7 +118,6 @@ public class Armor extends EquipableItem {
 	private static final String GLYPH			= "glyph";
 	private static final String CURSE_INFUSION_BONUS = "curse_infusion_bonus";
 	private static final String MASTERY_POTION_BONUS = "mastery_potion_bonus";
-	private static final String SEAL            = "seal";
 	private static final String AUGMENT			= "augment";
 
 	@Override
@@ -128,7 +128,6 @@ public class Armor extends EquipableItem {
 		bundle.put( GLYPH, glyph );
 		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
 		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
-		bundle.put( SEAL, seal);
 		bundle.put( AUGMENT, augment);
 	}
 
@@ -140,7 +139,6 @@ public class Armor extends EquipableItem {
 		inscribe((Glyph) bundle.get(GLYPH));
 		curseInfusionBonus = bundle.getBoolean( CURSE_INFUSION_BONUS );
 		masteryPotionBonus = bundle.getBoolean( MASTERY_POTION_BONUS );
-		seal = (BrokenSeal)bundle.get(SEAL);
 		
 		augment = bundle.getEnum(AUGMENT, Augment.class);
 	}
@@ -150,14 +148,11 @@ public class Armor extends EquipableItem {
 		super.reset();
 		usesLeftToID = USES_TO_ID;
 		availableUsesToID = USES_TO_ID/2f;
-		//armor can be kept in bones between runs, the seal cannot.
-		seal = null;
 	}
 
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (seal != null) actions.add(AC_DETACH);
 		return actions;
 	}
 
@@ -165,26 +160,6 @@ public class Armor extends EquipableItem {
 	public void execute(Hero heroine, String action) {
 
 		super.execute(heroine, action);
-
-		if (action.equals(AC_DETACH) && seal != null){
-			BrokenSeal.WarriorShield sealBuff = heroine.buff(BrokenSeal.WarriorShield.class);
-			if (sealBuff != null) sealBuff.setArmor(null);
-
-			BrokenSeal detaching = seal;
-			seal = null;
-
-			if (detaching.level() > 0){
-				degrade();
-			}
-			if (detaching.getGlyph() != null){
-				detaching.setGlyph(null);
-			}
-			GLog.i( Messages.get(Armor.class, "detach_seal") );
-			heroine.sprite.operate(heroine.pos);
-			if (!detaching.collect()){
-				Dungeon.level.drop(detaching, heroine.pos);
-			}
-		}
 	}
 
 	@Override
@@ -217,26 +192,7 @@ public class Armor extends EquipableItem {
 
 	@Override
 	public void activate(Char ch) {
-		if (seal != null) Buff.affect(ch, BrokenSeal.WarriorShield.class).setArmor(this);
-	}
-
-	public void affixSeal(BrokenSeal seal){
-		this.seal = seal;
-		if (seal.level() > 0){
-			//doesn't trigger upgrading logic such as affecting curses/glyphs
-			int newLevel = trueLevel()+1;
-			level(newLevel);
-		}
-		if (seal.getGlyph() != null){
-			inscribe(seal.getGlyph());
-		}
-		if (isEquipped(Dungeon.heroine)){
-			Buff.affect(Dungeon.heroine, BrokenSeal.WarriorShield.class).setArmor(this);
-		}
-	}
-
-	public BrokenSeal checkSeal(){
-		return seal;
+		//null
 	}
 
 	@Override
@@ -245,9 +201,6 @@ public class Armor extends EquipableItem {
 
 			heroine.belongings.armor = null;
 			((HeroSprite) heroine.sprite).updateArmor();
-
-			BrokenSeal.WarriorShield sealBuff = heroine.buff(BrokenSeal.WarriorShield.class);
-			if (sealBuff != null) sealBuff.setArmor(null);
 
 			return true;
 
@@ -372,9 +325,14 @@ public class Armor extends EquipableItem {
 		Char ch = (Char) Actor.findChar(cell);
 		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine) {
 			Armor armor = (Armor) curItem;
-			ch.damage(Random.NormalIntRange(Dungeon.heroine.STR+(3*armor.DRMin()*(armor.level()+1))+8*armor.tier,
-					Dungeon.heroine.STR+(3*armor.DRMax()*(armor.level()+1))+8*armor.tier), curUser);
-			//high damage
+			if (ch instanceof MitamaAra || ch instanceof MitamaKusi || ch instanceof MitamaNigi || ch instanceof MitamaSaki) {
+				ch.damage(0, curUser);
+				//zero damage
+			} else {
+				ch.damage(Random.NormalIntRange(Dungeon.heroine.STR + (3 * armor.DRMin() * (armor.level() + 1)) + 8 * armor.tier,
+						Dungeon.heroine.STR + (3 * armor.DRMax() * (armor.level() + 1)) + 8 * armor.tier), curUser);
+				//high damage
+			}
 			Heap[] equipHeaps = new Heap[1];
 			equipHeaps[0] = Dungeon.level.heaps.get(ch.pos);
 			for (Heap h : equipHeaps) {
@@ -419,9 +377,6 @@ public class Armor extends EquipableItem {
 		}
 		
 		cursed = false;
-
-		if (seal != null && seal.level() == 0)
-			seal.upgrade();
 
 		return super.upgrade();
 	}
@@ -496,8 +451,6 @@ public class Armor extends EquipableItem {
 			info += "\n\n" + Messages.get(Armor.class, "cursed_worn");
 		} else if (cursedKnown && cursed) {
 			info += "\n\n" + Messages.get(Armor.class, "cursed");
-		} else if (seal != null) {
-			info += "\n\n" + Messages.get(Armor.class, "seal_attached", seal.maxShield(tier, level()));
 		} else if (!isIdentified() && cursedKnown){
 			info += "\n\n" + Messages.get(Armor.class, "not_cursed");
 		}
@@ -507,7 +460,6 @@ public class Armor extends EquipableItem {
 
 	@Override
 	public Emitter emitter() {
-		if (seal == null) return super.emitter();
 		Emitter emitter = new Emitter();
 		emitter.pos(ItemSpriteSheet.film.width(image)/2f + 2f, ItemSpriteSheet.film.height(image)/3f);
 		emitter.fillTarget = false;
@@ -555,8 +507,6 @@ public class Armor extends EquipableItem {
 	
 	@Override
 	public int value() {
-		if (seal != null) return 0;
-
 		int price = 20 * tier;
 		if (hasGoodGlyph()) {
 			price *= 1.5;
@@ -579,9 +529,6 @@ public class Armor extends EquipableItem {
 		updateQuickslot();
 		//the hero needs runic transference to actually transfer, but we still attach the glyph here
 		// in case they take that talent in the future
-		if (seal != null){
-			seal.setGlyph(glyph);
-		}
 		return this;
 	}
 

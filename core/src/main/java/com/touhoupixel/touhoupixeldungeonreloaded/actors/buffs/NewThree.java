@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,32 +19,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.quest;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class Embers extends Item {
+public class NewThree extends FlavourBuff {
 
 	{
-		image = ItemSpriteSheet.EMBER;
+		type = buffType.POSITIVE;
+		announced = true;
+	}
 
-		unique = true;
+	public static final float DURATION = 20f;
+
+	@Override
+	public int icon() {
+		return BuffIndicator.NEW_THREE;
 	}
 
 	@Override
-	public boolean isUpgradable() {
-		return false;
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
 	@Override
-	public boolean isIdentified() {
-		return true;
+	public String toString() {
+		return Messages.get(this, "name");
 	}
 
 	@Override
-	public ItemSprite.Glowing glowing() {
-		return new ItemSprite.Glowing(0x660000, 3f);
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
 	}
+
 }

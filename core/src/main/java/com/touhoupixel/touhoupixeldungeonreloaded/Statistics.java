@@ -39,7 +39,7 @@ public class Statistics {
 	public static int yorihimesKilled;
 	public static int kisumesKilled;
 	public static int shopkeepersKilled;
-	public static int ankhsUsed;
+	public static int moonCount;
 
 	//These are used for score calculation
 	//some are built incrementally, most are assigned when full score is calculated
@@ -70,13 +70,10 @@ public class Statistics {
 
 	public static int yukariCount;
 
-	public static int healwoundsHTdown;
-	public static int dismantlecount;
-
-	public static int redscroll;
-	public static int purplescroll;
-	public static int greenscroll;
-	public static int scrollfragment;
+	public static int maxHP_down;
+	public static int life_count;
+	public static int bomb_count;
+	public static int dismantle_count;
 
 	public static int seija_roulette;
 
@@ -100,13 +97,11 @@ public class Statistics {
 
 	public static int tenshiattackstep;
 	public static int eirinelixircount;
-	public static int ymbosskillcount;
-	public static int forestbosskillcount;
 
 	public static int nextvalue;
 
 	public static int mood;
-	public static int wandpowerup;
+	public static int wand_power_up;
 
 	public static int lifefragmentkill;
 	public static int spellcardfragmentkill;
@@ -118,7 +113,11 @@ public class Statistics {
 	public static int double_speed_upgrade;
 	public static int extermination_number;
 
-	public static boolean dinfocheck = false;
+	public static boolean identify_use;
+	public static boolean fate_use;
+	public static boolean earth_use;
+	public static boolean exorcism_use;
+	public static boolean transmute_use;
 
 	public static boolean elixir_trigger = false;
 
@@ -126,9 +125,6 @@ public class Statistics {
 
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
-
-	public static boolean gameWon = false;
-	public static boolean fliped = false;
 
 	public static boolean scorelife1 = false;
 	public static boolean scorelife2 = false;
@@ -141,7 +137,7 @@ public class Statistics {
 
 	public static boolean lifelose = false;
 	public static boolean spellcarduse = false;
-	public static boolean torchuse = false;
+	public static boolean torch_use = false;
 
 	//boss appear check
 	public static boolean boss1 = false;
@@ -154,7 +150,6 @@ public class Statistics {
 	public static boolean boss8 = false;
 	public static boolean boss9 = false;
 
-	//ability cards
 	public static boolean card1 = false;
 	public static boolean card2 = false;
 	public static boolean card3 = false;
@@ -226,8 +221,6 @@ public class Statistics {
 	public static boolean card69 = false;
 	public static boolean card70 = false;
 
-	public static boolean nightcheck = false;
-
 	public static void reset() {
 
 		goldCollected	= 0;
@@ -243,7 +236,7 @@ public class Statistics {
 		yorihimesKilled = 0;
 		kisumesKilled   = 0;
 		shopkeepersKilled = 0;
-		ankhsUsed		= 0;
+		moonCount		= 0;
 
 		progressScore   = 0;
 		heldItemValue   = 0;
@@ -271,13 +264,10 @@ public class Statistics {
 
 		yukariCount = 0;
 
-		healwoundsHTdown = 0;
-		dismantlecount = 0;
-
-		redscroll	= 0;
-		purplescroll	= 0;
-		greenscroll	= 0;
-		scrollfragment	= 0;
+		maxHP_down = 0;
+		life_count = 0;
+		bomb_count = 0;
+		dismantle_count = 0;
 
 		seija_roulette = 5;
 
@@ -301,13 +291,11 @@ public class Statistics {
 
 		tenshiattackstep = 0;
 		eirinelixircount = 0;
-		ymbosskillcount = 0;
-		forestbosskillcount = 0;
 
 		nextvalue = 500;
 
 		mood = 0;
-		wandpowerup = 0;
+		wand_power_up = 0;
 
 		lifefragmentkill = 0;
 		spellcardfragmentkill = 0;
@@ -320,16 +308,17 @@ public class Statistics {
 		double_speed_upgrade = 0;
 		extermination_number = 0;
 
-		dinfocheck = false;
+		identify_use = false;
+		fate_use = false;
+		earth_use = false;
+		exorcism_use = false;
+		transmute_use = false;
 
 		elixir_trigger = false;
 
 		remi_countdown = false;
 
 		qualifiedForNoKilling = false;
-
-		gameWon = false;
-		fliped = false;
 
 		scorelife1 = false;
 		scorelife2 = false;
@@ -342,7 +331,7 @@ public class Statistics {
 
 		lifelose = false;
 		spellcarduse = false;
-		torchuse = false;
+		torch_use = false;
 
 		boss1 = false;
 		boss2 = false;
@@ -424,8 +413,6 @@ public class Statistics {
 		card68 = false;
 		card69 = false;
 		card70 = false;
-
-		nightcheck = false;
 	}
 
 	private static final String GOLD		= "score";
@@ -440,7 +427,7 @@ public class Statistics {
 	private static final String KISUMES	    = "kisumeskilled";
 	private static final String SHOPKEEPERS	= "shopkeeperskilled";
 	private static final String MURASAS = "priranhas";
-	private static final String ANKHS		= "ankhsUsed";
+	private static final String MOON_COUNT		= "moon_count";
 
 	private static final String PROG_SCORE	    = "prog_score";
 	private static final String ITEM_VAL	    = "item_val";
@@ -468,13 +455,10 @@ public class Statistics {
 
 	private static final String YUKARICOUNT		= "yukaricount";
 
-	private static final String HEALWOUNDSHTDOWN		= "healwoundshtdown";
-	private static final String DISMANTLECOUNT = "dismantlecount";
-
-	private static final String REDSCROLL		= "redscroll";
-	private static final String PURPLESCROLL		= "purplescroll";
-	private static final String GREENSCROLL		= "greenscroll";
-	private static final String SCROLLFRAGMENT		= "scrolfragment";
+	private static final String MAXHP_DOWN		= "maxhp_down";
+	private static final String LIFE_COUNT = "life_count";
+	private static final String BOMB_COUNT = "bomb_count";
+	private static final String DISMANTLE_COUNT = "dismantle_count";
 
 	private static final String SEIJA_ROULETTE = "seija_roulette";
 
@@ -498,8 +482,6 @@ public class Statistics {
 
 	private static final String TENSHIATTACKSTEP	= "tenshiattackstep";
 	private static final String EIRINELIXIRCOUNT	= "eirinelixircount";
-	private static final String YMBOSSKILLCOUNT	= "ymbosskillcount";
-	private static final String FORESTBOSSKILLCOUNT	= "forestbosskillcount";
 
 	private static final String NEXTVALUE	= "nextvalue";
 
@@ -517,16 +499,17 @@ public class Statistics {
 	private static final String DOUBLE_SPEED_UPGRADE	= "double_speed_upgrade";
 	private static final String EXTERMINATION_NUMBER	= "extermination_number";
 
-	private static final String DINFOCHECK	= "dinfocheck";
+	private static final String IDENTIFY_USE	= "identify_use";
+	private static final String FATE_USE	= "fate_use";
+	private static final String EARTH_USE	= "earth_use";
+	private static final String EXORCISM_USE	= "exorcism_use";
+	private static final String TRANSMUTE_USE	= "transmute_use";
 
 	private static final String ELIXIRTRIGGER	= "elixirtrigger";
 
-	private static final String REMICOUNTDOWN	= "remicountdown";
+	private static final String REMI_COUNTDOWN	= "remi_countdown";
 
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
-
-	private static final String WON		        = "won";
-	private static final String FLIPED		= "fliped";
 
 	private static final String SCORELIFE1		= "scorelife1";
 	private static final String SCORELIFE2		= "scorelife2";
@@ -539,7 +522,7 @@ public class Statistics {
 
 	private static final String LIFELOSE		= "lifelose";
 	private static final String SPELLCARDUSE		= "spellcarduse";
-	private static final String TORCHUSE		= "torchuse";
+	private static final String TORCH_USE		= "torch_use";
 
 	private static final String BOSS1		= "boss1";
 	private static final String BOSS2		= "boss2";
@@ -622,8 +605,6 @@ public class Statistics {
 	private static final String CARD69		= "card69";
 	private static final String CARD70		= "card70";
 
-	private static final String NIGHTCHECK		= "nightcheck";
-
 	public static void storeInBundle( Bundle bundle ) {
 		bundle.put( GOLD,		goldCollected );
 		bundle.put( GOLDPICKEDUP,		goldPickedup );
@@ -637,7 +618,7 @@ public class Statistics {
 		bundle.put( YORIHIMES,	yorihimesKilled );
 		bundle.put( SHOPKEEPERS,shopkeepersKilled);
 		bundle.put( KISUMES,	kisumesKilled );
-		bundle.put( ANKHS,		ankhsUsed );
+		bundle.put( MOON_COUNT,		moonCount );
 
 		bundle.put( PROG_SCORE,  progressScore );
 		bundle.put( ITEM_VAL,    heldItemValue );
@@ -669,15 +650,61 @@ public class Statistics {
 
 		bundle.put( YUKARICOUNT, yukariCount);
 
-		bundle.put( HEALWOUNDSHTDOWN, healwoundsHTdown);
-		bundle.put(DISMANTLECOUNT, dismantlecount);
+		bundle.put( MAXHP_DOWN, maxHP_down);
+		bundle.put( LIFE_COUNT, life_count);
+		bundle.put( BOMB_COUNT, bomb_count);
+		bundle.put( DISMANTLE_COUNT, dismantle_count);
 
-		bundle.put( REDSCROLL,	redscroll );
-		bundle.put( PURPLESCROLL,	purplescroll );
-		bundle.put( GREENSCROLL,	greenscroll );
-		bundle.put( SCROLLFRAGMENT,	scrollfragment );
+		bundle.put( SEIJA_ROULETTE, seija_roulette);
 
-		bundle.put(SEIJA_ROULETTE, seija_roulette);
+		bundle.put( DURATION,	duration );
+
+		bundle.put( POWERFULRES,powerfulres );
+		bundle.put( COOLRES,	coolres );
+		bundle.put( PURERES,	pureres );
+		bundle.put( HAPPYRES,	happyres );
+
+		bundle.put( RANDOMENCOUNTERTRACK,	randomencountertrack );
+		bundle.put( TIMETRACKBUFF,	timetrackbuff );
+		bundle.put( TIMETRACKSTRUP,	timetrackstrup );
+
+		bundle.put( POWER,	power );
+		bundle.put( VALUE,	value );
+		bundle.put( LIFE,	life );
+		bundle.put( LIFEFRAGMENT,	lifefragment );
+		bundle.put( SPELLCARD,	spellcard );
+		bundle.put( SPELLCARDFRAGMENT,	spellcardfragment );
+
+		bundle.put( TENSHIATTACKSTEP, tenshiattackstep);
+		bundle.put( EIRINELIXIRCOUNT, eirinelixircount);
+
+		bundle.put( NEXTVALUE,	nextvalue );
+
+		bundle.put( MOOD, mood);
+		bundle.put( WANDPOWERUP, wand_power_up);
+
+		bundle.put( LIFEFRAGMENTKILL,	lifefragmentkill );
+		bundle.put( SPELLCARDFRAGMENTKILL,	spellcardfragmentkill );
+
+		bundle.put( HITORICOUNT,	hitoricount );
+		bundle.put( HITORILEFTTIME,	hitorilefttime );
+
+		bundle.put( DIFFICULTY,	difficulty );
+
+		bundle.put( IDENTIFY_USE,	identify_use );
+		bundle.put( FATE_USE,	fate_use );
+		bundle.put( EARTH_USE,	earth_use );
+		bundle.put( EXORCISM_USE,	exorcism_use );
+		bundle.put( TRANSMUTE_USE,	transmute_use );
+
+		bundle.put( DOUBLE_SPEED_UPGRADE,	double_speed_upgrade );
+		bundle.put( EXTERMINATION_NUMBER,	extermination_number );
+
+		bundle.put( ELIXIRTRIGGER, elixir_trigger);
+
+		bundle.put( REMI_COUNTDOWN, remi_countdown);
+
+		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
 
 		bundle.put( SCORELIFE1,	scorelife1 );
 		bundle.put( SCORELIFE2,	scorelife2 );
@@ -690,7 +717,7 @@ public class Statistics {
 
 		bundle.put( LIFELOSE,	lifelose );
 		bundle.put( SPELLCARDUSE,	spellcarduse );
-		bundle.put( TORCHUSE,	torchuse );
+		bundle.put( TORCH_USE, torch_use);
 
 		bundle.put( BOSS1,	boss1 );
 		bundle.put( BOSS2,	boss2 );
@@ -772,57 +799,6 @@ public class Statistics {
 		bundle.put( CARD68,	card68 );
 		bundle.put( CARD69,	card69 );
 		bundle.put( CARD70,	card70 );
-
-		bundle.put( DURATION,	duration );
-
-		bundle.put( POWERFULRES,powerfulres );
-		bundle.put( COOLRES,	coolres );
-		bundle.put( PURERES,	pureres );
-		bundle.put( HAPPYRES,	happyres );
-
-		bundle.put( RANDOMENCOUNTERTRACK,	randomencountertrack );
-		bundle.put( TIMETRACKBUFF,	timetrackbuff );
-		bundle.put( TIMETRACKSTRUP,	timetrackstrup );
-
-		bundle.put( POWER,	power );
-		bundle.put( VALUE,	value );
-		bundle.put( LIFE,	life );
-		bundle.put( LIFEFRAGMENT,	lifefragment );
-		bundle.put( SPELLCARD,	spellcard );
-		bundle.put( SPELLCARDFRAGMENT,	spellcardfragment );
-
-		bundle.put( TENSHIATTACKSTEP, tenshiattackstep);
-		bundle.put( EIRINELIXIRCOUNT, eirinelixircount);
-		bundle.put( YMBOSSKILLCOUNT,	ymbosskillcount );
-		bundle.put( FORESTBOSSKILLCOUNT,	forestbosskillcount );
-
-		bundle.put( NEXTVALUE,	nextvalue );
-
-		bundle.put( MOOD, mood);
-		bundle.put( WANDPOWERUP, wandpowerup);
-		bundle.put( NIGHTCHECK, nightcheck);
-
-		bundle.put( LIFEFRAGMENTKILL,	lifefragmentkill );
-		bundle.put( SPELLCARDFRAGMENTKILL,	spellcardfragmentkill );
-
-		bundle.put( HITORICOUNT,	hitoricount );
-		bundle.put( HITORILEFTTIME,	hitorilefttime );
-
-		bundle.put( DIFFICULTY,	difficulty );
-
-		bundle.put( DOUBLE_SPEED_UPGRADE,	double_speed_upgrade );
-		bundle.put( EXTERMINATION_NUMBER,	extermination_number );
-
-		bundle.put( DINFOCHECK, dinfocheck );
-
-		bundle.put( ELIXIRTRIGGER, elixir_trigger);
-
-		bundle.put( REMICOUNTDOWN, remi_countdown);
-
-		bundle.put( NO_KILLING_QUALIFIED, qualifiedForNoKilling );
-
-		bundle.put( WON,        gameWon );
-		bundle.put( FLIPED, fliped);
 	}
 
 	public static void restoreFromBundle( Bundle bundle ) {
@@ -838,7 +814,7 @@ public class Statistics {
 		kisumesKilled	= bundle.getInt( KISUMES );
 		shopkeepersKilled	= bundle.getInt( SHOPKEEPERS );
 		murasasKilled = bundle.getInt(MURASAS);
-		ankhsUsed		= bundle.getInt( ANKHS );
+		moonCount		= bundle.getInt( MOON_COUNT );
 
 		progressScore   = bundle.getInt( PROG_SCORE );
 		heldItemValue   = bundle.getInt( ITEM_VAL );
@@ -871,13 +847,10 @@ public class Statistics {
 
 		yukariCount = bundle.getInt( YUKARICOUNT );
 
-		healwoundsHTdown = bundle.getInt( HEALWOUNDSHTDOWN );
-		dismantlecount = bundle.getInt(DISMANTLECOUNT);
-
-		redscroll   = bundle.getInt( REDSCROLL );
-		purplescroll   = bundle.getInt( PURPLESCROLL );
-		greenscroll   = bundle.getInt( GREENSCROLL );
-		scrollfragment   = bundle.getInt( SCROLLFRAGMENT );
+		maxHP_down = bundle.getInt( MAXHP_DOWN );
+		life_count = bundle.getInt(LIFE_COUNT);
+		bomb_count = bundle.getInt(BOMB_COUNT);
+		dismantle_count = bundle.getInt(DISMANTLE_COUNT);
 
 		seija_roulette = bundle.getInt(SEIJA_ROULETTE);
 
@@ -901,13 +874,11 @@ public class Statistics {
 
 		tenshiattackstep = bundle.getInt( TENSHIATTACKSTEP );
 		eirinelixircount = bundle.getInt( EIRINELIXIRCOUNT );
-		ymbosskillcount		= bundle.getInt( YMBOSSKILLCOUNT );
-		forestbosskillcount		= bundle.getInt( FORESTBOSSKILLCOUNT );
 
 		nextvalue		= bundle.getInt( NEXTVALUE );
 
 		mood = bundle.getInt( MOOD );
-		wandpowerup = bundle.getInt( WANDPOWERUP );
+		wand_power_up = bundle.getInt( WANDPOWERUP );
 
 		lifefragmentkill		= bundle.getInt( LIFEFRAGMENTKILL );
 		spellcardfragmentkill		= bundle.getInt( SPELLCARDFRAGMENTKILL );
@@ -917,19 +888,20 @@ public class Statistics {
 
 		difficulty		= bundle.getInt( DIFFICULTY );
 
-		double_speed_upgrade		= bundle.getInt( DOUBLE_SPEED_UPGRADE );
-		extermination_number		= bundle.getInt( EXTERMINATION_NUMBER );
+		double_speed_upgrade	= bundle.getInt( DOUBLE_SPEED_UPGRADE );
+		extermination_number	= bundle.getInt( EXTERMINATION_NUMBER );
 
-		dinfocheck = bundle.getBoolean( DINFOCHECK );
+		identify_use	= bundle.getBoolean( IDENTIFY_USE );
+		fate_use		= bundle.getBoolean( FATE_USE );
+		earth_use		= bundle.getBoolean( EARTH_USE );
+		exorcism_use		= bundle.getBoolean( EXORCISM_USE );
+		transmute_use		= bundle.getBoolean( TRANSMUTE_USE );
 
 		elixir_trigger = bundle.getBoolean( ELIXIRTRIGGER );
 
-		remi_countdown = bundle.getBoolean( REMICOUNTDOWN );
+		remi_countdown = bundle.getBoolean( REMI_COUNTDOWN );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
-
-		gameWon         = bundle.getBoolean( WON );
-		fliped = bundle.getBoolean( FLIPED );
 
 		scorelife1	= bundle.getBoolean( SCORELIFE1 );
 		scorelife2	= bundle.getBoolean( SCORELIFE2 );
@@ -942,7 +914,7 @@ public class Statistics {
 
 		lifelose	= bundle.getBoolean( LIFELOSE );
 		spellcarduse	= bundle.getBoolean( SPELLCARDUSE );
-		torchuse	= bundle.getBoolean( TORCHUSE );
+		torch_use = bundle.getBoolean( TORCH_USE );
 
 		boss1	= bundle.getBoolean( BOSS1 );
 		boss2	= bundle.getBoolean( BOSS2 );
@@ -1024,8 +996,6 @@ public class Statistics {
 		card68	= bundle.getBoolean( CARD68 );
 		card69	= bundle.getBoolean( CARD69 );
 		card70  = bundle.getBoolean( CARD70 );
-
-		nightcheck  = bundle.getBoolean( NIGHTCHECK );
 	}
 
 	public static void preview( GamesInProgress.Info info, Bundle bundle ){

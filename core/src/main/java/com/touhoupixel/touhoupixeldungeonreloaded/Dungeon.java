@@ -509,10 +509,10 @@ public class Dungeon {
 	}
 
 	public static void dropToChasm( Item item ) {
-		int depth = Dungeon.floor - 1; //should minus this
-		ArrayList<Item> dropped = Dungeon.droppedItems.get( depth );
+		int floor = Dungeon.floor - 1; //should minus this
+		ArrayList<Item> dropped = Dungeon.droppedItems.get( floor );
 		if (dropped == null) {
-			Dungeon.droppedItems.put( depth, dropped = new ArrayList<>() );
+			Dungeon.droppedItems.put( floor, dropped = new ArrayList<>() );
 		}
 		dropped.add( item );
 	}

@@ -21,7 +21,7 @@ public class Sagume extends Mob {
         spriteClass = SagumeSprite.class;
 
         HP = HT = 159;
-        defenseSkill = 42;
+        defenseSkill = 37;
         EXP = 22;
         maxLvl = 50;
 

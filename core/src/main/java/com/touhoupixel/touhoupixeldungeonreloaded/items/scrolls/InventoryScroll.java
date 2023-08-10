@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -52,7 +53,8 @@ public abstract class InventoryScroll extends Scroll {
 	
 	private void confirmCancelation() {
 		GameScene.show( new WndOptions(new ItemSprite(this),
-				Messages.titleCase(name()),
+				//Messages.titleCase(name()),
+				Messages.get(this, "unknown_scroll"),
 				Messages.get(this, "warning"),
 				Messages.get(this, "yes"),
 				Messages.get(this, "no") ) {
@@ -62,6 +64,26 @@ public abstract class InventoryScroll extends Scroll {
 				case 0:
 					curUser.spendAndNext( TIME_TO_READ );
 					identifiedByUse = false;
+					if (curItem instanceof ScrollOfIdentify){
+						Statistics.identify_use = true;
+						updateQuickslot();
+					}
+					if (curItem instanceof ScrollOfFate){
+						Statistics.fate_use = true;
+						updateQuickslot();
+					}
+					if (curItem instanceof ScrollOfEarth){
+						Statistics.earth_use = true;
+						updateQuickslot();
+					}
+					if (curItem instanceof ScrollOfExorcism){
+						Statistics.exorcism_use = true;
+						updateQuickslot();
+					}
+					if (curItem instanceof ScrollOfTransmutation){
+						Statistics.transmute_use = true;
+						updateQuickslot();
+					}
 					break;
 				case 1:
 					GameScene.selectItem( itemSelector );

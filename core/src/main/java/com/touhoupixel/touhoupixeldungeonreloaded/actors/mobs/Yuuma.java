@@ -22,7 +22,7 @@ public class Yuuma extends Mob {
         spriteClass = YuumaSprite.class;
 
         HP = HT = 358;
-        defenseSkill = 50;
+        defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
 

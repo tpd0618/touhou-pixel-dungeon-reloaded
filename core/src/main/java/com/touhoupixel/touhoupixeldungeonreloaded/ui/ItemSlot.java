@@ -23,10 +23,16 @@ package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEarth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
@@ -219,7 +225,35 @@ public class ItemSlot extends Button {
 
 			itemIcon = new Image(Assets.Sprites.ITEM_ICONS);
 			itemIcon.frame(ItemSpriteSheet.Icons.film.get(item.icon));
-			add(itemIcon);
+			if (item instanceof ScrollOfIdentify) {
+				if (Statistics.identify_use) {
+					add(itemIcon);
+				}
+			}
+			if (item instanceof ScrollOfFate) {
+				if (Statistics.fate_use){
+					add(itemIcon);
+				}
+			}
+			if (item instanceof ScrollOfEarth) {
+				if (Statistics.earth_use){
+					add(itemIcon);
+				}
+			}
+			if (item instanceof ScrollOfExorcism) {
+				if (Statistics.exorcism_use){
+					add(itemIcon);
+				}
+			}
+			if (item instanceof ScrollOfTransmutation) {
+				if (Statistics.transmute_use){
+					add(itemIcon);
+				}
+			}
+			if (!(item instanceof ScrollOfIdentify) && !(item instanceof ScrollOfFate) && !(item instanceof ScrollOfEarth) &&
+					!(item instanceof ScrollOfExorcism) && !(item instanceof ScrollOfTransmutation)) {
+				add(itemIcon);
+			}
 
 		} else if (item instanceof Weapon || item instanceof Armor) {
 

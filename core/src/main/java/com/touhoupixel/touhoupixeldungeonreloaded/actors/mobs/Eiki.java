@@ -55,7 +55,7 @@ public class Eiki extends Mob {
         spriteClass = EikiSprite.class;
 
         HP = HT = 380;
-        defenseSkill = 50;
+        defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
 
@@ -90,8 +90,8 @@ public class Eiki extends Mob {
     protected boolean act() {
         if (this.state != SLEEPING && this.state != FLEEING) {
             if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
-                if (Random.Int(6) == 0) {
-                    Dungeon.heroine.damage(Statistics.difficulty > 4 ? 50 : 25, this);
+                if (Random.Int(7) == 0) {
+                    Dungeon.heroine.damage(35 - Statistics.difficulty * 5, this);
                     CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 4);
                     GLog.w(Messages.get(this, "abyss_dragon"));
                 }

@@ -16,7 +16,7 @@ public class Doremy extends Mob {
         spriteClass = DoremySprite.class;
 
         HP = HT = 278;
-        defenseSkill = 42;
+        defenseSkill = 37;
         EXP = 21;
         maxLvl = 50;
 

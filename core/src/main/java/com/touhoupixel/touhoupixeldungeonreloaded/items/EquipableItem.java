@@ -124,7 +124,7 @@ public abstract class EquipableItem extends Item {
 
 				heroine.spend( 1f );
 
-				Statistics.dismantlecount += 1;
+				Statistics.dismantle_count += 1;
 
 				if (Statistics.card33 && Random.Int(3) == 0){
 					Buff.prolong(heroine, KeyHeal.class, KeyHeal.DURATION/3f);
@@ -167,6 +167,11 @@ public abstract class EquipableItem extends Item {
 	public abstract boolean doEquip( Hero heroine);
 
 	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
+
+		if (cursed || keptThoughLostInvent) {
+			GLog.w(Messages.get(EquipableItem.class, "unequip_cursed"));
+			return false;
+		}
 
 		if (Dungeon.floor == 20){
 			GLog.w(Messages.get(EquipableItem.class, "kasen_floor"));

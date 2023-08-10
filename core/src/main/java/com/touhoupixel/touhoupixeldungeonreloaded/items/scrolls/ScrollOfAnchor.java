@@ -35,6 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossMarisa;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AnchorTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SakuyaDaggerTrap;
@@ -57,6 +58,27 @@ public class ScrollOfAnchor extends Scroll {
 	@Override
 	public void doRead() {
 		new AnchorTrap().set(curUser.pos).activate();
+
+		//Level.set( curUser.pos - 1, Terrain.WATER );
+		//GameScene.updateMap( curUser.pos - 1 );
+		//maybe used for digging?
+
+		if (Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos - 1] == Terrain.GRASS || Dungeon.level.map[curUser.pos - 1] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos - 1] == Terrain.HIGH_GRASS){
+			Level.set( curUser.pos - 1, Terrain.WATER );
+			GameScene.updateMap( curUser.pos - 1 );
+		}
+		if (Dungeon.level.map[curUser.pos + 1] == Terrain.EMPTY || Dungeon.level.map[curUser.pos + 1] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos + 1] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos + 1] == Terrain.GRASS || Dungeon.level.map[curUser.pos + 1] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos + 1] == Terrain.HIGH_GRASS){
+			Level.set( curUser.pos + 1, Terrain.WATER );
+			GameScene.updateMap( curUser.pos + 1 );
+		}
+		if (Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMPTY || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.GRASS || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.HIGH_GRASS){
+			Level.set( curUser.pos - Dungeon.level.width(), Terrain.WATER );
+			GameScene.updateMap( curUser.pos - Dungeon.level.width() );
+		}
+		if (Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMPTY || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.GRASS || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.HIGH_GRASS){
+			Level.set( curUser.pos + Dungeon.level.width(), Terrain.WATER );
+			GameScene.updateMap( curUser.pos + Dungeon.level.width() );
+		}
 
 		GLog.w(Messages.get(this, "anchor"));
 		identify();

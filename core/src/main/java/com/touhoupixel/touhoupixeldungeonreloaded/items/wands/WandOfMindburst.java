@@ -66,7 +66,7 @@ public class WandOfMindburst extends DamageWand {
 		if (curUser.HT > 2 && curUser.HP > 2) {
 			curUser.HP -= 2;
 			curUser.HT -= 2;
-			Statistics.healwoundsHTdown -= 2;
+			Statistics.maxHP_down -= 2;
 		}
 	}
 

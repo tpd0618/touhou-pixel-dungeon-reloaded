@@ -29,6 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.PatchouliCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.SpyGlass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.TenshiCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
@@ -192,7 +193,7 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new TenshiCard() );
 
 		itemsToSpawn.add( new Torch() );
-		itemsToSpawn.add( new Torch() );
+		itemsToSpawn.add( new SpyGlass().quantity(Random.IntRange(2, 3)));
 
 		itemsToSpawn.add( new Alchemize().quantity(Random.IntRange(2, 3)));
 

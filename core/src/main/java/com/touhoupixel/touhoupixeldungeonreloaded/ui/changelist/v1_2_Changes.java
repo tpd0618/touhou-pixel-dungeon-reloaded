@@ -29,12 +29,34 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_2_Changes(changeInfos);
 		add_v1_1_1_Changes(changeInfos);
 		add_v1_1_0_Changes(changeInfos);
 		add_v1_0_9_Changes(changeInfos);
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_2_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.2", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.2 changes",
+				"_-_ Mitama now appears in gensokyo! Throw a spyglass to kill it!\n" +
+						"_-_ Tewi and seiga are changed.\n" +
+						"_-_ Eiki's judgment damage has been nerfed.\n" +
+						"_-_ New item, spyglass is added.\n" +
+						"_-_ Potion of enlightenment is heavily nerfed.\n" +
+						"_-_ Targeted spellcards are now always say 'choose an item' and don't tell what the spellcard is.\n" +
+						"_-_ Spellcard of anchor is now more dangerous.\n" +
+						"_-_ Stats checker now shows life/bomb/dismantle used count.\n" +
+						"_-_ Keiki's creation and suika's gourd card are changed.\n" +
+						"_-_ New debuff, randomizer is added.\n" +
+						"_-_ Two melee weapons are added.\n" +
+						"_-_ Late game enemies' evasion are nerfed.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_1_1_Changes(ArrayList<ChangeInfo> changeInfos ) {

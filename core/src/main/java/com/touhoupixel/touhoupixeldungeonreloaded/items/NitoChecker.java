@@ -35,7 +35,7 @@ public class NitoChecker extends Item {
 	private static final String AC_DRINK = "DRINK";
 
 	{
-		image = ItemSpriteSheet.TOKEN;
+		image = ItemSpriteSheet.ARTIFACT_SPELLBOOK;
 
 		defaultAction = AC_DRINK;
 
@@ -57,10 +57,11 @@ public class NitoChecker extends Item {
 		String info = desc();
 
 		info += "\n\n" + Messages.get( this, "stats1", Statistics.power);
-		info += "\n\n" + Messages.get( this, "stats2", Statistics.life);
+		info += "\n\n" + Messages.get( this, "stats2", Statistics.life, Statistics.life_count);
 		info += "\n\n" + Messages.get( this, "stats3", Statistics.lifefragment);
-		info += "\n\n" + Messages.get( this, "stats4", Statistics.spellcard);
+		info += "\n\n" + Messages.get( this, "stats4", Statistics.spellcard, Statistics.bomb_count);
 		info += "\n\n" + Messages.get( this, "stats5", Statistics.spellcardfragment);
+		info += "\n\n" + Messages.get( this, "stats6", Statistics.dismantle_count);
 		if (Statistics.difficulty == 1) {
 			info += "\n\n" + Messages.get(this, "easy");
 		}

@@ -510,7 +510,7 @@ public class WndJournal extends WndTabbed {
 				for (Class<? extends Item> cls : itemClasses)
 					known.put(cls, Ring.getKnown().contains(cls));
 			} else if (currentItemIdx == ARTIF_IDX) {
-				itemClasses = new ArrayList<>(Catalog.CARDS.items());
+				itemClasses = new ArrayList<>(Catalog.ARTIFACTS.items());
 				for (Class<? extends Item> cls : itemClasses) known.put(cls, true);
 			} else if (currentItemIdx == POTION_IDX) {
 				itemClasses = new ArrayList<>(Catalog.POTIONS.items());

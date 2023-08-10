@@ -17,7 +17,7 @@ public class Yukari extends Mob {
         spriteClass = YukariSprite.class;
 
         HP = HT = 450;
-        defenseSkill = 45;
+        defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
 

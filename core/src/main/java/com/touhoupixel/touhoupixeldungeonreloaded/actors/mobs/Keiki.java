@@ -25,7 +25,7 @@ public class Keiki extends Mob {
         spriteClass = KeikiSprite.class;
 
         HP = HT = 237;
-        defenseSkill = 45;
+        defenseSkill = 40;
         EXP = 24;
         maxLvl = 75;
 

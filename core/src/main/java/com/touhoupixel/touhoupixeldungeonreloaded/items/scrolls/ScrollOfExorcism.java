@@ -22,19 +22,25 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Flare;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
@@ -42,12 +48,11 @@ public class ScrollOfExorcism extends InventoryScroll {
 
 	{
 		icon = ItemSpriteSheet.Icons.SCROLL_EXORCISM;
-		preferredBag = Belongings.Backpack.class;
 	}
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return uncursable(item);
+		return !item.unique && !(item instanceof Plant.Seed) && !(item instanceof MissileWeapon) && !(item instanceof Herb) && !(item instanceof Talisman);
 	}
 
 	public static boolean uncursable( Item item ){
@@ -66,22 +71,29 @@ public class ScrollOfExorcism extends InventoryScroll {
 
 	@Override
 	protected void onItemSelected(Item item) {
-		new Flare( 6, 32 ).show( curUser.sprite, 2f ) ;
+		if (uncursable(item)) {
+			new Flare(6, 32).show(curUser.sprite, 2f);
 
-		boolean procced = uncurse( curUser, item );
+			boolean procced = uncurse(curUser, item);
 
-		if (curUser.buff(Degrade.class) != null) {
-			Degrade.detach(curUser, Degrade.class);
-			procced = true;
-		}
+			if (curUser.buff(Degrade.class) != null) {
+				Degrade.detach(curUser, Degrade.class);
+				procced = true;
+			}
 
-		Buff.detach(curUser, CursedBlow.class);
+			Buff.detach(curUser, CursedBlow.class);
 
-		if (procced) {
-			GLog.p( Messages.get(this, "cleansed") );
+			if (procced) {
+				GLog.p(Messages.get(this, "cleansed"));
+			} else {
+				GLog.i(Messages.get(this, "not_cleansed"));
+			}
 		} else {
-			GLog.i( Messages.get(this, "not_cleansed") );
+			curUser.sprite.parent.add(new Identification(curUser.sprite.center().offset(0, -16)));
+			GLog.w(Messages.get(this, "not_exorcism_target"));
 		}
+		Statistics.exorcism_use = true;
+		updateQuickslot();
 	}
 
 	public static boolean uncurse(Hero heroine, Item... items ) {

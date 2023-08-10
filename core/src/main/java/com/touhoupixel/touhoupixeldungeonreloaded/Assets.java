@@ -400,13 +400,17 @@ public class Assets {
 		public static final String DESTORB = "sprites/destorb.png";
 
 		public static final String ZUN = "sprites/zun.png";
-		public static final String ZUN_LUST = "sprites/zun_lust.png";
-		public static final String ZUN_VANITY = "sprites/zun_vanity.png";
-		public static final String ZUN_GLUTTONY = "sprites/zun_gluttony.png";
-		public static final String ZUN_WRATH = "sprites/zun_wrath.png";
-		public static final String ZUN_AVARICE = "sprites/zun_avarice.png";
-		public static final String ZUN_ENVY = "sprites/zun_envy.png";
-		public static final String ZUN_PRIDE = "sprites/zun_pride.png";
+		public static final String ZUN_LUST = "sprites/zunlust.png";
+		public static final String ZUN_VANITY = "sprites/zunvanity.png";
+		public static final String ZUN_GLUTTONY = "sprites/zungluttony.png";
+		public static final String ZUN_WRATH = "sprites/zunwrath.png";
+		public static final String ZUN_AVARICE = "sprites/zunavarice.png";
+		public static final String ZUN_ENVY = "sprites/zunenvy.png";
+		public static final String ZUN_PRIDE = "sprites/zunpride.png";
+		public static final String MITAMA_ARA = "sprites/mitamaara.png";
+		public static final String MITAMA_KUSI = "sprites/mitamakusi.png";
+		public static final String MITAMA_NIGI = "sprites/mitamanigi.png";
+		public static final String MITAMA_SAKI = "sprites/mitamasaki.png";
 		public static final String LOTUS = "sprites/lotus.png";
 		public static final String RED_SENTRY = "sprites/red_sentry.png";
 	}

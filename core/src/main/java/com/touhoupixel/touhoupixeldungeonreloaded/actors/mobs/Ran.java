@@ -45,8 +45,8 @@ public class Ran extends Mob implements Callback {
         spriteClass = RanSprite.class;
 
         HP = HT = 214;
-        defenseSkill = 37;
-        EXP = 19;
+        defenseSkill = 32;
+        EXP = 15;
         maxLvl = 45;
 
         properties.add(Property.ANIMAL);

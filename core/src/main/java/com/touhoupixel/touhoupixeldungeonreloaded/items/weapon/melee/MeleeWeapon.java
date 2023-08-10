@@ -26,6 +26,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
@@ -75,9 +79,14 @@ public class MeleeWeapon extends Weapon {
 		Char ch = (Char) Actor.findChar(cell);
 		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine) {
 			MeleeWeapon meleeWeapon = (MeleeWeapon) curItem;
-			ch.damage(Random.NormalIntRange(Dungeon.heroine.STR+(meleeWeapon.min()*(meleeWeapon.level()+1))+8*meleeWeapon.tier,
-					Dungeon.heroine.STR+(meleeWeapon.max()*(meleeWeapon.level()+1))+8*meleeWeapon.tier), curUser);
-			//high damage
+			if (ch instanceof MitamaAra || ch instanceof MitamaKusi || ch instanceof MitamaNigi || ch instanceof MitamaSaki) {
+				ch.damage(0, curUser);
+				//zero damage
+			} else {
+				ch.damage(Random.NormalIntRange(Dungeon.heroine.STR + (meleeWeapon.min() * (meleeWeapon.level() + 1)) + 8 * meleeWeapon.tier,
+						Dungeon.heroine.STR + (meleeWeapon.max() * (meleeWeapon.level() + 1)) + 8 * meleeWeapon.tier), curUser);
+				//high damage
+			}
 			Heap[] equipHeaps = new Heap[1];
 			equipHeaps[0] = Dungeon.level.heaps.get(ch.pos);
 			for (Heap h : equipHeaps) {

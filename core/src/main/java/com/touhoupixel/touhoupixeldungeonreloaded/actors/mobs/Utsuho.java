@@ -45,7 +45,7 @@ public class Utsuho extends Mob implements Callback {
         spriteClass = UtsuhoSprite.class;
 
         HP = HT = 346;
-        defenseSkill = 50;
+        defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
 

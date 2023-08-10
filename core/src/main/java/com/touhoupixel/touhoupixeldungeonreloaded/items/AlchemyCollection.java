@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,47 +21,47 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.watabou.noosa.audio.Sample;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 import java.util.ArrayList;
 
-//removed from drops, here for pre-1.1.0 saves
-public class MerchantsBeacon extends Item {
+public class AlchemyCollection extends Item {
 
-	private static final String AC_USE = "USE";
+	private static final String AC_DRINK = "DRINK";
 
 	{
-		image = ItemSpriteSheet.BEACON;
+		image = ItemSpriteSheet.ALCH_COLLECTION;
+
+		defaultAction = AC_DRINK;
 
 		stackable = true;
-
-		defaultAction = AC_USE;
-
-		bones = true;
+		unique = true;
 	}
 
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add(AC_USE);
+		actions.add(AC_DRINK);
 		return actions;
 	}
 
 	@Override
-	public void execute(Hero heroine, String action) {
+	public void execute(final Hero heroine, String action) {
 
 		super.execute(heroine, action);
 
-		if (action.equals(AC_USE)) {
-			detach( heroine.belongings.backpack );
-			Shopkeeper.sell();
-			Sample.INSTANCE.play( Assets.Sounds.BEACON );
-		}
+		if (action.equals(AC_DRINK)) {
+			Dungeon.energy += 20;
 
+			curUser.spendAndNext(1f);
+
+			curItem.detach(curUser.belongings.backpack);
+		}
 	}
 
 	@Override
@@ -73,10 +73,4 @@ public class MerchantsBeacon extends Item {
 	public boolean isIdentified() {
 		return true;
 	}
-
-	@Override
-	public int value() {
-		return 5 * quantity;
-	}
-
 }

@@ -16,8 +16,8 @@ public class Satori extends Mob {
         spriteClass = SatoriSprite.class;
 
         HP = HT = 259;
-        defenseSkill = 99;
-        EXP = 23;
+        defenseSkill = 64;
+        EXP = 15;
         maxLvl = 75;
 
         properties.add(Property.YOKAI);

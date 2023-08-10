@@ -18,7 +18,7 @@ public class Iku extends Mob {
         spriteClass = IkuSprite.class;
 
         HP = HT = 244;
-        defenseSkill = 40;
+        defenseSkill = 35;
         EXP = 18;
         maxLvl = 47;
 

@@ -48,11 +48,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
@@ -81,11 +81,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Komachi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -244,15 +246,15 @@ public class Hero extends Char {
 		int curHT = HT;
 
 		if (Statistics.difficulty == 6) {
-			HT = 30 + Statistics.healwoundsHTdown + (lvl - 1) + HTBoost;
+			HT = 30 + Statistics.maxHP_down + (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 5) {
-			HT = 30 + Statistics.healwoundsHTdown + 3 * (lvl - 1) + HTBoost;
+			HT = 30 + Statistics.maxHP_down + 3 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 4 || Statistics.difficulty == 3) {
-			HT = 30 + Statistics.healwoundsHTdown + 4 * (lvl - 1) + HTBoost;
+			HT = 30 + Statistics.maxHP_down + 4 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 2 || Statistics.difficulty == 1) {
-			HT = 30 + Statistics.healwoundsHTdown + 5 * (lvl - 1) + HTBoost;
+			HT = 30 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost;
 		} else {
-			HT = 30 + Statistics.healwoundsHTdown + 5 * (lvl - 1) + HTBoost; //just in case
+			HT = 30 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost; //just in case
 		}
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
@@ -479,6 +481,46 @@ public class Hero extends Char {
 		}
 		if (dmg < 0) dmg = 0;
 
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki) {
+			if (wep != null && Dungeon.heroine.belongings.weapon().YokaiFactor(this) == 0 &&
+					Dungeon.heroine.belongings.weapon().GodFactor(this) == 0 &&
+					Dungeon.heroine.belongings.weapon().HumanFactor(this) == 0 &&
+					Dungeon.heroine.belongings.weapon().AnimalFactor(this) == 0 &&
+					Dungeon.heroine.belongings.weapon().WarpFactor(this) == 0) {
+				dmg *= 0f;
+			}
+		}
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki){
+			if (wep != null && Dungeon.heroine.belongings.weapon().YokaiFactor(this) == 1 && !enemy.properties().contains(Char.Property.YOKAI)){
+				dmg *= 0f;
+			}
+		}
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki){
+			if (wep != null && Dungeon.heroine.belongings.weapon().GodFactor(this) == 1 && !enemy.properties().contains(Char.Property.GOD)){
+				dmg *= 0f;
+			}
+		}
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki){
+			if (wep != null && Dungeon.heroine.belongings.weapon().HumanFactor(this) == 1 && !enemy.properties().contains(Char.Property.HUMAN)){
+				dmg *= 0f;
+			}
+		}
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki){
+			if (wep != null && Dungeon.heroine.belongings.weapon().AnimalFactor(this) == 1 && !enemy.properties().contains(Char.Property.ANIMAL)){
+				dmg *= 0f;
+			}
+		}
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki){
+			if (wep != null && Dungeon.heroine.belongings.weapon().WarpFactor(this) == 1 && !enemy.properties().contains(Char.Property.WARP)){
+				dmg *= 0f;
+			}
+		}
+		if (enemy instanceof MitamaAra || enemy instanceof MitamaKusi || enemy instanceof MitamaNigi || enemy instanceof MitamaSaki){
+			if (Dungeon.heroine.belongings.weapon() instanceof MissileWeapon) {
+				dmg *= 0f;
+			}
+		}
+
 		if (Dungeon.heroine.buff(MeleeNullify.class) != null && Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
 			dmg = 1;
 		}
@@ -567,6 +609,10 @@ public class Hero extends Char {
 
 		if (Dungeon.heroine.buff(HeatRiser.class) != null) {
 			dmg *= 1.5f;
+		} //heat riser
+
+		if (Dungeon.heroine.buff(Randomizer.class) != null) {
+			dmg *= 0.5f;
 		} //heat riser
 
 		if (Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.MINIBOSS) ||
@@ -1292,7 +1338,7 @@ public class Hero extends Char {
 			Buff.affect(enemy, Burning.class).reignite(enemy, 10f);
 		}
 
-		if (Statistics.card23 && (Random.Int(6) == 0) && enemy.HP > 3){
+		if (Statistics.card23 && (Random.Int(6) == 0) && enemy.HP > 3 && !enemy.properties().contains(Char.Property.MINIBOSS) && !enemy.properties().contains(Char.Property.BOSS)) {
 			enemy.HP /= 2;
 		}
 
@@ -1317,6 +1363,10 @@ public class Hero extends Char {
 		if (Statistics.card32) {
 			damage *= 2f;
 		} //blank card
+
+		if (Dungeon.heroine.buff(Randomizer.class) != null){
+			damage *= 1.5f;
+		}
 
 		if (Dungeon.heroine.buff(HeatRiser.class) != null){
 			damage *= 0.5f;
@@ -1704,9 +1754,6 @@ public class Hero extends Char {
 		MasterThievesArmband.Thievery armband = buff(MasterThievesArmband.Thievery.class);
 		if (armband != null) armband.gainCharge(percent);
 
-		Berserk berserk = buff(Berserk.class);
-		if (berserk != null) berserk.recover(percent);
-
 		if (source != PotionOfExperience.class) {
 			for (Item i : belongings) {
 				i.onHeroGainExp(percent, this);
@@ -1820,6 +1867,7 @@ public class Hero extends Char {
 			Statistics.spellcard -= 2;
 			this.HP = HT / 4;
 			Statistics.power -= 100;
+			Statistics.life_count += 1;
 			if (Dungeon.floor == 15 && !Statistics.remi_countdown){
 				Buff.prolong(this, RemiCountdown.class, RemiCountdown.DURATION);
 			}
@@ -1830,7 +1878,6 @@ public class Hero extends Char {
 			GameScene.flash(0x80FFFF40);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			GLog.w(Messages.get(this, "revive"));
-			Statistics.ankhsUsed++;
 
 			for (Char ch : Actor.chars()) {
 			}
@@ -1844,6 +1891,7 @@ public class Hero extends Char {
 			}
 			this.HP = HT / 4;
 			Statistics.power -= 100;
+			Statistics.life_count += 1;
 			if (Dungeon.floor == 15 && !Statistics.remi_countdown){
 				Buff.prolong(this, RemiCountdown.class, RemiCountdown.DURATION);
 			}
@@ -1854,7 +1902,6 @@ public class Hero extends Char {
 			GameScene.flash(0x80FFFF40);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			GLog.w(Messages.get(this, "revive"));
-			Statistics.ankhsUsed++;
 
 			for (Char ch : Actor.chars()) {
 			}
@@ -1869,6 +1916,7 @@ public class Hero extends Char {
 			}
 			this.HP = HT / 4;
 			Statistics.power -= 100;
+			Statistics.life_count += 1;
 			if (Dungeon.floor == 15 && !Statistics.remi_countdown){
 				Buff.prolong(this, RemiCountdown.class, RemiCountdown.DURATION);
 			}
@@ -1879,7 +1927,6 @@ public class Hero extends Char {
 			GameScene.flash(0x80FFFF40);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			GLog.w(Messages.get(this, "revive"));
-			Statistics.ankhsUsed++;
 
 			for (Char ch : Actor.chars()) {
 			}
@@ -1959,7 +2006,6 @@ public class Hero extends Char {
 	//effectively cache this buff to prevent having to call buff(...) a bunch.
 	//This is relevant because we call isAlive during drawing, which has both performance
 	//and thread coordination implications if that method calls buff(...) frequently
-	private Berserk berserk;
 
 	@Override
 	public boolean isAlive() {
@@ -2100,10 +2146,8 @@ public class Hero extends Char {
 		}
 
 		if (HP <= 0){
-			if (berserk == null) berserk = buff(Berserk.class);
-			return berserk != null && berserk.berserking();
+			return false;
 		} else {
-			berserk = null;
 			return super.isAlive();
 		}
 	}

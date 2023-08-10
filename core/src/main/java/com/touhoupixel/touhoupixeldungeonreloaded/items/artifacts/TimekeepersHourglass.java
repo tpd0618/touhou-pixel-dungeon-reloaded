@@ -442,7 +442,7 @@ public class TimekeepersHourglass extends Artifact {
 	public static class sandBag extends Item {
 
 		{
-			image = ItemSpriteSheet.SANDBAG;
+			image = ItemSpriteSheet.HOURGLASS_UP;
 		}
 
 		@Override
