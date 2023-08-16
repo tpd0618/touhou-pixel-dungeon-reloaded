@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ZeroDexterityTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
@@ -107,7 +108,7 @@ public class HeavenLevel extends RegularLevel {
 		return new Class[]{
 				EnchantEraseTrap.class, FrostTrap.class, BlazingTrap.class, AlarmTrap.class, InversionTrap.class,
 				DegradeTrap.class, ExConfusionTrap.class, CursedBlowTrap.class, CorrosionTrap.class, RockfallTrap.class,
-				DisintegrationTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, FlashingTrap.class, GrimTrap.class};
+				DisintegrationTrap.class, CursingTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, FlashingTrap.class, GrimTrap.class};
 	}
 
 	@Override
@@ -115,7 +116,7 @@ public class HeavenLevel extends RegularLevel {
 		return new float[]{
 				3, 3, 3, 3, 3,
 				2, 2, 2, 2, 2,
-				1, 1, 1, 1, 1};
+				1, 1, 1, 1, 1, 1};
 	}
 	
 	@Override

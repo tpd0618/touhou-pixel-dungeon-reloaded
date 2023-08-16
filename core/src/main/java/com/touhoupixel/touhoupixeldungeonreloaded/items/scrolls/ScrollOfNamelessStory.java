@@ -33,7 +33,7 @@ public class ScrollOfNamelessStory extends Scroll {
 	public void onThrow( int cell ) {
 		Heap heap = Dungeon.level.drop( this, cell );
 		Char ch = (Char) Actor.findChar(cell);
-		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine) {
+		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)) {
 			GLog.i(Messages.get(this, "target_exterminate"));
 			Sample.INSTANCE.play(Assets.Sounds.BLAST);
 
@@ -983,6 +983,52 @@ public class ScrollOfNamelessStory extends Scroll {
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 					if (mob instanceof Keiki) {
 						Statistics.extermination_number = 104;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
+
+			if (ch instanceof Biten){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Biten) {
+						Statistics.extermination_number = 105;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
+			if (ch instanceof Chiyari){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Chiyari) {
+						Statistics.extermination_number = 106;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
+			if (ch instanceof Enoko){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Enoko) {
+						Statistics.extermination_number = 107;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
+			if (ch instanceof Hisami){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Hisami) {
+						Statistics.extermination_number = 108;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
+			if (ch instanceof Zanmu){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Zanmu) {
+						Statistics.extermination_number = 109;
 						mob.exterminate();
 						mob.sprite.killAndErase();
 					}

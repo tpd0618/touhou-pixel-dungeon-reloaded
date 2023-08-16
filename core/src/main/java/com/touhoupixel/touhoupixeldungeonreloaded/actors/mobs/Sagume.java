@@ -27,6 +27,9 @@ public class Sagume extends Mob {
 
         properties.add(Property.WARP);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new LifeFragment();
         lootChance = 0.05f;
     }

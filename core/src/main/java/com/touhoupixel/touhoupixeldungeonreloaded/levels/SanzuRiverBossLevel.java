@@ -46,7 +46,7 @@ public class SanzuRiverBossLevel extends Level {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.FLOOR_10, Assets.Music.FLOOR_10, Assets.Music.FLOOR_10},
+				new String[]{Assets.Music.BOSS_FLOOR_5, Assets.Music.BOSS_FLOOR_5, Assets.Music.BOSS_FLOOR_5},
 				new float[]{1, 1, 0.5f},
 				false);
 	}

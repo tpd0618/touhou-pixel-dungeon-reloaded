@@ -70,6 +70,12 @@ public class BossHecatia extends Mob {
             if (mob instanceof Eiki){
                 mob.die(null);
             }
+            if (mob instanceof Junko){
+                mob.die(null);
+            }
+            if (mob instanceof Keiki){
+                mob.die(null);
+            }
             if (mob instanceof Toyohime){
                 mob.die(null);
             }

@@ -39,7 +39,9 @@ public class Statistics {
 	public static int yorihimesKilled;
 	public static int kisumesKilled;
 	public static int shopkeepersKilled;
-	public static int moonCount;
+	public static int moon_Count;
+	public static int trap_act_count;
+	public static int maga_count;
 
 	//These are used for score calculation
 	//some are built incrementally, most are assigned when full score is calculated
@@ -236,7 +238,9 @@ public class Statistics {
 		yorihimesKilled = 0;
 		kisumesKilled   = 0;
 		shopkeepersKilled = 0;
-		moonCount		= 0;
+		moon_Count = 0;
+		trap_act_count = 0;
+		maga_count = 0;
 
 		progressScore   = 0;
 		heldItemValue   = 0;
@@ -428,6 +432,8 @@ public class Statistics {
 	private static final String SHOPKEEPERS	= "shopkeeperskilled";
 	private static final String MURASAS = "priranhas";
 	private static final String MOON_COUNT		= "moon_count";
+	private static final String TRAP_ACT_COUNT		= "trap_act_count";
+	private static final String MAGA_COUNT		= "maga_count";
 
 	private static final String PROG_SCORE	    = "prog_score";
 	private static final String ITEM_VAL	    = "item_val";
@@ -618,7 +624,9 @@ public class Statistics {
 		bundle.put( YORIHIMES,	yorihimesKilled );
 		bundle.put( SHOPKEEPERS,shopkeepersKilled);
 		bundle.put( KISUMES,	kisumesKilled );
-		bundle.put( MOON_COUNT,		moonCount );
+		bundle.put( MOON_COUNT, moon_Count);
+		bundle.put( TRAP_ACT_COUNT, trap_act_count);
+		bundle.put( MAGA_COUNT, maga_count);
 
 		bundle.put( PROG_SCORE,  progressScore );
 		bundle.put( ITEM_VAL,    heldItemValue );
@@ -814,7 +822,9 @@ public class Statistics {
 		kisumesKilled	= bundle.getInt( KISUMES );
 		shopkeepersKilled	= bundle.getInt( SHOPKEEPERS );
 		murasasKilled = bundle.getInt(MURASAS);
-		moonCount		= bundle.getInt( MOON_COUNT );
+		moon_Count = bundle.getInt( MOON_COUNT );
+		trap_act_count = bundle.getInt( TRAP_ACT_COUNT );
+		maga_count = bundle.getInt( MAGA_COUNT );
 
 		progressScore   = bundle.getInt( PROG_SCORE );
 		heldItemValue   = bundle.getInt( ITEM_VAL );

@@ -26,7 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
 public class DismantlePressure extends FlavourBuff {
 	
-	public static final float DURATION = 30f;
+	public static final float DURATION = 15f;
 	
 	{
 		type = buffType.NEGATIVE;

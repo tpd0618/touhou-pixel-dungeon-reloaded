@@ -28,16 +28,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WellFed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemyHat;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MintChocoSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -95,6 +100,13 @@ public class Food extends Item {
 
 			if (Statistics.card41){
 				Buff.affect(heroine, WellFed.class).reset();
+			}
+
+			if (Dungeon.heroine.belongings.weapon() instanceof MintChocoSword && Dungeon.heroine.belongings.weapon().cursed){
+				Buff.affect(heroine, WellFed.class).reset();
+				curUser.HP = Math.min(curUser.HP + curUser.HT/2, curUser.HT);
+				PotionOfHealing.cure(curUser);
+				Buff.prolong(curUser, DoubleSpeed.class, DoubleSpeed.DURATION);
 			}
 
 			if (Statistics.card67){

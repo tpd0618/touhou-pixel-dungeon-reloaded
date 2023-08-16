@@ -107,7 +107,7 @@ public class Gold extends Item {
 	
 	@Override
 	public Item random() {
-		quantity = Random.IntRange( 50, 100 );
+		quantity = Random.IntRange( 50, 80 );
 		return this;
 	}
 }

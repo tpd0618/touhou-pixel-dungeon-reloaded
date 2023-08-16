@@ -76,6 +76,6 @@ public class SpyGlass extends Item {
 
     @Override
     public int value() {
-        return 30 * quantity;
+        return 5 * quantity;
     }
 }

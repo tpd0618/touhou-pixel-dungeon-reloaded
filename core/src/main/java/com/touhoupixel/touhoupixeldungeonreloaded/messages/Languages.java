@@ -27,8 +27,8 @@ public enum Languages {
 	ENGLISH("english",       "",   Status.REVIEWED, new String[]{"Nuke Hashigawa(1.1)"}, new String[]{"Nuke Hashigawa(1.1)"}),
 	KOREAN("한국어",          "ko", Status.REVIEWED, null, null),
 	JAPANESE("日本語",        "ja", Status.INCOMPLETE, null, null),
-	VIETNAMESE("vietnamese", "vi", Status.REVIEWED, new String[]{"MinecraftGuy(1.1)"}, new String[]{"MinecraftGuy(1.1)"}),
-	FILIPINO("filipino",     "fi", Status.REVIEWED, new String[]{"zero [bug-finder](1.1)"}, new String[]{"zero [bug-finder](1.1)"});
+	VIETNAMESE("vietnamese", "vi", Status.INCOMPLETE, new String[]{"MinecraftGuy(1.1)"}, new String[]{"MinecraftGuy(1.1)"}),
+	FILIPINO("filipino",     "fi", Status.INCOMPLETE, new String[]{"zero [bug-finder](1.1)"}, new String[]{"zero [bug-finder](1.1)"});
 
 	public enum Status{
 		//below 80% complete languages are not added.

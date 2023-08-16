@@ -47,7 +47,7 @@ public class ShiningNeedleCastleBossLevel extends Level {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.FLOOR_12, Assets.Music.FLOOR_12, Assets.Music.FLOOR_12},
+				new String[]{Assets.Music.BOSS_FLOOR_6, Assets.Music.BOSS_FLOOR_6, Assets.Music.BOSS_FLOOR_6},
 				new float[]{1, 1, 0.5f},
 				false);
 	}

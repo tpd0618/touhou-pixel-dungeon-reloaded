@@ -58,13 +58,13 @@ public class Chimata extends Mob {
                 meleeweapon.downgrade();
                 meleeweapon.enchantment = null;
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
-                GLog.w(Messages.get(this, "weapondowngrade"));
+                GLog.w(Messages.get(this, "weapon_downgrade"));
             }
             if (armor != null) {
                 armor.downgrade();
                 armor.glyph = null;
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
-                GLog.w(Messages.get(this, "armordowngrade"));
+                GLog.w(Messages.get(this, "armor_downgrade"));
             }
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);

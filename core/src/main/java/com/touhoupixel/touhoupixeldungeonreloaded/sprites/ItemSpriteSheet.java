@@ -728,17 +728,18 @@ public class ItemSpriteSheet {
 	public static final int BREW_INFERNAL   = BREWS_AND_ELIXIR +0;
 	public static final int BREW_BLIZZARD   = BREWS_AND_ELIXIR +1;
 	public static final int BREW_SHOCKING   = BREWS_AND_ELIXIR +2;
-	public static final int ELIXIR_BOSS_KILLER = BREWS_AND_ELIXIR+3;
-	public static final int ELIXIR_HONEY    = BREWS_AND_ELIXIR+4;
-	public static final int ELIXIR_AQUA     = BREWS_AND_ELIXIR+5;
-	public static final int ELIXIR_MIGHT    = BREWS_AND_ELIXIR+6;
-	public static final int ELIXIR_DRAGON   = BREWS_AND_ELIXIR+7;
-	public static final int ELIXIR_TOXIC    = BREWS_AND_ELIXIR+8;
-	public static final int ELIXIR_ICY      = BREWS_AND_ELIXIR+9;
-	public static final int ELIXIR_ARCANE   = BREWS_AND_ELIXIR+10;
-	public static final int ELIXIR_ZEN   = BREWS_AND_ELIXIR+11;
-	public static final int ELIXIR_NULL1   = BREWS_AND_ELIXIR+12;
-	public static final int ELIXIR_NULL2   = BREWS_AND_ELIXIR+13;
+	public static final int ELIXIR_BOSS_KILLER = BREWS_AND_ELIXIR+4;
+	public static final int ELIXIR_HONEY    = BREWS_AND_ELIXIR+5;
+	public static final int ELIXIR_AQUA     = BREWS_AND_ELIXIR+6;
+	public static final int ELIXIR_MIGHT    = BREWS_AND_ELIXIR+7;
+	public static final int ELIXIR_DRAGON   = BREWS_AND_ELIXIR+8;
+	public static final int ELIXIR_TOXIC    = BREWS_AND_ELIXIR+9;
+	public static final int ELIXIR_ICY      = BREWS_AND_ELIXIR+10;
+	public static final int ELIXIR_ARCANE   = BREWS_AND_ELIXIR+11;
+	public static final int ELIXIR_ZEN   = BREWS_AND_ELIXIR+12;
+	public static final int ELIXIR_NULL1   = BREWS_AND_ELIXIR+13;
+	public static final int ELIXIR_NULL2   = BREWS_AND_ELIXIR+14;
+	public static final int ELIXIR_NULL3   = BREWS_AND_ELIXIR+15;
 	static{
 		for (int i = BREWS_AND_ELIXIR; i < BREWS_AND_ELIXIR +16; i++)
 			assignItemRect(i, 12, 14);
@@ -941,7 +942,7 @@ public class ItemSpriteSheet {
 	private static final int WEP_CATEGORY7 =                               xy(1, 32);   //8 slots
 	public static final int RANDOMPHONE    = WEP_CATEGORY7 +0;
 	public static final int CHIMATA_CLOAK = WEP_CATEGORY7 +1;
-	public static final int MINTCHOCOSWORD   = WEP_CATEGORY7 +2;
+	public static final int MINT_CHOCO_SWORD = WEP_CATEGORY7 +2;
 	public static final int HOROU_BOOK        = WEP_CATEGORY7 +3;
 	public static final int KEINE_BOOK        = WEP_CATEGORY7 +4;
 	public static final int PSALMS        = WEP_CATEGORY7 +5;
@@ -958,7 +959,7 @@ public class ItemSpriteSheet {
 	static{
 		assignItemRect(RANDOMPHONE, 8, 12);
 		assignItemRect(CHIMATA_CLOAK,    16, 14);
-		assignItemRect(MINTCHOCOSWORD,    13, 13);
+		assignItemRect(MINT_CHOCO_SWORD,    13, 13);
 		assignItemRect(HOROU_BOOK,      13, 16);
 		assignItemRect(KEINE_BOOK,      13, 16);
 		assignItemRect(PSALMS,      13, 16);

@@ -46,7 +46,7 @@ public class GardenoftheSunBossLevel extends Level {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.FLOOR_8, Assets.Music.FLOOR_8, Assets.Music.FLOOR_8},
+				new String[]{Assets.Music.BOSS_FLOOR_4, Assets.Music.BOSS_FLOOR_4, Assets.Music.BOSS_FLOOR_4},
 				new float[]{1, 1, 0.5f},
 				false);
 	}

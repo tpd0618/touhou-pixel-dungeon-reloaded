@@ -49,7 +49,7 @@ public class HeavenBossLevel extends Level {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.FLOOR_16, Assets.Music.FLOOR_16, Assets.Music.FLOOR_16},
+				new String[]{Assets.Music.BOSS_FLOOR_7, Assets.Music.BOSS_FLOOR_7, Assets.Music.BOSS_FLOOR_7},
 				new float[]{1, 1, 0.5f},
 				false);
 	}

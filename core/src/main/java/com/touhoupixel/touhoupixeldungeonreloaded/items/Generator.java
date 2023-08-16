@@ -182,6 +182,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BlackFan;
@@ -201,6 +202,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KanonDrumstick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MintChocoSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SuperMiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
@@ -420,7 +422,7 @@ public class Generator {
 					ScrollOfRetribution.class,
 					ScrollOfTerror.class,
 					ScrollOfTransmutation.class};
-			SCROLL.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3};
+			SCROLL.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{
@@ -517,9 +519,10 @@ public class Generator {
 					NazrinRod.class,
 					KokoroFan.class,
 					ShionFan.class,
-					JoonFan.class
+					JoonFan.class,
+					AlchemyHat.class
 			};
-			WEP_T2.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3 };
+			WEP_T2.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 4 };
 
 			WEP_T3.classes = new Class<?>[]{
 					SmallYingYangOrb.class,
@@ -534,9 +537,10 @@ public class Generator {
 					HinaRibbon.class,
 					AkyuuBrush.class,
 					HecatiaStar.class,
-					GreenBamboo.class
+					GreenBamboo.class,
+					MintChocoSword.class
 			};
-			WEP_T3.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T3.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4 };
 
 			WEP_T4.classes = new Class<?>[]{
 					MediumYingYangOrb.class,

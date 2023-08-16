@@ -46,7 +46,7 @@ public class HumanVillageBossLevel extends Level {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.FLOOR_2, Assets.Music.FLOOR_2, Assets.Music.FLOOR_2},
+				new String[]{Assets.Music.BOSS_FLOOR_1, Assets.Music.BOSS_FLOOR_1, Assets.Music.BOSS_FLOOR_1},
 				new float[]{1, 1, 0.5f},
 				false);
 	}

@@ -174,7 +174,7 @@ public class Shou extends Mob {
 			}
 
 			if (hit( this, ch, true )) {
-				ch.damage( Random.NormalIntRange( 34, 39 ), new DeathGaze() );
+				ch.damage( Random.NormalIntRange( 24, 29 ), new DeathGaze() );
 
 				if (ch instanceof Hero) {
 					Sample.INSTANCE.play(Assets.Sounds.CURSED);

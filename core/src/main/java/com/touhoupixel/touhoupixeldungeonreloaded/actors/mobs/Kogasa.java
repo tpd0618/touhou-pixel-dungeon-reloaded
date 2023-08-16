@@ -26,6 +26,9 @@ public class Kogasa extends Mob {
 
         properties.add(Property.YOKAI);
 
+        properties.add(Property.FUMO);
+        //used for fumo lover buff
+
         loot = new StoneOfFear();
         lootChance = 0.15f;
     }

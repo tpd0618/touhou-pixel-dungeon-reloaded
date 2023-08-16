@@ -31,7 +31,7 @@ public class DeSlaying extends FlavourBuff {
 		announced = true;
 	}
 
-	public static final float DURATION = 35f;
+	public static final float DURATION = 25f;
 
 	@Override
 	public int icon() {

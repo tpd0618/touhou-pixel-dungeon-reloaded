@@ -46,7 +46,7 @@ public class ScarletDevilMansionBossLevel extends Level {
 	@Override
 	public void playLevelMusic() {
 		Music.INSTANCE.playTracks(
-				new String[]{Assets.Music.FLOOR_6, Assets.Music.FLOOR_6, Assets.Music.FLOOR_6},
+				new String[]{Assets.Music.BOSS_FLOOR_3, Assets.Music.BOSS_FLOOR_3, Assets.Music.BOSS_FLOOR_3},
 				new float[]{1, 1, 0.5f},
 				false);
 	}

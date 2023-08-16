@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_3_Changes(changeInfos);
 		add_v1_1_2_Changes(changeInfos);
 		add_v1_1_1_Changes(changeInfos);
 		add_v1_1_0_Changes(changeInfos);
@@ -36,6 +37,28 @@ public class v1_2_Changes {
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_3_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.3", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.3 changes",
+				"_-_ Tewi's death damage is reduced by half.\n" +
+						"_-_ Th19's five new enemies are added!\n" +
+						"_-_ Boss hecatia now will kill all junko and keiki when defeated.\n" +
+						"_-_ Fumo property is added for some enemies such as orin, sagume, etc.\n" +
+						"_-_ Spellcard of anchor now creates water on ember tiles.\n" +
+						"_-_ Nitori and ichirin's ranged attack power are reduced.\n" +
+						"_-_ De-slaying and dismantle pressure's duration are reduced.\n" +
+						"_-_ Remilia's fate is nerfed. Now deals damageroll's min damage*2 instead.\n" +
+						"_-_ Spyglass price is reduced. Don't hesitate to investigate them all!\n" +
+						"_-_ Two early-game melee weapons are added.\n" +
+						"_-_ Cursing trap now appears on late-games.\n" +
+						"_-_ Kanako's offering card is changed.\n" +
+						"_-_ Boss floor bgms are added, and some normal floor bgms are changed a little.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_1_2_Changes(ArrayList<ChangeInfo> changeInfos ) {
@@ -54,7 +77,6 @@ public class v1_2_Changes {
 						"_-_ Stats checker now shows life/bomb/dismantle used count.\n" +
 						"_-_ Keiki's creation and suika's gourd card are changed.\n" +
 						"_-_ New debuff, randomizer is added.\n" +
-						"_-_ Two melee weapons are added.\n" +
 						"_-_ Late game enemies' evasion are nerfed.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}

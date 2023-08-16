@@ -111,7 +111,7 @@ public class Ichirin extends Mob implements Callback {
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
             }
 
-            int dmg = Random.NormalIntRange( 2, 5 );
+            int dmg = Random.NormalIntRange( 2, 4 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

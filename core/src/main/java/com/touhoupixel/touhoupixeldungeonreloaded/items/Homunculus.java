@@ -69,7 +69,5 @@ public class Homunculus extends Item {
 			output = Homunculus.class;
 			outQuantity = 1;
 		}
-
 	}
-
 }

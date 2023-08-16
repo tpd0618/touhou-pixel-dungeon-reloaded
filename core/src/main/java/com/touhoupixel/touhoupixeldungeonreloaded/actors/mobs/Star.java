@@ -7,6 +7,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.StarSprite;
 import com.watabou.utils.Random;
 
@@ -24,8 +25,8 @@ public class Star extends Mob {
 
         flying = true;
 
-        loot = Generator.Category.HERB;
-        lootChance = 0.15f;
+        loot = new LifeFragment();
+        lootChance = 0.1f;
     }
 
     @Override

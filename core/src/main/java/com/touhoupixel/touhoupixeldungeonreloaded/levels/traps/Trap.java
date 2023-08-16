@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Sample;
@@ -94,6 +95,7 @@ public abstract class Trap implements Bundlable {
 			if (disarmedByActivation) disarm();
 			Dungeon.level.discover(pos);
 			activate();
+			Statistics.trap_act_count += 1;
 		}
 	}
 

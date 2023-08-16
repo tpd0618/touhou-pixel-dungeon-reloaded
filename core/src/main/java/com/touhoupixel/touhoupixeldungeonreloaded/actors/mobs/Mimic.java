@@ -58,6 +58,9 @@ public class Mimic extends Mob {
 		EXP = 0;
 
 		properties.add(Property.ANIMAL);
+
+		properties.add(Property.FUMO);
+		//used for fumo lover buff
 		
 		//mimics are neutral when hidden
 		alignment = Alignment.NEUTRAL;

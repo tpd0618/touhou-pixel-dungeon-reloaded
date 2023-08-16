@@ -48,6 +48,9 @@ public class Shopkeeper extends NPC {
 		spriteClass = ShopkeeperSprite.class;
 
 		properties.add(Property.IMMOVABLE);
+
+		properties.add(Property.FUMO);
+		//used for fumo lover buff
 	}
 	
 	@Override

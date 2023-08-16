@@ -144,6 +144,14 @@ public class Assets {
 		public static final String THEME_1 = "music/opening.ogg";
 		public static final String THEME_2 = "music/ending.ogg";
 		public static final String FLOOR_1 = "music/hakureishrine.ogg";
+		public static final String BOSS_FLOOR_1 = "music/bosskosuzu.ogg";
+		public static final String BOSS_FLOOR_2 = "music/bossmarisa.ogg";
+		public static final String BOSS_FLOOR_3 = "music/bossremilia.ogg";
+		public static final String BOSS_FLOOR_4 = "music/bosskasen.ogg";
+		public static final String BOSS_FLOOR_5 = "music/bosskomachi.ogg";
+		public static final String BOSS_FLOOR_6 = "music/bossseija.ogg";
+		public static final String BOSS_FLOOR_7 = "music/bosstenshi.ogg";
+		public static final String BOSS_FLOOR_8 = "music/bosshecatia.ogg";
 		public static final String FLOOR_2 = "music/humanvillage.ogg";
 		public static final String FLOOR_3 = "music/mistylake.ogg";
 		public static final String FLOOR_4 = "music/forestofmagic.ogg";
@@ -159,7 +167,7 @@ public class Assets {
 		public static final String FLOOR_14 = "music/landofthebackdoor.ogg";
 		public static final String FLOOR_15 = "music/hakugyokurou.ogg";
 		public static final String FLOOR_16 = "music/heaven.ogg";
-		public static final String FLOOR_17 = "music/lunarcaptial.ogg";
+		public static final String FLOOR_17 = "music/lunarcapital.ogg";
 		public static final String FLOOR_18 = "music/primatespiritgarden.ogg";
 		public static final String FLOOR_19 = "music/hell.ogg";
 	}
@@ -397,6 +405,11 @@ public class Assets {
 		public static final String MIKO = "sprites/miko.png";
 		public static final String AUNN = "sprites/aunn.png";
 		public static final String NEMUNO = "sprites/nemuno.png";
+		public static final String BITEN = "sprites/biten.png";
+		public static final String CHIYARI = "sprites/chiyari.png";
+		public static final String ENOKO = "sprites/enoko.png";
+		public static final String HISAMI = "sprites/hisami.png";
+		public static final String ZANMU = "sprites/zanmu.png";
 		public static final String DESTORB = "sprites/destorb.png";
 
 		public static final String ZUN = "sprites/zun.png";

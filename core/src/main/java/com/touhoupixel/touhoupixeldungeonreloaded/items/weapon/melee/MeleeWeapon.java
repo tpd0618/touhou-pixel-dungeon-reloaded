@@ -62,7 +62,7 @@ public class MeleeWeapon extends Weapon {
 		int damage = augment.damageFactor(super.damageRoll( owner ));
 
 		if (owner.buff(RemiliaFate.class) != null){
-			damage = min();
+			damage = min()*2;
 		} else if (owner instanceof Hero) {
 			int exStr = ((Hero)owner).STR() - STRReq();
 			if (exStr > 0) {

@@ -16,9 +16,9 @@ public class Hijiri extends Mob {
     {
         spriteClass = HijiriSprite.class;
 
-        HP = HT = 4; //cave mamel minus 2HP
+        HP = HT = 6; //cave mamel
         defenseSkill = 22;
-        EXP = 14;
+        EXP = 13;
         maxLvl = 30;
 
         state = WANDERING;
