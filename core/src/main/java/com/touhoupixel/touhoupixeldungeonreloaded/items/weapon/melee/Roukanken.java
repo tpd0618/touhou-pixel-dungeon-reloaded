@@ -33,7 +33,6 @@ public class Roukanken extends MeleeWeapon {
         image = ItemSpriteSheet.ROUKANKEN;
         hitSound = Assets.Sounds.HIT_SLASH;
         hitSoundPitch = 1f;
-        unique = true;
 
         tier = 5;
     }

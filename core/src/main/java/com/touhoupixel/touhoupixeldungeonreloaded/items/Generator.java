@@ -566,7 +566,6 @@ public class Generator {
 					SeiranHammer.class,
 					JunkoSword.class,
 					AyaFan.class,
-					Roukanken.class,
 					SevenStarSword.class,
 					PortablePhoenixTail.class,
 					ChimataCloak.class,

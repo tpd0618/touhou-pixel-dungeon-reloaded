@@ -12,7 +12,6 @@ public class RustyRoukanken extends MeleeWeapon{
         image = ItemSpriteSheet.RUSTY_ROUKANKEN;
         hitSound = Assets.Sounds.HIT_SLASH;
         hitSoundPitch = 1f;
-        unique = true;
 
         tier = 1;
     }
