@@ -21,7 +21,11 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 
+import static com.touhoupixel.touhoupixeldungeonreloaded.Dungeon.heroine;
+import static com.touhoupixel.touhoupixeldungeonreloaded.items.Item.updateQuickslot;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
@@ -29,11 +33,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclusive.MiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RedButton;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class WndTradeItem extends WndInfoItem {
 
@@ -123,12 +131,29 @@ public class WndTradeItem extends WndInfoItem {
 		};
 		btnBuy.setRect( 0, pos + GAP, width, BTN_HEIGHT );
 		btnBuy.icon(new ItemSprite(ItemSpriteSheet.GOLD));
-		btnBuy.enable( price <= Dungeon.gold );
+		btnBuy.enable( price <= Dungeon.gold);
+
+		/* This insertion is necessary to avoid a bug in which a player can buy this card (without collecting it, for which he uses additional conditions), then buy another card and collect this one */
+		boolean miracleMalletSpecialCondition = true;
+		if (item.getClass() == MiracleMallet.class){
+			miracleMalletSpecialCondition = false;
+		}
+		RustyRoukanken sword = heroine.belongings.getItem(RustyRoukanken.class);
+		if (sword != null) {
+			if (!(sword.isEquipped(heroine))){
+				if (!Statistics.card59) {
+					miracleMalletSpecialCondition = true;
+				}
+			}
+		}
+		btnBuy.enable( price <= Dungeon.gold && miracleMalletSpecialCondition);
+		/* ================= */
+
 		add( btnBuy );
 
 		pos = btnBuy.bottom();
 
-		final MasterThievesArmband.Thievery thievery = Dungeon.heroine.buff(MasterThievesArmband.Thievery.class);
+		final MasterThievesArmband.Thievery thievery = heroine.buff(MasterThievesArmband.Thievery.class);
 		if (thievery != null && !thievery.isCursed() && thievery.chargesToUse(item) > 0) {
 			final float chance = thievery.stealChance(item);
 			final int chargesToUse = thievery.chargesToUse(item);
@@ -217,7 +242,7 @@ public class WndTradeItem extends WndInfoItem {
 		int price = Shopkeeper.sellPrice( item );
 		Dungeon.gold -= price;
 
-		if (!item.doPickUp( Dungeon.heroine)) {
+		if (!item.doPickUp( heroine)) {
 			Dungeon.level.drop( item, heap.pos ).sprite.drop();
 		}
 	}

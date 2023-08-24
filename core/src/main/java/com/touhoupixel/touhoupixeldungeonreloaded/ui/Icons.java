@@ -118,7 +118,10 @@ public enum Icons {
 	KRISTJAN,
 	CUBE_CODE,
 	PURIGRO,
-	ARCNOR;
+	ARCNOR,
+
+	// Icon for ActionIndicator
+	YOUMU_ABILITY;
 
 	public Image get() {
 		return get( this );
@@ -378,6 +381,8 @@ public enum Icons {
 				icon.frame( icon.texture.uvRectBySize( 160, 96, 27, 30 ) );
 				icon.scale.set(PixelScene.align(0.49f));
 				break;
+			case YOUMU_ABILITY:
+				icon.frame( icon.texture.uvRectBySize( 0, 80, 16, 16 ) );
 
 		}
 		return icon;

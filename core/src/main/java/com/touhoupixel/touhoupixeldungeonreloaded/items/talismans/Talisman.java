@@ -112,6 +112,7 @@ abstract public class Talisman extends Item {
     public boolean isIdentified() {
         return true;
     }
+    public boolean isUpgradable() {return false;}
 
     @Override
     public int value() {

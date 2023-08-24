@@ -75,4 +75,6 @@ abstract public class Abilitycards extends Item {
     public int value() {
         return quantity;
     }
+
+    public boolean isUpgradable() {return false;}
 }

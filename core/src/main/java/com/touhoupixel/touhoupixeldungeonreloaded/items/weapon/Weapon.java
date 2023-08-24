@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HumanHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -226,10 +227,10 @@ abstract public class Weapon extends KindOfWeapon {
 		if (owner.buff(ReachIncrease.class) != null) {
 			reach++;
 		}
-		if (hasEnchant(Projecting.class, owner)) {
-			reach++;
+		if (owner.buff(HumanHalf.class) != null) {
+			reach += HumanHalf.getBonusReach();
 		}
-		if (Statistics.card60) {
+		if (hasEnchant(Projecting.class, owner)) {
 			reach++;
 		}
 

@@ -21,10 +21,16 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclusive;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 import java.util.ArrayList;
 
@@ -43,10 +49,25 @@ public class MiracleMallet extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card59) {
-            Statistics.card59 = true;
-            return super.doPickUp(heroine, pos);
-        } else return false;
+        RustyRoukanken sword = heroine.belongings.getItem(RustyRoukanken.class);
+        if (sword != null) {
+        if (!(sword.isEquipped(Dungeon.heroine))){
+                if (!Statistics.card59) {
+                    sword.detach(heroine.belongings.backpack);
+                    Roukanken newSword = new Roukanken();
+                    newSword.identify();
+                    for (int i = 0; i < sword.level(); i++){
+                        newSword.upgrade();
+                    }
+                    newSword.collect();
+                    updateQuickslot();
+                    sword = null;
+                    Statistics.card59 = true;
+                    return super.doPickUp(heroine, pos);
+                }
+            }
+        }
+                return false;
     }
 
     @Override

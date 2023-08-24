@@ -24,11 +24,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
@@ -44,6 +46,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FloatSlayer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostImbue;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Fury;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
@@ -304,6 +307,8 @@ public abstract class Char extends Actor {
             if (visibleFight) {
                 if (effectiveDamage > 0 || !enemy.blockSound(Random.Float(0.96f, 1.05f))) {
                     hitSound(Random.Float(0.87f, 1.15f));
+
+
                 }
             }
 
@@ -345,6 +350,22 @@ public abstract class Char extends Actor {
                 enemy.sprite.showStatus( CharSprite.NEUTRAL, defense );
 
                 //TODO enemy.defenseSound? currently miss plays for monks/crab even when they parry
+                if (enemy.buff(GhostHalf.class) != null){
+                    if (Dungeon.heroine.buff(GhostHalf.class).isSourceBomb()){
+                        Buff.prolong(this, Blindness.class, 10f);
+                        Buff.prolong(this, Cripple.class, 10f);
+                        Buff.prolong(this, Vulnerable.class, 10f);
+                        Buff.prolong(this, Weakness.class, 10f);
+                        Buff.prolong(this, Hex.class, 10f);
+                    }
+                    else{
+                        Buff.prolong(this, Blindness.class, Blindness.DURATION/3.33f);
+                        Buff.prolong(this, Cripple.class, Cripple.DURATION/3.33f);
+                    }
+                    if (Statistics.card53){
+                        Dungeon.heroine.HP = Math.min((int)(Dungeon.heroine.HP + Dungeon.heroine.HT*0.02f), Dungeon.heroine.HT);
+                    }
+                }
                 Sample.INSTANCE.play(Assets.Sounds.MISS);
             }
 
@@ -425,7 +446,6 @@ public abstract class Char extends Actor {
         if (buff(FloatSlayer.class) != null && enemy.flying ){
             damage *= 1.4f;
         }
-
         return damage;
     }
 
