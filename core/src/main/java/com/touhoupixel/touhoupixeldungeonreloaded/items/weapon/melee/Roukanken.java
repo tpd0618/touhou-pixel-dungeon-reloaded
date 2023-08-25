@@ -41,10 +41,11 @@ public class Roukanken extends MeleeWeapon {
     public int GodFactor( Char owner ) {
         return 1;
     }
-
-    @Override
-    public int proc(Char attacker, Char defender, int damage) {
-        Buff.affect(defender, Bleeding.class).set(20);
-        return super.proc(attacker, defender, damage);
+    public int min(int lvl){
+        return 1;
+    }
+    public int max(int lvl){
+        return 6*(tier+1) +    // base dmg: 30 >> 36
+                lvl*(tier+2); // lvl scaling: +6 >> +7
     }
 }

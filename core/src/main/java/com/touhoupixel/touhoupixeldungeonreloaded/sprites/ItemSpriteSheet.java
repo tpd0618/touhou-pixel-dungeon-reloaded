@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
 import com.watabou.noosa.TextureFilm;
 
 public class ItemSpriteSheet {
@@ -858,6 +859,7 @@ public class ItemSpriteSheet {
 	public static final int GRAYSWANDIR        = WEP_CATEGORY5 +10;
 	public static final int BUTTERFLY_FAN        = WEP_CATEGORY5 +11;
 	public static final int YUKINA_MIC        = WEP_CATEGORY5 +12;
+	public static final int RUSTY_ROUKANKEN        = WEP_CATEGORY5 +13;
 
 	static {
 		assignItemRect(OLD_FIREBRAND, 13, 13);
@@ -873,6 +875,7 @@ public class ItemSpriteSheet {
 		assignItemRect(GRAYSWANDIR, 13, 13);
 		assignItemRect(BUTTERFLY_FAN, 13, 13);
 		assignItemRect(YUKINA_MIC, 13, 13);
+		assignItemRect(RUSTY_ROUKANKEN, 13, 13);
 	}
 
 	private static final int WANDS              =                           xy(1, 29);  //16 slots

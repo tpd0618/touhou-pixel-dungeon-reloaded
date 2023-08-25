@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
@@ -60,7 +61,6 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public int damageRoll(Char owner) {
 		int damage = augment.damageFactor(super.damageRoll( owner ));
-
 		if (owner.buff(RemiliaFate.class) != null){
 			damage = min()*2;
 		} else if (owner instanceof Hero) {
@@ -70,6 +70,18 @@ public class MeleeWeapon extends Weapon {
 			}
 		}
 		
+		return damage;
+	}
+	public int critDamageRoll(Char owner) {
+		int damage = augment.damageFactor(Random.IntRange((int) (max()), max()));
+		if (owner.buff(RemiliaFate.class) != null) {
+			damage = min() * 2;
+		} else if (owner instanceof Hero) {
+			int exStr = ((Hero) owner).STR() - STRReq();
+			if (exStr > 0) {
+				damage += Random.IntRange(0, exStr);
+			}
+		}
 		return damage;
 	}
 
@@ -105,13 +117,15 @@ public class MeleeWeapon extends Weapon {
 	public String info() {
 
 		String info = desc();
-
 		if (levelKnown) {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), STRReq());
 			if (STRReq() > Dungeon.heroine.STR()) {
 				info += " " + Messages.get(Weapon.class, "too_heavy");
 			} else if (Dungeon.heroine.STR() > STRReq()){
 				info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.heroine.STR() - STRReq());
+			}
+			if (Dungeon.heroine.heroClass == HeroClass.PLAYERYOUMU){
+				info += "\n\n" + Messages.get(MeleeWeapon.class, "crit_chance", (int)(Dungeon.heroine.getCritChance()*100));
 			}
 		} else {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), STRReq(0));

@@ -95,4 +95,6 @@ abstract public class Vial extends Item {
     public int value() {
         return 10 * quantity;
     }
+
+    public boolean isUpgradable() {return false;}
 }

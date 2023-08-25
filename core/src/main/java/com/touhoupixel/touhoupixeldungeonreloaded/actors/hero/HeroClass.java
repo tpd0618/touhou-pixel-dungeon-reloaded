@@ -24,12 +24,16 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HumanHalf;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
@@ -37,30 +41,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.DragonHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfAnchor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfEarth;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTerror;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.DenjiChainsaw;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SkySword;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.TenguShortsword;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YuyukoFoldingFan;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
 public enum HeroClass {
@@ -89,23 +78,10 @@ public enum HeroClass {
 		PotionOfHealing potionOfHealing = new PotionOfHealing();
 		potionOfHealing.quantity(3).identify().collect();
 
-		ThrowingKnife throwingKnife = new ThrowingKnife();
-		throwingKnife.quantity(3).collect();
-		Dungeon.quickslot.setSlot(2, throwingKnife);
-
 		Food food = new Food();
 		food.collect();
 
 		heroine.heroClass = this;
-
-		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
-		reimuExorcismRod.identify().collect();
-
-		MarisaStaff staff;
-		staff = new MarisaStaff(new WandOfMagicMissile());
-		(heroine.belongings.weapon = staff).identify();
-		heroine.belongings.weapon.activate(heroine);
-		Dungeon.quickslot.setSlot(0, staff);
 
 		Item i = new ReimuArmor().identify();
 		if (!Challenges.isItemBlocked(i)) heroine.belongings.armor = (ReimuArmor)i;
@@ -126,6 +102,24 @@ public enum HeroClass {
 		new HerbPouch().collect();
 		new VelvetPouch().collect();
 		new MagicalContainer().collect();
+
+		switch (this){
+			case PLAYERREIMU:
+				initReimu(heroine);
+				break;
+			case PLAYERMARISA:
+				initMarisa(heroine);
+				break;
+			case PLAYERSANAE:
+				initSanae(heroine);
+				break;
+			case PLAYERYOUMU:
+				initYoumu(heroine);
+				break;
+			case PLAYERSAKUYA:
+				initSakuya(heroine);
+				break;
+		}
 	}
 
 	public String title() {
@@ -169,5 +163,70 @@ public enum HeroClass {
 	public boolean isUnlocked(){
 		//no unlock system in THPD:reloaded!
 		return true;
+	}
+
+	public static void initReimu(Hero heroine){
+		ThrowingKnife throwingKnife = new ThrowingKnife();
+		throwingKnife.quantity(3).collect();
+		Dungeon.quickslot.setSlot(2, throwingKnife);
+
+		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
+		reimuExorcismRod.identify().collect();
+
+		MarisaStaff staff;
+		staff = new MarisaStaff(new WandOfMagicMissile());
+		(heroine.belongings.weapon = staff).identify();
+		heroine.belongings.weapon.activate(heroine);
+		Dungeon.quickslot.setSlot(0, staff);
+	}
+	public static void initMarisa(Hero heroine){
+		ThrowingKnife throwingKnife = new ThrowingKnife();
+		throwingKnife.quantity(3).collect();
+		Dungeon.quickslot.setSlot(2, throwingKnife);
+
+		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
+		reimuExorcismRod.identify().collect();
+
+		MarisaStaff staff;
+		staff = new MarisaStaff(new WandOfMagicMissile());
+		(heroine.belongings.weapon = staff).identify();
+		heroine.belongings.weapon.activate(heroine);
+		Dungeon.quickslot.setSlot(0, staff);
+	}
+	public static void initSanae(Hero heroine){
+		ThrowingKnife throwingKnife = new ThrowingKnife();
+		throwingKnife.quantity(3).collect();
+		Dungeon.quickslot.setSlot(2, throwingKnife);
+
+		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
+		reimuExorcismRod.identify().collect();
+
+		MarisaStaff staff;
+		staff = new MarisaStaff(new WandOfMagicMissile());
+		(heroine.belongings.weapon = staff).identify();
+		heroine.belongings.weapon.activate(heroine);
+		Dungeon.quickslot.setSlot(0, staff);
+	}
+	public static void initYoumu(Hero heroine){
+
+		RustyRoukanken rustyRoukanken = new RustyRoukanken();
+		rustyRoukanken.identify();
+		heroine.belongings.weapon = rustyRoukanken;
+		Buff.affect(Dungeon.heroine, YoumuAbility.class);
+
+	}
+	public static void initSakuya(Hero heroine){
+		ThrowingKnife throwingKnife = new ThrowingKnife();
+		throwingKnife.quantity(3).collect();
+		Dungeon.quickslot.setSlot(2, throwingKnife);
+
+		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
+		reimuExorcismRod.identify().collect();
+
+		MarisaStaff staff;
+		staff = new MarisaStaff(new WandOfMagicMissile());
+		(heroine.belongings.weapon = staff).identify();
+		heroine.belongings.weapon.activate(heroine);
+		Dungeon.quickslot.setSlot(0, staff);
 	}
 }

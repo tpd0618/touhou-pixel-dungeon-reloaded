@@ -21,13 +21,19 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon;
 
+import static com.touhoupixel.touhoupixeldungeonreloaded.Dungeon.heroine;
+import static com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass.PLAYERYOUMU;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HumanHalf;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossHecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -116,7 +122,7 @@ public class Miracle extends Item {
 						Statistics.mood += 1;
 					}
 					for (Mob mob : Dungeon.level.mobs){
-						if (Dungeon.floor == 50 && mob instanceof BossHecatia && mob.isAlive()) {
+						if (Dungeon.floor == 40 && mob instanceof BossHecatia && mob.isAlive()) {
 							Buff.prolong(mob, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
 							GLog.w(Messages.get(this, "bomb_barrier"));
 						}
@@ -126,9 +132,32 @@ public class Miracle extends Item {
 					Statistics.spellcarduse = true;
 					GameScene.flash(0x80FFFFFF);
 					Sample.INSTANCE.play(Assets.Sounds.BLAST);
+					if (Dungeon.heroine.heroClass == PLAYERYOUMU){
+						Dungeon.heroine.buff(YoumuAbility.class).bomb();
+					}
 				}
 			}
 		}
+	}
+
+	@Override
+	public String desc() {
+		String desc = super.desc();
+		HeroClass whoHero = heroine.heroClass;
+		switch (whoHero) {
+			case PLAYERREIMU:
+				break;
+			case PLAYERMARISA:
+				break;
+			case PLAYERSANAE:
+				break;
+			case PLAYERYOUMU:
+				desc += "\n\n" + Messages.get(this, "youmu");
+				break;
+			case PLAYERSAKUYA:
+				break;
+		}
+		return desc;
 	}
 
 	@Override

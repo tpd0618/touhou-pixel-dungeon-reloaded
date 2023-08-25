@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 
+import static java.lang.Math.max;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
@@ -40,10 +42,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeedResist
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FumoLover;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HexCancel;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HumanHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
@@ -145,6 +149,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDan
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.YuukaDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -264,7 +270,7 @@ public class Hero extends Char {
 		}
 
 		if (boostHP){
-			HP += Math.max(HT - curHT, 0);
+			HP += max(HT - curHT, 0);
 		}
 		HP = Math.min(HP, HT);
 	}
@@ -412,6 +418,9 @@ public class Hero extends Char {
 		if (Dungeon.heroine.buff(HomingBlade.class) != null) {
 			return INFINITE_ACCURACY;
 		}
+		if (Dungeon.heroine.buff(HumanHalf.class) != null) {
+			return INFINITE_ACCURACY;
+		}
 
 		if (wep != null) {
 			return (int)(attackSkill * accuracy * wep.accuracyFactor( this ));
@@ -433,6 +442,9 @@ public class Hero extends Char {
 			return INFINITE_EVASION;
 		}
 
+		if (Dungeon.heroine.buff(GhostHalf.class) != null){
+			evasion *= GhostHalf.bonusEvasion();
+		}
 		evasion *= RingOfEvasion.evasionMultiplier( this );
 
 		if (paralysed > 0) {
@@ -473,11 +485,18 @@ public class Hero extends Char {
 		KindOfWeapon wep = belongings.weapon();
 		int dmg;
 
-		if (wep != null) {
-			dmg = wep.damageRoll( this );
-			if (!(wep instanceof MissileWeapon)) dmg += RingOfForce.armedDamageBonus(this);
-		} else {
-			dmg = RingOfForce.damageRoll(this);
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERYOUMU && wep instanceof MeleeWeapon && isCrit() && wep != null) {
+			dmg = ((MeleeWeapon) wep).critDamageRoll(this);
+			dmg += RingOfForce.armedDamageBonus(this);
+            GLog.p(Messages.get(this, "crit"));
+		}
+		else {
+			if (wep != null) {
+				dmg = wep.damageRoll(this);
+				if (!(wep instanceof MissileWeapon)) dmg += RingOfForce.armedDamageBonus(this);
+			} else {
+				dmg = RingOfForce.damageRoll(this);
+			}
 		}
 		if (dmg < 0) dmg = 0;
 
@@ -588,9 +607,6 @@ public class Hero extends Char {
 		if (Statistics.card15 && enemy.properties().contains(Char.Property.WARP)) {
 			dmg *= 1.3f;
 		}
-		if (Statistics.card16 && enemy.properties().contains(Char.Property.WARP) && this.HP % 2 == 0) {
-			dmg *= 1.5f;
-		}
 
 		if (Dungeon.heroine.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null ||
 			Dungeon.heroine.buff(Cool.class) != null && enemy.buff(Cool.class) != null ||
@@ -618,6 +634,10 @@ public class Hero extends Char {
 		if (Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.MINIBOSS) ||
 			Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.BOSS)){
 			dmg *= 2f;
+		}
+		HumanHalf humanHalf = buff(HumanHalf.class);
+		if (humanHalf != null) {
+			dmg *= (1f+humanHalf.getBonusDamage());
 		}
 
 		if (Statistics.card38 && Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
@@ -662,10 +682,31 @@ public class Hero extends Char {
 				dmg *= 1.15f;
 			}
 		}
-
 		return dmg;
 	}
+	public boolean isCrit(){
+		if (getCritChance() > Random.Float()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public float getCritChance(){
+		float critChance = (float) (1 - (1 - Statistics.power * 0.0005)*(1 - (lvl - 1) * 0.01));
 
+		HumanHalf humanHalf = buff(HumanHalf.class);
+		if (humanHalf != null) {
+			critChance = (1 - (1 - critChance)*(1 - humanHalf.getBonusCrit()));
+		}
+
+		if (Dungeon.heroine.belongings.weapon instanceof RustyRoukanken){
+			critChance = (1 - (1 - critChance)*(1 - 0.05f));
+		}
+		if (Dungeon.heroine.belongings.weapon instanceof Roukanken){
+			critChance = (1 - (1 - critChance)*(1 - 0.15f));
+		}		return critChance;
+	}
 	@Override
 	public float speed() {
 
@@ -753,6 +794,9 @@ public class Hero extends Char {
 
 		if (buff(Calm.class) != null) {
 			this.HP = Math.min(this.HP + 1, this.HT);
+		}
+		if (buff(GhostHalf.class) != null && Statistics.card53){
+			this.HP = Math.min(this.HP + 1 + (this.HT / 60), this.HT);
 		}
 
 		Swiftthistle.TimeBubble bubble = buff(Swiftthistle.TimeBubble.class);
@@ -1253,14 +1297,6 @@ public class Hero extends Char {
 
 		if (Dungeon.heroine.buff(DismantlePressure.class) != null){
 			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
-		}
-
-		if (Statistics.card61 && enemy.properties().contains(Char.Property.GOD) && Random.Int(5) == 0){
-			Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
-		}
-
-		if (Statistics.card59 && (Random.Int(50) == 0)) {
-			Dungeon.gold += Dungeon.floor * 50;
 		}
 
 		if (Statistics.card51 && Dungeon.level.map[this.pos] == Terrain.WATER) {
@@ -2222,6 +2258,11 @@ public class Hero extends Char {
 		boolean hit = attack( enemy );
 
 		Buff.detach( this, Calm.class);
+		if (Dungeon.heroine.buff(HumanHalf.class) != null){
+			Buff.detach(this, HumanHalf.class);
+
+		}
+		Buff.detach(this, GhostHalf.class);
 
 		Invisibility.dispel();
 		spend( attackDelay() );
@@ -2337,7 +2378,7 @@ public class Hero extends Char {
 
 		int left, right;
 		int curr;
-		for (int y = Math.max(0, c.y - distance); y <= Math.min(Dungeon.level.height()-1, c.y + distance); y++) {
+		for (int y = max(0, c.y - distance); y <= Math.min(Dungeon.level.height()-1, c.y + distance); y++) {
 			if (rounding[Math.abs(c.y - y)] < Math.abs(c.y - y)) {
 				left = c.x - rounding[Math.abs(c.y - y)];
 			} else {
@@ -2348,7 +2389,7 @@ public class Hero extends Char {
 				left = c.x - left;
 			}
 			right = Math.min(Dungeon.level.width()-1, c.x + c.x - left);
-			left = Math.max(0, left);
+			left = max(0, left);
 			for (curr = left + y * Dungeon.level.width(); curr <= right + y * Dungeon.level.width(); curr++){
 
 				if ((foresight || fieldOfView[curr]) && curr != pos) {

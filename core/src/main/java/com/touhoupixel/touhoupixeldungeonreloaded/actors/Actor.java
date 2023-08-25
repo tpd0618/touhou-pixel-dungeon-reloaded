@@ -25,6 +25,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HumanHalf;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
@@ -56,6 +60,7 @@ public abstract class Actor implements Bundlable {
 	protected abstract boolean act();
 
 	protected void spend( float time ) {
+
 		this.time += time;
 		//if time is very close to a whole number, round to a whole number to fix errors
 		float ex = Math.abs(this.time % 1f);

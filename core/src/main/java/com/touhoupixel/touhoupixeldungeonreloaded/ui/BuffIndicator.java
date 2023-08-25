@@ -43,7 +43,7 @@ import java.util.LinkedHashMap;
 public class BuffIndicator extends Component {
 
 	//transparent icon
-	public static final int NONE    = 134;
+	public static final int NONE    = 135;
 
 	//FIXME this is becoming a mess, should do a big cleaning pass on all of these
 	//and think about tinting options
@@ -177,6 +177,10 @@ public class BuffIndicator extends Component {
 	public static final int HEAT_RISER          = 130;
 	public static final int RANDOMIZER          = 131;
 	public static final int MAGATSUHI           = 132;
+
+	public static final int HUMAN_HALF			= 133;
+
+	public static final int GHOST_HALF 			= 134;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

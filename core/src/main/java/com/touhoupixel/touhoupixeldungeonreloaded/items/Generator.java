@@ -204,6 +204,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MintChocoSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SuperMiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.NazrinRod;
@@ -221,7 +222,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.UtsuhoRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.VentoraStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YachieHorn;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoakumaWing;
@@ -566,7 +566,6 @@ public class Generator {
 					SeiranHammer.class,
 					JunkoSword.class,
 					AyaFan.class,
-					Roukanken.class,
 					SevenStarSword.class,
 					PortablePhoenixTail.class,
 					ChimataCloak.class,
