@@ -92,6 +92,7 @@ public class Heap implements Bundlable {
 		case TOMB:
 			if (Statistics.card54) {
 				if (Random.Int(2) == 0) {
+					Dungeon.level.drop(new SpyGlass().quantity(Random.Int(1, 2)), heroine.pos).sprite.drop();
 					switch (Random.Int(4)) {
 						case 0:
 						default:
