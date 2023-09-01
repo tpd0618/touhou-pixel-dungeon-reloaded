@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
@@ -212,6 +213,10 @@ public abstract class Wand extends Item {
 			Dungeon.heroine.HP /= 2;
 			GameScene.flash(-65536);
 			GLog.w(Messages.get(this, "magic_drain"));
+		}
+
+		if (Dungeon.isChallenged(Challenges.INF_TIME_EATER)){
+			Statistics.timetrackbuff += 1;
 		}
 
 		if (Dungeon.heroine.buff(Happy.class) != null){

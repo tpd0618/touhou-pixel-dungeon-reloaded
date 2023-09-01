@@ -41,7 +41,7 @@ public class Tewi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 6);
+        return Random.NormalIntRange(5, 6);
     }
 
     @Override

@@ -446,6 +446,7 @@ public abstract class Char extends Actor {
         if (buff(FloatSlayer.class) != null && enemy.flying ){
             damage *= 1.4f;
         }
+        //todo
         return damage;
     }
 

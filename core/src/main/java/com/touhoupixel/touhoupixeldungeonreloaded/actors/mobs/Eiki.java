@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
@@ -91,7 +92,7 @@ public class Eiki extends Mob {
         if (this.state != SLEEPING && this.state != FLEEING) {
             if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
                 if (Random.Int(7) == 0) {
-                    Dungeon.heroine.damage(35 - Statistics.difficulty * 5, this);
+                    Dungeon.heroine.damage(25 - Dungeon.heroine.belongings.armor.DRMin(), this);
                     CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 4);
                     GLog.w(Messages.get(this, "abyss_dragon"));
                 }

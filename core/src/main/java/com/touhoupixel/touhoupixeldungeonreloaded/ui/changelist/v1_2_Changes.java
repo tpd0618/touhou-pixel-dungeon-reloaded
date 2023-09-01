@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_4_Changes(changeInfos);
 		add_v1_1_3_Changes(changeInfos);
 		add_v1_1_2_Changes(changeInfos);
 		add_v1_1_1_Changes(changeInfos);
@@ -37,6 +38,19 @@ public class v1_2_Changes {
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_4_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.4", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.4 changes",
+				"_-_ THPD: reloaded can now prevent dismantling an item by mistake. It will do double-check.\n" +
+						"_-_ Eiki's judgment damage has been nerfed again.\n" +
+						"_-_ Yuuma is remaked, and added hearn to the gensokyo.\n" +
+						"_-_ todo.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_1_3_Changes(ArrayList<ChangeInfo> changeInfos ) {

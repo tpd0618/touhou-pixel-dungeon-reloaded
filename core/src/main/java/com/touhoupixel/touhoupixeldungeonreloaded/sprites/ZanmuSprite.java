@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Shou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Zanmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;

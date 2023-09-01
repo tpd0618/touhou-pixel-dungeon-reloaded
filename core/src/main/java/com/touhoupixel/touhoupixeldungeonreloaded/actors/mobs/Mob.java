@@ -62,6 +62,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuumaAbsorb;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
@@ -660,6 +661,10 @@ public abstract class Mob extends Char {
 
 		if (buff(YuukaRage.class) != null){
 			damage += 50;
+		}
+
+		if (buff(YuumaAbsorb.class) != null) {
+			damage *= 3f;
 		}
 
 		if (Dungeon.isChallenged(Challenges.BLESSING_CHORD)) {
