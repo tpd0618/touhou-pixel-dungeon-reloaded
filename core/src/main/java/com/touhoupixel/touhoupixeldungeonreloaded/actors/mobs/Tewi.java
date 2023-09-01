@@ -80,7 +80,7 @@ public class Tewi extends Mob {
             this.pos - Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos ||
             this.pos + Dungeon.level.width()*3 - 3 == Dungeon.heroine.pos ||
             this.pos + Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos) {
-            Dungeon.heroine.damage(15, this);
+            Dungeon.heroine.damage(8, this);
             GLog.w(Messages.get(this, "star_damage"));
         }
 
