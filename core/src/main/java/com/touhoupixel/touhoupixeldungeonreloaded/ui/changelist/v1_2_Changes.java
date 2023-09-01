@@ -49,7 +49,8 @@ public class v1_2_Changes {
 				"_-_ THPD: reloaded can now prevent dismantling an item by mistake. It will do double-check.\n" +
 						"_-_ Eiki's judgment damage has been nerfed again.\n" +
 						"_-_ Yuuma is remaked, and added hearn to the gensokyo.\n" +
-						"_-_ todo.\n" +
+						"_-_ Enemies' stats are buffed.\n" +
+						"_-_ Minor text improvements.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
