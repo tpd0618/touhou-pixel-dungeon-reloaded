@@ -22,7 +22,10 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.BlobEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.watabou.utils.Bundle;
@@ -45,6 +48,7 @@ public class Blob extends Actor {
 	public Rect area = new Rect();
 	
 	public boolean alwaysVisible = false;
+	public boolean isGas = false; // for sanae's card Danmaku Ghost
 
 	private static final String CUR		= "cur";
 	private static final String START	= "start";
@@ -144,47 +148,47 @@ public class Blob extends Actor {
 	}
 	
 	protected void evolve() {
-		
+
 		boolean[] blocking = Dungeon.level.solid;
 		int cell;
-		for (int i=area.top-1; i <= area.bottom; i++) {
-			for (int j = area.left-1; j <= area.right; j++) {
-				cell = j + i*Dungeon.level.width();
+		for (int i = area.top - 1; i <= area.bottom; i++) {
+			for (int j = area.left - 1; j <= area.right; j++) {
+				cell = j + i * Dungeon.level.width();
 				if (Dungeon.level.insideMap(cell)) {
 					if (!blocking[cell]) {
 
 						int count = 1;
 						int sum = cur[cell];
 
-						if (j > area.left && !blocking[cell-1]) {
-							sum += cur[cell-1];
+						if (j > area.left && !blocking[cell - 1]) {
+							sum += cur[cell - 1];
 							count++;
 						}
-						if (j < area.right && !blocking[cell+1]) {
-							sum += cur[cell+1];
+						if (j < area.right && !blocking[cell + 1]) {
+							sum += cur[cell + 1];
 							count++;
 						}
-						if (i > area.top && !blocking[cell-Dungeon.level.width()]) {
-							sum += cur[cell-Dungeon.level.width()];
+						if (i > area.top && !blocking[cell - Dungeon.level.width()]) {
+							sum += cur[cell - Dungeon.level.width()];
 							count++;
 						}
-						if (i < area.bottom && !blocking[cell+Dungeon.level.width()]) {
-							sum += cur[cell+Dungeon.level.width()];
+						if (i < area.bottom && !blocking[cell + Dungeon.level.width()]) {
+							sum += cur[cell + Dungeon.level.width()];
 							count++;
 						}
 
 						int value = sum >= count ? (sum / count) - 1 : 0;
 						off[cell] = value;
 
-						if (value > 0){
+						if (value > 0) {
 							if (i < area.top)
 								area.top = i;
 							else if (i >= area.bottom)
-								area.bottom = i+1;
+								area.bottom = i + 1;
 							if (j < area.left)
 								area.left = j;
 							else if (j >= area.right)
-								area.right = j+1;
+								area.right = j + 1;
 						}
 
 						volume += value;
@@ -192,7 +196,11 @@ public class Blob extends Actor {
 						off[cell] = 0;
 					}
 				}
+				if (cur[cell] > 0 && (Dungeon.heroine == Actor.findChar(cell)) && Statistics.card48 && isGas) {
+					Buff.prolong(Dungeon.heroine, DoubleSpeed.class, 1f);
+				}
 			}
+
 		}
 	}
 

@@ -189,7 +189,7 @@ abstract public class MissileWeapon extends Weapon {
 		}
 
 		if (Statistics.card34) {
-			Statistics.power -= 5;
+			Statistics.power -= Random.Int(1,3);
 		} else Statistics.power -= 10;
 		return super.proc(attacker, defender, damage);
 	}

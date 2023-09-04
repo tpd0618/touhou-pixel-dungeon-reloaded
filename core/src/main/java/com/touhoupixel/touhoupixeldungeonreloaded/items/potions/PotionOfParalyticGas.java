@@ -34,6 +34,7 @@ public class PotionOfParalyticGas extends Potion {
 
 	{
 		icon = ItemSpriteSheet.Icons.POTION_PARAGAS;
+		isHarmfulGasPotion = true;
 	}
 
 	@Override

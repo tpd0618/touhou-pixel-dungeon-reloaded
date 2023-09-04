@@ -36,7 +36,7 @@ public class Beam extends Image {
 	
 	private float timeLeft;
 
-	private Beam(PointF s, PointF e, Effects.Type asset, float duration) {
+	private Beam(PointF s, PointF e, Object sound, Effects.Type asset, float duration) {
 		super( Effects.get( asset ) );
 		
 		origin.set( 0, height / 2 );
@@ -49,26 +49,40 @@ public class Beam extends Image {
 		angle = (float)(Math.atan2( dy, dx ) * A);
 		scale.x = (float)Math.sqrt( dx * dx + dy * dy ) / width;
 		
-		Sample.INSTANCE.play( Assets.Sounds.RAY );
+		playSound( sound );
 		
 		timeLeft = this.duration = duration;
 	}
 
+	private void playSound(Object sound){
+		Sample.INSTANCE.play( sound );
+	}
+
 	public static class DeathRay extends Beam{
 		public DeathRay(PointF s, PointF e){
-			super(s, e, Effects.Type.DEATH_RAY, 0.5f);
+			super(s, e, Assets.Sounds.RAY, Effects.Type.DEATH_RAY, 0.5f);
 		}
 	}
 
 	public static class LightRay extends Beam{
 		public LightRay(PointF s, PointF e){
-			super(s, e, Effects.Type.LIGHT_RAY, 1f);
+			super(s, e, Assets.Sounds.RAY, Effects.Type.LIGHT_RAY, 1f);
 		}
 	}
 
 	public static class HealthRay extends Beam{
 		public HealthRay(PointF s, PointF e){
-			super(s, e, Effects.Type.HEALTH_RAY, 0.75f);
+			super(s, e, Assets.Sounds.RAY, Effects.Type.HEALTH_RAY, 0.75f);
+		}
+	}
+	public static class MasterSparkRay extends Beam{
+		public MasterSparkRay(PointF s, PointF e){
+			super(s, e, Assets.Sounds.MASTER_SPARK_RAY, Effects.Type.MASTER_SPARK_RAY, 2.5f);
+		}
+	}
+	public static class MasterSparkWideRay extends Beam{
+		public MasterSparkWideRay(PointF s, PointF e){
+			super(s, e, Assets.Sounds.MASTER_SPARK_RAY, Effects.Type.MASTER_SPARK_WIDE_RAY, 3f);
 		}
 	}
 	

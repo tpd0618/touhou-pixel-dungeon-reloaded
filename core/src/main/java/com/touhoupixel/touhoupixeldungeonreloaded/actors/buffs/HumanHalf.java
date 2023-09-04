@@ -47,8 +47,12 @@ public class HumanHalf extends Buff {
         return 1;
     }
 
-    private static final String BONUS_DAMAGE	= "bonusdamage";
-    private static final String BONUS_CRIT_CHANCE = "bonuscritchance";
+    private static final String BONUS_DAMAGE	= "bonus_damage";
+    private static final String BONUS_CRIT_CHANCE = "bonus_crit_chance";
+    private static final String MAX_BONUS_DAMAGE	= "max_bonus_damage";
+    private static final String MAX_BONUS_CRIT_CHANCE = "max_bonus_crit_chance";
+    private static final String INCREASE_BONUS_DAMAGE	= "increase_bonus_damage";
+    private static final String INCREASE_BONUS_CRIT_CHANCE = "increase_bonus_crit_chance";
     private static final String LEFT	= "left";
 
     {
@@ -61,6 +65,10 @@ public class HumanHalf extends Buff {
         super.storeInBundle( bundle );
         bundle.put( BONUS_DAMAGE, bonusDamage);
         bundle.put( BONUS_CRIT_CHANCE, bonusCritChance );
+        bundle.put(MAX_BONUS_DAMAGE, maxBonusDamage);
+        bundle.put(MAX_BONUS_CRIT_CHANCE, maxBonusCritChance);
+        bundle.put(INCREASE_BONUS_DAMAGE, increaseBonusDamage);
+        bundle.put(INCREASE_BONUS_CRIT_CHANCE, increaseBonusCritChance);
         bundle.put( LEFT, left );
     }
 
@@ -69,6 +77,10 @@ public class HumanHalf extends Buff {
         super.restoreFromBundle( bundle );
         bonusDamage = bundle.getFloat( BONUS_DAMAGE );
         bonusCritChance = bundle.getFloat( BONUS_CRIT_CHANCE);
+        maxBonusDamage = bundle.getFloat(MAX_BONUS_DAMAGE);
+        maxBonusCritChance = bundle.getFloat(MAX_BONUS_CRIT_CHANCE);
+        increaseBonusDamage = bundle.getFloat(INCREASE_BONUS_DAMAGE);
+        increaseBonusCritChance = bundle.getFloat(INCREASE_BONUS_CRIT_CHANCE);
         left = bundle.getFloat( LEFT );
     }
 

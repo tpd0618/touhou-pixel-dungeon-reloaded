@@ -53,6 +53,9 @@ public class WellFed extends Buff {
 		//25 HP healed in total
 		left = (int)Hunger.STARVING;
 	}
+	public void set(int turns){
+		left = Math.max(left, turns);
+	}
 	
 	@Override
 	public int icon() {

@@ -21,10 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sanaeexclusive;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,7 @@ public class YachieThreat extends Abilitycards {
     public boolean doPickUp(Hero heroine, int pos) {
         if (!Statistics.card46) {
             Statistics.card46 = true;
+            QuickSlotButton.refresh();
             return super.doPickUp(heroine, pos);
         } else return false;
     }

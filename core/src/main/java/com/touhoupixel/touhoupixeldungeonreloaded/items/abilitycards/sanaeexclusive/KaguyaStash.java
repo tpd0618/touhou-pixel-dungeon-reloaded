@@ -21,9 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sanaeexclusive;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.SpyGlass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfPurity;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class KaguyaStash extends Abilitycards {
     public boolean doPickUp(Hero heroine, int pos) {
         if (!Statistics.card47) {
             Statistics.card47 = true;
+            Dungeon.level.drop(new PotionOfPurity().identify().quantity(5), Dungeon.heroine.pos).sprite.drop();
             return super.doPickUp(heroine, pos);
         } else return false;
     }

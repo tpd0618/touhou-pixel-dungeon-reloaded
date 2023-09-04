@@ -68,15 +68,6 @@ public class Gold extends Item {
 		}
 		Statistics.goldCollected += quantity;
 
-		if (Statistics.card46) {
-			if (Dungeon.floor > 85){
-				Dungeon.heroine.HP += Math.min(quantity, heroine.HT);
-			} else {
-				Dungeon.gold += quantity;
-			}
-			Statistics.goldCollected += quantity;
-		}
-
 		if (Statistics.card69) {
 			Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
 		}

@@ -46,9 +46,6 @@ public class Regeneration extends Buff {
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
 					if (target.buff(RegenBlock.class) == null) {
 						target.HP += 1;
-						if (Statistics.card50 && target.HP + 1 < target.HT) {
-							target.HP += 1;
-						}
 					}
 					if (target.HP == regencap()) {
 						((Hero) target).resting = false;

@@ -32,6 +32,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.watabou.utils.Bundle;
 
 public class CorrosiveGas extends Blob {
+	{
+		isGas = true;
+	}
 
 	//FIXME should have strength per-cell
 	private int strength = 0;

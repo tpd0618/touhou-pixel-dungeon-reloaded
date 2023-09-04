@@ -26,6 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
 public class SmokeScreen extends Blob {
+	{
+		isGas = true;
+	}
 	
 	@Override
 	public void use( BlobEmitter emitter ) {

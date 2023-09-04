@@ -34,7 +34,9 @@ public class Effects {
 		CHAIN,
 		DEATH_RAY,
 		LIGHT_RAY,
-		HEALTH_RAY
+		HEALTH_RAY,
+		MASTER_SPARK_RAY,
+		MASTER_SPARK_WIDE_RAY;
 	}
 	
 	public static Image get( Type type ) {
@@ -63,6 +65,12 @@ public class Effects {
 				break;
 			case HEALTH_RAY:
 				icon.frame(icon.texture.uvRect(16, 30, 32, 38));
+				break;
+			case MASTER_SPARK_RAY:
+			icon.frame(icon.texture.uvRect(32, 0, 48, 30));
+				break;
+			case MASTER_SPARK_WIDE_RAY:
+				icon.frame(icon.texture.uvRect(48, 0, 64, 58));
 				break;
 		}
 		return icon;

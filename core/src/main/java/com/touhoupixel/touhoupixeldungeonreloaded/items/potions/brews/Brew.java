@@ -21,18 +21,24 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 
 import java.util.ArrayList;
 
 public abstract class Brew extends Potion {
+	{
+		isHarmfulGasPotion = true;
+	}
 	
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.remove( AC_DRINK );
+		if (!Statistics.card50) actions.remove( AC_DRINK );
 		return actions;
 	}
 	

@@ -32,6 +32,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
 public class ConfusionGas extends Blob {
 
+	{
+		isGas = true;
+	}
 	@Override
 	protected void evolve() {
 		super.evolve();

@@ -99,7 +99,7 @@ public class Food extends Item {
 			Statistics.foodEaten++;
 
 			if (Statistics.card41){
-				Buff.affect(heroine, WellFed.class).reset();
+				Buff.affect(heroine, WellFed.class).set((int)(Hunger.STARVING/4f));
 			}
 
 			if (Dungeon.heroine.belongings.weapon() instanceof MintChocoSword && Dungeon.heroine.belongings.weapon().cursed){

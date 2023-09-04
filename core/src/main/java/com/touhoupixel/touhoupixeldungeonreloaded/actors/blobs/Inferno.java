@@ -28,6 +28,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 
 public class Inferno extends Blob {
+	{
+		isGas = true;
+	}
 	
 	@Override
 	protected void evolve() {

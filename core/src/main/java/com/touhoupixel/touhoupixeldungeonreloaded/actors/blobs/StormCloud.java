@@ -27,6 +27,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 
 public class StormCloud extends Blob {
+	{
+		isGas = true;
+	}
 	
 	@Override
 	protected void evolve() {

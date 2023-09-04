@@ -35,6 +35,7 @@ public class ParalyticGas extends Blob {
 	{
 		//acts after mobs, to give them a chance to resist paralysis
 		actPriority = MOB_PRIO - 1;
+		isGas = true;
 	}
 	
 	@Override

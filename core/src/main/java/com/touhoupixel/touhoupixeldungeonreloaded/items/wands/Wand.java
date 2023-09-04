@@ -132,8 +132,20 @@ public abstract class Wand extends Item {
 
 		if ( curCharges >= (cursed ? 1 : chargesPerCast()) && !(Dungeon.level.map[Dungeon.heroine.pos] == Terrain.PEDESTAL)){
 			return true;
+		} else if (Statistics.card43 && Dungeon.gold >= 400 && !(Dungeon.level.map[Dungeon.heroine.pos] == Terrain.PEDESTAL)){
+			GLog.w(Messages.get(this, "eiki_money_trigger"));
+			Sample.INSTANCE.play( Assets.Sounds.SHATTER);
+			curCharges += 1;
+			Dungeon.gold -= 400;
+			Buff.prolong(Dungeon.heroine, Recharging.class, Recharging.DURATION);
+			return true;
 		} else {
-			GLog.w(Messages.get(this, "fizzles"));
+			if (Dungeon.level.map[Dungeon.heroine.pos] == Terrain.PEDESTAL){
+				GLog.w(Messages.get(this, "no_pedestal"));
+			}
+			else {
+				GLog.w(Messages.get(this, "fizzles"));
+			}
 			return false;
 		}
 	}
@@ -224,7 +236,7 @@ public abstract class Wand extends Item {
 		}
 
 		if (Statistics.card34) {
-			Statistics.power -= 5;
+			Statistics.power -= Random.Int(1,3);
 		} else Statistics.power -= 10;
 	}
 
@@ -549,9 +561,8 @@ public abstract class Wand extends Item {
 		
 		@Override
 		public void onSelect( Integer target ) {
-			
 			if (target != null) {
-				
+
 				//FIXME this safety check shouldn't be necessary
 				//it would be better to eliminate the curItem static variable.
 				final Wand curWand;
