@@ -6,14 +6,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ReimuSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Reimu extends Mob {
 
@@ -54,19 +61,24 @@ public class Reimu extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-            Artifact artifact = Dungeon.heroine.belongings.getItem(Artifact.class);
-            if (artifact != null) {
-                artifact.charge = 0;
-                Item.updateQuickslot();
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
+            ArrayList<Item> gyadon = new ArrayList<>();
+            for (Item i : Dungeon.heroine.belongings) {
+                if (!i.unique && (i instanceof Talisman)) {
+                    gyadon.add(i);
+                }
+            }
+            if (!gyadon.isEmpty()) {
+                Item hypnotize = Random.element(gyadon).detachAll(Dungeon.heroine.belongings.backpack);
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                GLog.w(Messages.get(this, "artifact_charge_lost"));
+                CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+                GLog.w(Messages.get(this, "talisman_delete"));
             }
             if (Statistics.difficulty > 2) {
-                Buff.affect(enemy, Bleeding.class).set(18);
+                Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.affect(enemy, Bleeding.class).set(18);
+                Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
             }
         }
         return damage;

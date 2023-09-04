@@ -386,7 +386,7 @@ public class Generator {
 					PotionOfLightHealing.class,
 					PotionOfYingYang.class,
 					PotionOfMagic.class};
-			POTION.defaultProbs = new float[]{ 5, 3, 3, 3, 4, 4, 4, 4, 4, 4, 2, 4, 4, 4, 4, 4};
+			POTION.defaultProbs = new float[]{ 3, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3};
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -420,7 +420,7 @@ public class Generator {
 					ScrollOfRetribution.class,
 					ScrollOfTerror.class,
 					ScrollOfTransmutation.class};
-			SCROLL.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3};
+			SCROLL.defaultProbs = new float[]{ 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			STONE.classes = new Class<?>[]{

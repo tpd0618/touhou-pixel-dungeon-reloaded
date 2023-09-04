@@ -50,7 +50,7 @@ public class Murasa extends Mob {
 		properties.add(Property.WARP);
 		
 		loot = MysteryMeat.class;
-		lootChance = 1f;
+		lootChance = 0.25f;
 		
 		SLEEPING = new Sleeping();
 		WANDERING = new Wandering();

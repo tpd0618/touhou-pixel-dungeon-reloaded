@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantleReady;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
@@ -104,34 +105,40 @@ public abstract class EquipableItem extends Item {
 			doUnequip(heroine, true );
 		}
 		if (action.equals(AC_DISMANTLE)){
-			if (heroine.buff(Degrade.class) != null) {
-				GLog.w( Messages.get(this, "degrade"));
-			} else if (curItem.isEquipped(heroine)) {
-				GLog.w( Messages.get(this, "unequip_first"));
-			} else if (curItem instanceof Artifact) {
-				GLog.w( Messages.get(this, "artifact"));
-			} else if (curItem instanceof MissileWeapon) {
-				GLog.w( Messages.get(this, "danmaku"));
+			if (heroine.buff(DismantleReady.class) == null) {
+				Buff.prolong(heroine, DismantleReady.class, DismantleReady.DURATION);
+				GLog.w(Messages.get(this, "dismantle_ready"));
 			} else {
-				curItem.detach(curUser.belongings.backpack);
-				if (curItem.level() > 0) {
-					Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
+				if (heroine.buff(Degrade.class) != null) {
+					GLog.w(Messages.get(this, "degrade"));
+				} else if (curItem.isEquipped(heroine)) {
+					GLog.w(Messages.get(this, "unequip_first"));
+				} else if (curItem instanceof Artifact) {
+					GLog.w(Messages.get(this, "artifact"));
+				} else if (curItem instanceof MissileWeapon) {
+					GLog.w(Messages.get(this, "danmaku"));
 				} else {
-					Dungeon.energy += 3;
+					curItem.detach(curUser.belongings.backpack);
+					if (curItem.level() > 0) {
+						Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
+					} else {
+						Dungeon.energy += 3;
+					}
+					Buff.detach(curUser, DismantleReady.class);
+					Buff.detach(curUser, DismantlePressure.class);
+					updateQuickslot();
+
+					heroine.spend(1f);
+
+					Statistics.dismantle_count += 1;
+
+					if (Statistics.card33 && Random.Int(3) == 0) {
+						Buff.prolong(heroine, KeyHeal.class, KeyHeal.DURATION / 3f);
+					}
+
+					Sample.INSTANCE.play(Assets.Sounds.DRINK);
+					curUser.sprite.operate(curUser.pos);
 				}
-				Buff.detach(curUser, DismantlePressure.class);
-				updateQuickslot();
-
-				heroine.spend( 1f );
-
-				Statistics.dismantle_count += 1;
-
-				if (Statistics.card33 && Random.Int(3) == 0){
-					Buff.prolong(heroine, KeyHeal.class, KeyHeal.DURATION/3f);
-				}
-
-				Sample.INSTANCE.play(Assets.Sounds.DRINK);
-				curUser.sprite.operate(curUser.pos);
 			}
 		}
 	}

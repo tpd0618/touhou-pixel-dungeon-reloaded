@@ -158,24 +158,28 @@ public class ShopRoom extends SpecialRoom {
 			w = (MeleeWeapon) Generator.random(Generator.wepTiers[1]);
 			a = (Armor) Generator.random(Generator.armorTiers[1]);
 			itemsToSpawn.add( Generator.random(Generator.misTiers[1]).quantity(3).identify(false) );
+			itemsToSpawn.add( new ScrollOfIdentify() );
 			break;
 			
 		case 16:
 			w = (MeleeWeapon) Generator.random(Generator.wepTiers[2]);
 			a = (Armor) Generator.random(Generator.armorTiers[2]);
 			itemsToSpawn.add( Generator.random(Generator.misTiers[2]).quantity(3).identify(false) );
+			itemsToSpawn.add( new ScrollOfExorcism() );
 			break;
 			
 		case 26:
 			w = (MeleeWeapon) Generator.random(Generator.wepTiers[3]);
 			a = (Armor) Generator.random(Generator.armorTiers[3]);
 			itemsToSpawn.add( Generator.random(Generator.misTiers[3]).quantity(3).identify(false) );
+			itemsToSpawn.add( new ScrollOfIdentify() );
 			break;
 
 		case 36:
 			w = (MeleeWeapon) Generator.random(Generator.wepTiers[4]);
 			a = (Armor) Generator.random(Generator.armorTiers[4]);
 			itemsToSpawn.add( Generator.random(Generator.misTiers[4]).quantity(3).identify(false) );
+			itemsToSpawn.add( new ScrollOfExorcism() );
 			break;
 		}
 		w.cursed = false;
@@ -200,17 +204,15 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new PotionOfHealing() );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.VIAL ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.VIAL ) );
-
-		itemsToSpawn.add( new ScrollOfIdentify() );
-		itemsToSpawn.add( new ScrollOfExorcism() );
 
 		for (int i=0; i < 2; i++)
 			itemsToSpawn.add( Random.Int(2) == 0 ?

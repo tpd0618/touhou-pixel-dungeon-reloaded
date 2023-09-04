@@ -407,6 +407,7 @@ public class Assets {
 		public static final String MIKO = "sprites/miko.png";
 		public static final String AUNN = "sprites/aunn.png";
 		public static final String NEMUNO = "sprites/nemuno.png";
+		public static final String HEARN = "sprites/hearn.png";
 		public static final String BITEN = "sprites/biten.png";
 		public static final String CHIYARI = "sprites/chiyari.png";
 		public static final String ENOKO = "sprites/enoko.png";

@@ -59,7 +59,7 @@ public class Komachi extends Mob {
         properties.add(Property.GOD);
 
         loot = PotionOfExorcismRod.class;
-        lootChance = 0.1f;
+        lootChance = 0.08f;
 
         HUNTING = new Hunting();
     }

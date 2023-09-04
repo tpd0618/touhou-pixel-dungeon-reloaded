@@ -67,7 +67,7 @@ public class Renko extends Mob implements Callback {
         //used for fumo lover buff
 
         loot = new LifeFragment();
-        lootChance = 0.05f;
+        lootChance = 0.1f;
     }
 
     @Override

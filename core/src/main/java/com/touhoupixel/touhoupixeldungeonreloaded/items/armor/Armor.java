@@ -469,7 +469,6 @@ public class Armor extends EquipableItem {
 		Emitter emitter = new Emitter();
 		emitter.pos(ItemSpriteSheet.film.width(image)/2f + 2f, ItemSpriteSheet.film.height(image)/3f);
 		emitter.fillTarget = false;
-		emitter.pour(Speck.factory( Speck.RED_LIGHT ), 0.6f);
 		return emitter;
 	}
 

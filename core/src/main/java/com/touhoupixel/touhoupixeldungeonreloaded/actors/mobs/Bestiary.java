@@ -224,27 +224,30 @@ public class Bestiary {
 			case 25:
 				if (Statistics.extermination_number == 55) {
 					return new ArrayList<>(Arrays.asList(
-							Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class));
+							Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class));
 				} else if (Statistics.extermination_number == 56) {
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class));
+							Biruko.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class));
 				} else if (Statistics.extermination_number == 57) {
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kisume.class, Saki.class, Tojiko.class, Hina.class, Komachi.class));
+							Biruko.class, Kisume.class, Saki.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class));
 				} else if (Statistics.extermination_number == 58) {
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kisume.class, Kutaka.class, Tojiko.class, Hina.class, Komachi.class));
+							Biruko.class, Kisume.class, Kutaka.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class));
 				} else if (Statistics.extermination_number == 59) {
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Hina.class, Komachi.class));
+							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Hina.class, Komachi.class, Hearn.class));
 				} else if (Statistics.extermination_number == 60) {
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Komachi.class));
+							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Komachi.class, Hearn.class));
 				} else if (Statistics.extermination_number == 61) {
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class));
+							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Hearn.class));
+				} else if (Statistics.extermination_number == 110) {
+					return new ArrayList<>(Arrays.asList(
+							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class));
 				} else return new ArrayList<>(Arrays.asList(
-						Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class));
+						Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class));
 			case 26:
 			case 27:
 				if (Statistics.extermination_number == 62) {

@@ -6,10 +6,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuumaAbsorb;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuumaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -33,8 +39,46 @@ public class Yuuma extends Mob {
     }
 
     @Override
+    protected boolean act() {
+        boolean result = super.act();
+        for (Buff b : this.buffs()) {
+            if (b.type == Buff.buffType.NEGATIVE) {
+                b.detach();
+                this.HP = this.HT;
+                this.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 6 );
+                Buff.prolong(this, YuumaAbsorb.class, YuumaAbsorb.DURATION);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION*100f);
+                if (Statistics.difficulty > 2) {
+                    Buff.prolong(this, Might.class, Might.DURATION);
+                }
+                if (Statistics.difficulty > 4) {
+                    Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+                }
+                GLog.w(Messages.get(this, "absorb"));
+            }
+        }
+        for (Buff c : Dungeon.heroine.buffs()) {
+            if (c.type == Buff.buffType.POSITIVE) {
+                c.detach();
+                this.HP = this.HT;
+                this.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 6 );
+                Buff.prolong(this, YuumaAbsorb.class, YuumaAbsorb.DURATION);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION*100f);
+                if (Statistics.difficulty > 2) {
+                    Buff.prolong(this, Might.class, Might.DURATION);
+                }
+                if (Statistics.difficulty > 4) {
+                    Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+                }
+                GLog.w(Messages.get(this, "absorb"));
+            }
+        }
+        return result;
+    }
+
+    @Override
     public int damageRoll() {
-        return Random.NormalIntRange(35, 40);
+        return Random.NormalIntRange(34, 39);
     }
 
     @Override
@@ -45,31 +89,5 @@ public class Yuuma extends Mob {
     @Override
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
-    }
-
-    @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(2) == 0) {
-            if (Dungeon.floor == 40){
-                //do nothing
-            } else {
-                Dungeon.heroine.STR--;
-                Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                GLog.w(Messages.get(Kanako.class, "str_reduce"));
-                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
-                Buff.prolong(this, Hisou.class, Hisou.DURATION);
-                if (Statistics.difficulty > 2) {
-                    Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
-                }
-                if (Statistics.difficulty > 4) {
-                    Dungeon.heroine.STR--;
-                    Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
-                    GLog.w(Messages.get(Kanako.class, "str_reduce"));
-                }
-            }
-        }
-        return damage;
     }
 }

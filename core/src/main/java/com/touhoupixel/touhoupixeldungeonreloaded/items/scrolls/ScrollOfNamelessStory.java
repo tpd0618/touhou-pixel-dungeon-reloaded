@@ -1034,6 +1034,15 @@ public class ScrollOfNamelessStory extends Scroll {
 					}
 				}
 			}
+			if (ch instanceof Hearn){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Hearn) {
+						Statistics.extermination_number = 110;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
 
 			Heap[] heaps = new Heap[1];
 			heaps[0] = Dungeon.level.heaps.get(ch.pos);
