@@ -31,6 +31,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 public class ToxicGas extends Blob implements Hero.Doom {
+	{
+		isGas = true;
+	}
 
 	@Override
 	protected void evolve() {

@@ -36,6 +36,7 @@ public class PotionOfToxicGas extends Potion {
 
 	{
 		icon = ItemSpriteSheet.Icons.POTION_TOXICGAS;
+		isHarmfulGasPotion = true;
 	}
 
 	@Override

@@ -204,7 +204,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MintChocoSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.QuintessentialFan;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SuperMiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.NazrinRod;
@@ -228,7 +227,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoakumaWing
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.CirnoWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AyaFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.TenguSmartphone;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SanaeExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.SeiranHammer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JunkoSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BigYingYangOrb;
@@ -498,14 +496,14 @@ public class Generator {
 
 			WEP_T1.classes = new Class<?>[]{
 					ReimuExorcismRod.class,
-					SanaeExorcismRod.class,
+					//SanaeExorcismRod.class,
 					KoishiDagger.class,
 					//SmallSeiranHammer.class,
 					//HinaRibbon.class,
 					//HisoutenMankind.class,
 					MarisaStaff.class
 			};
-			WEP_T1.probs = new float[]{ 1, 1, 1, 0 };
+			WEP_T1.probs = new float[]{ 1, 1, 0 };
 
 			WEP_T2.classes = new Class<?>[]{
 					TenguShortsword.class,
@@ -585,7 +583,7 @@ public class Generator {
 					QuintessentialFan.class,
 					DenjiChainsaw.class
 			};
-			WEP_T5.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};

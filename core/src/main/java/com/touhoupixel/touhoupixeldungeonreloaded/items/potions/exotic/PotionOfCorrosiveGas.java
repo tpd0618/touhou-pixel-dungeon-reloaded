@@ -35,6 +35,7 @@ public class PotionOfCorrosiveGas extends ExoticPotion {
 	
 	{
 		icon = ItemSpriteSheet.Icons.POTION_CORROGAS;
+		isHarmfulGasPotion = true;
 	}
 	
 	@Override

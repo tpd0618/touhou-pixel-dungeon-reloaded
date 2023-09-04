@@ -434,10 +434,6 @@ public class Hero extends Char {
 
 		float evasion = defenseSkill;
 
-		if (Statistics.card48 && Statistics.spellcard > 3) {
-			evasion *= 1.15;
-		}
-
 		if (enemy.buff(Inaccurate.class) != null) {
 			return INFINITE_EVASION;
 		}
@@ -589,9 +585,6 @@ public class Hero extends Char {
 		if (Statistics.card9 && enemy.properties().contains(Char.Property.GOD)) {
 			dmg *= 1.3f;
 		}
-		if (Statistics.card10 && enemy.properties().contains(Char.Property.GOD) && this.HP % 2 == 0) {
-			dmg *= 1.5f;
-		}
 		if (Statistics.card11 && enemy.properties().contains(Char.Property.HUMAN)) {
 			dmg *= 1.3f;
 		}
@@ -600,9 +593,6 @@ public class Hero extends Char {
 		}
 		if (Statistics.card13 && enemy.properties().contains(Char.Property.ANIMAL)) {
 			dmg *= 1.3f;
-		}
-		if (Statistics.card14 && enemy.properties().contains(Char.Property.ANIMAL) && this.HP % 2 == 0) {
-			dmg *= 1.5f;
 		}
 		if (Statistics.card15 && enemy.properties().contains(Char.Property.WARP)) {
 			dmg *= 1.3f;
@@ -1299,8 +1289,18 @@ public class Hero extends Char {
 			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
 		}
 
-		if (Statistics.card51 && Dungeon.level.map[this.pos] == Terrain.WATER) {
+		if (Statistics.card51 && Dungeon.level.map[this.pos] == Terrain.WATER && Random.Int(2) == 0) {
 			Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
+
+			//repels enemy
+			Ballistica trajectory = new Ballistica(Dungeon.heroine.pos, enemy.pos, Ballistica.STOP_TARGET);
+			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size()-1), Ballistica.PROJECTILE);
+			WandOfBlastWave.throwChar(enemy,
+					trajectory,
+					2,
+					true,
+					true,
+					getClass());
 		}
 
 		if (Dungeon.heroine.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
@@ -1371,7 +1371,7 @@ public class Hero extends Char {
 		}
 
 		if (Statistics.card37 && Dungeon.heroine.belongings.weapon() instanceof MissileWeapon){
-			Buff.affect(enemy, Burning.class).reignite(enemy, 10f);
+			Buff.affect(enemy, Burning.class).reignite(enemy, 7f);
 		}
 
 		if (Statistics.card23 && (Random.Int(6) == 0) && enemy.HP > 3 && !enemy.properties().contains(Char.Property.MINIBOSS) && !enemy.properties().contains(Char.Property.BOSS)) {
@@ -1918,38 +1918,11 @@ public class Hero extends Char {
 			for (Char ch : Actor.chars()) {
 			}
 			return;
-		} else if (Statistics.card43 && Dungeon.gold > 999){
-			interrupt();
-			resting = false;
-			Dungeon.gold -= 1000;
-			if (Statistics.card47){
-				Statistics.spellcard += 3;
-			}
-			this.HP = HT / 4;
-			Statistics.power -= 100;
-			Statistics.life_count += 1;
-			if (Dungeon.floor == 15 && !Statistics.remi_countdown){
-				Buff.prolong(this, RemiCountdown.class, RemiCountdown.DURATION);
-			}
-			PotionOfHealing.cure(this);
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
-
-			SpellSprite.show(this, SpellSprite.ANKH);
-			GameScene.flash(0x80FFFF40);
-			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-			GLog.w(Messages.get(this, "revive"));
-
-			for (Char ch : Actor.chars()) {
-			}
-			return;
-		} else if (Statistics.life > 0) {
+		}  else if (Statistics.life > 0) {
 			interrupt();
 			resting = false;
 			Statistics.lifelose = true;
 			Statistics.life -= 1;
-			if (Statistics.card47){
-				Statistics.spellcard += 3;
-			}
 			this.HP = HT / 4;
 			Statistics.power -= 100;
 			Statistics.life_count += 1;

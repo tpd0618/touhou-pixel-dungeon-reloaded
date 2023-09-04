@@ -21,7 +21,7 @@ public class YoumuAbility extends Buff implements ActionIndicator.Action {
     }
 
     {
-        type = buffType.POSITIVE;
+        type = buffType.NEUTRAL;
         revivePersists = true;
     }
     public boolean act() {

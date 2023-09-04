@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -371,8 +372,13 @@ public class Armor extends EquipableItem {
 		} else {
 			if (hasCurseGlyph()){
 				if (Random.Int(3) == 0) inscribe(null);
-			} else if (level() >= 4 && Random.Float(10) < Math.pow(2, level()-4)){
-				inscribe(null);
+			} else{
+				if (Statistics.card36) {
+					if (level() >= 25) inscribe(null);
+				}
+				else if (level() >= 4 && Random.Float(10) < Math.pow(2, level() - 4)) {
+					inscribe(null);
+				}
 			}
 		}
 		
