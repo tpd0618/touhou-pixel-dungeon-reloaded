@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Inferno;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;

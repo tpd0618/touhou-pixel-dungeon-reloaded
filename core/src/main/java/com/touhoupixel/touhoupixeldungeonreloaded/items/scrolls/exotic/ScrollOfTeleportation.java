@@ -86,6 +86,24 @@ public class ScrollOfTeleportation extends ExoticScroll {
 
 	}
 
+	public static boolean teleportToLocationHearn(Char ch, int pos) { //used for hearn's fearabbit mechanism to remove can't reach message
+		PathFinder.buildDistanceMap(pos, BArray.or(Dungeon.level.passable, Dungeon.level.avoid, null));
+		if ((PathFinder.distance[ch.pos] == Integer.MAX_VALUE
+				|| (!Dungeon.level.passable[pos] && !Dungeon.level.avoid[pos])
+				|| Actor.findChar(pos) != null) && !(curItem instanceof TransientTalisman)) {
+			return false;
+		}
+
+		appear(ch, pos);
+		Dungeon.level.occupyCell(ch);
+		if (ch == Dungeon.heroine) {
+			Dungeon.observe();
+			GameScene.updateFog();
+		}
+		return true;
+
+	}
+
 	public static boolean teleportHero(Hero heroine) {
 		return teleportChar(heroine);
 	}
