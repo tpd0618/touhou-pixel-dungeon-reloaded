@@ -154,7 +154,6 @@ public class SanaeExorcismRod extends Wand {
 		int summNum = 0;
 		for (int num : numbersOfBlobs) summNum += num;
 		int rngNum = Random.Int(summNum) + 1;
-		rngNum = 9;
 		summNum = 0;
 		int indexBlob;
 		for (indexBlob = 0; summNum < rngNum; indexBlob++){
