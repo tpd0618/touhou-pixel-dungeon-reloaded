@@ -24,13 +24,16 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArtifactRecharge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
@@ -47,6 +50,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfC
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
@@ -207,16 +211,15 @@ public enum HeroClass {
 	}
 	public static void initSakuya(Hero heroine){
 		ThrowingKnife throwingKnife = new ThrowingKnife();
-		throwingKnife.quantity(3).collect();
-		Dungeon.quickslot.setSlot(2, throwingKnife);
+		throwingKnife.quantity(5).collect();
+		Dungeon.quickslot.setSlot(0, throwingKnife);
 
-		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
-		reimuExorcismRod.identify().collect();
+		KoishiDagger koishiDagger = new KoishiDagger();
+		(heroine.belongings.weapon = koishiDagger).identify();
 
-		MarisaStaff staff;
-		staff = new MarisaStaff(new WandOfMagicMissile());
-		(heroine.belongings.weapon = staff).identify();
-		heroine.belongings.weapon.activate(heroine);
-		Dungeon.quickslot.setSlot(0, staff);
+		TimekeepersHourglass timekeepersHourglass = new TimekeepersHourglass();
+		(heroine.belongings.artifact = timekeepersHourglass).identify();
+		heroine.belongings.artifact.activate(Dungeon.heroine);
+		Dungeon.quickslot.setSlot(2, timekeepersHourglass);
 	}
 }

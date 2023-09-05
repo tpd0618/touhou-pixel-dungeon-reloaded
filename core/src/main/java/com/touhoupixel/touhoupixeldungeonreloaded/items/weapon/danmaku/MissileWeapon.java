@@ -29,19 +29,27 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshooting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Projecting;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 abstract public class MissileWeapon extends Weapon {
 
@@ -67,6 +75,10 @@ abstract public class MissileWeapon extends Weapon {
 	protected MissileWeapon parent;
 
 	public int tier;
+
+	private static LinkedList<Integer> startPosContainer = new LinkedList<Integer>();
+	private static LinkedList<Integer> targetContainer = new LinkedList<Integer>();
+	private static ArrayList<MissileWeapon> projectileContainer = new ArrayList<MissileWeapon>();
 
 	@Override
 	public int min() {
@@ -166,6 +178,52 @@ abstract public class MissileWeapon extends Weapon {
 		parent = null; //reset parent before throwing, just incase
 		super.doThrow(heroine);
 	}
+	public void cast(final Hero user, final int dst ){
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && (Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) != null || Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) != null)){
+			final int cell = throwPos( user, dst );
+			user.sprite.zap( cell );
+			user.busy();
+
+			throwSound();
+
+			Char enemy = Actor.findChar( cell );
+			QuickSlotButton.target(enemy);
+
+			final float delay = castDelay(user, dst);
+			curUser = user;
+			MissileWeapon i = (MissileWeapon) MissileWeapon.this.detach(user.belongings.backpack);
+
+			startPosContainer.add(user.pos);
+			targetContainer.add(cell);
+			projectileContainer.add(i);
+
+			user.spendAndNext(delay);
+		}
+		else {
+			super.cast(user, dst);
+		}
+	}
+	public static void castAfterTimeFreeze(){
+		final int numOfProj = projectileContainer.size();
+		for (int num = 0; num < numOfProj; num++){
+			int startPos = startPosContainer.get(0);
+			int targetCell = targetContainer.get(0);
+			MissileWeapon mw = projectileContainer.get(0);
+				((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class)).
+						reset(startPos,
+								targetCell,
+								mw,
+								new Callback() {
+									@Override
+									public void call() {
+										if (mw != null) mw.onThrow( targetCell );
+									}
+								});
+			projectileContainer.remove(0);
+				targetContainer.removeFirst();
+				startPosContainer.removeFirst();
+		}
+	}
 
 	@Override
 	protected void onThrow( int cell ) {
@@ -181,7 +239,6 @@ abstract public class MissileWeapon extends Weapon {
 			}
 		}
 	}
-
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		if (Dungeon.heroine.buff(Cool.class) != null){
