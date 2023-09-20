@@ -52,10 +52,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.CellSelector;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -168,6 +170,7 @@ public class Miracle extends Item {
 							Dungeon.heroine.buff(YoumuAbility.class).bomb();
 							break;
 						case PLAYERSAKUYA:
+							sakuyaBomb();
 							break;
 					}
 				}
@@ -194,6 +197,7 @@ public class Miracle extends Item {
 				desc += "\n\n" + Messages.get(this, "youmu");
 				break;
 			case PLAYERSAKUYA:
+				desc += "\n\n" + Messages.get(this, "sakuya");
 				break;
 		}
 		return desc;
@@ -419,6 +423,16 @@ public class Miracle extends Item {
 					mob.damage(finalDamage, this);
 				}
 			}
+		}
+		private void sakuyaBomb(){
+		TimekeepersHourglass tH = heroine.belongings.getItem(TimekeepersHourglass.class);
+		if (tH != null){
+			tH.charge = Math.min(tH.charge + 3, tH.getChargeCap());
+			Item.updateQuickslot();
+		}
+		if (Statistics.card12) {
+			Buff.affect(heroine, Swiftthistle.TimeBubble.class).set(9f);
+		}
 		}
 		@Override
 		public boolean isUpgradable() {

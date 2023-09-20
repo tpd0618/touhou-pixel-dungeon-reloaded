@@ -213,6 +213,10 @@ public class Artifact extends KindofMisc {
 		//do nothing by default;
 	}
 
+	public int getChargeCap(){
+		return chargeCap;
+	}
+
 	public class ArtifactBuff extends Buff {
 
 		public int itemLevel() {

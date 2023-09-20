@@ -22,7 +22,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.SakuyaKnifeDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ScaleDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
@@ -31,6 +35,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingK
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.RiceDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.CirnoDanmaku;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Visual;
 import com.watabou.noosa.tweeners.PosTweener;
@@ -42,7 +47,8 @@ import java.util.HashMap;
 
 public class MissileSprite extends ItemSprite implements Tweener.Listener {
 
-	private static final float SPEED	= 240f;
+	private static final float SPEED = 240f;
+	private static final float TIME_FREEZE_SPEED = 0f;
 	
 	private Callback callback;
 	
@@ -91,6 +97,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		ANGULAR_SPEEDS.put(ShardDanmaku.class,         0);
 		ANGULAR_SPEEDS.put(BulletDanmaku.class,       0);
 		ANGULAR_SPEEDS.put(CirnoDanmaku.class,       0);
+		ANGULAR_SPEEDS.put(SakuyaKnifeDanmaku.class,  0);
 	}
 
 	//TODO it might be nice to have a source and destination angle, to improve thrown weapon visuals
@@ -112,6 +119,9 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		speed.set(d).normalize().scale(SPEED);
 		
 		angularSpeed = DEFAULT_ANGULAR_SPEED;
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && (Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) != null || Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) != null)) {
+			angularSpeed = TIME_FREEZE_SPEED;
+		}
 		for (Class<?extends Item> cls : ANGULAR_SPEEDS.keySet()){
 			if (cls.isAssignableFrom(item.getClass())){
 				angularSpeed = ANGULAR_SPEEDS.get(cls);
@@ -133,6 +143,9 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		}
 		
 		float speed = SPEED;
+		if (item instanceof MissileWeapon && Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && (Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) != null || Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) != null)) {
+			speed = TIME_FREEZE_SPEED;
+		}
 		if (item instanceof Dart && Dungeon.heroine.belongings.weapon() instanceof YukariUmbrella){
 			speed *= 3f;
 		}

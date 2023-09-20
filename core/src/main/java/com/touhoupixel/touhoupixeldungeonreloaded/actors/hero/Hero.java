@@ -588,9 +588,6 @@ public class Hero extends Char {
 		if (Statistics.card11 && enemy.properties().contains(Char.Property.HUMAN)) {
 			dmg *= 1.3f;
 		}
-		if (Statistics.card12 && enemy.properties().contains(Char.Property.HUMAN) && this.HP % 2 == 0) {
-			dmg *= 1.5f;
-		}
 		if (Statistics.card13 && enemy.properties().contains(Char.Property.ANIMAL)) {
 			dmg *= 1.3f;
 		}

@@ -908,6 +908,9 @@ public class Generator {
 		}
 		return false;
 	}
+	public static void removeTimekeeperHourglass(){
+		Category.ARTIFACT.probs[7] = 0;
+	}
 
 	private static final String FIRST_DECK = "first_deck";
 	private static final String GENERAL_PROBS = "general_probs";

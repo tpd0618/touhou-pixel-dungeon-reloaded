@@ -57,10 +57,6 @@ public class BigPower extends Item {
 
 	@Override
 	public boolean doPickUp(Hero heroine, int pos) {
-		if (Statistics.card64) {
-			Buff.prolong(heroine, SuperHard.class, SuperHard.DURATION);
-		}
-
 		Statistics.power += 100;
 
 		GameScene.pickUp( this, pos );

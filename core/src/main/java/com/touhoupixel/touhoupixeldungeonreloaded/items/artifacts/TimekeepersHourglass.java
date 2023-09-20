@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
@@ -52,6 +53,7 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 
 public class TimekeepersHourglass extends Artifact {
+	private static boolean isCard64Purchased = false;
 
 	{
 		image = ItemSpriteSheet.ARTIFACT_HOURGLASS;
@@ -171,6 +173,10 @@ public class TimekeepersHourglass extends Artifact {
 
 		return super.upgrade();
 	}
+	public void upgradeByCard(){
+		chargeCap += 2;
+		charge += 2;
+	}
 
 	@Override
 	public String desc() {
@@ -190,11 +196,13 @@ public class TimekeepersHourglass extends Artifact {
 
 	private static final String SANDBAGS =  "sandbags";
 	private static final String BUFF =      "buff";
+	private static final String CHARGE_CAP = "charge_cap";
 
 	@Override
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle(bundle);
 		bundle.put( SANDBAGS, sandBags );
+		bundle.put(CHARGE_CAP, chargeCap);
 
 		if (activeBuff != null)
 			bundle.put( BUFF , activeBuff );
@@ -202,6 +210,8 @@ public class TimekeepersHourglass extends Artifact {
 
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
+		//
+		chargeCap = bundle.getInt( CHARGE_CAP );
 		super.restoreFromBundle(bundle);
 		sandBags = bundle.getInt( SANDBAGS );
 
@@ -369,7 +379,7 @@ public class TimekeepersHourglass extends Artifact {
 			triggerPresses();
 			target.next();
 			// for Sakuya
-			if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA){MissileWeapon.castAfterTimeFreeze();}
+			if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) == null){MissileWeapon.castAfterTimeFreeze();}
 		}
 
 		@Override

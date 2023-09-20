@@ -67,10 +67,6 @@ public class Dewdrop extends Item {
 
 		}
 
-		if (Statistics.card68){
-			Buff.prolong(curUser, Invisibility.class, Invisibility.DURATION);
-		}
-
 		Sample.INSTANCE.play(Assets.Sounds.DEWDROP);
 		heroine.spendAndNext(TIME_TO_PICK_UP);
 

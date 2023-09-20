@@ -384,9 +384,16 @@ public class ItemSpriteSheet {
 	public static final int DISPLACING_DART = TIPPED_DARTS_AND_KNIFE +10;
 	public static final int BLINDING_DART   = TIPPED_DARTS_AND_KNIFE +11;
 	public static final int DART   = TIPPED_DARTS_AND_KNIFE +12;
+	public static final int RED_KNIFE = TIPPED_DARTS_AND_KNIFE +13;
+	public static final int GREEN_KNIFE = TIPPED_DARTS_AND_KNIFE +14;
+	public static final int BLUE_KNIFE = TIPPED_DARTS_AND_KNIFE +15;
 	static {
-		for (int i = TIPPED_DARTS_AND_KNIFE; i < TIPPED_DARTS_AND_KNIFE +16; i++)
-			assignItemRect(i, 15, 15);
+		for (int i = TIPPED_DARTS_AND_KNIFE; i < TIPPED_DARTS_AND_KNIFE +13; i++) {
+			assignItemRect(i, 15, 15); // Tipped darts
+		}
+		for (int i = TIPPED_DARTS_AND_KNIFE + 13; i < TIPPED_DARTS_AND_KNIFE + 3; i++){
+			assignItemRect(i, 13, 13);// Knives
+		}
 	}
 
 	private static final int ARMOR_CATEGORY1 =                               xy(1, 12);  //16 slots

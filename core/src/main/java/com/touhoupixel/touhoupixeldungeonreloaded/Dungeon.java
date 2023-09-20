@@ -20,6 +20,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.BambooForestLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.DeadEndLevel;
@@ -575,7 +576,7 @@ public class Dungeon {
 			bundle.put( CHALLENGES, challenges );
 			bundle.put( MOBS_TO_CHAMPION, mobsToChampion );
 			bundle.put( HERO, heroine);
-			bundle.put(FLOOR, floor);
+			bundle.put( FLOOR, floor);
 			bundle.put( BRANCH, branch );
 
 			bundle.put( GOLD, gold );
@@ -612,6 +613,8 @@ public class Dungeon {
 			Scroll.save( bundle );
 			Potion.save( bundle );
 			Ring.save( bundle );
+
+			MissileWeapon.saveTimeFreezeContainer( bundle );
 
 			Actor.storeNextID( bundle );
 
@@ -684,6 +687,8 @@ public class Dungeon {
 		Scroll.restore( bundle );
 		Potion.restore( bundle );
 		Ring.restore( bundle );
+
+		MissileWeapon.restoreTimeFreezeContainer( bundle );
 
 		quickslot.restorePlaceholders( bundle );
 

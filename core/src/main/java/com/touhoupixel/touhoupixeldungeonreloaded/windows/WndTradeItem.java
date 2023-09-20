@@ -33,8 +33,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sakuyaexclusive.UndergroundSun;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.youmuexclusive.MiracleMallet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.Roukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.RustyRoukanken;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -133,10 +135,14 @@ public class WndTradeItem extends WndInfoItem {
 		btnBuy.icon(new ItemSprite(ItemSpriteSheet.GOLD));
 		btnBuy.enable( price <= Dungeon.gold);
 
-		/* This insertion is necessary to avoid a bug in which a player can buy this card (without collecting it, for which he uses additional conditions), then buy another card and collect this one */
+		/* This insertion is necessary to avoid a bug in which a player can buy these cards (without collecting it, for which he uses additional conditions), then buy another card and collect this one */
 		boolean miracleMalletSpecialCondition = true;
+		boolean undegroundSunSpecialCondition = true;
 		if (item.getClass() == MiracleMallet.class){
 			miracleMalletSpecialCondition = false;
+		}
+		if (item.getClass() == UndergroundSun.class){
+			undegroundSunSpecialCondition = false;
 		}
 		RustyRoukanken sword = heroine.belongings.getItem(RustyRoukanken.class);
 		if (sword != null) {
@@ -146,7 +152,13 @@ public class WndTradeItem extends WndInfoItem {
 				}
 			}
 		}
-		btnBuy.enable( price <= Dungeon.gold && miracleMalletSpecialCondition);
+		TimekeepersHourglass tH = heroine.belongings.getItem(TimekeepersHourglass.class);
+		if (tH != null) {
+				if (!Statistics.card64) {
+					undegroundSunSpecialCondition = true;
+				}
+		}
+		btnBuy.enable( price <= Dungeon.gold && miracleMalletSpecialCondition && undegroundSunSpecialCondition);
 		/* ================= */
 
 		add( btnBuy );
