@@ -29,19 +29,28 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sakuyaexclusive.SmeltScale;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshooting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Projecting;
+import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 abstract public class MissileWeapon extends Weapon {
 
@@ -68,9 +77,14 @@ abstract public class MissileWeapon extends Weapon {
 
 	public int tier;
 
+	// For Sakuya's ability
+	private static LinkedList<Integer> startPosContainer = new LinkedList<Integer>();
+	private static LinkedList<Integer> targetContainer = new LinkedList<Integer>();
+	private static LinkedList<MissileWeapon> projectileContainer = new LinkedList<MissileWeapon>();
+	private static LinkedList<MissileSprite> spriteProjContainer = new LinkedList<>();
 	@Override
 	public int min() {
-		return Math.max(0, min( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) ));
+		return Math.max(0, min( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) + SmeltScale.levelDamageBonus()));
 	}
 
 	@Override
@@ -81,7 +95,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int max() {
-		return Math.max(0, max( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) ));
+		return Math.max(0, max( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) + SmeltScale.levelDamageBonus()));
 	}
 
 	@Override
@@ -154,6 +168,11 @@ abstract public class MissileWeapon extends Weapon {
 			return super.throwPos(user, dst);
 		}
 	}
+	public int throwAtAngle(Hero user, int dst, float angle){
+
+		Ballistica ballistica = new Ballistica(user.pos, dst, Ballistica.PROJECTILE);
+		return ballistica.targetAtAngle(angle).collisionPos;
+	}
 
 	@Override
 	public float accuracyFactor(Char owner) {
@@ -165,6 +184,95 @@ abstract public class MissileWeapon extends Weapon {
 	public void doThrow(Hero heroine) {
 		parent = null; //reset parent before throwing, just incase
 		super.doThrow(heroine);
+	}
+	public void cast(final Hero user, final int dst ){
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && (Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) != null || Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) != null)){
+
+			final int cell = throwPos( user, dst );
+			user.sprite.zap( cell );
+			user.busy();
+
+			throwSound();
+
+			Char enemy = Actor.findChar( cell );
+			QuickSlotButton.target(enemy);
+
+			final float delay = castDelay(user, dst);
+			curUser = user;
+			MissileWeapon i = (MissileWeapon) MissileWeapon.this.detach(user.belongings.backpack);
+
+			MissileSprite misSpr = ((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class));
+			misSpr.reset(user.pos,
+							cell,
+							i,
+							new Callback() {
+								@Override
+								public void call() {
+									if (i != null) i.onThrow( cell );
+								}
+							});
+
+			startPosContainer.add(user.pos);
+			targetContainer.add(cell);
+			projectileContainer.add(i);
+			spriteProjContainer.add(misSpr);
+
+			if (Statistics.card63){
+				float angles[] = {-25, -40, 40, 25};
+				for (float angle : angles){
+					MissileWeapon mw2 = new SakuyaKnifeDanmaku(i.min(i.level()), i.max(i.level()));
+
+					final int cell2 = throwAtAngle( user, dst, angle );
+
+					misSpr = ((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class));
+					misSpr.reset(user.pos,
+							cell2,
+							mw2,
+							new Callback() {
+								@Override
+								public void call() {
+									if (mw2 != null) mw2.onThrow( cell2 );
+								}
+							});
+
+					startPosContainer.add(user.pos);
+					targetContainer.add(cell2);
+					projectileContainer.add(mw2);
+					spriteProjContainer.add(misSpr);
+				}
+			}
+
+			user.spendAndNext(delay);
+		}
+		else {
+			super.cast(user, dst);
+		}
+	}
+	public static void castAfterTimeFreeze(){
+		final int numOfProj = projectileContainer.size();
+		for (int num = 0; num < numOfProj; num++){
+			int startPos = startPosContainer.get(0);
+			int targetCell = targetContainer.get(0);
+			MissileWeapon mw = projectileContainer.get(0);
+
+				((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class)).reset(startPos,
+								targetCell,
+								mw,
+								new Callback() {
+									@Override
+									public void call() {
+										if (mw != null) mw.onThrow( targetCell );
+									}
+								});
+			if (spriteProjContainer.size() != 0) {
+				MissileSprite misSpr = spriteProjContainer.get(0);
+				misSpr.killAndErase();
+				spriteProjContainer.removeFirst();
+			}
+			projectileContainer.removeFirst();
+				targetContainer.removeFirst();
+				startPosContainer.removeFirst();
+		}
 	}
 
 	@Override
@@ -181,7 +289,6 @@ abstract public class MissileWeapon extends Weapon {
 			}
 		}
 	}
-
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		if (Dungeon.heroine.buff(Cool.class) != null){
@@ -253,6 +360,8 @@ abstract public class MissileWeapon extends Weapon {
 		}
 
 		usages *= RingOfSharpshooting.durabilityMultiplier( Dungeon.heroine);
+
+		usages *= SmeltScale.durabilityMultiplier();
 
 		//at 100 uses, items just last forever.
 		if (usages >= 100f) return 0;
@@ -401,7 +510,11 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	private static final String DURABILITY = "durability";
-
+	private static final String START_POSITION_CONT = "start_position_cont";
+	private static final String TARGET_CONT = "target_cont";
+	private static final String PROJECTILE_CONT = "projectile_cont";
+	private static final String CONTAINER_SIZE = "container_size";
+	private static Integer containerSize;
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
@@ -417,7 +530,40 @@ abstract public class MissileWeapon extends Weapon {
 		bundleRestoring = false;
 		durability = bundle.getFloat(DURABILITY);
 	}
+	public static void saveTimeFreezeContainer(Bundle bundle){
+		containerSize = projectileContainer.size();
+		bundle.put(CONTAINER_SIZE, containerSize);
+		for (Integer index = 0; index < containerSize; index++) {
+			bundle.put(START_POSITION_CONT + index.toString(), startPosContainer.get(index));
+			bundle.put(TARGET_CONT + index.toString(), targetContainer.get(index));
+			bundle.put(PROJECTILE_CONT + index.toString(), projectileContainer.get(index));
+		}
+	}
 
+	public static void restoreTimeFreezeContainer(Bundle bundle){
+		if (projectileContainer.size() != 0){
+			return;
+		}
+		containerSize = bundle.getInt(CONTAINER_SIZE);
+		for (Integer index = 0; index < containerSize; index++){
+			startPosContainer.addFirst(bundle.getInt(START_POSITION_CONT + index.toString()));
+			targetContainer.addFirst(bundle.getInt(TARGET_CONT + index.toString()));
+			projectileContainer.addFirst((MissileWeapon) (bundle.get(PROJECTILE_CONT + index.toString())));
+
+			/*MissileSprite misSpr = ((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class));
+			spriteProjContainer.addFirst(misSpr);
+			MissileWeapon mw = projectileContainer.get(0);
+			misSpr.reset(startPosContainer.get(0),
+					targetContainer.get(0),
+					mw,
+					new Callback() {
+						@Override
+						public void call() {
+							if (mw != null) mw.onThrow( targetContainer.get(0) );
+						}
+					});*/
+		}
+	}
 	public static class PlaceHolder extends MissileWeapon {
 
 		{

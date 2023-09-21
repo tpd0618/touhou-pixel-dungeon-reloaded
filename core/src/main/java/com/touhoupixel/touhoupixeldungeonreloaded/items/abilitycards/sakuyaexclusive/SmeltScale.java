@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sakuyaexclusive;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
@@ -47,6 +48,23 @@ public class SmeltScale extends Abilitycards {
             Statistics.card68 = true;
             return super.doPickUp(heroine, pos);
         } else return false;
+    }
+
+    public static int levelDamageBonus(){
+        if (Statistics.card68){
+            return 1 + Dungeon.floor/9;
+        }
+        else {
+            return 0;
+        }
+    }
+    public static float durabilityMultiplier(){
+        if (Statistics.card68){
+            return 1.75f;
+        }
+        else {
+            return 1f;
+        }
     }
 
     @Override

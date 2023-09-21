@@ -21,9 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sakuyaexclusive;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
@@ -45,6 +48,9 @@ public class UndergroundSun extends Abilitycards {
     public boolean doPickUp(Hero heroine, int pos) {
         if (!Statistics.card64) {
             Statistics.card64 = true;
+                TimekeepersHourglass tH = Dungeon.heroine.belongings.getItem(TimekeepersHourglass.class);
+                tH.upgradeByCard();
+                Item.updateQuickslot();
             return super.doPickUp(heroine, pos);
         } else return false;
     }

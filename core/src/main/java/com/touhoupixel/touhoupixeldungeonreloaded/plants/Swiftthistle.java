@@ -24,7 +24,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.plants;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -93,6 +96,7 @@ public class Swiftthistle extends Plant {
 		public void reset(){
 			left = 7f;
 		}
+		public void set(float turns) { left = turns; }
 		
 		@Override
 		public String toString() {
@@ -142,6 +146,9 @@ public class Swiftthistle extends Plant {
 			super.detach();
 			triggerPresses();
 			target.next();
+			// for Sakuya
+			if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) == null){
+				MissileWeapon.castAfterTimeFreeze();}
 		}
 
 		@Override

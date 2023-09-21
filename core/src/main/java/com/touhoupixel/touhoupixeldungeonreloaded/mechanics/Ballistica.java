@@ -154,6 +154,93 @@ public class Ballistica {
 			collisionPos = cell;
 	}
 
+	//
+	public Ballistica targetAtAngle(float angle){
+		Ballistica angleBallistica;
+		//if the target is close, it will greatly affect the angle of the projectiles
+		Ballistica longRangeTarget = new Ballistica(sourcePos, collisionPos, Ballistica.WONT_STOP);
+		int sP = longRangeTarget.sourcePos;
+		int cP = longRangeTarget.collisionPos;
+		// values should not be zero or infinity
+		final float MULTI_LIMITER = 1000000f;
+
+		int w = Dungeon.level.width();
+
+		int x0 = sP % w;
+		int x1 = cP % w;
+		int x2;
+		int y0 = sP / w;
+		int y1 = cP / w;
+		int y2;
+
+		float dx = x1 - x0;
+		float dy = y1 - y0;
+
+		int direction = 1;
+		if (Math.cos(angle * Math.PI / 180) < 0){
+			direction = -1;
+		}
+
+		if (dx == 0) { dx = 1/MULTI_LIMITER;
+		if (dy < 0) { dx *= -1; }}
+		if (dy == 0) { dy = 1/MULTI_LIMITER;
+			if (dx < 0) { dy *= -1; }}
+
+		float k1 = dy / dx;
+
+
+		float k2 = (float) Math.tan(Math.PI*angle/180 + Math.atan(k1));
+		if (k2 > MULTI_LIMITER){ k2 = MULTI_LIMITER; }
+		else if (k2 < -1*MULTI_LIMITER) { k2 = -1*MULTI_LIMITER; }
+		else if (k2 == 0) { k2 = 1 / MULTI_LIMITER;}
+		float k3 = -1 / k1;
+
+		float b = (float) dy - k3*dx;
+
+		float dx2 = b / (k2 - k3) * direction;
+		float dy2 = b * k2 / (k2 - k3) * direction;
+
+		if (dx2 > MULTI_LIMITER) dx2 = MULTI_LIMITER;
+		else if (dx2 < -1*MULTI_LIMITER) dx2 = -1*MULTI_LIMITER;
+		if (dy2 > MULTI_LIMITER) dy2 = MULTI_LIMITER;
+		else if (dy2 < -1*MULTI_LIMITER) dy2 = -1*MULTI_LIMITER;
+
+		float x2_ = (x0 + dx2);
+		float y2_ = (y0 + dy2);
+		// then the results are adjusted to the coordinate system of the game
+		float scale = 1f;
+		if (x2_ > w - 1){
+			scale = x2_ / w;
+			x2_ = w - 1;
+		}
+		if (x2_ < 0){
+			scale = (-1*x2_ + w) / w;
+			x2_ = 0;
+		}
+		y2_ /= scale;
+
+		scale = 1f;
+		if (y2_ > w - 1){
+			scale = y2_ / w;
+			y2_ = w - 1;
+		}
+		if (y2_ < 0){
+			scale = (-1*y2_ + w) / w;
+			y2_ = 0;
+		}
+		x2_ /= scale;
+
+		x2 = Math.round(x2_);
+		y2 = Math.round(y2_);
+
+		int pos2 = x2 + y2*w;
+
+		//GLog.h(Math.round(dx2) + " " + Math.round(dy2) + " " + x2 + " " + y2 + " " + pos2 + " " + Dungeon.heroine.pos % w + " " + Dungeon.heroine.pos / w + " " + w + "\n");
+
+		angleBallistica = new Ballistica(sourcePos, pos2, collisionProperties);
+		return angleBallistica;
+	}
+
 	//returns a segment of the path from start to end, inclusive.
 	//if there is an error, returns an empty arraylist instead.
 	public List<Integer> subPath(int start, int end){
