@@ -60,6 +60,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
@@ -267,6 +268,13 @@ public abstract class Char extends Actor {
             return false;
 
         } else if (hit( this, enemy, accMulti )) {
+
+            if (enemy.buff(SupernaturalBorder.class) != null){
+                Buff.detach(enemy, SupernaturalBorder.class);
+                Sample.INSTANCE.play( Assets.Sounds.EVOKE );
+                enemy.sprite.flash();
+                return false;
+            }
 
             int dr = enemy.drRoll();
 
