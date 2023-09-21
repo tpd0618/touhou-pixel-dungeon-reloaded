@@ -53,7 +53,7 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 
 public class TimekeepersHourglass extends Artifact {
-	private static boolean isCard64Purchased = false;
+	private boolean isCard64Purchased = false;
 
 	{
 		image = ItemSpriteSheet.ARTIFACT_HOURGLASS;
@@ -173,9 +173,10 @@ public class TimekeepersHourglass extends Artifact {
 
 		return super.upgrade();
 	}
-	public void upgradeByCard(){
+	public void buyCard64AndAffect(){ //the method is triggered when the card is purchased and when the save is loaded
 		chargeCap += 2;
-		charge += 2;
+
+		isCard64Purchased = true;
 	}
 
 	@Override
@@ -196,13 +197,13 @@ public class TimekeepersHourglass extends Artifact {
 
 	private static final String SANDBAGS =  "sandbags";
 	private static final String BUFF =      "buff";
-	private static final String CHARGE_CAP = "charge_cap";
+	private static final String IS_CARD64_PURCHASED = "is_card64_purchased";
 
 	@Override
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle(bundle);
 		bundle.put( SANDBAGS, sandBags );
-		bundle.put(CHARGE_CAP, chargeCap);
+		bundle.put(IS_CARD64_PURCHASED, isCard64Purchased);
 
 		if (activeBuff != null)
 			bundle.put( BUFF , activeBuff );
@@ -210,8 +211,8 @@ public class TimekeepersHourglass extends Artifact {
 
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
-		//
-		chargeCap = bundle.getInt( CHARGE_CAP );
+		isCard64Purchased = bundle.getBoolean( IS_CARD64_PURCHASED );
+		if (isCard64Purchased) buyCard64AndAffect();
 		super.restoreFromBundle(bundle);
 		sandBags = bundle.getInt( SANDBAGS );
 

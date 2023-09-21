@@ -49,7 +49,7 @@ public class UndergroundSun extends Abilitycards {
         if (!Statistics.card64) {
             Statistics.card64 = true;
                 TimekeepersHourglass tH = Dungeon.heroine.belongings.getItem(TimekeepersHourglass.class);
-                tH.upgradeByCard();
+                tH.buyCard64AndAffect();
                 Item.updateQuickslot();
             return super.doPickUp(heroine, pos);
         } else return false;
