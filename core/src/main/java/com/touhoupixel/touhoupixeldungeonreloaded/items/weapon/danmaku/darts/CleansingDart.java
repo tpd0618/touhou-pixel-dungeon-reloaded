@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 public class CleansingDart extends TippedDart {
 	
 	{
-		image = ItemSpriteSheet.HEALING_DART;
+		image = ItemSpriteSheet.CLEANSING_DAST;
 	}
 	
 	@Override

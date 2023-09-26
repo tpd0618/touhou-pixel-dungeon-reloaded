@@ -371,19 +371,20 @@ public class ItemSpriteSheet {
 	}
 
 	public static final int TIPPED_DARTS_AND_KNIFE =                               xy(1, 11);  //16 slots
-	public static final int ROT_DART        = TIPPED_DARTS_AND_KNIFE +0;
-	public static final int INCENDIARY_DART = TIPPED_DARTS_AND_KNIFE +1;
-	public static final int ADRENALINE_DART = TIPPED_DARTS_AND_KNIFE +2;
-	public static final int HEALING_DART    = TIPPED_DARTS_AND_KNIFE +3;
-	public static final int CHILLING_DART   = TIPPED_DARTS_AND_KNIFE +4;
-	public static final int SHOCKING_DART   = TIPPED_DARTS_AND_KNIFE +5;
-	public static final int POISON_DART     = TIPPED_DARTS_AND_KNIFE +6;
-	public static final int SLEEP_DART      = TIPPED_DARTS_AND_KNIFE +7;
-	public static final int PARALYTIC_DART  = TIPPED_DARTS_AND_KNIFE +8;
-	public static final int HOLY_DART       = TIPPED_DARTS_AND_KNIFE +9;
-	public static final int DISPLACING_DART = TIPPED_DARTS_AND_KNIFE +10;
-	public static final int BLINDING_DART   = TIPPED_DARTS_AND_KNIFE +11;
-	public static final int DART   = TIPPED_DARTS_AND_KNIFE +12;
+
+	public static final int DART   = TIPPED_DARTS_AND_KNIFE +0;
+	public static final int ROT_DART        = TIPPED_DARTS_AND_KNIFE +1;
+	public static final int INCENDIARY_DART = TIPPED_DARTS_AND_KNIFE +2;
+	public static final int ADRENALINE_DART = TIPPED_DARTS_AND_KNIFE +3;
+	public static final int HEALING_DART    = TIPPED_DARTS_AND_KNIFE +4;
+	public static final int CHILLING_DART   = TIPPED_DARTS_AND_KNIFE +5;
+	public static final int SHOCKING_DART   = TIPPED_DARTS_AND_KNIFE +6;
+	public static final int POISON_DART     = TIPPED_DARTS_AND_KNIFE +7;
+	public static final int CLEANSING_DAST      = TIPPED_DARTS_AND_KNIFE +8;
+	public static final int PARALYTIC_DART  = TIPPED_DARTS_AND_KNIFE +9;
+	public static final int HOLY_DART       = TIPPED_DARTS_AND_KNIFE +10;
+	public static final int DISPLACING_DART = TIPPED_DARTS_AND_KNIFE +11;
+	public static final int BLINDING_DART   = TIPPED_DARTS_AND_KNIFE +12;
 	public static final int RED_KNIFE = TIPPED_DARTS_AND_KNIFE +13;
 	public static final int GREEN_KNIFE = TIPPED_DARTS_AND_KNIFE +14;
 	public static final int BLUE_KNIFE = TIPPED_DARTS_AND_KNIFE +15;

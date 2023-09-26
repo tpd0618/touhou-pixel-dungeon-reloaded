@@ -1455,12 +1455,6 @@ public class Hero extends Char {
 			damage *= 0.75f;
 		}
 
-		if (buff(SupernaturalBorder.class) != null){
-			damage *= 0;
-			Buff.detach(this, SupernaturalBorder.class);
-			Sample.INSTANCE.play( Assets.Sounds.EVOKE );
-		}
-
 		if (buff(YokaiBorder.class) != null && enemy.properties().contains(Char.Property.YOKAI)) {
 			damage = 1;
 		}
