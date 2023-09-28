@@ -70,8 +70,6 @@ public class Statistics {
 	public static int tenshiEarthquake;
 	public static int bordercount;
 
-	public static int yukariCount;
-
 	public static int maxHP_down;
 	public static int life_count;
 	public static int bomb_count;
@@ -266,8 +264,6 @@ public class Statistics {
 		tenshiEarthquake = 0;
 		bordercount = 0;
 
-		yukariCount = 0;
-
 		maxHP_down = 0;
 		life_count = 0;
 		bomb_count = 0;
@@ -458,8 +454,6 @@ public class Statistics {
 	private static final String TIMERESET		= "timeReset";
 	private static final String TENSHIEARTHQUAKE		= "tenshiearthquake";
 	private static final String BORDERCOUNT		= "bordercount";
-
-	private static final String YUKARICOUNT		= "yukaricount";
 
 	private static final String MAXHP_DOWN		= "maxhp_down";
 	private static final String LIFE_COUNT = "life_count";
@@ -655,8 +649,6 @@ public class Statistics {
 		bundle.put( TIMERESET,		timeReset );
 		bundle.put( TENSHIEARTHQUAKE,		tenshiEarthquake );
 		bundle.put( BORDERCOUNT,		bordercount );
-
-		bundle.put( YUKARICOUNT, yukariCount);
 
 		bundle.put( MAXHP_DOWN, maxHP_down);
 		bundle.put( LIFE_COUNT, life_count);
@@ -854,8 +846,6 @@ public class Statistics {
 		timeReset   = bundle.getInt( TIMERESET );
 		tenshiEarthquake   = bundle.getInt( TENSHIEARTHQUAKE );
 		bordercount   = bundle.getInt( BORDERCOUNT );
-
-		yukariCount = bundle.getInt( YUKARICOUNT );
 
 		maxHP_down = bundle.getInt( MAXHP_DOWN );
 		life_count = bundle.getInt(LIFE_COUNT);

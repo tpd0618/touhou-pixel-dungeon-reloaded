@@ -107,9 +107,9 @@ public class AboutScene extends PixelScene {
 		content.add(tpd0618);
 
 		CreditsBlock hashinuke = new CreditsBlock(false, Window.SHPX_COLOR,
-				"English Translations(v1.1):",
+				"Protagonists ability creator",
 				Icons.CHALLENGE_ON.get(),
-				"Nuke Hashigawa",
+				"Kai0005",
 				"no link",
 				"https://twitter.com/touhoupd");
 		hashinuke.setRect(alex.right() - colWidth/4f, alex.bottom() + 5, colWidth/2f, 0);

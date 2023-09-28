@@ -9,6 +9,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TenshiSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -25,6 +26,8 @@ public class Tenshi extends Mob {
         EXP = 18;
         maxLvl = 47;
 
+        baseSpeed = Statistics.difficulty > 4 ? 1f : 0.5f;
+
         properties.add(Property.WARP);
 
         properties.add(Property.FUMO);
@@ -36,7 +39,9 @@ public class Tenshi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(25, 30);
+        MeleeWeapon meleeweapon = Dungeon.heroine.belongings.getItem(MeleeWeapon.class);
+        return Statistics.difficulty > 2 ? Random.NormalIntRange(meleeweapon.min()*2, meleeweapon.max()):
+                Random.NormalIntRange(meleeweapon.min(), meleeweapon.max());
     }
 
     @Override
@@ -47,29 +52,5 @@ public class Tenshi extends Mob {
     @Override
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
-    }
-
-    @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && !hero.flying && Random.Int(4) == 0) {
-            Homunculus homunculus = Dungeon.heroine.belongings.getItem(Homunculus.class);
-            if (homunculus != null) {
-                homunculus.detach(Dungeon.heroine.belongings.backpack);
-                Sample.INSTANCE.play(Assets.Sounds.BEACON);
-                GLog.w(Messages.get(Homunculus.class, "block_instakill"));
-                Item.updateQuickslot();
-            } else {
-                damage = hero.HP + 1;
-                GLog.w(Messages.get(this, "purified"));
-            }
-            if (Statistics.difficulty > 2) {
-                Buff.affect(enemy, Bleeding.class).set(7);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.affect(enemy, Bleeding.class).set(7);
-            }
-        }
-        return damage;
     }
 }

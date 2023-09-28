@@ -27,40 +27,48 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfSirensSong;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MiyoiSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RaikoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SannyoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
-public class Miyoi extends Mob {
+public class Raiko extends Mob {
 
     {
-        spriteClass = MiyoiSprite.class;
+        spriteClass = RaikoSprite.class;
 
-        HP = HT = 26;
-        defenseSkill = 7;
-        EXP = 3;
-        maxLvl = 15;
+        HP = HT = 83;
+        defenseSkill = 22;
+        EXP = 13;
+        maxLvl = 30;
+
+        flying = Statistics.difficulty > 2;
+
+        baseSpeed = Statistics.difficulty > 4 ? 2f : 1f;
 
         properties.add(Property.YOKAI);
 
-        loot = Generator.Category.POTION;
+        loot = new LifeFragment();
         lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 8);
+        return Random.NormalIntRange(10, 20);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 12;
+        return 27;
     }
 
     @Override
@@ -69,19 +77,13 @@ public class Miyoi extends Mob {
     }
 
     @Override
-    public int attackProc( Char hero, int damage ) {
-        damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0 && Dungeon.gold > 79) {
-            Dungeon.gold -= 80;
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-            }
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-            GLog.w(Messages.get(this, "stole"));
+    public int attackProc(Char hero, int damage) {
+        damage = super.attackProc(enemy, damage);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
+            damage *= 3f;
+            Sample.INSTANCE.play( Assets.Sounds.BLAST );
+            GLog.w(Messages.get(this, "punisher"));
+            Camera.main.shake( 20, 1f );
         }
         return damage;
     }

@@ -28,7 +28,7 @@ public class Miko extends Mob {
         //used for fumo lover buff
 
         loot = new LifeFragment();
-        lootChance = 0.01f;
+        lootChance = 0.08f;
     }
 
     @Override

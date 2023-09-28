@@ -413,6 +413,7 @@ public class Assets {
 		public static final String ENOKO = "sprites/enoko.png";
 		public static final String HISAMI = "sprites/hisami.png";
 		public static final String ZANMU = "sprites/zanmu.png";
+		public static final String RAIKO = "sprites/raiko.png";
 		public static final String DESTORB = "sprites/destorb.png";
 
 		public static final String ZUN = "sprites/zun.png";

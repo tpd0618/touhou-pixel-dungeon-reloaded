@@ -44,7 +44,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.TelekineticGrab;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
@@ -65,9 +67,9 @@ public enum HeroClass {
 	public void initHero( Hero heroine) {
 		//mobs bestiary flavor text todo
 
-		//test, too many will trigger a certain bug
+		//test, put too many stuffs will trigger a certain bug
 
-		//test, too many will trigger a certain bug
+		//test, put too many stuffs will trigger a certain bug
 
 		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 			HeartHerb heartHerb = new HeartHerb();
@@ -97,8 +99,6 @@ public enum HeroClass {
 
 		NitoChecker nitoChecker = new NitoChecker();
 		nitoChecker.collect();
-
-
 
 		new MagicalHolster().collect();
 		new PotionBandolier().collect();

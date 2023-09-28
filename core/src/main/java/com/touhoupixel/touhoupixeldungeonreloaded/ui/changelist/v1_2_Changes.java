@@ -47,9 +47,14 @@ public class v1_2_Changes {
 
 		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.4 changes",
 				"_-_ THPD: reloaded can now prevent dismantling an item by mistake. It will do double-check.\n" +
+						"_-_ Protagonists except reimu now have their special abilities.\n" +
 						"_-_ Eiki's judgment damage has been nerfed again.\n" +
+						"_-_ Raiko and mayumi have been added.\n" +
 						"_-_ Yuuma is remaked, and added hearn to the gensokyo.\n" +
-						"_-_ Enemies' stats are buffed.\n" +
+						"_-_ Sagume's minor bug is fixed.\n" +
+						"_-_ Telekinetic grab's major bug is fixed.\n" +
+						"_-_ Boss seija's penalty is nerfed.\n" +
+						"_-_ Enemies' stats will be buffed.\n" +
 						"_-_ Minor text improvements.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}

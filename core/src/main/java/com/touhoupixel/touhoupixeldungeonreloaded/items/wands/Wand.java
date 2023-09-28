@@ -193,7 +193,8 @@ public abstract class Wand extends Item {
 		wandProc(target, buffedLvl(), chargesUsed);
 
 		if (target instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
-			Dungeon.heroine.HP = 1;
+			Dungeon.heroine.HP /= 2;
+			GameScene.flash(-65536);
 		}
 
 		if (target instanceof BossTenshi){

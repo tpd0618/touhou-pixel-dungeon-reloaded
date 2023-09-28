@@ -42,9 +42,6 @@ public class WandOfHealWounds extends Wand {
 		image = ItemSpriteSheet.WAND_HEAL_WOUNDS;
 
 		collisionProperties = Ballistica.PROJECTILE;
-
-		unique = true;
-		bones = false;
 	}
 
 	private boolean freeCharge = false;

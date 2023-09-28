@@ -8,14 +8,14 @@ import java.util.Arrays;
 
 public class Bestiary {
 
-	public static ArrayList<Class<? extends Mob>> getMobRotation(int depth) {
-		ArrayList<Class<? extends Mob>> mobs = standardMobRotation(depth);
+	public static ArrayList<Class<? extends Mob>> getMobRotation(int floor) {
+		ArrayList<Class<? extends Mob>> mobs = standardMobRotation(floor);
 		Random.shuffle(mobs);
 		return mobs;
 	}
 
-	private static ArrayList<Class<? extends Mob>> standardMobRotation(int depth) {
-		switch (depth) {
+	private static ArrayList<Class<? extends Mob>> standardMobRotation(int floor) {
+		switch (floor) {
 			case 1:
 			case 2:
 			default:
@@ -173,52 +173,58 @@ public class Bestiary {
 			case 20:
 				if (Statistics.extermination_number == 41) {
 					return new ArrayList<>(Arrays.asList(
-							Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class));
+							Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class, Mayumi.class));
 				} else if (Statistics.extermination_number == 42) {
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class));
+							Seiga.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class, Mayumi.class));
 				} else if (Statistics.extermination_number == 43) {
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Yuuka.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class));
+							Seiga.class, Yuuka.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class, Mayumi.class));
 				} else if (Statistics.extermination_number == 44) {
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Yuuka.class, Nemuno.class, Joon.class, Shion.class, Kasen.class));
+							Seiga.class, Yuuka.class, Nemuno.class, Joon.class, Shion.class, Kasen.class, Mayumi.class));
 				} else if (Statistics.extermination_number == 45) {
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Shion.class, Kasen.class));
+							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Shion.class, Kasen.class, Mayumi.class));
 				} else if (Statistics.extermination_number == 46) {
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Kasen.class));
+							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Kasen.class, Mayumi.class));
 				} else if (Statistics.extermination_number == 47) {
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class));
+							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Mayumi.class));
+				} else if (Statistics.extermination_number == 112) {
+					return new ArrayList<>(Arrays.asList(
+							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class));
 				} else return new ArrayList<>(Arrays.asList(
-						Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class));
+						Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class, Mayumi.class));
 			case 21:
 			case 22:
 				if (Statistics.extermination_number == 48) {
 					return new ArrayList<>(Arrays.asList(
-							Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class));
+							Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
 				} else if (Statistics.extermination_number == 49) {
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class));
+							Futo.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
 				} else if (Statistics.extermination_number == 50) {
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Kyouko.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class));
+							Futo.class, Kyouko.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
 				} else if (Statistics.extermination_number == 51) {
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Kyouko.class, Ichirin.class, Shou.class, Miko.class, Hijiri.class));
+							Futo.class, Kyouko.class, Ichirin.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
 				} else if (Statistics.extermination_number == 52) {
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Miko.class, Hijiri.class));
+							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Miko.class, Hijiri.class, Raiko.class));
 				} else if (Statistics.extermination_number == 53) {
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Hijiri.class));
+							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Hijiri.class, Raiko.class));
 				} else if (Statistics.extermination_number == 54) {
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class));
+							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Raiko.class));
+				} else if (Statistics.extermination_number == 111) {
+					return new ArrayList<>(Arrays.asList(
+							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class));
 				} else return new ArrayList<>(Arrays.asList(
-						Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class));
+						Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
 			case 23:
 			case 24:
 			case 25:

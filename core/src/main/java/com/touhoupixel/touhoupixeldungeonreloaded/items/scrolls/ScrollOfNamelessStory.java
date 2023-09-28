@@ -1043,6 +1043,24 @@ public class ScrollOfNamelessStory extends Scroll {
 					}
 				}
 			}
+			if (ch instanceof Raiko){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Raiko) {
+						Statistics.extermination_number = 111;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
+			if (ch instanceof Mayumi){
+				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+					if (mob instanceof Mayumi) {
+						Statistics.extermination_number = 112;
+						mob.exterminate();
+						mob.sprite.killAndErase();
+					}
+				}
+			}
 
 			Heap[] heaps = new Heap[1];
 			heaps[0] = Dungeon.level.heaps.get(ch.pos);

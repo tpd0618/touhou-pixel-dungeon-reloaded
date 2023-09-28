@@ -73,7 +73,7 @@ public class Eiki extends Mob {
 
     @Override
     public int damageRoll() {
-        return (Statistics.difficulty > 2) ? Random.NormalIntRange(Statistics.enemiesSlain/13, Statistics.enemiesSlain/11):
+        return Statistics.difficulty > 2 ? Random.NormalIntRange(Statistics.enemiesSlain/13, Statistics.enemiesSlain/11):
                 Random.NormalIntRange(Statistics.enemiesSlain/15, Statistics.enemiesSlain/13);
     }
 

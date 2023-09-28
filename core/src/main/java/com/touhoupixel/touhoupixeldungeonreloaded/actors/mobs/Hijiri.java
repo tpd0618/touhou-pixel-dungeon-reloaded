@@ -21,6 +21,8 @@ public class Hijiri extends Mob {
         EXP = 13;
         maxLvl = 30;
 
+        baseSpeed = 2f;
+
         state = WANDERING;
 
         properties.add(Property.WARP);

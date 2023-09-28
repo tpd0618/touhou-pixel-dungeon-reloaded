@@ -710,7 +710,8 @@ public abstract class Mob extends Char {
 		}
 
 		if (this instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
-			Dungeon.heroine.HP = 1;
+			Dungeon.heroine.HP /= 2;
+			GameScene.flash(-65536);
 		}
 
 		if (this instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){

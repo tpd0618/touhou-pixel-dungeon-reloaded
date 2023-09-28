@@ -31,7 +31,7 @@ public class Sagume extends Mob {
         //used for fumo lover buff
 
         loot = new LifeFragment();
-        lootChance = 0.05f;
+        lootChance = 0.08f;
     }
 
     @Override
@@ -53,8 +53,8 @@ public class Sagume extends Mob {
     public void die(Object cause) {
         super.die(cause);
         for (int i : PathFinder.NEIGHBOURS8) {
-            if (cause == Dungeon.heroine && enemy.pos == this.pos + i) {
-                Dungeon.heroine.HP = 1;
+            if (enemy == Dungeon.heroine && enemy.pos == this.pos + i) {
+                enemy.HP = 1;
                 Sample.INSTANCE.play( Assets.Sounds.CURSED );
                 GLog.w(Messages.get(this, "reverse"));
             }
