@@ -107,7 +107,7 @@ public class AboutScene extends PixelScene {
 		content.add(tpd0618);
 
 		CreditsBlock hashinuke = new CreditsBlock(false, Window.SHPX_COLOR,
-				"Protagonists ability creator",
+				"Protagonist Ability Creator",
 				Icons.CHALLENGE_ON.get(),
 				"Kai0005",
 				"no link",
