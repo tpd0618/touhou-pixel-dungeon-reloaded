@@ -35,9 +35,9 @@
 		android:resizeableActivity="true"
 		android:allowBackup="true"
 		android:fullBackupOnly="true"
-		android:backupAgent="com.touhoupixel.touhoupixeldungeonreloaded.android.AndroidBackupHandler">
+		android:backupAgent="com.touhoupixel.touhoupixeldungeongaiden.android.AndroidBackupHandler">
 		<activity
-			android:name="com.touhoupixel.touhoupixeldungeonreloaded.android.AndroidLauncher"
+			android:name="com.touhoupixel.touhoupixeldungeongaiden.android.AndroidLauncher"
 			android:screenOrientation="nosensor"
 			android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:exported="true">
@@ -47,7 +47,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name="com.touhoupixel.touhoupixeldungeonreloaded.android.AndroidMissingNativesHandler">
+			android:name="com.touhoupixel.touhoupixeldungeongaiden.android.AndroidMissingNativesHandler">
 		</activity>
 
 	</application>

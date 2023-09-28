@@ -11,11 +11,11 @@ buildscript {
 allprojects {
 
     ext {
-        appName = 'Touhou Pixel Dungeon: Reloaded'
-        appPackageName = 'com.touhoupixel.touhoupixeldungeonreloaded'
+        appName = 'Touhou Pixel Dungeon Gaiden: Hifuu Club Appear'
+        appPackageName = 'com.touhoupixel.touhoupixeldungeongaiden'
 
-        appVersionCode = 664
-        appVersionName = '1.1.4'
+        appVersionCode = 601
+        appVersionName = '1.0.1'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 
