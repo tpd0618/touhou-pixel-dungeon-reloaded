@@ -86,7 +86,7 @@ public class BuffIndicator extends Component {
 	public static final int BLESS         = 37;
 	public static final int HOMING_BLADE  = 38;
 	public static final int YUKARI_BORDER = 39;
-	public static final int BERSERK       = 40;
+	public static final int FUTURE_SIGHT  = 40;
 	public static final int HASTE         = 41;
 	public static final int HEAVEN_SPEED  = 42;
 	public static final int WELL_FED      = 43;

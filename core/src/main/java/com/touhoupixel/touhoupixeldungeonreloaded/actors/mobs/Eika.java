@@ -44,8 +44,8 @@ public class Eika extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (Random.Int(5) == 0) {
-            Buff.affect(enemy, Bleeding.class).set(3);
+        if (Random.Int(4) == 0) {
+            Buff.affect(enemy, Bleeding.class).set(4);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }

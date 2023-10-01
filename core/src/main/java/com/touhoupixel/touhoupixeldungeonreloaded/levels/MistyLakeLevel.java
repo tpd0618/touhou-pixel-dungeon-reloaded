@@ -26,16 +26,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ZeroDexterityTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ToxicTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
@@ -103,15 +105,17 @@ public class MistyLakeLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				EnchantEraseTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, FlockTrap.class,
-				SlowTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, ToxicTrap.class, ConfusionTrap.class};
+				ConfusionTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, FlockTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, EnchantEraseTrap.class,
+				PoisonDartTrap.class, SummoningTrap.class};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				3, 3, 3, 3, 3,
-				2, 2, 2, 2, 2};
+				2, 2, 2, 2, 2,
+				2, 2, 2, 2, 1,
+				1, 1};
 	}
 	
 	@Override

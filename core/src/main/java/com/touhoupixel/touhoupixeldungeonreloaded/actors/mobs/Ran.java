@@ -114,7 +114,7 @@ public class Ran extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 15, 21 );
+            int dmg = Random.NormalIntRange( 13, 18 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

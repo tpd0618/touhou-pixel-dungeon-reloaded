@@ -44,7 +44,7 @@ public class SummoningTrap extends Trap {
 	@Override
 	public void activate() {
 
-		int nMobs = 1;
+		int nMobs = 4;
 
 		ArrayList<Integer> candidates = new ArrayList<>();
 

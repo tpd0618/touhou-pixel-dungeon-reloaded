@@ -48,13 +48,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.SpecialRo
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.EntranceRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.ExitRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.standard.StandardRoom;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StorywayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Point;
@@ -170,7 +170,7 @@ public abstract class RegularLevel extends Level {
 	}
 
 	protected Class<?>[] trapClasses(){
-		return new Class<?>[]{InversionTrap.class};
+		return new Class<?>[]{StorywayTrap.class};
 	}
 
 	protected float[] trapChances() {

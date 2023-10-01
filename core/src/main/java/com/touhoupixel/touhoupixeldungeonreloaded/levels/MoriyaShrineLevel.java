@@ -27,14 +27,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.InversionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ZeroDexterityTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursedBlowTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DegradeTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
@@ -42,6 +39,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.StorywayTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
@@ -109,17 +109,17 @@ public class MoriyaShrineLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				EnchantEraseTrap.class, FrostTrap.class, BlazingTrap.class, AlarmTrap.class, InversionTrap.class,
-				DegradeTrap.class, ExConfusionTrap.class, CursedBlowTrap.class, CorrosionTrap.class, RockfallTrap.class,
-				DisintegrationTrap.class, CursingTrap.class, BalanceTrap.class, ZeroDexterityTrap.class, FlashingTrap.class, GrimTrap.class};
+				ConfusionTrap.class, FrostTrap.class, BlazingTrap.class, FlashingTrap.class, StorywayTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, EnchantEraseTrap.class,
+				CursingTrap.class, SummoningTrap.class, RockfallTrap.class, DisintegrationTrap.class, GrimTrap.class};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				3, 3, 3, 3, 3,
-				2, 2, 2, 2, 2,
-				1, 1, 1, 1, 1, 1};
+				2, 2, 2, 2, 5,
+				2, 2, 2, 2, 1,
+				1, 1, 1, 1, 1};
 	}
 	
 	@Override

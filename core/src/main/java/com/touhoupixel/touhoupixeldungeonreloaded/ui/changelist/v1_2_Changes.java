@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_5_Changes(changeInfos);
 		add_v1_1_4_Changes(changeInfos);
 		add_v1_1_3_Changes(changeInfos);
 		add_v1_1_2_Changes(changeInfos);
@@ -38,6 +39,22 @@ public class v1_2_Changes {
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_5_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.5", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.5 changes",
+				"_-_ Youmu's bomb crash bug fixed.\n" +
+						"_-_ Enemy sakuya's ability has been changed.\n" +
+						"_-_ New trap, storyway trap is added for late game.\n" +
+						"_-_ Eika's bleeding damage has been increased.\n" +
+						"_-_ Ran's ranged damage has been nerfed.\n" +
+						"_-_ Some weak traps are removed from the game.\n" +
+						"_-_ Minor text improvements.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_1_4_Changes(ArrayList<ChangeInfo> changeInfos ) {
