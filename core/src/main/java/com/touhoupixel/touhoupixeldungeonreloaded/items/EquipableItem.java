@@ -33,6 +33,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.Guidebook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
@@ -119,11 +124,13 @@ public abstract class EquipableItem extends Item {
 					GLog.w(Messages.get(this, "danmaku"));
 				} else {
 					curItem.detach(curUser.belongings.backpack);
-					if (curItem.level() > 0) {
-						Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
-					} else {
-						Dungeon.energy += 3;
-					}
+					Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(300, 450)), curUser.pos).sprite.drop();
+					//clear cube fragments
+					Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new RedCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new WhiteCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
+					//color cube fragments
 					Buff.detach(curUser, DismantleReady.class);
 					Buff.detach(curUser, DismantlePressure.class);
 					updateQuickslot();

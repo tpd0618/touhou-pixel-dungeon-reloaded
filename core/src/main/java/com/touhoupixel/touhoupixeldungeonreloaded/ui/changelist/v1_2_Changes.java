@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_6_Changes(changeInfos);
 		add_v1_1_5_Changes(changeInfos);
 		add_v1_1_4_Changes(changeInfos);
 		add_v1_1_3_Changes(changeInfos);
@@ -39,6 +40,24 @@ public class v1_2_Changes {
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
 		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_6_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.6", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.6 changes",
+				"_-_ Hisou's damage bonus has been nerfed.\n" +
+						"_-_ Futo now shows message that item is changed into heart herb.\n" +
+						"_-_ Ring's max level has been nerfed.\n" +
+						"_-_ Grayswandir and quintessential fan is nerfed.\n" +
+						"_-_ New missile weapon, ego rock is added which deals 28 damage.\n" +
+						"_-_ Hakkero now needs clear cube fragments and color cube fragments to fire.\n" +
+						"_-_ Vials are removed.\n" +
+						"_-_ Equipments discover rate is reduced a little.\n" +
+						"_-_ Minor text improvements.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_1_5_Changes(ArrayList<ChangeInfo> changeInfos ) {

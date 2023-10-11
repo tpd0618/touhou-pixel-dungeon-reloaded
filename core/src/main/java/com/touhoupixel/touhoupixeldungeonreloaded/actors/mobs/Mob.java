@@ -744,7 +744,7 @@ public abstract class Mob extends Char {
 					GLog.p(Messages.get(this, "bw_gold"));
 					break;
 				case 1:
-					switch (Random.Int(5)) {
+					switch (Random.Int(4)) {
 						case 0:
 						default:
 							Dungeon.level.drop(Generator.random(Generator.Category.POTION), Dungeon.heroine.pos).sprite.drop();
@@ -757,9 +757,6 @@ public abstract class Mob extends Char {
 							break;
 						case 3:
 							Dungeon.level.drop(Generator.random(Generator.Category.TALISMAN), Dungeon.heroine.pos).sprite.drop();
-							break;
-						case 4:
-							Dungeon.level.drop(Generator.random(Generator.Category.VIAL), Dungeon.heroine.pos).sprite.drop();
 							break;
 					}
 					GLog.p(Messages.get(this, "bw_item"));

@@ -7,7 +7,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.FutoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Futo extends Mob {
@@ -62,6 +64,7 @@ public class Futo extends Mob {
                 for (Item i : h.items.toArray(new Item[0])){
                     if (!i.unique){
                         h.remove(i);
+                        GLog.w(Messages.get(this, "knave"));
                     }
                 }
             }

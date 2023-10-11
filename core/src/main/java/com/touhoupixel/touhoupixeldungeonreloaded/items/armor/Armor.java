@@ -72,73 +72,73 @@ import java.util.Arrays;
 
 public class Armor extends EquipableItem {
 
-	protected static final String AC_DETACH       = "DETACH";
+	protected static final String AC_DETACH = "DETACH";
 
 	public enum Augment {
-		EVASION (2f , -1f),
-		DEFENSE (-2f, 1f),
-		NONE	(0f   ,  0f);
-		
+		EVASION(2f, -1f),
+		DEFENSE(-2f, 1f),
+		NONE(0f, 0f);
+
 		private float evasionFactor;
 		private float defenceFactor;
-		
-		Augment(float eva, float df){
+
+		Augment(float eva, float df) {
 			evasionFactor = eva;
 			defenceFactor = df;
 		}
-		
-		public int evasionFactor(int level){
+
+		public int evasionFactor(int level) {
 			return Math.round((2 + level) * evasionFactor);
 		}
-		
-		public int defenseFactor(int level){
+
+		public int defenseFactor(int level) {
 			return Math.round((2 + level) * defenceFactor);
 		}
 	}
-	
+
 	public Augment augment = Augment.NONE;
-	
+
 	public Glyph glyph;
 	public boolean curseInfusionBonus = false;
 	public boolean masteryPotionBonus = false;
-	
+
 	public int tier;
-	
+
 	private static final int USES_TO_ID = 10;
 	private float usesLeftToID = USES_TO_ID;
-	private float availableUsesToID = USES_TO_ID/2f;
-	
-	public Armor( int tier ) {
+	private float availableUsesToID = USES_TO_ID / 2f;
+
+	public Armor(int tier) {
 		this.tier = tier;
 	}
-	
+
 	private static final String USES_LEFT_TO_ID = "uses_left_to_id";
-	private static final String AVAILABLE_USES  = "available_uses";
-	private static final String GLYPH			= "glyph";
+	private static final String AVAILABLE_USES = "available_uses";
+	private static final String GLYPH = "glyph";
 	private static final String CURSE_INFUSION_BONUS = "curse_infusion_bonus";
 	private static final String MASTERY_POTION_BONUS = "mastery_potion_bonus";
-	private static final String AUGMENT			= "augment";
+	private static final String AUGMENT = "augment";
 
 	@Override
-	public void storeInBundle( Bundle bundle ) {
-		super.storeInBundle( bundle );
-		bundle.put( USES_LEFT_TO_ID, usesLeftToID );
-		bundle.put( AVAILABLE_USES, availableUsesToID );
-		bundle.put( GLYPH, glyph );
-		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
-		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
-		bundle.put( AUGMENT, augment);
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(USES_LEFT_TO_ID, usesLeftToID);
+		bundle.put(AVAILABLE_USES, availableUsesToID);
+		bundle.put(GLYPH, glyph);
+		bundle.put(CURSE_INFUSION_BONUS, curseInfusionBonus);
+		bundle.put(MASTERY_POTION_BONUS, masteryPotionBonus);
+		bundle.put(AUGMENT, augment);
 	}
 
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
+	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
-		usesLeftToID = bundle.getInt( USES_LEFT_TO_ID );
-		availableUsesToID = bundle.getInt( AVAILABLE_USES );
+		usesLeftToID = bundle.getInt(USES_LEFT_TO_ID);
+		availableUsesToID = bundle.getInt(AVAILABLE_USES);
 		inscribe((Glyph) bundle.get(GLYPH));
-		curseInfusionBonus = bundle.getBoolean( CURSE_INFUSION_BONUS );
-		masteryPotionBonus = bundle.getBoolean( MASTERY_POTION_BONUS );
-		
+		curseInfusionBonus = bundle.getBoolean(CURSE_INFUSION_BONUS);
+		masteryPotionBonus = bundle.getBoolean(MASTERY_POTION_BONUS);
+
 		augment = bundle.getEnum(AUGMENT, Augment.class);
 	}
 
@@ -146,7 +146,7 @@ public class Armor extends EquipableItem {
 	public void reset() {
 		super.reset();
 		usesLeftToID = USES_TO_ID;
-		availableUsesToID = USES_TO_ID/2f;
+		availableUsesToID = USES_TO_ID / 2f;
 	}
 
 	@Override
@@ -162,30 +162,30 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public boolean doEquip( Hero heroine) {
-		
+	public boolean doEquip(Hero heroine) {
+
 		detach(heroine.belongings.backpack);
 
-		if (heroine.belongings.armor == null || heroine.belongings.armor.doUnequip(heroine, true, false )) {
-			
+		if (heroine.belongings.armor == null || heroine.belongings.armor.doUnequip(heroine, true, false)) {
+
 			heroine.belongings.armor = this;
-			
+
 			cursedKnown = true;
 			if (cursed) {
 				equipCursed(heroine);
-				GLog.n( Messages.get(Armor.class, "equip_cursed") );
+				GLog.n(Messages.get(Armor.class, "equip_cursed"));
 			}
-			
+
 			((HeroSprite) heroine.sprite).updateArmor();
 			activate(heroine);
-			heroine.spendAndNext( time2equip(heroine) );
+			heroine.spendAndNext(time2equip(heroine));
 			return true;
-			
+
 		} else {
-			
-			collect( heroine.belongings.backpack );
+
+			collect(heroine.belongings.backpack);
 			return false;
-			
+
 		}
 	}
 
@@ -195,8 +195,8 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public boolean doUnequip(Hero heroine, boolean collect, boolean single ) {
-		if (super.doUnequip(heroine, collect, single )) {
+	public boolean doUnequip(Hero heroine, boolean collect, boolean single) {
+		if (super.doUnequip(heroine, collect, single)) {
 
 			heroine.belongings.armor = null;
 			((HeroSprite) heroine.sprite).updateArmor();
@@ -209,118 +209,122 @@ public class Armor extends EquipableItem {
 
 		}
 	}
-	
+
 	@Override
-	public boolean isEquipped( Hero heroine) {
+	public boolean isEquipped(Hero heroine) {
 		return heroine.belongings.armor() == this;
 	}
 
-	public final int DRMax(){
+	public final int DRMax() {
 		return DRMax(buffedLvl());
 	}
 
-	public int DRMax(int lvl){
+	public int DRMax(int lvl) {
 		int max = tier * (2 + lvl) + augment.defenseFactor(lvl);
-		if (lvl > max){
-			return ((lvl - max)+1)/2;
+		if (lvl > max) {
+			return ((lvl - max) + 1) / 2;
 		} else {
 			return max;
 		}
 	}
 
-	public final int DRMin(){
+	public final int DRMin() {
 		return DRMin(buffedLvl());
 	}
 
-	public int DRMin(int lvl){
+	public int DRMin(int lvl) {
 		int max = DRMax(lvl);
-		if (lvl >= max){
+		if (lvl >= max) {
 			return (lvl - max);
 		} else {
 			return lvl;
 		}
 	}
-	
-	public float evasionFactor( Char owner, float evasion ){
-		
-		if (hasGlyph(Stone.class, owner) && !((Stone)glyph).testingEvasion()){
+
+	public float evasionFactor(Char owner, float evasion) {
+
+		if (hasGlyph(Stone.class, owner) && !((Stone) glyph).testingEvasion()) {
 			return 0;
 		}
-		
-		if (owner instanceof Hero){
+
+		if (owner instanceof Hero) {
 			int aEnc = STRReq() - ((Hero) owner).STR();
 			if (aEnc > 0) evasion /= Math.pow(1.5, aEnc);
 		}
-		
+
 		return evasion + augment.evasionFactor(buffedLvl());
 	}
-	
-	public float speedFactor( Char owner, float speed ){
-		
+
+	public float speedFactor(Char owner, float speed) {
+
 		if (owner instanceof Hero) {
 			int aEnc = STRReq() - ((Hero) owner).STR();
 			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 		}
-		
+
 		if (hasGlyph(Swiftness.class, owner)) {
 			boolean enemyNear = false;
 			PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable, 2);
-			for (Char ch : Actor.chars()){
-				if ( PathFinder.distance[ch.pos] != Integer.MAX_VALUE && owner.alignment != ch.alignment){
+			for (Char ch : Actor.chars()) {
+				if (PathFinder.distance[ch.pos] != Integer.MAX_VALUE && owner.alignment != ch.alignment) {
 					enemyNear = true;
 					break;
 				}
 			}
 			if (!enemyNear) speed *= (1.2f + 0.04f * buffedLvl());
-		} else if (hasGlyph(Flow.class, owner) && Dungeon.level.water[owner.pos]){
-			speed *= (2f + 0.25f*buffedLvl());
+		} else if (hasGlyph(Flow.class, owner) && Dungeon.level.water[owner.pos]) {
+			speed *= (2f + 0.25f * buffedLvl());
 		}
-		
+
 		if (hasGlyph(Bulk.class, owner) &&
 				(Dungeon.level.map[owner.pos] == Terrain.DOOR
-						|| Dungeon.level.map[owner.pos] == Terrain.OPEN_DOOR )) {
+						|| Dungeon.level.map[owner.pos] == Terrain.OPEN_DOOR)) {
 			speed /= 3f;
 		}
-		
+
 		return speed;
-		
+
 	}
-	
-	public float stealthFactor( Char owner, float stealth ){
-		
-		if (hasGlyph(Obfuscation.class, owner)){
-			stealth += 1 + buffedLvl()/3f;
+
+	public float stealthFactor(Char owner, float stealth) {
+
+		if (hasGlyph(Obfuscation.class, owner)) {
+			stealth += 1 + buffedLvl() / 3f;
 		}
-		
+
 		return stealth;
 	}
 
-	public int YokaiDefFactor( Char owner ) {
+	public int YokaiDefFactor(Char owner) {
 		return 0;
 	}
-	public int GodDefFactor( Char owner ) {
+
+	public int GodDefFactor(Char owner) {
 		return 0;
 	}
-	public int HumanDefFactor( Char owner ) {
+
+	public int HumanDefFactor(Char owner) {
 		return 0;
 	}
-	public int AnimalDefFactor( Char owner ) {
+
+	public int AnimalDefFactor(Char owner) {
 		return 0;
 	}
-	public int WarpDefFactor( Char owner ) {
+
+	public int WarpDefFactor(Char owner) {
 		return 0;
 	}
-	
+
 	@Override
 	public int level() {
 		int level = super.level();
-		if (curseInfusionBonus) level += 1 + level/6;
+		if (curseInfusionBonus) level += 1 + level / 6;
 		return level;
 	}
 
 	@Override
-	public void onThrow( int cell ) {
-		Heap heap = Dungeon.level.drop( this, cell );
+	public void onThrow(int cell) {
+		Heap heap = Dungeon.level.drop(this, cell);
 		Char ch = (Char) Actor.findChar(cell);
 		if (!heap.isEmpty() && ch != null && ch != Dungeon.heroine) {
 			Armor armor = (Armor) curItem;
@@ -334,15 +338,9 @@ public class Armor extends EquipableItem {
 			}
 			Heap[] equipHeaps = new Heap[1];
 			equipHeaps[0] = Dungeon.level.heaps.get(ch.pos);
-			for (Heap h : equipHeaps) {
-				for (Item i : h.items.toArray(new Item[0])){
-					if (i == curItem){
-						h.remove(i);
-					}
-				}
-			}
+			heap.remove(curItem);
 		} else {
-			heap.sprite.drop( cell );
+			heap.sprite.drop(cell);
 		}
 	}
 

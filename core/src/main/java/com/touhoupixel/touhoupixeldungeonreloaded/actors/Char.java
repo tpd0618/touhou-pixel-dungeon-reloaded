@@ -74,7 +74,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.Vial;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.DamageWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
@@ -449,7 +448,7 @@ public abstract class Char extends Actor {
             damage *= 1.25f;
         }
         if (buff(Hisou.class) != null && !enemy.flying ){
-            damage *= 1.5f;
+            damage *= 1.35f;
         }
         if (buff(FloatSlayer.class) != null && enemy.flying ){
             damage *= 1.4f;
@@ -831,7 +830,7 @@ public abstract class Char extends Actor {
         MINIBOSS ( new HashSet<Class>(),
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
         MITAMA ( new HashSet<Class>(),
-                new HashSet<Class>( Arrays.asList(DamageWand.class, Mob.class, Vial.class, Grim.class, Trap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
+                new HashSet<Class>( Arrays.asList(DamageWand.class, Mob.class, Grim.class, Trap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
         NONE,
         ELIXIR,
         IMMOVABLE,

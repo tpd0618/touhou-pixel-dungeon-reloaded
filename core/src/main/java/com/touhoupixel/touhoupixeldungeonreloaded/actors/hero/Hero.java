@@ -85,6 +85,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hijiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Komachi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
@@ -92,6 +93,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wriggle;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -143,6 +146,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.EgoRock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.CirnoWing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.BulletDanmaku;
@@ -412,6 +416,9 @@ public class Hero extends Char {
 				accuracy *= 0.5f;
 			} else {
 				accuracy *= 1.1f;
+			}
+			if (wep instanceof EgoRock && enemy instanceof Hijiri || wep instanceof EgoRock && enemy instanceof Suika){
+				accuracy *= 0.5f;
 			}
 		}
 

@@ -46,7 +46,7 @@ import java.util.ArrayList;
 public class Bomb extends Item {
 
     {
-        image = ItemSpriteSheet.YOKAI_VIAL;
+        image = ItemSpriteSheet.CLEAR_CUBE_FRAGMENT;
 
         defaultAction = AC_LIGHTTHROW;
         usesTargeting = true;

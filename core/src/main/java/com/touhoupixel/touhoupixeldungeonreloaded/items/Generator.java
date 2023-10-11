@@ -158,12 +158,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.NightingaleTal
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SwapTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CutterTalisman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.AnimalVial;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.GodVial;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.HumanVial;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.Vial;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.WarpVial;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.vials.YokaiVial;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
@@ -181,6 +175,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLig
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.EgoRock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
@@ -294,14 +289,14 @@ import java.util.LinkedHashMap;
 public class Generator {
 
 	public enum Category {
-		WEAPON	( 3, 2, MeleeWeapon.class),
+		WEAPON	( 2, 2, MeleeWeapon.class),
 		WEP_T1	( 0, 0, MeleeWeapon.class),
 		WEP_T2	( 0, 0, MeleeWeapon.class),
 		WEP_T3	( 0, 0, MeleeWeapon.class),
 		WEP_T4	( 0, 0, MeleeWeapon.class),
 		WEP_T5	( 0, 0, MeleeWeapon.class),
 
-		ARMOR	    ( 3, 2, Armor.class ),
+		ARMOR	    ( 2, 2, Armor.class ),
 		ARMOR_T1	( 0, 0, Armor.class ),
 		ARMOR_T2	( 0, 0, Armor.class ),
 		ARMOR_T3	( 0, 0, Armor.class ),
@@ -328,7 +323,6 @@ public class Generator {
 		SCROLL	( 6, 6, Scroll.class ),
 		STONE   ( 1, 1, Runestone.class),
 		TALISMAN( 3, 3, Talisman.class),
-		VIAL    ( 1, 1, Vial.class),
 
 		GOLD	( 5, 4, Gold.class );
 
@@ -460,16 +454,6 @@ public class Generator {
 			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
-			VIAL.classes = new Class<?>[]{
-					YokaiVial.class,
-					GodVial.class,
-					HumanVial.class,
-					AnimalVial.class,
-					WarpVial.class
-			};
-			VIAL.defaultProbs = new float[]{ 5, 5, 5, 5, 5 };
-			VIAL.probs = VIAL.defaultProbs.clone();
-
 			WAND.classes = new Class<?>[]{
 					WandOfMagicMissile.class,
 					WandOfLightning.class,
@@ -592,7 +576,7 @@ public class Generator {
 			//see Generator.randomArmor
 			ARMOR_T1.classes = new Class<?>[]{
 					ReimuArmor.class};
-			ARMOR_T1.probs = new float[]{ 5 };
+			ARMOR_T1.probs = new float[]{ 4 };
 
 			ARMOR_T2.classes = new Class<?>[]{
 					MarisaArmor.class,
@@ -600,7 +584,7 @@ public class Generator {
 					PC98MarisaArmor.class,
 					PoppinPartyArmor.class,
 					NitoriArmor.class};
-			ARMOR_T2.probs = new float[]{ 5, 5, 5, 5, 5 };
+			ARMOR_T2.probs = new float[]{ 4, 4, 4, 4, 4 };
 
 			ARMOR_T3.classes = new Class<?>[]{
 					SakuyaArmor.class,
@@ -608,7 +592,7 @@ public class Generator {
 					RumiaArmor.class,
 					MaxwellArmor.class,
 					SharkArmor.class};
-			ARMOR_T3.probs = new float[]{ 5, 5, 5, 5, 5 };
+			ARMOR_T3.probs = new float[]{ 4, 4, 4, 4, 4 };
 
 			ARMOR_T4.classes = new Class<?>[]{
 					SanaeArmor.class,
@@ -616,7 +600,7 @@ public class Generator {
 					HanasakigawaArmor.class,
 					GoldenDragonArmor.class,
 					MorfonicaArmor.class};
-			ARMOR_T4.probs = new float[]{ 5, 5, 5, 5, 5 };
+			ARMOR_T4.probs = new float[]{ 4, 4, 4, 4, 4 };
 
 			ARMOR_T5.classes = new Class<?>[]{
 					HecatiaArmor.class,
@@ -636,7 +620,7 @@ public class Generator {
 					NarukamiYuArmor.class,
 					JokerArmor.class
 			};
-			ARMOR_T5.probs = new float[]{ 2, 4, 4, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3 };
+			ARMOR_T5.probs = new float[]{ 2, 3, 3, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 2 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
@@ -652,9 +636,10 @@ public class Generator {
 					FlameDanmaku.class,
 					KunaiDanmaku.class,
 					RiceDanmaku.class,
-					ScaleDanmaku.class
+					ScaleDanmaku.class,
+					EgoRock.class
 			};
-			MIS_T2.probs = new float[]{ 5, 5, 5, 5, 5 };
+			MIS_T2.probs = new float[]{ 5, 5, 5, 5, 5, 2 };
 
 			MIS_T3.classes = new Class<?>[]{
 					BulletDanmaku.class,

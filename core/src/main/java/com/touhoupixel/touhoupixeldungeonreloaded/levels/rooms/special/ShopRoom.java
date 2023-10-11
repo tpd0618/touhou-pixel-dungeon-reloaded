@@ -212,7 +212,6 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.VIAL ) );
 
 		for (int i=0; i < 2; i++)
 			itemsToSpawn.add( Random.Int(2) == 0 ?

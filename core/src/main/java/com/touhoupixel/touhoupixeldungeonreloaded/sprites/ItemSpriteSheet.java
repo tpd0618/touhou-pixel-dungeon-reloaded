@@ -152,10 +152,11 @@ public class ItemSpriteSheet {
 	public static final int MERLIN_DANMAKU    = MISC_AND_DANMAKU +10;
 	public static final int AYA_DANMAKU       = MISC_AND_DANMAKU +11;
 	public static final int MEDICINE_DANMAKU  = MISC_AND_DANMAKU +12;
+	public static final int EGO_ROCK          = MISC_AND_DANMAKU +13;
 
 	static{
 		assignItemRect(TORCH,           12, 15);
-		assignItemRect(GLASS_BOTTLE,          12, 14);
+		assignItemRect(GLASS_BOTTLE,    12, 14);
 		assignItemRect(HONEYPOT,        14, 12);
 		assignItemRect(SHATTPOT,        14, 12);
 		assignItemRect(IRON_KEY,        8,  14);
@@ -167,28 +168,29 @@ public class ItemSpriteSheet {
 		assignItemRect(MERLIN_DANMAKU,  9, 16);
 		assignItemRect(AYA_DANMAKU,     16, 12);
 		assignItemRect(MEDICINE_DANMAKU,11, 11);
+		assignItemRect(EGO_ROCK,        14, 12);
 	}
 
-	private static final int VIALS_AND_CARDS =                               xy(1, 5);   //16 slots
-	public static final int YOKAI_VIAL            = VIALS_AND_CARDS +0;
-	public static final int GOD_VIAL        = VIALS_AND_CARDS +1;
-	public static final int HUMAN_VIAL       = VIALS_AND_CARDS +2;
-	public static final int ANIMAL_VIAL      = VIALS_AND_CARDS +3;
-	public static final int WARP_VIAL   = VIALS_AND_CARDS +4;
-	public static final int THREE_STAR_TICKET     = VIALS_AND_CARDS +5;
-	public static final int TENSHI_CARD     = VIALS_AND_CARDS +6;
-	public static final int PATCHOULI_CARD     = VIALS_AND_CARDS +7;
-	public static final int STRENGTH_CARD     = VIALS_AND_CARDS +8;
-	public static final int UPGRADE_CARD     = VIALS_AND_CARDS +9;
-	public static final int FOUR_STAR_TICKET     = VIALS_AND_CARDS +10;
-	public static final int FIVE_STAR_TICKET     = VIALS_AND_CARDS +11;
+	private static final int CUBES_AND_CARDS =                               xy(1, 5);   //16 slots
+	public static final int CLEAR_CUBE_FRAGMENT            = CUBES_AND_CARDS +0;
+	public static final int BLACK_CUBE_FRAGMENT        = CUBES_AND_CARDS +1;
+	public static final int WHITE_CUBE_FRAGMENT       = CUBES_AND_CARDS +2;
+	public static final int RED_CUBE_FRAGMENT      = CUBES_AND_CARDS +3;
+	public static final int BLUE_CUBE_FRAGMENT   = CUBES_AND_CARDS +4;
+	public static final int THREE_STAR_TICKET     = CUBES_AND_CARDS +5;
+	public static final int TENSHI_CARD     = CUBES_AND_CARDS +6;
+	public static final int PATCHOULI_CARD     = CUBES_AND_CARDS +7;
+	public static final int STRENGTH_CARD     = CUBES_AND_CARDS +8;
+	public static final int UPGRADE_CARD     = CUBES_AND_CARDS +9;
+	public static final int FOUR_STAR_TICKET     = CUBES_AND_CARDS +10;
+	public static final int FIVE_STAR_TICKET     = CUBES_AND_CARDS +11;
 
 	static{
-		assignItemRect(YOKAI_VIAL,            12, 12);
-		assignItemRect(GOD_VIAL,        12, 12);
-		assignItemRect(HUMAN_VIAL,       12, 12);
-		assignItemRect(ANIMAL_VIAL,      12, 12);
-		assignItemRect(WARP_VIAL,   12, 12);
+		assignItemRect(CLEAR_CUBE_FRAGMENT,            11, 12);
+		assignItemRect(BLACK_CUBE_FRAGMENT,        11, 12);
+		assignItemRect(WHITE_CUBE_FRAGMENT,       11, 12);
+		assignItemRect(RED_CUBE_FRAGMENT,      11, 12);
+		assignItemRect(BLUE_CUBE_FRAGMENT,   11, 12);
 		assignItemRect(THREE_STAR_TICKET,   15, 11);
 		assignItemRect(TENSHI_CARD,   15, 11);
 		assignItemRect(PATCHOULI_CARD,   15, 11);

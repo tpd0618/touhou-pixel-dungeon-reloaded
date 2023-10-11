@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,33 +19,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.cubes;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class Grayswandir extends MeleeWeapon {
+import java.util.ArrayList;
 
-    {
-        image = ItemSpriteSheet.GRAYSWANDIR;
-        hitSound = Assets.Sounds.HIT_SLASH;
-        hitSoundPitch = 1f;
+public class RedCubeFragment extends Item {
 
-        tier = 5;
-    }
+	private static final String AC_DRINK = "DRINK";
 
-    @Override
-    public int YokaiFactor( Char owner ) {
-        return 1;
-    }
+	{
+		image = ItemSpriteSheet.RED_CUBE_FRAGMENT;
 
-    @Override
-    public int proc(Char attacker, Char defender, int damage) {
-        if (Dungeon.floor > 20) {
-            damage *= 1.35f;
-        }
-        return super.proc(attacker, defender, damage);
-    }
+		defaultAction = AC_DRINK;
+
+		stackable = true;
+		unique = true;
+	}
+
+	@Override
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		//actions.add(AC_DRINK);
+		return actions;
+	}
+
+	@Override
+	public boolean isUpgradable() {
+		return false;
+	}
+
+	@Override
+	public boolean isIdentified() {
+		return true;
+	}
 }
