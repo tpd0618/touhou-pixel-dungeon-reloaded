@@ -28,8 +28,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MinorikoSprite;
@@ -93,8 +95,8 @@ public class Minoriko extends Mob {
         damage = super.attackProc(enemy, damage);
         if (alignment == Alignment.ENEMY && item == null && enemy instanceof Hero && steal((Hero) enemy)) {
             state = WANDERING;
-            Food food = new Food();
-            food.collect();
+            Dungeon.level.drop(new Food(), enemy.pos).sprite.drop();
+            Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Hisou.class, Hisou.DURATION);
             }

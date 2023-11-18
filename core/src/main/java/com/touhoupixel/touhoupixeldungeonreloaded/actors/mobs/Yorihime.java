@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -68,14 +69,14 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Dungeon.floor == 50 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
+		return Dungeon.floor == 40 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
 	}
 
 	@Override
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-			Buff.prolong(enemy, DismantlePressure.class, DismantlePressure.DURATION);
+			Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
 			if (Statistics.difficulty > 2) {
 				Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
 			}

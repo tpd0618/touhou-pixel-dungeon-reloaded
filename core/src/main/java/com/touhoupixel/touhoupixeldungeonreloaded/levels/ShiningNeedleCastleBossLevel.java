@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.TrickCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
@@ -118,19 +117,6 @@ public class ShiningNeedleCastleBossLevel extends Level {
 
 	@Override
 	protected void createItems() {
-		drop( new TrickCloak(), 24 );
-		drop( new TrickCloak(), 25 );
-		drop( new TrickCloak(), 26 );
-		drop( new TrickCloak(), 27 );
-		drop( new TrickCloak(), 28 );
-		drop( new TrickCloak(), 29 );
-		drop( new TrickCloak(), 30 );
-		drop( new TrickCloak(), 90 );
-		drop( new TrickCloak(), 91 );
-		drop( new TrickCloak(), 92 );
-		drop( new TrickCloak(), 94 );
-		drop( new TrickCloak(), 95 );
-		drop( new TrickCloak(), 96 );
 	}
 
 	@Override

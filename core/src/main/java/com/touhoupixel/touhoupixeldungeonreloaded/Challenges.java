@@ -26,37 +26,31 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int TOWER_OF_FORTUNE = 1;
-	public static final int DISTORTION       = 2;
-	public static final int RE_BIRTH_DAY     = 4;
-	public static final int RINGING_BLOOM    = 8;
-	public static final int BLESSING_CHORD   = 16;
-	public static final int CALL_THE_SHOTS   = 32;
-	public static final int RE_HOURAI_ELIXIR = 64;
-	public static final int LAST_SURPRISE    = 128;
-	public static final int INF_TIME_EATER   = 256;
-	public static final int DOUBLE_SPOILER   = 512;
-	public static final int LUNATIC_PERFECT  = 1024;
+	public static final int RE_BIRTH_DAY     = 1;
+	public static final int RINGING_BLOOM    = 2;
+	public static final int BLESSING_CHORD   = 4;
+	public static final int CALL_THE_SHOTS   = 8;
+	public static final int RE_HOURAI_ELIXIR = 16;
+	public static final int INF_TIME_EATER   = 32;
+	public static final int DOUBLE_SPOILER   = 64;
+	public static final int LUNATIC_PERFECT  = 128;
 
-	public static final int MAX_VALUE        = 2047;
+	public static final int MAX_VALUE        = 256;
 
 	public static final String[] NAME_IDS = {
-			"tower_of_fortune",
-			"distortion",
 			"re_birth_day",
 			"ringing_bloom",
 			"blessing_chord",
 			"call_the_shots",
 			"re_hourai_elixir",
-			"last_surprise",
 			"inf_time_eater",
 			"double_spoiler",
 			"lunatic_perfect"
 	};
 
 	public static final int[] MASKS = {
-			TOWER_OF_FORTUNE, DISTORTION, RE_BIRTH_DAY, RINGING_BLOOM, BLESSING_CHORD, CALL_THE_SHOTS,
-			RE_HOURAI_ELIXIR, LAST_SURPRISE, INF_TIME_EATER, DOUBLE_SPOILER, LUNATIC_PERFECT
+			RE_BIRTH_DAY, RINGING_BLOOM, BLESSING_CHORD, CALL_THE_SHOTS,
+			RE_HOURAI_ELIXIR, INF_TIME_EATER, DOUBLE_SPOILER, LUNATIC_PERFECT
 	};
 
 	public static int activeChallenges(){

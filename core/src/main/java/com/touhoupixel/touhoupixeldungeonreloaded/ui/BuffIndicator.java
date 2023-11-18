@@ -43,7 +43,7 @@ import java.util.LinkedHashMap;
 public class BuffIndicator extends Component {
 
 	//transparent icon
-	public static final int NONE    = 138;
+	public static final int NONE    = 139;
 
 	//FIXME this is becoming a mess, should do a big cleaning pass on all of these
 	//and think about tinting options
@@ -77,7 +77,7 @@ public class BuffIndicator extends Component {
 	public static final int DEFERRED    = 28;
 	public static final int DROWSY      = 29;
 	public static final int MAGIC_SLEEP = 30;
-	public static final int THORNS      = 31;
+	public static final int EMPATHETIC  = 31;
 	public static final int FORESIGHT   = 32;
 	public static final int VERTIGO     = 33;
 	public static final int RECHARGING  = 34;
@@ -85,7 +85,7 @@ public class BuffIndicator extends Component {
 	public static final int CORRUPT       = 36;
 	public static final int BLESS         = 37;
 	public static final int HOMING_BLADE  = 38;
-	public static final int YUKARI_BORDER = 39;
+	public static final int HOURAI_DONE   = 39;
 	public static final int FUTURE_SIGHT  = 40;
 	public static final int HASTE         = 41;
 	public static final int HEAVEN_SPEED  = 42;
@@ -127,7 +127,7 @@ public class BuffIndicator extends Component {
 	public static final int CELESTIAL_BODY    = 78;
 	public static final int REACH_INCREASE    = 79;
 	public static final int YUUKA_RAGE        = 80;
-	public static final int ROULETTE_STOP     = 81;
+	public static final int MAGIC_SLUMBER     = 81;
 	public static final int DOUBLE_RAINBOW    = 82;
 	public static final int POTION_FREEZE     = 83;
 	public static final int DE_SLAYING        = 84;
@@ -181,6 +181,7 @@ public class BuffIndicator extends Component {
 	public static final int HUMAN_HALF			= 133;
 	public static final int GHOST_HALF 			= 134;
 	public static final int DISMANTLE_READY     = 135;
+	public static final int ONIGIRI             = 136;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

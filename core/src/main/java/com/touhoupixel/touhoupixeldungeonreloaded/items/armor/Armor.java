@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
@@ -216,28 +217,40 @@ public class Armor extends EquipableItem {
 	}
 
 	public final int DRMax() {
-		return DRMax(buffedLvl());
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
+		} else return DRMax(buffedLvl());
 	}
 
 	public int DRMax(int lvl) {
 		int max = tier * (2 + lvl) + augment.defenseFactor(lvl);
-		if (lvl > max) {
-			return ((lvl - max) + 1) / 2;
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
 		} else {
-			return max;
+			if (lvl > max) {
+				return ((lvl - max) + 1) / 2;
+			} else {
+				return max;
+			}
 		}
 	}
 
 	public final int DRMin() {
-		return DRMin(buffedLvl());
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
+		} else return DRMin(buffedLvl());
 	}
 
 	public int DRMin(int lvl) {
 		int max = DRMax(lvl);
-		if (lvl >= max) {
-			return (lvl - max);
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
 		} else {
-			return lvl;
+			if (lvl >= max) {
+				return (lvl - max);
+			} else {
+				return lvl;
+			}
 		}
 	}
 

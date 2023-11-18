@@ -42,7 +42,7 @@ public class Hecatia extends Mob {
 	{
 		spriteClass = HecatiaSprite.class;
 
-		HP = HT = Dungeon.floor*5;
+		HP = HT = Dungeon.floor * 5;
 		defenseSkill = 0;
 
 		flying = true;
@@ -55,12 +55,12 @@ public class Hecatia extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(Dungeon.floor, Dungeon.floor +2);
+		return Random.NormalIntRange(Dungeon.floor, Dungeon.floor + 2);
 	}
 
 	@Override
 	public int attackSkill(Char target) {
-		return Dungeon.floor+5;
+		return Dungeon.floor + 5;
 	}
 
 	@Override

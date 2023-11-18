@@ -71,8 +71,8 @@ public class Miyoi extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0 && Dungeon.gold > 79) {
-            Dungeon.gold -= 80;
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0 && Dungeon.gold > 119) {
+            Dungeon.gold -= 120;
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }

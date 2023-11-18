@@ -22,8 +22,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
@@ -45,9 +48,15 @@ public class HorouBook extends MeleeWeapon {
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Random.Int(8) == 0) {
-            Buff.prolong(defender, MeleeNullify.class, MeleeNullify.DURATION);
+        int sqrt = (int) Math.sqrt(attacker.HP);
+        if (sqrt * sqrt == attacker.HP || sqrt * sqrt == attacker.HP - 1 || sqrt * sqrt == attacker.HP + 1){
+            Buff.affect(defender, Doom.class);
         }
         return super.proc(attacker, defender, damage);
+    }
+
+    @Override
+    public int defenseFactor( Char owner ) {
+        return 2;
     }
 }

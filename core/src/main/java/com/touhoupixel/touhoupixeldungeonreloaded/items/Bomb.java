@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
@@ -73,7 +74,9 @@ public class Bomb extends Item {
     @Override
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions( hero );
-        actions.add ( AC_LIGHTTHROW );
+        if (Dungeon.heroine.buff(Onigiri.class) == null) {
+            actions.add(AC_LIGHTTHROW);
+        }
         return actions;
     }
 
@@ -174,6 +177,10 @@ public class Bomb extends Item {
 
                 if (ch.buff(Zen.class) != null){
                     dmg *= 0;
+                }
+
+                if (ch.buff(Onigiri.class) != null){
+                    dmg += 999;
                 }
 
                 dmg -= ch.drRoll();

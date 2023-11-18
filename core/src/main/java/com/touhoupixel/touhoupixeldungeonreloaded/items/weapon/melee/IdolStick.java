@@ -35,19 +35,32 @@ public class IdolStick extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_CRUSH;
         hitSoundPitch = 1f;
 
-        tier = 5;
+        tier = 4;
     }
 
     @Override
-    public int WarpFactor( Char owner ) {
+    public int WarpFactor(Char owner) {
         return 1;
     }
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Random.Int(30) == 0) {
+        if (isSymmetric(attacker.HP)) {
             Buff.prolong(attacker, FumoLover.class, FumoLover.DURATION);
         }
         return super.proc(attacker, defender, damage);
+    }
+
+    public boolean isSymmetric(int number) {
+        String numStr = Integer.toString(number);
+        int length = numStr.length();
+
+        for (int i = 0; i < length / 2; i++) {
+            if (numStr.charAt(i) != numStr.charAt(length - 1 - i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

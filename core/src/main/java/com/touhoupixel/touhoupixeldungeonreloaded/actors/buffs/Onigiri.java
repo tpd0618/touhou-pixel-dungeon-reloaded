@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,21 +21,27 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class NewMoon extends FlavourBuff {
+public class Onigiri extends FlavourBuff {
+
+	public static final float DURATION	= 20f;
 
 	{
-		type = buffType.POSITIVE;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
-
-	public static final float DURATION = 20f;
-
+	
 	@Override
 	public int icon() {
-		return BuffIndicator.NEW_MOON;
+		return BuffIndicator.ONIGIRI;
 	}
 
 	@Override
@@ -52,5 +58,4 @@ public class NewMoon extends FlavourBuff {
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
-
 }

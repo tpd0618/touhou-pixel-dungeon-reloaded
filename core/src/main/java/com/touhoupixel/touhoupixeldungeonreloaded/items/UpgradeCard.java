@@ -3,6 +3,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
@@ -38,7 +39,9 @@ public class UpgradeCard extends Item {
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add(AC_DRINK);
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_DRINK);
+		}
 		return actions;
 	}
 

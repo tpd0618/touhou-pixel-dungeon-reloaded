@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -43,14 +44,22 @@ public class MeleeWeapon extends Weapon {
 
 	@Override
 	public int min(int lvl) {
-		return tier +  //base
-				lvl;    //level scaling
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
+		} else {
+			return tier +  //base
+					lvl;    //level scaling
+		}
 	}
 
 	@Override
 	public int max(int lvl) {
-		return 5 * (tier + 1) +    //base
-				lvl * (tier + 1);   //level scaling
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
+		} else {
+			return 5 * (tier + 1) +    //base
+					lvl * (tier + 1);   //level scaling
+		}
 	}
 
 	public int STRReq(int lvl) {
@@ -60,12 +69,16 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public int damageRoll(Char owner) {
 		int damage = augment.damageFactor(super.damageRoll(owner));
-		if (owner.buff(RemiliaFate.class) != null) {
-			damage = min() * 2;
-		} else if (owner instanceof Hero) {
-			int exStr = ((Hero) owner).STR() - STRReq();
-			if (exStr > 0) {
-				damage += Random.IntRange(0, exStr);
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return Random.NormalIntRange(Dungeon.heroine.STR, Dungeon.heroine.STR+9);
+		} else {
+			if (owner.buff(RemiliaFate.class) != null) {
+				damage = min() * 2;
+			} else if (owner instanceof Hero) {
+				int exStr = ((Hero) owner).STR() - STRReq();
+				if (exStr > 0) {
+					damage += Random.IntRange(0, exStr);
+				}
 			}
 		}
 

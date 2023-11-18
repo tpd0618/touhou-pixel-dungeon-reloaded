@@ -30,9 +30,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
@@ -246,7 +246,9 @@ public class Potion extends Item {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add( AC_DRINK );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_DRINK);
+		}
 		return actions;
 	}
 	
@@ -333,15 +335,6 @@ public class Potion extends Item {
 				}
 			}
 		}
-		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-				if (mob instanceof BossSeija) {
-					Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
-					Buff.detach(mob, SuperHard.class);
-					GLog.p(Messages.get(Potion.class, "cheat_break"));
-				}
-			}
-		} //for boss seija
 
 		Sample.INSTANCE.play(Assets.Sounds.DRINK);
 

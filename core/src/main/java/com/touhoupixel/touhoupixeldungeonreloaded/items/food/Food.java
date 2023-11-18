@@ -30,6 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WellFed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
@@ -63,7 +64,9 @@ public class Food extends Item {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add( AC_EAT );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_EAT);
+		}
 		return actions;
 	}
 

@@ -23,15 +23,23 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.rings;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EnhancedRings;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -44,7 +52,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 public class Ring extends KindofMisc {
-	
+
 	protected Buff buff;
 
 	private static final LinkedHashMap<String, Integer> gems = new LinkedHashMap<String, Integer>() {
@@ -63,19 +71,19 @@ public class Ring extends KindofMisc {
 			put("diamond",ItemSpriteSheet.RING_DIAMOND);
 		}
 	};
-	
+
 	private static ItemStatusHandler<Ring> handler;
-	
+
 	private String gem;
-	
+
 	//rings cannot be 'used' like other equipment, so they ID purely based on exp
 	private float levelsToID = 1;
-	
+
 	@SuppressWarnings("unchecked")
 	public static void initGems() {
 		handler = new ItemStatusHandler<>( (Class<? extends Ring>[])Generator.Category.RING.classes, gems );
 	}
-	
+
 	public static void save( Bundle bundle ) {
 		handler.save( bundle );
 	}
@@ -83,12 +91,12 @@ public class Ring extends KindofMisc {
 	public static void saveSelectively( Bundle bundle, ArrayList<Item> items ) {
 		handler.saveSelectively( bundle, items );
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static void restore( Bundle bundle ) {
 		handler = new ItemStatusHandler<>( (Class<? extends Ring>[])Generator.Category.RING.classes, gems, bundle );
 	}
-	
+
 	public Ring() {
 		super();
 		reset();
@@ -102,7 +110,7 @@ public class Ring extends KindofMisc {
 		if (!isKnown()) image = ItemSpriteSheet.RING_HOLDER;
 		anonymous = true;
 	}
-	
+
 	public void reset() {
 		super.reset();
 		levelsToID = 1;
@@ -111,7 +119,7 @@ public class Ring extends KindofMisc {
 			gem = handler.label(this);
 		}
 	}
-	
+
 	public void activate( Char ch ) {
 		if (buff != null){
 			buff.detach();
@@ -138,11 +146,11 @@ public class Ring extends KindofMisc {
 
 		}
 	}
-	
+
 	public boolean isKnown() {
 		return anonymous || (handler != null && handler.isKnown( this ));
 	}
-	
+
 	public void setKnown() {
 		if (!anonymous) {
 			if (!isKnown()) {
@@ -154,35 +162,35 @@ public class Ring extends KindofMisc {
 			}
 		}
 	}
-	
+
 	@Override
 	public String name() {
 		return isKnown() ? super.name() : Messages.get(Ring.class, gem);
 	}
-	
+
 	@Override
 	public String info(){
-		
+
 		String desc = isKnown() ? super.desc() : Messages.get(this, "unknown_desc");
-		
+
 		if (cursed && isEquipped( Dungeon.heroine)) {
 			desc += "\n\n" + Messages.get(Ring.class, "cursed_worn");
-			
+
 		} else if (cursed && cursedKnown) {
 			desc += "\n\n" + Messages.get(Ring.class, "curse_known");
-			
+
 		} else if (!isIdentified() && cursedKnown){
 			desc += "\n\n" + Messages.get(Ring.class, "not_cursed");
-			
+
 		}
-		
+
 		if (isKnown()) {
 			desc += "\n\n" + statsInfo();
 		}
-		
+
 		return desc;
 	}
-	
+
 	protected String statsInfo(){
 		return "";
 	}
@@ -205,19 +213,19 @@ public class Ring extends KindofMisc {
 
 		return this;
 	}
-	
+
 	@Override
 	public boolean isIdentified() {
 		return super.isIdentified() && isKnown();
 	}
-	
+
 	@Override
 	public Item identify( boolean byHero ) {
 		setKnown();
 		levelsToID = 0;
 		return super.identify(byHero);
 	}
-	
+
 	@Override
 	public Item random() {
 		//+0: 66.67% (2/3)
@@ -231,27 +239,27 @@ public class Ring extends KindofMisc {
 			}
 		}
 		level(n);
-		
+
 		//30% chance to be cursed
 		if (Random.Float() < 0.3f) {
 			cursed = true;
 		}
-		
+
 		return this;
 	}
-	
+
 	public static HashSet<Class<? extends Ring>> getKnown() {
 		return handler.known();
 	}
-	
+
 	public static HashSet<Class<? extends Ring>> getUnknown() {
 		return handler.unknown();
 	}
-	
+
 	public static boolean allKnown() {
 		return handler.known().size() == Generator.Category.RING.classes.length;
 	}
-	
+
 	@Override
 	public int value() {
 		int price = 75;
@@ -270,7 +278,7 @@ public class Ring extends KindofMisc {
 		}
 		return price;
 	}
-	
+
 	protected RingBuff buff() {
 		return null;
 	}
@@ -323,17 +331,21 @@ public class Ring extends KindofMisc {
 		}
 		return bonus;
 	}
-	
-	public int soloBonus(){
-		if (cursed){
-			return Math.min( 0, Ring.this.level()-2 );
+
+	public int soloBonus() {
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
+		} else if (cursed) {
+			return Math.min(0, Ring.this.level() - 2);
 		} else {
-			return Ring.this.level()+1;
+			return Ring.this.level() + 1;
 		}
 	}
 
 	public int soloBuffedBonus(){
-		if (cursed){
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			return 0;
+		} else if (cursed){
 			return Math.min( 0, Ring.this.buffedLvl()-2 );
 		} else {
 			return Ring.this.buffedLvl()+1;
@@ -341,12 +353,12 @@ public class Ring extends KindofMisc {
 	}
 
 	public class RingBuff extends Buff {
-		
+
 		@Override
 		public boolean act() {
-			
+
 			spend( TICK );
-			
+
 			return true;
 		}
 

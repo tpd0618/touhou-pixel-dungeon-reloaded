@@ -29,11 +29,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DecayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OnigiriTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
@@ -110,8 +109,8 @@ public class BambooForestLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				ConfusionTrap.class, FrostTrap.class, BlazingTrap.class, TeleportationTrap.class, FlockTrap.class,
-				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, EnchantEraseTrap.class,
+				ConfusionTrap.class, FrostTrap.class, BlazingTrap.class, TeleportationTrap.class, DecayTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, OnigiriTrap.class,
 				PoisonDartTrap.class, SummoningTrap.class, RockfallTrap.class, DisintegrationTrap.class, GrimTrap.class};
 	}
 

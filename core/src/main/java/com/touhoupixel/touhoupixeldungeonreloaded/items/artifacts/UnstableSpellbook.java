@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -94,10 +95,12 @@ public class UnstableSpellbook extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (isEquipped(heroine) && charge > 0 && !cursed)
-			actions.add(AC_READ);
-		if (isEquipped(heroine) && level() < levelCap && !cursed)
-			actions.add(AC_ADD);
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			if (isEquipped(heroine) && charge > 0 && !cursed)
+				actions.add(AC_READ);
+			if (isEquipped(heroine) && level() < levelCap && !cursed)
+				actions.add(AC_ADD);
+		}
 		return actions;
 	}
 

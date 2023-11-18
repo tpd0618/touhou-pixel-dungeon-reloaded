@@ -25,8 +25,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -157,7 +157,9 @@ public abstract class Scroll extends Item {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add( AC_READ );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_READ);
+		}
 		return actions;
 	}
 	
@@ -180,16 +182,6 @@ public abstract class Scroll extends Item {
 				curUser = heroine;
 				curItem = detach( heroine.belongings.backpack );
 				doRead();
-
-				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-					if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-						if (mob instanceof BossSeija) {
-							Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
-							Buff.detach(mob, SuperHard.class);
-							GLog.p( Messages.get(Potion.class, "cheat_break") );
-						}
-					}
-				} //for boss seija
 			}
 		}
 	}

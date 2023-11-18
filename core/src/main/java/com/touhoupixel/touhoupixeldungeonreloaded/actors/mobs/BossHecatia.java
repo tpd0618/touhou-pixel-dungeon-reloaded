@@ -35,7 +35,7 @@ public class BossHecatia extends Mob {
     {
         spriteClass = HecatiaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 7000 : 3500;
+        HP = HT = 3500;
         defenseSkill = 50;
         EXP = 50;
         maxLvl = 99;

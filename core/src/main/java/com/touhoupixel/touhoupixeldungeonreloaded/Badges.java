@@ -43,7 +43,7 @@ public class Badges {
 		CHAMPION_2                  ( 1 ),
 		CHAMPION_3                  ( 2 ),
 		CHAMPION_4                  ( 3 ),
-		CHAMPION_5                  ( 4 ),
+		//blank
 		NO_MISS                     ( 5 ),
 		NO_BOMB                     ( 6 ),
 		NO_TORCH                    ( 7 ),
@@ -234,10 +234,6 @@ public class Badges {
 			unlock(badge);
 			badge = Badge.CHAMPION_4;
 		}
-		if (challenges >= 10){
-			unlock(badge);
-			badge = Badge.CHAMPION_5;
-		}
 		local.add(badge);
 		displayBadge( badge );
 	}
@@ -306,7 +302,7 @@ public class Badges {
 	}
 
 	private static final Badge[][] tierBadgeReplacements = new Badge[][]{
-			{Badge.CHAMPION_1, Badge.CHAMPION_2, Badge.CHAMPION_3, Badge.CHAMPION_4, Badge.CHAMPION_5}
+			{Badge.CHAMPION_1, Badge.CHAMPION_2, Badge.CHAMPION_3, Badge.CHAMPION_4}
 	};
 
 	public static List<Badge> filterReplacedBadges( List<Badge> badges ) {

@@ -27,9 +27,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CheatBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
@@ -60,7 +60,9 @@ public class Herb extends Item {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add( AC_EAT );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_EAT);
+		}
 		return actions;
 	}
 
@@ -85,16 +87,6 @@ public class Herb extends Item {
 			if (heroine.buff(HerbDegrade.class) != null){
 				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
 			}
-
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-					if (mob instanceof BossSeija) {
-						Buff.prolong(mob, CheatBreak.class, CheatBreak.DURATION);
-						Buff.detach(mob, SuperHard.class);
-						GLog.p( Messages.get(Potion.class, "cheat_break") );
-					}
-				}
-			} //for boss seija
 
 			heroine.spend(eatingTime());
 		}

@@ -3,6 +3,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
@@ -46,11 +50,12 @@ public class Doremy extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             new FlockTrap().set(target).activate();
+            new CorrosionTrap().set(target).activate();
             if (Statistics.difficulty > 2) {
-                new CorrosionTrap().set(target).activate();
+                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                new CursingTrap().set(target).activate();
+                Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
             }
         }
         return damage;

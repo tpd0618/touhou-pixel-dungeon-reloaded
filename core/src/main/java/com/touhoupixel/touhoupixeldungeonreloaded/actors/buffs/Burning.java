@@ -93,6 +93,10 @@ public class Burning extends Buff implements Hero.Doom {
 				damage *= 0;
 			}
 
+			if (target.buff(Onigiri.class) != null){
+				damage += 999;
+			}
+
 			if (target instanceof Hero && target.buff(TimekeepersHourglass.timeStasis.class) == null) {
 				
 				Hero heroine = (Hero)target;

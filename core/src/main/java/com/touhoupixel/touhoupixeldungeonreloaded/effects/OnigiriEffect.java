@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,38 +19,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
+package com.touhoupixel.touhoupixeldungeonreloaded.effects;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
+import com.watabou.noosa.Gizmo;
 
-public class DistortedPride extends FlavourBuff {
+public class OnigiriEffect extends Gizmo{
 
-	{
-		type = buffType.NEGATIVE;
-		announced = true;
-	}
+	private CharSprite target;
 
-	public static final float DURATION = 66f;
+	public OnigiriEffect(CharSprite target ) {
+		super();
 
-	@Override
-	public int icon() {
-		return BuffIndicator.DISTORTED_PRIDE;
+		this.target = target;
 	}
 
 	@Override
-	public float iconFadePercent() {
-		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	public void update() {
+		super.update();
+
+		target.color(0xFFFFFF, 0xFFFFFF, 0xFFFFFF);
 	}
 
-	@Override
-	public String toString() {
-		return Messages.get(this, "name");
+	public void onigiriEffect() {
+
+		target.resetColor();
+		killAndErase();
+
 	}
 
-	@Override
-	public String desc() {
-		return Messages.get(this, "desc", dispTurns());
+	public static OnigiriEffect onigiriEffect(CharSprite sprite ) {
+
+		OnigiriEffect onigiriEffect = new OnigiriEffect( sprite );
+		if (sprite.parent != null)
+			sprite.parent.add( onigiriEffect );
+
+		return onigiriEffect;
 	}
 
 }

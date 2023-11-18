@@ -57,7 +57,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YorihimeArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.AlchemistsToolkit;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CapeOfThorns;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CloakOfShadows;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.EtherealChains;
@@ -86,7 +85,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.ChargeHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SwiftnessHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.SpearheadHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
@@ -96,6 +94,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibi
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
@@ -144,10 +143,13 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.BindingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CirnoTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DoremyTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.HouraiTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.KnockbackTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SevenDaysTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DebilitationTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.EnragingTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SuikaTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.TransientTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.FlandreTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.InaccurateTalisman;
@@ -158,6 +160,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.NightingaleTal
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SwapTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CutterTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.YuumaTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
@@ -180,6 +183,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ArisaKeyboard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BambooSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.BlackFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ChimataCloak;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.DenjiChainsaw;
@@ -449,9 +453,13 @@ public class Generator {
 					NightingaleTalisman.class,
 					BackdoorTalisman.class,
 					CutterTalisman.class,
-					CirnoTalisman.class
+					CirnoTalisman.class,
+					DoremyTalisman.class,
+					HouraiTalisman.class,
+					SuikaTalisman.class,
+					YuumaTalisman.class
 			};
-			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{
@@ -520,9 +528,10 @@ public class Generator {
 					AkyuuBrush.class,
 					HecatiaStar.class,
 					GreenBamboo.class,
-					MintChocoSword.class
+					MintChocoSword.class,
+					BambooSword.class
 			};
-			WEP_T3.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4 };
+			WEP_T3.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4 };
 
 			WEP_T4.classes = new Class<?>[]{
 					MediumYingYangOrb.class,
@@ -537,9 +546,10 @@ public class Generator {
 					YuyukoFoldingFan.class,
 					SuperMiracleMallet.class,
 					BlackFan.class,
-					TurnaboutCloak.class
+					TurnaboutCloak.class,
+					IdolStick.class
 			};
-			WEP_T4.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T4.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			WEP_T5.classes = new Class<?>[]{
 					BigYingYangOrb.class,
@@ -562,12 +572,11 @@ public class Generator {
 					EveKeytar.class,
 					YukinaMic.class,
 					KanonDrumstick.class,
-					IdolStick.class,
 					VentoraStick.class,
 					QuintessentialFan.class,
 					DenjiChainsaw.class
 			};
-			WEP_T5.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+			WEP_T5.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{};
@@ -704,7 +713,6 @@ public class Generator {
 			RING.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 			ARTIFACT.classes = new Class<?>[]{
-					CapeOfThorns.class,
 					ChaliceOfBlood.class,
 					CloakOfShadows.class,
 					HornOfPlenty.class,
@@ -717,7 +725,7 @@ public class Generator {
 					EtherealChains.class,
 					KaguyaHDChest.class
 			};
-			ARTIFACT.defaultProbs = new float[]{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+			ARTIFACT.defaultProbs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 			ARTIFACT.probs = ARTIFACT.defaultProbs.clone();
 		}
 	}

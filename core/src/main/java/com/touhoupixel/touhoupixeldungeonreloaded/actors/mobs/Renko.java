@@ -24,11 +24,18 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
@@ -118,15 +125,15 @@ public class Renko extends Mob implements Callback {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
                 if (Statistics.difficulty > 2) {
-                    Buff.prolong(this, Might.class, Might.DURATION);
+                    Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
-                    Buff.prolong(this, SuperHard.class, SuperHard.DURATION);
+                    Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
                 }
                 switch (Random.Int(5)) {
                     case 0:
                     default:
-                        if (enemy.HP > 5) {
+                        if (enemy.HP > 4) {
                             enemy.HP = enemy.HP / 4;
                             Sample.INSTANCE.play(Assets.Sounds.CURSED);
                             CellEmitter.get(enemy.pos).burst(ShadowParticle.UP, 5);
@@ -134,37 +141,16 @@ public class Renko extends Mob implements Callback {
                         }
                         break;
                     case 1:
-                        Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
+                        Buff.prolong(enemy, Slow.class, Slow.DURATION);
                         break;
                     case 2:
-                        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-                            ArrayList<Item> gazer = new ArrayList<>();
-                            for (Item i : Dungeon.heroine.belongings) {
-                                if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
-                                    gazer.add(i);
-                                }
-                            }
-                            if (!gazer.isEmpty()) {
-                                Item hypnotize = Random.element(gazer).detach(Dungeon.heroine.belongings.backpack);
-                                GLog.w(Messages.get(Reisen.class, "gaze"));
-                                Dungeon.heroine.sprite.emitter().start(Speck.factory(Speck.BUBBLE), 0.2f, 3);
-                                Sample.INSTANCE.play(Assets.Sounds.LULLABY);
-                                if (hypnotize instanceof Potion) {
-                                    ((Potion) hypnotize).drink(Dungeon.heroine);
-                                }
-                                if (hypnotize instanceof Herb) {
-                                    hypnotize.execute(Dungeon.heroine);
-                                }
-                            } else {
-                                GLog.w(Messages.get(Reisen.class, "failtogaze"));
-                            }
-                        }
+                        Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
                         break;
                     case 3:
-                        ScrollOfTeleportation.teleportChar(enemy);
+                        Buff.prolong(enemy, Randomizer.class, Randomizer.DURATION);
                         break;
                     case 4:
-                        Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
+                        Buff.prolong(enemy, Empathetic.class, Empathetic.DURATION);
                         break;
                 }
             }

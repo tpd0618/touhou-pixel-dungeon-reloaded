@@ -42,6 +42,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
@@ -55,7 +56,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RouletteStop;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
@@ -647,8 +647,12 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int attackProc( Char enemy, int damage ) {
-		if (this.buff(MeleeNullify.class) != null) {
+		if (buff(MeleeNullify.class) != null) {
 			damage = 1;
+		}
+
+		if (buff(Empathetic.class) != null) {
+			this.damage(damageRoll(), this);
 		}
 
 		if (buff(YuukaRage.class) != null){
@@ -699,15 +703,6 @@ public abstract class Mob extends Char {
 
 		if (this.buff(HighStress.class) != null){
 			this.HP = 1;
-		}
-
-		if (this instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
-			Dungeon.heroine.HP /= 2;
-			GameScene.flash(-65536);
-		}
-
-		if (this instanceof BossSeija && Dungeon.heroine.buff(RouletteStop.class) == null){
-			damage *= 0.25;
 		}
 
 		if (enemy instanceof Hero

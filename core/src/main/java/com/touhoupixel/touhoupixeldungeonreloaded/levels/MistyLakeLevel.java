@@ -31,7 +31,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DecayTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OnigiriTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
@@ -105,8 +106,8 @@ public class MistyLakeLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				ConfusionTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, FlockTrap.class,
-				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, EnchantEraseTrap.class,
+				ConfusionTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, DecayTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, OnigiriTrap.class,
 				PoisonDartTrap.class, SummoningTrap.class};
 	}
 

@@ -184,6 +184,10 @@ public class ItemSpriteSheet {
 	public static final int UPGRADE_CARD     = CUBES_AND_CARDS +9;
 	public static final int FOUR_STAR_TICKET     = CUBES_AND_CARDS +10;
 	public static final int FIVE_STAR_TICKET     = CUBES_AND_CARDS +11;
+	public static final int DOREMY     = CUBES_AND_CARDS +12;
+	public static final int SUIKA = CUBES_AND_CARDS +13;
+	public static final int HOURAI = CUBES_AND_CARDS +14;
+	public static final int YUUMA     = CUBES_AND_CARDS +15;
 
 	static{
 		assignItemRect(CLEAR_CUBE_FRAGMENT,            11, 12);
@@ -198,6 +202,10 @@ public class ItemSpriteSheet {
 		assignItemRect(UPGRADE_CARD,   15, 11);
 		assignItemRect(FOUR_STAR_TICKET,   15, 11);
 		assignItemRect(FIVE_STAR_TICKET,   15, 11);
+		assignItemRect(DOREMY,   12, 14);
+		assignItemRect(SUIKA,   12, 14);
+		assignItemRect(HOURAI,   12, 14);
+		assignItemRect(YUUMA,   12, 14);
 	}
 
 	private static final int TALISMANS =                               xy(1, 6);   //16 slots
@@ -800,7 +808,7 @@ public class ItemSpriteSheet {
 	public static final int RATION      = FOOD+5;
 	public static final int PASTY       = FOOD+6;
 	public static final int GRILLED_RATION = FOOD+7;
-	public static final int BURNT_RATION  = FOOD+8;
+	public static final int ROTTEN_RATION = FOOD+8;
 	public static final int MEAT_PIE    = FOOD+9;
 	public static final int BLANDFRUIT  = FOOD+10;
 	public static final int BLAND_CHUNKS= FOOD+11;
@@ -817,7 +825,7 @@ public class ItemSpriteSheet {
 		assignItemRect(RATION,      16, 12);
 		assignItemRect(PASTY,       16, 11);
 		assignItemRect(GRILLED_RATION, 16, 12);
-		assignItemRect(BURNT_RATION,  16, 12);
+		assignItemRect(ROTTEN_RATION,  16, 12);
 		assignItemRect(MEAT_PIE,    16, 12);
 		assignItemRect(BLANDFRUIT,  9,  12);
 		assignItemRect(BLAND_CHUNKS,14, 6);
@@ -862,7 +870,7 @@ public class ItemSpriteSheet {
 	public static final int HOSHIGUMA_HORN        = WEP_CATEGORY5 +4;
 	public static final int PLAY_MAT        = WEP_CATEGORY5 +5;
 	public static final int TURNABOUT_CLOAK        = WEP_CATEGORY5 +6;
-	public static final int DOUBLE_SWORD        = WEP_CATEGORY5 +7;
+	public static final int BAMBOO_SWORD        = WEP_CATEGORY5 +7;
 	public static final int YACHIE_HORN        = WEP_CATEGORY5 +8;
 	public static final int AUTUMN_KATANA        = WEP_CATEGORY5 +9;
 	public static final int GRAYSWANDIR        = WEP_CATEGORY5 +10;
@@ -878,7 +886,7 @@ public class ItemSpriteSheet {
 		assignItemRect(HOSHIGUMA_HORN, 13, 13);
 		assignItemRect(PLAY_MAT, 13, 13);
 		assignItemRect(TURNABOUT_CLOAK, 14, 14);
-		assignItemRect(DOUBLE_SWORD, 13, 13);
+		assignItemRect(BAMBOO_SWORD, 13, 13);
 		assignItemRect(YACHIE_HORN, 13, 13);
 		assignItemRect(AUTUMN_KATANA, 13, 13);
 		assignItemRect(GRAYSWANDIR, 13, 13);

@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -59,10 +60,12 @@ public class AlchemistsToolkit extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (isEquipped(heroine) && !cursed) {
-			actions.add(AC_BREW);
-			if (level() < levelCap) {
-				actions.add(AC_ENERGIZE);
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			if (isEquipped(heroine) && !cursed) {
+				actions.add(AC_BREW);
+				if (level() < levelCap) {
+					actions.add(AC_ENERGIZE);
+				}
 			}
 		}
 		return actions;

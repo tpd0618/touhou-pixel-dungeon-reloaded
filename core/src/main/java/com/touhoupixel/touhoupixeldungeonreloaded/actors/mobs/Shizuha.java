@@ -7,6 +7,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
@@ -59,10 +61,10 @@ public class Shizuha extends Mob {
                 Item.updateQuickslot();
             }
             if (Statistics.difficulty > 2) {
-                Buff.prolong(this, Might.class, Might.DURATION);
+                Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
+                Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
             }
         }
         return damage;

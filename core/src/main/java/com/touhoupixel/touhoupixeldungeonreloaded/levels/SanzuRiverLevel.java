@@ -30,13 +30,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DecayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.EnchantEraseTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OnigiriTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FrostTrap;
@@ -114,8 +112,8 @@ public class SanzuRiverLevel extends RegularLevel {
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
 				ConfusionTrap.class, FrostTrap.class, BlazingTrap.class, FlashingTrap.class, StorywayTrap.class,
-				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, EnchantEraseTrap.class,
-				CursingTrap.class, SummoningTrap.class, RockfallTrap.class, DisintegrationTrap.class, GrimTrap.class};
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, OnigiriTrap.class,
+				DecayTrap.class, SummoningTrap.class, RockfallTrap.class, DisintegrationTrap.class, GrimTrap.class};
 	}
 
 	@Override
@@ -123,7 +121,7 @@ public class SanzuRiverLevel extends RegularLevel {
 		return new float[]{
 				2, 2, 2, 2, 5,
 				2, 2, 2, 2, 1,
-				1, 1, 1, 1, 1};
+				2, 1, 1, 1, 1};
 	}
 	
 	@Override

@@ -46,7 +46,7 @@ public class NazrinAlchemyMoney extends Abilitycards {
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
         Statistics.card2 = true;
-        Dungeon.energy += 6 * Dungeon.floor;
+        Dungeon.energy += 20;
         return super.doPickUp(heroine, pos);
     }
 

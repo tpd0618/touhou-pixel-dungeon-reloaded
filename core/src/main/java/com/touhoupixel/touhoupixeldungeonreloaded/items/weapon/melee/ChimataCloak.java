@@ -23,8 +23,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -43,10 +45,14 @@ public class ChimataCloak extends MeleeWeapon {
         return 1;
     }
 
+
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        if (Random.Int(100) == 0) {
+        if (Statistics.chimata == 299) {
             Dungeon.level.drop(new UpgradeCard(), curUser.pos).sprite.drop();
+            Statistics.chimata = 0;
+        } else {
+            Statistics.chimata += 1;
         }
         return super.proc(attacker, defender, damage);
     }

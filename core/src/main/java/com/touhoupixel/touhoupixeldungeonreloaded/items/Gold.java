@@ -61,11 +61,7 @@ public class Gold extends Item {
 	@Override
 	public boolean doPickUp(Hero heroine, int pos) {
 
-		if (Dungeon.floor > 85){
-			Dungeon.heroine.HP += Math.min(quantity, heroine.HT);
-		} else {
-			Dungeon.gold += quantity;
-		}
+		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 
 		if (Statistics.card69) {

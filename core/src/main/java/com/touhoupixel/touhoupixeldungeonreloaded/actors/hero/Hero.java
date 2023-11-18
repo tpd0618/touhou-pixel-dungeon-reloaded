@@ -39,6 +39,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CelestialBody;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeedResist;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FumoLover;
@@ -52,9 +53,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
@@ -94,7 +97,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wriggle;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -116,7 +118,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Brimstone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Viscosity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.AlchemistsToolkit;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.CapeOfThorns;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.EtherealChains;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.HornOfPlenty;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
@@ -160,6 +161,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
@@ -212,7 +214,7 @@ public class Hero extends Char {
 
 	public HeroClass heroClass = HeroClass.PLAYERREIMU;
 
-	private int attackSkill = 10; //test ver. 10000, original ver. 10
+	private int attackSkill = 10; //test ver. 100, original ver. 10
 	private int defenseSkill = 5; //test ver. 0, original ver. 5
 
 	public boolean ready = false;
@@ -244,7 +246,7 @@ public class Hero extends Char {
 	public Hero() {
 		super();
 
-		HP = HT = 30; //test ver. 3000, original ver. 30
+		HP = HT = 25; //test ver. 3000, original ver. 30
 		STR = STARTING_STR;
 
 		belongings = new Belongings( this );
@@ -256,15 +258,15 @@ public class Hero extends Char {
 		int curHT = HT;
 
 		if (Statistics.difficulty == 6) {
-			HT = 30 + Statistics.maxHP_down + (lvl - 1) + HTBoost;
+			HT = 25 + Statistics.maxHP_down + (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 5) {
-			HT = 30 + Statistics.maxHP_down + 3 * (lvl - 1) + HTBoost;
+			HT = 25 + Statistics.maxHP_down + 3 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 4 || Statistics.difficulty == 3) {
-			HT = 30 + Statistics.maxHP_down + 4 * (lvl - 1) + HTBoost;
+			HT = 25 + Statistics.maxHP_down + 4 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 2 || Statistics.difficulty == 1) {
-			HT = 30 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost;
+			HT = 25 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost;
 		} else {
-			HT = 30 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost; //just in case
+			HT = 25 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost; //just in case
 		}
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
@@ -656,10 +658,6 @@ public class Hero extends Char {
 		if (Statistics.power >= 200){
 			dmg *= 1.1f;
 		}
-
-		if (Statistics.card32) {
-			dmg *= 1.5f;
-		} //blank card
 
 		if (Statistics.card57){
 			dmg *= 1.25f;
@@ -1289,6 +1287,10 @@ public class Hero extends Char {
 			Dungeon.gold -= 2;
 		}
 
+		if (Dungeon.heroine.buff(Empathetic.class) != null) {
+			this.damage(damageRoll(), this);
+		}
+
 		if (Dungeon.heroine.buff(DismantlePressure.class) != null){
 			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
 		}
@@ -1400,10 +1402,6 @@ public class Hero extends Char {
 			}
 		}
 
-		if (Statistics.card32) {
-			damage *= 2f;
-		} //blank card
-
 		if (Dungeon.heroine.buff(Randomizer.class) != null){
 			damage *= 1.5f;
 		}
@@ -1485,10 +1483,6 @@ public class Hero extends Char {
 
 	@Override
 	public void damage( int dmg, Object src ) {
-		if (Dungeon.isChallenged(Challenges.DISTORTION)){
-			dmg += 1;
-		}
-
 		if (this.buff(CelestialBody.class) != null){
 			dmg -= 5;
 		}
@@ -1504,11 +1498,6 @@ public class Hero extends Char {
 		if (this.buff(Drowsy.class) != null){
 			Buff.detach(this, Drowsy.class);
 			GLog.w( Messages.get(this, "pain_resist") );
-		}
-
-		CapeOfThorns.Thorns thorns = buff( CapeOfThorns.Thorns.class );
-		if (thorns != null) {
-			dmg = thorns.proc(dmg, (src instanceof Char ? (Char)src : null),  this);
 		}
 
 		dmg = (int)Math.ceil(dmg * RingOfTenacity.damageMultiplier( this ));
@@ -1906,6 +1895,7 @@ public class Hero extends Char {
 				Buff.prolong(this, RemiCountdown.class, RemiCountdown.DURATION);
 			}
 			PotionOfHealing.cure(this);
+			Buff.detach(this, Burning.class);
 			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
 
 			SpellSprite.show(this, SpellSprite.ANKH);
@@ -1916,7 +1906,7 @@ public class Hero extends Char {
 			for (Char ch : Actor.chars()) {
 			}
 			return;
-		}  else if (Statistics.life > 0) {
+		} else if (Statistics.life > 0) {
 			interrupt();
 			resting = false;
 			Statistics.lifelose = true;
@@ -1928,6 +1918,7 @@ public class Hero extends Char {
 				Buff.prolong(this, RemiCountdown.class, RemiCountdown.DURATION);
 			}
 			PotionOfHealing.cure(this);
+			Buff.detach(this, Burning.class);
 			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
 
 			SpellSprite.show(this, SpellSprite.ANKH);
@@ -2016,6 +2007,10 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isAlive() {
+		if (this.buff(Onigiri.class) != null && Dungeon.level.map[this.pos] == Terrain.WATER){
+			Buff.prolong(this, Slow.class, Slow.DURATION/10f);
+		}
+
 		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 			if (Statistics.mood == 0) {
 				Buff.prolong(this, Powerful.class, Powerful.DURATION);
@@ -2186,6 +2181,13 @@ public class Hero extends Char {
 		if (Dungeon.floor == 30 && !Statistics.boss6) {
 			Dungeon.level.seal();
 			Statistics.boss6 = true;
+		}
+		if (Dungeon.floor == 30 && Statistics.floor30 != 25) {
+			Statistics.floor30 += 1;
+		}
+		if (Dungeon.floor == 30 && Statistics.floor30 == 25) {
+			new CursingTrap().set(Dungeon.heroine.pos).activate();
+			Statistics.floor30 = 0;
 		}
 		if (Dungeon.floor == 35 && !Statistics.boss7) {
 			Dungeon.level.seal();

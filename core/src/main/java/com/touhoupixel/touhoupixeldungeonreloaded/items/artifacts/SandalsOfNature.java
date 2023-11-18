@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -66,10 +67,12 @@ public class SandalsOfNature extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (isEquipped(heroine) && level() < 3 && !cursed)
-			actions.add(AC_FEED);
-		if (isEquipped(heroine) && charge > 0)
-			actions.add(AC_ROOT);
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			if (isEquipped(heroine) && level() < 3 && !cursed)
+				actions.add(AC_FEED);
+			if (isEquipped(heroine) && charge > 0)
+				actions.add(AC_ROOT);
+		}
 		return actions;
 	}
 

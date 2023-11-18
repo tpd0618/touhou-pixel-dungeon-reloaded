@@ -23,7 +23,7 @@ public class BossKomachi extends Mob {
     {
         spriteClass = KomachiSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 1800 : 900;
+        HP = HT = 900;
         defenseSkill = 25;
         EXP = 24;
         maxLvl = 99;

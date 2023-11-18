@@ -22,7 +22,7 @@ public class BossKasen extends Mob {
     {
         spriteClass = KasenSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 1400 : 700;
+        HP = HT = 700;
         defenseSkill = 20;
         EXP = 22;
         maxLvl = 99;

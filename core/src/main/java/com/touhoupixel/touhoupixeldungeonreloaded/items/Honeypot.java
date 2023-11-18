@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Medicine;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Pushing;
@@ -54,7 +55,9 @@ public class Honeypot extends Item {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add( AC_SHATTER );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_SHATTER);
+		}
 		return actions;
 	}
 

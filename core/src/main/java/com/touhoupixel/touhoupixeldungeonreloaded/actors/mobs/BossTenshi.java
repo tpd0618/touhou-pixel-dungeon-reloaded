@@ -24,7 +24,7 @@ public class BossTenshi extends Mob {
     {
         spriteClass = TenshiSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 3600 : 1800;
+        HP = HT = 1800;
         defenseSkill = 40;
         EXP = 30;
         maxLvl = 99;

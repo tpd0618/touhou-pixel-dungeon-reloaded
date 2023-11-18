@@ -8,6 +8,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KaguyaSprite;
@@ -55,13 +56,13 @@ public class Kaguya extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             if (Dungeon.heroine.HP % 10 == 0 || Dungeon.heroine.HP % 10 == 1) {
-                damage *= 2;
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+                damage *= 5;
+                Buff.prolong(enemy, Empathetic.class, Empathetic.DURATION);
                 if (Statistics.difficulty > 2) {
-                    Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
+                    Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
                 }
                 if (Statistics.difficulty > 4) {
-                    Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
+                    Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
                 }
                 Sample.INSTANCE.play(Assets.Sounds.CURSED);
                 GLog.w(Messages.get(this, "double_damage"));

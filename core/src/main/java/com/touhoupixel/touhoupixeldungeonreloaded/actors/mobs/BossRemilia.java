@@ -21,7 +21,7 @@ public class BossRemilia extends Mob {
     {
         spriteClass = RemiliaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 350 : 175;
+        HP = HT = 175;
         defenseSkill = 15;
         EXP = 20;
         maxLvl = 99;

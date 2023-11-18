@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
@@ -56,7 +57,9 @@ public class ArcaneResin extends Item {
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		actions.add( AC_APPLY );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_APPLY);
+		}
 		return actions;
 	}
 

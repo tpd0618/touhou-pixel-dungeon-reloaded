@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
@@ -98,8 +99,10 @@ public class Item implements Bundlable {
 
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = new ArrayList<>();
-		actions.add( AC_DROP );
-		actions.add( AC_THROW );
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_DROP);
+			actions.add(AC_THROW);
+		}
 		return actions;
 	}
 
@@ -112,7 +115,7 @@ public class Item implements Bundlable {
 	}
 
 	public boolean doPickUp(Hero heroine, int pos) {
-		if (collect( heroine.belongings.backpack )) {
+		if (collect( heroine.belongings.backpack ) && Dungeon.heroine.buff(Onigiri.class) == null) {
 			
 			GameScene.pickUp( this, pos );
 			Sample.INSTANCE.play( Assets.Sounds.ITEM );

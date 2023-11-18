@@ -24,18 +24,18 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class NewThree extends FlavourBuff {
+public class Empathetic extends FlavourBuff {
 
 	{
-		type = buffType.POSITIVE;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
 
-	public static final float DURATION = 20f;
+	public static final float DURATION = 50f;
 
 	@Override
 	public int icon() {
-		return BuffIndicator.NEW_THREE;
+		return BuffIndicator.EMPATHETIC;
 	}
 
 	@Override
@@ -52,5 +52,4 @@ public class NewThree extends FlavourBuff {
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
-
 }

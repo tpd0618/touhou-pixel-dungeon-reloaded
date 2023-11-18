@@ -33,7 +33,7 @@ public class BossMarisa extends Mob {
     {
         spriteClass = BossMarisaSprite.class;
 
-        HP = HT = Dungeon.isChallenged(Challenges.LAST_SURPRISE) ? 300 : 150;
+        HP = HT = 150;
         defenseSkill = 10;
         EXP = 18;
         maxLvl = 99;

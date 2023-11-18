@@ -17,7 +17,7 @@ public class BackdoorTalisman extends Talisman {
         Char ch = Actor.findChar( cell );
 
         if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && Dungeon.level.map[ch.pos] == Terrain.OPEN_DOOR){
-            ch.damage(ch.HT, this);
+            ch.damage(100, this);
         }
     }
 }

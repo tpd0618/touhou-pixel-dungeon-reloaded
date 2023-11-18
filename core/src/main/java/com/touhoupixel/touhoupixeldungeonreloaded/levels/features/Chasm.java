@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
@@ -142,11 +143,13 @@ public class Chasm implements Hero.Doom {
 
 		Camera.main.shake( 4, 1f );
 
-		Dungeon.level.occupyCell(heroine);
+		Dungeon.level.occupyCell(heroine );
+		Buff.prolong( heroine, Cripple.class, Cripple.DURATION );
 
 		//The lower the hero's HP, the more bleed and the less upfront damage.
 		//Hero has a 50% chance to bleed out at 66% HP, and begins to risk instant-death at 25%
-		heroine.damage(Math.max(heroine.HP / 2, Random.NormalIntRange(heroine.HP / 2, heroine.HT / 4)), new Chasm());
+		Buff.affect( heroine, Bleeding.class).set( Math.round(heroine.HT / (6f + (6f*(heroine.HP/(float)heroine.HT)))), Chasm.class);
+		heroine.damage( Math.max( heroine.HP / 2, Random.NormalIntRange( heroine.HP / 2, heroine.HT / 4 )), new Chasm() );
 	}
 
 	public static void mobFall( Mob mob ) {
@@ -166,13 +169,6 @@ public class Chasm implements Hero.Doom {
 			heroLand();
 			detach();
 			return true;
-		}
-	}
-
-	public static class FallBleed extends Bleeding implements Hero.Doom {
-
-		@Override
-		public void onDeath() {
 		}
 	}
 }

@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerabili
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Roots;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
@@ -83,7 +84,9 @@ public class Miracle extends Item {
 		ArrayList<String> actions = super.actions(heroine);
 		actions.remove(AC_DROP);
 		actions.remove(AC_THROW);
-		actions.add(AC_SHOOT);
+		if (Dungeon.heroine.buff(Onigiri.class) == null) {
+			actions.add(AC_SHOOT);
+		}
 		return actions;
 	}
 
@@ -327,9 +330,7 @@ public class Miracle extends Item {
 		if (Statistics.card31) {
 			dmg *= 1.25f;
 		}
-		if (Statistics.card32) {
-			dmg *= 1.5f;
-		} //blank card
+
 		if (Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.lifelose || Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.spellcarduse){
 			dmg *= 0.8f;
 		}

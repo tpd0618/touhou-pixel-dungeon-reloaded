@@ -65,9 +65,7 @@ public abstract class DamageWand extends Wand{
 		if (Statistics.card31) {
 			dmg *= 1.25f;
 		}
-		if (Statistics.card32) {
-			dmg *= 1.5f;
-		} //blank card
+
 		if (Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.lifelose || Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.spellcarduse){
 			dmg *= 0.8f;
 		}
