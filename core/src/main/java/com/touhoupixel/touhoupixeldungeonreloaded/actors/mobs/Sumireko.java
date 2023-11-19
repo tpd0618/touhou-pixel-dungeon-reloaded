@@ -18,7 +18,7 @@ public class Sumireko extends Mob {
     {
         spriteClass = SumirekoSprite.class;
 
-        HP = HT = 187;
+        HP = HT = 300;
         defenseSkill = 37;
         EXP = 22;
         maxLvl = 75;
@@ -31,7 +31,7 @@ public class Sumireko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(31, 37);
+        return Random.NormalIntRange(122, 186);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Sumireko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(67, 97);
     }
 
     @Override

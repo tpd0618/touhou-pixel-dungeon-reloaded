@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.CorrosionParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -54,7 +55,7 @@ public class WandOfCorrosion extends Wand {
 	public void onZap(Ballistica bolt) {
 		CorrosiveGas gas = Blob.seed(bolt.collisionPos, 50 + 10 * buffedLvl(), CorrosiveGas.class);
 		CellEmitter.get(bolt.collisionPos).burst(Speck.factory(Speck.CORROSION), 10 );
-		gas.setStrength(2 + buffedLvl());
+		gas.setStrength(2 + (int)(buffedLvl()*0.7));
 		GameScene.add(gas);
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
@@ -68,6 +69,21 @@ public class WandOfCorrosion extends Wand {
 		if (Actor.findChar(bolt.collisionPos) == null){
 			Dungeon.level.pressCell(bolt.collisionPos);
 		}
+	}
+	public boolean areEnoughCubes(){
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		if (blackCubeFragment != null && blackCubeFragment.quantity() > 2){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		for (int i = 0; i < 3; i++)
+			blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override
@@ -104,7 +120,7 @@ public class WandOfCorrosion extends Wand {
 	@Override
 	public String statsDesc() {
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", 2+buffedLvl());
+			return Messages.get(this, "stats_desc", 2+(int)(buffedLvl()*0.7));
 		else
 			return Messages.get(this, "stats_desc", 2);
 	}

@@ -15,7 +15,7 @@ public class Kosuzu extends Mob {
     {
         spriteClass = KosuzuSprite.class;
 
-        HP = HT = 15;
+        HP = HT = 20;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;
@@ -28,7 +28,7 @@ public class Kosuzu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 4);
+        return Random.NormalIntRange(6, 12);
     }
 
     @Override
@@ -38,13 +38,13 @@ public class Kosuzu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Statistics.upgradesUsed < 2) {
+        if (Statistics.upgradesUsed < 6) {
             Buff.affect(enemy, Burning.class).reignite(enemy, 3f);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, PotionFreeze.class, PotionFreeze.DURATION);

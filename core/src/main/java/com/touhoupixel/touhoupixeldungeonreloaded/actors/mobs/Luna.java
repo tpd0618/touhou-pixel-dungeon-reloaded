@@ -15,7 +15,7 @@ public class Luna extends Mob {
     {
         spriteClass = LunaSprite.class;
 
-        HP = HT = 24;
+        HP = HT = 46;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;
@@ -30,8 +30,9 @@ public class Luna extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 8);
+        return Random.NormalIntRange(15, 25);
     }
+
 
     @Override
     public int attackSkill(Char target) {
@@ -40,7 +41,7 @@ public class Luna extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(3, 5);
     }
 
     @Override

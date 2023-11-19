@@ -21,7 +21,7 @@ public class Kaguya extends Mob {
     {
         spriteClass = KaguyaSprite.class;
 
-        HP = HT = 222;
+        HP = HT = 330;
         defenseSkill = 32;
         EXP = 14;
         maxLvl = 45;
@@ -38,7 +38,7 @@ public class Kaguya extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(24, 30);
+        return Random.NormalIntRange(110, 168);
     }
 
     @Override
@@ -48,15 +48,15 @@ public class Kaguya extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-            if (Dungeon.heroine.HP % 10 == 0 || Dungeon.heroine.HP % 10 == 1) {
-                damage *= 5;
+            if (Dungeon.heroine.HP % 10 <= 1) {
+                damage *= 3;
                 Buff.prolong(enemy, Empathetic.class, Empathetic.DURATION);
                 if (Statistics.difficulty > 2) {
                     Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);

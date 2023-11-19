@@ -20,7 +20,8 @@ public class Flandre extends Mob {
     {
         spriteClass = FlandreSprite.class;
 
-        HP = HT = Dungeon.floor*10+30;
+        int sF = Dungeon.scalingFloor();
+        HP = HT = 8*(Math.min((sF-1)/4+1, 5)*(3+sF) + sF);
         defenseSkill = Dungeon.floor+5;
 
         state = PASSIVE;
@@ -39,7 +40,8 @@ public class Flandre extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.floor, Dungeon.floor+10);
+        int level = Dungeon.scalingFloor();
+        return Random.NormalIntRange( (int)(0.6*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))), (int)(1.2*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))));
     }
 
     @Override
@@ -49,7 +51,7 @@ public class Flandre extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 4);
+        return Random.NormalIntRange(Dungeon.scalingFloor()/2, 4 + Dungeon.scalingFloor());
     }
 
     @Override
@@ -86,7 +88,7 @@ public class Flandre extends Mob {
     @Override
     protected boolean act() {
         if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING && this.HP != this.HT && this.buff(FlandreCooldown.class) == null) {
-            Dungeon.heroine.damage(Dungeon.floor+20, this);
+            Dungeon.heroine.damage(Dungeon.floor*5+20, this);
             GameScene.flash(-65536);
             Buff.prolong(this, FlandreCooldown.class, FlandreCooldown.DURATION);
             Sample.INSTANCE.play( Assets.Sounds.BLAST );

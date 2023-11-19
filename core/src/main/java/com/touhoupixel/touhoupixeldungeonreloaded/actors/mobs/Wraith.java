@@ -47,6 +47,7 @@ public class Wraith extends Mob {
 		maxLvl = -2;
 
 		properties.add(Property.WARP);
+		properties.add(Property.NOT_EXTERMINABLE);
 		
 		flying = true;
 	}
@@ -68,7 +69,7 @@ public class Wraith extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1 + level/2, 2 + level );
+		return Random.NormalIntRange( (int)(0.6*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))), (int)(1.2*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))));
 	}
 	
 	@Override

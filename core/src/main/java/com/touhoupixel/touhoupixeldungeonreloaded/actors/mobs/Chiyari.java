@@ -38,7 +38,7 @@ public class Chiyari extends Mob {
     {
         spriteClass = ChiyariSprite.class;
 
-        HP = HT = 131;
+        HP = HT = 330;
         defenseSkill = 30;
         EXP = 15;
         maxLvl = 37;
@@ -51,7 +51,7 @@ public class Chiyari extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(16, 20);
+        return Random.NormalIntRange(95, 145);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Chiyari extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(32, 47);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Chiyari extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             Buff.affect(enemy, Burning.class).reignite(enemy, 6f);
-            Buff.affect(enemy, Bleeding.class).set(6);
+            Buff.affect(enemy, Bleeding.class).set(25);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }

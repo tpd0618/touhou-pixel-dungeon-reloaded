@@ -211,6 +211,15 @@ public abstract class Scroll extends Item {
 			}
 		}
 	}
+	public void setUnknown(){
+		if (anonymous){
+			if (isKnown()){
+				handler.dontknow(this);
+				updateQuickslot();
+			}
+			if (Dungeon.heroine.isAlive()) Catalog.setNotSeen(getClass());
+		}
+	}
 	
 	@Override
 	public Item identify( boolean byHero ) {
@@ -221,7 +230,16 @@ public abstract class Scroll extends Item {
 		}
 		return this;
 	}
-	
+
+	@Override
+	public Item forget(boolean byHero) {
+		super.forget(byHero);
+		if (isKnown()){
+			setUnknown();
+		}
+		return this;
+	}
+
 	@Override
 	public String name() {
 		return isKnown() ? super.name() : Messages.get(this, rune);

@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.Spellcard;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.SparseArray;
@@ -47,7 +48,8 @@ public abstract class Actor implements Bundlable {
 	protected static final int HERO_PRIO   = 0;     //positive is before hero, negative after
 	protected static final int BLOB_PRIO   = -10;   //blobs act after hero, before mobs
 	protected static final int MOB_PRIO    = -20;   //mobs act between buffs and blobs
-	protected static final int BUFF_PRIO   = -30;   //buffs act last in a turn
+	protected static final int BUFF_PRIO   = -30;   //buffs act between mobs and spellcards
+	protected static final int SPELLCARD_PRIO = -50; //spellcards acts last in a turn
 	private static final int   DEFAULT     = -100;  //if no priority is given, act after all else
 
 	//used to determine what order actors act in if their time is equal. Higher values act earlier.

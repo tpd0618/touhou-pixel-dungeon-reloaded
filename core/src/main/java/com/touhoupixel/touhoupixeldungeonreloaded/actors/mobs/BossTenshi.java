@@ -49,7 +49,7 @@ public class BossTenshi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(25, 30);
+        return Random.NormalIntRange(63, 97);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class BossTenshi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(57, 89);
     }
 
     @Override

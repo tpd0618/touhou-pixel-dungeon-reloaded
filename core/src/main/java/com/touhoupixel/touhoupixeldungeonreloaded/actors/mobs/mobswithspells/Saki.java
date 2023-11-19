@@ -19,38 +19,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.Inspiration;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SakiSprite;
 import com.watabou.utils.Random;
 
-public class Saki extends Mob {
+public class Saki extends MobWithSpellcard {
 
     {
         spriteClass = SakiSprite.class;
 
-        HP = HT = 81;
+        HP = HT = 250;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
 
+        spellcardsDefaultList.add(Inspiration.class);
+        numberOfCards = Statistics.difficulty > 4 ? 2 : 1; // on overdrive or risky she has 2 spellcards
+        mobRarity = MobRarity.UNCOMMON;
+
         properties.add(Property.YOKAI);
+        properties.add(Property.NOT_EXTERMINABLE);
 
         loot = Generator.Category.TALISMAN;
-        lootChance = 0.1f;
+        lootChance = 0.2f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 22);
+        return Random.NormalIntRange(95, 125);
     }
 
     @Override
@@ -60,21 +61,7 @@ public class Saki extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(26, 38);
     }
 
-    @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(2) == 0) {
-            Buff.prolong(enemy, Slow.class, Slow.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
-            }
-        }
-        return damage;
-    }
 }

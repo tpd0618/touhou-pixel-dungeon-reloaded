@@ -31,6 +31,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
@@ -39,9 +41,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeavenHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPhilosopher;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
@@ -77,6 +85,9 @@ public enum HeroClass {
 
 		PotionOfHealing potionOfHealing = new PotionOfHealing();
 		potionOfHealing.quantity(3).identify().collect();
+		//potionOfHealing.forget();
+		new ScrollOfNamelessStory().collect();
+
 
 		Food food = new Food();
 		food.collect();
@@ -185,6 +196,11 @@ public enum HeroClass {
 		(heroine.belongings.weapon = staff).identify();
 		heroine.belongings.weapon.activate(heroine);
 		Dungeon.quickslot.setSlot(0, staff);
+
+		ClearCubeFragment clearCubeFragment = new ClearCubeFragment();
+		WhiteCubeFragment whiteCubeFragment = new WhiteCubeFragment();
+		clearCubeFragment.quantity(200).collect();
+		whiteCubeFragment.quantity(5).collect();
 	}
 	public static void initSanae(Hero heroine){
 		SanaeExorcismRod sanaeExorcismRod = new SanaeExorcismRod();

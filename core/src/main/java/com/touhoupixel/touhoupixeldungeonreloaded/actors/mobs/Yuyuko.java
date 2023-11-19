@@ -20,7 +20,7 @@ public class Yuyuko extends Mob {
     {
         spriteClass = YuyukoSprite.class;
 
-        HP = HT = 217;
+        HP = HT = 430;
         defenseSkill = 32;
         EXP = 15;
         maxLvl = 45;
@@ -36,7 +36,7 @@ public class Yuyuko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(22, 28);
+        return Random.NormalIntRange(110, 168);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Yuyuko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(38, 56);
     }
 
     @Override

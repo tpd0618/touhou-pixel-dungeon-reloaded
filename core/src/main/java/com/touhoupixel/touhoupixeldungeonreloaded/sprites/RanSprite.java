@@ -22,7 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Ran;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.Ran;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;

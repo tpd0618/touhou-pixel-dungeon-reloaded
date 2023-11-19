@@ -49,7 +49,7 @@ public class Marisa extends Mob {
     {
         spriteClass = MarisaSprite.class;
 
-        HP = HT = 26;
+        HP = HT = 50;
         defenseSkill = 10;
         EXP = 5;
         maxLvl = 17;
@@ -69,7 +69,7 @@ public class Marisa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 6);
+        return Random.NormalIntRange(15, 25);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Marisa extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(5, 9);
     }
 
     private Ballistica beam;
@@ -180,7 +180,7 @@ public class Marisa extends Mob {
             }
 
             if (hit( this, ch, true )) {
-                ch.damage( Random.NormalIntRange( 5, 8 ), new DeathGaze() );
+                ch.damage( Random.NormalIntRange( 28, 42 ), new DeathGaze() );
 
                 if (ch instanceof Hero) {
                     Sample.INSTANCE.play(Assets.Sounds.CURSED);

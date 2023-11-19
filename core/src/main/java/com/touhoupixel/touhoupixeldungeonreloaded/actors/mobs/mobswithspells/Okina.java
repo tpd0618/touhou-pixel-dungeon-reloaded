@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfHexCancel;
@@ -38,17 +39,20 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
-public class Okina extends Mob {
+public class Okina extends MobWithSpellcard {
 
     {
         spriteClass = OkinaSprite.class;
 
-        HP = HT = 127;
+        HP = HT = 500;
         defenseSkill = 30;
         EXP = 15;
         maxLvl = 37;
 
         properties.add(Property.GOD);
+        properties.add(Property.NOT_EXTERMINABLE);
+
+        mobRarity = MobRarity.RARE;
 
         loot = new PotionOfHexCancel();
         lootChance = 0.1f;
@@ -56,7 +60,7 @@ public class Okina extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(17, 22);
+        return Random.NormalIntRange(95, 145);
     }
 
     @Override
@@ -66,7 +70,7 @@ public class Okina extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(53, 77);
     }
 
     @Override

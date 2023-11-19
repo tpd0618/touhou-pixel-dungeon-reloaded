@@ -24,11 +24,11 @@ package com.touhoupixel.touhoupixeldungeonreloaded.effects;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.watabou.noosa.Gizmo;
 
-public class OnigiriEffect extends Gizmo{
+public class OnigiriEffect extends Gizmo {
 
 	private CharSprite target;
 
-	public OnigiriEffect(CharSprite target ) {
+	public OnigiriEffect(CharSprite target) {
 		super();
 
 		this.target = target;
@@ -47,14 +47,4 @@ public class OnigiriEffect extends Gizmo{
 		killAndErase();
 
 	}
-
-	public static OnigiriEffect onigiriEffect(CharSprite sprite ) {
-
-		OnigiriEffect onigiriEffect = new OnigiriEffect( sprite );
-		if (sprite.parent != null)
-			sprite.parent.add( onigiriEffect );
-
-		return onigiriEffect;
-	}
-
 }

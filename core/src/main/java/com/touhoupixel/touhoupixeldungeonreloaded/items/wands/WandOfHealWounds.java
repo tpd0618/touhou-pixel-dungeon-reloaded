@@ -23,9 +23,12 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -48,14 +51,30 @@ public class WandOfHealWounds extends Wand {
 
 	@Override
 	public void onZap(Ballistica beam) {
-		if ( curUser.buff(Inversion.class) != null ) {
-			curUser.damage(curUser.HP / 2, curUser);
-		} else curUser.HP = Math.min(curUser.HP + curUser.HT/4, curUser.HT);
-		if (Random.Int(5) == 0 && curUser.HT > 3 && curUser.HP > 3) {
-			curUser.HP -= 3;
-			curUser.HT -= 3;
-			Statistics.maxHP_down -= 3;
+		Char ch = Actor.findChar(beam.collisionPos);
+		if (ch != null){
+			ch.HP = Math.min(ch.HT, ch.HP + (int)(ch.HT*0.2f));
+			//curUser.HP = Math.min(curUser.HT, curUser.HP + (int)(curUser.HT*0.05f));
 		}
+	}
+	public boolean areEnoughCubes(){
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		if (blueCubeFragment != null && blueCubeFragment.quantity() > 1 &&
+				whiteCubeFragment != null && whiteCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		whiteCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class Tsukasa extends Mob {
     {
         spriteClass = TsukasaSprite.class;
 
-        HP = HT = 79;
+        HP = HT = 145;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;
@@ -51,7 +51,7 @@ public class Tsukasa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 13);
+        return Random.NormalIntRange(69, 107);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Tsukasa extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(27,40);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class Tsukasa extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
             if (Statistics.difficulty > 2) {
-                new SummoningTrap().set(enemy.pos).activate();
+                ((SummoningTrap)(new SummoningTrap().set(enemy.pos))).activate(2);
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Inversion.class, Inversion.DURATION);

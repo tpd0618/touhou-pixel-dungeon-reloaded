@@ -72,7 +72,7 @@ public class BossSeija extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(30, 39);
+        return Random.NormalIntRange(59, 91);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class BossSeija extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
 
     @Override

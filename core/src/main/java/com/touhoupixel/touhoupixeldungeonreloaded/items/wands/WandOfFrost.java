@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlavourBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.rooms.special.MagicalFireRoom;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -48,11 +49,11 @@ public class WandOfFrost extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 2+lvl;
+		return 2+5*lvl;
 	}
 
 	public int max(int lvl){
-		return 8+5*lvl;
+		return (int)(7+7*lvl);
 	}
 
 	@Override
@@ -107,6 +108,20 @@ public class WandOfFrost extends DamageWand {
 		} else {
 			Dungeon.level.pressCell(bolt.collisionPos);
 		}
+	}
+	public boolean areEnoughCubes(){
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		if (blueCubeFragment != null && blueCubeFragment.quantity() > 1){
+			return true;
+		}
+		else return false;
+	}
+	protected void spendColourCubes() {
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class Suika extends Mob {
     {
         spriteClass = SuikaSprite.class;
 
-        HP = HT = 6; //gitan mamel minus 6HP
+        HP = HT = 7; //gitan mamel minus 6HP
         defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
@@ -47,7 +47,7 @@ public class Suika extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(28, 33);
+        return Random.NormalIntRange(120, 182);
     }
 
     @Override

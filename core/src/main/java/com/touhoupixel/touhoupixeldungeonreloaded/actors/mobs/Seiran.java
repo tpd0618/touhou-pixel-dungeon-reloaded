@@ -17,7 +17,7 @@ public class Seiran extends Mob {
     {
         spriteClass = SeiranSprite.class;
 
-        HP = HT = 269;
+        HP = HT = 355;
         defenseSkill = 37;
         EXP = 20;
         maxLvl = 50;
@@ -30,7 +30,7 @@ public class Seiran extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(30, 34);
+        return Random.NormalIntRange(126, 192);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Seiran extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(67, 97);
     }
 
     @Override

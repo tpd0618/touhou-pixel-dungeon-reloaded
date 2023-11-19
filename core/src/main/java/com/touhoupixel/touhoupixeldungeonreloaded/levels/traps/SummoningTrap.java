@@ -42,9 +42,11 @@ public class SummoningTrap extends Trap {
 	}
 
 	@Override
-	public void activate() {
+	public void activate(){
+		activate(4);
+	}
 
-		int nMobs = 4;
+	public void activate(int nMobs) {
 
 		ArrayList<Integer> candidates = new ArrayList<>();
 

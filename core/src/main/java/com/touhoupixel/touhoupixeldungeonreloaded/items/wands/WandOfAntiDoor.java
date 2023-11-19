@@ -29,6 +29,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.RainbowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -48,11 +52,11 @@ public class WandOfAntiDoor extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 2+lvl;
+		return 1+2*lvl;
 	}
 
 	public int max(int lvl){
-		return 8+2*lvl;
+		return (int)(6+4*lvl);
 	}
 
 	@Override
@@ -63,7 +67,24 @@ public class WandOfAntiDoor extends DamageWand {
 			affectTarget(ch);
 		}
 	}
+	public boolean areEnoughCubes(){
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
 
+		if (whiteCubeFragment != null && whiteCubeFragment.quantity() > 0 &&
+				blackCubeFragment != null && blackCubeFragment.quantity() > 0 ){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		whiteCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+	}
 	private void affectTarget(Char ch){
 		int dmg = damageRoll();
 

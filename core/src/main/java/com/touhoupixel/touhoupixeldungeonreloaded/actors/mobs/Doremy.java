@@ -19,7 +19,7 @@ public class Doremy extends Mob {
     {
         spriteClass = DoremySprite.class;
 
-        HP = HT = 278;
+        HP = HT = 245;
         defenseSkill = 37;
         EXP = 21;
         maxLvl = 50;
@@ -32,7 +32,7 @@ public class Doremy extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(32, 38);
+        return Random.NormalIntRange(126, 192);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Doremy extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(62, 89);
     }
 
     @Override

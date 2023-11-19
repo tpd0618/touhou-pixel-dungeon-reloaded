@@ -19,30 +19,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RegenBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.ProtectedTreasure;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MomoyoSprite;
 import com.watabou.utils.Random;
 
-public class Momoyo extends Mob {
+public class Momoyo extends MobWithSpellcard {
 
     {
         spriteClass = MomoyoSprite.class;
 
-        HP = HT = 82;
+        HP = HT = 140;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
 
+        spellcardsDefaultList.add(ProtectedTreasure.class);
+        numberOfCards = Statistics.difficulty > 4 ? 2 : 1; // on overdrive or risky she has 2 spellcards
+        mobRarity = MobRarity.UNCOMMON;
+
         properties.add(Property.YOKAI);
+        properties.add(Property.NOT_EXTERMINABLE);
 
         loot = new PotionOfLevitation();
         lootChance = 0.1f;
@@ -50,7 +54,7 @@ public class Momoyo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 21);
+        return Random.NormalIntRange(77, 117);
     }
 
     @Override
@@ -60,7 +64,7 @@ public class Momoyo extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(36, 52);
     }
 
     @Override
@@ -68,12 +72,6 @@ public class Momoyo extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             Buff.prolong(enemy, HeavenSpeed.class, HeavenSpeed.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, RegenBlock.class, RegenBlock.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-            }
         }
         return damage;
     }

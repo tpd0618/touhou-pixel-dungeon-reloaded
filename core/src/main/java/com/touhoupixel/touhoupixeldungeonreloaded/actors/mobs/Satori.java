@@ -15,8 +15,8 @@ public class Satori extends Mob {
     {
         spriteClass = SatoriSprite.class;
 
-        HP = HT = 259;
-        defenseSkill = 64;
+        HP = HT = 320;
+        defenseSkill = 100;
         EXP = 15;
         maxLvl = 75;
 
@@ -31,7 +31,7 @@ public class Satori extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(32, 36);
+        return Random.NormalIntRange(103, 157);
     }
 
     @Override
@@ -41,13 +41,13 @@ public class Satori extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(45, 51);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HeavenSpeed.class, HeavenSpeed.DURATION);
             }

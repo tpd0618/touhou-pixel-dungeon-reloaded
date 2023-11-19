@@ -9,6 +9,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
@@ -18,17 +19,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
-public class Shizuha extends Mob {
+public class Shizuha extends MobWithSpellcard {
 
     {
         spriteClass = ShizuhaSprite.class;
 
-        HP = HT = 98;
+        HP = HT = 350;
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;
 
         properties.add(Property.GOD);
+
 
         loot = new PotionOfHealing();
         lootChance = 0.1f;
@@ -36,7 +38,7 @@ public class Shizuha extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(17, 25);
+        return Random.NormalIntRange( 93, 141 );
     }
 
     @Override
@@ -46,7 +48,7 @@ public class Shizuha extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(29,43);
     }
 
     @Override

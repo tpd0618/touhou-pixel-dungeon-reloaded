@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
 
 public class Corrosion extends Buff implements Hero.Doom {
 
@@ -106,11 +107,8 @@ public class Corrosion extends Buff implements Hero.Doom {
 	public boolean act() {
 		if (target.isAlive()) {
 			target.damage((int)damage, this);
-			if (damage < (Dungeon.scalingFloor()/2)+2) {
-				damage++;
-			} else {
-				damage += 0.5f;
-			}
+			//the higher the damage, the greater the increase: on 0 +1, on 12 +1-2, on 32 +1-3, on 60 +1-4
+			damage += 1 + Random.Int((int)(Math.sqrt(1 + damage/4)));
 
 			spend( TICK );
 			if ((left -= TICK) <= 0) {

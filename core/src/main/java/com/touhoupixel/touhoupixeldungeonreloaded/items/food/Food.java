@@ -64,9 +64,7 @@ public class Food extends Item {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (Dungeon.heroine.buff(Onigiri.class) == null) {
 			actions.add(AC_EAT);
-		}
 		return actions;
 	}
 

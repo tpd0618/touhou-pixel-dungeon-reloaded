@@ -37,7 +37,7 @@ public class Sekibanki extends Mob {
     {
         spriteClass = SekibankiSprite.class;
 
-        HP = HT = 59;
+        HP = HT = 131;
         defenseSkill = 17;
         EXP = 8;
         maxLvl = 25;
@@ -50,7 +50,7 @@ public class Sekibanki extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange( 55, 85 );
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Sekibanki extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(16, 24);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Iku extends Mob {
     {
         spriteClass = IkuSprite.class;
 
-        HP = HT = 244;
+        HP = HT = 380;
         defenseSkill = 35;
         EXP = 18;
         maxLvl = 47;
@@ -30,7 +30,7 @@ public class Iku extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(25, 30);
+        return Random.NormalIntRange(120, 182);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Iku extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(57, 89);
     }
 
     @Override

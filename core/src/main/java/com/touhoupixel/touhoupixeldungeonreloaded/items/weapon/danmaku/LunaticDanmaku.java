@@ -38,7 +38,7 @@ public class LunaticDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (4+Challenges.activeChallenges()+Dungeon.heroine.lvl/3) * tier +                      //base
+		return  (Challenges.activeChallenges()+scaleByHeroineLvl()-1) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }

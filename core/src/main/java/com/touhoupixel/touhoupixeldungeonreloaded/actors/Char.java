@@ -27,12 +27,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
@@ -42,6 +44,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireShield;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FloatSlayer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostImbue;
@@ -52,6 +55,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
@@ -67,6 +71,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
@@ -75,6 +82,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribut
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.DamageWand;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -161,6 +169,7 @@ public abstract class Char extends Actor {
             return false;
         }
     }
+
 
     //swaps places by default
     public boolean interact(Char c){
@@ -546,6 +555,13 @@ public abstract class Char extends Actor {
         //FIXME: when I add proper damage properties, should add an IGNORES_SHIELDS property to use here.
         if (!(src instanceof Hunger)){
             for (ShieldBuff s : buffs(ShieldBuff.class)){
+                if (s instanceof FireShield && src instanceof Char) {
+                    if (Dungeon.level.adjacent( pos, ((Char) src).pos )) {
+                        ((Char) src).damage(dmg / 4, this);
+                        Buff.affect((Char) src, Burning.class).reignite((Char) src, 2f);
+                        CellEmitter.get(((Char) src).pos).burst(Speck.factory(Speck.STEAM), 20);
+                    }
+                }
                 dmg = s.absorbDamage(dmg);
                 if (dmg == 0) break;
             }
@@ -712,6 +728,8 @@ public abstract class Char extends Actor {
         for (Buff buff:buffs) {
             buff.fx( true );
         }
+            if (this instanceof MobWithSpellcard)
+                ((MobWithSpellcard) this).fx(((MobWithSpellcard) this).isSpellcardOn);
     }
 
     public float stealth() {
@@ -813,7 +831,7 @@ public abstract class Char extends Actor {
     //similar to isImmune, but only factors in damage.
     //Is used in AI decision-making
     public boolean isInvulnerable( Class effect ){
-        return false;
+        return (buff(AnkhInvulnerability.class) != null);
     }
 
     protected HashSet<Property> properties = new HashSet<>();
@@ -841,7 +859,7 @@ public abstract class Char extends Actor {
         GOD,
         HUMAN,
         ANIMAL,
-        WARP;
+        WARP, NOT_EXTERMINABLE;
 
         private HashSet<Class> resistances;
         private HashSet<Class> immunities;

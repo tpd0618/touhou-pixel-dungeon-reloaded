@@ -58,6 +58,7 @@ public class Mimic extends Mob {
 		EXP = 0;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.NOT_EXTERMINABLE);
 
 		properties.add(Property.FUMO);
 		//used for fumo lover buff
@@ -194,9 +195,9 @@ public class Mimic extends Mob {
 	@Override
 	public int damageRoll() {
 		if (alignment == Alignment.NEUTRAL){
-			return Random.NormalIntRange( 2 + 2*level, 2 + 2*level);
+			return (int)(1.2*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level))));
 		} else {
-			return Random.NormalIntRange( 1 + level, 2 + 2*level);
+			return Random.NormalIntRange( (int)((2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))), (int)(1.4*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))));
 		}
 	}
 
@@ -225,7 +226,7 @@ public class Mimic extends Mob {
 	}
 	
 	public void adjustStats( int level ) {
-		HP = HT = (1 + level) * 6;
+		HP = HT = 5*(Math.min((level-1)/4 + 1, 5) * (level + 3) + level + 3);
 		defenseSkill = 2 + level/2;
 		
 		enemySeen = true;

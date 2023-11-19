@@ -42,7 +42,7 @@ public class Biten extends Mob {
     {
         spriteClass = BitenSprite.class;
 
-        HP = HT = 237;
+        HP = HT = 270;
         defenseSkill = 32;
         EXP = 14;
         maxLvl = 75;
@@ -55,7 +55,7 @@ public class Biten extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(30, 34);
+        return Random.NormalIntRange(110, 168);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Biten extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
 
     @Override

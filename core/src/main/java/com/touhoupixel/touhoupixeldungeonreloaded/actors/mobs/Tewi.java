@@ -18,7 +18,7 @@ public class Tewi extends Mob {
     {
         spriteClass = TewiSprite.class;
 
-        HP = HT = 45;
+        HP = HT = 47;
         defenseSkill = 12;
         EXP = 5;
         maxLvl = 20;
@@ -34,7 +34,7 @@ public class Tewi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 6);
+        return Random.NormalIntRange(19, 31);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Tewi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(8, 14);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Tewi extends Mob {
             this.pos - Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos ||
             this.pos + Dungeon.level.width()*3 - 3 == Dungeon.heroine.pos ||
             this.pos + Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos) {
-            Dungeon.heroine.damage(8, this);
+            Dungeon.heroine.damage(30, this);
             GLog.w(Messages.get(this, "star_damage"));
         }
 

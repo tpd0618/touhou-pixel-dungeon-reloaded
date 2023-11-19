@@ -22,7 +22,7 @@ public class Joon extends Mob {
     {
         spriteClass = JoonSprite.class;
 
-        HP = HT = 75;
+        HP = HT = 136;
         defenseSkill = 20;
         EXP = 11;
         maxLvl = 27;
@@ -38,7 +38,7 @@ public class Joon extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 14);
+        return Random.NormalIntRange(69, 107);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Joon extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(22, 34);
     }
 
     @Override

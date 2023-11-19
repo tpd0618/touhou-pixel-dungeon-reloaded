@@ -42,7 +42,7 @@ public class Satono extends Mob {
     {
         spriteClass = SatonoSprite.class;
 
-        HP = HT = 121;
+        HP = HT = 414;
         defenseSkill = 30;
         EXP = 14;
         maxLvl = 37;
@@ -55,7 +55,7 @@ public class Satono extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 20);
+        return Random.NormalIntRange(99, 151);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Satono extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(38, 56);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Nemuno extends Mob {
     {
         spriteClass = NemunoSprite.class;
 
-        HP = HT = 72;
+        HP = HT = 105;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;
@@ -31,7 +31,7 @@ public class Nemuno extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 14);
+        return Random.NormalIntRange(47, 73);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Nemuno extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(20, 30);
     }
 
     @Override

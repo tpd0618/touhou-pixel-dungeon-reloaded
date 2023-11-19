@@ -39,7 +39,7 @@ public class Sannyo extends Mob {
     {
         spriteClass = SannyoSprite.class;
 
-        HP = HT = 138;
+        HP = HT = 298;
         defenseSkill = 32;
         EXP = 17;
         maxLvl = 40;
@@ -56,7 +56,7 @@ public class Sannyo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(18, 25);
+        return Random.NormalIntRange(90, 138);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Sannyo extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(32, 48);
     }
 
     @Override

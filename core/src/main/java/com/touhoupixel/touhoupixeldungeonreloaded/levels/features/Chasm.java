@@ -72,7 +72,7 @@ public class Chasm implements Hero.Doom {
 										if (Dungeon.heroine.pos == heroPos) {
 											if (Dungeon.floor == 1){
 												ScrollOfTeleportation.teleportChar(heroine);
-												GLog.n( Messages.get(Tenshi.class, "floor_one_fall") );
+												GLog.n( Messages.get(Chasm.class, "floor_one_fall") );
 											} else {
 												jumpConfirmed = true;
 												heroine.resume();
@@ -85,7 +85,7 @@ public class Chasm implements Hero.Doom {
 				} else if (Dungeon.heroine.pos == heroPos) {
 					if (Dungeon.floor == 1){
 						ScrollOfTeleportation.teleportChar(heroine);
-						GLog.n( Messages.get(Tenshi.class, "floor_one_fall") );
+						GLog.n( Messages.get(Chasm.class, "floor_one_fall") );
 					} else {
 						jumpConfirmed = true;
 						heroine.resume();
@@ -113,7 +113,7 @@ public class Chasm implements Hero.Doom {
 			}
 			if (Dungeon.floor == 1) {
 				ScrollOfTeleportation.teleportChar(Dungeon.heroine);
-				GLog.n(Messages.get(Tenshi.class, "floor_one_fall"));
+				GLog.n(Messages.get(Chasm.class, "floor_one_fall"));
 			} else {
 				Dungeon.heroine.interrupt();
 				Game.switchScene(InterlevelScene.class);

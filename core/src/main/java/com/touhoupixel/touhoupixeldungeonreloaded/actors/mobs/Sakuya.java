@@ -20,7 +20,7 @@ public class Sakuya extends Mob {
     {
         spriteClass = SakuyaSprite.class;
 
-        HP = HT = 40;
+        HP = HT = 107;
         defenseSkill = 15;
         EXP = 7;
         maxLvl = 22;
@@ -36,7 +36,7 @@ public class Sakuya extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(6, 8);
+        return Random.NormalIntRange(31, 49);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Sakuya extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(13, 21);
     }
 
     @Override

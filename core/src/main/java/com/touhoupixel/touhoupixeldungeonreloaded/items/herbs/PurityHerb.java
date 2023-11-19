@@ -49,7 +49,7 @@ public class PurityHerb extends Herb {
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else {
-				heroine.HP = Math.min(heroine.HP + 50, heroine.HT);
+				heroine.HP = Math.min(heroine.HP + 15 + Dungeon.floor*4, heroine.HT);
 			}
 			Buff.affect(curUser, KeyHeal.class, KeyHeal.DURATION);
 		}

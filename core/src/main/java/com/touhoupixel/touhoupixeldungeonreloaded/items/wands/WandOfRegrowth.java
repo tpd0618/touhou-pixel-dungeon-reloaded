@@ -40,6 +40,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.NPC;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -199,6 +201,21 @@ public class WandOfRegrowth extends Wand {
 			chargesOverLimit += chrgUsed;
 		}
 
+	}
+
+	public boolean areEnoughCubes(){
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		if (blueCubeFragment != null && blueCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 	
 	private int chargeLimit( int heroLvl ){

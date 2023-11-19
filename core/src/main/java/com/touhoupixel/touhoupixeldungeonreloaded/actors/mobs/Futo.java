@@ -17,7 +17,7 @@ public class Futo extends Mob {
     {
         spriteClass = FutoSprite.class;
 
-        HP = HT = 79;
+        HP = HT = 215;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
@@ -39,7 +39,7 @@ public class Futo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 19);
+        return Random.NormalIntRange(71, 109);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Futo extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(26, 38);
     }
 
     @Override

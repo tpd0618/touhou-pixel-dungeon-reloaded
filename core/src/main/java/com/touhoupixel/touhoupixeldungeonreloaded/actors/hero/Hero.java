@@ -97,6 +97,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wriggle;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -141,6 +142,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
@@ -161,8 +163,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -206,7 +208,8 @@ public class Hero extends Char {
 
 	public static final int MAX_LEVEL = 99; //same as touhou genso wanderer series
 
-	public static final int STARTING_STR = 10; //test ver. 300, original ver. 10
+	public static final int STARTING_STR = 11; //test ver. 300, original ver. 11
+	public static final int STARTING_HT = 50; //test ver. 3000, original ver. 50
 
 	private static final float TIME_TO_REST		    = 1f;
 	private static final float TIME_TO_SEARCH	    = 2f;
@@ -246,7 +249,7 @@ public class Hero extends Char {
 	public Hero() {
 		super();
 
-		HP = HT = 25; //test ver. 3000, original ver. 30
+		HP = HT = STARTING_HT;
 		STR = STARTING_STR;
 
 		belongings = new Belongings( this );
@@ -258,15 +261,15 @@ public class Hero extends Char {
 		int curHT = HT;
 
 		if (Statistics.difficulty == 6) {
-			HT = 25 + Statistics.maxHP_down + (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 10 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 5) {
-			HT = 25 + Statistics.maxHP_down + 3 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 12 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 4 || Statistics.difficulty == 3) {
-			HT = 25 + Statistics.maxHP_down + 4 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 13 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 2 || Statistics.difficulty == 1) {
-			HT = 25 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 15 * (lvl - 1) + HTBoost;
 		} else {
-			HT = 25 + Statistics.maxHP_down + 5 * (lvl - 1) + HTBoost; //just in case
+			HT = STARTING_HT + Statistics.maxHP_down + 15 * (lvl - 1) + HTBoost; //just in case
 		}
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
@@ -408,6 +411,7 @@ public class Hero extends Char {
 
 	@Override
 	public int attackSkill( Char target ) {
+
 		KindOfWeapon wep = belongings.weapon();
 
 		float accuracy = 1;
@@ -785,7 +789,7 @@ public class Hero extends Char {
 		}
 
 		if (buff(Calm.class) != null) {
-			this.HP = Math.min(this.HP + 1, this.HT);
+			this.HP = Math.min((int)(this.HP*1.02 + 1), this.HT);
 		}
 		if (buff(GhostHalf.class) != null && Statistics.card53){
 			this.HP = Math.min(this.HP + 1 + (this.HT / 60), this.HT);
@@ -1376,8 +1380,8 @@ public class Hero extends Char {
 			Sample.INSTANCE.play(Assets.Sounds.SHEEP);
 		}
 
-		if (Statistics.card37 && Dungeon.heroine.belongings.weapon() instanceof MissileWeapon){
-			Buff.affect(enemy, Burning.class).reignite(enemy, 7f);
+		if (Statistics.card37 && Dungeon.heroine.belongings.weapon() instanceof MissileWeapon && Random.Int(9) == 0){
+			Buff.affect(enemy, Burning.class).reignite(enemy);
 		}
 
 		if (Statistics.card23 && (Random.Int(6) == 0) && enemy.HP > 3 && !enemy.properties().contains(Char.Property.MINIBOSS) && !enemy.properties().contains(Char.Property.BOSS)) {
@@ -1498,6 +1502,26 @@ public class Hero extends Char {
 		if (this.buff(Drowsy.class) != null){
 			Buff.detach(this, Drowsy.class);
 			GLog.w( Messages.get(this, "pain_resist") );
+		}
+
+
+		if (Statistics.difficulty == 1) {
+			dmg *= 0.25f;
+		}
+		if (Statistics.difficulty == 2) {
+			dmg *= 0.8f;
+		}
+		// hard - normal damage
+		if (Statistics.difficulty == 4) {
+			dmg *= 1f;
+		}
+
+		if (Statistics.difficulty == 5) {
+			dmg *= 1.1f;
+		}
+
+		if (Statistics.difficulty == 6) {
+			dmg *= 1.2f;
 		}
 
 		dmg = (int)Math.ceil(dmg * RingOfTenacity.damageMultiplier( this ));
@@ -1906,7 +1930,7 @@ public class Hero extends Char {
 			for (Char ch : Actor.chars()) {
 			}
 			return;
-		} else if (Statistics.life > 0) {
+		}  else if (Statistics.life > 0) {
 			interrupt();
 			resting = false;
 			Statistics.lifelose = true;
@@ -2228,7 +2252,7 @@ public class Hero extends Char {
 
 		AttackIndicator.target(enemy);
 
-		boolean hit = attack( enemy );
+		attack( enemy );
 
 		Buff.detach( this, Calm.class);
 		if (Dungeon.heroine.buff(HumanHalf.class) != null){
@@ -2318,10 +2342,6 @@ public class Hero extends Char {
 		return super.isImmune(effect);
 	}
 
-	@Override
-	public boolean isInvulnerable(Class effect) {
-		return (buff(AnkhInvulnerability.class) != null);
-	}
 
 	public boolean search( boolean intentional ) {
 

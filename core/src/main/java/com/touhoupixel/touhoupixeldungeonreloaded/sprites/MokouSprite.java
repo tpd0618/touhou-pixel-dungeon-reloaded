@@ -22,7 +22,30 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Marisa;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.Mokou;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
+import com.watabou.utils.Random;
 
 public class MokouSprite extends MobSprite {
 
@@ -46,5 +69,39 @@ public class MokouSprite extends MobSprite {
 		die.frames( frames, 8, 9, 10 );
 		
 		play( idle );
+	}
+
+	public void zap( int cell ) {
+
+		turnTo( ch.pos , cell );
+		play( zap );
+
+		MagicMissile.boltFromChar( parent,
+				MagicMissile.FIRE,
+				this,
+				cell,
+				new Callback() {
+					@Override
+					public void call() {
+						((Mokou)ch).onZapComplete();
+					}
+				} );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
+	}
+
+	public void laserZap(int cell){
+		turnTo( ch.pos , cell );
+
+		parent.add(new Beam.LightRay(this.center(), DungeonTilemap.raisedTileCenterToWorld( cell )));
+		((Mokou)ch).laserZap( cell );
+
+	}
+
+	@Override
+	public void onComplete( MovieClip.Animation anim ) {
+		if (anim == zap) {
+			idle();
+		}
+		super.onComplete( anim );
 	}
 }

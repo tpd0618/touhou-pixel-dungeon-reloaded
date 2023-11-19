@@ -16,7 +16,7 @@ public class Kokoro extends Mob {
     {
         spriteClass = KokoroSprite.class;
 
-        HP = HT = 14;
+        HP = HT = 29;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;
@@ -32,7 +32,7 @@ public class Kokoro extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 5);
+        return Random.NormalIntRange(6, 12);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Kokoro extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override

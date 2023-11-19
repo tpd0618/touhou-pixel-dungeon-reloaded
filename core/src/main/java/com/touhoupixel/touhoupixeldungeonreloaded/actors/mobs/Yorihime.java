@@ -42,7 +42,7 @@ public class Yorihime extends Mob {
 	{
 		spriteClass = YorihimeSprite.class;
 
-		HP = HT = 500;
+		HP = HT = 250;
 		defenseSkill = 40;
 		EXP = 24;
 		maxLvl = 99;
@@ -59,7 +59,7 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(40, 50);
+		return Random.NormalIntRange(127, 197);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Dungeon.floor == 40 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
+		return Random.NormalIntRange(57, 83);
 	}
 
 	@Override

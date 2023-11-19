@@ -37,7 +37,7 @@ public class Kutaka extends Mob {
     {
         spriteClass = KutakaSprite.class;
 
-        HP = HT = 85;
+        HP = HT = 354;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
@@ -52,7 +52,7 @@ public class Kutaka extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(16, 21);
+        return Random.NormalIntRange(82, 126);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Kutaka extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(29, 43);
     }
 
     @Override

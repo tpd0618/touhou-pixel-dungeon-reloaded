@@ -15,7 +15,7 @@ public class Momiji extends Mob {
     {
         spriteClass = MomijiSprite.class;
 
-        HP = HT = 65;
+        HP = HT = 127;
         defenseSkill = 17;
         EXP = 8;
         maxLvl = 25;
@@ -33,7 +33,7 @@ public class Momiji extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange( 55, 85 );
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Momiji extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(16, 24);
     }
 
     @Override

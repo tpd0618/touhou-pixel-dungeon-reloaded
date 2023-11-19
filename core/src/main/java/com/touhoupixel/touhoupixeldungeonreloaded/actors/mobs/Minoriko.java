@@ -47,7 +47,7 @@ public class Minoriko extends Mob {
     {
         spriteClass = MinorikoSprite.class;
 
-        HP = HT = 98;
+        HP = HT = 265;
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;
@@ -77,7 +77,7 @@ public class Minoriko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(17, 25);
+        return Random.NormalIntRange( 93, 141 );
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Minoriko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(29,43);
     }
 
     @Override

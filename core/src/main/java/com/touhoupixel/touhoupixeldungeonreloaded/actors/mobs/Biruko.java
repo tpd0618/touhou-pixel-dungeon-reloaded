@@ -37,7 +37,7 @@ public class Biruko extends Mob {
     {
         spriteClass = BirukoSprite.class;
 
-        HP = HT = 94;
+        HP = HT = 370;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
@@ -50,7 +50,7 @@ public class Biruko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 22);
+        return Random.NormalIntRange(82, 126);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Biruko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(32, 48);
     }
 
     @Override

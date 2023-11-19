@@ -22,6 +22,7 @@ public class Yukari extends Mob {
         maxLvl = 99;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.NOT_EXTERMINABLE);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

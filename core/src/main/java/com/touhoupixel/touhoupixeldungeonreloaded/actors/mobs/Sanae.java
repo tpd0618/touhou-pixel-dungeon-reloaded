@@ -44,7 +44,7 @@ public class Sanae extends Mob implements Callback {
     {
         spriteClass = SanaeSprite.class;
 
-        HP = HT = 94;
+        HP = HT = 230;
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;
@@ -60,7 +60,7 @@ public class Sanae extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 23);
+        return Random.NormalIntRange(43, 71);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Sanae extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(26, 38);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Sanae extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 11, 15 );
+            int dmg = Random.NormalIntRange( 93, 141 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

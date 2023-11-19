@@ -30,6 +30,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -50,11 +52,11 @@ public class WandOfDisintegration extends DamageWand {
 
 
 	public int min(int lvl){
-		return 2+lvl;
+		return 2+lvl*4;
 	}
 
 	public int max(int lvl){
-		return 8+4*lvl;
+		return (int)(6+6*lvl);
 	}
 	
 	@Override
@@ -62,6 +64,21 @@ public class WandOfDisintegration extends DamageWand {
 		return dst;
 	}
 
+	public boolean areEnoughCubes(){
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		if (blackCubeFragment != null && blackCubeFragment.quantity() > 1){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+	}
 	@Override
 	public void onZap(Ballistica beam) {
 		

@@ -60,9 +60,9 @@ public class RingOfWealth extends Ring {
 	
 	public String statsInfo() {
 		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.20f, soloBuffedBonus()) - 1f)));
+			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.08f, soloBuffedBonus()) - 1f)));
 		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(20f));
+			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(8f));
 		}
 	}
 
@@ -89,7 +89,7 @@ public class RingOfWealth extends Ring {
 	}
 	
 	public static float dropChanceMultiplier( Char target ){
-		return (float)Math.pow(1.20, getBuffedBonus(target, Wealth.class));
+		return (float)Math.pow(1.08f, getBuffedBonus(target, Wealth.class));
 	}
 	
 	public static ArrayList<Item> tryForBonusDrop(Char target, int tries ){

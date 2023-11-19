@@ -57,6 +57,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -169,6 +170,20 @@ public class WandOfCorruption extends Wand {
 		} else {
 			Dungeon.level.pressCell(bolt.collisionPos);
 		}
+	}
+	public boolean areEnoughCubes(){
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		if (blackCubeFragment != null && blackCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 	
 	private void debuffEnemy( Mob enemy, HashMap<Class<? extends Buff>, Float> category ){

@@ -49,6 +49,7 @@ public class Medicine extends Mob {
 		state = WANDERING;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.NOT_EXTERMINABLE);
 		
 		//only applicable when the bee is charmed with elixir of honeyed healing
 		intelligentAlly = true;
@@ -87,7 +88,7 @@ public class Medicine extends Mob {
 	public void spawn( int level ) {
 		this.level = level;
 		
-		HT = (2 + level) * 4;
+		HT = 2*(Math.min((level-1)/4 + 1, 5) * (level + 3) + level + 3);
 		defenseSkill = 9 + level;
 	}
 

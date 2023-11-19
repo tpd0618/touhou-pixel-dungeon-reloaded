@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantleReady;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KeyHeal;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
@@ -65,10 +64,9 @@ public abstract class EquipableItem extends Item {
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (Dungeon.heroine.buff(Onigiri.class) == null) {
-			actions.add(isEquipped(heroine) ? AC_UNEQUIP : AC_EQUIP);
-			actions.add(AC_DISMANTLE);
-		}
+		actions.add( isEquipped(heroine) ? AC_UNEQUIP : AC_EQUIP );
+		if (!(this instanceof Artifact) && !(this instanceof MissileWeapon))
+			actions.add( AC_DISMANTLE );
 		return actions;
 	}
 
@@ -127,12 +125,17 @@ public abstract class EquipableItem extends Item {
 					GLog.w(Messages.get(this, "danmaku"));
 				} else {
 					curItem.detach(curUser.belongings.backpack);
-					Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(300, 450)), curUser.pos).sprite.drop();
+
+					if (curItem.level() > 0) {
+						Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
+					}
+
+						Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(150, 200)), curUser.pos).sprite.drop();
 					//clear cube fragments
-					Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
-					Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
-					Dungeon.level.drop(new RedCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
-					Dungeon.level.drop(new WhiteCubeFragment().quantity(Random.Int(4, 6)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new RedCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new WhiteCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
 					//color cube fragments
 					Buff.detach(curUser, DismantleReady.class);
 					Buff.detach(curUser, DismantlePressure.class);

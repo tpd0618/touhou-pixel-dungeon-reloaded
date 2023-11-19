@@ -46,7 +46,7 @@ public class Shou extends Mob {
 	{
 		spriteClass = ShouSprite.class;
 
-		HP = HT = 89;
+		HP = HT = 99;
 		defenseSkill = 22;
 		EXP = 13;
 		maxLvl = 30;
@@ -63,7 +63,7 @@ public class Shou extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(9, 13);
+		return Random.NormalIntRange(39, 61);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class Shou extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 2);
+		return Random.NormalIntRange(23, 37);
 	}
 
 	private Ballistica beam;
@@ -174,7 +174,7 @@ public class Shou extends Mob {
 			}
 
 			if (hit( this, ch, true )) {
-				ch.damage( Random.NormalIntRange( 24, 29 ), new DeathGaze() );
+				ch.damage( Random.NormalIntRange( 95, 125 ), new DeathGaze() );
 
 				if (ch instanceof Hero) {
 					Sample.INSTANCE.play(Assets.Sounds.CURSED);

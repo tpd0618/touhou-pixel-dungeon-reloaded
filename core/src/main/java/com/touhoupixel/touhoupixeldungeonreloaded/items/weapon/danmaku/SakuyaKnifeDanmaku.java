@@ -1,11 +1,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sakuya;
+import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class SakuyaKnifeDanmaku extends MissileWeapon{
@@ -30,8 +35,11 @@ public class SakuyaKnifeDanmaku extends MissileWeapon{
     }
     public SakuyaKnifeDanmaku(int minDamage, int maxDamage){
         final float DAMAGE_SCALE = 0.8f;
-        this.minDamage = (int) (minDamage * DAMAGE_SCALE);
-        this.maxDamage = (int)(maxDamage * DAMAGE_SCALE);
+        new SakuyaKnifeDanmaku(minDamage, maxDamage, DAMAGE_SCALE);
+    }
+    public SakuyaKnifeDanmaku(int minDamage, int maxDamage, float scaleFactor){
+        this.minDamage = (int) (minDamage * scaleFactor);
+        this.maxDamage = (int)(maxDamage * scaleFactor);
     }
     public int max(int lvl) {
         if (maxDamage != 0){

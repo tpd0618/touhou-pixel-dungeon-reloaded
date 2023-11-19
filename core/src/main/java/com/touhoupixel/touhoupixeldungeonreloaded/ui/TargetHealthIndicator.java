@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Koishi;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 
 public class TargetHealthIndicator extends HealthBar {
@@ -50,6 +51,8 @@ public class TargetHealthIndicator extends HealthBar {
 		} else {
 			visible = false;
 		}
+
+		if (target instanceof Koishi) visible = false;
 	}
 	
 	public void target( Char ch ) {

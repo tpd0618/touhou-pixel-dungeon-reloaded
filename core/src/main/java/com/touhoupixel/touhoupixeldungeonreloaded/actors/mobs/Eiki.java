@@ -37,7 +37,7 @@ public class Eiki extends Mob {
     {
         spriteClass = EikiSprite.class;
 
-        HP = HT = 380;
+        HP = HT = 246;
         defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
@@ -55,8 +55,8 @@ public class Eiki extends Mob {
 
     @Override
     public int damageRoll() {
-        return Statistics.difficulty > 2 ? Random.NormalIntRange(Statistics.enemiesSlain/13, Statistics.enemiesSlain/11):
-                Random.NormalIntRange(Statistics.enemiesSlain/15, Statistics.enemiesSlain/13);
+        return Statistics.difficulty > 2 ? Random.NormalIntRange(Statistics.enemiesSlain/5, Statistics.enemiesSlain/4):
+                Random.NormalIntRange(Statistics.enemiesSlain/7, Statistics.enemiesSlain/5);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Eiki extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(62, 89);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Eiki extends Mob {
         if (this.state != SLEEPING && this.state != FLEEING) {
             if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
                 if (Random.Int(7) == 0) {
-                    Dungeon.heroine.damage(25 - Dungeon.heroine.belongings.armor.DRMin(), this);
+                    Dungeon.heroine.damage(60 - Dungeon.heroine.belongings.armor.DRMin(), this);
                     CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 4);
                     GLog.w(Messages.get(this, "abyss_dragon"));
                 }

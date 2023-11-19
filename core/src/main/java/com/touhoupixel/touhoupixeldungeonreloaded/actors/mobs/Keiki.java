@@ -24,7 +24,7 @@ public class Keiki extends Mob {
     {
         spriteClass = KeikiSprite.class;
 
-        HP = HT = 237;
+        HP = HT = 328;
         defenseSkill = 40;
         EXP = 24;
         maxLvl = 75;
@@ -42,7 +42,7 @@ public class Keiki extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(28, 33);
+        return Random.NormalIntRange(127, 197);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Keiki extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(67,97);
     }
 
     @Override

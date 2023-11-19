@@ -20,7 +20,7 @@ public class Sagume extends Mob {
     {
         spriteClass = SagumeSprite.class;
 
-        HP = HT = 159;
+        HP = HT = 200;
         defenseSkill = 37;
         EXP = 22;
         maxLvl = 50;
@@ -36,7 +36,7 @@ public class Sagume extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(27, 31);
+        return Random.NormalIntRange(122, 186);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Sagume extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(57, 83);
     }
 
     @Override

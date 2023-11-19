@@ -38,7 +38,7 @@ public class Benben extends Mob {
     {
         spriteClass = BenbenSprite.class;
 
-        HP = HT = 128;
+        HP = HT = 345;
         defenseSkill = 30;
         EXP = 13;
         maxLvl = 37;
@@ -51,7 +51,7 @@ public class Benben extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(14, 20);
+        return Random.NormalIntRange(95, 145);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Benben extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
 
     @Override

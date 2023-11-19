@@ -18,7 +18,7 @@ public class Mystia extends Mob {
     {
         spriteClass = MystiaSprite.class;
 
-        HP = HT = 27;
+        HP = HT = 39;
         defenseSkill = 10;
         EXP = 4;
         maxLvl = 17;
@@ -33,7 +33,7 @@ public class Mystia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 9);
+        return Random.NormalIntRange(25, 39);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class Mystia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(7, 11);
     }
 
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(8) == 0) {
             Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             BArray.setFalse(Dungeon.level.visited);
             BArray.setFalse(Dungeon.level.mapped);

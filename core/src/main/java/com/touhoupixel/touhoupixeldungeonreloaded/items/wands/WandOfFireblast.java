@@ -32,6 +32,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blazing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
@@ -59,12 +62,12 @@ public class WandOfFireblast extends DamageWand {
 
 	//1x/2x/3x damage
 	public int min(int lvl){
-		return (1+lvl) * chargesPerCast();
+		return (1+lvl/6) * chargesPerCast();
 	}
 
 	//1x/2x/3x damage
 	public int max(int lvl){
-		return (6+2*lvl) * chargesPerCast();
+		return (5+lvl) * chargesPerCast();
 	}
 
 	ConeAOE cone;
@@ -129,6 +132,22 @@ public class WandOfFireblast extends DamageWand {
 				}
 			}
 		}
+	}
+
+	public boolean areEnoughCubes(){
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+
+		if (redCubeFragment != null && redCubeFragment.quantity() > 2){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+
+		for (int i = 0; i < 3; i++)
+			redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override

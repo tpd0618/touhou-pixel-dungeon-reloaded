@@ -15,7 +15,7 @@ public class Cirno extends Mob {
     {
         spriteClass = CirnoSprite.class;
 
-        HP = HT = 27;
+        HP = HT = 50;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;
@@ -33,7 +33,7 @@ public class Cirno extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 6);
+        return Random.NormalIntRange(18, 30);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Cirno extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(3, 7);
     }
 
     @Override

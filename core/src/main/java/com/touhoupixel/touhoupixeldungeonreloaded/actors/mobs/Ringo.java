@@ -15,7 +15,7 @@ public class Ringo extends Mob {
     {
         spriteClass = RingoSprite.class;
 
-        HP = HT = 16;
+        HP = HT = 30;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;
@@ -30,7 +30,7 @@ public class Ringo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 5);
+        return Random.NormalIntRange(9, 15);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Ringo extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class Rumia extends Mob {
     {
         spriteClass = RumiaSprite.class;
 
-        HP = HT = 315;
+        HP = HT = 360;
         defenseSkill = 35;
         EXP = 17;
         maxLvl = 75;
@@ -35,7 +35,7 @@ public class Rumia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(30, 37);
+        return Random.NormalIntRange(120, 182);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Rumia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(46, 66);
     }
 
     @Override
@@ -53,14 +53,14 @@ public class Rumia extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0) {
             Buff.detach(enemy, Light.class);
-            Buff.affect(enemy, Bleeding.class).set(8);
+            Buff.affect(enemy, Bleeding.class).set(30);
             Sample.INSTANCE.play( Assets.Sounds.CURSED );
             GLog.w(Messages.get(this, "rumia"));
             if (Statistics.difficulty > 2) {
-                Buff.affect(enemy, Bleeding.class).set(8);
+                Buff.affect(enemy, Bleeding.class).set(35);
             }
             if (Statistics.difficulty > 4) {
-                Buff.affect(enemy, Bleeding.class).set(8);
+                Buff.affect(enemy, Bleeding.class).set(40);
             }
         }
         return damage;

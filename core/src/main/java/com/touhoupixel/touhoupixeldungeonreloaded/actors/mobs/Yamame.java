@@ -20,7 +20,7 @@ public class Yamame extends Mob {
     {
         spriteClass = YamameSprite.class;
 
-        HP = HT = 213;
+        HP = HT = 250;
         defenseSkill = 32;
         EXP = 14;
         maxLvl = 45;
@@ -33,7 +33,7 @@ public class Yamame extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(24, 30);
+        return Random.NormalIntRange(103, 157);
     }
 
     @Override
@@ -43,14 +43,14 @@ public class Yamame extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(30, 44);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.affect(hero, Poison.class).set(Math.round(Statistics.upgradesUsed/5f));
+            Buff.affect(hero, Poison.class).set(70);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
             }

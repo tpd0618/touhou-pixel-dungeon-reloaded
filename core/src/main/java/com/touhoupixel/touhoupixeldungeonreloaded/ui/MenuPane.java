@@ -64,6 +64,8 @@ public class MenuPane extends Component {
 
 	private DangerIndicator danger;
 
+	private SpellcardLabel spellcardLabel;
+
 	public static final int WIDTH = 32;
 
 	@Override
@@ -141,6 +143,9 @@ public class MenuPane extends Component {
 		danger = new DangerIndicator();
 		add( danger );
 
+		spellcardLabel = new SpellcardLabel( 0x55DD88 );
+		add( spellcardLabel );
+
 		add( pickedUp = new Toolbar.PickedUpItem());
 	}
 
@@ -195,6 +200,8 @@ public class MenuPane extends Component {
 		PixelScene.align(version);
 
 		danger.setPos( x + WIDTH - danger.width(), y + bg.height + 3 );
+
+		spellcardLabel.setPos(x + WIDTH - spellcardLabel.width(), y + bg.height + danger.height() + 3);
 	}
 
 	public void pickup(Item item, int cell) {

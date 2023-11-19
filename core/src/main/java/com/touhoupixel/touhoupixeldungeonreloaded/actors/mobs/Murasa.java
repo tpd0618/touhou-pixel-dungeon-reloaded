@@ -48,6 +48,7 @@ public class Murasa extends Mob {
 		EXP = 0;
 
 		properties.add(Property.WARP);
+		properties.add(Property.NOT_EXTERMINABLE);
 		
 		loot = MysteryMeat.class;
 		lootChance = 0.25f;
@@ -62,8 +63,8 @@ public class Murasa extends Mob {
 	
 	public Murasa() {
 		super();
-		
-		HP = HT = 10 + Dungeon.floor * 5;
+		int level = Dungeon.scalingFloor();
+		HP = HT = 4*(Math.min((level-1)/4 + 1, 5) * (level + 3) + level + 3);
 		defenseSkill = 10 + Dungeon.floor * 2;
 	}
 	
@@ -80,7 +81,8 @@ public class Murasa extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( Dungeon.floor, 4 + Dungeon.floor * 2 );
+		int level = Dungeon.scalingFloor();
+		return Random.NormalIntRange( (int)(1.2*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))), (int)(1.8*(2.5*level + 3 + Math.min(5, ((level - 1)/4 + 1)*(1+level)))));
 	}
 	
 	@Override
@@ -90,7 +92,7 @@ public class Murasa extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, Dungeon.floor);
+		return Random.NormalIntRange(0, Dungeon.floor*2);
 	}
 
 	@Override

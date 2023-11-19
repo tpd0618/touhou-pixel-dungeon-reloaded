@@ -43,7 +43,7 @@ public class Mayumi extends Mob implements Callback {
     {
         spriteClass = MayumiSprite.class;
 
-        HP = HT = 72;
+        HP = HT = 100;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;
@@ -56,7 +56,7 @@ public class Mayumi extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(12, 18);
+        return Random.NormalIntRange(69, 107);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Mayumi extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(20, 30);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Mayumi extends Mob implements Callback {
                 }
             }
 
-            int dmg = Statistics.spellcard+5;
+            int dmg = Statistics.spellcard*10+50;
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

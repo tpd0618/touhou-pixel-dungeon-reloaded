@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.watabou.noosa.TextureFilm;
 
 public class KoishiSprite extends MobSprite {
@@ -47,4 +48,12 @@ public class KoishiSprite extends MobSprite {
 		
 		play( idle );
 	}
+
+	// next methods do nothing, because she is invisible
+	@Override
+	public void showAlert() {}
+	@Override
+	public void showLost() {}
+
+
 }

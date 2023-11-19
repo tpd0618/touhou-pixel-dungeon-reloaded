@@ -60,6 +60,8 @@ public class NitoChecker extends Item {
 		info += "\n\n" + Messages.get( this, "stats4", Statistics.spellcard, Statistics.bomb_count);
 		info += "\n\n" + Messages.get( this, "stats5", Statistics.spellcardfragment);
 		info += "\n\n" + Messages.get( this, "stats6", Statistics.dismantle_count);
+		info += "\n\n" + "enemies slain: " + Statistics.enemiesSlain;
+		info += "\n\n" + "traps activate: " + Statistics.trap_act_count;
 		if (Statistics.difficulty == 1) {
 			info += "\n\n" + Messages.get(this, "easy");
 		}

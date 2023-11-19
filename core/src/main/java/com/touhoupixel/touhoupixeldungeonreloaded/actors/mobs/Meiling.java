@@ -14,7 +14,7 @@ public class Meiling extends Mob {
     {
         spriteClass = MeilingSprite.class;
 
-        HP = HT = 54;
+        HP = HT = 120;
         defenseSkill = 15;
         EXP = 6;
         maxLvl = 22;
@@ -30,7 +30,7 @@ public class Meiling extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(6, 8);
+        return Random.NormalIntRange(47,73);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Meiling extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(16, 24);
     }
 
     @Override
