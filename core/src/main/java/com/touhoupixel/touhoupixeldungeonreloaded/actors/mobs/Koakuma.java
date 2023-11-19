@@ -15,7 +15,7 @@ public class Koakuma extends Mob {
     {
         spriteClass = KoakumaSprite.class;
 
-        HP = HT = 37;
+        HP = HT = 81;
         defenseSkill = 15;
         EXP = 6;
         maxLvl = 22;
@@ -28,7 +28,7 @@ public class Koakuma extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Statistics.upgradesUsed/2, 1+Statistics.upgradesUsed/2);
+        return Random.NormalIntRange(Statistics.upgradesUsed*3, 1+Statistics.upgradesUsed*5);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Koakuma extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(12, 20);
     }
 
     @Override

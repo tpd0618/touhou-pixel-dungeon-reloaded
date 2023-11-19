@@ -42,7 +42,7 @@ public class Hijiri extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(14, 20);
+        return Random.NormalIntRange(77, 117);
     }
 
     @Override

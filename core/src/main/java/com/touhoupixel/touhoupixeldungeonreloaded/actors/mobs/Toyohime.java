@@ -46,7 +46,7 @@ public class Toyohime extends Mob implements Callback {
 	{
 		spriteClass = ToyohimeSprite.class;
 
-		HP = HT = 500;
+		HP = HT = 310;
 		defenseSkill = 40;
 		EXP = 24;
 		maxLvl = 99;
@@ -61,7 +61,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(40, 50);
+		return Random.NormalIntRange(63, 97);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int drRoll() {
-		return Dungeon.floor == 40 ? Random.NormalIntRange(0, 20) : Random.NormalIntRange(0, 2);
+		return Random.NormalIntRange(62, 89);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class Toyohime extends Mob implements Callback {
 				}
 			}
 
-			int dmg = Random.NormalIntRange(26, 32);
+			int dmg = Random.NormalIntRange(67, 103);
 			enemy.damage(dmg, new DarkBolt());
 
 			if (enemy == Dungeon.heroine && !enemy.isAlive()) {

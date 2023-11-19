@@ -21,12 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -63,11 +66,30 @@ public class WandOfMindburst extends DamageWand {
 			ch.die(this);
 		}
 
-		if (curUser.HT > 2 && curUser.HP > 2) {
-			curUser.HP -= 2;
-			curUser.HT -= 2;
-			Statistics.maxHP_down -= 2;
+		if (curUser.HT > 10 && curUser.HP > 10) {
+			curUser.HP -= 5;
+			curUser.HT -= 5;
+			Statistics.maxHP_down -= 5;
 		}
+	}
+	public boolean areEnoughCubes(){
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		if (redCubeFragment != null && redCubeFragment.quantity() > 1 &&
+				blackCubeFragment != null && blackCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+
+		redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuumaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -21,7 +22,7 @@ public class Yuuma extends Mob {
     {
         spriteClass = YuumaSprite.class;
 
-        HP = HT = 358;
+        HP = HT = 200;
         defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
@@ -34,47 +35,51 @@ public class Yuuma extends Mob {
 
     @Override
     protected boolean act() {
-        boolean result = super.act();
-        for (int i : PathFinder.NEIGHBOURS8) {
-            for (Buff b : this.buffs()) {
-                if (b.type == Buff.buffType.NEGATIVE) {
-                    b.detach();
-                    this.HP = this.HT;
-                    this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 6);
-                    Buff.prolong(this, YuumaAbsorb.class, YuumaAbsorb.DURATION);
-                    Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 100f);
-                    if (Statistics.difficulty > 2) {
-                        Buff.prolong(this, Might.class, Might.DURATION);
+
+            boolean result = super.act();
+                for (Buff b : this.buffs()) {
+                    if (b.type == Buff.buffType.NEGATIVE) {
+                        b.detach();
+                        this.HP = this.HT;
+                        this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 6);
+                        Buff.prolong(this, YuumaAbsorb.class, YuumaAbsorb.DURATION);
+                        Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 100f);
+                        if (Statistics.difficulty > 2) {
+                            Buff.prolong(this, Might.class, Might.DURATION);
+                        }
+                        if (Statistics.difficulty > 4) {
+                            Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+                        }
+                        GLog.w(Messages.get(this, "absorb"));
                     }
-                    if (Statistics.difficulty > 4) {
-                        Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+                }
+        PathFinder.buildDistanceMap( pos, BArray.not( Dungeon.level.solid, null ), 2 );
+                for (int i = 0; i < PathFinder.distance.length; i++) {
+                    if (PathFinder.distance[i] < Integer.MAX_VALUE) {
+                    for (Buff c : Dungeon.heroine.buffs()) {
+                        if (c.type == Buff.buffType.POSITIVE && Dungeon.heroine.pos == i) {
+                            c.detach();
+                            this.HP = this.HT;
+                            this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 6);
+                            Buff.prolong(this, YuumaAbsorb.class, YuumaAbsorb.DURATION);
+                            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 100f);
+                            if (Statistics.difficulty > 2) {
+                                Buff.prolong(this, Might.class, Might.DURATION);
+                            }
+                            if (Statistics.difficulty > 4) {
+                                Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+                            }
+                            GLog.w(Messages.get(this, "absorb"));
+                        }
                     }
-                    GLog.w(Messages.get(this, "absorb"));
                 }
             }
-            for (Buff c : Dungeon.heroine.buffs()) {
-                if (c.type == Buff.buffType.POSITIVE && Dungeon.heroine.pos == this.pos + i) {
-                    c.detach();
-                    this.HP = this.HT;
-                    this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 6);
-                    Buff.prolong(this, YuumaAbsorb.class, YuumaAbsorb.DURATION);
-                    Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 100f);
-                    if (Statistics.difficulty > 2) {
-                        Buff.prolong(this, Might.class, Might.DURATION);
-                    }
-                    if (Statistics.difficulty > 4) {
-                        Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
-                    }
-                    GLog.w(Messages.get(this, "absorb"));
-                }
-            }
+            return result;
         }
-        return result;
-    }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(111, 169);
     }
 
     @Override
@@ -84,6 +89,6 @@ public class Yuuma extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(57, 83);
     }
 }

@@ -50,18 +50,18 @@ public class HealthBar extends Component {
 		
 		Hp = new ColorBlock( 1, 1, COLOR_HP );
 		add( Hp );
-		
+
 		height = HEIGHT;
 	}
 	
 	@Override
 	protected void layout() {
-		
+
 		Bg.x = Shld.x = Hp.x = x;
 		Bg.y = Shld.y = Hp.y = y;
-		
+
 		Bg.size( width, height );
-		
+
 		//logic here rounds up to the nearest pixel
 		float pixelWidth = width;
 		if (camera() != null) pixelWidth *= camera().zoom;

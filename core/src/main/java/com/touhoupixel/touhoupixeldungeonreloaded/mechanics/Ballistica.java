@@ -177,7 +177,7 @@ public class Ballistica {
 		float dy = y1 - y0;
 
 		int direction = 1;
-		if (Math.cos(angle * Math.PI / 180) < 0){
+		if (Math.cos (angle * Math.PI / 180) < 0){
 			direction = -1;
 		}
 

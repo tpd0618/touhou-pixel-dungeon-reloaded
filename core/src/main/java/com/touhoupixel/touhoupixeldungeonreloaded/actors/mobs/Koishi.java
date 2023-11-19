@@ -15,7 +15,7 @@ public class Koishi extends Mob {
     {
         spriteClass = KoishiSprite.class;
 
-        HP = HT = 249;
+        HP = HT = 370;
         defenseSkill = 32;
         EXP = 15;
         maxLvl = 75;
@@ -33,7 +33,7 @@ public class Koishi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(36, 41);
+        return Random.NormalIntRange(103, 157);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Koishi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
 
     @Override

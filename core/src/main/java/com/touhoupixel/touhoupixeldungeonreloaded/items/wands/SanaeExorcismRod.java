@@ -40,6 +40,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlackCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -60,7 +64,7 @@ public class SanaeExorcismRod extends Wand {
 	private static String AC_CHOOSE = "CHOOSE"; // action that works if the weapon is in a quick slot
 	private Blobs blobContainer[] = {setEffect(), setEffect()};
 	private Blobs curProj;
-	private static final float ROD_SCALE_FACTOR = 0.75f;
+	private static final float ROD_SCALE_FACTOR = 1.2f;
 
 
 	{
@@ -190,6 +194,37 @@ public class SanaeExorcismRod extends Wand {
 		}
 		return blob;
 	}
+	public boolean areEnoughCubes(){
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		if (blueCubeFragment != null && blueCubeFragment.quantity() > 1 &&
+		blackCubeFragment != null && blackCubeFragment.quantity() > 0 &&
+				redCubeFragment != null && redCubeFragment.quantity() > 1 &&
+				whiteCubeFragment != null && whiteCubeFragment.quantity() > 0){
+
+			return true;
+		}
+		else return false;
+	}
+
+	@Override
+	protected void spendColourCubes() {
+		BlackCubeFragment blackCubeFragment = Dungeon.heroine.belongings.getItem(BlackCubeFragment.class);
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		for (int i = 0; i < 2; i++) {
+			blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+			redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		}
+		blackCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		whiteCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+	}
+
 	public String getBlobName(Blobs blob){
 		String mes;
 		switch (blob){
@@ -249,7 +284,7 @@ public class SanaeExorcismRod extends Wand {
 			case CORROSIVE_GAS:
 				gas = Blob.seed( bolt.collisionPos, 50, CorrosiveGas.class );
 				CellEmitter.get(bolt.collisionPos).burst(Speck.factory(Speck.CORROSION), 10 );
-				((CorrosiveGas)gas).setStrength(2 + Dungeon.floor / 2);
+				((CorrosiveGas)gas).setStrength((int)(1 + Dungeon.floor*0.75));
 				break;
 			case INFERNO:
 				gas = Blob.seed( bolt.collisionPos, 120, Inferno.class );
@@ -354,9 +389,9 @@ public class SanaeExorcismRod extends Wand {
 	@Override
 	public int level() {
 		int level = Dungeon.heroine == null ? 0 : Dungeon.heroine.lvl/5;
-		maxCharges = Math.min(3 + level, 10);
+		maxCharges = Math.min(3 + level, 8);
 		if (Statistics.card46) maxCharges += 2;
-		level = Math.min(7, level);
+		level = Math.min(5, level);
 
 		return level;
 	}

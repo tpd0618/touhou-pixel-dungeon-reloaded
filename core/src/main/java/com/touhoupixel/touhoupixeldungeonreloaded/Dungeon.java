@@ -13,6 +13,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
@@ -21,6 +22,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfFore
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
@@ -621,6 +623,8 @@ public class Dungeon {
 
 			Actor.storeNextID( bundle );
 
+			Spellcard.storeIsThereActiveCards( bundle );
+
 			Bundle badges = new Bundle();
 			Badges.saveLocal( badges );
 			bundle.put( BADGES, badges );
@@ -676,6 +680,8 @@ public class Dungeon {
 
 		Actor.clear();
 		Actor.restoreNextID( bundle );
+
+		Spellcard.restoreIsThereActiveCards( bundle );
 
 		quickslot.reset();
 		QuickSlotButton.reset();

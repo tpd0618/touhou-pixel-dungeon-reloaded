@@ -37,7 +37,7 @@ public class Shinmyomaru extends Mob {
     {
         spriteClass = ShinmyomaruSprite.class;
 
-        HP = HT = 126;
+        HP = HT = 270;
         defenseSkill = 30;
         EXP = 16;
         maxLvl = 37;
@@ -50,7 +50,7 @@ public class Shinmyomaru extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 16);
+        return Random.NormalIntRange(95, 145);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Shinmyomaru extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
 
     @Override

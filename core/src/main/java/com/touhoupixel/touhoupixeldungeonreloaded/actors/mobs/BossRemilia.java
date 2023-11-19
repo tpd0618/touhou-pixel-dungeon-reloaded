@@ -21,7 +21,7 @@ public class BossRemilia extends Mob {
     {
         spriteClass = RemiliaSprite.class;
 
-        HP = HT = 175;
+        HP = HT = 450;
         defenseSkill = 15;
         EXP = 20;
         maxLvl = 99;
@@ -49,7 +49,7 @@ public class BossRemilia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 9);
+        return Random.NormalIntRange(51, 79);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class BossRemilia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(16, 24);
     }
 
     @Override

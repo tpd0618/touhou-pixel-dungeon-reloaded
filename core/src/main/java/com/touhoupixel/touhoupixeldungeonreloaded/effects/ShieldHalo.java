@@ -45,6 +45,16 @@ public class ShieldHalo extends Halo {
 		
 		phase = 1;
 	}
+	public ShieldHalo( CharSprite sprite, int color ){
+		super( (float)Math.sqrt(Math.pow(sprite.width()/2f, 2) + Math.pow(sprite.height()/2f, 2)), color, 1f );
+
+		am = -0.33f;
+		aa = +0.33f;
+
+		target = sprite;
+
+		phase = 1;
+	}
 	
 	@Override
 	public void update() {

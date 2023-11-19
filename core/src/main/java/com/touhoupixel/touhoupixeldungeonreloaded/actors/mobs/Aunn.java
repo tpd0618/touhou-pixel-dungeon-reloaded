@@ -3,7 +3,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AunnSprite;
@@ -14,7 +13,7 @@ public class Aunn extends Mob {
     {
         spriteClass = AunnSprite.class;
 
-        HP = HT = 29;
+        HP = HT = 36;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;
@@ -27,7 +26,7 @@ public class Aunn extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 7);
+        return Random.NormalIntRange(18, 30);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class Aunn extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(3, 5);
     }
 
     @Override

@@ -249,7 +249,7 @@ abstract public class Weapon extends KindOfWeapon {
 	public int STRReq(){
 		int req = STRReq(level());
 		if (masteryPotionBonus){
-			req -= 5;
+			req -= 3;
 		}
 		return req;
 	}
@@ -258,7 +258,17 @@ abstract public class Weapon extends KindOfWeapon {
 
 	protected static int STRReq(int tier, int lvl){
 		lvl = Math.max(0, lvl);
-		return Math.max(1,(6 + Math.round(tier * 4)) - lvl);
+
+		//strength req decreases at +3,+12,+39,+120, etc.
+		int lvlBonus = 0;
+		int mult, a;
+		a = mult = 3;
+		while (true){
+			if (lvl < a) break;
+			lvlBonus++;
+			a += Math.pow(mult, lvlBonus+1);
+		}
+		return Math.max(1,(6 + Math.round(tier * 4)) - lvlBonus);
 	}
 
 	@Override
@@ -291,13 +301,13 @@ abstract public class Weapon extends KindOfWeapon {
 			}
 		} else {
 			if (hasCurseEnchant()){
-				if (Random.Int(3) == 0) enchant(null);
+				if (Random.Int(7) == 0) enchant(null);
 			}
 			else{
 				if (Statistics.card36) {
 					if (level() >= 25) enchant(null);
 				}
-				else if (level() >= 4 && Random.Float(10) < Math.pow(2, level() - 4)) {
+				else if (level() >= 10 && Random.Float(10) < Math.pow(1.3, level() - 10)) {
 					enchant(null);
 				}
 			}

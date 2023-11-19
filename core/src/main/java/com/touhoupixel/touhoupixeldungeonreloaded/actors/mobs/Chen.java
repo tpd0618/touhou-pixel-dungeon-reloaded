@@ -21,7 +21,7 @@ public class Chen extends Mob {
     {
         spriteClass = ChenSprite.class;
 
-        HP = HT = 38;
+        HP = HT = 80;
         defenseSkill = 10;
         EXP = 4;
         maxLvl = 17;
@@ -51,7 +51,7 @@ public class Chen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 10);
+        return Random.NormalIntRange(27, 43);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Chen extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(7, 13);
     }
 
     @Override

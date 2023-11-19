@@ -185,6 +185,7 @@ abstract public class MissileWeapon extends Weapon {
 		parent = null; //reset parent before throwing, just incase
 		super.doThrow(heroine);
 	}
+	@Override
 	public void cast(final Hero user, final int dst ){
 		if (Dungeon.heroine.heroClass == HeroClass.PLAYERSAKUYA && (Dungeon.heroine.buff(Swiftthistle.TimeBubble.class) != null || Dungeon.heroine.buff(TimekeepersHourglass.timeFreeze.class) != null)){
 
@@ -286,6 +287,16 @@ abstract public class MissileWeapon extends Weapon {
 				rangedMiss( cell );
 			} else {
 				rangedHit( enemy, cell );
+			}
+		}
+	}
+	public void onThrowByChar( Char ch, int cell ) {
+		Char enemy = Actor.findChar( cell );
+		if (enemy == null || enemy == ch) {
+			parent = null;
+		} else {
+			if (ch.hit( ch, enemy, false )){
+				enemy.damage(damageRoll(ch), this);
 			}
 		}
 	}
@@ -456,6 +467,9 @@ abstract public class MissileWeapon extends Weapon {
 	@Override
 	public boolean isIdentified() {
 		return true;
+	}
+	public int scaleByHeroineLvl(){
+		return Dungeon.heroine.lvl;
 	}
 
 	@Override

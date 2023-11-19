@@ -41,7 +41,7 @@ public class ThrowingKnife extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (6+Dungeon.heroine.lvl/3) * tier +                      //base
+		return  (scaleByHeroineLvl()) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 	

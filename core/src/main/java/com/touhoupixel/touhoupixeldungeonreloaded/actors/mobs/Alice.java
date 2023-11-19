@@ -17,7 +17,7 @@ public class Alice extends Mob {
     {
         spriteClass = AliceSprite.class;
 
-        HP = HT = 31;
+        HP = HT = 40;
         defenseSkill = 10;
         EXP = 4;
         maxLvl = 17;
@@ -33,7 +33,7 @@ public class Alice extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(6, 10);
+        return Random.NormalIntRange(25, 39);
     }
 
     @Override
@@ -43,14 +43,14 @@ public class Alice extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(5, 9);
     }
 
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
-            new SummoningTrap().set(pos).activate();
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0){
+            ((SummoningTrap)(new SummoningTrap().set(pos))).activate(1);
             Buff.prolong(enemy, AliceCurse.class, AliceCurse.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Blindness.class, Blindness.DURATION);

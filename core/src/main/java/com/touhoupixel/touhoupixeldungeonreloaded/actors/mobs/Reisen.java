@@ -29,7 +29,7 @@ public class Reisen extends Mob {
     {
         spriteClass = ReisenSprite.class;
 
-        HP = HT = 49;
+        HP = HT = 108;
         defenseSkill = 12;
         EXP = 5;
         maxLvl = 20;
@@ -45,7 +45,7 @@ public class Reisen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 9);
+        return Random.NormalIntRange(34, 54);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Reisen extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(8, 14);
     }
 
     @Override

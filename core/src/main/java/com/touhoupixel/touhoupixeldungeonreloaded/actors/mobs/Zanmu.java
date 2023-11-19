@@ -49,7 +49,7 @@ public class Zanmu extends Mob {
     {
         spriteClass = ZanmuSprite.class;
 
-        HP = HT = 261;
+        HP = HT = 230;
         defenseSkill = 37;
         EXP = 21;
         maxLvl = 50;
@@ -62,7 +62,7 @@ public class Zanmu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(29, 34);
+        return Random.NormalIntRange(23, 37);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Zanmu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(62, 89);
     }
 
     private Ballistica beam;
@@ -176,7 +176,7 @@ public class Zanmu extends Mob {
             }
 
             if (hit( this, ch, true )) {
-                ch.damage( Random.NormalIntRange( 26, 31 ), new DeathGaze() );
+                ch.damage( Random.NormalIntRange( 90,130 ), new DeathGaze() );
 
                 if (ch instanceof Hero) {
                     MeleeWeapon meleeweapon = Dungeon.heroine.belongings.getItem(MeleeWeapon.class);

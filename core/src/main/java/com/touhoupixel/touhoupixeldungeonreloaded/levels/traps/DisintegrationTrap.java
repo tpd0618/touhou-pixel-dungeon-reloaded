@@ -72,7 +72,7 @@ public class DisintegrationTrap extends Trap {
 				Sample.INSTANCE.play(Assets.Sounds.RAY);
 				ShatteredPixelDungeon.scene().add(new Beam.DeathRay(DungeonTilemap.tileCenterToWorld(pos), target.sprite.center()));
 			}
-			target.damage( Random.NormalIntRange(30, 50) + Dungeon.floor, this );
+			target.damage( Random.NormalIntRange(70, 90) + Dungeon.floor*5, this );
 			if (target == Dungeon.heroine){
 				Hero heroine = (Hero)target;
 				if (!heroine.isAlive()){

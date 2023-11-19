@@ -16,7 +16,7 @@ public class Akyuu extends Mob {
     {
         spriteClass = AkyuuSprite.class;
 
-        HP = HT = 16;
+        HP = HT = 27;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;
@@ -29,7 +29,7 @@ public class Akyuu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 5);
+        return Random.NormalIntRange(6, 12);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Akyuu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.SuwakoSprite;
@@ -38,12 +39,14 @@ public class Suwako extends Mob {
     {
         spriteClass = SuwakoSprite.class;
 
-        HP = HT = 99;
+        HP = HT = 400;
         defenseSkill = 27;
         EXP = 16;
         maxLvl = 35;
 
         properties.add(Property.GOD);
+        properties.add(Property.MINIBOSS);
+        mobRarity = MobRarity.RARE;
 
         properties.add(Property.FUMO);
         //used for fumo lover buff
@@ -54,7 +57,7 @@ public class Suwako extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 21);
+        return Random.NormalIntRange(93, 141);
     }
 
     @Override

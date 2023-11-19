@@ -19,16 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.HitAndRun;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.SummonChen;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CorrosionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -37,19 +35,27 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
-public class Ran extends Mob implements Callback {
+public class Ran extends MobWithSpellcard implements Callback {
 
     private static final float TIME_TO_ZAP	= 1f;
 
     {
         spriteClass = RanSprite.class;
 
-        HP = HT = 214;
+        HP = HT = 330;
         defenseSkill = 32;
         EXP = 15;
         maxLvl = 45;
 
+        spellcardsDefaultList.add(SummonChen.class);
+        spellcardsDefaultList.add(HitAndRun.class);
+        if (Statistics.difficulty <= 2) numberOfCards = 2;
+        else if (Statistics.difficulty <= 4) numberOfCards = 3;
+        else numberOfCards = 4;
+        mobRarity = MobRarity.UNCOMMON;
+
         properties.add(Property.ANIMAL);
+        properties.add(Property.NOT_EXTERMINABLE);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff
@@ -61,7 +67,7 @@ public class Ran extends Mob implements Callback {
     @Override
     public int damageRoll() {
         return Random.NormalIntRange(24, 30);
-    }
+    } // doesn't attack at melee
 
     @Override
     public int attackSkill(Char target) {
@@ -70,12 +76,12 @@ public class Ran extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(35, 51);
     }
-
     @Override
     protected boolean canAttack( Char enemy ) {
-        return new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT).collisionPos == enemy.pos;
+        return !Dungeon.level.adjacent( pos, enemy.pos )
+                && (super.canAttack(enemy) || new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT).collisionPos == enemy.pos);
     }
 
     protected boolean doAttack( Char enemy ) {
@@ -104,17 +110,8 @@ public class Ran extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(2) == 0) {
-                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-                if (Statistics.difficulty > 2) {
-                    new CorrosionTrap().set(enemy.pos).activate();
-                }
-                if (Statistics.difficulty > 4) {
-                    new FlashingTrap().set(enemy.pos).activate();
-                }
-            }
-
-            int dmg = Random.NormalIntRange( 13, 18 );
+            int dmg = Random.NormalIntRange( 110, 150 );
+            if (spellcard instanceof HitAndRun) dmg *= 1.3;
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {
@@ -131,6 +128,22 @@ public class Ran extends Mob implements Callback {
         next();
     }
 
+    @Override
+    protected boolean getCloser( int target ) {
+        if (state == HUNTING) {
+            return enemySeen && getFurther( target );
+        } else {
+            return super.getCloser( target );
+        }
+    }
+
+    @Override
+    public void aggro(Char ch) {
+        //cannot be aggroed to something it can't see
+        if (ch == null || fieldOfView == null || fieldOfView[ch.pos]) {
+            super.aggro(ch);
+        }
+    }
     @Override
     public void call() {
         next();

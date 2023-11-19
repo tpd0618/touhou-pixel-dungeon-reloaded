@@ -51,7 +51,7 @@ public class Komachi extends Mob {
     {
         spriteClass = KomachiSprite.class;
 
-        HP = HT = 83;
+        HP = HT = 190;
         defenseSkill = 25;
         EXP = 14;
         maxLvl = 32;
@@ -66,7 +66,7 @@ public class Komachi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(12, 19);
+        return Random.NormalIntRange(94, 150);
     }
 
     private boolean chain(int target){
@@ -142,7 +142,7 @@ public class Komachi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(26, 38);
     }
 
     private final String CHAINSUSED = "chainsused";

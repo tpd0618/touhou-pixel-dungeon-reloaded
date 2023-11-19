@@ -18,7 +18,7 @@ public class Junko extends Mob {
     {
         spriteClass = JunkoSprite.class;
 
-        HP = HT = 269;
+        HP = HT = 250;
         defenseSkill = 37;
         EXP = 22;
         maxLvl = 50;
@@ -34,7 +34,7 @@ public class Junko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(31, 37);
+        return Random.NormalIntRange(126, 192);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Junko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(62, 89);
     }
 
     @Override

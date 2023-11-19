@@ -32,7 +32,7 @@ public class Enoko extends Mob {
     {
         spriteClass = EnokoSprite.class;
 
-        HP = HT = 267;
+        HP = HT = 500;
         defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
@@ -47,9 +47,9 @@ public class Enoko extends Mob {
 
     @Override
     public int damageRoll() {
-        return (Statistics.difficulty > 4) ? Random.NormalIntRange(Statistics.trap_act_count+1, Statistics.trap_act_count+5):
-                Random.NormalIntRange(Statistics.trap_act_count/2+1, Statistics.trap_act_count/2+5);
-    }
+        return (Statistics.difficulty > 4) ? Random.NormalIntRange(Statistics.trap_act_count*3+1, Statistics.trap_act_count*3+5):
+                Random.NormalIntRange(Statistics.trap_act_count*3/2+1, Statistics.trap_act_count*3/2+5);
+    } // TODO ability must be changed
 
     @Override
     public int attackSkill(Char target) {
@@ -58,6 +58,6 @@ public class Enoko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(46, 66);
     }
 }

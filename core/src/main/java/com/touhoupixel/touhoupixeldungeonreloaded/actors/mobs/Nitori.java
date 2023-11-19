@@ -45,7 +45,7 @@ public class Nitori extends Mob implements Callback {
     {
         spriteClass = NitoriSprite.class;
 
-        HP = HT = 56;
+        HP = HT = 96;
         defenseSkill = 17;
         EXP = 8;
         maxLvl = 25;
@@ -63,7 +63,7 @@ public class Nitori extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(6, 10);
+        return Random.NormalIntRange(31, 49);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Nitori extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(14, 22);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Nitori extends Mob implements Callback {
                 Buff.prolong(enemy, Slow.class, Slow.DURATION);
             }
 
-            int dmg = Random.NormalIntRange( 4, 7 );
+            int dmg = Random.NormalIntRange( 55, 85 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

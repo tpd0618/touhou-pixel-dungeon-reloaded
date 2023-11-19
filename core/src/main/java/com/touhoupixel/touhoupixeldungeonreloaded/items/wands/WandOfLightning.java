@@ -28,6 +28,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Lightning;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SparkParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Shocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -55,11 +58,11 @@ public class WandOfLightning extends DamageWand {
 	private ArrayList<Lightning.Arc> arcs = new ArrayList<>();
 
 	public int min(int lvl){
-		return 5+lvl;
+		return 2+5*lvl;
 	}
 
 	public int max(int lvl){
-		return 10+5*lvl;
+		return (int)(8+7*lvl);
 	}
 	
 	@Override
@@ -90,6 +93,25 @@ public class WandOfLightning extends DamageWand {
 			Dungeon.fail( getClass() );
 			GLog.n(Messages.get(this, "ondeath"));
 		}
+	}
+
+	public boolean areEnoughCubes(){
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		if (whiteCubeFragment != null && whiteCubeFragment.quantity() > 2 &&
+				blueCubeFragment != null && blueCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		for (int i = 0; i < 3; i++) whiteCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override

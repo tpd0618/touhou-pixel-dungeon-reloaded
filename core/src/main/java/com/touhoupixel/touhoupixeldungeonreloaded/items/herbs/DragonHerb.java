@@ -83,7 +83,8 @@ public class DragonHerb extends Herb {
 					if (mob instanceof MitamaAra || mob instanceof MitamaKusi || mob instanceof MitamaNigi || mob instanceof MitamaSaki) {
 						mob.damage(0, heroine);
 					} else {
-						mob.damage(6 * Dungeon.floor, heroine);
+						int fl = Dungeon.floor;
+						mob.damage((int)(4*(2.5*fl + 3 + Math.min(5, ((fl - 1)/4 + 1)*(1+fl)))), heroine);
 					}
 				}
 			}

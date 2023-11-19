@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.InventoryPane;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RedButton;
@@ -38,41 +39,42 @@ public class WndUseItem extends WndInfoItem {
 	public WndUseItem( final Window owner, final Item item ) {
 		
 		super(item);
+		if (Dungeon.heroine != null && Dungeon.heroine.buff(Onigiri.class) == null) {
+			float y = height;
 
-		float y = height;
-		
-		if (Dungeon.heroine.isAlive() && Dungeon.heroine.belongings.contains(item)) {
-			y += GAP;
-			ArrayList<RedButton> buttons = new ArrayList<>();
-			for (final String action : item.actions( Dungeon.heroine)) {
-				
-				RedButton btn = new RedButton( item.actionName(action, Dungeon.heroine), 8 ) {
-					@Override
-					protected void onClick() {
-						hide();
-						if (owner != null && owner.parent != null) owner.hide();
-						if (Dungeon.heroine.isAlive() && Dungeon.heroine.belongings.contains(item)){
-							item.execute( Dungeon.heroine, action );
+			if (Dungeon.heroine.isAlive() && Dungeon.heroine.belongings.contains(item)) {
+				y += GAP;
+				ArrayList<RedButton> buttons = new ArrayList<>();
+				for (final String action : item.actions(Dungeon.heroine)) {
+
+					RedButton btn = new RedButton(item.actionName(action, Dungeon.heroine), 8) {
+						@Override
+						protected void onClick() {
+							hide();
+							if (owner != null && owner.parent != null) owner.hide();
+							if (Dungeon.heroine.isAlive() && Dungeon.heroine.belongings.contains(item)) {
+								item.execute(Dungeon.heroine, action);
+							}
+							Item.updateQuickslot();
+							if (action == item.defaultAction && item.usesTargeting && owner == null) {
+								InventoryPane.useTargeting();
+							}
 						}
-						Item.updateQuickslot();
-						if (action == item.defaultAction && item.usesTargeting && owner == null){
-							InventoryPane.useTargeting();
-						}
+					};
+					btn.setSize(btn.reqWidth(), BUTTON_HEIGHT);
+					buttons.add(btn);
+					add(btn);
+
+					if (action.equals(item.defaultAction)) {
+						btn.textColor(TITLE_COLOR);
 					}
-				};
-				btn.setSize( btn.reqWidth(), BUTTON_HEIGHT );
-				buttons.add(btn);
-				add( btn );
 
-				if (action.equals(item.defaultAction)) {
-					btn.textColor( TITLE_COLOR );
 				}
-				
+				y = layoutButtons(buttons, width, y);
 			}
-			y = layoutButtons(buttons, width, y);
+
+			resize(width, (int) (y));
 		}
-		
-		resize( width, (int)(y) );
 	}
 
 	private static float layoutButtons(ArrayList<RedButton> buttons, float width, float y){

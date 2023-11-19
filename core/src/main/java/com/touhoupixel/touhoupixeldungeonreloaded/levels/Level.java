@@ -21,10 +21,12 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Blob;
@@ -43,6 +45,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Shadows;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.WindParticle;
@@ -485,11 +488,30 @@ public abstract class Level implements Bundlable {
 	private ArrayList<Class<?extends Mob>> mobsToSpawn = new ArrayList<>();
 
 	public Mob createMob() {
-		if (mobsToSpawn == null || mobsToSpawn.isEmpty()) {
-			mobsToSpawn = Bestiary.getMobRotation(Dungeon.floor);
-		}
+		Mob m = null;
+		while (m == null){
+			if (mobsToSpawn == null || mobsToSpawn.isEmpty()) {
+				mobsToSpawn = Bestiary.getMobRotation(Dungeon.floor);
+			}
+			m = Reflection.newInstance(mobsToSpawn.remove(0));
+			if (m.getClass() == Statistics.exterminatedEnemy) m = null;
 
-		Mob m = Reflection.newInstance(mobsToSpawn.remove(0));
+			if (m instanceof MobWithSpellcard) {
+				switch (m.mobRarity){
+					case UNCOMMON:
+						if (Random.Int(3) != 0) m = null;
+						break;
+					case RARE:
+						if (Random.Int(20) != 0) m = null;
+						break;
+					case EPIC:
+						if (Random.Int(40) != 0) m = null;
+						break;
+					default:
+						break;
+				}
+			}
+		}
 		return m;
 	}
 
@@ -696,6 +718,9 @@ public abstract class Level implements Bundlable {
 			cell = Random.Int( length() );
 		} while (!passable[cell]);
 		return cell;
+	}
+	public int randomCell(){
+		return Random.Int(length());
 	}
 
 	public void addItemToSpawn( Item item ) {

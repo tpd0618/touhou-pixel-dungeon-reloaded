@@ -19,13 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.SonicEarthquake;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RaikoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -33,39 +41,48 @@ import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
-public class Raiko extends Mob {
+public class Raiko extends MobWithSpellcard {
 
     {
         spriteClass = RaikoSprite.class;
 
-        HP = HT = 83;
-        defenseSkill = 22;
-        EXP = 13;
+        HP = HT = 300;
+        defenseSkill = 28;
+        EXP = 20;
         maxLvl = 30;
 
-        flying = Statistics.difficulty > 2;
+        flying = true;
 
-        baseSpeed = Statistics.difficulty > 4 ? 2f : 1f;
+        spellcardsDefaultList.add(SonicEarthquake.class);
+
+        mobRarity = MobRarity.RARE;
+        if (Statistics.difficulty <= 2) numberOfCards = 3;
+        else if (Statistics.difficulty <= 4) numberOfCards = 4;
+        else numberOfCards = 5;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.NOT_EXTERMINABLE);
+        properties.add(Property.MINIBOSS);
 
         loot = new LifeFragment();
         lootChance = 0.1f;
+
+        immunities.add(Paralysis.class);
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(10, 20);
+        return Random.NormalIntRange(95, 125);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 35;
     }
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(36,52);
     }
 
     @Override
@@ -78,5 +95,14 @@ public class Raiko extends Mob {
             Camera.main.shake( 20, 1f );
         }
         return damage;
+    }
+
+    @Override
+    public void die(Object cause) {
+        Dungeon.level.drop(new FiveStarTicket().quantity(3), pos ).sprite.drop();
+        Dungeon.level.drop(new PotionOfExperience().quantity(2), pos ).sprite.drop();
+        Dungeon.level.drop(new Life(), pos ).sprite.drop();
+
+        super.die(cause);
     }
 }

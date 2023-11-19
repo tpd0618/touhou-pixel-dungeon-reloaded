@@ -38,7 +38,7 @@ public class EikiDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (4+Statistics.enemiesSlain/500+Dungeon.heroine.lvl/3) * tier +                      //base
+		return  (scaleByHeroineLvl()-1+(int)(Math.log10(Statistics.enemiesSlain)/Math.log10(2))) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }

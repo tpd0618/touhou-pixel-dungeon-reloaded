@@ -93,7 +93,7 @@ public class BossHecatia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(50, 60);
+        return Random.NormalIntRange(66, 94);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class BossHecatia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(10, 20);
+        return Random.NormalIntRange(63, 97);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class BossHecatia extends Mob {
 
     @Override
     public int defenseProc(Char enemy, int damage) {
-        new SummoningTrap().set(enemy.pos).activate();
+        ((SummoningTrap)( new SummoningTrap().set(enemy.pos))).activate(Random.Int(1,4));
         if (this.HP < this.HT / 2 && !Statistics.elixir_trigger){
             Dungeon.level.drop(new EirinJunkoCounterElixir(), 57).sprite.drop();
             Dungeon.level.drop(new EirinJunkoCounterElixir(), 232).sprite.drop();
@@ -139,10 +139,10 @@ public class BossHecatia extends Mob {
             switch (Random.Int(9)) {
                 case 0:
                 default:
-                    Buff.affect(enemy, Poison.class).set(Math.round(Statistics.upgradesUsed/6f));
+                    Buff.affect(enemy, Poison.class).set(Math.round(Statistics.upgradesUsed/2f));
                     break;
                 case 1:
-                    Buff.affect(enemy, Bleeding.class).set(8);
+                    Buff.affect(enemy, Bleeding.class).set(40);
                     break;
                 case 2:
                     Buff.prolong(enemy, Degrade.class, Degrade.DURATION);

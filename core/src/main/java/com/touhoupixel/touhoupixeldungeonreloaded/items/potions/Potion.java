@@ -330,11 +330,19 @@ public class Potion extends Item {
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
 					if (!mob.properties().contains(Char.Property.BOSS) || !mob.properties().contains(Char.Property.MINIBOSS)) {
-						Buff.affect(mob, Poison.class).set(5 + Dungeon.floor*2/3);
+						Buff.affect(mob, Poison.class).set();
 					}
 				}
 			}
 		}
+		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
+				if (mob instanceof BossSeija) {
+					Buff.detach(mob, SuperHard.class);
+					GLog.p(Messages.get(Potion.class, "cheat_break"));
+				}
+			}
+		} //for boss seija
 
 		Sample.INSTANCE.play(Assets.Sounds.DRINK);
 
@@ -404,6 +412,15 @@ public class Potion extends Item {
 			}
 		}
 	}
+	public void setUnknown(){
+		if (anonymous){
+			if (isKnown()){
+				handler.dontknow(this);
+				updateQuickslot();
+			}
+			if (Dungeon.heroine.isAlive()) Catalog.setNotSeen(getClass());
+		}
+	}
 	
 	@Override
 	public Item identify( boolean byHero ) {
@@ -411,6 +428,13 @@ public class Potion extends Item {
 
 		if (!isKnown()) {
 			setKnown();
+		}
+		return this;
+	}
+	public Item forget(boolean byHero) {
+		super.forget(byHero);
+		if (isKnown()){
+			setUnknown();
 		}
 		return this;
 	}

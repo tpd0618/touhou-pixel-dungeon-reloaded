@@ -82,7 +82,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	protected float shadowOffset    = 0.25f;
 
 	public enum State {
-		BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHILLED, DARKENED, MARKED, HEALING, SHIELDED, HEARTS
+		BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHILLED, DARKENED, MARKED, HEALING, SHIELDED, FIRE_SHIELDED, HEARTS, SPELLCARD_IS_ON_FIRE, SPELLCARD_IS_ON_DARK
 	}
 	private int stunStates = 0;
 	
@@ -103,11 +103,14 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	protected Emitter levitation;
 	protected Emitter healing;
 	protected Emitter hearts;
+	protected Emitter spellcardIsOnDark;
+	protected Emitter spellcardIsOnFire;
 	
 	protected IceBlock iceBlock;
 	protected DarkBlock darkBlock;
 	protected TorchHalo light;
 	protected ShieldHalo shield;
+	protected ShieldHalo fireShield;
 	protected AlphaTweener invisible;
 	protected Flare aura;
 	
@@ -149,7 +152,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 		place( ch.pos );
 		turnTo( ch.pos, Random.Int( Dungeon.level.length() ) );
 		renderShadow = true;
-		
+
 		if (ch != Dungeon.heroine) {
 			if (health == null) {
 				health = new CharHealthIndicator(ch);
@@ -403,9 +406,20 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 			case SHIELDED:
 				GameScene.effect( shield = new ShieldHalo( this ));
 				break;
+			case FIRE_SHIELDED:
+				GameScene.effect( fireShield = new ShieldHalo(this, 0xFF7F49));
+				break;
 			case HEARTS:
 				hearts = emitter();
 				hearts.pour(Speck.factory(Speck.HEART), 0.5f);
+				break;
+			case SPELLCARD_IS_ON_DARK:
+				spellcardIsOnDark = emitter();
+				spellcardIsOnDark.pour(ShadowParticle.UP, 0.05f);
+				break;
+			case SPELLCARD_IS_ON_FIRE:
+				spellcardIsOnFire = emitter();
+				spellcardIsOnFire.pour(FlameParticle.FACTORY, 0.05f);
 				break;
 		}
 	}
@@ -474,10 +488,27 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 					shield.putOut();
 				}
 				break;
+			case FIRE_SHIELDED:
+				if (fireShield != null){
+					fireShield.putOut();
+				}
+				break;
 			case HEARTS:
 				if (hearts != null){
 					hearts.on = false;
 					hearts = null;
+				}
+				break;
+			case SPELLCARD_IS_ON_DARK:
+				if (spellcardIsOnDark != null){
+					spellcardIsOnDark.on = false;
+					spellcardIsOnDark = null;
+				}
+				break;
+			case SPELLCARD_IS_ON_FIRE:
+				if (spellcardIsOnFire != null){
+					spellcardIsOnFire.on = false;
+					spellcardIsOnFire = null;
 				}
 				break;
 		}
@@ -538,6 +569,12 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 		}
 		if (hearts != null){
 			hearts.visible = visible;
+		}
+		if (spellcardIsOnDark != null){
+			spellcardIsOnDark.visible = visible;
+		}
+		if (spellcardIsOnFire != null){
+			spellcardIsOnFire.visible = visible;
 		}
 		if (aura != null){
 			if (aura.parent == null){

@@ -36,7 +36,7 @@ public class PoisonDart extends TippedDart {
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		
-		Buff.affect( defender, Poison.class ).set( 3 + Dungeon.scalingFloor() / 2 );
+		Buff.affect( defender, Poison.class ).set( 4 + Math.round(Math.pow(2 * Dungeon.scalingFloor(), 7/10)) );
 		
 		return super.proc(attacker, defender, damage);
 	}

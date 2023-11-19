@@ -42,7 +42,7 @@ public class Miyoi extends Mob {
     {
         spriteClass = MiyoiSprite.class;
 
-        HP = HT = 26;
+        HP = HT = 20;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;
@@ -55,7 +55,7 @@ public class Miyoi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 8);
+        return Random.NormalIntRange(15, 25);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Miyoi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(2, 4);
     }
 
     @Override

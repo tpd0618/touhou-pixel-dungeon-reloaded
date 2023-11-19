@@ -40,7 +40,7 @@ public class Kagerou extends Mob implements Callback {
     {
         spriteClass = KagerouSprite.class;
 
-        HP = HT = 45;
+        HP = HT = 90;
         defenseSkill = 12;
         EXP = 6;
         maxLvl = 20;
@@ -53,7 +53,7 @@ public class Kagerou extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 11);
+        return Random.NormalIntRange(23, 37);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Kagerou extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(8, 14);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Kagerou extends Mob implements Callback {
                 new AlarmTrap().set(enemy.pos).activate();
             }
 
-            int dmg = Random.NormalIntRange( 2, 4 );
+            int dmg = Random.NormalIntRange( 36, 52 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

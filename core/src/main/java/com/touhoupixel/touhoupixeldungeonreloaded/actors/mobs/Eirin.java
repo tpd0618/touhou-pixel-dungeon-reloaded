@@ -43,7 +43,7 @@ public class Eirin extends Mob implements Callback {
     {
         spriteClass = EirinSprite.class;
 
-        HP = HT = 259;
+        HP = HT = 231;
         defenseSkill = 37;
         EXP = 20;
         maxLvl = 50;
@@ -60,7 +60,7 @@ public class Eirin extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(28, 36);
+        return Random.NormalIntRange(55, 85);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Eirin extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(62, 89);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Eirin extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 13, 18 );
+            int dmg = Random.NormalIntRange( 122, 186 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

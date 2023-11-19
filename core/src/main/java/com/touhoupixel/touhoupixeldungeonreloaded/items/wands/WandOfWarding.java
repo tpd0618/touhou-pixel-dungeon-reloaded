@@ -28,8 +28,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.NPC;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -140,6 +143,21 @@ public class WandOfWarding extends Wand {
 			Dungeon.level.pressCell(target);
 
 		}
+	}
+	public boolean areEnoughCubes(){
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+
+		if (redCubeFragment != null && redCubeFragment.quantity() > 1){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+
+		redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+		redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	@Override
@@ -319,7 +337,8 @@ public class WandOfWarding extends Wand {
 			spend( 1f );
 
 			//always hits
-			int dmg = Random.NormalIntRange( 2 + wandLevel, 8 + 4*wandLevel );
+			int dmg = Random.NormalIntRange( Dungeon.scalingFloor(), 3 + 6*(Dungeon.scalingFloor()-1) );
+			if (hasProp(enemy, Property.BOSS) || hasProp(enemy, Property.MINIBOSS)) dmg /= 4;
 			enemy.damage( dmg, this );
 			if (enemy.isAlive()){
 				Wand.wandProc(enemy, wandLevel, 1);

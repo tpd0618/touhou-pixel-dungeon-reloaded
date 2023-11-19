@@ -15,7 +15,7 @@ public class Aya extends Mob {
     {
         spriteClass = AyaSprite.class;
 
-        HP = HT = 62;
+        HP = HT = 110;
         defenseSkill = 17;
         EXP = 9;
         maxLvl = 25;
@@ -35,7 +35,7 @@ public class Aya extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(6, 10);
+        return Random.NormalIntRange(39, 61);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Aya extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(14, 22);
     }
 
     @Override

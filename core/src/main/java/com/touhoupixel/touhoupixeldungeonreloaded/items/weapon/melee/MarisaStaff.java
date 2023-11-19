@@ -59,7 +59,7 @@ public class MarisaStaff extends MeleeWeapon {
 	public static final String AC_IMBUE = "IMBUE";
 	public static final String AC_ZAP	= "ZAP";
 
-	private static final float STAFF_SCALE_FACTOR = 0.75f;
+	private static final float STAFF_SCALE_FACTOR = 0.7f;
 
 	{
 		image = ItemSpriteSheet.MARISA_STAFF;
@@ -225,6 +225,7 @@ public class MarisaStaff extends MeleeWeapon {
 	public Class<?extends Wand> wandClass(){
 		return wand != null ? wand.getClass() : null;
 	}
+	public Wand getWand() { return wand; }
 
 	@Override
 	public Item upgrade(boolean enchant) {

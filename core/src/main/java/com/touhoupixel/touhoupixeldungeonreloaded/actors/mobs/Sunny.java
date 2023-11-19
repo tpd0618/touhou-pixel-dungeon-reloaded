@@ -31,7 +31,7 @@ public class Sunny extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 6);
+        return Random.NormalIntRange(9, 15);
     }
 
     @Override
@@ -41,13 +41,12 @@ public class Sunny extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(1, 3);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (Random.Int(3) == 0) {
             Buff.affect(enemy, Burning.class).reignite(enemy, 2f);
             Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
             if (Statistics.difficulty > 2) {
@@ -56,7 +55,6 @@ public class Sunny extends Mob {
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, HardSearch.class, HardSearch.DURATION);
             }
-        }
         return damage;
     }
 }

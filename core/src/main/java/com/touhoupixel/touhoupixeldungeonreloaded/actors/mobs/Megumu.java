@@ -37,7 +37,7 @@ public class Megumu extends Mob {
     {
         spriteClass = MegumuSprite.class;
 
-        HP = HT = 144;
+        HP = HT = 400;
         defenseSkill = 32;
         EXP = 18;
         maxLvl = 40;
@@ -52,7 +52,7 @@ public class Megumu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(19, 26);
+        return Random.NormalIntRange( 93, 141 );
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Megumu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(32, 48);
     }
 
     @Override

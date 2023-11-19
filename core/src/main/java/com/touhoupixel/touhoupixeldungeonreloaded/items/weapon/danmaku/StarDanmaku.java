@@ -46,7 +46,7 @@ public class StarDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (6+Dungeon.heroine.lvl/3) * tier +                      //base
+		return  (scaleByHeroineLvl()+1) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 	

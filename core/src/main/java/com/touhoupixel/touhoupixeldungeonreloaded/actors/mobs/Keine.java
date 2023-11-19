@@ -21,7 +21,7 @@ public class Keine extends Mob {
     {
         spriteClass = KeineSprite.class;
 
-        HP = HT = 39;
+        HP = HT = 100;
         defenseSkill = 12;
         EXP = 5;
         maxLvl = 20;
@@ -34,7 +34,7 @@ public class Keine extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 8);
+        return Random.NormalIntRange(34, 54);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Keine extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(8, 14);
     }
 
     @Override

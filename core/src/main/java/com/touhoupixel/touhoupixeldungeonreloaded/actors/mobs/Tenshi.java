@@ -13,7 +13,7 @@ public class Tenshi extends Mob {
     {
         spriteClass = TenshiSprite.class;
 
-        HP = HT = 244;
+        HP = HT = 462;
         defenseSkill = 35;
         EXP = 18;
         maxLvl = 47;
@@ -43,6 +43,6 @@ public class Tenshi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(46, 66);
     }
 }

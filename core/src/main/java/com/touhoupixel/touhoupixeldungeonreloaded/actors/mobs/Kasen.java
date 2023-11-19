@@ -21,7 +21,7 @@ public class Kasen extends Mob {
     {
         spriteClass = KasenSprite.class;
 
-        HP = HT = 70;
+        HP = HT = 68;
         defenseSkill = 20;
         EXP = 11;
         maxLvl = 27;
@@ -37,7 +37,7 @@ public class Kasen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 16);
+        return Random.NormalIntRange(75, 115);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Kasen extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(20, 30);
     }
 
     @Override

@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -44,7 +45,7 @@ public class Utsuho extends Mob implements Callback {
     {
         spriteClass = UtsuhoSprite.class;
 
-        HP = HT = 346;
+        HP = HT = 250;
         defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
@@ -69,15 +70,14 @@ public class Utsuho extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(39, 42);
+        return Random.NormalIntRange(63, 97);
     }
 
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
-        new ExplosiveTrap().set(enemy.pos).activate();
         if (Statistics.difficulty > 4) {
-            Buff.affect(enemy, Bleeding.class).set(10);
+            Buff.affect(enemy, Bleeding.class).set(20);
         }
         return damage;
     }
@@ -89,7 +89,7 @@ public class Utsuho extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(57, 83);
     }
 
     @Override
@@ -115,15 +115,13 @@ public class Utsuho extends Mob implements Callback {
         }
     }
 
-    //used so resistances can differentiate between melee and magical attacks
     public static class DarkBolt{}
 
     protected void zap() {
         spend( TIME_TO_ZAP );
 
         if (hit( this, enemy, true )) {
-            //TODO would be nice for this to work on ghost/statues too
-            new ExplosiveTrap().set(enemy.pos).activate();
+            new Bomb().explode(enemy.pos, Random.NormalIntRange(110, 150));
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );

@@ -54,10 +54,8 @@ public class ChaliceOfBlood extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (Dungeon.heroine.buff(Onigiri.class) == null) {
 			if (isEquipped(heroine) && level() < levelCap && !cursed && Dungeon.heroine.buff(SuperHard.class) == null && !heroine.isInvulnerable(getClass()))
 				actions.add(AC_PRICK);
-		}
 		return actions;
 	}
 

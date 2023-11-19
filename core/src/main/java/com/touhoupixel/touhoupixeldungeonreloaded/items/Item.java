@@ -99,10 +99,8 @@ public class Item implements Bundlable {
 
 	public ArrayList<String> actions( Hero heroine) {
 		ArrayList<String> actions = new ArrayList<>();
-		if (Dungeon.heroine.buff(Onigiri.class) == null) {
 			actions.add(AC_DROP);
 			actions.add(AC_THROW);
-		}
 		return actions;
 	}
 
@@ -115,7 +113,7 @@ public class Item implements Bundlable {
 	}
 
 	public boolean doPickUp(Hero heroine, int pos) {
-		if (collect( heroine.belongings.backpack ) && Dungeon.heroine.buff(Onigiri.class) == null) {
+		if (Dungeon.heroine.buff(Onigiri.class) == null && collect( heroine.belongings.backpack )) {
 			
 			GameScene.pickUp( this, pos );
 			Sample.INSTANCE.play( Assets.Sounds.ITEM );
@@ -418,6 +416,21 @@ public class Item implements Bundlable {
 
 		return this;
 	}
+	public final Item forget(){
+		return forget(true);
+	}
+
+	protected Item forget(boolean byHero) {
+		if (byHero && Dungeon.heroine != null && Dungeon.heroine.isAlive()){
+			Catalog.setNotSeen(getClass());
+		}
+
+		levelKnown = false;
+		cursedKnown = false;
+		Item.updateQuickslot();
+
+		return this;
+	}
 	
 	public void onHeroGainExp( float levelPercent, Hero heroine){
 		//do nothing by default
@@ -628,4 +641,5 @@ public class Item implements Bundlable {
 			return Messages.get(Item.class, "prompt");
 		}
 	};
+
 }

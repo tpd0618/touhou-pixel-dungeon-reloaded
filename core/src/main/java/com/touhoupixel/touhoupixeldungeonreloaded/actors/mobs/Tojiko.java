@@ -45,7 +45,7 @@ public class Tojiko extends Mob implements Callback {
 	{
 		spriteClass = TojikoSprite.class;
 
-		HP = HT = 79;
+		HP = HT = 250;
 		defenseSkill = 25;
 		EXP = 14;
 		maxLvl = 32;
@@ -58,7 +58,7 @@ public class Tojiko extends Mob implements Callback {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(10, 17);
+		return Random.NormalIntRange(68, 104);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class Tojiko extends Mob implements Callback {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 4);
+		return Random.NormalIntRange(26, 38);
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class Tojiko extends Mob implements Callback {
 			spend( TIME_TO_ZAP );
 
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(10, 15);
+				int dmg = Random.NormalIntRange(76, 104);
 				enemy.damage( dmg, new LightningBolt() );
 				if (Dungeon.gold > 100) {
 					Dungeon.gold -= 100;

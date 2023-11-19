@@ -40,7 +40,7 @@ public class Parsee extends Mob {
     {
         spriteClass = ParseeSprite.class;
 
-        HP = HT = 21;
+        HP = HT = 25;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;
@@ -56,7 +56,7 @@ public class Parsee extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(5, 6);
+        return Random.NormalIntRange(15, 25);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Parsee extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(2, 4);
     }
 
     @Override

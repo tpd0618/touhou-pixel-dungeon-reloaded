@@ -22,9 +22,14 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sakuya;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.SakuyaKnifeDanmaku;
+import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
+import com.watabou.utils.Callback;
 
 public class FutureSight extends FlavourBuff {
 
@@ -37,9 +42,28 @@ public class FutureSight extends FlavourBuff {
 
 	@Override
 	public void detach() {
-		Dungeon.heroine.damage(15, Sakuya.class);
-		Buff.affect(Dungeon.heroine, Bleeding.class).set(5);
+		//Dungeon.heroine.damage(15, Sakuya.class);
+		summonKnives(target);
+
 		super.detach();
+	}
+	private void summonKnives(Char target){
+		SakuyaKnifeDanmaku misWeapon = new SakuyaKnifeDanmaku(30, 50, 1f);
+		int arr[] = {-2, 2};
+		for (int x : arr){
+			for (int y : arr){
+				int startPos = Dungeon.level.width()*y + x;
+				Ballistica bal = new Ballistica(target.pos + startPos, target.pos, Ballistica.PROJECTILE);
+				if (Dungeon.heroine.sprite == null) return;
+				MissileSprite misSpr = ((MissileSprite) Dungeon.heroine.sprite.parent.recycle(MissileSprite.class));
+				misSpr.reset(bal.sourcePos, bal.collisionPos, misWeapon, new Callback() {
+					@Override
+					public void call() {
+						if (misWeapon != null) misWeapon.onThrowByChar(new Sakuya(), bal.collisionPos );
+					}
+				});
+			}
+		}
 	}
 
 	@Override

@@ -128,6 +128,14 @@ public enum Catalog {
 			}
 		}
 	}
+	public static void setNotSeen(Class<? extends Item> itemClass){
+		for (Catalog cat : values()) {
+			if (cat.seen.containsKey(itemClass) && !cat.seen.get(itemClass)) {
+				cat.seen.put(itemClass, false);
+				//Journal.saveNeeded = false;
+			}
+		}
+	}
 
 	private static final String CATALOG_ITEMS = "catalog_items";
 

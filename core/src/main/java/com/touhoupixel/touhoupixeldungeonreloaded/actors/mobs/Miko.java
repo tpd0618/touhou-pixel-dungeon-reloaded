@@ -16,7 +16,7 @@ public class Miko extends Mob {
     {
         spriteClass = MikoSprite.class;
 
-        HP = HT = 78;
+        HP = HT = 190;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
@@ -32,7 +32,7 @@ public class Miko extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 17);
+        return Random.NormalIntRange(77, 117);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Miko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(23, 35);
     }
 
     @Override

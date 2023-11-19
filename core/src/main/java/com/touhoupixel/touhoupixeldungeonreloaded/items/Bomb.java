@@ -116,8 +116,11 @@ public class Bomb extends Item {
         }
         return super.doPickUp(hero, pos);
     }
-
     public void explode(int cell){
+        explode( cell, Random.NormalIntRange(Dungeon.scalingFloor()*5, Dungeon.scalingFloor()*9));
+    }
+
+    public void explode(int cell, int explosionDamage){
         //We're blowing up, so no need for a fuse anymore.
         this.fuse = null;
 
@@ -164,8 +167,8 @@ public class Bomb extends Item {
                     continue;
                 }
 
-                int dmg = Random.NormalIntRange(5 + Dungeon.scalingFloor()/2, 10 + Dungeon.scalingFloor());
 
+                int dmg = explosionDamage;
                 //those not at the center of the blast take less damage
                 if (ch.pos != cell){
                     dmg = Math.round(dmg*0.67f);

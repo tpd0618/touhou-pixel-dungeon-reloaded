@@ -54,7 +54,11 @@ public class DecayTrap extends Trap {
 	@Override
 	public void activate() {
 		Char c = Actor.findChar(pos);
-		assert c != null;
+		if (Dungeon.level.heroFOV[pos]) {
+			GameScene.flash(0x80FFFFFF);
+			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
+		}
+		if (c == null) return;
 		if (c.buff(Onigiri.class) != null){
 			c.damage(c.HT, this);
 		}
@@ -68,38 +72,34 @@ public class DecayTrap extends Trap {
 			Pasty pasty = Dungeon.heroine.belongings.getItem(Pasty.class);
 			SmallRice smallRice = Dungeon.heroine.belongings.getItem(SmallRice.class);
 			StewedMeat stewedMeat = Dungeon.heroine.belongings.getItem(StewedMeat.class);
-			if (meatPie != null){
+			if (meatPie != null) {
 				meatPie.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (pasty != null){
+			} else if (pasty != null) {
 				pasty.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (frozenCarpaccio != null){
+			} else if (frozenCarpaccio != null) {
 				frozenCarpaccio.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (blandfruit != null){
+			} else if (blandfruit != null) {
 				blandfruit.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (chargrilledMeat != null){
+			} else if (chargrilledMeat != null) {
 				chargrilledMeat.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (stewedMeat != null){
+			} else if (stewedMeat != null) {
 				stewedMeat.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (smallRice != null){
+			} else if (smallRice != null) {
 				smallRice.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (mysteryMeat != null){
+			} else if (mysteryMeat != null) {
 				mysteryMeat.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
-			} else if (food != null){
+			} else if (food != null) {
 				food.detach(Dungeon.heroine.belongings.backpack);
 				Dungeon.level.drop(new RottenFood(), c.pos).sprite.drop();
 			}
-		}
-		if (Dungeon.level.heroFOV[pos]) {
-			GameScene.flash(0x80FFFFFF);
-			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
 		}
 	}
 }

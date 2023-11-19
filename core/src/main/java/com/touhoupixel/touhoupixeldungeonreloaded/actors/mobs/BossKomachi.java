@@ -23,7 +23,7 @@ public class BossKomachi extends Mob {
     {
         spriteClass = KomachiSprite.class;
 
-        HP = HT = 900;
+        HP = HT = 1100;
         defenseSkill = 25;
         EXP = 24;
         maxLvl = 99;
@@ -49,7 +49,7 @@ public class BossKomachi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange(83, 127);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class BossKomachi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(32, 48);
     }
 
     @Override

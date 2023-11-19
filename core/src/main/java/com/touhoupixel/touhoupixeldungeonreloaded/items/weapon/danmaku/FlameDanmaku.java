@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 public class FlameDanmaku extends MissileWeapon {
 	
@@ -39,7 +40,7 @@ public class FlameDanmaku extends MissileWeapon {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage ) {
-		Buff.affect( defender, Burning.class ).reignite( defender, 5f);
+		if (Random.Int(4) == 0) Buff.affect( defender, Burning.class ).reignite( defender, 5f);
 		return super.proc( attacker, defender, damage );
 	}
 }

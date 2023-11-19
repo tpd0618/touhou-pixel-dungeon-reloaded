@@ -33,6 +33,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.RainbowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -55,11 +57,11 @@ public class WandOfPrismaticLight extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 1+lvl;
+		return 1+3*lvl;
 	}
 
 	public int max(int lvl){
-		return 5+3*lvl;
+		return (int)(7+6*lvl);
 	}
 
 	@Override
@@ -71,6 +73,20 @@ public class WandOfPrismaticLight extends DamageWand {
 			wandProc(ch, chargesPerCast());
 			affectTarget(ch);
 		}
+	}
+	public boolean areEnoughCubes(){
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		if (whiteCubeFragment != null && whiteCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		WhiteCubeFragment whiteCubeFragment = Dungeon.heroine.belongings.getItem(WhiteCubeFragment.class);
+
+		whiteCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 
 	private void affectTarget(Char ch){

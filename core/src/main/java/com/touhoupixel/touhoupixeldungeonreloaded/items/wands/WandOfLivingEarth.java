@@ -32,6 +32,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.NPC;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -54,12 +56,12 @@ public class WandOfLivingEarth extends DamageWand {
 	
 	@Override
 	public int min(int lvl) {
-		return 4;
+		return 4 + lvl;
 	}
 	
 	@Override
 	public int max(int lvl) {
-		return 6 + 2*lvl;
+		return 4 + 4*lvl;
 	}
 	
 	@Override
@@ -171,6 +173,21 @@ public class WandOfLivingEarth extends DamageWand {
 			}
 		}
 
+	}
+
+	public boolean areEnoughCubes(){
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		if (blueCubeFragment != null && blueCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		BlueCubeFragment blueCubeFragment = Dungeon.heroine.belongings.getItem(BlueCubeFragment.class);
+
+		blueCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 	}
 	
 	@Override

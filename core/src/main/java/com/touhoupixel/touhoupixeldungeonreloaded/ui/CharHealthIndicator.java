@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Koishi;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 
@@ -45,7 +46,7 @@ public class CharHealthIndicator extends HealthBar {
 	@Override
 	public void update() {
 		super.update();
-		
+
 		if (target != null && target.isAlive() && target.sprite.visible) {
 			CharSprite sprite = target.sprite;
 			width = sprite.width()*(4/6f);

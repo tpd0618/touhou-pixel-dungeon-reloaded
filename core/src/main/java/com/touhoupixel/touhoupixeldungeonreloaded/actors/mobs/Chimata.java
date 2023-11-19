@@ -21,7 +21,7 @@ public class Chimata extends Mob {
     {
         spriteClass = ChimataSprite.class;
 
-        HP = HT = 229;
+        HP = HT = 231;
         defenseSkill = 35;
         EXP = 17;
         maxLvl = 47;
@@ -34,7 +34,7 @@ public class Chimata extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(23, 28);
+        return Random.NormalIntRange(120, 182);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Chimata extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(41, 59);
     }
 
     @Override

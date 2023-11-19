@@ -199,6 +199,12 @@ public class ItemStatusHandler<T extends Item> {
 	public void know( Class<?extends T> itemCls ){
 		known.add( itemCls );
 	}
+	public void dontknow( T item ) { if (known.contains((Class<? extends T>)item.getClass())) known.remove( (Class<? extends T>)item.getClass() );
+	}
+
+	public void dontknow( Class<?extends T> itemCls ) {
+		if (known.contains(itemCls)) known.remove( itemCls );
+	}
 	
 	public HashSet<Class<? extends T>> known() {
 		return known;

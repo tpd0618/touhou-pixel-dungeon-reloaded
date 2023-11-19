@@ -59,6 +59,7 @@ public class Poison extends Buff implements Hero.Doom {
 	public void set( float duration ) {
 		this.left = Math.max(duration, left);
 	}
+	public void set() { set((float) (6 + Math.pow(2*Dungeon.floor, 7/9f))); }
 
 	public void extend( float duration ) {
 		this.left += duration;

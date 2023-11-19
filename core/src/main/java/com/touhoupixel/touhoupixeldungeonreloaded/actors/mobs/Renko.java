@@ -79,7 +79,7 @@ public class Renko extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(25, 31);
+        return Random.NormalIntRange(59, 91);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Renko extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(62, 89);
     }
 
     @Override

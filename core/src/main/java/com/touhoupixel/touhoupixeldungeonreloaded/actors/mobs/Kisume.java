@@ -44,7 +44,7 @@ public class Kisume extends Mob implements Callback {
     {
         spriteClass = KisumeSprite.class;
 
-        HP = HT = 81;
+        HP = HT = 216;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
@@ -57,7 +57,7 @@ public class Kisume extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(13, 20);
+        return Random.NormalIntRange(41, 63);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Kisume extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(26, 38);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Kisume extends Mob implements Callback {
                 }
             }
 
-            int dmg = Random.NormalIntRange( 2, 5 );
+            int dmg = Random.NormalIntRange( 89, 119 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

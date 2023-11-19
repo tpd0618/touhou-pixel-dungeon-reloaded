@@ -32,7 +32,7 @@ public class Misumaru extends Mob {
     {
         spriteClass = MisumaruSprite.class;
 
-        HP = HT = 49;
+        HP = HT = 113;
         defenseSkill = 15;
         EXP = 6;
         maxLvl = 22;
@@ -45,8 +45,8 @@ public class Misumaru extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Dungeon.gold/80, Dungeon.gold/40);
-    }
+        return Random.NormalIntRange(50, 70);
+    } // TODO ability must be changed
 
     @Override
     public int attackSkill(Char target) {

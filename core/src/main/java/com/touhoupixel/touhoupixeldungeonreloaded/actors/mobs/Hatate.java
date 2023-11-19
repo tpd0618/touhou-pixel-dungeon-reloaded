@@ -16,7 +16,7 @@ public class Hatate extends Mob {
     {
         spriteClass = HatateSprite.class;
 
-        HP = HT = 62;
+        HP = HT = 120;
         defenseSkill = 17;
         EXP = 9;
         maxLvl = 25;
@@ -34,7 +34,7 @@ public class Hatate extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange( 55, 85 );
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Hatate extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(14, 22);
     }
 
     @Override

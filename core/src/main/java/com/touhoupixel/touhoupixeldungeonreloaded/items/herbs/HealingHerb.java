@@ -48,7 +48,7 @@ public class HealingHerb extends Herb {
 					GLog.n( Messages.get(Inversion.class, "ondeath") );
 				}
 			} else {
-				heroine.HP = Math.min(heroine.HP + 100, heroine.HT);
+				heroine.HP = Math.min(heroine.HP + 30 + Dungeon.floor*8, heroine.HT);
 				Dungeon.heroine.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 			}
 		}

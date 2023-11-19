@@ -46,6 +46,8 @@ public class Statistics {
 	public static int chimata;
 	public static int floor30;
 
+	public static Class exterminatedEnemy;
+
 	//These are used for score calculation
 	//some are built incrementally, most are assigned when full score is calculated
 	public static int progressScore;
@@ -114,7 +116,6 @@ public class Statistics {
 	public static int difficulty;
 
 	public static int double_speed_upgrade;
-	public static int extermination_number;
 
 	public static boolean identify_use;
 	public static boolean fate_use;
@@ -245,6 +246,7 @@ public class Statistics {
 		nameless = 0;
 		chimata = 0;
 		floor30 = 0;
+		exterminatedEnemy = null;
 
 		progressScore   = 0;
 		heldItemValue   = 0;
@@ -312,7 +314,6 @@ public class Statistics {
 		difficulty = 1; //easy
 
 		double_speed_upgrade = 0;
-		extermination_number = 0;
 
 		identify_use = false;
 		fate_use = false;
@@ -436,7 +437,8 @@ public class Statistics {
 	private static final String MOON_COUNT		= "moon_count";
 	private static final String TRAP_ACT_COUNT		= "trap_act_count";
 	private static final String BAMBOO		= "bamboo";
-	private static final String NAMELESS		= "nameless";
+	private static final String EXTERMINATED_ENEMY		= "exterminated_enemy";
+	private static final String NAMELESS = "nameless";
 	private static final String CHIMATA		= "chimata";
 	private static final String FLOOR30		= "floor30";
 
@@ -506,7 +508,6 @@ public class Statistics {
 	private static final String DIFFICULTY	= "difficulty";
 
 	private static final String DOUBLE_SPEED_UPGRADE	= "double_speed_upgrade";
-	private static final String EXTERMINATION_NUMBER	= "extermination_number";
 
 	private static final String IDENTIFY_USE	= "identify_use";
 	private static final String FATE_USE	= "fate_use";
@@ -633,6 +634,7 @@ public class Statistics {
 		bundle.put( NAMELESS, nameless);
 		bundle.put( CHIMATA, chimata);
 		bundle.put( FLOOR30, floor30);
+		bundle.put( EXTERMINATED_ENEMY, exterminatedEnemy );
 
 		bundle.put( PROG_SCORE,  progressScore );
 		bundle.put( ITEM_VAL,    heldItemValue );
@@ -710,7 +712,6 @@ public class Statistics {
 		bundle.put( TRANSMUTE_USE,	transmute_use );
 
 		bundle.put( DOUBLE_SPEED_UPGRADE,	double_speed_upgrade );
-		bundle.put( EXTERMINATION_NUMBER,	extermination_number );
 
 		bundle.put( ELIXIRTRIGGER, elixir_trigger);
 
@@ -832,6 +833,7 @@ public class Statistics {
 		nameless = bundle.getInt( NAMELESS );
 		chimata = bundle.getInt( CHIMATA );
 		floor30 = bundle.getInt( FLOOR30 );
+		exterminatedEnemy = bundle.getClass( EXTERMINATED_ENEMY );
 
 		progressScore   = bundle.getInt( PROG_SCORE );
 		heldItemValue   = bundle.getInt( ITEM_VAL );
@@ -904,7 +906,6 @@ public class Statistics {
 		difficulty		= bundle.getInt( DIFFICULTY );
 
 		double_speed_upgrade	= bundle.getInt( DOUBLE_SPEED_UPGRADE );
-		extermination_number	= bundle.getInt( EXTERMINATION_NUMBER );
 
 		identify_use	= bundle.getBoolean( IDENTIFY_USE );
 		fate_use		= bundle.getBoolean( FATE_USE );

@@ -17,7 +17,7 @@ public class Yuugi extends Mob {
     {
         spriteClass = YuugiSprite.class;
 
-        HP = HT = 248;
+        HP = HT = 300;
         defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
@@ -30,7 +30,7 @@ public class Yuugi extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(29, 34);
+        return Random.NormalIntRange(120, 182);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Yuugi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(46, 66);
     }
 
     @Override

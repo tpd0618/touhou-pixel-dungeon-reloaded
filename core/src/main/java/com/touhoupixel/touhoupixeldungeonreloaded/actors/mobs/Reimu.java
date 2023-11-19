@@ -25,7 +25,7 @@ public class Reimu extends Mob {
     {
         spriteClass = ReimuSprite.class;
 
-        HP = HT = 400;
+        HP = HT = 410;
         defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;
@@ -43,7 +43,7 @@ public class Reimu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 44);
+        return Random.NormalIntRange(127, 197);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Reimu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(67, 97);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Lily extends Mob {
     {
         spriteClass = LilySprite.class;
 
-        HP = HT = 22;
+        HP = HT = 44;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;
@@ -31,7 +31,7 @@ public class Lily extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(3, 6);
+        return Random.NormalIntRange(15, 25);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Lily extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(3, 5);
     }
 
     @Override

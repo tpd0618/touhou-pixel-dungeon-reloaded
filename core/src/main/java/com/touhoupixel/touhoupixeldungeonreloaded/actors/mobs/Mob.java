@@ -120,6 +120,7 @@ public abstract class Mob extends Char {
 	public AiState HUNTING		= new Hunting();
 	public AiState WANDERING	= new Wandering();
 	public AiState FLEEING		= new Fleeing();
+	public AiState AMBUSHING	= new Ambushing();
 	public AiState PASSIVE		= new Passive();
 	public AiState state = SLEEPING;
 
@@ -136,7 +137,16 @@ public abstract class Mob extends Char {
 	protected int enemyID = -1; //used for save/restore
 	protected boolean enemySeen;
 	protected boolean alerted = false;
-
+	//used for AiState Ambushing
+	protected int leftToContinue = 0;
+	protected int ambushPos = -1;
+	public MobRarity mobRarity;
+	public enum MobRarity {
+		COMMON,
+		UNCOMMON,
+		RARE,
+		EPIC;
+	}
 	protected static final float TIME_TO_WAKE_UP = 1f;
 
 	private static final String STATE	= "state";
@@ -145,6 +155,7 @@ public abstract class Mob extends Char {
 	private static final String MAX_LVL	= "max_lvl";
 
 	private static final String ENEMY_ID	= "enemy_id";
+	private static final String LEFT_TO_CONTINUE = "left_to_continue";
 
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -161,10 +172,14 @@ public abstract class Mob extends Char {
 			bundle.put( STATE, Fleeing.TAG );
 		} else if (state == PASSIVE) {
 			bundle.put( STATE, Passive.TAG );
+		} else if (state == AMBUSHING){
+			bundle.put(STATE, Ambushing.TAG);
 		}
+
 		bundle.put( SEEN, enemySeen );
 		bundle.put( TARGET, target );
 		bundle.put( MAX_LVL, maxLvl );
+		bundle.put( LEFT_TO_CONTINUE, leftToContinue);
 
 		if (enemy != null) {
 			bundle.put(ENEMY_ID, enemy.id() );
@@ -187,6 +202,8 @@ public abstract class Mob extends Char {
 			this.state = FLEEING;
 		} else if (state.equals( Passive.TAG )) {
 			this.state = PASSIVE;
+		} else if (state.equals(Ambushing.TAG)) {
+			this.state = AMBUSHING;
 		}
 
 		enemySeen = bundle.getBoolean( SEEN );
@@ -194,6 +211,8 @@ public abstract class Mob extends Char {
 		target = bundle.getInt( TARGET );
 
 		if (bundle.contains(MAX_LVL)) maxLvl = bundle.getInt(MAX_LVL);
+
+		leftToContinue = bundle.getInt(LEFT_TO_CONTINUE);
 
 		if (bundle.contains(ENEMY_ID)) {
 			enemyID = bundle.getInt(ENEMY_ID);
@@ -649,7 +668,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int attackProc( Char enemy, int damage ) {
-		if (buff(MeleeNullify.class) != null) {
+		if (this.buff(MeleeNullify.class) != null) {
 			damage = 1;
 		}
 
@@ -658,7 +677,7 @@ public abstract class Mob extends Char {
 		}
 
 		if (buff(YuukaRage.class) != null){
-			damage += 50;
+			damage += 150;
 		}
 
 		if (buff(YuumaAbsorb.class) != null) {
@@ -667,22 +686,6 @@ public abstract class Mob extends Char {
 
 		if (Dungeon.isChallenged(Challenges.BLESSING_CHORD)) {
 			damage += Statistics.goldPickedup/25+Statistics.enemiesSlain/50;
-		}
-
-		if (Statistics.difficulty == 1) {
-			damage *= 0.85f;
-		}
-
-		if (Statistics.difficulty == 4) {
-			damage *= 1.1f;
-		}
-
-		if (Statistics.difficulty == 5) {
-			damage *= 1.2f;
-		}
-
-		if (Statistics.difficulty == 6) {
-			damage *= 1.25f;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
@@ -1055,6 +1058,9 @@ public abstract class Mob extends Char {
 	public boolean focusingHero() {
 		return enemySeen && (target == Dungeon.heroine.pos);
 	}
+	public Char getEnemy(){
+		return enemy;
+	}
 
 	public interface AiState {
 		boolean act( boolean enemyInFOV, boolean justAlerted );
@@ -1210,6 +1216,31 @@ public abstract class Mob extends Char {
 					return true;
 				}
 			}
+		}
+	}
+	protected class Ambushing implements AiState{
+		public static final String TAG	= "AMBUSHING";
+		@Override
+		public boolean act(boolean enemyInFOV, boolean justAlerted) {
+			ambushPos = target;
+			if (Dungeon.level.distance(pos, ambushPos) > 1){
+
+			}
+
+			if (leftToContinue == 0) leftToContinue = Random.IntRange(10,21);
+			if (enemyInFOV){
+				state = HUNTING;
+				return HUNTING.act(enemyInFOV, justAlerted);
+			}
+
+
+			if (leftToContinue > 0) {
+
+			}
+			else {
+
+			}
+			return false;
 		}
 	}
 

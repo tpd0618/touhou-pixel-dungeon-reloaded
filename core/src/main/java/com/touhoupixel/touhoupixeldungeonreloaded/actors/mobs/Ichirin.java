@@ -44,7 +44,7 @@ public class Ichirin extends Mob implements Callback {
     {
         spriteClass = IchirinSprite.class;
 
-        HP = HT = 98;
+        HP = HT = 108;
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;
@@ -57,7 +57,7 @@ public class Ichirin extends Mob implements Callback {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(8, 12);
+        return Random.NormalIntRange(39, 61);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Ichirin extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(21, 31);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Ichirin extends Mob implements Callback {
                 CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
             }
 
-            int dmg = Random.NormalIntRange( 2, 4 );
+            int dmg = Random.NormalIntRange( 84, 110 );
             enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {

@@ -33,7 +33,7 @@ public class BossMarisa extends Mob {
     {
         spriteClass = BossMarisaSprite.class;
 
-        HP = HT = 150;
+        HP = HT = 300;
         defenseSkill = 10;
         EXP = 18;
         maxLvl = 99;
@@ -62,7 +62,7 @@ public class BossMarisa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(2, 5);
+        return Random.NormalIntRange(17, 27);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class BossMarisa extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(8, 14);
     }
 
     @Override
@@ -183,9 +183,9 @@ public class BossMarisa extends Mob {
 
             if (hit( this, ch, true )) {
                 if (this.HP < this.HT/2) {
-                    ch.damage( Random.NormalIntRange( 10, 16 ), new BossMarisa.DeathGaze() );
+                    ch.damage( Random.NormalIntRange( 45, 55 ), new BossMarisa.DeathGaze() );
                 } else {
-                    ch.damage( Random.NormalIntRange( 5, 8 ), new BossMarisa.DeathGaze() );
+                    ch.damage( Random.NormalIntRange( 70, 90 ), new BossMarisa.DeathGaze() );
                 }
 
                 if (ch instanceof Hero) {

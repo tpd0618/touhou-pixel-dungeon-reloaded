@@ -15,7 +15,7 @@ public class Eika extends Mob {
     {
         spriteClass = EikaSprite.class;
 
-        HP = HT = 28;
+        HP = HT = 75;
         defenseSkill = 10;
         EXP = 5;
         maxLvl = 17;
@@ -28,7 +28,7 @@ public class Eika extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 6);
+        return Random.NormalIntRange(25, 39);
     }
 
     @Override
@@ -38,14 +38,14 @@ public class Eika extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(7, 11);
     }
 
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
         if (Random.Int(4) == 0) {
-            Buff.affect(enemy, Bleeding.class).set(4);
+            Buff.affect(enemy, Bleeding.class).set(7);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
             }

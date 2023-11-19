@@ -16,7 +16,7 @@ public class Clownpiece extends Mob {
     {
         spriteClass = ClownpieceSprite.class;
 
-        HP = HT = 167;
+        HP = HT = 308;
         defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
@@ -29,7 +29,7 @@ public class Clownpiece extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(15, 20);
+        return Random.NormalIntRange(120, 182);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Clownpiece extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(41, 59);
     }
 
     @Override

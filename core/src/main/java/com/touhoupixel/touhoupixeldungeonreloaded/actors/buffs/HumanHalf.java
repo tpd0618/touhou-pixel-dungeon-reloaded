@@ -89,11 +89,6 @@ public class HumanHalf extends Buff {
     }
 
     @Override
-    public void tintIcon(Image icon) {
-        icon.hardlight(1f, 0.5f, 0f);
-    }
-
-    @Override
     public String toString() {
         return Messages.get(this, "name");
     }

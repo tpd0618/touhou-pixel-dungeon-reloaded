@@ -21,11 +21,14 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -44,11 +47,11 @@ public class WandOfSetsunatrip extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 1+lvl;
+		return 1+2*lvl;
 	}
 
 	public int max(int lvl){
-		return 5+3*lvl;
+		return (int)(6+4*lvl);
 	}
 
 	@Override
@@ -66,6 +69,21 @@ public class WandOfSetsunatrip extends DamageWand {
 			ch.damage(damageRoll(), this);
 			}
 		}
+
+	public boolean areEnoughCubes(){
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+
+		if (redCubeFragment != null && redCubeFragment.quantity() > 0){
+			return true;
+		}
+		else return false;
+	}
+
+	protected void spendColourCubes() {
+		RedCubeFragment redCubeFragment = Dungeon.heroine.belongings.getItem(RedCubeFragment.class);
+
+		redCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+	}
 
 	@Override
 	public void fx(Ballistica beam, Callback callback) {

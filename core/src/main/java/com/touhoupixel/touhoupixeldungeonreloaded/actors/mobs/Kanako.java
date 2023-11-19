@@ -40,7 +40,7 @@ public class Kanako extends Mob {
     {
         spriteClass = KanakoSprite.class;
 
-        HP = HT = 99;
+        HP = HT = 374;
         defenseSkill = 27;
         EXP = 16;
         maxLvl = 35;
@@ -53,7 +53,7 @@ public class Kanako extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(14, 22);
+        return Random.NormalIntRange( 93, 141 );
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Kanako extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(32,48);
     }
 
     @Override

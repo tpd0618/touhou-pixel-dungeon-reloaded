@@ -15,7 +15,7 @@ public class Takane extends Mob {
     {
         spriteClass = TakaneSprite.class;
 
-        HP = HT = 59;
+        HP = HT = 140;
         defenseSkill = 17;
         EXP = 8;
         maxLvl = 25;
@@ -28,7 +28,7 @@ public class Takane extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(7, 11);
+        return Random.NormalIntRange( 55, 85 );
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Takane extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(17, 27);
     }
 
     @Override

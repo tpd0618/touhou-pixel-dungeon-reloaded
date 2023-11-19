@@ -94,7 +94,7 @@ public class RockfallTrap extends Trap {
 			Char ch = Actor.findChar( cell );
 
 			if (ch != null && ch.isAlive()){
-				int damage = Random.NormalIntRange(5+Dungeon.floor, 10+Dungeon.floor *2);
+				int damage = Random.NormalIntRange(5+Dungeon.floor * 3, 10+Dungeon.floor * 7);
 				damage -= ch.drRoll();
 				ch.damage( Math.max(damage, 0) , this);
 

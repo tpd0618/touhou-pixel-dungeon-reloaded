@@ -39,7 +39,7 @@ public class Hearn extends Mob {
     {
         spriteClass = HearnSprite.class;
 
-        HP = HT = 88;
+        HP = HT = 177;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
@@ -55,7 +55,7 @@ public class Hearn extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(11, 18);
+        return Random.NormalIntRange(68, 104);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Hearn extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(26, 38);
     }
 
     @Override

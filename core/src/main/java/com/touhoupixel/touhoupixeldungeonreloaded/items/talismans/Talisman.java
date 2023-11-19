@@ -36,7 +36,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-abstract public class Talisman extends Item {
+public class Talisman extends Item {
 
     {
         stackable = true;

@@ -46,7 +46,7 @@ public class Hisami extends Mob {
     {
         spriteClass = HisamiSprite.class;
 
-        HP = HT = 105;
+        HP = HT = 270;
         defenseSkill = 27;
         EXP = 16;
         maxLvl = 35;
@@ -61,7 +61,7 @@ public class Hisami extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(14, 20);
+        return Random.NormalIntRange(90, 138);
     }
 
     private boolean chain(int target){
@@ -135,7 +135,7 @@ public class Hisami extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(29, 43);
     }
 
     private class Hunting extends Mob.Hunting{

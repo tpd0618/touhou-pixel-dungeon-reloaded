@@ -15,7 +15,7 @@ public class Patchouli extends Mob {
     {
         spriteClass = PatchouliSprite.class;
 
-        HP = HT = 47;
+        HP = HT = 95;
         defenseSkill = 15;
         EXP = 6;
         maxLvl = 22;
@@ -30,7 +30,7 @@ public class Patchouli extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(4, 6);
+        return Random.NormalIntRange(31, 49);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Patchouli extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(0, 2);
+        return Random.NormalIntRange(12, 19);
     }
 
     @Override

@@ -37,7 +37,8 @@ public class YoumuDanmaku extends MissileWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  (4+Dungeon.energy/5+Dungeon.heroine.lvl/3) * tier +                      //base
+		int energy = (int)(Math.log10(Dungeon.energy) / Math.log10(2));
+		return  (energy+scaleByHeroineLvl()-1) * tier +                      //base
 				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
 	}
 }
