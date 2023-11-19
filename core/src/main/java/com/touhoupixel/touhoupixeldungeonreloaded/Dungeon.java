@@ -965,6 +965,8 @@ public class Dungeon {
 		setupPassable();
 		if (ch.flying || ch.buff( Amok.class ) != null) {
 			BArray.or( pass, Dungeon.level.avoid, passable );
+		} else if (ch.passWall){
+			BArray.or( pass, Dungeon.level.solid, passable );
 		} else {
 			System.arraycopy( pass, 0, passable, 0, Dungeon.level.length() );
 		}
