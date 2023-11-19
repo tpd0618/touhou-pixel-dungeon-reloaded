@@ -83,6 +83,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Luck
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
@@ -452,7 +453,7 @@ public abstract class Mob extends Char {
 
 			if (Actor.findChar( target ) == null
 					&& (Dungeon.level.passable[target] || (flying && Dungeon.level.avoid[target]))
-					&& (!Char.hasProp(this, Property.NONE) || Dungeon.level.openSpace[target])) {
+					&& (!Char.hasProp(this, Property.NONE) || Dungeon.level.openSpace[target]) || (Dungeon.level.solid[target] && passWall)) {
 				step = target;
 			}
 
@@ -506,7 +507,7 @@ public abstract class Mob extends Char {
 			//checks if the next cell along the current path can be stepped into
 			if (!newPath) {
 				int nextCell = path.removeFirst();
-				if (!Dungeon.level.passable[nextCell]
+				if (!Dungeon.level.passable[nextCell] || (Dungeon.level.solid[target] && passWall)
 						|| (!flying && Dungeon.level.avoid[nextCell])
 						|| (Char.hasProp(this, Property.NONE) && !Dungeon.level.openSpace[nextCell])
 						|| Actor.findChar(nextCell) != null) {
@@ -615,7 +616,8 @@ public abstract class Mob extends Char {
 	@Override
 	public boolean isInvulnerable(Class effect) {
 		return Dungeon.heroine.buff(HinaCurse.class) != null && Dungeon.heroine.justMoved ||
-				this instanceof BossHecatia && Statistics.eirinelixircount != 4;
+				this instanceof BossHecatia && Statistics.eirinelixircount != 4 ||
+				Dungeon.level.map[this.pos] == Terrain.WALL || Dungeon.level.map[this.pos] == Terrain.WALL_DECO;
 	}
 
 	@Override

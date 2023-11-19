@@ -29,8 +29,13 @@ public class Iku extends Mob {
     }
 
     @Override
+    public float attackDelay() {
+        return Dungeon.level.map[this.pos] == Terrain.WATER ? super.attackDelay() : super.attackDelay()*0.25f;
+    }
+
+    @Override
     public int damageRoll() {
-        return Random.NormalIntRange(25, 30);
+        return Random.NormalIntRange(45, 52);
     }
 
     @Override
