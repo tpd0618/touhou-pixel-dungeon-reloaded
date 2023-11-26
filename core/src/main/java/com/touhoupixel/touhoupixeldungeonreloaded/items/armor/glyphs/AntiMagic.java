@@ -39,7 +39,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.watabou.utils.Random;
 
@@ -59,7 +58,6 @@ public class AntiMagic extends Armor.Glyph {
 		RESISTS.add( Degrade.class );
 		
 		RESISTS.add( DisintegrationTrap.class );
-		RESISTS.add( GrimTrap.class );
 
 		RESISTS.add( WandOfBlastWave.class );
 		RESISTS.add( WandOfDisintegration.class );

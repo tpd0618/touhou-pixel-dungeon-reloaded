@@ -130,7 +130,7 @@ public abstract class EquipableItem extends Item {
 						Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
 					}
 
-						Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(150, 200)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(150, 200)), curUser.pos).sprite.drop();
 					//clear cube fragments
 					Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
 					Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();

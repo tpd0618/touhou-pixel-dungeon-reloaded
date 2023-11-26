@@ -57,7 +57,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
@@ -97,7 +96,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wriggle;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -142,7 +140,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
@@ -1041,7 +1038,7 @@ public class Hero extends Char {
 
 					if (item instanceof Dewdrop
 							|| item instanceof TimekeepersHourglass.sandBag
-							|| item instanceof Key) {
+							|| item instanceof Key ) {
 						//Do Nothing
 					} else {
 						GLog.newLine();

@@ -31,8 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
@@ -45,11 +43,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeavenHerb;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfPhilosopher;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
@@ -74,7 +68,6 @@ public enum HeroClass {
 		//test, put too many stuffs will trigger a certain bug
 
 		//test, put too many stuffs will trigger a certain bug
-
 		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 			HeartHerb heartHerb = new HeartHerb();
 			heartHerb.quantity(30).identify().collect();
@@ -85,9 +78,6 @@ public enum HeroClass {
 
 		PotionOfHealing potionOfHealing = new PotionOfHealing();
 		potionOfHealing.quantity(3).identify().collect();
-		//potionOfHealing.forget();
-		new ScrollOfNamelessStory().collect();
-
 
 		Food food = new Food();
 		food.collect();

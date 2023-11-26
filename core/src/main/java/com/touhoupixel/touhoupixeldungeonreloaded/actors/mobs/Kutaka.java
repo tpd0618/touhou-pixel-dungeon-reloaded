@@ -27,9 +27,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.TargetedCell;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KutakaSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Kutaka extends Mob {
@@ -66,17 +74,66 @@ public class Kutaka extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
+    protected boolean act() {
+        if (this.state != SLEEPING && this.state != FLEEING) {
+            if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
+                if (Dungeon.heroine.buff(Paralysis.class) == null && Random.Int(2) == 0) {
+                    if (this.pos - 1 == Dungeon.heroine.pos ||
+                            this.pos + 1 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() - 1 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() + 1 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() - 1 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() + 1 == Dungeon.heroine.pos ||
+                            this.pos - 2 == Dungeon.heroine.pos ||
+                            this.pos + 2 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() * 2 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() * 2 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() * 2 - 2 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() * 2 + 2 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() * 2 - 2 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() * 2 + 2 == Dungeon.heroine.pos ||
+                            this.pos - 3 == Dungeon.heroine.pos ||
+                            this.pos + 3 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() * 3 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() * 3 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() * 3 - 3 == Dungeon.heroine.pos ||
+                            this.pos - Dungeon.level.width() * 3 + 3 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() * 3 - 3 == Dungeon.heroine.pos ||
+                            this.pos + Dungeon.level.width() * 3 + 3 == Dungeon.heroine.pos) {
+                        Buff.prolong(Dungeon.heroine, Paralysis.class, Paralysis.DURATION / 2f);
+                        CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 4);
+                        GLog.w(Messages.get(this, "dozikon"));
+
+                        sprite.parent.addToBack(new TargetedCell(this.pos - 1, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + 1, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width(), 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width(), 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width() - 1, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width() + 1, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width() - 1, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width() + 1, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - 2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + 2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2 - 2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2 + 2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2 - 2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2 + 2, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - 3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + 3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3 - 3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3 + 3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3 - 3, 0xFF0000));
+                        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3 + 3, 0xFF0000));
+                    }
+                }
             }
         }
-        return damage;
+        return super.act();
     }
 }

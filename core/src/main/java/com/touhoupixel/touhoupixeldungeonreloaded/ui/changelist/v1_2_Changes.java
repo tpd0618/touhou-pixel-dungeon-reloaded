@@ -49,7 +49,11 @@ public class v1_2_Changes {
 		changeInfos.add(changes);
 
 		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.8 changes",
-				"_-_ wip.\n" +
+				"_-_ Flandre talisman and hourai talisman are removed from the game.\n" +
+						"_-_ Dismantling now gives upgrade cards again, but you need to use it actively.\n" +
+						"_-_ For above reason, enemies' stats are reworked.\n" +
+						"_-_ Kanako, kutaka, and rumia are reworked.\n" +
+						"_-_ Grim trap and decay trap are removed from the game.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 

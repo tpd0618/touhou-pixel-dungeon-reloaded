@@ -33,11 +33,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DecayTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OnigiriTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ExConfusionTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SlowTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
@@ -112,8 +111,8 @@ public class HumanVillageLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				ConfusionTrap.class, ChillingTrap.class, BurningTrap.class, TeleportationTrap.class, DecayTrap.class,
-				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, ExConfusionTrap.class, OnigiriTrap.class,
+				ConfusionTrap.class, ChillingTrap.class, TeleportationTrap.class, ExConfusionTrap.class, RockfallTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, OnigiriTrap.class, PoisonDartTrap.class,
 				PoisonDartTrap.class, SummoningTrap.class};
 	}
 
@@ -121,7 +120,7 @@ public class HumanVillageLevel extends RegularLevel {
 	protected float[] trapChances() {
 		return new float[]{
 				2, 2, 2, 2, 2,
-				2, 2, 2, 2, 1,
+				2, 2, 2, 1, 1,
 				1, 1};
 	}
 	

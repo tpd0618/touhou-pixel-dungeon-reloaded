@@ -31,7 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.OnigiriTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.PoisonDartTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.watabou.utils.Point;
@@ -138,24 +138,24 @@ public class TrapsRoom extends SpecialRoom {
 	@SuppressWarnings("unchecked")
 	private static Class<? extends Trap>[][] levelTraps = new Class[][]{
 			//1
-			{PoisonDartTrap.class},
+			{OnigiriTrap.class},
 			//2
-			{PoisonDartTrap.class},
+			{OnigiriTrap.class},
 			//3
 			{PoisonDartTrap.class},
 			//4
 			{PoisonDartTrap.class},
 			//5
-			{DisintegrationTrap.class},
+			{PoisonDartTrap.class},
 			//6
-			{DisintegrationTrap.class},
+			{PoisonDartTrap.class},
 			//7
 			{DisintegrationTrap.class},
 			//8
 			{DisintegrationTrap.class},
 			//9
-			{GrimTrap.class},
+			{DisintegrationTrap.class},
 			//10
-			{GrimTrap.class}
+			{DisintegrationTrap.class}
 	};
 }

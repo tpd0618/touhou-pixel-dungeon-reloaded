@@ -29,7 +29,6 @@ public class SevenDaysTalisman extends Talisman {
         Char ch = Actor.findChar(cell);
 
         if (ch != null && !ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS)) {
-
             switch (Random.Int(7)) {
                 case 0:
                 default:

@@ -144,14 +144,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.BindingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CirnoTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DoremyTalisman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.HouraiTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.KnockbackTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SevenDaysTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DebilitationTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.EnragingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SuikaTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.TransientTalisman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.FlandreTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.InaccurateTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.KameTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DisorientationTalisman;
@@ -449,17 +447,15 @@ public class Generator {
 					SwapTalisman.class,
 					DebilitationTalisman.class,
 					DisorientationTalisman.class,
-					FlandreTalisman.class,
 					NightingaleTalisman.class,
 					BackdoorTalisman.class,
 					CutterTalisman.class,
 					CirnoTalisman.class,
 					DoremyTalisman.class,
-					HouraiTalisman.class,
 					SuikaTalisman.class,
 					YuumaTalisman.class
 			};
-			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{

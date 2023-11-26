@@ -55,7 +55,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
@@ -82,13 +81,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribut
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.DamageWand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GrimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -845,7 +842,7 @@ public abstract class Char extends Actor {
 
     public enum Property{
         BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Paralysis.class)),
-                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
+                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class, Grim.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
         MINIBOSS ( new HashSet<Class>(),
                 new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
         MITAMA ( new HashSet<Class>(),

@@ -21,18 +21,22 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirth;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReBirthDone;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KanakoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Kanako extends Mob {
@@ -53,7 +57,7 @@ public class Kanako extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange( 93, 141 );
+        return Random.NormalIntRange(93, 141);
     }
 
     @Override
@@ -63,26 +67,15 @@ public class Kanako extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(32,48);
+        return Random.NormalIntRange(32, 48);
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && !hero.flying && Random.Int(5) == 0) {
-            Dungeon.heroine.STR--;
-            Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
-            Sample.INSTANCE.play( Assets.Sounds.CURSED );
-            GLog.w(Messages.get(Kanako.class, "str_reduce"));
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Dungeon.heroine.STR--;
-                Dungeon.level.drop(new StrengthCard(), Dungeon.level.randomRespawnCell(null)).sprite.drop();
-                GLog.w(Messages.get(Kanako.class, "str_reduce"));
-            }
+    public String defenseVerb() {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+            Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
+            GLog.w(Messages.get(this, "kanako"));
         }
-        return damage;
+        return Messages.get(this, "def_verb");
     }
 }
