@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class v1_2_Changes {
 
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_1_8_Changes(changeInfos);
 		add_v1_1_7_Changes(changeInfos);
 		add_v1_1_6_Changes(changeInfos);
 		add_v1_1_5_Changes(changeInfos);
@@ -40,7 +41,16 @@ public class v1_2_Changes {
 		add_v1_0_9_Changes(changeInfos);
 		add_v1_0_7_Changes(changeInfos);
 		add_v1_0_5_Changes(changeInfos);
-		add_v1_0_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_1_8_Changes(ArrayList<ChangeInfo> changeInfos ) {
+		ChangeInfo changes = new ChangeInfo("v1.1.8", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.1.8 changes",
+				"_-_ wip.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_1_7_Changes(ArrayList<ChangeInfo> changeInfos ) {
