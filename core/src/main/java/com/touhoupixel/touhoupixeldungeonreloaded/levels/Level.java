@@ -494,22 +494,14 @@ public abstract class Level implements Bundlable {
 				mobsToSpawn = Bestiary.getMobRotation(Dungeon.floor);
 			}
 			m = Reflection.newInstance(mobsToSpawn.remove(0));
-			if (m.getClass() == Statistics.exterminatedEnemy) m = null;
+			if (m.getClass() == Statistics.exterminatedEnemy) {
+				m = null;
+				continue;
+			}
 
-			if (m instanceof MobWithSpellcard) {
-				switch (m.mobRarity){
-					case UNCOMMON:
-						if (Random.Int(3) != 0) m = null;
-						break;
-					case RARE:
-						if (Random.Int(20) != 0) m = null;
-						break;
-					case EPIC:
-						if (Random.Int(40) != 0) m = null;
-						break;
-					default:
-						break;
-				}
+			if (Random.Float() > m.mobRarity) {
+				m = null;
+				continue;
 			}
 		}
 		return m;

@@ -37,6 +37,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -79,6 +80,10 @@ public class Herb extends Item {
 			heroine.busy();
 			SpellSprite.show(heroine, SpellSprite.FOOD);
 			Sample.INSTANCE.play(Assets.Sounds.EAT);
+
+			if (Dungeon.heroine.belongings.weapon() instanceof AlchemyHat){
+				heroine.HP = Math.min(heroine.HP + heroine.HT/50, heroine.HT); // recover 2% hp
+			}
 
 			if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 				Statistics.mood += 1;

@@ -52,7 +52,7 @@ public class Ran extends MobWithSpellcard implements Callback {
         if (Statistics.difficulty <= 2) numberOfCards = 2;
         else if (Statistics.difficulty <= 4) numberOfCards = 3;
         else numberOfCards = 4;
-        mobRarity = MobRarity.UNCOMMON;
+        mobRarity = UNCOMMON_RARITY;
 
         properties.add(Property.ANIMAL);
         properties.add(Property.NOT_EXTERMINABLE);

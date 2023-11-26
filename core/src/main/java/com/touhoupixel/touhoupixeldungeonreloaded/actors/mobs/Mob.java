@@ -139,13 +139,11 @@ public abstract class Mob extends Char {
 	//used for AiState Ambushing
 	protected int leftToContinue = 0;
 	protected int ambushPos = -1;
-	public MobRarity mobRarity;
-	public enum MobRarity {
-		COMMON,
-		UNCOMMON,
-		RARE,
-		EPIC;
-	}
+	public float mobRarity = COMMON_RARITY; //chance of spawn mob: from 0 (will never spawn) to 1 (will always spawn)
+	public static final float COMMON_RARITY = 1;
+	public static final float UNCOMMON_RARITY = 0.33f;
+	public static final float RARE_RARITY = 0.05f;
+	public static final float EPIC_RARITY = 0.025f;
 	protected static final float TIME_TO_WAKE_UP = 1f;
 
 	private static final String STATE	= "state";

@@ -46,7 +46,7 @@ public class Suwako extends Mob {
 
         properties.add(Property.GOD);
         properties.add(Property.MINIBOSS);
-        mobRarity = MobRarity.RARE;
+        mobRarity = RARE_RARITY;
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

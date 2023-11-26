@@ -37,10 +37,5 @@ public class HeartHerb extends Herb {
 
 		super.execute(heroine, action);
 
-		if (action.equals( AC_EAT )) {
-			if (Dungeon.heroine.belongings.weapon() instanceof AlchemyHat){
-				heroine.HP = Math.min(heroine.HP + 2, heroine.HT);
-			}
-		}
 	}
 }

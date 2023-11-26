@@ -40,7 +40,7 @@ public class Saki extends MobWithSpellcard {
 
         spellcardsDefaultList.add(Inspiration.class);
         numberOfCards = Statistics.difficulty > 4 ? 2 : 1; // on overdrive or risky she has 2 spellcards
-        mobRarity = MobRarity.UNCOMMON;
+        mobRarity = UNCOMMON_RARITY;
 
         properties.add(Property.YOKAI);
         properties.add(Property.NOT_EXTERMINABLE);

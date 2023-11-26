@@ -1488,7 +1488,7 @@ public class Hero extends Char {
 	@Override
 	public void damage( int dmg, Object src ) {
 		if (this.buff(CelestialBody.class) != null){
-			dmg -= 5;
+			dmg = Math.max(dmg - 5, 0);
 		}
 
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
@@ -1506,10 +1506,10 @@ public class Hero extends Char {
 
 
 		if (Statistics.difficulty == 1) {
-			dmg *= 0.25f;
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.25f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
 		if (Statistics.difficulty == 2) {
-			dmg *= 0.8f;
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.8f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
 		// hard - normal damage
 		if (Statistics.difficulty == 4) {

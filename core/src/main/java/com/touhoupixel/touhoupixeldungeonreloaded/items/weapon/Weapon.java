@@ -234,15 +234,6 @@ abstract public class Weapon extends KindOfWeapon {
 			reach++;
 		}
 
-		if (Dungeon.heroine.belongings.weapon() instanceof VentoraStick) {
-			int ironKeyCount = Notes.keyCount(new IronKey(Dungeon.floor));
-			int goldenKeyCount = Notes.keyCount(new GoldenKey(Dungeon.floor));
-			int crystalKeyCount = Notes.keyCount(new CrystalKey(Dungeon.floor));
-
-			reach += ironKeyCount;
-			reach += goldenKeyCount;
-			reach += crystalKeyCount;
-		}
 		return reach;
 	}
 
