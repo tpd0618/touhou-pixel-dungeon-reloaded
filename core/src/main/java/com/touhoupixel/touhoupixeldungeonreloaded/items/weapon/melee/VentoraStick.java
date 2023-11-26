@@ -22,7 +22,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
+import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class VentoraStick extends MeleeWeapon {
@@ -38,6 +43,13 @@ public class VentoraStick extends MeleeWeapon {
     @Override
     public int reachFactor(Char owner) {
         int reach = super.reachFactor(owner);
+        int ironKeyCount = Notes.keyCount(new IronKey(Dungeon.floor));
+        int goldenKeyCount = Notes.keyCount(new GoldenKey(Dungeon.floor));
+        int crystalKeyCount = Notes.keyCount(new CrystalKey(Dungeon.floor));
+
+        reach += ironKeyCount;
+        reach += goldenKeyCount;
+        reach += crystalKeyCount;
         return reach;
     }
 

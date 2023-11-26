@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 public class YuukaUmbrella extends MeleeWeapon {
 
@@ -44,11 +45,13 @@ public class YuukaUmbrella extends MeleeWeapon {
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        Ballistica trajectory = new Ballistica(attacker.pos, defender.pos, Ballistica.STOP_TARGET);
-        //trim it to just be the part that goes past them
-        trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-        //knock them back along that ballistica
-        WandOfBlastWave.throwChar(defender, trajectory, 5, false, true, getClass());
+        if (Random.Int(3) == 0){
+            Ballistica trajectory = new Ballistica(attacker.pos, defender.pos, Ballistica.STOP_TARGET);
+            //trim it to just be the part that goes past them
+            trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
+            //knock them back along that ballistica
+            WandOfBlastWave.throwChar(defender, trajectory, 5, false, true, getClass());
+        }
         return super.proc(attacker, defender, damage);
     }
 }

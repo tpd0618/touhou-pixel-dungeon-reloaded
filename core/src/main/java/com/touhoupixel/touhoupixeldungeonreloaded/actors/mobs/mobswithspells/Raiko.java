@@ -55,7 +55,7 @@ public class Raiko extends MobWithSpellcard {
 
         spellcardsDefaultList.add(SonicEarthquake.class);
 
-        mobRarity = MobRarity.RARE;
+        mobRarity = RARE_RARITY;
         if (Statistics.difficulty <= 2) numberOfCards = 3;
         else if (Statistics.difficulty <= 4) numberOfCards = 4;
         else numberOfCards = 5;

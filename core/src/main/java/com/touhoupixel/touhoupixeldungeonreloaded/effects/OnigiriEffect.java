@@ -47,4 +47,13 @@ public class OnigiriEffect extends Gizmo {
 		killAndErase();
 
 	}
+
+	public static OnigiriEffect onigiriEffect(CharSprite sprite ) {
+
+		OnigiriEffect onigiriEffect = new OnigiriEffect( sprite );
+		if (sprite.parent != null)
+			sprite.parent.add( onigiriEffect );
+
+		return onigiriEffect;
+	}
 }

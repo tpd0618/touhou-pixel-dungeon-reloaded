@@ -22,7 +22,7 @@ public class Mamizou extends MobWithSpellcard {
 
         spellcardsDefaultList.add(Transmutation.class);
         numberOfCards = Statistics.difficulty > 4 ? 2 : 1; // on overdrive or risky she has 2 spellcards
-        mobRarity = MobRarity.COMMON;
+        mobRarity = COMMON_RARITY;
 
         properties.add(Property.YOKAI);
         properties.add(Property.NOT_EXTERMINABLE);

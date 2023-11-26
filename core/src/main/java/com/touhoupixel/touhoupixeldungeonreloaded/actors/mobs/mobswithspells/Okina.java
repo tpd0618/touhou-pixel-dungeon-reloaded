@@ -52,7 +52,7 @@ public class Okina extends MobWithSpellcard {
         properties.add(Property.GOD);
         properties.add(Property.NOT_EXTERMINABLE);
 
-        mobRarity = MobRarity.RARE;
+        mobRarity = RARE_RARITY;
 
         loot = new PotionOfHexCancel();
         lootChance = 0.1f;

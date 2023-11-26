@@ -56,7 +56,7 @@ public class Mokou extends MobWithSpellcard implements Callback {
         properties.add(Property.HUMAN);
         properties.add(Property.MINIBOSS);
 
-        mobRarity = MobRarity.RARE;
+        mobRarity = RARE_RARITY;
         if (Statistics.difficulty <= 2) numberOfCards = 3;
         else if (Statistics.difficulty <= 4) numberOfCards = 4;
         else numberOfCards = 5;
@@ -169,8 +169,8 @@ public class Mokou extends MobWithSpellcard implements Callback {
             canRevive = false;
             return;
         }
-        Dungeon.level.drop(new StoneOfMadness().quantity(3), pos ).sprite.drop();
-        Dungeon.level.drop(new ElixirOfDragonsBlood().quantity(2), pos ).sprite.drop();
+        Dungeon.level.drop(new StoneOfMadness(), pos ).sprite.drop();
+        Dungeon.level.drop(new ElixirOfDragonsBlood(), pos ).sprite.drop();
         Dungeon.level.drop(new Life(), pos ).sprite.drop();
         super.die(cause);
     }
