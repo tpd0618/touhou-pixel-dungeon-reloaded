@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,35 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.watabou.noosa.TextureFilm;
 
-public class PotionBandolier extends Bag {
+public class TsukasaSoulSprite extends MobSprite {
 
-	{
-		image = ItemSpriteSheet.BANDOLIER;
+	public TsukasaSoulSprite() {
+		super();
+		
+		texture( Assets.Sprites.TSUKASA_SOUL);
+		
+		TextureFilm frames = new TextureFilm( texture, 12, 16 );
+		
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0, 1, 2, 3  );
+		
+		run = new Animation( 12, true );
+		run.frames( frames, 0, 1, 2, 3 );
+		
+		attack = new Animation( 12, false );
+		attack.frames( frames, 2, 3, 0 );
+		
+		die = new Animation( 12, false );
+		die.frames( frames, 2, 3, 0 );
+		
+		play( idle );
 	}
-
-	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof Potion || item instanceof LiquidMetal){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
-	}
-
-	public int capacity(){
-		return 24;
-	}
-
-	@Override
-	public int value() {
-		return 40;
-	}
-
 }

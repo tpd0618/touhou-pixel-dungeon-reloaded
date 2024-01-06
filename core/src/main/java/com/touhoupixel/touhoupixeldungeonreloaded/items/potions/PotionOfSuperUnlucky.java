@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,42 +19,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Spell;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
-public class SpellcardHolder extends Bag {
+public class PotionOfSuperUnlucky extends Potion {
 
 	{
-		image = ItemSpriteSheet.HOLDER;
+		icon = ItemSpriteSheet.Icons.POTION_MAGIC;
 	}
 
 	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof Scroll || item instanceof Spell){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
+	public void apply( Hero heroine) {
+		identify();
+
+		GLog.w( Messages.get(this, "super_unlucky") );
+		heroine.lvl = 1;
+		heroine.exp = 0;
+		heroine.updateHT( true );
 	}
 
-	public int capacity(){
-		return 24;
-	}
-	
-	@Override
-	public void onDetach( ) {
-		super.onDetach();
-		for (Item item : items) {
-		}
-	}
-	
 	@Override
 	public int value() {
-		return 40;
+		return isKnown() ? 30 * quantity : super.value();
 	}
-
 }

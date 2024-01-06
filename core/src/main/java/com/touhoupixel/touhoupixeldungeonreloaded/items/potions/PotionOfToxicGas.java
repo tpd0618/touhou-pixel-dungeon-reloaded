@@ -34,7 +34,6 @@ public class PotionOfToxicGas extends Potion {
 
 	{
 		icon = ItemSpriteSheet.Icons.POTION_TOXICGAS;
-		isHarmfulGasPotion = true;
 	}
 
 	@Override
@@ -52,7 +51,7 @@ public class PotionOfToxicGas extends Potion {
 			GameScene.add(Blob.seed(cell, 1000, ToxicGas.class));
 		}
 	}
-	
+
 	@Override
 	public int value() {
 		return isKnown() ? 30 * quantity : super.value();

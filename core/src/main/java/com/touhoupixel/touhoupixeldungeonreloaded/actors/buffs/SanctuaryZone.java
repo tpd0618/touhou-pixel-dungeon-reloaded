@@ -19,32 +19,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class PotionOfMagic extends Potion {
-
+public class SanctuaryZone extends FlavourBuff {
+	
+	public static final float DURATION = 200f;
+	
 	{
-		icon = ItemSpriteSheet.Icons.POTION_MAGIC;
+		type = buffType.NEGATIVE;
+		announced = true;
 	}
 
 	@Override
-	public void apply(Hero heroine) {
-		identify();
-
-		Buff.prolong(heroine, MagicBuff.class, MagicBuff.DURATION);
-
-		//buff test zone//
-
-		//buff test zone//
+	public int icon() {
+		return BuffIndicator.SANCTUARY_ZONE;
 	}
 
 	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
 	}
 }

@@ -54,23 +54,23 @@ import com.watabou.noosa.Image;
 import com.watabou.utils.PointF;
 
 public class WndBag extends WndTabbed {
-	
+
 	//only one bag window can appear at a time
 	public static Window INSTANCE;
 
 	protected static final int COLS_P   = 5;
 	protected static final int COLS_L   = 5;
-	
+
 	protected static int SLOT_WIDTH_P   = 28;
 	protected static int SLOT_WIDTH_L   = 28;
 
-	protected static int SLOT_HEIGHT_P	= 28;
-	protected static int SLOT_HEIGHT_L	= 28;
+	protected static int SLOT_HEIGHT_P	= 24;
+	protected static int SLOT_HEIGHT_L	= 20;
 
 	protected static final int SLOT_MARGIN	= 1;
-	
+
 	protected static final int TITLE_HEIGHT	= 14;
-	
+
 	private ItemSelector selector;
 
 	private int nCols;
@@ -82,7 +82,7 @@ public class WndBag extends WndTabbed {
 	protected int count;
 	protected int col;
 	protected int row;
-	
+
 	private static Bag lastBag;
 
 	public WndBag( Bag bag ) {
@@ -90,23 +90,23 @@ public class WndBag extends WndTabbed {
 	}
 
 	public WndBag( Bag bag, ItemSelector selector ) {
-		
+
 		super();
-		
+
 		if( INSTANCE != null ){
 			INSTANCE.hide();
 		}
 		INSTANCE = this;
-		
+
 		this.selector = selector;
-		
+
 		lastBag = bag;
 
 		slotWidth = PixelScene.landscape() ? SLOT_WIDTH_L : SLOT_WIDTH_P;
 		slotHeight = PixelScene.landscape() ? SLOT_HEIGHT_L : SLOT_HEIGHT_P;
 
 		nCols = PixelScene.landscape() ? COLS_L : COLS_P;
-		nRows = (int)Math.ceil(25/(float)nCols); //we expect to lay out 25 slots in all cases
+		nRows = (int)Math.ceil(30/(float)nCols); //we expect to lay out 25 slots in all cases
 
 		int windowWidth = slotWidth * nCols + SLOT_MARGIN * (nCols - 1);
 		int windowHeight = TITLE_HEIGHT + slotHeight * nRows + SLOT_MARGIN * (nRows - 1);
@@ -124,7 +124,7 @@ public class WndBag extends WndTabbed {
 		}
 
 		placeTitle( bag, windowWidth );
-		
+
 		placeItems( bag );
 
 		resize( windowWidth, windowHeight );
@@ -140,17 +140,17 @@ public class WndBag extends WndTabbed {
 
 		layoutTabs();
 	}
-	
+
 	public static WndBag lastBag( ItemSelector selector ) {
-		
+
 		if (lastBag != null && Dungeon.heroine.belongings.backpack.contains( lastBag )) {
-			
+
 			return new WndBag( lastBag, selector );
-			
+
 		} else {
-			
+
 			return new WndBag( Dungeon.heroine.belongings.backpack, selector );
-			
+
 		}
 	}
 
@@ -165,7 +165,7 @@ public class WndBag extends WndTabbed {
 
 		return lastBag( selector );
 	}
-	
+
 	protected void placeTitle( Bag bag, int width ){
 
 		float titleWidth;
@@ -232,9 +232,9 @@ public class WndBag extends WndTabbed {
 		PixelScene.align(txtTitle);
 		add( txtTitle );
 	}
-	
+
 	protected void placeItems( Bag container ) {
-		
+
 		// Equipped items
 		Belongings stuff = Dungeon.heroine.belongings;
 		placeItem( stuff.weapon != null ? stuff.weapon : new Placeholder( ItemSpriteSheet.WEAPON_HOLDER ) );
@@ -257,17 +257,17 @@ public class WndBag extends WndTabbed {
 				count++;
 			}
 		}
-		
+
 		// Free Space
 		while ((count - 5) < container.capacity()) {
 			placeItem( null );
 		}
 	}
-	
+
 	protected void placeItem( final Item item ) {
 
 		count++;
-		
+
 		int x = col * (slotWidth + SLOT_MARGIN);
 		int y = TITLE_HEIGHT + row * (slotHeight + SLOT_MARGIN);
 
@@ -339,7 +339,7 @@ public class WndBag extends WndTabbed {
 		if (item == null || (selector != null && !selector.itemSelectable(item))){
 			slot.enable(false);
 		}
-		
+
 		if (++col >= nCols) {
 			col = 0;
 			row++;
@@ -356,7 +356,7 @@ public class WndBag extends WndTabbed {
 			return super.onSignal(event);
 		}
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		if (selector != null) {
@@ -364,7 +364,7 @@ public class WndBag extends WndTabbed {
 		}
 		super.onBackPressed();
 	}
-	
+
 	@Override
 	protected void onClick( Tab tab ) {
 		hide();
@@ -375,7 +375,7 @@ public class WndBag extends WndTabbed {
 			Game.scene().addToFront(w);
 		}
 	}
-	
+
 	@Override
 	public void hide() {
 		super.hide();
@@ -383,12 +383,12 @@ public class WndBag extends WndTabbed {
 			INSTANCE = null;
 		}
 	}
-	
+
 	@Override
 	protected int tabHeight() {
 		return 20;
 	}
-	
+
 	private Image icon( Bag bag ) {
 		if (bag instanceof VelvetPouch) {
 			return Icons.get( Icons.SEED_POUCH );
@@ -406,15 +406,15 @@ public class WndBag extends WndTabbed {
 			return Icons.get( Icons.BACKPACK );
 		}
 	}
-	
+
 	private class BagTab extends IconTab {
 
 		private Bag bag;
 		private int index;
-		
+
 		public BagTab( Bag bag, int index ) {
 			super( icon(bag) );
-			
+
 			this.bag = bag;
 			this.index = index;
 		}
@@ -444,7 +444,7 @@ public class WndBag extends WndTabbed {
 			return Messages.titleCase(bag.name());
 		}
 	}
-	
+
 	public static class Placeholder extends Item {
 
 		public Placeholder(int image ) {
@@ -460,7 +460,7 @@ public class WndBag extends WndTabbed {
 		public boolean isIdentified() {
 			return true;
 		}
-		
+
 		@Override
 		public boolean isEquipped( Hero heroine) {
 			return true;

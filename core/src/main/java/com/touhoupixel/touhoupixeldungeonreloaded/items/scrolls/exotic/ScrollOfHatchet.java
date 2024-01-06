@@ -22,21 +22,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CritChanceUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Flare;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
-public class ScrollOfBrainWash extends ExoticScroll {
+public class ScrollOfHatchet extends ExoticScroll {
 
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_BRAIN_WASH;
+		icon = ItemSpriteSheet.Icons.SCROLL_CRIT;
 	}
 
 	@Override
@@ -44,14 +39,7 @@ public class ScrollOfBrainWash extends ExoticScroll {
 		new Flare(5, 32).color(0xFF0000, true).show(curUser.sprite, 2f);
 		Sample.INSTANCE.play(Assets.Sounds.READ);
 
-		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-				if (!mob.isImmune(Dread.class)) {
-					Buff.prolong(mob, BrainWash.class, BrainWash.DURATION);
-					Buff.prolong(mob, SuperHard.class, SuperHard.DURATION);
-				}
-			}
-		}
+		Buff.prolong(curUser, CritChanceUp.class, CritChanceUp.DURATION);
 
 		identify();
 

@@ -24,18 +24,18 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class DistortedAvarice extends FlavourBuff {
+public class CritChanceUp extends FlavourBuff {
 
 	{
-		type = buffType.NEGATIVE;
+		type = buffType.POSITIVE;
 		announced = true;
 	}
 
-	public static final float DURATION = 66f;
+	public static final float DURATION = 30f;
 
 	@Override
 	public int icon() {
-		return BuffIndicator.DISTORTED_AVARICE;
+		return BuffIndicator.CRIT_CHANCE_UP;
 	}
 
 	@Override
@@ -52,5 +52,5 @@ public class DistortedAvarice extends FlavourBuff {
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
 	}
-
+	
 }

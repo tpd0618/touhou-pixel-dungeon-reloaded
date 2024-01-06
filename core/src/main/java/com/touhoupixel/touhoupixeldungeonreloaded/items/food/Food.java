@@ -26,11 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WellFed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
@@ -90,7 +88,6 @@ public class Food extends Item {
 			}
 
 			Buff.detach(curUser, ExtremeHunger.class);
-			Buff.detach(curUser, DistortedAvarice.class);
 
 			heroine.spend( eatingTime() );
 

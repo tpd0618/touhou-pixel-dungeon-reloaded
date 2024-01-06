@@ -37,7 +37,7 @@ public class BossSeija extends Mob {
     {
         spriteClass = SeijaSprite.class;
 
-        HP = HT = 1500;
+        HP = HT = 1300;
         defenseSkill = 30;
         EXP = 26;
         maxLvl = 99;

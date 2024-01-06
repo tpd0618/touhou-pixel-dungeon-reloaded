@@ -294,7 +294,10 @@ public class ScrollOfTeleportation extends ExoticScroll {
 		}
 
 		ch.move(pos, false);
-		if (ch.pos == pos) ch.sprite.place(pos);
+		if (ch.pos == pos) {
+			ch.sprite.interruptMotion();
+			ch.sprite.place(pos);
+		}
 
 		if (ch.invisible == 0) {
 			ch.sprite.alpha(0);

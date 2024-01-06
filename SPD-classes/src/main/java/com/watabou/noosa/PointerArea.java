@@ -129,6 +129,11 @@ public class PointerArea extends Visual implements Signal.Listener<PointerEvent>
 	public void reset() {
 		curEvent = null;
 	}
+
+	public void givePointerPriority(){
+		PointerEvent.removePointerListener( this );
+		PointerEvent.addPointerListener( this );
+	}
 	
 	@Override
 	public void destroy() {

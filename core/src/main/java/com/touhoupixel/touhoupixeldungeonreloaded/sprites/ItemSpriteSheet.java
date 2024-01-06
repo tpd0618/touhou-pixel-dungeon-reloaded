@@ -1190,7 +1190,7 @@ public class ItemSpriteSheet {
 
 		private static final int EXOTIC_SCROLLS =                            xy(1, 4);  //16 slots
 		public static final int SCROLL_ATTACK_UP = EXOTIC_SCROLLS+0;
-		public static final int SCROLL_BRAIN_WASH = EXOTIC_SCROLLS+1;
+		public static final int SCROLL_CRIT = EXOTIC_SCROLLS+1;
 		public static final int SCROLL_CHALLENGE = EXOTIC_SCROLLS+2;
 		public static final int SCROLL_DEFENSE_UP  = EXOTIC_SCROLLS+3;
 		public static final int SCROLL_DESPAIR = EXOTIC_SCROLLS+4;
@@ -1205,7 +1205,7 @@ public class ItemSpriteSheet {
 		public static final int SCROLL_TELEPORTATION = EXOTIC_SCROLLS+13;
 		static {
 			assignIconRect(SCROLL_ATTACK_UP,    7, 7 );
-			assignIconRect(SCROLL_BRAIN_WASH,   6, 7 );
+			assignIconRect(SCROLL_CRIT,   6, 7 );
 			assignIconRect(SCROLL_CHALLENGE,    7, 7 );
 			assignIconRect(SCROLL_DEFENSE_UP,   7, 7 );
 			assignIconRect(SCROLL_DESPAIR,      7, 5 );

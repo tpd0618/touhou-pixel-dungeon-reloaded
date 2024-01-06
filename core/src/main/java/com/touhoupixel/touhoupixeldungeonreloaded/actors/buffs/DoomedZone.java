@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2021 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,42 +19,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Spell;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 
-public class SpellcardHolder extends Bag {
-
+public class DoomedZone extends FlavourBuff {
+	
+	public static final float DURATION = 200f;
+	
 	{
-		image = ItemSpriteSheet.HOLDER;
+		type = buffType.NEGATIVE;
+		announced = true;
 	}
 
 	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof Scroll || item instanceof Spell){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
+	public int icon() {
+		return BuffIndicator.DOOMED_ZONE;
 	}
 
-	public int capacity(){
-		return 24;
-	}
-	
 	@Override
-	public void onDetach( ) {
-		super.onDetach();
-		for (Item item : items) {
-		}
-	}
-	
-	@Override
-	public int value() {
-		return 40;
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
+	}
 }

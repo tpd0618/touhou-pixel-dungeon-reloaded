@@ -28,6 +28,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.ui.Cursor;
+import com.watabou.utils.PointF;
 
 public class InputHandler extends InputAdapter {
 
@@ -147,6 +148,20 @@ public class InputHandler extends InputAdapter {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public void emulateDrag(int id){
+		PointF hoverPos = PointerEvent.currentHoverPos();
+		multiplexer.touchDragged((int)hoverPos.x, (int)hoverPos.y, id);
+	}
+
+	public void emulateTouch(int id, int button, boolean down){
+		PointF hoverPos = PointerEvent.currentHoverPos();
+		if (down){
+			multiplexer.touchDown((int)hoverPos.x, (int)hoverPos.y, id, button);
+		} else {
+			multiplexer.touchUp((int)hoverPos.x, (int)hoverPos.y, id, button);
 		}
 	}
 	

@@ -94,7 +94,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibi
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMagic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfSuperUnlucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
@@ -381,8 +381,8 @@ public class Generator {
 					PotionOfDoubleSpeed.class,
 					PotionOfLightHealing.class,
 					PotionOfYingYang.class,
-					PotionOfMagic.class};
-			POTION.defaultProbs = new float[]{ 3, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3};
+					PotionOfSuperUnlucky.class};
+			POTION.defaultProbs = new float[]{ 3, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 0};
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{

@@ -38,6 +38,7 @@ import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.noosa.ui.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 
 public class BuffIndicator extends Component {
@@ -85,7 +86,7 @@ public class BuffIndicator extends Component {
 	public static final int CORRUPT       = 36;
 	public static final int BLESS         = 37;
 	public static final int HOMING_BLADE  = 38;
-	public static final int HOURAI_DONE   = 39;
+	public static final int CRIT_CHANCE_UP = 39;
 	public static final int FUTURE_SIGHT  = 40;
 	public static final int HASTE         = 41;
 	public static final int HEAVEN_SPEED  = 42;
@@ -134,7 +135,7 @@ public class BuffIndicator extends Component {
 	public static final int ALICE_CURSE       = 85;
 	public static final int DISMANTLE_PRESSURE = 86;
 	public static final int HECATIA_RULE       = 87;
-	public static final int GUARD_STANCE       = 88;
+	public static final int BERSERK            = 88;
 	public static final int HARD_SEARCH        = 89;
 	public static final int EXTREME_FEAR       = 90;
 	public static final int REBIRTH            = 91;
@@ -148,7 +149,7 @@ public class BuffIndicator extends Component {
 	public static final int HERB_DEGRADE        = 100;
 	public static final int CURSED_BLOW         = 101;
 	public static final int BRAIN_WASH          = 102;
-	public static final int CHEAT_BREAK         = 103;
+	public static final int SUPER_BLEEDING      = 103;
 	public static final int REMI_COUNTDOWN      = 104;
 	public static final int SUPERNATURAL_BORDER = 105;
 	public static final int REMILIA_FATE        = 106;
@@ -158,30 +159,14 @@ public class BuffIndicator extends Component {
 	public static final int HEX_CANCEL          = 110;
 	public static final int FUMO_LOVER          = 111;
 	public static final int INACCURATE          = 112;
-	public static final int DISTORTED_LUST      = 113;
-	public static final int DISTORTED_VANITY    = 114;
-	public static final int DISTORTED_GLUTTONY  = 115;
-	public static final int DISTORTED_WRATH     = 116;
-	public static final int DISTORTED_AVARICE   = 117;
-	public static final int DISTORTED_ENVY      = 118;
-	public static final int DISTORTED_PRIDE     = 119;
-	public static final int NEW_MOON            = 120;
-	public static final int NEW_ONE             = 121;
-	public static final int NEW_TWO             = 122;
-	public static final int NEW_THREE           = 123;
-	public static final int NEW_FOUR            = 124;
-	public static final int FULL_MOON           = 125;
-	public static final int FULL_ONE            = 126;
-	public static final int FULL_TWO            = 127;
-	public static final int FULL_THREE          = 128;
-	public static final int FULL_FOUR           = 129;
-	public static final int HEAT_RISER          = 130;
-	public static final int RANDOMIZER          = 131;
-	public static final int MAGATSUHI           = 132;
-	public static final int HUMAN_HALF			= 133;
-	public static final int GHOST_HALF 			= 134;
-	public static final int DISMANTLE_READY     = 135;
-	public static final int ONIGIRI             = 136;
+	public static final int DOOMED_ZONE         = 113;
+	public static final int SANCTUARY_ZONE      = 114;
+	public static final int HEAT_RISER          = 115;
+	public static final int RANDOMIZER          = 116;
+	public static final int HUMAN_HALF			= 117;
+	public static final int GHOST_HALF 			= 118;
+	public static final int DISMANTLE_READY     = 119;
+	public static final int ONIGIRI             = 120;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;
@@ -222,6 +207,8 @@ public class BuffIndicator extends Component {
 			layout();
 		}
 	}
+
+	private boolean buffsHidden = false;
 
 	@Override
 	protected void layout() {
@@ -272,13 +259,44 @@ public class BuffIndicator extends Component {
 
 		//layout
 		int pos = 0;
+		float lastIconLeft = 0;
 		for (BuffButton icon : buffButtons.values()){
 			icon.updateIcon();
 			//button areas are slightly oversized, especially on small buttons
-			icon.setRect(x + pos * (size + (large ? 1 : 2)), y, size + (large ? 1 : 2), size + (large ? 0 : 5));
+			icon.setRect(x + pos * (size + 1), y, size + 1, size + (large ? 0 : 5));
 			PixelScene.align(icon);
 			pos++;
+
+			icon.visible = icon.left() <= right();
+			lastIconLeft = icon.left();
 		}
+
+		buffsHidden = false;
+		//squish buff icons together if there isn't enough room
+		float excessWidth = lastIconLeft - right();
+		if (excessWidth > 0) {
+			float leftAdjust = excessWidth/(buffButtons.size()-1);
+			//can't squish by more than 50% on large and 62% on small
+			if (large && leftAdjust >= size*0.48f) leftAdjust = size*0.5f;
+			if (!large && leftAdjust >= size*0.62f) leftAdjust = size*0.65f;
+			float cumulativeAdjust = leftAdjust * (buffButtons.size()-1);
+
+			ArrayList<BuffButton> buttons = new ArrayList<>(buffButtons.values());
+			Collections.reverse(buttons);
+			for (BuffButton icon : buttons) {
+				icon.setPos(icon.left() - cumulativeAdjust, icon.top());
+				icon.visible = icon.left() <= right();
+				if (!icon.visible) buffsHidden = true;
+				PixelScene.align(icon);
+				bringToFront(icon);
+				icon.givePointerPriority();
+				cumulativeAdjust -= leftAdjust;
+			}
+		}
+	}
+
+	public boolean allBuffsVisible(){
+		return !buffsHidden;
 	}
 
 	private static class BuffButton extends IconButton {

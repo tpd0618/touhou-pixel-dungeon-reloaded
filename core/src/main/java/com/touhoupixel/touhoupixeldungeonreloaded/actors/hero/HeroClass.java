@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
@@ -44,6 +45,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfHatchet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
@@ -72,6 +74,9 @@ public enum HeroClass {
 			HeartHerb heartHerb = new HeartHerb();
 			heartHerb.quantity(30).identify().collect();
 		}
+
+		UpgradeCard upgradeCard = new UpgradeCard();
+		upgradeCard.quantity(30).collect();
 
 		OminousGap ominousGap = new OminousGap();
 		ominousGap.quantity(5).collect();

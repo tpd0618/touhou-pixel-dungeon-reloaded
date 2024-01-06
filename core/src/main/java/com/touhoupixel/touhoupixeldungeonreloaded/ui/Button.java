@@ -35,32 +35,38 @@ import com.watabou.utils.Signal;
 public class Button extends Component {
 
 	public static float longClick = 0.5f;
-	
+
 	protected PointerArea hotArea;
 	protected Tooltip hoverTip;
-	
-	protected boolean pressed;
+
+	//only one button should be pressed at a time
+	protected static Button pressedButton;
 	protected float pressTime;
-	protected boolean processed;
+	protected boolean clickReady;
 
 	@Override
 	protected void createChildren() {
 		hotArea = new PointerArea( 0, 0, 0, 0 ) {
 			@Override
 			protected void onPointerDown( PointerEvent event ) {
-				pressed = true;
+				pressedButton = Button.this;
 				pressTime = 0;
-				processed = false;
+				clickReady = true;
 				Button.this.onPointerDown();
 			}
 			@Override
 			protected void onPointerUp( PointerEvent event ) {
-				pressed = false;
+				if (pressedButton == Button.this){
+					pressedButton = null;
+				} else {
+					//cancel any potential click, only one button can be activated at a time
+					clickReady = false;
+				}
 				Button.this.onPointerUp();
 			}
 			@Override
 			protected void onClick( PointerEvent event ) {
-				if (!processed) {
+				if (clickReady) {
 					killTooltip();
 					switch (event.button){
 						case PointerEvent.LEFT: default:
@@ -106,20 +112,22 @@ public class Button extends Component {
 			}
 		};
 		add( hotArea );
-		
+
 		KeyEvent.addKeyListener( keyListener = new Signal.Listener<KeyEvent>() {
 			@Override
 			public boolean onSignal ( KeyEvent event ) {
 				if ( active && KeyBindings.getActionForKey( event ) == keyAction()){
 					if (event.pressed){
-						pressed = true;
+						pressedButton = Button.this;
 						pressTime = 0;
-						processed = false;
+						clickReady = true;
 						Button.this.onPointerDown();
 					} else {
 						Button.this.onPointerUp();
-						if (pressed && !processed) onClick();
-						pressed = false;
+						if (pressedButton == Button.this) {
+							pressedButton = null;
+							if (clickReady) onClick();
+						}
 					}
 					return true;
 				}
@@ -127,9 +135,9 @@ public class Button extends Component {
 			}
 		});
 	}
-	
+
 	private Signal.Listener<KeyEvent> keyListener;
-	
+
 	public GameAction keyAction(){
 		return null;
 	}
@@ -138,28 +146,26 @@ public class Button extends Component {
 	public GameAction secondaryTooltipAction(){
 		return null;
 	}
-	
+
 	@Override
 	public void update() {
 		super.update();
-		
-		hotArea.active = visible;
-		
-		if (pressed) {
-			if ((pressTime += Game.elapsed) >= longClick) {
-				pressed = false;
-				if (onLongClick()) {
 
-					hotArea.reset();
-					processed = true;
-					onPointerUp();
-					
-					Game.vibrate( 50 );
-				}
+		hotArea.active = visible;
+
+		if (pressedButton == this && (pressTime += Game.elapsed) >= longClick) {
+			pressedButton = null;
+			if (onLongClick()) {
+
+				hotArea.reset();
+				clickReady = false; //did a long click, can't do a regular one
+				onPointerUp();
+
+				Game.vibrate( 50 );
 			}
 		}
 	}
-	
+
 	protected void onPointerDown() {}
 	protected void onPointerUp() {}
 	protected void onClick() {} //left click, default key type
@@ -193,7 +199,7 @@ public class Button extends Component {
 			hoverTip = null;
 		}
 	}
-	
+
 	@Override
 	protected void layout() {
 		hotArea.x = x;
@@ -201,11 +207,16 @@ public class Button extends Component {
 		hotArea.width = width;
 		hotArea.height = height;
 	}
-	
+
 	@Override
 	public synchronized void destroy () {
 		super.destroy();
 		KeyEvent.removeKeyListener( keyListener );
+		killTooltip();
 	}
-	
+
+	public void givePointerPriority(){
+		hotArea.givePointerPriority();
+	}
+
 }

@@ -39,7 +39,7 @@ public class ToxicGas extends Blob implements Hero.Doom {
 	protected void evolve() {
 		super.evolve();
 
-		int damage = 1 + Dungeon.scalingFloor();
+		int damage = 1 + Dungeon.scalingFloor()/5;
 
 		Char ch;
 		int cell;
@@ -56,19 +56,19 @@ public class ToxicGas extends Blob implements Hero.Doom {
 			}
 		}
 	}
-	
+
 	@Override
 	public void use( BlobEmitter emitter ) {
 		super.use( emitter );
 
 		emitter.pour( Speck.factory( Speck.TOXIC ), 0.4f );
 	}
-	
+
 	@Override
 	public String tileDesc() {
 		return Messages.get(this, "desc");
 	}
-	
+
 	@Override
 	public void onDeath() {
 		Dungeon.fail( getClass() );

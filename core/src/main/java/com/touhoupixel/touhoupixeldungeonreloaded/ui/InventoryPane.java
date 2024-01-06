@@ -618,6 +618,7 @@ public class InventoryPane extends Component {
 		@Override
 		protected void onClick() {
 			super.onClick();
+			GameScene.cancel();
 			lastBag = bag;
 			refresh();
 		}

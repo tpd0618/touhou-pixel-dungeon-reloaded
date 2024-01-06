@@ -36,8 +36,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CelestialBody;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CritChanceUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DistortedAvarice;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoomedZone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeedResist;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
@@ -56,6 +57,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SanctuaryZone;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
@@ -97,6 +101,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Zanmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
@@ -491,7 +496,7 @@ public class Hero extends Char {
 		KindOfWeapon wep = belongings.weapon();
 		int dmg;
 
-		if (Dungeon.heroine.heroClass == HeroClass.PLAYERYOUMU && wep instanceof MeleeWeapon && isCrit() && wep != null) {
+		if (Dungeon.heroine.heroClass == HeroClass.PLAYERYOUMU && wep instanceof MeleeWeapon && isCrit() && wep != null || Dungeon.heroine.buff(CritChanceUp.class) != null && wep != null) {
 			dmg = ((MeleeWeapon) wep).critDamageRoll(this);
 			dmg += RingOfForce.armedDamageBonus(this);
             GLog.p(Messages.get(this, "crit"));
@@ -616,10 +621,6 @@ public class Hero extends Char {
 			dmg *= 0.1f;
 		} //extreme hunger
 
-		if (Dungeon.heroine.buff(DistortedAvarice.class) != null) {
-			dmg *= 0.05f;
-		} //distorted avarice
-
 		if (Dungeon.heroine.buff(HeatRiser.class) != null) {
 			dmg *= 1.5f;
 		} //heat riser
@@ -678,7 +679,7 @@ public class Hero extends Char {
 		return dmg;
 	}
 	public boolean isCrit(){
-		if (getCritChance() > Random.Float()){
+		if (getCritChance() > Random.Float() || Dungeon.heroine.buff(CritChanceUp.class) != null){
 			return true;
 		}
 		else{
@@ -687,6 +688,10 @@ public class Hero extends Char {
 	}
 	public float getCritChance(){
 		float critChance = (float) (1 - (1 - Statistics.power * 0.0005)*(1 - (lvl - 1) * 0.01));
+
+		if (Dungeon.heroine.buff(CritChanceUp.class) != null){
+			critChance += 0.3f;
+		}
 
 		HumanHalf humanHalf = buff(HumanHalf.class);
 		if (humanHalf != null) {
@@ -1292,6 +1297,15 @@ public class Hero extends Char {
 			this.damage(damageRoll(), this);
 		}
 
+		if (Dungeon.heroine.buff(SanctuaryZone.class) != null) {
+			Buff.prolong(Dungeon.heroine, Weakness.class, Weakness.DURATION);
+			Buff.prolong(Dungeon.heroine, Vulnerable.class, Vulnerable.DURATION);
+			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
+			GameScene.flash(-65536);
+			Sample.INSTANCE.play( Assets.Sounds.BLAST );
+			GLog.w(Messages.get(Zanmu.class, "sanctuary_zone"));
+		}
+
 		if (Dungeon.heroine.buff(DismantlePressure.class) != null){
 			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
 		}
@@ -1302,12 +1316,7 @@ public class Hero extends Char {
 			//repels enemy
 			Ballistica trajectory = new Ballistica(Dungeon.heroine.pos, enemy.pos, Ballistica.STOP_TARGET);
 			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size()-1), Ballistica.PROJECTILE);
-			WandOfBlastWave.throwChar(enemy,
-					trajectory,
-					2,
-					true,
-					true,
-					getClass());
+			WandOfBlastWave.throwChar(enemy, trajectory, 2, true, true, getClass());
 		}
 
 		if (Dungeon.heroine.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
@@ -2031,6 +2040,14 @@ public class Hero extends Char {
 		if (this.buff(Onigiri.class) != null && Dungeon.level.map[this.pos] == Terrain.WATER){
 			Buff.prolong(this, Slow.class, Slow.DURATION/10f);
 		}
+
+		if (Dungeon.floor == 31 || Dungeon.floor == 32){
+			Buff.prolong(this, DoomedZone.class, DoomedZone.DURATION);
+		} //hakugyokurou
+
+		if (Dungeon.floor == 33 || Dungeon.floor == 34){
+			Buff.prolong(this, SanctuaryZone.class, SanctuaryZone.DURATION);
+		} //heaven
 
 		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
 			if (Statistics.mood == 0) {

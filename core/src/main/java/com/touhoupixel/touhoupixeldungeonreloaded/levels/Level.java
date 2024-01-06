@@ -58,6 +58,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Torch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfSuperUnlucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
@@ -181,6 +182,10 @@ public abstract class Level implements Bundlable {
 	public void create() {
 
 		Random.pushGenerator( Dungeon.seedCurFloor() );
+
+		if (Dungeon.floor > 30 && Random.Int(50) == 0) {
+			addItemToSpawn(new PotionOfSuperUnlucky());
+		}
 
 		if (!(Dungeon.bossLevel())) {
 

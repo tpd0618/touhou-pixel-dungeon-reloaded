@@ -40,7 +40,6 @@ public class v1_2_Changes {
 		add_v1_1_0_Changes(changeInfos);
 		add_v1_0_9_Changes(changeInfos);
 		add_v1_0_7_Changes(changeInfos);
-		add_v1_0_5_Changes(changeInfos);
 	}
 
 	public static void add_v1_1_8_Changes(ArrayList<ChangeInfo> changeInfos ) {
@@ -52,8 +51,12 @@ public class v1_2_Changes {
 				"_-_ Flandre talisman and hourai talisman are removed from the game.\n" +
 						"_-_ Dismantling now gives upgrade cards again, but you need to use it actively.\n" +
 						"_-_ For above reason, enemies' stats are reworked.\n" +
-						"_-_ Kanako, kutaka, and rumia are reworked.\n" +
+						"_-_ Kanako, kutaka, tsukasa, and rumia are reworked.\n" +
 						"_-_ Grim trap and decay trap are removed from the game.\n" +
+						"_-_ New items, potion of superunlucky and spellcard of hatchet.\n" +
+						"_-_ All inventory are extended by 5.\n" +
+						"_-_ You now start the game with 30 upgrade cards.\n" +
+						"_-_ Various bug fixes.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
@@ -250,34 +253,6 @@ public class v1_2_Changes {
 						"_-_ Added two new badges, no torch badge and learned your lesson badge. \n" +
 						"_-_ Added a weapon which is toramaru's spear, can you reach 100 extra defense for that weapon? \n" +
 						"_-_ Minor text improvements.\n" +
-						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
-	}
-
-	public static void add_v1_0_5_Changes(ArrayList<ChangeInfo> changeInfos ) {
-		ChangeInfo changes = new ChangeInfo("v1.0.5", true, "");
-		changes.hardlight(Window.TITLE_COLOR);
-		changeInfos.add(changes);
-
-		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.0.5 changes",
-				"_-_ Square root snipe debuff is changed to hina's curse.\n" +
-						"_-_ Spellcard of heavenly duel is nerfed.\n" +
-						"_-_ Added new challenge, girls blossom project that replaces 2nd challenge.\n" +
-						"_-_ Reincarnation apple challenge is nerfed.\n" +
-						"_-_ Two melee weapon, akyuu's brush and hecatia's star are added.\n" +
-						"_-_ Fixed an issue that stone of madness can instakill a boss.\n" +
-						"_-_ Flandre and hitori now have miniboss property, which means now unable to corrupt them.\n" +
-						"_-_ Damage output from enemies above hard difficulties have been nerfed.\n" +
-						"_-_ Minor text improvements.\n" +
-						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
-	}
-
-	public static void add_v1_0_1_Changes(ArrayList<ChangeInfo> changeInfos ){
-		ChangeInfo changes = new ChangeInfo("v1.0.1", true, "");
-		changes.hardlight(Window.TITLE_COLOR);
-		changeInfos.add(changes);
-
-		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "v1.0.1 changes",
-				"_-_ Initial release\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 }

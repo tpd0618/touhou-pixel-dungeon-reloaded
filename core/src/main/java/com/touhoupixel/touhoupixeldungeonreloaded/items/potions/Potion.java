@@ -326,15 +326,6 @@ public class Potion extends Item {
 		heroine.busy();
 		apply(heroine);
 
-		if (isHarmfulGasPotion){
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
-					if (!mob.properties().contains(Char.Property.BOSS) || !mob.properties().contains(Char.Property.MINIBOSS)) {
-						Buff.affect(mob, Poison.class).set();
-					}
-				}
-			}
-		}
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
 				if (mob instanceof BossSeija) {

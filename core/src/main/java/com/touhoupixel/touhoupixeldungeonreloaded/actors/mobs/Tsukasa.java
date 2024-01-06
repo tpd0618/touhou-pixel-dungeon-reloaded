@@ -24,11 +24,18 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.TargetedCell;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Bomb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisintegrationTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TsukasaSprite;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -61,35 +68,15 @@ public class Tsukasa extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(27,40);
+        return Random.NormalIntRange(27, 40);
     }
 
     @Override
-    public void damage(int dmg, Object src) {
-        int waterCells = 0;
-        for (int i : PathFinder.NEIGHBOURS9) {
-            if (Dungeon.level.map[pos + i] == Terrain.DOOR
-                    || Dungeon.level.map[pos + i] == Terrain.OPEN_DOOR
-                    || Dungeon.level.map[pos + i] == Terrain.LOCKED_DOOR) {
-                waterCells++;
-            }
-        }
-        if (waterCells > 0) dmg = Math.round(dmg * (2 - waterCells)*0.25f);
-
-        super.damage(dmg, src);
-    }
-
-    @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
-            if (Statistics.difficulty > 2) {
-                ((SummoningTrap)(new SummoningTrap().set(enemy.pos))).activate(2);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
-            }
-        }
-        return damage;
+    public void die(Object cause) {
+        TsukasaSoul tsukasaSoul = new TsukasaSoul();
+        tsukasaSoul.state = tsukasaSoul.WANDERING;
+        tsukasaSoul.pos = this.pos;
+        GameScene.add(tsukasaSoul);
+        super.die(cause);
     }
 }
