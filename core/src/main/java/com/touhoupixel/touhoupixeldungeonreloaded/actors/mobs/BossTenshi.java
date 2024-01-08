@@ -59,7 +59,7 @@ public class BossTenshi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(57, 89);
+        return Random.NormalIntRange(23, 44);
     }
 
     @Override

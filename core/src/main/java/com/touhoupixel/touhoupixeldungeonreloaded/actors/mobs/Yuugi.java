@@ -40,7 +40,7 @@ public class Yuugi extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(46, 66);
+        return Random.NormalIntRange(23, 33);
     }
 
     @Override

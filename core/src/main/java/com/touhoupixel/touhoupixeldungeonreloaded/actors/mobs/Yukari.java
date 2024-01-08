@@ -54,10 +54,10 @@ public class Yukari extends Mob {
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Buff.prolong(enemy, AntiShipBattery.class, AntiShipBattery.DURATION);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+                Buff.prolong(this, SuperHard.class, SuperHard.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, SuperHard.class, SuperHard.DURATION);
+                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
             }
         }
         return damage;

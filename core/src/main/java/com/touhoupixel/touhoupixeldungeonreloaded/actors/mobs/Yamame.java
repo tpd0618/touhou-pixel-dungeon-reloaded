@@ -43,7 +43,7 @@ public class Yamame extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(30, 44);
+        return Random.NormalIntRange(15, 22);
     }
 
     @Override

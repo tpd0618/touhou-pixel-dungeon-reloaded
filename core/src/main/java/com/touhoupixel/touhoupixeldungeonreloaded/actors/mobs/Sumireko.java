@@ -41,7 +41,7 @@ public class Sumireko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(67, 97);
+        return Random.NormalIntRange(34, 44);
     }
 
     @Override

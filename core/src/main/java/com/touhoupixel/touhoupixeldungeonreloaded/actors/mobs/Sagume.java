@@ -46,7 +46,7 @@ public class Sagume extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(57, 83);
+        return Random.NormalIntRange(27, 41);
     }
 
     @Override

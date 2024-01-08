@@ -32,7 +32,7 @@ public class Shion extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(66, 102);
+        return Random.NormalIntRange(66, 82);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Shion extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(22, 34);
+        return Random.NormalIntRange(11, 17);
     }
 
     @Override

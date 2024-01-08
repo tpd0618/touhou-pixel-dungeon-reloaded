@@ -60,7 +60,7 @@ public class Sekibanki extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(16, 24);
+        return Random.NormalIntRange(8, 12);
     }
 
     @Override

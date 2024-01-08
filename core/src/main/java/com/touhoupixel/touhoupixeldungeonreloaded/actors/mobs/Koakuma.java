@@ -28,7 +28,7 @@ public class Koakuma extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(Statistics.upgradesUsed*3, 1+Statistics.upgradesUsed*5);
+        return Random.NormalIntRange(Statistics.upgradesUsed*2, 1+Statistics.upgradesUsed*3);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Koakuma extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(12, 20);
+        return Random.NormalIntRange(6, 10);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class Misumaru extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(50, 70);
+        return Random.NormalIntRange(44, 64);
     } // TODO ability must be changed
 
     @Override

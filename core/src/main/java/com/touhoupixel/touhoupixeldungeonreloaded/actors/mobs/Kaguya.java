@@ -48,7 +48,7 @@ public class Kaguya extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(35, 51);
+        return Random.NormalIntRange(17, 25);
     }
 
     @Override

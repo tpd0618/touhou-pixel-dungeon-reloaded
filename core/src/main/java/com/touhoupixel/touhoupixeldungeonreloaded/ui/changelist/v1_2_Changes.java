@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class v1_2_Changes {
 
-	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+	public static void addAllChanges(ArrayList<ChangeInfo> changeInfos) {
 		add_v1_1_8_Changes(changeInfos);
 		add_v1_1_7_Changes(changeInfos);
 		add_v1_1_6_Changes(changeInfos);
@@ -38,11 +38,9 @@ public class v1_2_Changes {
 		add_v1_1_2_Changes(changeInfos);
 		add_v1_1_1_Changes(changeInfos);
 		add_v1_1_0_Changes(changeInfos);
-		add_v1_0_9_Changes(changeInfos);
-		add_v1_0_7_Changes(changeInfos);
 	}
 
-	public static void add_v1_1_8_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_8_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.8", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -60,7 +58,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_7_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_7_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.7", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -78,7 +76,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_6_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_6_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.6", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -96,7 +94,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_5_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_5_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.5", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -112,7 +110,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_4_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_4_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.4", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -131,7 +129,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_3_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_3_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.3", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -153,7 +151,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_2_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_2_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.2", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -173,7 +171,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_1_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_1_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.1", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -184,7 +182,7 @@ public class v1_2_Changes {
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
-	public static void add_v1_1_0_Changes(ArrayList<ChangeInfo> changeInfos ) {
+	public static void add_v1_1_0_Changes(ArrayList<ChangeInfo> changeInfos) {
 		ChangeInfo changes = new ChangeInfo("v1.1.0", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
@@ -203,56 +201,8 @@ public class v1_2_Changes {
 						"_-_ Difficulty now can be changed via ominous gaps in your inventory.\n" +
 						"_-_ Elixir of boss killer now replaces elixir of quad damage.\n" +
 						"_-_ Many mobs are changed into, more likely shiren monsters. Abyss dragon is here.\n" +
-						"_-_ Warning: Saves prior to version 1.1.0 will not be compatible properly! If there is such a save, please delete it.\n" +
 						"_-_ Major text improvements.\n" +
 						"_-_ Other things were changed but hard to write since there are too many.\n" +
-						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
-	}
-
-	public static void add_v1_0_9_Changes(ArrayList<ChangeInfo> changeInfos ) {
-		ChangeInfo changes = new ChangeInfo("v1.0.9", true, "");
-		changes.hardlight(Window.TITLE_COLOR);
-		changeInfos.add(changes);
-
-		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.0.9 changes",
-				"_-_ 6 special tiles were completely removed from the game.\n" +
-						"_-_ Homunculus and 5 vial items were added.\n" +
-						"_-_ Potions and spellcards are changed.\n" +
-						"_-_ Some weapons are added.\n" +
-						"_-_ Some ability cards are changed.\n" +
-						"_-_ Nito dismantle hammer is now located at dismantle command.\n" +
-						"_-_ New difficulty, gensokyo extinction is added.\n" +
-						"_-_ Total floors are reduced to 40f. Because 50f was too long.\n" +
-						"_-_ New buff, brainwash, is added to a certain ability card.\n" +
-						"_-_ Bestiary were changed a little.\n" +
-						"_-_ Remilia boss and seija boss has slightly changed.\n" +
-						"_-_ For some reason, tutorial was removed. Also tutorial in this game was meaningless.\n" +
-						"_-_ Warning: Saves prior to version 1.0.9 will not be compatible properly! If there is such a save, please delete it.\n" +
-						"_-_ Major text improvements.\n" +
-						"_-_ Some bugs have been fixed.\n" +
-						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
-	}
-
-	public static void add_v1_0_7_Changes(ArrayList<ChangeInfo> changeInfos ) {
-		ChangeInfo changes = new ChangeInfo("v1.0.7", true, "");
-		changes.hardlight(Window.TITLE_COLOR);
-		changeInfos.add(changes);
-
-		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.0.7 changes",
-				"_-_ Player corruption feature is removed from the game.\n" +
-						"_-_ Doremy, keine, megumu, sannyo, seiran, suwako, yatsuhashi, and yukari are reworked.\n" +
-						"_-_ Damage output from enemies above hard difficulties have been nerfed again.(H: 1.15x->1.1x, O: 1.3x->1.2x)\n" +
-						"_-_ Damage output from enemies for easy difficulty have been buffed.(0.8x->0.85x)\n" +
-						"_-_ Purity herb, sagume's wing, underground sun card, and item season card are reworked.\n" +
-						"_-_ Girls blossom project challenge, and cursing trap has been nerfed.\n" +
-						"_-_ Potion of enlightenment is reworked, for hakkero users.\n" +
-						"_-_ Herb price in shops are reduced.\n" +
-						"_-_ Removed spellcard of corrupting reduction, and replaced with spellcard of maiden.\n" +
-						"_-_ Fixed danmaku texts that has written the wrong infos.\n" +
-						"_-_ Burning traps now don't appear on floor 1~4.\n" +
-						"_-_ Added two new badges, no torch badge and learned your lesson badge. \n" +
-						"_-_ Added a weapon which is toramaru's spear, can you reach 100 extra defense for that weapon? \n" +
-						"_-_ Minor text improvements.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 }

@@ -73,7 +73,7 @@ public class Shou extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(23, 37);
+		return Random.NormalIntRange(11, 18);
 	}
 
 	private Ballistica beam;

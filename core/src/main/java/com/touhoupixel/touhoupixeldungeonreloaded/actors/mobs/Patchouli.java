@@ -40,7 +40,7 @@ public class Patchouli extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(12, 19);
+        return Random.NormalIntRange(6, 9);
     }
 
     @Override

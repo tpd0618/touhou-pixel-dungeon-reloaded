@@ -89,7 +89,7 @@ public class Utsuho extends Mob implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(57, 83);
+        return Random.NormalIntRange(28, 41);
     }
 
     @Override

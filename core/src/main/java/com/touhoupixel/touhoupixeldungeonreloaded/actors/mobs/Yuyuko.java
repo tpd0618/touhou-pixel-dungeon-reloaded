@@ -79,7 +79,7 @@ public class Yuyuko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(38, 56);
+        return Random.NormalIntRange(19, 28);
     }
 
     @Override

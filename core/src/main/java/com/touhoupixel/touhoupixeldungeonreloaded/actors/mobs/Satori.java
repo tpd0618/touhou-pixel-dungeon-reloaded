@@ -41,13 +41,13 @@ public class Satori extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(45, 51);
+        return Random.NormalIntRange(22, 25);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(5) == 0){
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0){
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, HeavenSpeed.class, HeavenSpeed.DURATION);
             }

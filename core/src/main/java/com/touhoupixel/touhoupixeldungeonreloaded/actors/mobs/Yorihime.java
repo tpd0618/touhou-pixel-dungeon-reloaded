@@ -69,7 +69,7 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(57, 83);
+		return Random.NormalIntRange(28, 41);
 	}
 
 	@Override

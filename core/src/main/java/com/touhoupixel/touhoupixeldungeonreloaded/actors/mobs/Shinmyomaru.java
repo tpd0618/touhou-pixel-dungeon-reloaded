@@ -50,7 +50,7 @@ public class Shinmyomaru extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(95, 145);
+        return Random.NormalIntRange(95, 125);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Shinmyomaru extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(35, 51);
+        return Random.NormalIntRange(17, 22);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class Reimu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(127, 197);
+        return Random.NormalIntRange(117, 187);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Reimu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(67, 97);
+        return Random.NormalIntRange(34, 47);
     }
 
     @Override

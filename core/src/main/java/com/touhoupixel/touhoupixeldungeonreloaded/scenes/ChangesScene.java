@@ -33,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.ui.StyledButton;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.changelist.ChangeInfo;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.changelist.v1_2_Changes;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.changelist.v1_4_Changes;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.audio.Music;
@@ -85,6 +86,9 @@ public class ChangesScene extends PixelScene {
 		switch (changesSelected){
 			case 0: default:
 				v1_2_Changes.addAllChanges(changeInfos);
+				break;
+			case 1:
+				v1_4_Changes.addAllChanges(changeInfos);
 				break;
 		}
 

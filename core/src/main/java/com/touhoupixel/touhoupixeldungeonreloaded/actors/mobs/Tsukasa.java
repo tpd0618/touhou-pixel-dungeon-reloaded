@@ -68,7 +68,7 @@ public class Tsukasa extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(27, 40);
+        return Random.NormalIntRange(13, 20);
     }
 
     @Override

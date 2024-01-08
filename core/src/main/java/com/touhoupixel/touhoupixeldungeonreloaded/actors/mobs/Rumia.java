@@ -41,7 +41,7 @@ public class Rumia extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(120, 182);
+        return Random.NormalIntRange(120, 142);
     }
 
     @Override
@@ -51,14 +51,14 @@ public class Rumia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(46, 66);
+        return Random.NormalIntRange(23, 33);
     }
 
     @Override
     protected boolean act() {
         if (this.state != SLEEPING && this.state != FLEEING) {
             if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
-                if (Random.Int(7) == 0) {
+                if (Random.Int(8) == 0) {
                     Buff.prolong(Dungeon.heroine, Blindness.class, Blindness.DURATION/5f);
                     GLog.w(Messages.get(this, "rumia"));
                 }

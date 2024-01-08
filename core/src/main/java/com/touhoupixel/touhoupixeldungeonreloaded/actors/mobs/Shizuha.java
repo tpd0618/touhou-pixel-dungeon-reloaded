@@ -48,7 +48,7 @@ public class Shizuha extends MobWithSpellcard {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(29,43);
+        return Random.NormalIntRange(14, 22);
     }
 
     @Override

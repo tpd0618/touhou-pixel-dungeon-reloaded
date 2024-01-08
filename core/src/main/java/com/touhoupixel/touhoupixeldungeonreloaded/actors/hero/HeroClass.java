@@ -45,9 +45,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfHatchet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Miracle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
@@ -76,7 +74,7 @@ public enum HeroClass {
 		}
 
 		UpgradeCard upgradeCard = new UpgradeCard();
-		upgradeCard.quantity(30).collect();
+		upgradeCard.quantity(10).collect(); //temporal
 
 		OminousGap ominousGap = new OminousGap();
 		ominousGap.quantity(5).collect();
@@ -95,9 +93,6 @@ public enum HeroClass {
 		GlassBottle glassBottle = new GlassBottle();
 		glassBottle.collect();
 		Dungeon.quickslot.setSlot(1, glassBottle);
-
-		Miracle miracle = new Miracle();
-		miracle.identify().collect();
 
 		NitoChecker nitoChecker = new NitoChecker();
 		nitoChecker.collect();

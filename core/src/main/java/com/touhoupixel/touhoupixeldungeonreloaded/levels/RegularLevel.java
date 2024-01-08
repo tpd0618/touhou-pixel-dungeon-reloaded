@@ -317,7 +317,7 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	protected void createItems() {
-		int nItems = 8;
+		int nItems = 9;
 
 		if (Statistics.difficulty == 6){
 			nItems -= 1;

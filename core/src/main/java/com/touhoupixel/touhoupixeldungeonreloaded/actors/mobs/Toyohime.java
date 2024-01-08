@@ -71,7 +71,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(62, 89);
+		return Random.NormalIntRange(31, 44);
 	}
 
 	@Override

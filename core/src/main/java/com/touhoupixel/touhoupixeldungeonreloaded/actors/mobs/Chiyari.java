@@ -61,7 +61,7 @@ public class Chiyari extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(32, 47);
+        return Random.NormalIntRange(16, 23);
     }
 
     @Override

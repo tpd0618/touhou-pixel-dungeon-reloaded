@@ -52,7 +52,7 @@ public class Megumu extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange( 93, 141 );
+        return Random.NormalIntRange(93, 141);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Megumu extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(32, 48);
+        return Random.NormalIntRange(16, 24);
     }
 
     @Override

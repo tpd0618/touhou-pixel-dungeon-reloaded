@@ -43,7 +43,7 @@ public class Mystia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(7, 11);
+        return Random.NormalIntRange(3, 5);
     }
 
     @Override

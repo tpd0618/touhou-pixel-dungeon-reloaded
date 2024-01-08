@@ -61,7 +61,7 @@ public class Hina extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(29, 43);
+        return Random.NormalIntRange(14, 21);
     }
 
     @Override

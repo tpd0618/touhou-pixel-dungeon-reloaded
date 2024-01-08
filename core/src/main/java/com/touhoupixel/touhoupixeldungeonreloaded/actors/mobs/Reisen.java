@@ -55,7 +55,7 @@ public class Reisen extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(8, 14);
+        return Random.NormalIntRange(4, 7);
     }
 
     @Override

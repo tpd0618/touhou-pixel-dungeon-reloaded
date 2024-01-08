@@ -66,7 +66,7 @@ public class Sannyo extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(32, 48);
+        return Random.NormalIntRange(16, 24);
     }
 
     @Override

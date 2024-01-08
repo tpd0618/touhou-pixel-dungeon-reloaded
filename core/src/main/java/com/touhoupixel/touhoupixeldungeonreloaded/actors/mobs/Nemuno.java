@@ -41,7 +41,7 @@ public class Nemuno extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(20, 30);
+        return Random.NormalIntRange(10, 15);
     }
 
     @Override

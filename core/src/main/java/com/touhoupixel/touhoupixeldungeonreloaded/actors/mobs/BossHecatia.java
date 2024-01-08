@@ -103,7 +103,7 @@ public class BossHecatia extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(63, 97);
+        return Random.NormalIntRange(40, 50);
     }
 
     @Override

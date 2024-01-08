@@ -27,7 +27,7 @@ public class Yachie extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(34, 39);
+        return Random.NormalIntRange(44, 49);
     }
 
     @Override

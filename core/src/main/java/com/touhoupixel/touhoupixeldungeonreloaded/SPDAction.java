@@ -74,9 +74,9 @@ public class SPDAction extends GameAction {
 	public static final GameAction BAG_6        = new SPDAction("bag_6");
 	public static final GameAction BAG_7        = new SPDAction("bag_7");
 
-	public static final GameAction EXAMINE      = new SPDAction("examine");
-	public static final GameAction WAIT         = new SPDAction("wait");
 	public static final GameAction REST         = new SPDAction("rest");
+	public static final GameAction SPELL_CARD   = new SPDAction("spell_card");
+	public static final GameAction WAIT         = new SPDAction("wait");
 
 	public static final GameAction TAG_ATTACK   = new SPDAction("tag_attack");
 	public static final GameAction TAG_DANGER   = new SPDAction("tag_danger");
@@ -133,8 +133,9 @@ public class SPDAction extends GameAction {
 		defaultBindings.put( Input.Keys.F6,             SPDAction.BAG_6 );
 		defaultBindings.put( Input.Keys.F7,             SPDAction.BAG_7 );
 
-		defaultBindings.put( Input.Keys.E,              SPDAction.EXAMINE );
 		defaultBindings.put( Input.Keys.Z,              SPDAction.REST );
+		defaultBindings.put( Input.Keys.V,              SPDAction.SPELL_CARD );
+		defaultBindings.put( Input.Keys.P,              SPDAction.WAIT );
 
 		defaultBindings.put( Input.Keys.Q,              SPDAction.TAG_ATTACK );
 		defaultBindings.put( Input.Keys.TAB,            SPDAction.TAG_DANGER );
@@ -160,7 +161,7 @@ public class SPDAction extends GameAction {
 		defaultControllerBindings.put( Input.Keys.BUTTON_START,     SPDAction.BACK );
 
 		defaultControllerBindings.put( Input.Keys.BUTTON_R2,        SPDAction.LEFT_CLICK );
-		defaultControllerBindings.put( Input.Keys.BUTTON_THUMBR,    SPDAction.LEFT_CLICK );
+		defaultControllerBindings.put( Input.Keys.BUTTON_THUMBR,    SPDAction.SPELL_CARD );
 		defaultControllerBindings.put( Input.Keys.BUTTON_L2,        SPDAction.RIGHT_CLICK );
 		defaultControllerBindings.put( Input.Keys.BUTTON_SELECT,    SPDAction.MIDDLE_CLICK );
 
@@ -175,7 +176,7 @@ public class SPDAction extends GameAction {
 		defaultControllerBindings.put( Input.Keys.BUTTON_L1,        SPDAction.ZOOM_OUT );
 
 		defaultControllerBindings.put( Input.Keys.BUTTON_A,         SPDAction.TAG_ATTACK );
-		defaultControllerBindings.put( Input.Keys.BUTTON_B,         SPDAction.EXAMINE );
+		defaultControllerBindings.put( Input.Keys.BUTTON_B,         SPDAction.SPELL_CARD );
 		defaultControllerBindings.put( Input.Keys.BUTTON_X,         SPDAction.QUICKSLOT_SELECTOR );
 		defaultControllerBindings.put( Input.Keys.BUTTON_Y,         SPDAction.INVENTORY_SELECTOR );
 	}
