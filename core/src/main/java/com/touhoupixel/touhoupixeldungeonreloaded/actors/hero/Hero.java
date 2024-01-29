@@ -1888,7 +1888,7 @@ public class Hero extends Char {
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
 			return false;
 
-		super.add( buff );
+		boolean added = super.add( buff );
 
 		if (sprite != null && buffs().contains(buff)) {
 			String msg = buff.heroMessage();
@@ -1903,7 +1903,7 @@ public class Hero extends Char {
 		}
 
 		BuffIndicator.refreshHero();
-		return false;
+		return added;
 	}
 
 	@Override

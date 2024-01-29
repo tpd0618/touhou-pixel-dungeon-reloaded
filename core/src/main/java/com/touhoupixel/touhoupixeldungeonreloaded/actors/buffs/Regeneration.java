@@ -22,11 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 
 public class Regeneration extends Buff {
 
@@ -36,22 +38,44 @@ public class Regeneration extends Buff {
 		actPriority = HERO_PRIO - 1;
 	}
 
-	private static final float REGENERATION_DELAY = 1;
+	private static final float REGENERATION_DELAY = 10;
 
 	@Override
 	public boolean act() {
 		if (target.isAlive()) {
 
+			Hunger hunger = Buff.affect(target, Hunger.class);
+
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
-				if (regenOn()) {
-					target.HP += 1;
+				LockedFloor lock = target.buff(LockedFloor.class);
+				if (target.HP > 0 && (lock == null || lock.regenOn())) {
+					if (Statistics.card32){
+						if (target.buff(RegenBlock.class) == null && target.HT > target.HP + 2) {
+							target.HP += 3;
+							hunger.affectHunger( -10);
+						}
+					} else {
+						if (target.buff(RegenBlock.class) == null) {
+							target.HP += 1;
+						}
+					}
 					if (target.HP == regencap()) {
 						((Hero) target).resting = false;
 					}
 				}
 			}
 
+			ChaliceOfBlood.chaliceRegen regenBuff = Dungeon.heroine.buff( ChaliceOfBlood.chaliceRegen.class);
+
 			float delay = REGENERATION_DELAY;
+			if (regenBuff != null) {
+				if (regenBuff.isCursed()) {
+					delay *= 1.5f;
+				} else {
+					delay -= regenBuff.itemLevel()*0.9f;
+					delay /= RingOfEnergy.artifactChargeMultiplier(target);
+				}
+			}
 			spend( delay );
 
 		} else {
