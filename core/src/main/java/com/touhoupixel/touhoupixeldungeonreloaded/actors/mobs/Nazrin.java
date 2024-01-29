@@ -11,7 +11,7 @@ public class Nazrin extends Mob {
     {
         spriteClass = NazrinSprite.class;
 
-        HP = HT = 10;
+        HP = HT = 11;
         defenseSkill = 2;
         EXP = 1;
         maxLvl = 10;
