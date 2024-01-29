@@ -422,7 +422,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public boolean add(Buff buff ) {
-		super.add( buff );
+		boolean added = super.add( buff );
 		if (buff instanceof Amok || buff instanceof AllyBuff) {
 			state = HUNTING;
 		} else if (buff instanceof Terror || buff instanceof Dread) {
@@ -431,7 +431,7 @@ public abstract class Mob extends Char {
 			state = SLEEPING;
 			postpone( Sleep.SWS );
 		}
-		return false;
+		return added;
 	}
 
 	@Override
