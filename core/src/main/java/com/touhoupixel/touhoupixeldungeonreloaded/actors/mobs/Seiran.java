@@ -42,18 +42,4 @@ public class Seiran extends Mob {
     public int drRoll() {
         return Random.NormalIntRange(34, 48);
     }
-
-    @Override
-    public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
-            Buff.prolong(enemy, Inversion.class, Inversion.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, DeSlaying.class, DeSlaying.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-            }
-        }
-        return super.defenseProc(enemy, damage);
-    }
-}
+} //see each talisman

@@ -39,7 +39,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoomedZone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
@@ -422,7 +421,7 @@ public abstract class Mob extends Char {
 	}
 
 	@Override
-	public void add( Buff buff ) {
+	public boolean add(Buff buff ) {
 		super.add( buff );
 		if (buff instanceof Amok || buff instanceof AllyBuff) {
 			state = HUNTING;
@@ -432,20 +431,24 @@ public abstract class Mob extends Char {
 			state = SLEEPING;
 			postpone( Sleep.SWS );
 		}
+		return false;
 	}
 
 	@Override
-	public void remove( Buff buff ) {
-		super.remove( buff );
-		if ((buff instanceof Terror && buff(Dread.class) == null)
-				|| (buff instanceof Dread && buff(Terror.class) == null)) {
-			if (enemySeen) {
-				sprite.showStatus(CharSprite.NEGATIVE, Messages.get(this, "rage"));
-				state = HUNTING;
-			} else {
-				state = WANDERING;
+	public boolean remove( Buff buff ) {
+		if (super.remove( buff )) {
+			if ((buff instanceof Terror && buff(Dread.class) == null)
+					|| (buff instanceof Dread && buff(Terror.class) == null)) {
+				if (enemySeen) {
+					sprite.showStatus(CharSprite.WARNING, Messages.get(this, "rage"));
+					state = HUNTING;
+				} else {
+					state = WANDERING;
+				}
 			}
+			return true;
 		}
+		return false;
 	}
 
 	protected boolean canAttack( Char enemy ) {

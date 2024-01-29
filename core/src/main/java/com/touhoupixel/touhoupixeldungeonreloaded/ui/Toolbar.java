@@ -193,7 +193,7 @@ public class Toolbar extends Component {
 
 									@Override
 									public boolean itemSelectable(Item item) {
-										return item.defaultAction != null;
+										return item.defaultAction() != null;
 									}
 
 									@Override
@@ -546,7 +546,7 @@ public class Toolbar extends Component {
 								public void onSelect(int idx, boolean alt) {
 									super.onSelect(idx, alt);
 									Item item = items.get(idx);
-									if (alt && item.defaultAction != null) {
+									if (alt && item.defaultAction() != null) {
 										item.execute(Dungeon.heroine);
 										if (item.usesTargeting) {
 											QuickSlotButton.useTargeting(idx);
@@ -746,6 +746,16 @@ public class Toolbar extends Component {
 		}
 	}
 
+	public void alpha( float value ){
+		btnWait.alpha( value );
+		btnSearch.alpha( value );
+		btnInventory.alpha( value );
+		for (QuickslotTool tool : btnQuick){
+			tool.alpha(value);
+		}
+		btnSwap.alpha( value );
+	}
+
 	public void pickup( Item item, int cell ) {
 		pickedUp.reset( item,
 			cell,
@@ -772,6 +782,8 @@ public class Toolbar extends Component {
 		private static final int BGCOLOR = 0x7B8073;
 
 		private Image base;
+
+		private Image icon;
 
 		public Tool( int x, int y, int width, int height ) {
 			super();
@@ -801,6 +813,16 @@ public class Toolbar extends Component {
 
 			base.x = x;
 			base.y = y;
+
+			if (icon != null){
+				icon.x = x + (width()- icon.width())/2f;
+				icon.y = y + (height()- icon.height())/2f;
+			}
+		}
+
+		public void alpha( float value ){
+			base.alpha(value);
+			if (icon != null) icon.alpha(value);
 		}
 
 		@Override

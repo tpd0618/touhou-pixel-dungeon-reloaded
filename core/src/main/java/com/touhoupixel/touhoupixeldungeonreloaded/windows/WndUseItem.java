@@ -56,7 +56,7 @@ public class WndUseItem extends WndInfoItem {
 								item.execute(Dungeon.heroine, action);
 							}
 							Item.updateQuickslot();
-							if (action == item.defaultAction && item.usesTargeting && owner == null) {
+							if (action == item.defaultAction() && item.usesTargeting && owner == null) {
 								InventoryPane.useTargeting();
 							}
 						}
@@ -65,7 +65,7 @@ public class WndUseItem extends WndInfoItem {
 					buttons.add(btn);
 					add(btn);
 
-					if (action.equals(item.defaultAction)) {
+					if (action.equals(item.defaultAction())) {
 						btn.textColor(TITLE_COLOR);
 					}
 

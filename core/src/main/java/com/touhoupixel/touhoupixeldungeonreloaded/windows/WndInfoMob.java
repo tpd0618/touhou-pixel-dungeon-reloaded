@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.HealthBar;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndTitledMessage;
 import com.watabou.noosa.ui.Component;
 
 public class WndInfoMob extends WndTitledMessage {

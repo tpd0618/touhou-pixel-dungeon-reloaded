@@ -412,7 +412,7 @@ public class Potion extends Item {
 			if (Dungeon.heroine.isAlive()) Catalog.setNotSeen(getClass());
 		}
 	}
-	
+
 	@Override
 	public Item identify( boolean byHero ) {
 		super.identify(byHero);

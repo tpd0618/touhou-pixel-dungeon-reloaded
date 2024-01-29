@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.InventoryPane;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.RedButton;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
 import com.watabou.input.PointerEvent;
 import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Image;
@@ -51,8 +55,8 @@ public class RightClickMenu extends Component {
 
 	public RightClickMenu(Item item){
 		ArrayList<String> actions = item.actions(Dungeon.heroine);
-		if (actions.remove(item.defaultAction)) {
-			actions.add(0, item.defaultAction);
+		if (actions.remove(item.defaultAction())) {
+			actions.add(0, item.defaultAction());
 		}
 		String[] options = actions.toArray(new String[0]);
 		this.item = item;
@@ -104,7 +108,7 @@ public class RightClickMenu extends Component {
 					if (item != null){
 						item.execute(Dungeon.heroine, options[finalI]);
 
-						if (options[finalI].equals(item.defaultAction) && item.usesTargeting){
+						if (options[finalI].equals(item.defaultAction()) && item.usesTargeting){
 							InventoryPane.useTargeting();
 						}
 					}
@@ -114,7 +118,7 @@ public class RightClickMenu extends Component {
 				}
 			};
 			if (item != null){
-				if (options[i].equals(item.defaultAction)) {
+				if (options[i].equals(item.defaultAction())) {
 					buttons[i].textColor(Window.TITLE_COLOR);
 				}
 				buttons[i].text(item.actionName(options[i], Dungeon.heroine));

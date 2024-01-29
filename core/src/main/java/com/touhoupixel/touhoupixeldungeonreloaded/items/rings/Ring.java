@@ -23,23 +23,15 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.rings;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.EnhancedRings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -310,9 +302,7 @@ public class Ring extends KindofMisc {
 	@Override
 	public int buffedLvl() {
 		int lvl = super.buffedLvl();
-		if (Dungeon.heroine.buff(EnhancedRings.class) != null){
-			lvl++;
-		}
+		//todo gimmick
 		return lvl;
 	}
 

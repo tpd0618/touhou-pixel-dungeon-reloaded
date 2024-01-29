@@ -70,9 +70,10 @@ public class Shopkeeper extends NPC {
 	}
 	
 	@Override
-	public void add( Buff buff ) {
+	public boolean add(Buff buff ) {
 		flee();
-	}
+        return false;
+    }
 	
 	public void flee() {
 		destroy();

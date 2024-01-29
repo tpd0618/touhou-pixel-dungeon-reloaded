@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.ui;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDAction;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CircleArc;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
@@ -42,6 +43,7 @@ import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.ui.Component;
 import com.watabou.utils.ColorMath;
+import com.watabou.utils.GameMath;
 
 public class StatusPane extends Component {
 
@@ -69,6 +71,8 @@ public class StatusPane extends Component {
 	private BitmapText level;
 
 	private BuffIndicator buffs;
+
+	private Compass compass;
 
 	private BusyIndicator busy;
 	private CircleArc counter;
@@ -109,6 +113,9 @@ public class StatusPane extends Component {
 		add(avatar);
 
 		talentBlink = 0;
+
+		compass = new Compass(Dungeon.level.exit());
+		add( compass );
 
 		if (large) rawShielding = new Image(asset, 0, 112, 128, 9);
 		else rawShielding = new Image(asset, 0, 40, 50, 4);
@@ -177,6 +184,10 @@ public class StatusPane extends Component {
 		PixelScene.align(avatar);
 
 		heroInfo.setRect(x, y + (large ? 0 : 1), 30, large ? 40 : 30);
+
+		compass.x = avatar.x + avatar.width / 2f - compass.origin.x;
+		compass.y = avatar.y + avatar.height / 2f - compass.origin.y;
+		PixelScene.align(compass);
 
 		if (large) {
 			exp.x = x + 30;
@@ -304,6 +315,22 @@ public class StatusPane extends Component {
 		}
 
 		counter.setSweep((1f - Actor.now() % 1f) % 1f);
+	}
+
+	public void alpha( float value ){
+		value = GameMath.gate(0, value, 1f);
+		bg.alpha(value);
+		avatar.alpha(value);
+		rawShielding.alpha(0.5f*value);
+		shieldedHP.alpha(value);
+		hp.alpha(value);
+		hpText.alpha(0.6f*value);
+		exp.alpha(value);
+		if (expText != null) expText.alpha(0.6f*value);
+		level.alpha(value);
+		compass.alpha(value);
+		busy.alpha(value);
+		counter.alpha(value);
 	}
 
 	public void showStarParticles() {

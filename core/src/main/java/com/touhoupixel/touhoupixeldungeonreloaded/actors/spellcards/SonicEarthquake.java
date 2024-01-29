@@ -47,7 +47,7 @@ public class SonicEarthquake extends Spellcard{
         }
 
 
-        // forget potions or scrolls
+        //forget potions or scrolls
         if (active == 0){
             SpellcardHolder sh = Dungeon.heroine.belongings.getItem(SpellcardHolder.class);
             int limit = 5;

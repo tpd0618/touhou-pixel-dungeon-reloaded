@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,18 +29,24 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.IconButton;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.Icons;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.InventorySlot;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.RightClickMenu;
+import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndInfoItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndUseItem;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.input.GameAction;
@@ -81,7 +87,7 @@ public class InventoryPane extends Component {
 
 	private ArrayList<BagButton> bags;
 
-	public static final int WIDTH = 238;
+	public static final int WIDTH = 187;
 	public static final int HEIGHT = 82;
 
 	private static final int SLOT_WIDTH = 17;
@@ -100,7 +106,7 @@ public class InventoryPane extends Component {
 	private static InventorySlot targetingSlot = null;
 	public static Char lastTarget = null;
 
-	public InventoryPane(){
+	public InventoryPane() {
 		super();
 		instance = this;
 	}
@@ -121,10 +127,10 @@ public class InventoryPane extends Component {
 		bg2 = Chrome.get(Chrome.Type.TOAST_TR);
 		add(bg2);
 
-		blocker = new PointerArea(0, 0, PixelScene.uiCamera.width, PixelScene.uiCamera.height){
+		blocker = new PointerArea(0, 0, PixelScene.uiCamera.width, PixelScene.uiCamera.height) {
 			@Override
 			protected void onClick(PointerEvent event) {
-				if (selector != null && !bg.overlapsScreenPoint((int)event.current.x, (int)event.current.y)){
+				if (selector != null && !bg.overlapsScreenPoint((int) event.current.x, (int) event.current.y)) {
 					//any windows opened as a consequence of this should be centered on the inventory
 					GameScene.centerNextWndOnInvPane();
 					selector.onSelect(null);
@@ -134,9 +140,9 @@ public class InventoryPane extends Component {
 			}
 		};
 		blocker.target = bg; //targets bg when there is no selector, otherwise targets itself
-		add (blocker);
+		add(blocker);
 
-		keyBlocker = new Signal.Listener<KeyEvent>(){
+		keyBlocker = new Signal.Listener<KeyEvent>() {
 			@Override
 			public boolean onSignal(KeyEvent keyEvent) {
 				if (keyEvent.pressed && isSelecting() && InventoryPane.this.visible
@@ -144,9 +150,7 @@ public class InventoryPane extends Component {
 						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_2
 						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_3
 						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_4
-						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_5
-						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_6
-						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_7){
+						&& KeyBindings.getActionForKey(keyEvent) != SPDAction.BAG_5) {
 					//any windows opened as a consequence of this should be centered on the inventory
 					GameScene.centerNextWndOnInvPane();
 					selector.onSelect(null);
@@ -159,7 +163,7 @@ public class InventoryPane extends Component {
 		};
 
 		equipped = new ArrayList<>();
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < 5; i++) {
 			InventorySlot btn = new InventoryPaneSlot(null);
 			equipped.add(btn);
 			add(btn);
@@ -182,25 +186,25 @@ public class InventoryPane extends Component {
 		add(promptTxt);
 
 		bagItems = new ArrayList<>();
-		for (int i = 0; i < 25; i++){
+		for (int i = 0; i < 20; i++) {
 			InventorySlot btn = new InventoryPaneSlot(null);
 			bagItems.add(btn);
 			add(btn);
 		}
 
 		bags = new ArrayList<>();
-		for (int i = 0; i < 7; i++){
-			BagButton btn = new BagButton(null, i+1);
+		for (int i = 0; i < 5; i++) {
+			BagButton btn = new BagButton(null, i + 1);
 			bags.add(btn);
 			add(btn);
 		}
 
 		crossB = Icons.TARGET.get();
 		crossB.visible = false;
-		add( crossB );
+		add(crossB);
 
 		crossM = new Image();
-		crossM.copy( crossB );
+		crossM.copy(crossB);
 
 		lastEnabled = true;
 		updateInventory();
@@ -219,59 +223,79 @@ public class InventoryPane extends Component {
 		bg.size(width, height);
 		bg2.size(width, height);
 
-		float left = x+4;
-		for (InventorySlot i : equipped){
-			i.setRect(left, y+4, SLOT_WIDTH, SLOT_HEIGHT);
-			left = i.right()+1;
+		float left = x + 4;
+		for (InventorySlot i : equipped) {
+			i.setRect(left, y + 4, SLOT_WIDTH, SLOT_HEIGHT);
+			left = i.right() + 1;
 		}
 
 		promptTxt.maxWidth((int) (width - (left - x) - bg.marginRight()));
-		if (promptTxt.height() > 10){
+		if (promptTxt.height() > 10) {
 			promptTxt.setPos(left, y + 2 + (12 - promptTxt.height()) / 2);
 		} else {
 			promptTxt.setPos(left, y + 4 + (10 - promptTxt.height()) / 2);
 		}
 
 		goldTxt.x = left;
-		goldTxt.y = y+5.5f;
+		goldTxt.y = y + 5.5f;
 		PixelScene.align(goldTxt);
 
 		gold.x = goldTxt.x + goldTxt.width() + 1;
 		gold.y = goldTxt.y;
 
 		energyTxt.x = gold.x + gold.width() + 2;
-		energyTxt.y = y+5.5f;
+		energyTxt.y = y + 5.5f;
 		PixelScene.align(energyTxt);
 
 		energy.x = energyTxt.x + energyTxt.width() + 1;
 		energy.y = energyTxt.y;
 
-		//windows version bag button control, fix 3rd width
-		for (BagButton b : bags){
-			b.setRect(left, y + 14, 12, 14);
-			left = b.right()+1;
+		for (BagButton b : bags) {
+			b.setRect(left, y + 14, SLOT_WIDTH, 14);
+			left = b.right() + 1;
 		}
 
-		left = x+4;
-		float top = y+4+SLOT_HEIGHT+1;
-		for (InventorySlot b : bagItems){
+		left = x + 4;
+		float top = y + 4 + SLOT_HEIGHT + 1;
+		for (InventorySlot b : bagItems) {
 			b.setRect(left, top, SLOT_WIDTH, SLOT_HEIGHT);
-			left = b.right()+1;
-			if (left - x > width - 17){
-				left = x+4;
-				top += SLOT_HEIGHT+1;
+			left = b.right() + 1;
+			if (left - x > width - 17) {
+				left = x + 4;
+				top += SLOT_HEIGHT + 1;
 			}
 		}
 
 		super.layout();
 	}
 
-	public static void refresh(){
+	public void alpha(float value) {
+		bg.alpha(value);
+		bg2.alpha(value);
+
+		for (InventorySlot slot : equipped) {
+			slot.alpha(value);
+		}
+		for (InventorySlot slot : bagItems) {
+			slot.alpha(value);
+		}
+
+		gold.alpha(value);
+		goldTxt.alpha(value);
+		energy.alpha(value);
+		energyTxt.alpha(value);
+
+		for (BagButton bag : bags) {
+			bag.alpha(value);
+		}
+	}
+
+	public static void refresh() {
 		if (instance != null) instance.updateInventory();
 	}
 
-	public void updateInventory(){
-		if (selector == null){
+	public void updateInventory() {
+		if (selector == null) {
 			blocker.target = bg;
 			KeyEvent.removeKeyListener(keyBlocker);
 		} else {
@@ -281,25 +305,30 @@ public class InventoryPane extends Component {
 
 		Belongings stuff = Dungeon.heroine.belongings;
 
-		if (lastBag == null || !stuff.getBags().contains(lastBag)){
+		if (lastBag == null || !stuff.getBags().contains(lastBag)) {
 			lastBag = stuff.backpack;
 		}
 
-		equipped.get(0).item(stuff.weapon == null ? new WndBag.Placeholder( ItemSpriteSheet.WEAPON_HOLDER ) : stuff.weapon);
-		equipped.get(1).item(stuff.armor == null ? new WndBag.Placeholder( ItemSpriteSheet.ARMOR_HOLDER ) : stuff.armor);
-		equipped.get(2).item(stuff.artifact == null ? new WndBag.Placeholder( ItemSpriteSheet.ARTIFACT_HOLDER ) : stuff.artifact);
-		equipped.get(3).item(stuff.misc == null ? new WndBag.Placeholder( ItemSpriteSheet.SOMETHING ) : stuff.misc);
-		equipped.get(4).item(stuff.ring == null ? new WndBag.Placeholder( ItemSpriteSheet.RING_HOLDER ) : stuff.ring);
+		equipped.get(0).item(stuff.weapon == null ? new WndBag.Placeholder(ItemSpriteSheet.WEAPON_HOLDER) : stuff.weapon);
+		equipped.get(1).item(stuff.armor == null ? new WndBag.Placeholder(ItemSpriteSheet.ARMOR_HOLDER) : stuff.armor);
+		equipped.get(2).item(stuff.artifact == null ? new WndBag.Placeholder(ItemSpriteSheet.ARTIFACT_HOLDER) : stuff.artifact);
+		equipped.get(3).item(stuff.misc == null ? new WndBag.Placeholder(ItemSpriteSheet.SOMETHING) : stuff.misc);
+		equipped.get(4).item(stuff.ring == null ? new WndBag.Placeholder(ItemSpriteSheet.RING_HOLDER) : stuff.ring);
 
-		ArrayList<Item> items = lastBag.items;
+		ArrayList<Item> items = (ArrayList<Item>) lastBag.items.clone();
+
+		if (lastBag == stuff.backpack && stuff.secondWep != null) {
+			items.add(0, stuff.secondWep);
+		}
+
 		int j = 0;
-		for (int i = 0; i < 25; i++){
-			if (i == 0 && lastBag != stuff.backpack){
+		for (int i = 0; i < 20; i++) {
+			if (i == 0 && lastBag != stuff.backpack) {
 				bagItems.get(i).item(lastBag);
 				continue;
 			}
-			if (items.size() > j){
-				if (items.get(j) instanceof Bag){
+			if (items.size() > j) {
+				if (items.get(j) instanceof Bag) {
 					j++;
 					i--;
 					continue;
@@ -330,56 +359,63 @@ public class InventoryPane extends Component {
 		}
 
 		ArrayList<Bag> inventBags = stuff.getBags();
-		for (int i = 0; i < bags.size(); i++){
-			if (inventBags.size() > i){
+		for (int i = 0; i < bags.size(); i++) {
+			if (inventBags.size() > i) {
 				bags.get(i).bag(inventBags.get(i));
 			} else {
 				bags.get(i).bag(null);
 			}
 		}
 
-		for (InventorySlot b : equipped){
+		for (InventorySlot b : equipped) {
 			b.enable(lastEnabled
 					&& !(b.item() instanceof WndBag.Placeholder)
 					&& (selector == null || selector.itemSelectable(b.item())));
 		}
-		for (InventorySlot b : bagItems){
+		for (InventorySlot b : bagItems) {
 			b.enable(lastEnabled
 					&& b.item() != null
 					&& (selector == null || selector.itemSelectable(b.item())));
 		}
-		for (BagButton b : bags){
+		for (BagButton b : bags) {
 			b.enable(lastEnabled);
 		}
 
-		goldTxt.alpha( lastEnabled ? 1f : 0.3f );
-		gold.alpha( lastEnabled ? 1f : 0.3f );
-		energyTxt.alpha( lastEnabled ? 1f : 0.3f );
-		energy.alpha( lastEnabled ? 1f : 0.3f );
+		goldTxt.alpha(lastEnabled ? 1f : 0.3f);
+		gold.alpha(lastEnabled ? 1f : 0.3f);
+		energyTxt.alpha(lastEnabled ? 1f : 0.3f);
+		energy.alpha(lastEnabled ? 1f : 0.3f);
 
 		layout();
 	}
 
-	public void setSelector(WndBag.ItemSelector selector){
+	public void setSelector(WndBag.ItemSelector selector) {
 		this.selector = selector;
-		if (selector.preferredBag() == Belongings.Backpack.class){
+		if (selector.preferredBag() == Belongings.Backpack.class) {
 			lastBag = Dungeon.heroine.belongings.backpack;
 		} else if (selector.preferredBag() != null) {
 			Bag preferred = Dungeon.heroine.belongings.getItem(selector.preferredBag());
 			if (preferred != null) lastBag = preferred;
+				//if a specific preferred bag isn't present, then the relevant items will be in backpack
+			else lastBag = Dungeon.heroine.belongings.backpack;
 		}
 		updateInventory();
 	}
 
-	public boolean isSelecting(){
+	public boolean isSelecting() {
 		return selector != null;
 	}
 
-	public static void useTargeting(){
+	public static void clearTargetingSlot() {
+		targetingSlot = null;
+	}
+
+	public static void useTargeting() {
 		if (instance != null &&
 				instance.visible &&
 				lastTarget != null &&
-				Actor.chars().contains( lastTarget ) &&
+				targetingSlot != null &&
+				Actor.chars().contains(lastTarget) &&
 				lastTarget.isAlive() &&
 				lastTarget.alignment != Char.Alignment.ALLY &&
 				Dungeon.level.heroFOV[lastTarget.pos]) {
@@ -403,8 +439,8 @@ public class InventoryPane extends Component {
 		}
 	}
 
-	public static void cancelTargeting(){
-		if (targeting){
+	public static void cancelTargeting() {
+		if (targeting) {
 			crossB.visible = false;
 			crossM.remove();
 			targeting = false;
@@ -418,68 +454,64 @@ public class InventoryPane extends Component {
 		if (lastEnabled != (Dungeon.heroine.ready || !Dungeon.heroine.isAlive())) {
 			lastEnabled = (Dungeon.heroine.ready || !Dungeon.heroine.isAlive());
 
-			for (InventorySlot b : equipped){
+			for (InventorySlot b : equipped) {
 				b.enable(lastEnabled
 						&& !(b.item() instanceof WndBag.Placeholder)
 						&& (selector == null || selector.itemSelectable(b.item())));
 			}
-			for (InventorySlot b : bagItems){
+			for (InventorySlot b : bagItems) {
 				b.enable(lastEnabled
 						&& b.item() != null
 						&& (selector == null || selector.itemSelectable(b.item())));
 			}
-			for (BagButton b : bags){
+			for (BagButton b : bags) {
 				b.enable(lastEnabled);
 			}
 
-			goldTxt.alpha( lastEnabled ? 1f : 0.3f );
-			gold.alpha( lastEnabled ? 1f : 0.3f );
-			energyTxt.alpha( lastEnabled ? 1f : 0.3f );
-			energy.alpha( lastEnabled ? 1f : 0.3f );
+			goldTxt.alpha(lastEnabled ? 1f : 0.3f);
+			gold.alpha(lastEnabled ? 1f : 0.3f);
+			energyTxt.alpha(lastEnabled ? 1f : 0.3f);
+			energy.alpha(lastEnabled ? 1f : 0.3f);
 		}
 
 	}
 
-	private Image bagIcon(Bag bag ) {
+	private Image bagIcon(Bag bag) {
 		if (bag instanceof VelvetPouch) {
-			return Icons.get( Icons.SEED_POUCH );
+			return Icons.get(Icons.SEED_POUCH);
 		} else if (bag instanceof SpellcardHolder) {
-			return Icons.get( Icons.SCROLL_HOLDER );
+			return Icons.get(Icons.SCROLL_HOLDER);
 		} else if (bag instanceof MagicalHolster) {
-			return Icons.get( Icons.WAND_HOLSTER );
+			return Icons.get(Icons.WAND_HOLSTER);
 		} else if (bag instanceof PotionBandolier) {
-			return Icons.get( Icons.POTION_BANDOLIER );
-		} else if (bag instanceof HerbPouch) {
-			return Icons.get( Icons.TALISMAN_HOLDER);
-		} else if (bag instanceof MagicalContainer) {
-			return Icons.get( Icons.CARD_HOLDER );
+			return Icons.get(Icons.POTION_BANDOLIER);
 		} else {
-			return Icons.get( Icons.BACKPACK );
+			return Icons.get(Icons.BACKPACK);
 		}
 	}
 
 	private class InventoryPaneSlot extends InventorySlot {
 
-		private InventoryPaneSlot( Item item ){
+		private InventoryPaneSlot(Item item) {
 			super(item);
 		}
 
 		@Override
 		protected void onClick() {
-			if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)){
+			if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)) {
 				updateInventory();
 				return;
 			}
 
-			if (targeting){
-				if (targetingSlot == this){
+			if (targeting) {
+				if (targetingSlot == this) {
 					int cell = QuickSlotButton.autoAim(lastTarget, item());
 
-					if (cell != -1){
+					if (cell != -1) {
 						GameScene.handleCell(cell);
 					} else {
 						//couldn't auto-aim, just target the position and hope for the best.
-						GameScene.handleCell( lastTarget.pos );
+						GameScene.handleCell(lastTarget.pos);
 					}
 					return;
 				} else {
@@ -492,35 +524,49 @@ public class InventoryPane extends Component {
 			if (selector != null) {
 				WndBag.ItemSelector activating = selector;
 				selector = null;
-				activating.onSelect( item );
+				activating.onSelect(item);
 				updateInventory();
 			} else {
 				targetingSlot = this;
-				GameScene.show(new WndUseItem( null, item ));
+				GameScene.show(new WndUseItem(null, item));
+			}
+		}
+
+		@Override
+		protected boolean onLongClick() {
+			if (selector == null && item.defaultAction() != null) {
+				QuickSlotButton.set(item);
+				return true;
+			} else if (selector != null) {
+				GameScene.centerNextWndOnInvPane();
+				GameScene.show(new WndInfoItem(item));
+				return true;
+			} else {
+				return false;
 			}
 		}
 
 		@Override
 		protected void onMiddleClick() {
-			if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)){
+			if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)) {
 				updateInventory();
 				return;
 			}
 
-			if (!Dungeon.heroine.isAlive() || !Dungeon.heroine.ready){
+			if (!Dungeon.heroine.isAlive() || !Dungeon.heroine.ready) {
 				return;
 			}
 
-			if (targeting){
-				if (targetingSlot == this){
+			if (targeting) {
+				if (targetingSlot == this) {
 					onClick();
 				}
 				return;
 			}
 
-			if (selector == null && item.defaultAction != null){
+			if (selector == null && item.defaultAction() != null) {
 				item.execute(Dungeon.heroine);
-				if (item.usesTargeting) {
+				if (item != null && item.usesTargeting) {
 					targetingSlot = this;
 					InventoryPane.useTargeting();
 				}
@@ -531,28 +577,28 @@ public class InventoryPane extends Component {
 
 		@Override
 		protected void onRightClick() {
-			if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)){
+			if (lastBag != item && !lastBag.contains(item) && !item.isEquipped(Dungeon.heroine)) {
 				updateInventory();
 				return;
 			}
 
-			if (!Dungeon.heroine.isAlive() || !Dungeon.heroine.ready){
+			if (!Dungeon.heroine.isAlive() || !Dungeon.heroine.ready) {
 				return;
 			}
 
-			if (targeting){
+			if (targeting) {
 				//do nothing
 				return;
 			}
 
-			if (selector == null){
+			if (selector == null) {
 				targetingSlot = this;
 				RightClickMenu r = new RightClickMenu(item);
 				parent.addToFront(r);
 				r.camera = camera();
 				PointF mousePos = PointerEvent.currentHoverPos();
-				mousePos = camera.screenToCamera((int)mousePos.x, (int)mousePos.y);
-				r.setPos(mousePos.x-3, mousePos.y-3);
+				mousePos = camera.screenToCamera((int) mousePos.x, (int) mousePos.y);
+				r.setPos(mousePos.x - 3, mousePos.y - 3);
 			} else {
 				//do nothing
 			}
@@ -561,8 +607,8 @@ public class InventoryPane extends Component {
 
 	private class BagButton extends IconButton {
 
-		private static final int ACTIVE		= 0x9953564D;
-		private static final int INACTIVE	= 0x9942443D;
+		private static final int ACTIVE = 0x9953564D;
+		private static final int INACTIVE = 0x9942443D;
 
 		private ColorBlock bgTop;
 		private ColorBlock bgBottom;
@@ -570,19 +616,19 @@ public class InventoryPane extends Component {
 		private Bag bag;
 		private int index;
 
-		public BagButton( Bag bag, int index ){
-			super( bagIcon(bag) );
+		public BagButton(Bag bag, int index) {
+			super(bagIcon(bag));
 			this.bag = bag;
 			this.index = index;
 			visible = active = bag != null;
 		}
 
-		public void bag( Bag bag ){
+		public void bag(Bag bag) {
 			this.bag = bag;
 			icon(bagIcon(bag));
 			visible = active = bag != null;
 
-			if (lastBag == bag){
+			if (lastBag == bag) {
 				bgTop.texture(TextureCache.createSolid(ACTIVE));
 				bgBottom.texture(TextureCache.createSolid(ACTIVE));
 			} else {
@@ -606,13 +652,19 @@ public class InventoryPane extends Component {
 		protected void layout() {
 			super.layout();
 
-			bgTop.size(width-2, 1);
+			bgTop.size(width - 2, 1);
 			bgTop.y = y;
-			bgTop.x = x+1;
+			bgTop.x = x + 1;
 
-			bgBottom.size(width, height-1);
-			bgBottom.y = y+1;
+			bgBottom.size(width, height - 1);
+			bgBottom.y = y + 1;
 			bgBottom.x = x;
+		}
+
+		public void alpha(float value) {
+			bgTop.alpha(value);
+			bgBottom.alpha(value);
+			icon.alpha(value);
 		}
 
 		@Override
@@ -625,8 +677,9 @@ public class InventoryPane extends Component {
 
 		@Override
 		public GameAction keyAction() {
-			switch (index){
-				case 1: default:
+			switch (index) {
+				case 1:
+				default:
 					return SPDAction.BAG_1;
 				case 2:
 					return SPDAction.BAG_2;
@@ -636,10 +689,6 @@ public class InventoryPane extends Component {
 					return SPDAction.BAG_4;
 				case 5:
 					return SPDAction.BAG_5;
-				case 6:
-					return SPDAction.BAG_6;
-				case 7:
-					return SPDAction.BAG_7;
 			}
 		}
 
@@ -657,4 +706,5 @@ public class InventoryPane extends Component {
 			}
 		}
 	}
+
 }

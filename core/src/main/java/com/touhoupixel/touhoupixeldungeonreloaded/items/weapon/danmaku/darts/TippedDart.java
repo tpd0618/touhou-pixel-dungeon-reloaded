@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.AdrenalineDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.BlindingDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.ChillingDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.CleansingDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.DisplacingDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.HealingDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.HolyDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.IncendiaryDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.ParalyticDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.PoisonDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.RotDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.ShockingDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Blindweed;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Dreamfoil;
@@ -62,16 +76,16 @@ public abstract class TippedDart extends Dart {
 	private static final String AC_CLEAN = "CLEAN";
 
 	@Override
-	public ArrayList<String> actions(Hero heroine) {
-		ArrayList<String> actions = super.actions(heroine);
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions( hero );
 		actions.remove( AC_TIP );
 		actions.add( AC_CLEAN );
 		return actions;
 	}
 
 	@Override
-	public void execute(final Hero heroine, String action) {
-		super.execute(heroine, action);
+	public void execute(final Hero hero, String action) {
+		super.execute(hero, action);
 		if (action.equals( AC_CLEAN )){
 
 			GameScene.show(new WndOptions(new ItemSprite(this),
@@ -83,22 +97,22 @@ public abstract class TippedDart extends Dart {
 				@Override
 				protected void onSelect(int index) {
 					if (index == 0){
-						detachAll(heroine.belongings.backpack);
+						detachAll(hero.belongings.backpack);
 						new Dart().quantity(quantity).collect();
 
-						heroine.spend( 1f );
-						heroine.busy();
-						heroine.sprite.operate(heroine.pos);
+						hero.spend( 1f );
+						hero.busy();
+						hero.sprite.operate(hero.pos);
 					} else if (index == 1){
-						detach(heroine.belongings.backpack);
-						if (!new Dart().collect()) Dungeon.level.drop(new Dart(), heroine.pos).sprite.drop();
+						detach(hero.belongings.backpack);
+						if (!new Dart().collect()) Dungeon.level.drop(new Dart(), hero.pos).sprite.drop();
 
 						//reset durability if there are darts left in the stack
 						durability = MAX_DURABILITY;
 
-						heroine.spend( 1f );
-						heroine.busy();
-						heroine.sprite.operate(heroine.pos);
+						hero.spend( 1f );
+						hero.busy();
+						hero.sprite.operate(hero.pos);
 					}
 				}
 			});
@@ -128,13 +142,27 @@ public abstract class TippedDart extends Dart {
 		}
 	}
 
+	//the number of regular darts lost due to merge being called
+	public static int lostDarts = 0;
+
+	@Override
+	public Item merge(Item other) {
+		int total = quantity() + other.quantity();
+		super.merge(other);
+		int extra = total - quantity();
+
+		//need to spawn waste tipped darts as regular darts
+		if (extra > 0){
+			lostDarts += extra;
+		}
+		return this;
+	}
+
 	private static int targetPos = -1;
 
 	@Override
 	public float durabilityPerUse() {
-		float use = super.durabilityPerUse();
-
-		use /= 1;
+		float use = super.durabilityPerUse(false);
 
 		//checks both destination and source position
 		float lotusPreserve = 0f;
@@ -160,7 +188,10 @@ public abstract class TippedDart extends Dart {
 		}
 		use *= (1f - lotusPreserve);
 
-		return use;
+		float usages = Math.round(MAX_DURABILITY/use);
+
+		//add a tiny amount to account for rounding error for calculations like 1/3
+		return (MAX_DURABILITY/usages) + 0.001f;
 	}
 
 	@Override

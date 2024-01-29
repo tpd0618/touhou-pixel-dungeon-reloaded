@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,14 +22,18 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Electricity;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.StormCloud;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.ToxicGas;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
@@ -37,15 +41,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corrosion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireShield;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FloatSlayer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostImbue;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Fury;
@@ -53,15 +56,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Speed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
@@ -70,25 +72,46 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.MirrorImage;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.PrismaticImage;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.FloatingText;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Potential;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Viscosity;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.DamageWand;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFireblast;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFrost;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLightning;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.ShockingDart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blazing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Kinetic;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Shocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.GeyserTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Earthroot;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
@@ -96,8 +119,10 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public abstract class Char extends Actor {
 
@@ -129,7 +154,7 @@ public abstract class Char extends Actor {
 
     public boolean[] fieldOfView = null;
 
-    private HashSet<Buff> buffs = new HashSet<>();
+    private LinkedHashSet<Buff> buffs = new LinkedHashSet<>();
 
     @Override
     protected boolean act() {
@@ -148,11 +173,15 @@ public abstract class Char extends Actor {
     protected void throwItems(){
         Heap heap = Dungeon.level.heaps.get( pos );
         if (heap != null && heap.type == Heap.Type.HEAP) {
-            int n;
-            do {
-                n = pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
-            } while (!Dungeon.level.passable[n] && !Dungeon.level.avoid[n]);
-            Dungeon.level.drop( heap.pickUp(), n ).sprite.drop( pos );
+            ArrayList<Integer> candidates = new ArrayList<>();
+            for (int n : PathFinder.NEIGHBOURS8){
+                if (Dungeon.level.passable[pos+n]){
+                    candidates.add(pos+n);
+                }
+            }
+            if (!candidates.isEmpty()){
+                Dungeon.level.drop( heap.pickUp(), Random.element(candidates) ).sprite.drop( pos );
+            }
         }
     }
 
@@ -168,28 +197,37 @@ public abstract class Char extends Actor {
         }
     }
 
-
     //swaps places by default
     public boolean interact(Char c){
 
         //don't allow char to swap onto hazard unless they're flying
         //you can swap onto a hazard though, as you're not the one instigating the swap
-        if (!Dungeon.level.passable[pos] && !c.flying) {
+        if (!Dungeon.level.passable[pos] && !c.flying){
             return true;
         }
 
-        int curPos = pos;
+        //we do a little raw position shuffling here so that the characters are never
+        // on the same cell when logic such as occupyCell() is triggered
+        int oldPos = pos;
+        int newPos = c.pos;
+
+        //can't swap or ally warp if either char is immovable
+        if (hasProp(this, Property.IMMOVABLE) || hasProp(c, Property.IMMOVABLE)){
+            return true;
+        }
 
         //can't swap places if one char has restricted movement
         if (rooted || c.rooted || buff(Vertigo.class) != null || c.buff(Vertigo.class) != null){
             return true;
         }
 
-        moveSprite( pos, c.pos );
-        move( c.pos );
+        c.pos = oldPos;
+        moveSprite( oldPos, newPos );
+        move( newPos );
 
-        c.sprite.move( c.pos, curPos );
-        c.move( curPos );
+        c.pos = newPos;
+        c.sprite.move( newPos, oldPos );
+        c.move( oldPos );
 
         c.spend( 1 / c.speed() );
 
@@ -202,7 +240,7 @@ public abstract class Char extends Actor {
 
     protected boolean moveSprite( int from, int to ) {
 
-        if (sprite.isVisible() && (Dungeon.level.heroFOV[from] || Dungeon.level.heroFOV[to])) {
+        if (sprite.isVisible() && sprite.parent != null && (Dungeon.level.heroFOV[from] || Dungeon.level.heroFOV[to])) {
             sprite.move( from, to );
             return true;
         } else {
@@ -273,7 +311,7 @@ public abstract class Char extends Actor {
 
             return false;
 
-        } else if (hit( this, enemy, accMulti )) {
+        } else if (hit( this, enemy, accMulti, false )) {
 
             if (enemy.buff(SupernaturalBorder.class) != null){
                 Buff.detach(enemy, SupernaturalBorder.class);
@@ -392,12 +430,21 @@ public abstract class Char extends Actor {
     public static int INFINITE_EVASION = 1_000_000;
 
     final public static boolean hit( Char attacker, Char defender, boolean magic ) {
-        return hit(attacker, defender, magic ? 2f : 1f);
+        return hit(attacker, defender, magic ? 2f : 1f, magic);
     }
 
-    public static boolean hit( Char attacker, Char defender, float accMulti ) {
+    public static boolean hit( Char attacker, Char defender, float accMulti, boolean magic ) {
         float acuStat = attacker.attackSkill( defender );
         float defStat = defender.defenseSkill( attacker );
+
+        if (defender instanceof Hero && ((Hero) defender).damageInterrupt){
+            ((Hero) defender).interrupt();
+        }
+
+        //invisible chars always hit (for the hero this is surprise attacking)
+        if (attacker.invisible > 0 && attacker.canSurpriseAttack()){
+            acuStat = INFINITE_ACCURACY;
+        }
 
         //if accuracy or evasion are large enough, treat them as infinite.
         //note that infinite evasion beats infinite accuracy
@@ -437,7 +484,9 @@ public abstract class Char extends Actor {
     }
 
     public int drRoll() {
-        return 0;
+        int dr = 0;
+
+        return dr;
     }
 
     public int damageRoll() {
@@ -448,23 +497,16 @@ public abstract class Char extends Actor {
     // atm attack is always post-armor and defence is already pre-armor
 
     public int attackProc( Char enemy, int damage ) {
-        if (buff(Weakness.class) != null ) {
-            damage *= 0.67f;
-        }
-        if (buff(Might.class) != null ) {
-            damage *= 1.25f;
-        }
-        if (buff(Hisou.class) != null && !enemy.flying ){
-            damage *= 1.35f;
-        }
-        if (buff(FloatSlayer.class) != null && enemy.flying ){
-            damage *= 1.4f;
-        }
-        //todo
         return damage;
     }
 
     public int defenseProc( Char enemy, int damage ) {
+
+        Earthroot.Armor armor = buff( Earthroot.Armor.class );
+        if (armor != null) {
+            damage = armor.absorb( damage );
+        }
+
         return damage;
     }
 
@@ -476,6 +518,11 @@ public abstract class Char extends Actor {
         if ( buff( Haste.class ) != null) speed *= 3f;
         if ( buff( Dread.class ) != null) speed *= 2f;
         return speed;
+    }
+
+    //currently only used by invisible chars, or by the hero
+    public boolean canSurpriseAttack(){
+        return true;
     }
 
     //used so that buffs(Shieldbuff.class) isn't called every time unnecessarily
@@ -499,10 +546,6 @@ public abstract class Char extends Actor {
 
         if (!isAlive() || dmg < 0) {
             return;
-        }
-
-        if (buff(SuperHard.class) != null ) {
-            dmg = 1;
         }
 
         if(isInvulnerable(src.getClass())){
@@ -529,7 +572,7 @@ public abstract class Char extends Actor {
             Buff.detach(this, MagicalSleep.class);
         }
         if (this.buff(Doom.class) != null && !isImmune(Doom.class)){
-            dmg *= 2;
+            dmg *= 1.67f;
         }
 
         Class<?> srcClass = src.getClass();
@@ -553,13 +596,6 @@ public abstract class Char extends Actor {
         //FIXME: when I add proper damage properties, should add an IGNORES_SHIELDS property to use here.
         if (!(src instanceof Hunger)){
             for (ShieldBuff s : buffs(ShieldBuff.class)){
-                if (s instanceof FireShield && src instanceof Char) {
-                    if (Dungeon.level.adjacent( pos, ((Char) src).pos )) {
-                        ((Char) src).damage(dmg / 4, this);
-                        Buff.affect((Char) src, Burning.class).reignite((Char) src, 2f);
-                        CellEmitter.get(((Char) src).pos).burst(Speck.factory(Speck.STEAM), 20);
-                    }
-                }
                 dmg = s.absorbDamage(dmg);
                 if (dmg == 0) break;
             }
@@ -568,17 +604,39 @@ public abstract class Char extends Actor {
         HP -= dmg;
 
         if (sprite != null) {
-            sprite.showStatus(HP > HT / 2 ?
-                            CharSprite.WARNING :
-                            CharSprite.NEGATIVE,
-                    Integer.toString(dmg + shielded));
+            //defaults to normal damage icon if no other ones apply
+            int                                                         icon = FloatingText.PHYS_DMG;
+            if (NO_ARMOR_PHYSICAL_SOURCES.contains(src.getClass()))     icon = FloatingText.PHYS_DMG_NO_BLOCK;
+            if (AntiMagic.RESISTS.contains(src.getClass()))             icon = FloatingText.MAGIC_DMG;
+
+            if (src instanceof Hunger)                                  icon = FloatingText.HUNGER;
+            if (src instanceof Burning)                                 icon = FloatingText.BURNING;
+            if (src instanceof Chill || src instanceof Frost)        icon = FloatingText.FROST;
+            if (src instanceof GeyserTrap || src instanceof StormCloud) icon = FloatingText.WATER;
+            if (src instanceof Burning)                                 icon = FloatingText.BURNING;
+            if (src instanceof Electricity)                             icon = FloatingText.SHOCKING;
+            if (src instanceof Bleeding)                                icon = FloatingText.BLEEDING;
+            if (src instanceof ToxicGas)                                icon = FloatingText.TOXIC;
+            if (src instanceof Corrosion)                               icon = FloatingText.CORROSION;
+            if (src instanceof Poison)                                  icon = FloatingText.POISON;
+            if (src instanceof Viscosity.DeferedDamage)                 icon = FloatingText.DEFERRED;
+            if (src instanceof Corruption)                              icon = FloatingText.CORRUPTION;
+
+            sprite.showStatusWithIcon(CharSprite.NEGATIVE, Integer.toString(dmg + shielded), icon);
         }
 
         if (HP < 0) HP = 0;
 
         if (!isAlive()) {
-            die(src);
+            die( src );
         }
+    }
+
+    //these are misc. sources of physical damage which do not apply armor, they get a different icon
+    private static HashSet<Class> NO_ARMOR_PHYSICAL_SOURCES = new HashSet<>();
+    {
+        NO_ARMOR_PHYSICAL_SOURCES.add(Chasm.class);
+        NO_ARMOR_PHYSICAL_SOURCES.add(Heap.class); //damage from wraiths attempting to spawn from heaps
     }
 
     public void destroy() {
@@ -612,6 +670,27 @@ public abstract class Char extends Actor {
         return HP > 0 || deathMarked;
     }
 
+    public boolean isActive() {
+        return isAlive();
+    }
+
+    @Override
+    protected void spendConstant(float time) {
+        TimekeepersHourglass.timeFreeze freeze = buff(TimekeepersHourglass.timeFreeze.class);
+        if (freeze != null) {
+            freeze.processTime(time);
+            return;
+        }
+
+        Swiftthistle.TimeBubble bubble = buff(Swiftthistle.TimeBubble.class);
+        if (bubble != null){
+            bubble.processTime(time);
+            return;
+        }
+
+        super.spendConstant(time);
+    }
+
     @Override
     protected void spend( float time ) {
 
@@ -622,24 +701,15 @@ public abstract class Char extends Actor {
         } else if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
         }
-        if (Dungeon.isChallenged(Challenges.DOUBLE_SPOILER)) {
-            if (buff(DoubleSpeed.class) != null && this instanceof Hero) {
-                timeScale *= 1.5f;
-            }
-            if (buff(DoubleSpeed.class) != null && this instanceof Mob) {
-                timeScale *= 2.5f;
-            }
-        } else {
-            if (buff(DoubleSpeed.class) != null) {
-                timeScale *= 2.0f;
-            }
+        if (buff( Speed.class ) != null) {
+            timeScale *= 2.0f;
         }
 
         super.spend( time / timeScale );
     }
 
-    public synchronized HashSet<Buff> buffs() {
-        return new HashSet<>(buffs);
+    public synchronized LinkedHashSet<Buff> buffs() {
+        return new LinkedHashSet<>(buffs);
     }
 
     @SuppressWarnings("unchecked")
@@ -675,38 +745,47 @@ public abstract class Char extends Actor {
         return false;
     }
 
-    public synchronized void add( Buff buff ) {
+    public synchronized boolean add( Buff buff ) {
 
         if (buff(PotionOfCleansing.Cleanse.class) != null) { //cleansing buff
             if (buff.type == Buff.buffType.NEGATIVE
                     && !(buff instanceof AllyBuff)){
-                return;
+                return false;
             }
         }
+
+        //if (sprite != null && buff(Challenge.SpectatorFreeze.class) != null){
+            //return false; //can't add buffs while frozen and game is loaded
+        //}
 
         buffs.add( buff );
         if (Actor.chars().contains(this)) Actor.add( buff );
 
-        if (sprite != null && buff.announced)
-            switch(buff.type){
+        if (sprite != null && buff.announced) {
+            switch (buff.type) {
                 case POSITIVE:
-                    sprite.showStatus(CharSprite.POSITIVE, buff.toString());
+                    sprite.showStatus(CharSprite.POSITIVE, Messages.titleCase(buff.name()));
                     break;
                 case NEGATIVE:
-                    sprite.showStatus(CharSprite.NEGATIVE, buff.toString());
+                    sprite.showStatus(CharSprite.WARNING, Messages.titleCase(buff.name()));
                     break;
-                case NEUTRAL: default:
-                    sprite.showStatus(CharSprite.NEUTRAL, buff.toString());
+                case NEUTRAL:
+                default:
+                    sprite.showStatus(CharSprite.NEUTRAL, Messages.titleCase(buff.name()));
                     break;
             }
+        }
+
+        return true;
 
     }
 
-    public synchronized void remove( Buff buff ) {
+    public synchronized boolean remove( Buff buff ) {
 
         buffs.remove( buff );
         Actor.remove( buff );
 
+        return true;
     }
 
     public synchronized void remove( Class<? extends Buff> buffClass ) {
@@ -726,8 +805,6 @@ public abstract class Char extends Actor {
         for (Buff buff:buffs) {
             buff.fx( true );
         }
-            if (this instanceof MobWithSpellcard)
-                ((MobWithSpellcard) this).fx(((MobWithSpellcard) this).isSpellcardOn);
     }
 
     public float stealth() {
@@ -745,7 +822,6 @@ public abstract class Char extends Actor {
             sprite.interruptMotion();
             int newPos = pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
             if (!(Dungeon.level.passable[newPos] || Dungeon.level.avoid[newPos])
-                    || (properties().contains(Property.NONE) && !Dungeon.level.openSpace[newPos])
                     || Actor.findChar( newPos ) != null)
                 return;
             else {
@@ -769,6 +845,11 @@ public abstract class Char extends Actor {
 
     public int distance( Char other ) {
         return Dungeon.level.distance( pos, other.pos );
+    }
+
+    public boolean[] modifyPassable( boolean[] passable){
+        //do nothing by default, but some chars can pass over terrain that others can't
+        return passable;
     }
 
     public void onMotionComplete() {

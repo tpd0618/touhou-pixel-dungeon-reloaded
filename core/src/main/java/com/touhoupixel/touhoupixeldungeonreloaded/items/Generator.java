@@ -144,7 +144,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.BindingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CirnoTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DoremyTalisman;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.KnockbackTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SevenDaysTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.DebilitationTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.EnragingTalisman;
@@ -438,7 +437,6 @@ public class Generator {
 
 			TALISMAN.classes = new Class<?>[]{
 					BindingTalisman.class,
-					KnockbackTalisman.class,
 					SevenDaysTalisman.class,
 					EnragingTalisman.class,
 					TransientTalisman.class,
@@ -455,7 +453,7 @@ public class Generator {
 					SuikaTalisman.class,
 					YuumaTalisman.class
 			};
-			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+			TALISMAN.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 			TALISMAN.probs = TALISMAN.defaultProbs.clone();
 
 			WAND.classes = new Class<?>[]{

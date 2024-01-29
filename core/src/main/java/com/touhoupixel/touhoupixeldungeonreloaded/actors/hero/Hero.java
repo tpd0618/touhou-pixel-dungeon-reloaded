@@ -223,7 +223,7 @@ public class Hero extends Char {
 	private int defenseSkill = 5; //test ver. 0, original ver. 5
 
 	public boolean ready = false;
-	private boolean damageInterrupt = true;
+	public boolean damageInterrupt = true;
 	public HeroAction curAction = null;
 	public HeroAction lastAction = null;
 
@@ -359,6 +359,15 @@ public class Hero extends Char {
 		Belongings.preview( info, bundle );
 	}
 
+	public String className() {
+		return heroClass.title();
+	}
+
+	@Override
+	public String name(){
+		return className();
+	}
+
 	@Override
 	public void hitSound(float pitch) {
 		if (belongings.weapon() != null){
@@ -428,6 +437,10 @@ public class Hero extends Char {
 			if (wep instanceof EgoRock && enemy instanceof Hijiri || wep instanceof EgoRock && enemy instanceof Suika){
 				accuracy *= 0.5f;
 			}
+		}
+
+		if (Dungeon.heroine.buff(Inaccurate.class) != null) {
+			accuracy *= 0f;
 		}
 
 		if (Dungeon.heroine.buff(HomingBlade.class) != null) {
@@ -736,6 +749,7 @@ public class Hero extends Char {
 		if (Dungeon.heroine.buff(ZeroDexterity.class) != null)                           return false;
 		if (belongings.weapon() instanceof CirnoWing)                                   return false;
 		if (Dungeon.heroine.buff(Powerful.class) != null)                                  return false;
+		if (Dungeon.heroine.buff(Inaccurate.class) != null)                                  return false;
 		if (Statistics.card57)                                                          return false;
 
 		return true;
@@ -938,7 +952,7 @@ public class Hero extends Char {
 
 		Char ch = action.ch;
 
-		if (ch.canInteract(this)) {
+		if (ch.isAlive() && ch.canInteract(this)) {
 
 			ready();
 			sprite.turnTo( pos, ch.pos );
@@ -1240,7 +1254,7 @@ public class Hero extends Char {
 
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
 
-			sprite.attack( enemy.pos );
+			sprite.attack(enemy.pos);
 
 			return false;
 
@@ -1560,6 +1574,10 @@ public class Hero extends Char {
 				} else {
 					Sample.INSTANCE.play(Assets.Sounds.HEALTH_WARN, 1/3f + flashIntensity * 4f);
 				}
+				//hero gets interrupted on taking serious damage, regardless of any other factor
+				interrupt();
+				resting = false;
+				damageInterrupt = true;
 			}
 		}
 	}
@@ -1865,10 +1883,10 @@ public class Hero extends Char {
 	}
 
 	@Override
-	public void add( Buff buff ) {
+	public boolean add(Buff buff ) {
 
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
-			return;
+			return false;
 
 		super.add( buff );
 
@@ -1885,13 +1903,16 @@ public class Hero extends Char {
 		}
 
 		BuffIndicator.refreshHero();
+		return false;
 	}
 
 	@Override
-	public void remove( Buff buff ) {
-		super.remove( buff );
-
-		BuffIndicator.refreshHero();
+	public boolean remove( Buff buff ) {
+		if (super.remove( buff )) {
+			BuffIndicator.refreshHero();
+			return true;
+		}
+		return false;
 	}
 
 	@Override

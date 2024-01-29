@@ -41,7 +41,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.BlueCubeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -453,7 +452,8 @@ public class WandOfRegrowth extends Wand {
 		}
 
 		@Override
-		public void add( Buff buff ) {
+		public boolean add(Buff buff ) {
+			return false;
 		}
 
 		@Override

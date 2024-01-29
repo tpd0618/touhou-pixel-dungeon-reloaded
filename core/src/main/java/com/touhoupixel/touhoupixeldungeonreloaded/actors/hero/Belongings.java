@@ -76,6 +76,12 @@ public class Belongings implements Iterable<Item> {
 	//used when thrown weapons temporary become the current weapon
 	public KindOfWeapon thrownWeapon = null;
 
+	//used to ensure that the duelist always uses the weapon she's using the ability of
+	public KindOfWeapon abilityWeapon = null;
+
+	//used by the champion subclass
+	public KindOfWeapon secondWep = null;
+
 	//*** these accessor methods are so that worn items can be affected by various effects/debuffs
 	// we still want to access the raw equipped items in cases where effects should be ignored though,
 	// such as when equipping something, showing an interface, or dealing with items from a dead hero

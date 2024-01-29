@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,27 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SmokeParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibility;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Languages;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -41,8 +51,11 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Bomb extends Item {
 
@@ -74,9 +87,7 @@ public class Bomb extends Item {
     @Override
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions( hero );
-        if (Dungeon.heroine.buff(Onigiri.class) == null) {
-            actions.add(AC_LIGHTTHROW);
-        }
+        actions.add ( AC_LIGHTTHROW );
         return actions;
     }
 
@@ -92,10 +103,14 @@ public class Bomb extends Item {
         super.execute(hero, action);
     }
 
+    protected Fuse createFuse(){
+        return new Fuse();
+    }
+
     @Override
     protected void onThrow( int cell ) {
         if (!Dungeon.level.pit[ cell ] && lightingFuse) {
-            Actor.addDelayed(fuse = new Fuse().ignite(this), 2);
+            Actor.addDelayed(fuse = createFuse().ignite(this), 2);
         }
         if (Actor.findChar( cell ) != null && !(Actor.findChar( cell ) instanceof Hero) ){
             ArrayList<Integer> candidates = new ArrayList<>();
@@ -116,11 +131,8 @@ public class Bomb extends Item {
         }
         return super.doPickUp(hero, pos);
     }
-    public void explode(int cell){
-        explode( cell, Random.NormalIntRange(Dungeon.scalingFloor()*5, Dungeon.scalingFloor()*9));
-    }
 
-    public void explode(int cell, int explosionDamage){
+    public void explode(int cell){
         //We're blowing up, so no need for a fuse anymore.
         this.fuse = null;
 
@@ -167,23 +179,11 @@ public class Bomb extends Item {
                     continue;
                 }
 
+                int dmg = Random.NormalIntRange(5 + Dungeon.scalingFloor(), 10 + Dungeon.scalingFloor()*2);
 
-                int dmg = explosionDamage;
                 //those not at the center of the blast take less damage
                 if (ch.pos != cell){
                     dmg = Math.round(dmg*0.67f);
-                }
-
-                if (ch instanceof Mob){
-                    dmg *= 0.5f;
-                }
-
-                if (ch.buff(Zen.class) != null){
-                    dmg *= 0;
-                }
-
-                if (ch.buff(Onigiri.class) != null){
-                    dmg += 999;
                 }
 
                 dmg -= ch.drRoll();
@@ -194,7 +194,7 @@ public class Bomb extends Item {
 
                 if (ch == Dungeon.heroine && !ch.isAlive()) {
                     GLog.n(Messages.get(this, "ondeath"));
-                    Dungeon.fail(Bomb.class);
+                    Dungeon.fail(Utsuho.class);
                 }
             }
 
@@ -216,7 +216,12 @@ public class Bomb extends Item {
 
     @Override
     public Item random() {
-        return this;
+        switch(Random.Int( 4 )){
+            case 0:
+                return new DoubleBomb();
+            default:
+                return this;
+        }
     }
 
     @Override
@@ -252,8 +257,8 @@ public class Bomb extends Item {
             Actor.add( fuse = ((Fuse)bundle.get(FUSE)).ignite(this) );
     }
 
-    //used to track the death from friendly magic badge
-    public static class MagicalBomb extends Bomb{};
+    //used to track the death from friendly magic badge, if an explosion was conjured by magic
+    public static class ConjuredBomb extends Bomb{};
 
     public static class Fuse extends Actor{
 
@@ -261,7 +266,7 @@ public class Bomb extends Item {
             actPriority = BLOB_PRIO+1; //after hero, before other actors
         }
 
-        private Bomb bomb;
+        protected Bomb bomb;
 
         public Fuse ignite(Bomb bomb){
             this.bomb = bomb;
@@ -281,14 +286,7 @@ public class Bomb extends Item {
             for (Heap heap : Dungeon.level.heaps.valueList()) {
                 if (heap.items.contains(bomb)) {
 
-                    //FIXME this is a bit hacky, might want to generalize the functionality
-                    //of bombs that don't explode instantly when their fuse ends
-                    heap.remove(bomb);
-
-                    bomb.explode(heap.pos);
-
-                    diactivate();
-                    Actor.remove(this);
+                    trigger(heap);
                     return true;
                 }
             }
@@ -297,6 +295,40 @@ public class Bomb extends Item {
             bomb.fuse = null;
             Actor.remove( this );
             return true;
+        }
+
+        protected void trigger(Heap heap){
+            heap.remove(bomb);
+            bomb.explode(heap.pos);
+            Actor.remove(this);
+        }
+
+        public boolean freeze(){
+            bomb.fuse = null;
+            Actor.remove(this);
+            return true;
+        }
+    }
+
+
+    public static class DoubleBomb extends Bomb{
+
+        {
+            image = ItemSpriteSheet.CLEAR_CUBE_FRAGMENT;
+            stackable = false;
+        }
+
+        @Override
+        public boolean doPickUp(Hero hero, int pos) {
+            Bomb bomb = new Bomb();
+            bomb.quantity(2);
+            if (bomb.doPickUp(hero, pos)) {
+                //isaaaaac.... (don't bother doing this when not in english)
+                if (SPDSettings.language() == Languages.ENGLISH)
+                    hero.sprite.showStatus(CharSprite.NEUTRAL, "1+1 free!");
+                return true;
+            }
+            return false;
         }
     }
 }

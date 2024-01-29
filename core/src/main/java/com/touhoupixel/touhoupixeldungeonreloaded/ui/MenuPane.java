@@ -211,7 +211,8 @@ public class MenuPane extends Component {
 				btnJournal.centerY());
 	}
 
-	public void flashForPage( String page ){
+	public void flashForPage( Document doc, String page ){
+		btnJournal.flashingDoc = doc;
 		btnJournal.flashingPage = page;
 	}
 
@@ -225,6 +226,7 @@ public class MenuPane extends Component {
 		private Image journalIcon;
 		private KeyDisplay keyIcon;
 
+		private Document flashingDoc = null;
 		private String flashingPage = null;
 
 		public JournalButton() {

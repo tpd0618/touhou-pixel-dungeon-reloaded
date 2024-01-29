@@ -168,6 +168,15 @@ public class ItemSlot extends Button {
 
 	}
 
+	public void alpha( float value ){
+		if (!active) value *= 0.3f;
+		if (sprite != null)     sprite.alpha(value);
+		if (extra != null)      extra.alpha(value);
+		if (status != null)     status.alpha(value);
+		if (itemIcon != null)   itemIcon.alpha(value);
+		if (level != null)      level.alpha(value);
+	}
+
 	public void clear(){
 		item(null);
 		enable(true);

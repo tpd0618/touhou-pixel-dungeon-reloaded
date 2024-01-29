@@ -4,16 +4,23 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.TargetedCell;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.JunkoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Junko extends Mob {
+
+    private boolean madanteUsed = false;
 
     {
         spriteClass = JunkoSprite.class;
@@ -48,32 +55,36 @@ public class Junko extends Mob {
     }
 
     @Override
-    public int attackProc(Char hero, int damage) {
-        damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            if (Statistics.life == 0) {
-                Homunculus homunculus = Dungeon.heroine.belongings.getItem(Homunculus.class);
-                if (homunculus != null) {
-                    homunculus.detach(Dungeon.heroine.belongings.backpack);
-                    Sample.INSTANCE.play(Assets.Sounds.BEACON);
-                    GLog.w(Messages.get(Homunculus.class, "block_instakill"));
-                    Item.updateQuickslot();
-                } else {
-                    damage = hero.HP + 1;
-                    GLog.w(Messages.get(this, "purified"));
-                }
+    protected boolean act() {
+        if (!madanteUsed && Dungeon.heroine.HP != Dungeon.heroine.HT && Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING && Random.Int(8) == 0) {
+            if (Dungeon.heroine.HP > 99){
+                Dungeon.heroine.HP = Random.NormalIntRange(1, 9);
             } else {
-                Statistics.life -= 1;
-                Sample.INSTANCE.play(Assets.Sounds.CURSED);
-                GLog.w(Messages.get(this, "lifelose"));
+                Dungeon.heroine.die(this);
             }
-            if (Statistics.difficulty > 2) {
-                Statistics.life -= 1;
-            }
-            if (Statistics.difficulty > 4) {
-                Statistics.life -= 1;
-            }
+            Sample.INSTANCE.play(Assets.Sounds.CURSED);
+            GLog.w(Messages.get(this, "madante"));
+            madanteUsed = true;
+            CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 30);
+            CellEmitter.center(Dungeon.heroine.pos-1-Dungeon.level.width()).burst(BlastParticle.FACTORY, 30);
+            CellEmitter.center(Dungeon.heroine.pos-1+Dungeon.level.width()).burst(BlastParticle.FACTORY, 30);
+            CellEmitter.center(Dungeon.heroine.pos+1-Dungeon.level.width()).burst(BlastParticle.FACTORY, 30);
+            CellEmitter.center(Dungeon.heroine.pos+1+Dungeon.level.width()).burst(BlastParticle.FACTORY, 30);
         }
-        return damage;
+        return super.act();
+    }
+
+    private final String MADANTEUSED = "chainsused";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(MADANTEUSED, madanteUsed);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        madanteUsed = bundle.getBoolean(MADANTEUSED);
     }
 }

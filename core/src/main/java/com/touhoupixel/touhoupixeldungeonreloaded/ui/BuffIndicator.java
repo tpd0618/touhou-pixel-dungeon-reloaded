@@ -308,7 +308,6 @@ public class BuffIndicator extends Component {
 		public Image grey; //only for small
 		public BitmapText text; //only for large
 
-		//TODO for large buffs there is room to have text instead of fading
 		public BuffButton( Buff buff, boolean large ){
 			super( new BuffIcon(buff, large));
 			this.buff = buff;
@@ -333,6 +332,7 @@ public class BuffIndicator extends Component {
 			//round up to the nearest pixel if <50% faded, otherwise round down
 			if (!large || buff.iconTextDisplay().isEmpty()) {
 				text.visible = false;
+				grey.visible = true;
 				float fadeHeight = buff.iconFadePercent() * icon.height();
 				float zoom = (camera() != null) ? camera().zoom : 1;
 				if (fadeHeight < icon.height() / 2f) {
@@ -341,6 +341,7 @@ public class BuffIndicator extends Component {
 					grey.scale.set(icon.width(), (float) Math.floor(zoom * fadeHeight) / zoom);
 				}
 			} else if (!buff.iconTextDisplay().isEmpty()) {
+				text.visible = true;
 				grey.visible = false;
 				if (buff.type == Buff.buffType.POSITIVE)        text.hardlight(CharSprite.POSITIVE);
 				else if (buff.type == Buff.buffType.NEGATIVE)   text.hardlight(CharSprite.NEGATIVE);
@@ -384,7 +385,7 @@ public class BuffIndicator extends Component {
 
 		@Override
 		protected String hoverText() {
-			return Messages.titleCase(buff.toString());
+			return Messages.titleCase(buff.name());
 		}
 	}
 

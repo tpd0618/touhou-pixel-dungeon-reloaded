@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,18 +23,15 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.ChargrilledMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.FrozenCarpaccio;
@@ -45,13 +42,18 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,7 +61,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 public class Heap implements Bundlable {
-	
+
 	public enum Type {
 		HEAP,
 		FOR_SALE,
@@ -71,80 +73,42 @@ public class Heap implements Bundlable {
 		REMAINS
 	}
 	public Type type = Type.HEAP;
-	
+
 	public int pos = 0;
-	
+
 	public ItemSprite sprite;
 	public boolean seen = false;
 	public boolean haunted = false;
 	public boolean autoExplored = false; //used to determine if this heap should count for exploration bonus
-	
+
 	public LinkedList<Item> items = new LinkedList<>();
-	
-	public void open( Hero heroine) {
+
+	public void open( Hero hero ) {
 		switch (type) {
-		case TOMB:
-			if (Statistics.card54) {
-				if (Random.Int(2) == 0) {
-					Dungeon.level.drop(new SpyGlass().quantity(Random.Int(1, 2)), heroine.pos).sprite.drop();
-					switch (Random.Int(4)) {
-						case 0:
-						default:
-							MitamaAra.spawnAround(heroine.pos);
-							break;
-						case 1:
-							MitamaKusi.spawnAround(heroine.pos);
-							break;
-						case 2:
-							MitamaNigi.spawnAround(heroine.pos);
-							break;
-						case 3:
-							MitamaSaki.spawnAround(heroine.pos);
-							break;
-					}
-				} else {
-					Wraith.spawnAround(heroine.pos);
-					break;
-				}
-			} else {
-				if (Random.Int(5) == 0) {
-					switch (Random.Int(4)) {
-						case 0:
-						default:
-							MitamaAra.spawnAround(heroine.pos);
-							break;
-						case 1:
-							MitamaKusi.spawnAround(heroine.pos);
-							break;
-						case 2:
-							MitamaNigi.spawnAround(heroine.pos);
-							break;
-						case 3:
-							MitamaSaki.spawnAround(heroine.pos);
-							break;
-					}
-				} else {
-					Wraith.spawnAround(heroine.pos);
-					break;
-				}
-			}
-		case REMAINS:
-		case SKELETON:
-			CellEmitter.center( pos ).start(Speck.factory(Speck.RATTLE), 0.1f, 3);
-			break;
-		default:
+			case TOMB:
+				Wraith.spawnAround( hero.pos );
+				break;
+			case REMAINS:
+			case SKELETON:
+				CellEmitter.center( pos ).start(Speck.factory(Speck.RATTLE), 0.1f, 3);
+				break;
+			default:
 		}
-		
+
 		if (haunted){
 			if (Wraith.spawnAt( pos ) == null) {
-				heroine.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
-				heroine.damage( heroine.HP / 2, this );
+				hero.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+				hero.damage( hero.HP / 2, this );
+				if (!hero.isAlive()){
+					Dungeon.fail(Wraith.class);
+					GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", Messages.get(Wraith.class, "name"))));
+				}
 			}
 			Sample.INSTANCE.play( Assets.Sounds.CURSED );
 		}
 
 		type = Type.HEAP;
-		ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(heroine, 1);
+		ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(hero, 1);
 		if (bonus != null && !bonus.isEmpty()) {
 			items.addAll(0, bonus);
 			RingOfWealth.showFlareForBonusDrop(sprite);
@@ -152,7 +116,7 @@ public class Heap implements Bundlable {
 		sprite.link();
 		sprite.drop();
 	}
-	
+
 	public Heap setHauntedIfCursed(){
 		for (Item item : items) {
 			if (item.cursed) {
@@ -163,13 +127,13 @@ public class Heap implements Bundlable {
 		}
 		return this;
 	}
-	
+
 	public int size() {
 		return items.size();
 	}
-	
+
 	public Item pickUp() {
-		
+
 		if (items.isEmpty()){
 			destroy();
 			return null;
@@ -180,18 +144,18 @@ public class Heap implements Bundlable {
 		} else if (sprite != null) {
 			sprite.view(this).place( pos );
 		}
-		
+
 		return item;
 	}
-	
+
 	public Item peek() {
 		return items.peek();
 	}
-	
+
 	public void drop( Item item ) {
-		
+
 		if (item.stackable && type != Type.FOR_SALE) {
-			
+
 			for (Item i : items) {
 				if (i.isSimilar( item )) {
 					item = i.merge( item );
@@ -199,7 +163,7 @@ public class Heap implements Bundlable {
 				}
 			}
 			items.remove( item );
-			
+
 		}
 
 		//lost backpack must always be on top of a heap
@@ -208,12 +172,19 @@ public class Heap implements Bundlable {
 		} else {
 			items.addFirst( item );
 		}
-		
+
 		if (sprite != null) {
 			sprite.view(this).place( pos );
 		}
+
+		if (TippedDart.lostDarts > 0){
+			Dart d = new Dart();
+			d.quantity(TippedDart.lostDarts);
+			TippedDart.lostDarts = 0;
+			drop(d);
+		}
 	}
-	
+
 	public void replace( Item a, Item b ) {
 		int index = items.indexOf( a );
 		if (index != -1) {
@@ -227,7 +198,7 @@ public class Heap implements Bundlable {
 			items.add( index, b );
 		}
 	}
-	
+
 	public void remove( Item a ){
 		items.remove(a);
 		if (items.isEmpty()){
@@ -236,16 +207,16 @@ public class Heap implements Bundlable {
 			sprite.view(this).place( pos );
 		}
 	}
-	
+
 	public void burn() {
 
 		if (type != Type.HEAP) {
 			return;
 		}
-		
+
 		boolean burnt = false;
 		boolean evaporated = false;
-		
+
 		for (Item item : items.toArray( new Item[0] )) {
 			if (item instanceof Scroll && !item.unique) {
 				items.remove( item );
@@ -267,9 +238,9 @@ public class Heap implements Bundlable {
 				}
 			}
 		}
-		
+
 		if (burnt || evaporated) {
-			
+
 			if (Dungeon.level.heroFOV[pos]) {
 				if (burnt) {
 					burnFX( pos );
@@ -277,13 +248,13 @@ public class Heap implements Bundlable {
 					evaporateFX( pos );
 				}
 			}
-			
+
 			if (isEmpty()) {
 				destroy();
 			} else if (sprite != null) {
 				sprite.view(this).place( pos );
 			}
-			
+
 		}
 	}
 
@@ -327,8 +298,8 @@ public class Heap implements Bundlable {
 						return;
 					}
 
-				//upgraded items can endure the blast
-				} else if (item.level() <= -1) {
+					//upgraded items can endure the blast
+				} else if (item.level() <= 0) {
 					items.remove( item );
 				}
 
@@ -341,13 +312,13 @@ public class Heap implements Bundlable {
 			}
 		}
 	}
-	
+
 	public void freeze() {
 
 		if (type != Type.HEAP) {
 			return;
 		}
-		
+
 		boolean frozen = false;
 		for (Item item : items.toArray( new Item[0] )) {
 			if (item instanceof MysteryMeat) {
@@ -357,12 +328,11 @@ public class Heap implements Bundlable {
 				items.remove(item);
 				((Potion) item).shatter(pos);
 				frozen = true;
-			} else if (item instanceof Bomb){
-				((Bomb) item).fuse = null;
-				frozen = true;
+			} else if (item instanceof Bomb && ((Bomb) item).fuse != null){
+				frozen = frozen || ((Bomb) item).fuse.freeze();
 			}
 		}
-		
+
 		if (frozen) {
 			if (isEmpty()) {
 				destroy();
@@ -371,20 +341,20 @@ public class Heap implements Bundlable {
 			}
 		}
 	}
-	
+
 	public static void burnFX( int pos ) {
 		CellEmitter.get( pos ).burst( ElmoParticle.FACTORY, 6 );
 		Sample.INSTANCE.play( Assets.Sounds.BURNING );
 	}
-	
+
 	public static void evaporateFX( int pos ) {
 		CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 5 );
 	}
-	
+
 	public boolean isEmpty() {
 		return items == null || items.size() == 0;
 	}
-	
+
 	public void destroy() {
 		Dungeon.level.heaps.remove( this.pos );
 		if (sprite != null) {
@@ -393,15 +363,14 @@ public class Heap implements Bundlable {
 		items.clear();
 	}
 
-	@Override
-	public String toString(){
+	public String title(){
 		switch(type){
 			case FOR_SALE:
 				Item i = peek();
 				if (size() == 1) {
-					return Messages.get(this, "for_sale", Shopkeeper.sellPrice(i), i.toString());
+					return Messages.get(this, "for_sale", Shopkeeper.sellPrice(i), i.title());
 				} else {
-					return i.toString();
+					return i.title();
 				}
 			case CHEST:
 				return Messages.get(this, "chest");
@@ -416,7 +385,7 @@ public class Heap implements Bundlable {
 			case REMAINS:
 				return Messages.get(this, "remains");
 			default:
-				return peek().toString();
+				return peek().title();
 		}
 	}
 
@@ -450,17 +419,17 @@ public class Heap implements Bundlable {
 	private static final String ITEMS	= "items";
 	private static final String HAUNTED	= "haunted";
 	private static final String AUTO_EXPLORED	= "auto_explored";
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		pos = bundle.getInt( POS );
 		seen = bundle.getBoolean( SEEN );
 		type = Type.valueOf( bundle.getString( TYPE ) );
-		
+
 		items = new LinkedList<>((Collection<Item>) ((Collection<?>) bundle.getCollection(ITEMS)));
 		items.removeAll(Collections.singleton(null));
-		
+
 		//remove any document pages that either don't exist anymore or that the player already has
 		for (Item item : items.toArray(new Item[0])){
 			if (item instanceof DocumentPage
@@ -472,7 +441,7 @@ public class Heap implements Bundlable {
 				items.remove(item);
 			}
 		}
-		
+
 		haunted = bundle.getBoolean( HAUNTED );
 		autoExplored = bundle.getBoolean( AUTO_EXPLORED );
 	}
@@ -481,10 +450,10 @@ public class Heap implements Bundlable {
 	public void storeInBundle( Bundle bundle ) {
 		bundle.put( POS, pos );
 		bundle.put( SEEN, seen );
-		bundle.put( TYPE, type.toString() );
+		bundle.put( TYPE, type );
 		bundle.put( ITEMS, items );
 		bundle.put( HAUNTED, haunted );
 		bundle.put( AUTO_EXPLORED, autoExplored );
 	}
-	
+
 }

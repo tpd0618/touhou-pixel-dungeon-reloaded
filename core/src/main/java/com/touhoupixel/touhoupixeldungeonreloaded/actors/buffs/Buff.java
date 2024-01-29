@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,15 +23,17 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CounterBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlavourBuff;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Reflection;
 
-import java.text.DecimalFormat;
 import java.util.HashSet;
 
 public class Buff extends Actor {
-	
+
 	public Char target;
 
 	{
@@ -41,35 +43,34 @@ public class Buff extends Actor {
 	//determines how the buff is announced when it is shown.
 	public enum buffType {POSITIVE, NEGATIVE, NEUTRAL}
 	public buffType type = buffType.NEUTRAL;
-	
+
 	//whether or not the buff announces its name
 	public boolean announced = false;
 
 	//whether a buff should persist through revive effects for the hero
 	public boolean revivePersists = false;
-	
+
 	protected HashSet<Class> resistances = new HashSet<>();
-	
+
 	public HashSet<Class> resistances() {
 		return new HashSet<>(resistances);
 	}
-	
+
 	protected HashSet<Class> immunities = new HashSet<>();
-	
+
 	public HashSet<Class> immunities() {
 		return new HashSet<>(immunities);
 	}
-	
+
 	public boolean attachTo( Char target ) {
 
 		if (target.isImmune( getClass() )) {
 			return false;
 		}
-		
-		this.target = target;
-		target.add( this );
 
-		if (target.buffs().contains(this)){
+		this.target = target;
+
+		if (target.add( this )){
 			if (target.sprite != null) fx( true );
 			return true;
 		} else {
@@ -77,18 +78,17 @@ public class Buff extends Actor {
 			return false;
 		}
 	}
-	
+
 	public void detach() {
-		if (target.sprite != null) fx( false );
-		target.remove( this );
+		if (target.remove( this ) && target.sprite != null) fx( false );
 	}
-	
+
 	@Override
 	public boolean act() {
 		diactivate();
 		return true;
 	}
-	
+
 	public int icon() {
 		return BuffIndicator.NONE;
 	}
@@ -114,16 +114,25 @@ public class Buff extends Actor {
 	}
 
 	public String heroMessage(){
-		return null;
+		String msg = Messages.get(this, "heromsg");
+		if (msg.isEmpty()) {
+			return null;
+		} else {
+			return msg;
+		}
+	}
+
+	public String name() {
+		return Messages.get(this, "name");
 	}
 
 	public String desc(){
-		return "";
+		return Messages.get(this, "desc");
 	}
 
 	//to handle the common case of showing how many turns are remaining in a buff description.
 	protected String dispTurns(float input){
-		return new DecimalFormat("#.##").format(input);
+		return Messages.decimalFormat("#.##", input);
 	}
 
 	//buffs act after the hero, so it is often useful to use cooldown+1 when display buff time remaining
@@ -153,7 +162,7 @@ public class Buff extends Actor {
 			return append( target, buffClass );
 		}
 	}
-	
+
 	public static<T extends FlavourBuff> T affect( Char target, Class<T> buffClass, float duration ) {
 		T buff = affect( target, buffClass );
 		buff.spend( duration * target.resist(buffClass) );
@@ -161,18 +170,18 @@ public class Buff extends Actor {
 	}
 
 	//postpones an already active buff, or creates & attaches a new buff and delays that.
-	public static<T extends FlavourBuff> T prolong( Char target, Class<T> buffClass, float duration ) {
+	public static<T extends FlavourBuff> T prolong(Char target, Class<T> buffClass, float duration ) {
 		T buff = affect( target, buffClass );
 		buff.postpone( duration * target.resist(buffClass) );
 		return buff;
 	}
 
-	public static<T extends CounterBuff> T count( Char target, Class<T> buffclass, float count ) {
+	public static<T extends CounterBuff> T count(Char target, Class<T> buffclass, float count ) {
 		T buff = affect( target, buffclass );
 		buff.countUp( count );
 		return buff;
 	}
-	
+
 	public static void detach( Char target, Class<? extends Buff> cl ) {
 		for ( Buff b : target.buffs( cl )){
 			b.detach();
