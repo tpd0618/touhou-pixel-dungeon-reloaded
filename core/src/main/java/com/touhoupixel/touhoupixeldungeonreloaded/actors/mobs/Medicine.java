@@ -134,13 +134,13 @@ public class Medicine extends Mob {
 
 	@Override
 	public boolean add(Buff buff) {
-		super.add(buff);
+		boolean added = super.add(buff);
 		//TODO maybe handle honeyed bees with their own ally buff?
 		if (buff instanceof AllyBuff){
 			intelligentAlly = false;
 			setPotInfo(-1, null);
 		}
-		return false;
+		return added;
 	}
 
 	@Override

@@ -259,7 +259,6 @@ public class BuffIndicator extends Component {
 
 		//layout
 		int pos = 0;
-		float lastIconLeft = 0;
 		for (BuffButton icon : buffButtons.values()){
 			icon.updateIcon();
 			//button areas are slightly oversized, especially on small buttons
@@ -267,31 +266,6 @@ public class BuffIndicator extends Component {
 			PixelScene.align(icon);
 			pos++;
 
-			icon.visible = icon.left() <= right();
-			lastIconLeft = icon.left();
-		}
-
-		buffsHidden = false;
-		//squish buff icons together if there isn't enough room
-		float excessWidth = lastIconLeft - right();
-		if (excessWidth > 0) {
-			float leftAdjust = excessWidth/(buffButtons.size()-1);
-			//can't squish by more than 50% on large and 62% on small
-			if (large && leftAdjust >= size*0.48f) leftAdjust = size*0.5f;
-			if (!large && leftAdjust >= size*0.62f) leftAdjust = size*0.65f;
-			float cumulativeAdjust = leftAdjust * (buffButtons.size()-1);
-
-			ArrayList<BuffButton> buttons = new ArrayList<>(buffButtons.values());
-			Collections.reverse(buttons);
-			for (BuffButton icon : buttons) {
-				icon.setPos(icon.left() - cumulativeAdjust, icon.top());
-				icon.visible = icon.left() <= right();
-				if (!icon.visible) buffsHidden = true;
-				PixelScene.align(icon);
-				bringToFront(icon);
-				icon.givePointerPriority();
-				cumulativeAdjust -= leftAdjust;
-			}
 		}
 	}
 

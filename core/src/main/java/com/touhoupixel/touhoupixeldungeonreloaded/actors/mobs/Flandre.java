@@ -69,11 +69,11 @@ public class Flandre extends Mob {
 
     @Override
     public boolean add(Buff buff) {
-        super.add(buff);
+        boolean added = super.add(buff);
         if (state == PASSIVE && buff.type == Buff.buffType.NEGATIVE){
             state = HUNTING;
         }
-        return false;
+        return added;
     }
 
     @Override
