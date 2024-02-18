@@ -162,7 +162,7 @@ public abstract class TippedDart extends Dart {
 
 	@Override
 	public float durabilityPerUse() {
-		float use = super.durabilityPerUse(false);
+		float use = super.durabilityPerUse();
 
 		//checks both destination and source position
 		float lotusPreserve = 0f;

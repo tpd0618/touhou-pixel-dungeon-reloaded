@@ -41,10 +41,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFireblast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
@@ -72,9 +78,6 @@ public enum HeroClass {
 			HeartHerb heartHerb = new HeartHerb();
 			heartHerb.quantity(30).identify().collect();
 		}
-
-		UpgradeCard upgradeCard = new UpgradeCard();
-		upgradeCard.quantity(10).collect(); //temporal
 
 		OminousGap ominousGap = new OminousGap();
 		ominousGap.quantity(5).collect();
@@ -210,7 +213,7 @@ public enum HeroClass {
 	}
 	public static void initSakuya(Hero heroine){
 		ThrowingKnife throwingKnife = new ThrowingKnife();
-		throwingKnife.quantity(5).collect();
+		throwingKnife.quantity(30).collect();
 		Dungeon.quickslot.setSlot(0, throwingKnife);
 
 		KoishiDagger koishiDagger = new KoishiDagger();

@@ -46,7 +46,7 @@ public class SakuyaKnifeDanmaku extends MissileWeapon{
             return maxDamage;
         }
         else {
-            return super.max();
+            return super.max(lvl);
         }
     }
     public int min(int lvl){
@@ -54,9 +54,10 @@ public class SakuyaKnifeDanmaku extends MissileWeapon{
             return minDamage;
         }
         else {
-            return super.min();
+            return super.min(lvl);
         }
     }
+
 
     @Override
     public int damageRoll(Char owner) {
