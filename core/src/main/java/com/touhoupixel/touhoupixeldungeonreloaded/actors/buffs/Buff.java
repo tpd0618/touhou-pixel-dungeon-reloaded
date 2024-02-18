@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CounterBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlavourBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Reflection;
 
@@ -115,7 +116,7 @@ public class Buff extends Actor {
 
 	public String heroMessage(){
 		String msg = Messages.get(this, "heromsg");
-		if (msg.isEmpty()) {
+		if (msg.equals(Messages.NO_TEXT_FOUND)) {
 			return null;
 		} else {
 			return msg;

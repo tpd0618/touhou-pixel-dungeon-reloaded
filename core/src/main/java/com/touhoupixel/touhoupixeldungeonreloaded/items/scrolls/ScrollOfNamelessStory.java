@@ -43,9 +43,12 @@ public class ScrollOfNamelessStory extends Scroll {
 			if (!ch.properties().contains(Char.Property.MINIBOSS) && !ch.properties().contains(Char.Property.BOSS) && !(ch instanceof Shopkeeper) && !ch.properties().contains(Char.Property.MITAMA) && !ch.properties().contains(Char.Property.NOT_EXTERMINABLE)) {
 				GLog.i(Messages.get(this, "target_exterminate"));
 				Statistics.exterminatedEnemy = Actor.findChar(cell).getClass();
-				Mob mob = (Mob) ch;
-				mob.exterminate();
-				mob.sprite.killAndErase();
+				for (Char ch1 : Actor.chars()){
+					if (ch1.getClass() != Statistics.exterminatedEnemy) continue;
+					Mob mob = (Mob) ch1;
+					mob.exterminate();
+					mob.sprite.killAndErase();
+				}
 			} else {
 				GLog.w(Messages.get(this, "cant_exterminate"));
 			}

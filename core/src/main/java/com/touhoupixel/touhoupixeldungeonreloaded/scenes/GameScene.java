@@ -454,12 +454,14 @@ public class GameScene extends PixelScene {
 
 		Dungeon.heroine.next();
 
-		switch (InterlevelScene.mode){
-			case FALL: case DESCEND: case CONTINUE:
-				Camera.main.snapTo(hero.center().x, hero.center().y - DungeonTilemap.SIZE * (defaultZoom/Camera.main.zoom));
-				break;
+		switch (InterlevelScene.mode) {
+			case FALL:
 			case ASCEND:
-				Camera.main.snapTo(hero.center().x, hero.center().y + DungeonTilemap.SIZE * (defaultZoom/Camera.main.zoom));
+			case CONTINUE:
+				Camera.main.snapTo(hero.center().x, hero.center().y - DungeonTilemap.SIZE * (defaultZoom / Camera.main.zoom));
+				break;
+			case DESCEND:
+				Camera.main.snapTo(hero.center().x, hero.center().y + DungeonTilemap.SIZE * (defaultZoom / Camera.main.zoom));
 				break;
 			default:
 				Camera.main.snapTo(hero.center().x, hero.center().y);
@@ -468,8 +470,8 @@ public class GameScene extends PixelScene {
 
 		if (InterlevelScene.mode != InterlevelScene.Mode.NONE) {
 			if (Dungeon.floor == Statistics.highestFloor
-					&& (InterlevelScene.mode == InterlevelScene.Mode.DESCEND || InterlevelScene.mode == InterlevelScene.Mode.FALL)) {
-				GLog.h(Messages.get(this, "descend"), Dungeon.floor);
+					&& (InterlevelScene.mode == InterlevelScene.Mode.ASCEND || InterlevelScene.mode == InterlevelScene.Mode.FALL)) {
+				GLog.h(Messages.get(this, "ascend"), Dungeon.floor);
 				Sample.INSTANCE.play(Assets.Sounds.DESCEND);
 
 			} else if (InterlevelScene.mode == InterlevelScene.Mode.RESET) {
@@ -477,8 +479,9 @@ public class GameScene extends PixelScene {
 			} else if (InterlevelScene.mode == InterlevelScene.Mode.RESURRECT) {
 				GLog.h(Messages.get(this, "resurrect"), Dungeon.floor);
 			} else {
-				GLog.h(Messages.get(this, "return"), Dungeon.floor);
+				GLog.h(Messages.get(this, "descend"), Dungeon.floor);
 			}
+
 
 			switch (Dungeon.level.feeling) {
 				case CHASM:     GLog.w(Messages.get(this, "chasm"));    break;
