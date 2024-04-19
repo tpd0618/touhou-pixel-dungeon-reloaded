@@ -30,7 +30,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AntiShipBattery;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Backdoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
@@ -61,6 +63,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuumaAbsorb;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.Okina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
@@ -143,8 +146,8 @@ public abstract class Mob extends Char {
 	public float mobRarity = COMMON_RARITY; //chance of spawn mob: from 0 (will never spawn) to 1 (will always spawn)
 	public static final float COMMON_RARITY = 1;
 	public static final float UNCOMMON_RARITY = 0.33f;
-	public static final float RARE_RARITY = 0.05f;
-	public static final float EPIC_RARITY = 0.025f;
+	public static final float RARE_RARITY = 0.04f;
+	public static final float EPIC_RARITY = 0.02f;
 	protected static final float TIME_TO_WAKE_UP = 1f;
 
 	private static final String STATE	= "state";
@@ -638,7 +641,7 @@ public abstract class Mob extends Char {
 	public boolean isInvulnerable(Class effect) {
 		return Dungeon.heroine.buff(HinaCurse.class) != null && Dungeon.heroine.justMoved ||
 				this instanceof BossHecatia && Statistics.eirinelixircount != 4 ||
-				Dungeon.level.map[this.pos] == Terrain.WALL || Dungeon.level.map[this.pos] == Terrain.WALL_DECO;
+				Dungeon.level.map[this.pos] == Terrain.WALL || Dungeon.level.map[this.pos] == Terrain.WALL_DECO || buff(AnkhInvulnerability.class) != null;
 	}
 
 	@Override
@@ -1316,6 +1319,9 @@ public abstract class Mob extends Char {
 					&& Dungeon.level.distance(holdFromPos, mob.pos) <= 5){
 				level.mobs.remove( mob );
 				heldAllies.add(mob);
+			} else if (mob instanceof Okina && Dungeon.heroine.buff(Backdoor.class) != null){
+				level.mobs.remove( mob );
+				heldAllies.add(mob);
 			}
 		}
 	}
@@ -1350,6 +1356,11 @@ public abstract class Mob extends Char {
 			for (Mob ally : heldAllies) {
 				level.mobs.add(ally);
 				ally.state = ally.WANDERING;
+
+				if (ally instanceof Okina){
+					Buff.prolong(ally, AnkhInvulnerability.class, 4f);
+					ally.HP = Math.min(ally.HT, ally.HP+150);
+				}
 
 				if (!candidatePositions.isEmpty()){
 					ally.pos = candidatePositions.remove(0);

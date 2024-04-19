@@ -33,7 +33,7 @@ import com.watabou.utils.Callback;
 
 public class FutureSight extends FlavourBuff {
 
-	public static final float DURATION = 10f;
+	public static final float DURATION = 5f;
 
 	{
 		type = buffType.NEGATIVE;
@@ -48,7 +48,7 @@ public class FutureSight extends FlavourBuff {
 		super.detach();
 	}
 	private void summonKnives(Char target){
-		SakuyaKnifeDanmaku misWeapon = new SakuyaKnifeDanmaku(30, 50, 1f);
+		SakuyaKnifeDanmaku misWeapon = new SakuyaKnifeDanmaku(40, 60, 1f);
 		int arr[] = {-2, 2};
 		for (int x : arr){
 			for (int y : arr){
