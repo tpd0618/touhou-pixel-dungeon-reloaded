@@ -18,7 +18,7 @@ public class SpellcardLabel extends Component {
     private BitmapText spellcardName;
     protected NinePatch bg;
     private Spellcard lastSpell = null;
-    public static float SIZE = 70;
+    public static float SIZE = 100;
     public static float HEIGHT = 14;
     public SpellcardLabel(int color){
         super();

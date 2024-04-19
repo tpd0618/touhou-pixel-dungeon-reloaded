@@ -135,7 +135,7 @@ public class BuffIndicator extends Component {
 	public static final int ALICE_CURSE       = 85;
 	public static final int DISMANTLE_PRESSURE = 86;
 	public static final int HECATIA_RULE       = 87;
-	public static final int BERSERK            = 88;
+	public static final int AURA_REIMU         = 88;
 	public static final int HARD_SEARCH        = 89;
 	public static final int EXTREME_FEAR       = 90;
 	public static final int REBIRTH            = 91;
@@ -167,6 +167,8 @@ public class BuffIndicator extends Component {
 	public static final int GHOST_HALF 			= 118;
 	public static final int DISMANTLE_READY     = 119;
 	public static final int ONIGIRI             = 120;
+	public static final int IRON_RINGS 			= 121;
+	public static final int BACKDOOR			= 122;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

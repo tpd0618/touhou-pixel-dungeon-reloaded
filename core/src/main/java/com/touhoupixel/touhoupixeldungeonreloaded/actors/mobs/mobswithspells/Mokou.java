@@ -42,7 +42,7 @@ public class Mokou extends MobWithSpellcard implements Callback {
     {
         spriteClass = MokouSprite.class;
 
-        HP = HT = 190;
+        HP = HT = 400;
         defenseSkill = 20;
         EXP = 20;
         maxLvl = 99;
@@ -65,9 +65,6 @@ public class Mokou extends MobWithSpellcard implements Callback {
         //used for fumo lover buff
 
         flying = true;
-
-        loot = new LifeFragment();
-        lootChance = 0.15f;
 
         immunities.add(Fire.class);
     }
@@ -121,7 +118,7 @@ public class Mokou extends MobWithSpellcard implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(15, 23);
+        return Random.NormalIntRange(7, 15);
     }
 
     @Override
@@ -143,18 +140,16 @@ public class Mokou extends MobWithSpellcard implements Callback {
     private final String LASERS_COOLDOWN = "lasers_cooldown";
     @Override
     public void storeInBundle(Bundle bundle){
+        super.storeInBundle( bundle );
         bundle.put(CAN_REVIVE, canRevive);
         bundle.put(LASERS_COOLDOWN, lasersCooldown);
-
-        super.storeInBundle( bundle );
     }
 
     @Override
     public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle( bundle );
         canRevive = bundle.getBoolean(CAN_REVIVE);
         lasersCooldown = bundle.getInt(LASERS_COOLDOWN);
-
-        super.restoreFromBundle( bundle );
     }
 
     @Override
@@ -177,8 +172,7 @@ public class Mokou extends MobWithSpellcard implements Callback {
 
     @Override
     protected boolean canAttack( Char enemy ) {
-        boolean canAttack = false;
-         canAttack = (super.canAttack(enemy));
+        boolean canAttack = super.canAttack(enemy);
          if (!canAttack && new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT).collisionPos == enemy.pos && spellcard != null) {
              canAttack = spellcard instanceof PhoenixShield && Random.Int(3) == 0 || spellcard instanceof PhoenixEye && Random.Int(3) == 0;
          }

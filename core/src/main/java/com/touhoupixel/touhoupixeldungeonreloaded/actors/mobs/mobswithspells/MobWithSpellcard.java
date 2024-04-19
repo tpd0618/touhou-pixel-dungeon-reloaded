@@ -12,12 +12,14 @@ import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public abstract class MobWithSpellcard extends Mob {
     protected ArrayList<Class> spellcardsList = new ArrayList<Class>();
     protected ArrayList<Class> spellcardsDefaultList = new ArrayList<Class>();
     public boolean isSpellcardOn = false;
+    public boolean randomOrderOfSpellcards = true;
     public Spellcard spellcard = null;
     protected int cardCooldown = 1;
     protected int numberOfCards;
@@ -56,7 +58,7 @@ public abstract class MobWithSpellcard extends Mob {
 
     public boolean readyToUseSpellcard(){
        if (enemy != null && state == HUNTING && numberOfCards > 0 && !isSpellcardOn){
-           if (enemySeen == true)
+           if (enemySeen)
             return true;
         }
         return false;
@@ -66,8 +68,14 @@ public abstract class MobWithSpellcard extends Mob {
         for (Class c : spellcardsDefaultList){
             spellcardsList.add(c);
         }
-        Random.shuffle(spellcardsList);
+        if (randomOrderOfSpellcards) Random.shuffle(spellcardsList);
         return spellcardsList;
+    }
+
+    @Override
+    public void updateSpriteState() {
+        fx(isSpellcardOn);
+        super.updateSpriteState();
     }
 
     private final String SPELLCARDS_LIST = "spellcards_list";
@@ -77,31 +85,28 @@ public abstract class MobWithSpellcard extends Mob {
     private final String NUMBER_OF_CARDS = "number_of_cards";
     @Override
     public void storeInBundle(Bundle bundle) {
-        Class[] spellcardArray = new Class[spellcardsList.size()];
-        spellcardsList.toArray(spellcardArray);
-        bundle.put(SPELLCARDS_LIST, spellcardArray);
+        super.storeInBundle(bundle);
+        bundle.put( SPELLCARDS_LIST, spellcardsList.toArray(new Class[spellcardsList.size()]) );
         bundle.put(IS_SPELLCARD_ON, isSpellcardOn);
         bundle.put(SPELLCARD, spellcard);
         bundle.put(CARD_COOLDOWN, cardCooldown);
         bundle.put(NUMBER_OF_CARDS, numberOfCards);
-        super.storeInBundle(bundle);
     }
 
     @Override
     public void restoreFromBundle(Bundle bundle) {
-        Class[] spellcardArray = bundle.getClassArray(SPELLCARDS_LIST);
-        for (Class c : spellcardArray) spellcardsList.add(c);
+        super.restoreFromBundle(bundle);
+        spellcardsList.clear();
+        Collections.addAll(spellcardsList, bundle.getClassArray(SPELLCARDS_LIST));
         isSpellcardOn = bundle.getBoolean(IS_SPELLCARD_ON);
         spellcard = (Spellcard) bundle.get(SPELLCARD);
         cardCooldown = bundle.getInt(CARD_COOLDOWN);
         numberOfCards = bundle.getInt(NUMBER_OF_CARDS);
         if (spellcard != null) spellcard.resume(this);
-        super.restoreFromBundle(bundle);
     }
 
     @Override
     protected boolean act() {
-
         if (state == HUNTING && cardCooldown > 0){
             cardCooldown -= 1;
         } else if (readyToUseSpellcard()) {
