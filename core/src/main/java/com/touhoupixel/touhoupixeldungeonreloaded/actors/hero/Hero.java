@@ -248,7 +248,7 @@ public class Hero extends Char {
 	// for enemies we know we aren't seeing normally, resultign in better performance
 	public ArrayList<Mob> mindVisionEnemies = new ArrayList<>();
 
-	public Hero() {
+	public Hero() { 
 		super();
 
 		HP = HT = STARTING_HT;
