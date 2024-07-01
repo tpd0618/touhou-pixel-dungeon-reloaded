@@ -32,8 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
@@ -283,7 +282,6 @@ public class UnstableSpellbook extends Artifact {
 			if (charge < chargeCap && !cursed && (lock == null || lock.regenOn())) {
 				//120 turns to charge at full, 80 turns to charge at 0/8
 				float chargeGain = 1 / (120f - (chargeCap - charge)*5f);
-				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 
 				if (partialCharge >= 1) {
@@ -313,7 +311,7 @@ public class UnstableSpellbook extends Artifact {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return SpellcardHolder.class;
+			return MarisaHolder.class;
 		}
 
 		@Override

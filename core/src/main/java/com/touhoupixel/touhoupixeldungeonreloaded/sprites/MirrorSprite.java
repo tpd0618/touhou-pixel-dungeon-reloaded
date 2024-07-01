@@ -47,18 +47,24 @@ public class MirrorSprite extends MobSprite {
 	
 	public void updateArmor( int tier ) {
 		TextureFilm film = new TextureFilm( HeroSprite.tiers(), tier, FRAME_WIDTH, FRAME_HEIGHT );
-		
+
 		idle = new Animation( 1, true );
 		idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
-		
+
+		onigiri = new Animation( 1, true );
+		onigiri.frames( film, 7 );
+
 		run = new Animation( 20, true );
-		run.frames( film, 2, 3, 4, 5, 6, 7 );
-		
+		run.frames( film, 2, 3, 4, 5, 6, 6 );
+
 		die = new Animation( 20, false );
 		die.frames( film, 0 );
-		
+
 		attack = new Animation( 15, false );
 		attack.frames( film, 13, 14, 15, 0 );
+
+		onigiri_attack = new Animation( 15, false );
+		onigiri_attack.frames( film, 7 );
 		
 		idle();
 	}

@@ -30,7 +30,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
@@ -88,6 +91,21 @@ public class CursingTrap extends Trap {
 				priorityCurse.add(armor);
 			else
 				canCurse.add(armor);
+		}
+
+		Artifact artifact = heroine.belongings.artifact();
+		if (artifact != null){
+			canCurse.add(artifact);
+		}
+
+		KindofMisc misc = heroine.belongings.misc();
+		if (misc != null){
+			canCurse.add(misc);
+		}
+
+		Bracelet bracelet = heroine.belongings.bracelet();
+		if (bracelet != null){
+			canCurse.add(bracelet);
 		}
 
 		Collections.shuffle(priorityCurse);

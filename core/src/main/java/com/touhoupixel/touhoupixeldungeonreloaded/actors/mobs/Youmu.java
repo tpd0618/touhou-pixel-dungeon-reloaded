@@ -23,6 +23,7 @@ public class Youmu extends Mob {
         maxLvl = 45;
 
         properties.add(Property.WARP);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

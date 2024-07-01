@@ -57,7 +57,7 @@ public class Shou extends Mob {
 
 		HUNTING = new Hunting();
 
-		loot = Generator.Category.RING;
+		loot = Generator.Category.BRACELET;
 		lootChance = 0.03f;
 	}
 

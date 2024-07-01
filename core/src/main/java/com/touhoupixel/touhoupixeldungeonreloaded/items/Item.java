@@ -34,6 +34,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.IdentifyBracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.JudgeBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
@@ -68,7 +71,7 @@ public class Item implements Bundlable {
 	public static final String AC_DROP		= "DROP";
 	public static final String AC_THROW		= "THROW";
 
-	protected String defaultAction;
+	public String defaultAction;
 	public boolean usesTargeting;
 
 	//TODO should these be private and accessed through methods?
@@ -124,6 +127,13 @@ public class Item implements Bundlable {
 			GameScene.pickUp( this, pos );
 			Sample.INSTANCE.play( Assets.Sounds.ITEM );
 			heroine.spendAndNext( TIME_TO_PICK_UP );
+
+			KindofMisc misc = Dungeon.heroine.belongings.misc;
+			Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
+			if (misc instanceof IdentifyBracelet || bracelet instanceof IdentifyBracelet) {
+				curItem.identify();
+			}
+
 			return true;
 
 		} else {

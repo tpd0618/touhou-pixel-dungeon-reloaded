@@ -257,8 +257,8 @@ public class WndRanking extends WndTabbed {
 			if (stuff.misc != null) {
 				addItem( stuff.misc );
 			}
-			if (stuff.ring != null) {
-				addItem( stuff.ring );
+			if (stuff.bracelet != null) {
+				addItem( stuff.bracelet);
 			}
 
 			pos = 0;

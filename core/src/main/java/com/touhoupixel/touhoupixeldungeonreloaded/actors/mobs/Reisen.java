@@ -1,6 +1,5 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.sun.tools.javac.jvm.Items;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
@@ -12,7 +11,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ReisenSprite;
@@ -24,8 +22,6 @@ import java.util.ArrayList;
 
 public class Reisen extends Mob {
 
-    Items items;
-
     {
         spriteClass = ReisenSprite.class;
 
@@ -35,6 +31,7 @@ public class Reisen extends Mob {
         maxLvl = 20;
 
         properties.add(Property.ANIMAL);
+        properties.add(Property.HARASSMENT);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff
@@ -70,7 +67,7 @@ public class Reisen extends Mob {
             }
             ArrayList<Item> gazer = new ArrayList<>();
             for (Item i : Dungeon.heroine.belongings) {
-                if (!i.unique && (i instanceof Potion || i instanceof Herb)) {
+                if (!i.unique && (i instanceof Potion)) {
                     gazer.add(i);
                 }
             }
@@ -82,9 +79,6 @@ public class Reisen extends Mob {
                     Sample.INSTANCE.play(Assets.Sounds.LULLABY);
                     if (hypnotize instanceof Potion) {
                         ((Potion) hypnotize).drink((Hero) hero);
-                    }
-                    if (hypnotize instanceof Herb) {
-                        hypnotize.execute((Hero) hero);
                     }
                 } else {
                     GLog.w(Messages.get(this, "failtogaze"));

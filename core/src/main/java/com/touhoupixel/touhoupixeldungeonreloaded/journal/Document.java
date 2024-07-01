@@ -177,7 +177,7 @@ public enum Document {
 				case "Strength":
 					return new ItemSprite( ItemSpriteSheet.SEIRANHAMMER );
 				case "Upgrades":
-					return new ItemSprite( ItemSpriteSheet.RING_EMERALD );
+					return new ItemSprite( ItemSpriteSheet.BRACELET );
 				case "Item_Use":
 					return new ItemSprite( ItemSpriteSheet.CRYSTAL_KEY );
 				case "Levelling":

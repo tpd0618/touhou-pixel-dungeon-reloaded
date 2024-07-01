@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -61,7 +61,7 @@ public class Talisman extends Item {
 
     @Override
     public boolean collect(Bag container) {
-        if (container instanceof HerbPouch) holster = true;
+        if (container instanceof SanaeHolder) holster = true;
         return super.collect(container);
     }
 
@@ -89,7 +89,7 @@ public class Talisman extends Item {
             quantity++;
             if (Random.Int(2) == 0) {
                 quantity++;
-                if (Dungeon.isChallenged(Challenges.BLESSING_CHORD)) {
+                if (Dungeon.isChallenged(Challenges.OLD_ROAD)) {
                     quantity--;
                 }
             }

@@ -9,7 +9,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.PurityHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KeineSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -27,9 +26,6 @@ public class Keine extends Mob {
         maxLvl = 20;
 
         properties.add(Property.ANIMAL);
-
-        loot = new PurityHerb();
-        lootChance = 0.15f;
     }
 
     @Override

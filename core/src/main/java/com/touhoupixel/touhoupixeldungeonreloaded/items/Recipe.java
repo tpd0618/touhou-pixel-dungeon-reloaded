@@ -199,7 +199,6 @@ public abstract class Recipe {
 		new ReclaimTrap.Recipe(),
 		new WildEnergy.Recipe(),
 		new TelekineticGrab.Recipe(),
-		new Homunculus.Recipe(),
 		new StewedMeat.twoMeat()
 	};
 	

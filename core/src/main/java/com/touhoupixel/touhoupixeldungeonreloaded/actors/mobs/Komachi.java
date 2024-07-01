@@ -57,6 +57,7 @@ public class Komachi extends Mob {
         maxLvl = 32;
 
         properties.add(Property.GOD);
+        properties.add(Property.AQUATIC);
 
         loot = PotionOfExorcismRod.class;
         lootChance = 0.08f;

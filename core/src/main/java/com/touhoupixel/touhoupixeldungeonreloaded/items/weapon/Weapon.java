@@ -30,10 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ReachIncrease;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.CrystalKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.GoldenKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfFuror;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.curses.Annoying;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.curses.Displacing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.curses.Dazzling;
@@ -50,13 +46,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Corr
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Elastic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Kinetic;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Projecting;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Shocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Unstable;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Vampiric;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.VentoraStick;
-import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -201,7 +194,7 @@ abstract public class Weapon extends KindOfWeapon {
 				case 2:
 					return 2f;
 			}
-		} else return baseDelay(owner) * (1f/speedMultiplier(owner));
+		} else return baseDelay(owner);
 	}
 
 	protected float baseDelay( Char owner ){
@@ -214,10 +207,6 @@ abstract public class Weapon extends KindOfWeapon {
 		}
 
 		return delay;
-	}
-
-	protected float speedMultiplier(Char owner ){
-		return RingOfFuror.attackSpeedMultiplier(owner);
 	}
 
 	@Override
@@ -374,8 +363,7 @@ abstract public class Weapon extends KindOfWeapon {
 				Blazing.class, Chilling.class, Kinetic.class, Shocking.class};
 		
 		private static final Class<?>[] uncommon = new Class<?>[]{
-				Blocking.class, Blooming.class, Elastic.class,
-				Lucky.class, Projecting.class, Unstable.class};
+				Blocking.class, Blooming.class, Elastic.class, Projecting.class, Unstable.class};
 		
 		private static final Class<?>[] rare = new Class<?>[]{
 				Corrupting.class, Grim.class, Vampiric.class};

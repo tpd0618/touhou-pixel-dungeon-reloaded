@@ -23,6 +23,7 @@ public class Koishi extends Mob {
         state = WANDERING;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

@@ -59,6 +59,8 @@ public class Marisa extends Mob {
         HUNTING = new Hunting();
 
         properties.add(Property.HUMAN);
+        properties.add(Property.TENSAI);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

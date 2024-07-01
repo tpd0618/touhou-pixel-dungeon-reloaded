@@ -30,7 +30,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -203,8 +203,8 @@ public enum Rankings {
 		Potion.saveSelectively(handler, belongings.backpack.items);
 		//include potentially worn rings
 		if (belongings.misc != null)        belongings.backpack.items.add(belongings.misc);
-		if (belongings.ring != null)        belongings.backpack.items.add(belongings.ring);
-		Ring.saveSelectively(handler, belongings.backpack.items);
+		if (belongings.bracelet != null)        belongings.backpack.items.add(belongings.bracelet);
+		Bracelet.saveSelectively(handler, belongings.backpack.items);
 		rec.gameData.put( HANDLERS, handler);
 
 		//restore items now that we're done saving
@@ -235,7 +235,7 @@ public enum Rankings {
 		Bundle handler = data.getBundle(HANDLERS);
 		Scroll.restore(handler);
 		Potion.restore(handler);
-		Ring.restore(handler);
+		Bracelet.restore(handler);
 
 		Badges.loadLocal(data.getBundle(BADGES));
 

@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BirukoSprite;
@@ -68,7 +67,7 @@ public class Biruko extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
             Buff.prolong(this, Vertigo.class, Vertigo.DURATION);
-            Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
+            //do nothing
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
             }

@@ -30,6 +30,7 @@ public class BossKomachi extends Mob {
 
         properties.add(Property.BOSS);
         properties.add(Property.GOD);
+        properties.add(Property.AQUATIC);
 
         immunities.add(Paralysis.class);
 

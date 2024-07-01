@@ -5,9 +5,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FlandreCooldown;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.FlandreSprite;
@@ -29,6 +26,7 @@ public class Flandre extends Mob {
         flying = true;
 
         properties.add(Property.WARP);
+        properties.add(Property.POPULAR);
         properties.add(Property.MINIBOSS);
 
         properties.add(Property.FUMO);
@@ -61,9 +59,6 @@ public class Flandre extends Mob {
 
     @Override
     public void die( Object cause ) {
-        Dungeon.level.drop(new ThreeStarTicket(), pos ).sprite.drop();
-        Dungeon.level.drop(new FourStarTicket(), pos ).sprite.drop();
-        Dungeon.level.drop(new FiveStarTicket(), pos ).sprite.drop();
         super.die( cause );
     }
 

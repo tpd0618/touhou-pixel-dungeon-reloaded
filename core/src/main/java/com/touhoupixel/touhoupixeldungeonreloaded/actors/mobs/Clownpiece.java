@@ -22,6 +22,7 @@ public class Clownpiece extends Mob {
         maxLvl = 47;
 
         properties.add(Property.WARP);
+        properties.add(Property.HELL);
 
         loot = Generator.Category.TALISMAN;
         lootChance = 0.1f;

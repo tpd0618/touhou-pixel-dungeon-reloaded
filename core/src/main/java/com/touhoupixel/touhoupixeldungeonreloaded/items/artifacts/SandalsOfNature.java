@@ -31,8 +31,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.EarthParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Earthroot;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
@@ -176,7 +175,6 @@ public class SandalsOfNature extends Artifact {
 				//gain 1+(1*level)% of the difference between current charge and max HP.
 				float chargeGain = (target.HT-charge) * (.01f+ level()*0.01f);
 				chargeGain *= amount;
-				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += Math.max(0, chargeGain);
 				while (partialCharge > 1){
 					charge++;
@@ -196,7 +194,7 @@ public class SandalsOfNature extends Artifact {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return VelvetPouch.class;
+			return SanaeHolder.class;
 		}
 
 		@Override

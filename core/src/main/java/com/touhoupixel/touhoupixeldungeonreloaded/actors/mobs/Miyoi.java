@@ -27,7 +27,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -74,7 +73,7 @@ public class Miyoi extends Mob {
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0 && Dungeon.gold > 119) {
             Dungeon.gold -= 120;
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
+                //do nothing
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);

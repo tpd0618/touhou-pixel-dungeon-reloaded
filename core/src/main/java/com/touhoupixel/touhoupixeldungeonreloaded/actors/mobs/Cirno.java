@@ -21,6 +21,7 @@ public class Cirno extends Mob {
         maxLvl = 15;
 
         properties.add(Property.WARP);
+        properties.add(Property.AQUATIC);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

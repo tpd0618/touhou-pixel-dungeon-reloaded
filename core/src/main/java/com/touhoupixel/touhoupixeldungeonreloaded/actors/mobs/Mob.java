@@ -75,14 +75,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FourStarTicket;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
@@ -232,7 +226,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 
-		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
+		if (Dungeon.isChallenged(Challenges.HOPELESS) && buff(Powerful.class) == null && buff(Cool.class) == null && buff(Pure.class) == null && buff(Happy.class) == null && !this.properties().contains(Char.Property.BOSS) && !(this instanceof Shopkeeper)){
 			switch (Random.Int(4)) {
 				case 0:
 				default:
@@ -689,7 +683,7 @@ public abstract class Mob extends Char {
 			damage *= 3f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.BLESSING_CHORD)) {
+		if (Dungeon.isChallenged(Challenges.OLD_ROAD)) {
 			damage += Statistics.goldPickedup/25+Statistics.enemiesSlain/50;
 		}
 
@@ -749,7 +743,7 @@ public abstract class Mob extends Char {
 					GLog.p(Messages.get(this, "bw_gold"));
 					break;
 				case 1:
-					switch (Random.Int(4)) {
+					switch (Random.Int(3)) {
 						case 0:
 						default:
 							Dungeon.level.drop(Generator.random(Generator.Category.POTION), Dungeon.heroine.pos).sprite.drop();
@@ -758,9 +752,6 @@ public abstract class Mob extends Char {
 							Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), Dungeon.heroine.pos).sprite.drop();
 							break;
 						case 2:
-							Dungeon.level.drop(Generator.random(Generator.Category.HERB), Dungeon.heroine.pos).sprite.drop();
-							break;
-						case 3:
 							Dungeon.level.drop(Generator.random(Generator.Category.TALISMAN), Dungeon.heroine.pos).sprite.drop();
 							break;
 					}
@@ -931,21 +922,6 @@ public abstract class Mob extends Char {
 			EXP /= 2;
 		}
 
-		if (Random.Int(400) == 0) {
-			switch (Random.Int(3)) {
-				case 0:
-				default:
-					Dungeon.level.drop(new ThreeStarTicket(), pos).sprite.drop();
-					break;
-				case 1:
-					Dungeon.level.drop(new FourStarTicket(), pos).sprite.drop();
-					break;
-				case 2:
-					Dungeon.level.drop(new FiveStarTicket(), pos).sprite.drop();
-					break;
-			}
-		}
-
 		if (alignment == Alignment.ENEMY){
 			rollToDropLoot();
 			if (Dungeon.heroine.buff(GoldCreation.class) != null){
@@ -960,8 +936,6 @@ public abstract class Mob extends Char {
 
 	public float lootChance(){
 		float lootChance = this.lootChance;
-
-		lootChance *= RingOfWealth.dropChanceMultiplier( Dungeon.heroine);
 
 		return lootChance;
 	}
@@ -978,25 +952,6 @@ public abstract class Mob extends Char {
 				}
 			}
 		}
-
-		//ring of wealth logic
-		if (Ring.getBuffedBonus(Dungeon.heroine, RingOfWealth.Wealth.class) > 0) {
-			int rolls = 1;
-			if (properties.contains(Property.BOSS)) rolls = 15;
-			else if (properties.contains(Property.MINIBOSS)) rolls = 5;
-			ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(Dungeon.heroine, rolls);
-			if (bonus != null && !bonus.isEmpty()) {
-				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
-				RingOfWealth.showFlareForBonusDrop(sprite);
-			}
-		}
-
-		//lucky enchant logic
-		if (buff(Lucky.LuckProc.class) != null){
-			Dungeon.level.drop(Lucky.genLoot(), pos).sprite.drop();
-			Lucky.showFlare(sprite);
-		}
-
 	}
 
 	protected Object loot = null;

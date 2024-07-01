@@ -5,8 +5,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.watabou.utils.Random;
@@ -42,7 +42,7 @@ public class Transmutation extends Spellcard {
                         Buff.prolong(enemy, HeavenSpeed.class, 15f);
                         break;
                     case 5:
-                        Buff.prolong(enemy, HerbDegrade.class, 30f);
+                        Buff.prolong(enemy, Onigiri.class, 30f);
                         break;
                     default:
                         Buff.prolong(enemy, Inversion.class, 20f);

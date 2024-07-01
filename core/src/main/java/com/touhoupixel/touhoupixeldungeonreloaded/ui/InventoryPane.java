@@ -29,22 +29,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.IconButton;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.Icons;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.InventorySlot;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.RenderedTextBlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.RightClickMenu;
-import com.touhoupixel.touhoupixeldungeonreloaded.ui.Window;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndInfoItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndUseItem;
@@ -313,7 +306,7 @@ public class InventoryPane extends Component {
 		equipped.get(1).item(stuff.armor == null ? new WndBag.Placeholder(ItemSpriteSheet.ARMOR_HOLDER) : stuff.armor);
 		equipped.get(2).item(stuff.artifact == null ? new WndBag.Placeholder(ItemSpriteSheet.ARTIFACT_HOLDER) : stuff.artifact);
 		equipped.get(3).item(stuff.misc == null ? new WndBag.Placeholder(ItemSpriteSheet.SOMETHING) : stuff.misc);
-		equipped.get(4).item(stuff.ring == null ? new WndBag.Placeholder(ItemSpriteSheet.RING_HOLDER) : stuff.ring);
+		equipped.get(4).item(stuff.bracelet == null ? new WndBag.Placeholder(ItemSpriteSheet.BRACELET_HOLDER) : stuff.bracelet);
 
 		ArrayList<Item> items = (ArrayList<Item>) lastBag.items.clone();
 
@@ -477,14 +470,14 @@ public class InventoryPane extends Component {
 	}
 
 	private Image bagIcon(Bag bag) {
-		if (bag instanceof VelvetPouch) {
-			return Icons.get(Icons.SEED_POUCH);
-		} else if (bag instanceof SpellcardHolder) {
-			return Icons.get(Icons.SCROLL_HOLDER);
-		} else if (bag instanceof MagicalHolster) {
-			return Icons.get(Icons.WAND_HOLSTER);
-		} else if (bag instanceof PotionBandolier) {
-			return Icons.get(Icons.POTION_BANDOLIER);
+		if (bag instanceof MarisaHolder) {
+			return Icons.get(Icons.MARISA_HOLDER);
+		} else if (bag instanceof ReimuHolder) {
+			return Icons.get(Icons.REIMU_HOLDER);
+		} else if (bag instanceof ReisenHolder) {
+			return Icons.get(Icons.REISEN_HOLDER);
+		} else if (bag instanceof SanaeHolder) {
+			return Icons.get(Icons.SANAE_HOLDER);
 		} else {
 			return Icons.get(Icons.BACKPACK);
 		}

@@ -24,7 +24,7 @@ public class Seiran extends Mob {
 
         properties.add(Property.WARP);
 
-        loot = Generator.Category.HERB;
+        loot = Generator.Category.POTION;
         lootChance = 0.05f;
     }
 

@@ -33,7 +33,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PotionFreeze;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
@@ -171,7 +170,7 @@ public class Potion extends Item {
 	
 	@SuppressWarnings("unchecked")
 	public static void initColors() {
-		handler = new ItemStatusHandler<>( (Class<? extends Potion>[])Generator.Category.POTION.classes, colors );
+		handler = new ItemStatusHandler<>( (Class<? extends Potion>[])Generator.Category.POTION.classes, colors);
 	}
 	
 	public static void save( Bundle bundle ) {
@@ -285,7 +284,7 @@ public class Potion extends Item {
 					
 				} else {
 					drink(heroine);
-				if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
+				if (Dungeon.isChallenged(Challenges.HOPELESS)) {
 					Statistics.mood += 1;
 				}
 			}

@@ -340,7 +340,7 @@ public class Toolbar extends Component {
 						} else {
 							Buff.prolong(heroine, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 						}
-						if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
+						if (Dungeon.isChallenged(Challenges.HOPELESS)) {
 							Statistics.mood += 1;
 						}
 						Statistics.spellcard -= 1;
@@ -354,7 +354,7 @@ public class Toolbar extends Component {
 						} else {
 							Buff.prolong(heroine, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 						}
-						if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
+						if (Dungeon.isChallenged(Challenges.HOPELESS)) {
 							Statistics.mood += 1;
 						}
 						heroine.HP -= 4;
@@ -376,7 +376,7 @@ public class Toolbar extends Component {
 						} else {
 							Buff.prolong(heroine, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 						}
-						if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
+						if (Dungeon.isChallenged(Challenges.HOPELESS)) {
 							Statistics.mood += 1;
 						}
 						for (Mob mob : Dungeon.level.mobs) {
@@ -511,7 +511,7 @@ public class Toolbar extends Component {
 
 							if (idx == 0){
 								Belongings b = Dungeon.heroine.belongings;
-								if (b.ring() != null) items.add(0, b.ring());
+								if (b.bracelet() != null) items.add(0, b.bracelet());
 								if (b.misc() != null) items.add(0, b.misc());
 								if (b.artifact() != null) items.add(0, b.artifact());
 								if (b.armor() != null) items.add(0, b.armor());

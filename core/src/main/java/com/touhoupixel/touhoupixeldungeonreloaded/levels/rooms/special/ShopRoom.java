@@ -40,7 +40,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.Alchemize;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
@@ -208,8 +207,6 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
-		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.HERB ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.TALISMAN ) );
 
@@ -223,9 +220,6 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new SmallRice() );
 
 		itemsToSpawn.add( new Honeypot() );
-
-		itemsToSpawn.add( new ThreeStarTicket() );
-		itemsToSpawn.add( new ThreeStarTicket() );
 
 		itemsToSpawn.add(new StoneOfAugmentation());
 		itemsToSpawn.add(new StoneOfAugmentation());
@@ -259,7 +253,7 @@ public class ShopRoom extends SpecialRoom {
 				rare.level( 0 );
 				break;
 			case 1:
-				rare = Generator.random(Generator.Category.RING);
+				rare = Generator.random(Generator.Category.BRACELET);
 				rare.level( 0 );
 				break;
 			case 2:

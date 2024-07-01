@@ -31,13 +31,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.Herb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.AlchemicalCatalyst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.brews.Brew;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.Elixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
@@ -66,7 +65,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return !item.unique && !(item instanceof Plant.Seed) && !(item instanceof MissileWeapon) && !(item instanceof Herb) && !(item instanceof Talisman);
+		return !item.unique && !(item instanceof Plant.Seed) && !(item instanceof MissileWeapon) && !(item instanceof Talisman);
 	}
 
 	@Override
@@ -78,7 +77,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 				(item instanceof MissileWeapon && (!(item instanceof Dart) || item instanceof TippedDart)) ||
 				(item instanceof Potion && !(item instanceof Elixir || item instanceof Brew || item instanceof AlchemicalCatalyst)) ||
 				item instanceof Scroll ||
-				item instanceof Ring ||
+				item instanceof Bracelet ||
 				item instanceof Wand ||
 				item instanceof Plant.Seed ||
 				item instanceof Runestone ||
@@ -135,8 +134,8 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			return changeScroll((Scroll) item);
 		} else if (item instanceof Potion) {
 			return changePotion((Potion) item);
-		} else if (item instanceof Ring) {
-			return changeRing((Ring) item);
+		} else if (item instanceof Bracelet) {
+			return changeRing((Bracelet) item);
 		} else if (item instanceof Wand) {
 			return changeWand((Wand) item);
 		} else if (item instanceof Plant.Seed) {
@@ -210,10 +209,10 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 	}
 
-	private static Ring changeRing(Ring r) {
-		Ring n;
+	private static Bracelet changeRing(Bracelet r) {
+		Bracelet n;
 		do {
-			n = (Ring) Generator.random(Generator.Category.RING);
+			n = (Bracelet) Generator.random(Generator.Category.BRACELET);
 		} while (Challenges.isItemBlocked(n) || n.getClass() == r.getClass());
 
 		n.level(0);

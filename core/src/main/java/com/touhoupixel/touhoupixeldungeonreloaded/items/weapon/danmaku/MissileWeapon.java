@@ -34,8 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sakuyaexclusive.SmeltScale;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfSharpshooting;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Projecting;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -84,7 +83,7 @@ abstract public class MissileWeapon extends Weapon {
 	private static LinkedList<MissileSprite> spriteProjContainer = new LinkedList<>();
 	@Override
 	public int min() {
-		return Math.max(0, min( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) + SmeltScale.levelDamageBonus()));
+		return Math.max(0, min( buffedLvl() + SmeltScale.levelDamageBonus()));
 	}
 
 	@Override
@@ -95,7 +94,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int max() {
-		return Math.max(0, max( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.heroine) + SmeltScale.levelDamageBonus()));
+		return Math.max(0, max( buffedLvl() + SmeltScale.levelDamageBonus()));
 	}
 
 	@Override
@@ -153,7 +152,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public boolean collect(Bag container) {
-		if (container instanceof MagicalHolster) holster = true;
+		if (container instanceof ReimuHolder) holster = true;
 		return super.collect(container);
 	}
 
@@ -378,10 +377,8 @@ abstract public class MissileWeapon extends Weapon {
 		float usages = baseUses * (float)(Math.pow(3, level()));
 
 		if (holster) {
-			usages *= MagicalHolster.HOLSTER_DURABILITY_FACTOR;
+			usages *= ReimuHolder.HOLSTER_DURABILITY_FACTOR;
 		}
-
-		usages *= RingOfSharpshooting.durabilityMultiplier( Dungeon.heroine);
 
 		usages *= SmeltScale.durabilityMultiplier();
 

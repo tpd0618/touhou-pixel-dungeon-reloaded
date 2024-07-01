@@ -20,9 +20,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
@@ -183,7 +182,7 @@ public class Dungeon {
 
 		Scroll.initLabels();
 		Potion.initColors();
-		Ring.initGems();
+		Bracelet.initGems();
 
 		SpecialRoom.initForRun();
 		SecretRoom.initForRun();
@@ -617,7 +616,7 @@ public class Dungeon {
 
 			Scroll.save( bundle );
 			Potion.save( bundle );
-			Ring.save( bundle );
+			Bracelet.save( bundle );
 
 			MissileWeapon.saveTimeFreezeContainer( bundle );
 
@@ -695,7 +694,7 @@ public class Dungeon {
 
 		Scroll.restore( bundle );
 		Potion.restore( bundle );
-		Ring.restore( bundle );
+		Bracelet.restore( bundle );
 
 		MissileWeapon.restoreTimeFreezeContainer( bundle );
 

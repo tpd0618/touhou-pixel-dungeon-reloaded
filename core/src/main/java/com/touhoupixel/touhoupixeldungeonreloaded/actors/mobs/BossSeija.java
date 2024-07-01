@@ -44,6 +44,7 @@ public class BossSeija extends Mob {
 
         properties.add(Property.BOSS);
         properties.add(Property.YOKAI);
+        properties.add(Property.HARASSMENT);
 
         loot = new Life();
         lootChance = 1f;

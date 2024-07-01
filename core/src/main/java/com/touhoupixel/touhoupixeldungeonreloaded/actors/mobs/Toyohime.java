@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.StrengthCard;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -54,9 +53,6 @@ public class Toyohime extends Mob implements Callback {
 		flying = true;
 
 		properties.add(Property.WARP);
-
-		loot = new FiveStarTicket();
-		lootChance = 0.1f;
 	}
 
 	@Override

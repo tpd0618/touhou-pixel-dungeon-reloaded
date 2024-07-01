@@ -94,7 +94,7 @@ public enum Catalog {
 			WANDS.seen.put( wand, true);
 		}
 
-		for (Class ring : Generator.Category.RING.classes){
+		for (Class ring : Generator.Category.BRACELET.classes){
 			RINGS.seen.put( ring, true);
 		}
 

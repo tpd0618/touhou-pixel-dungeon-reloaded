@@ -48,6 +48,7 @@ public class Murasa extends Mob {
 		EXP = 0;
 
 		properties.add(Property.WARP);
+		properties.add(Property.AQUATIC);
 		properties.add(Property.NOT_EXTERMINABLE);
 		
 		loot = MysteryMeat.class;

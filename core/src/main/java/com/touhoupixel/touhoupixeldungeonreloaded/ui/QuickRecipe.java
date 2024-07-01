@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ArcaneResin;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Homunculus;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
@@ -82,19 +81,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class QuickRecipe extends Component {
-	
+
 	private ArrayList<Item> ingredients;
-	
+
 	private ArrayList<ItemSlot> inputs;
 	private QuickRecipe.arrow arrow;
 	private ItemSlot output;
-	
+
 	public QuickRecipe(Recipe.SimpleRecipe r){
 		this(r, r.getIngredients(), r.sampleOutput(null));
 	}
-	
+
 	public QuickRecipe(Recipe r, ArrayList<Item> inputs, final Item output) {
-		
+
 		ingredients = inputs;
 		int cost = r.cost(inputs);
 		boolean hasInputs = true;
@@ -112,14 +111,14 @@ public class QuickRecipe extends Component {
 					ShatteredPixelDungeon.scene().addToFront(new WndInfoItem(in));
 				}
 			};
-			
+
 			ArrayList<Item> similar = Dungeon.heroine.belongings.getAllSimilar(in);
 			int quantity = 0;
 			for (Item sim : similar) {
 				//if we are looking for a specific item, it must be IDed
 				if (sim.getClass() != in.getClass() || sim.isIdentified()) quantity += sim.quantity();
 			}
-			
+
 			if (quantity < in.quantity()) {
 				curr.sprite.alpha(0.3f);
 				hasInputs = false;
@@ -128,7 +127,7 @@ public class QuickRecipe extends Component {
 			add(curr);
 			this.inputs.add(curr);
 		}
-		
+
 		if (cost > 0) {
 			arrow = new arrow(Icons.get(Icons.ARROW), cost);
 			arrow.hardlightText(0x44CCFF);
@@ -145,7 +144,7 @@ public class QuickRecipe extends Component {
 			arrow.enable(false);
 		}
 		add(arrow);
-		
+
 		anonymize(output);
 		this.output = new ItemSlot(output){
 			@Override
@@ -158,13 +157,13 @@ public class QuickRecipe extends Component {
 		}
 		this.output.showExtraInfo(false);
 		add(this.output);
-		
+
 		layout();
 	}
-	
+
 	@Override
 	protected void layout() {
-		
+
 		height = 16;
 		width = 0;
 
@@ -174,16 +173,16 @@ public class QuickRecipe extends Component {
 			item.setRect(x + width + padding, y, 16, 16);
 			width += 16 + padding;
 		}
-		
+
 		arrow.setRect(x + width, y, 14, 16);
 		width += 14;
-		
+
 		output.setRect(x + width, y, 16, 16);
 		width += 16;
 
 		width += padding;
 	}
-	
+
 	//used to ensure that un-IDed items are not spoiled
 	private void anonymize(Item item){
 		if (item instanceof Potion){
@@ -192,19 +191,19 @@ public class QuickRecipe extends Component {
 			((Scroll) item).anonymize();
 		}
 	}
-	
+
 	public class arrow extends IconButton {
-		
+
 		BitmapText text;
-		
+
 		public arrow(){
 			super();
 		}
-		
+
 		public arrow( Image icon ){
 			super( icon );
 		}
-		
+
 		public arrow( Image icon, int count ){
 			super( icon );
 			hotArea.blockLevel = PointerArea.NEVER_BLOCK;
@@ -213,18 +212,18 @@ public class QuickRecipe extends Component {
 			text.measure();
 			add(text);
 		}
-		
+
 		@Override
 		protected void layout() {
 			super.layout();
-			
+
 			if (text != null){
 				text.x = x;
 				text.y = y;
 				PixelScene.align(text);
 			}
 		}
-		
+
 		@Override
 		protected void onPointerUp() {
 			icon.brightness(1f);
@@ -233,7 +232,7 @@ public class QuickRecipe extends Component {
 		@Override
 		protected void onClick() {
 			super.onClick();
-			
+
 			//find the window this is inside of and close it
 			Group parent = this.parent;
 			while (parent != null){
@@ -244,15 +243,15 @@ public class QuickRecipe extends Component {
 					parent = parent.parent;
 				}
 			}
-			
+
 			((AlchemyScene)ShatteredPixelDungeon.scene()).populate(ingredients, Dungeon.heroine.belongings);
 		}
-		
+
 		public void hardlightText(int color ){
 			if (text != null) text.hardlight(color);
 		}
 	}
-	
+
 	//gets recipes for a particular alchemy guide page
 	//a null entry indicates a break in section
 	public static ArrayList<QuickRecipe> getRecipes( int pageIdx ){
@@ -296,7 +295,7 @@ public class QuickRecipe extends Component {
 							public String name(){
 								return Messages.get(Blandfruit.class, "cooked");
 							}
-							
+
 							@Override
 							public String info() {
 								return "";
@@ -320,7 +319,15 @@ public class QuickRecipe extends Component {
 				}
 				return result;
 			case 5:
-				result.add(new QuickRecipe(new Homunculus.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfHoneyedHealing.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfAquaticRejuvenation.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfMight.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfDragonsBlood.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfIcyTouch.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfZen.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfBossKiller.Recipe()));
 				return result;
 			case 6:
 				result.add(new QuickRecipe( new LiquidMetal.Recipe(),
@@ -350,17 +357,6 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new BlizzardBrew.Recipe()));
 				result.add(new QuickRecipe(new InfernalBrew.Recipe()));
 				result.add(new QuickRecipe(new ShockingBrew.Recipe()));
-				result.add(null);
-				result.add(null);
-				result.add(new QuickRecipe(new ElixirOfHoneyedHealing.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfAquaticRejuvenation.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfMight.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfDragonsBlood.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfIcyTouch.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfZen.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfBossKiller.Recipe()));
 				return result;
 			case 9:
 				result.add(new QuickRecipe(new TelekineticGrab.Recipe()));

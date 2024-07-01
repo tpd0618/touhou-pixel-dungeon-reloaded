@@ -26,33 +26,33 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuma;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.GlassBottle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.KaguyaHDChest;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.HappyBracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.MojoBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfToxicGas;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFireblast;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.SwapTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.YuumaTalisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfAntiDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AntiHarassmentDagger;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AntiTensaiSword;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
@@ -74,10 +74,6 @@ public enum HeroClass {
 		//test, put too many stuffs will trigger a certain bug
 
 		//test, put too many stuffs will trigger a certain bug
-		if (Dungeon.isChallenged(Challenges.CALL_THE_SHOTS)) {
-			HeartHerb heartHerb = new HeartHerb();
-			heartHerb.quantity(30).identify().collect();
-		}
 
 		OminousGap ominousGap = new OminousGap();
 		ominousGap.quantity(5).collect();
@@ -100,12 +96,10 @@ public enum HeroClass {
 		NitoChecker nitoChecker = new NitoChecker();
 		nitoChecker.collect();
 
-		new MagicalHolster().collect();
-		new PotionBandolier().collect();
-		new SpellcardHolder().collect();
-		new HerbPouch().collect();
-		new VelvetPouch().collect();
-		new MagicalContainer().collect();
+		new ReimuHolder().collect();
+		new ReisenHolder().collect();
+		new MarisaHolder().collect();
+		new SanaeHolder().collect();
 
 		switch (this){
 			case PLAYERREIMU:

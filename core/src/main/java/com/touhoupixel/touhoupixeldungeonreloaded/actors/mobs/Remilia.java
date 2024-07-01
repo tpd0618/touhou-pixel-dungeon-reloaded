@@ -22,6 +22,7 @@ public class Remilia extends Mob {
         maxLvl = 22;
 
         properties.add(Property.WARP);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

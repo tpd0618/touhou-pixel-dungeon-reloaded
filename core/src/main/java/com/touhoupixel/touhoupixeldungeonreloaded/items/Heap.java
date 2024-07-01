@@ -31,7 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.ChargrilledMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.FrozenCarpaccio;
@@ -39,7 +38,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.DocumentPage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.Guidebook;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
@@ -48,9 +46,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Dewdrop;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Honeypot;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
@@ -108,11 +103,6 @@ public class Heap implements Bundlable {
 		}
 
 		type = Type.HEAP;
-		ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(hero, 1);
-		if (bonus != null && !bonus.isEmpty()) {
-			items.addAll(0, bonus);
-			RingOfWealth.showFlareForBonusDrop(sprite);
-		}
 		sprite.link();
 		sprite.drop();
 	}

@@ -69,12 +69,11 @@ public class Hina extends Mob {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
             new CursingTrap().set(enemy.pos).activate();
-            Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, MagicDrain.class, MagicDrain.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
         }
         return damage;

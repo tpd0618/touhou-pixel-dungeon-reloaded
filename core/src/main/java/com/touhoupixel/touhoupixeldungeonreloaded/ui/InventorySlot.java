@@ -75,7 +75,7 @@ public class InventorySlot extends ItemSlot {
 					item == Dungeon.heroine.belongings.armor ||
 					item == Dungeon.heroine.belongings.artifact ||
 					item == Dungeon.heroine.belongings.misc ||
-					item == Dungeon.heroine.belongings.ring;
+					item == Dungeon.heroine.belongings.bracelet;
 
 			bg.texture( TextureCache.createSolid( equipped ? EQUIPPED : NORMAL ) );
 			bg.resetColor();

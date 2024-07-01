@@ -5,8 +5,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeartHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Water;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.FutoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -55,7 +55,7 @@ public class Futo extends Mob {
     @Override
     protected boolean act() {
         Heap heap = Dungeon.level.heaps.get(pos);
-        Item newItem = new HeartHerb();
+        Item newItem = new Water();
         if (heap != null && this.pos == heap.pos) {
 
             Heap[] equipHeaps = new Heap[1];

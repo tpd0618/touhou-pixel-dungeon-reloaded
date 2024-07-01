@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.windows;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
@@ -507,7 +507,7 @@ public class WndJournal extends WndTabbed {
 			} else if (currentItemIdx == RING_IDX) {
 				itemClasses = new ArrayList<>(Catalog.RINGS.items());
 				for (Class<? extends Item> cls : itemClasses)
-					known.put(cls, Ring.getKnown().contains(cls));
+					known.put(cls, Bracelet.getKnown().contains(cls));
 			} else if (currentItemIdx == ARTIF_IDX) {
 				itemClasses = new ArrayList<>(Catalog.ARTIFACTS.items());
 				for (Class<? extends Item> cls : itemClasses) known.put(cls, true);
@@ -543,8 +543,8 @@ public class WndJournal extends WndTabbed {
 				boolean itemIDed = known.get(itemClass);
 				boolean itemSeen = Catalog.isSeen(itemClass);
 				if (itemSeen && !itemIDed) {
-					if (item instanceof Ring) {
-						((Ring) item).anonymize();
+					if (item instanceof Bracelet) {
+						((Bracelet) item).anonymize();
 					} else if (item instanceof Potion) {
 						((Potion) item).anonymize();
 					} else if (item instanceof Scroll) {

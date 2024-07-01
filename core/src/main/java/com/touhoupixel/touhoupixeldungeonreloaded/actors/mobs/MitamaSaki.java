@@ -16,7 +16,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MitamaSakiSprite;
@@ -98,8 +97,6 @@ public class MitamaSaki extends Mob {
 
     @Override
     public void die( Object cause ) {
-        Dungeon.level.drop(new FiveStarTicket(), pos ).sprite.drop();
-        Dungeon.level.drop(new FiveStarTicket(), pos ).sprite.drop();
         super.die( cause );
     }
 

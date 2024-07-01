@@ -50,6 +50,7 @@ public class Eirin extends Mob implements Callback {
 
         properties.add(Property.ELIXIR);
         properties.add(Property.WARP);
+        properties.add(Property.TENSAI);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

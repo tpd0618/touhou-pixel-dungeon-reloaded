@@ -48,6 +48,7 @@ public class Hecatia extends Mob {
 		flying = true;
 
 		properties.add(Property.GOD);
+		properties.add(Property.HELL);
 		properties.add(Property.NOT_EXTERMINABLE);
 
 		EXP = 0;

@@ -306,7 +306,7 @@ public class Mimic extends Mob {
 					reward = Generator.randomArmor();
 					break;
 				case 4:
-					reward = Generator.random(Generator.Category.RING);
+					reward = Generator.random(Generator.Category.BRACELET);
 					break;
 			}
 		} while (reward == null || Challenges.isItemBlocked(reward));

@@ -51,6 +51,7 @@ public class Nitori extends Mob implements Callback {
         maxLvl = 25;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.AQUATIC);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

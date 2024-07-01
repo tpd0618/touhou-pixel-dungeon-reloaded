@@ -36,7 +36,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.CellSelector;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
@@ -263,7 +262,6 @@ public class MasterThievesArmband extends Artifact {
 
 			if (charge < chargeCap){
 				float chargeGain = 3f * levelPortion;
-				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 
 				partialCharge += chargeGain;
 				while (partialCharge > 1f){

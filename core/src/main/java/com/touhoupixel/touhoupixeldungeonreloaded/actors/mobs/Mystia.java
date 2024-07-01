@@ -7,7 +7,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.CleansingHerb;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MystiaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
@@ -26,9 +25,6 @@ public class Mystia extends Mob {
         flying = true;
 
         properties.add(Property.ANIMAL);
-
-        loot = new CleansingHerb();
-        lootChance = 0.15f;
     }
 
     @Override

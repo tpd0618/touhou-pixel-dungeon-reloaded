@@ -50,6 +50,7 @@ public class Sanae extends Mob implements Callback {
         maxLvl = 35;
 
         properties.add(Property.HUMAN);
+        properties.add(Property.TENSAI);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Identification;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -54,8 +54,8 @@ public class StoneOfIntuition extends InventoryStone {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		if (item instanceof Ring){
-			return !((Ring) item).isKnown();
+		if (item instanceof Bracelet){
+			return !((Bracelet) item).isKnown();
 		} else if (item instanceof Potion){
 			return !((Potion) item).isKnown();
 		} else if (item instanceof Scroll){
@@ -100,8 +100,8 @@ public class StoneOfIntuition extends InventoryStone {
 					super.onClick();
 					useAnimation();
 					if (item.getClass() == curGuess){
-						if (item instanceof Ring){
-							((Ring) item).setKnown();
+						if (item instanceof Bracelet){
+							((Bracelet) item).setKnown();
 						} else {
 							item.identify();
 						}
@@ -156,8 +156,8 @@ public class StoneOfIntuition extends InventoryStone {
 				} else {
 					unIDed.addAll(Scroll.getUnknown());
 				}
-			} else if (item instanceof Ring) {
-				unIDed.addAll(Ring.getUnknown());
+			} else if (item instanceof Bracelet) {
+				unIDed.addAll(Bracelet.getUnknown());
 			} else {
 				hide();
 				return;

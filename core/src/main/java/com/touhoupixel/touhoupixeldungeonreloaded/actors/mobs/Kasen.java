@@ -9,7 +9,11 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.AntiParryBracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.JudgeBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KasenSprite;
@@ -53,23 +57,31 @@ public class Kasen extends Mob {
     @Override
     public int attackProc( Char hero, int damage ) {
         damage = super.attackProc( enemy, damage );
+
+        KindofMisc misc = Dungeon.heroine.belongings.misc;
+        Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
+
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
             Armor armor = Dungeon.heroine.belongings.armor();
-            if (armor != null) {
-                Dungeon.heroine.belongings.armor = null;
-                Dungeon.quickslot.clearItem(armor);
-                Item.updateQuickslot();
+            if (misc instanceof AntiParryBracelet || bracelet instanceof AntiParryBracelet) {
+                //do nothing
+            } else {
+                if (armor != null) {
+                    Dungeon.heroine.belongings.armor = null;
+                    Dungeon.quickslot.clearItem(armor);
+                    Item.updateQuickslot();
 
-                Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-                trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
+                    Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
+                    trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
 
-                Char ch = (Char) Actor.findChar(trajectory.collisionPos);
-                if (ch != null && ch != Dungeon.heroine && trajectory.collisionPos.equals(ch.pos)) {
-                    ch.damage(Dungeon.heroine.STR*2+armor.level()*3, armor);
-                    GLog.w(Messages.get(this, "armor_blow_away_and_destroy"));
-                } else {
-                    armor.onThrow(trajectory.collisionPos);
-                    GLog.w(Messages.get(this, "armor_blow_away"));
+                    Char ch = (Char) Actor.findChar(trajectory.collisionPos);
+                    if (ch != null && ch != Dungeon.heroine && trajectory.collisionPos.equals(ch.pos)) {
+                        ch.damage(Dungeon.heroine.STR * 2 + armor.level() * 3, armor);
+                        GLog.w(Messages.get(this, "armor_blow_away_and_destroy"));
+                    } else {
+                        armor.onThrow(trajectory.collisionPos);
+                        GLog.w(Messages.get(this, "armor_blow_away"));
+                    }
                 }
             }
             if (Statistics.difficulty > 2) {

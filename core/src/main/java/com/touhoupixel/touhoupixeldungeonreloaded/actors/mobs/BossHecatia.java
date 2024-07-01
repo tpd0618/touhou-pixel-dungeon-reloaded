@@ -42,6 +42,7 @@ public class BossHecatia extends Mob {
 
         properties.add(Property.BOSS);
         properties.add(Property.GOD);
+        properties.add(Property.HELL);
 
         immunities.add(Paralysis.class);
         immunities.add(Fire.class);

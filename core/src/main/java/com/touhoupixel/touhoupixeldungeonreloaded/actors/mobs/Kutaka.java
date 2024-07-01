@@ -54,7 +54,7 @@ public class Kutaka extends Mob {
 
         properties.add(Property.GOD);
 
-        loot = Generator.Category.HERB;
+        loot = Generator.Category.POTION;
         lootChance = 0.1f;
     }
 

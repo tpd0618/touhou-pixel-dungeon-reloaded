@@ -7,21 +7,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
-
-import java.util.Iterator;
 
 public class SonicEarthquake extends Spellcard{
     {
@@ -49,7 +44,7 @@ public class SonicEarthquake extends Spellcard{
 
         //forget potions or scrolls
         if (active == 0){
-            SpellcardHolder sh = Dungeon.heroine.belongings.getItem(SpellcardHolder.class);
+            MarisaHolder sh = Dungeon.heroine.belongings.getItem(MarisaHolder.class);
             int limit = 5;
             for (Item sc : sh.items){
                 if (!(sc instanceof Scroll) || !sc.isIdentified()) continue;
@@ -59,7 +54,7 @@ public class SonicEarthquake extends Spellcard{
             }
         }
         else {
-            PotionBandolier pb = Dungeon.heroine.belongings.getItem(PotionBandolier.class);
+            ReisenHolder pb = Dungeon.heroine.belongings.getItem(ReisenHolder.class);
             int limit = 5;
             for (Item pot : pb.items){
                 if (!(pot instanceof Potion) || !pot.isIdentified()) continue;

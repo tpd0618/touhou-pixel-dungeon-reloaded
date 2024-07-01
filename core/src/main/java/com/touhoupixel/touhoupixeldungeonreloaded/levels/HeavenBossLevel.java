@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossTenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Iku;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Suika;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.LevitationHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
@@ -118,10 +118,8 @@ public class HeavenBossLevel extends Level {
 
 	@Override
 	protected void createItems() {
-		drop( new LevitationHerb(), 24 );
-		drop( new LevitationHerb(), 30 );
-		drop( new LevitationHerb(), 90 );
-		drop( new LevitationHerb(), 96 );
+		drop( new PotionOfLevitation(), 24 );
+		drop( new PotionOfLevitation(), 30 );
 	}
 
 	@Override

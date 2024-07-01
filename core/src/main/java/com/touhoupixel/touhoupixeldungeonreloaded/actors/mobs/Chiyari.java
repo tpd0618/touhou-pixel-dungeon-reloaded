@@ -44,6 +44,7 @@ public class Chiyari extends Mob {
         maxLvl = 37;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.HELL);
 
         loot = new PotionOfLightReverse();
         lootChance = 0.05f;

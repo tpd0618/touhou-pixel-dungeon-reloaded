@@ -9,7 +9,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.ExoticPotion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -143,7 +143,7 @@ public class UpgradeCard extends Item {
 						GLog.w(Messages.get(Armor.class, "incompatible"));
 					}
 
-				} else if (item instanceof Wand || item instanceof Ring) {
+				} else if (item instanceof Wand || item instanceof Bracelet) {
 					boolean wasCursed = item.cursed;
 
 					item.upgrade();

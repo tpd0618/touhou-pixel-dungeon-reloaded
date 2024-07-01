@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.PeaceHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -139,7 +139,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfHealing.class, PeaceHerb.class};
+			inputs =  new Class[]{PotionOfHealing.class, PotionOfHaste.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

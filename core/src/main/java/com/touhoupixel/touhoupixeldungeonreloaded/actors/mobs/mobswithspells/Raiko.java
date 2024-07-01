@@ -31,9 +31,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.SonicEarthqu
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfDragonsBlood;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RaikoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -99,7 +96,6 @@ public class Raiko extends MobWithSpellcard {
 
     @Override
     public void die(Object cause) {
-        Dungeon.level.drop(new FiveStarTicket().quantity(3), pos ).sprite.drop();
         Dungeon.level.drop(new PotionOfExperience().quantity(2), pos ).sprite.drop();
         Dungeon.level.drop(new Life(), pos ).sprite.drop();
 

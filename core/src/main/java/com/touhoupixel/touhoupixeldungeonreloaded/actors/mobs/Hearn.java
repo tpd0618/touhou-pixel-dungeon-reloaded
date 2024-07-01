@@ -45,6 +45,7 @@ public class Hearn extends Mob {
         maxLvl = 32;
 
         properties.add(Property.HUMAN);
+        properties.add(Property.HARASSMENT);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

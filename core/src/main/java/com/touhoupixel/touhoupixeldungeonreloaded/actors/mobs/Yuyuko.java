@@ -54,6 +54,7 @@ public class Yuyuko extends Mob {
         HUNTING = new Hunting();
 
         properties.add(Property.WARP);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

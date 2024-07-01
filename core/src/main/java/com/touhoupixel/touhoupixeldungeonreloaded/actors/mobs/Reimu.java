@@ -33,6 +33,7 @@ public class Reimu extends Mob {
         baseSpeed = 3f;
 
         properties.add(Property.HUMAN);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

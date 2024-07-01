@@ -76,7 +76,7 @@ public class ItemStatusHandler<T extends Item> {
 
 	private static final String PFX_LABEL	= "_label";
 	private static final String PFX_KNOWN	= "_known";
-	
+
 	public void save( Bundle bundle ) {
 		for (int i=0; i < items.length; i++) {
 			String itemName = items[i].toString();
@@ -96,7 +96,7 @@ public class ItemStatusHandler<T extends Item> {
 			}
 		}
 	}
-	
+
 	public void saveClassesSelectively( Bundle bundle, ArrayList<Class<?extends Item>> clsToSave ){
 		List<Class<? extends T>> items = Arrays.asList(this.items);
 		for (Class<?extends Item> cls : clsToSave){
@@ -149,7 +149,7 @@ public class ItemStatusHandler<T extends Item> {
 			}
 		}
 	}
-	
+
 	public boolean contains( T item ){
 		for (Class<?extends Item> i : items){
 			if (item.getClass().equals(i)){
@@ -158,7 +158,7 @@ public class ItemStatusHandler<T extends Item> {
 		}
 		return false;
 	}
-	
+
 	public boolean contains( Class<?extends T> itemCls ){
 		for (Class<?extends Item> i : items){
 			if (itemCls.equals(i)){
@@ -167,35 +167,35 @@ public class ItemStatusHandler<T extends Item> {
 		}
 		return false;
 	}
-	
+
 	public int image( T item ) {
 		return labelImages.get(label(item));
 	}
-	
+
 	public int image( Class<?extends T> itemCls ) {
 		return labelImages.get(label(itemCls));
 	}
-	
+
 	public String label( T item ) {
 		return itemLabels.get(item.getClass());
 	}
-	
+
 	public String label( Class<?extends T> itemCls ){
 		return itemLabels.get( itemCls );
 	}
-	
+
 	public boolean isKnown( T item ) {
 		return known.contains( item.getClass() );
 	}
-	
+
 	public boolean isKnown( Class<?extends T> itemCls ){
 		return known.contains( itemCls );
 	}
-	
+
 	public void know( T item ) {
 		known.add( (Class<? extends T>)item.getClass() );
 	}
-	
+
 	public void know( Class<?extends T> itemCls ){
 		known.add( itemCls );
 	}
@@ -205,11 +205,11 @@ public class ItemStatusHandler<T extends Item> {
 	public void dontknow( Class<?extends T> itemCls ) {
 		if (known.contains(itemCls)) known.remove( itemCls );
 	}
-	
+
 	public HashSet<Class<? extends T>> known() {
 		return known;
 	}
-	
+
 	public HashSet<Class<? extends T>> unknown() {
 		LinkedHashSet<Class<? extends T>> result = new LinkedHashSet<>();
 		for (Class<? extends T> i : items) {

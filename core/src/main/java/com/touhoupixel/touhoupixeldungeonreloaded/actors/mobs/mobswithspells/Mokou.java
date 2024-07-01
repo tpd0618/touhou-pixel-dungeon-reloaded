@@ -54,6 +54,7 @@ public class Mokou extends MobWithSpellcard implements Callback {
 
         properties.add(Property.ELIXIR);
         properties.add(Property.HUMAN);
+        properties.add(Property.POPULAR);
         properties.add(Property.MINIBOSS);
 
         mobRarity = RARE_RARITY;

@@ -21,6 +21,7 @@ public class Satori extends Mob {
         maxLvl = 75;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.POPULAR);
 
         properties.add(Property.FUMO);
         //used for fumo lover buff

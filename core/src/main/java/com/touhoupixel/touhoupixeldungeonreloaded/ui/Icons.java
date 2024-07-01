@@ -84,10 +84,10 @@ public enum Icons {
 	COIN_SML,
 	ENERGY_SML,
 	BACKPACK,
-	SEED_POUCH,
-	SCROLL_HOLDER,
-	WAND_HOLSTER,
-	POTION_BANDOLIER,
+	SANAE_HOLDER,
+    MARISA_HOLDER,
+	REIMU_HOLDER,
+	REISEN_HOLDER,
 	TALISMAN_HOLDER,
 	CARD_HOLDER,
 
@@ -270,16 +270,16 @@ public enum Icons {
 			case BACKPACK:
 				icon.frame( icon.texture.uvRectBySize( 201, 48, 10, 10 ) );
 				break;
-			case SCROLL_HOLDER:
+			case MARISA_HOLDER:
 				icon.frame( icon.texture.uvRectBySize( 211, 48, 10, 10 ) );
 				break;
-			case SEED_POUCH:
+			case SANAE_HOLDER:
 				icon.frame( icon.texture.uvRectBySize( 221, 48, 10, 10 ) );
 				break;
-			case WAND_HOLSTER:
+			case REIMU_HOLDER:
 				icon.frame( icon.texture.uvRectBySize( 231, 48, 10, 10 ) );
 				break;
-			case POTION_BANDOLIER:
+			case REISEN_HOLDER:
 				icon.frame( icon.texture.uvRectBySize( 241, 48, 10, 10 ) );
 				break;
 			case TALISMAN_HOLDER:

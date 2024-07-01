@@ -27,9 +27,9 @@ public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
 	public static final int RE_BIRTH_DAY     = 1;
-	public static final int RINGING_BLOOM    = 2;
-	public static final int BLESSING_CHORD   = 4;
-	public static final int CALL_THE_SHOTS   = 8;
+	public static final int DEATH_MOON    = 2;
+	public static final int OLD_ROAD = 4;
+	public static final int HOPELESS = 8;
 	public static final int RE_HOURAI_ELIXIR = 16;
 	public static final int INF_TIME_EATER   = 32;
 	public static final int DOUBLE_SPOILER   = 64;
@@ -39,9 +39,9 @@ public class Challenges {
 
 	public static final String[] NAME_IDS = {
 			"re_birth_day",
-			"ringing_bloom",
-			"blessing_chord",
-			"call_the_shots",
+			"death_moon",
+			"old_road",
+			"hopeless",
 			"re_hourai_elixir",
 			"inf_time_eater",
 			"double_spoiler",
@@ -49,7 +49,7 @@ public class Challenges {
 	};
 
 	public static final int[] MASKS = {
-			RE_BIRTH_DAY, RINGING_BLOOM, BLESSING_CHORD, CALL_THE_SHOTS,
+			RE_BIRTH_DAY, DEATH_MOON, OLD_ROAD, HOPELESS,
 			RE_HOURAI_ELIXIR, INF_TIME_EATER, DOUBLE_SPOILER, LUNATIC_PERFECT
 	};
 

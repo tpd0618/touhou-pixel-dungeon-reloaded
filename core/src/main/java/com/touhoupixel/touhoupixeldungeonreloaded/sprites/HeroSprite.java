@@ -68,26 +68,35 @@ public class HeroSprite extends CharSprite {
 		
 		idle = new Animation( 1, true );
 		idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
+
+		onigiri = new Animation( 1, true );
+		onigiri.frames( film, 7 );
 		
 		run = new Animation( RUN_FRAMERATE, true );
-		run.frames( film, 2, 3, 4, 5, 6, 7 );
+		run.frames( film, 2, 3, 4, 5, 6, 6 );
 		
 		die = new Animation( 20, false );
 		die.frames( film, 8, 9, 10, 11, 12, 11 );
 		
 		attack = new Animation( 15, false );
 		attack.frames( film, 13, 14, 15, 0 );
+
+		onigiri_attack = new Animation( 15, false );
+		onigiri_attack.frames( film, 7 );
 		
 		zap = attack.clone();
 		
 		operate = new Animation( 8, false );
 		operate.frames( film, 16, 17, 16, 17 );
+
+		onigiri_operate = new Animation( 8, false );
+		onigiri_operate.frames( film, 20 );
 		
 		fly = new Animation( 1, true );
 		fly.frames( film, 18 );
 
 		read = new Animation( 20, false );
-		read.frames( film, 19, 20, 20, 20, 20, 20, 20, 20, 20, 19 );
+		read.frames( film, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19 );
 		
 		if (Dungeon.heroine.isAlive())
 			idle();

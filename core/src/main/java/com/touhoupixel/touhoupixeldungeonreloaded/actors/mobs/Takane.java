@@ -21,6 +21,7 @@ public class Takane extends Mob {
         maxLvl = 25;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.AQUATIC);
 
         loot = new AquaBlast();
         lootChance = 0.1f;

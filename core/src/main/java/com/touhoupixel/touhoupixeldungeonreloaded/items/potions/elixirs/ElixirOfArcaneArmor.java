@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.herbs.HeavenHerb;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfAttraction;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfEarthenArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
@@ -48,7 +48,7 @@ public class ElixirOfArcaneArmor extends Elixir {
 	public static class Recipe extends com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfEarthenArmor.class, HeavenHerb.class};
+			inputs =  new Class[]{PotionOfEarthenArmor.class, PotionOfAttraction.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 8;

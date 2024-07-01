@@ -5,7 +5,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HerbDegrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EikaSprite;
 import com.watabou.utils.Random;
@@ -47,7 +46,7 @@ public class Eika extends Mob {
         if (Random.Int(4) == 0) {
             Buff.affect(enemy, Bleeding.class).set(7);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, HerbDegrade.class, HerbDegrade.DURATION);
+                //do nothing
             }
             if (Statistics.difficulty > 4) {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);

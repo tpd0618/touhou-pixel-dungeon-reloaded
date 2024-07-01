@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.levels;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.tickets.FiveStarTicket;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
@@ -96,12 +95,6 @@ public class LunarCapitalLevel extends RegularLevel {
 				.setWater(feeling == Feeling.WATER ? 0.7f : 0.15f, 5)
 				.setGrass(feeling == Feeling.GRASS ? 0.7f : 0.15f, 5)
 				.setTraps(nTraps(), trapClasses(), trapChances());
-	}
-
-	@Override
-	public void create() {
-		itemsToSpawn.add( new FiveStarTicket() );
-		super.create();
 	}
 
 	@Override

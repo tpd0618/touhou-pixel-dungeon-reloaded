@@ -96,6 +96,6 @@ public class CrystalVaultRoom extends SpecialRoom {
 	
 	private ArrayList<Generator.Category> prizeClasses = new ArrayList<>(
 			Arrays.asList(Generator.Category.WAND,
-					Generator.Category.RING,
+					Generator.Category.BRACELET,
 					Generator.Category.ARTIFACT));
 }

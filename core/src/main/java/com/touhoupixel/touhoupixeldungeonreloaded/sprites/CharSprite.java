@@ -24,6 +24,8 @@ package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KomachiCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.DarkBlock;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.EmoIcon;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Flare;
@@ -86,10 +88,13 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	}
 	private int stunStates = 0;
 
+	protected Animation onigiri;
+	protected Animation onigiri_attack;
 	protected Animation idle;
 	protected Animation run;
 	protected Animation attack;
 	protected Animation operate;
+	protected Animation onigiri_operate;
 	protected Animation zap;
 	protected Animation die;
 
@@ -211,13 +216,21 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	}
 
 	public void idle() {
-		play(idle);
+		if (ch != null && ch.buff(Onigiri.class) != null){
+			play(onigiri);
+		} else {
+			play(idle);
+		}
 	}
 
 	public void move( int from, int to ) {
 		turnTo( from , to );
 
-		play( run );
+		if (ch != null && ch.buff(Onigiri.class) != null){
+			play(onigiri);
+		} else {
+			play(run);
+		}
 
 		motion = new PosTweener( this, worldToCamera( to ), moveInterval );
 		motion.listener = this;
@@ -258,7 +271,11 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	public synchronized void attack( int cell, Callback callback ) {
 		animCallback = callback;
 		turnTo( ch.pos, cell );
-		play( attack );
+		if (ch != null && ch.buff(Onigiri.class) != null) {
+			play(onigiri_attack);
+		} else {
+			play(attack);
+		}
 	}
 
 	public void operate( int cell ) {
@@ -268,7 +285,11 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	public synchronized void operate( int cell, Callback callback ) {
 		animCallback = callback;
 		turnTo( ch.pos, cell );
-		play( operate );
+		if (ch != null && ch.buff(Onigiri.class) != null) {
+			play(onigiri_operate);
+		} else {
+			play(operate);
+		}
 	}
 
 	public void zap( int cell ) {
@@ -278,7 +299,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	public synchronized void zap( int cell, Callback callback ) {
 		animCallback = callback;
 		turnTo( ch.pos, cell );
-		play( zap );
+		play(zap);
 	}
 
 	public void turnTo( int from, int to ) {
@@ -308,7 +329,8 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 
 	public void die() {
 		sleeping = false;
-		play( die );
+
+		play(die);
 
 		hideEmo();
 
@@ -782,12 +804,12 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 			executing.call();
 		} else {
 
-			if (anim == attack) {
+			if (anim == attack || anim == onigiri_attack) {
 
 				idle();
 				ch.onAttackComplete();
 
-			} else if (anim == operate) {
+			} else if (anim == operate || anim == onigiri_operate) {
 
 				idle();
 				ch.onOperateComplete();

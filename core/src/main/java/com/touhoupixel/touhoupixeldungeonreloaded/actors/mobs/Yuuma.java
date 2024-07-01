@@ -28,6 +28,8 @@ public class Yuuma extends Mob {
         maxLvl = 99;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.AQUATIC);
+        properties.add(Property.HARASSMENT);
 
         loot = new LifeFragment();
         lootChance = 0.05f;

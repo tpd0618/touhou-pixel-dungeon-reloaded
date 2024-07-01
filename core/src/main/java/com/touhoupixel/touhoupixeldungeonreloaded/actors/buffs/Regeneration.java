@@ -23,12 +23,11 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfEnergy;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.HealingBracelet;
 
 public class Regeneration extends Buff {
 
@@ -44,6 +43,7 @@ public class Regeneration extends Buff {
 	public boolean act() {
 		if (target.isAlive()) {
 
+			Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
 			Hunger hunger = Buff.affect(target, Hunger.class);
 
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
@@ -51,12 +51,22 @@ public class Regeneration extends Buff {
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
 					if (Statistics.card32){
 						if (target.buff(RegenBlock.class) == null && target.HT > target.HP + 2) {
-							target.HP += 3;
-							hunger.affectHunger( -10);
+							if (bracelet instanceof HealingBracelet){
+								target.HP += 9;
+								hunger.affectHunger( -30);
+							} else {
+								target.HP += 3;
+								hunger.affectHunger( -10);
+							}
 						}
 					} else {
 						if (target.buff(RegenBlock.class) == null) {
-							target.HP += 1;
+							if (bracelet instanceof HealingBracelet) {
+								target.HP += 3;
+								hunger.affectHunger( -10);
+							} else {
+								target.HP += 1;
+							}
 						}
 					}
 					if (target.HP == regencap()) {
@@ -73,7 +83,6 @@ public class Regeneration extends Buff {
 					delay *= 1.5f;
 				} else {
 					delay -= regenBuff.itemLevel()*0.9f;
-					delay /= RingOfEnergy.artifactChargeMultiplier(target);
 				}
 			}
 			spend( delay );

@@ -27,12 +27,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalContainer;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SpellcardHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.HerbPouch;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
@@ -106,7 +104,7 @@ public class WndBag extends WndTabbed {
 		slotHeight = PixelScene.landscape() ? SLOT_HEIGHT_L : SLOT_HEIGHT_P;
 
 		nCols = PixelScene.landscape() ? COLS_L : COLS_P;
-		nRows = (int)Math.ceil(30/(float)nCols); //we expect to lay out 25 slots in all cases
+		nRows = (int)Math.ceil(25/(float)nCols); //we expect to lay out 25 slots in all cases
 
 		int windowWidth = slotWidth * nCols + SLOT_MARGIN * (nCols - 1);
 		int windowHeight = TITLE_HEIGHT + slotHeight * nRows + SLOT_MARGIN * (nRows - 1);
@@ -241,7 +239,7 @@ public class WndBag extends WndTabbed {
 		placeItem( stuff.armor != null ? stuff.armor : new Placeholder( ItemSpriteSheet.ARMOR_HOLDER ) );
 		placeItem( stuff.artifact != null ? stuff.artifact : new Placeholder( ItemSpriteSheet.ARTIFACT_HOLDER ) );
 		placeItem( stuff.misc != null ? stuff.misc : new Placeholder( ItemSpriteSheet.SOMETHING ) );
-		placeItem( stuff.ring != null ? stuff.ring : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
+		placeItem( stuff.bracelet != null ? stuff.bracelet : new Placeholder( ItemSpriteSheet.BRACELET_HOLDER) );
 
 		//the container itself if it's not the root backpack
 		if (container != Dungeon.heroine.belongings.backpack){
@@ -389,18 +387,14 @@ public class WndBag extends WndTabbed {
 	}
 
 	private Image icon( Bag bag ) {
-		if (bag instanceof VelvetPouch) {
-			return Icons.get( Icons.SEED_POUCH );
-		} else if (bag instanceof SpellcardHolder) {
-			return Icons.get( Icons.SCROLL_HOLDER );
-		} else if (bag instanceof MagicalHolster) {
-			return Icons.get( Icons.WAND_HOLSTER );
-		} else if (bag instanceof PotionBandolier) {
-			return Icons.get( Icons.POTION_BANDOLIER );
-		} else if (bag instanceof HerbPouch) {
-			return Icons.get( Icons.TALISMAN_HOLDER);
-		} else if (bag instanceof MagicalContainer) {
-			return Icons.get( Icons.CARD_HOLDER );
+		if (bag instanceof SanaeHolder) {
+			return Icons.get( Icons.SANAE_HOLDER );
+		} else if (bag instanceof MarisaHolder) {
+			return Icons.get( Icons.MARISA_HOLDER );
+		} else if (bag instanceof ReimuHolder) {
+			return Icons.get( Icons.REIMU_HOLDER );
+		} else if (bag instanceof ReisenHolder) {
+			return Icons.get( Icons.REISEN_HOLDER );
 		} else {
 			return Icons.get( Icons.BACKPACK );
 		}
@@ -431,10 +425,6 @@ public class WndBag extends WndTabbed {
 					return SPDAction.BAG_4;
 				case 5:
 					return SPDAction.BAG_5;
-				case 6:
-					return SPDAction.BAG_6;
-				case 7:
-					return SPDAction.BAG_7;
 			}
 		}
 

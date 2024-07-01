@@ -22,22 +22,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossSeija;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.ItemStatusHandler;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Recipe;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.UnstableSpellbook;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ExoticScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
@@ -74,20 +68,20 @@ public abstract class Scroll extends Item {
 
 	private static final LinkedHashMap<String, Integer> runes = new LinkedHashMap<String, Integer>() {
 		{
-			put("KAUNAN",ItemSpriteSheet.SCROLL_KAUNAN);
-			put("SOWILO",ItemSpriteSheet.SCROLL_SOWILO);
-			put("LAGUZ",ItemSpriteSheet.SCROLL_LAGUZ);
-			put("YNGVI",ItemSpriteSheet.SCROLL_YNGVI);
-			put("GYFU",ItemSpriteSheet.SCROLL_GYFU);
-			put("RAIDO",ItemSpriteSheet.SCROLL_RAIDO);
-			put("ISAZ",ItemSpriteSheet.SCROLL_ISAZ);
-			put("MANNAZ",ItemSpriteSheet.SCROLL_MANNAZ);
-			put("NAUDIZ",ItemSpriteSheet.SCROLL_NAUDIZ);
-			put("BERKANAN",ItemSpriteSheet.SCROLL_BERKANAN);
-			put("ODAL",ItemSpriteSheet.SCROLL_ODAL);
-			put("TIWAZ",ItemSpriteSheet.SCROLL_TIWAZ);
-			put("GENSOKYO",ItemSpriteSheet.SCROLL_GENSOKYO);
-			put("ZUN",ItemSpriteSheet.SCROLL_ZUN);
+			put("KAUNAN",ItemSpriteSheet.SCROLL);
+			put("SOWILO",ItemSpriteSheet.SCROLL);
+			put("LAGUZ",ItemSpriteSheet.SCROLL);
+			put("YNGVI",ItemSpriteSheet.SCROLL);
+			put("GYFU",ItemSpriteSheet.SCROLL);
+			put("RAIDO",ItemSpriteSheet.SCROLL);
+			put("ISAZ",ItemSpriteSheet.SCROLL);
+			put("MANNAZ",ItemSpriteSheet.SCROLL);
+			put("NAUDIZ",ItemSpriteSheet.SCROLL);
+			put("BERKANAN",ItemSpriteSheet.SCROLL);
+			put("ODAL",ItemSpriteSheet.SCROLL);
+			put("TIWAZ",ItemSpriteSheet.SCROLL);
+			put("GENSOKYO",ItemSpriteSheet.SCROLL);
+			put("ZUN",ItemSpriteSheet.SCROLL);
 		}
 	};
 	
@@ -102,7 +96,7 @@ public abstract class Scroll extends Item {
 	
 	@SuppressWarnings("unchecked")
 	public static void initLabels() {
-		handler = new ItemStatusHandler<>( (Class<? extends Scroll>[])Generator.Category.SCROLL.classes, runes );
+		handler = new ItemStatusHandler<>( (Class<? extends Scroll>[])Generator.Category.SCROLL.classes, runes);
 	}
 	
 	public static void save( Bundle bundle ) {

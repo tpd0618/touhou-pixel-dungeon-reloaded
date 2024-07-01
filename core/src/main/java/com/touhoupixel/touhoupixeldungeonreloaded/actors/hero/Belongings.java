@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.Ring;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -71,7 +71,7 @@ public class Belongings implements Iterable<Item> {
 	public Armor armor = null;
 	public Artifact artifact = null;
 	public KindofMisc misc = null;
-	public Ring ring = null;
+	public Bracelet bracelet = null;
 
 	//used when thrown weapons temporary become the current weapon
 	public KindOfWeapon thrownWeapon = null;
@@ -105,8 +105,8 @@ public class Belongings implements Iterable<Item> {
 		return misc;
 	}
 
-	public Ring ring(){
-		return ring;
+	public Bracelet bracelet(){
+		return bracelet;
 	}
 
 	// ***
@@ -115,7 +115,7 @@ public class Belongings implements Iterable<Item> {
 	private static final String ARMOR		= "armor";
 	private static final String ARTIFACT   = "artifact";
 	private static final String MISC       = "misc";
-	private static final String RING       = "ring";
+	private static final String BRACELET = "bracelet";
 
 	public void storeInBundle( Bundle bundle ) {
 
@@ -125,7 +125,7 @@ public class Belongings implements Iterable<Item> {
 		bundle.put( ARMOR, armor );
 		bundle.put( ARTIFACT, artifact );
 		bundle.put( MISC, misc );
-		bundle.put( RING, ring );
+		bundle.put( BRACELET, bracelet);
 	}
 
 	public void restoreFromBundle( Bundle bundle ) {
@@ -145,8 +145,8 @@ public class Belongings implements Iterable<Item> {
 		misc = (KindofMisc) bundle.get(MISC);
 		if (misc() != null)         misc().activate( owner );
 
-		ring = (Ring) bundle.get(RING);
-		if (ring() != null)         ring().activate( owner );
+		bracelet = (Bracelet) bundle.get(BRACELET);
+		if (bracelet() != null)         bracelet().activate( owner );
 	}
 
 	public static void preview( GamesInProgress.Info info, Bundle bundle ) {
@@ -251,8 +251,8 @@ public class Belongings implements Iterable<Item> {
 		if (misc() != null) {
 			misc().identify();
 		}
-		if (ring() != null) {
-			ring().identify();
+		if (bracelet() != null) {
+			bracelet().identify();
 		}
 		for (Item item : backpack) {
 			if (item instanceof EquipableItem || item instanceof Wand) {
@@ -263,7 +263,7 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public void uncurseEquipped() {
-		ScrollOfExorcism.uncurse( owner, armor(), weapon(), artifact(), misc(), ring());
+		ScrollOfExorcism.uncurse( owner, armor(), weapon(), artifact(), misc(), bracelet());
 	}
 
 	public Item randomUnequipped() {
@@ -293,7 +293,7 @@ public class Belongings implements Iterable<Item> {
 
 		private Iterator<Item> backpackIterator = backpack.iterator();
 
-		private Item[] equipped = {weapon, armor, artifact, misc, ring};
+		private Item[] equipped = {weapon, armor, artifact, misc, bracelet};
 		private int backpackIndex = equipped.length;
 
 		@Override
@@ -337,7 +337,7 @@ public class Belongings implements Iterable<Item> {
 					equipped[3] = misc = null;
 					break;
 				case 4:
-					equipped[4] = ring = null;
+					equipped[4] = bracelet = null;
 					break;
 				default:
 					backpackIterator.remove();

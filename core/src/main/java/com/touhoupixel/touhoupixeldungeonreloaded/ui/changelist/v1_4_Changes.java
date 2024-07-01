@@ -29,8 +29,28 @@ import java.util.ArrayList;
 public class v1_4_Changes {
 
 	public static void addAllChanges(ArrayList<ChangeInfo> changeInfos) {
+		add_v1_2_3_Changes(changeInfos);
 		add_v1_2_2_Changes(changeInfos);
 		add_v1_2_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_2_3_Changes(ArrayList<ChangeInfo> changeInfos) {
+		ChangeInfo changes = new ChangeInfo("v1.2.3", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.2.3 changes",
+				"_-_ Half of them are bug fixed. For the other half, please wait.(Don't use radial quickslot in windows version!)\n" +
+						"_-_ Tickets are removed.\n" +
+						"_-_ Herbs are removed. Because they are too simple.\n" +
+						"_-_ New five weapons are added.\n" +
+						"_-_ Many non-touhou stuffs are removed. Because they are too many.\n" +
+						"_-_ Bracelets now replace rings. Since rings are extremely powerful.\n" +
+						"_-_ Inflicted onigiri on hero now shows an onigiri sprite.\n" +
+						"_-_ Hina has been nerfed.\n" +
+						"_-_ New challenge, death moon.\n" +
+						"_-_ Any many other changes.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_2_2_Changes(ArrayList<ChangeInfo> changeInfos) {

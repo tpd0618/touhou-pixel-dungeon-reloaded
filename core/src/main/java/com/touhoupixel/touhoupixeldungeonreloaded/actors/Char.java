@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Electricity;
@@ -72,35 +71,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.MirrorImage;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.PrismaticImage;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.FloatingText;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Potential;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Viscosity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.HealingBracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.SwiftBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.DamageWand;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFireblast;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfFrost;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLightning;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfLivingEarth;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.ShockingDart;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blazing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Grim;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Kinetic;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Shocking;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Door;
@@ -109,9 +94,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Earthroot;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Swiftthistle;
-import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
@@ -694,9 +677,15 @@ public abstract class Char extends Actor {
     @Override
     protected void spend( float time ) {
 
+        Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
+
         float timeScale = 1f;
         if (buff( Slow.class ) != null) {
-            timeScale *= 0.5f;
+            if (bracelet instanceof SwiftBracelet){
+                timeScale *= 1f;
+            } else {
+                timeScale *= 0.5f;
+            }
             //slowed and chilled do not stack
         } else if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
@@ -885,7 +874,7 @@ public abstract class Char extends Actor {
                 result *= 0.5f;
             }
         }
-        return result * RingOfElements.resist(this, effect);
+        return result;
     }
 
     protected final HashSet<Class> immunities = new HashSet<>();
@@ -932,6 +921,13 @@ public abstract class Char extends Actor {
         ELIXIR,
         IMMOVABLE,
         FUMO,
+
+        //For certain weapons
+        AQUATIC,
+        HELL,
+        TENSAI,
+        HARASSMENT,
+        POPULAR,
 
         //Mob property
         YOKAI,

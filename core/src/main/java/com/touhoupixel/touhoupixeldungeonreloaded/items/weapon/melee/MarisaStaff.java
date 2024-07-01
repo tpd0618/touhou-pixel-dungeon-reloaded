@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MagicalHolster;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorrosion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfCorruption;
@@ -335,7 +335,7 @@ public class MarisaStaff extends MeleeWeapon {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return MagicalHolster.class;
+			return ReimuHolder.class;
 		}
 
 		@Override

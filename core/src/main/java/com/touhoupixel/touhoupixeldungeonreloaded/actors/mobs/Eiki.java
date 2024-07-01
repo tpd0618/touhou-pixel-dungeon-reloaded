@@ -26,6 +26,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.JudgeBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EikiSprite;
@@ -71,10 +74,17 @@ public class Eiki extends Mob {
 
     @Override
     protected boolean act() {
+        KindofMisc misc = Dungeon.heroine.belongings.misc;
+        Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
+
         if (this.state != SLEEPING && this.state != FLEEING) {
             if (Dungeon.heroine.pos < this.pos || Dungeon.heroine.pos > this.pos){
                 if (Random.Int(7) == 0) {
-                    Dungeon.heroine.damage(60 - Dungeon.heroine.belongings.armor.DRMin(), this);
+                    if (misc instanceof JudgeBracelet || bracelet instanceof JudgeBracelet) {
+                        Dungeon.heroine.damage((60 - Dungeon.heroine.belongings.armor.DRMin())/2, this);
+                    } else {
+                        Dungeon.heroine.damage(60 - Dungeon.heroine.belongings.armor.DRMin(), this);
+                    }
                     CellEmitter.center(Dungeon.heroine.pos).burst(BlastParticle.FACTORY, 4);
                     GLog.w(Messages.get(this, "abyss_dragon"));
                 }
