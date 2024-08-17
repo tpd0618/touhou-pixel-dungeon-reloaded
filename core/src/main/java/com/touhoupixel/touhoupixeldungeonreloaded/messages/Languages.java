@@ -29,6 +29,7 @@ public enum Languages {
 	JAPANESE("日本語",        "ja", Status.INCOMPLETE, null, null),
 	VIETNAMESE("vietnamese", "vi", Status.INCOMPLETE, new String[]{"MinecraftGuy(1.1)"}, new String[]{"MinecraftGuy(1.1)"}),
 	FILIPINO("filipino",     "fi", Status.INCOMPLETE, new String[]{"zero [bug-finder](1.1)"}, new String[]{"zero [bug-finder](1.1)"});
+	CHINESE("中文",          "zh", Status.INCOMPLETE, new String[]{"yoritaru thpd team", "zqiao114"}, new String[]{"yoritaru thpd team", "zqiao114"}),
 
 	public enum Status{
 		//below 80% complete languages are not added.
