@@ -17,7 +17,7 @@ android {
         minSdkVersion appAndroidMinSDK
         targetSdkVersion appAndroidTargetSDK
 
-        resConfigs "en_US", "ko", "ja", "vi", "fi"
+        resConfigs "en_US", "ko", "ja", "vi", "fi", "zh"
     }
 
     buildTypes {
