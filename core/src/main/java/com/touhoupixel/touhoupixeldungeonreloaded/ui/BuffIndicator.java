@@ -116,7 +116,7 @@ public class BuffIndicator extends Component {
 	public static final int KOMACHI_CURSE     = 66;
 	public static final int ZERO_DEXTERITY    = 67;
 	public static final int KEY_HEAL          = 68;
-	public static final int POWERFUL          = 69;
+	public static final int STEALTH          = 69;
 	public static final int COOL              = 70;
 	public static final int PURE              = 71;
 	public static final int HAPPY             = 72;

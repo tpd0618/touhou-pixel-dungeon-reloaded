@@ -23,14 +23,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
 public class Amulet extends Item {
-
-	private static final String AC_END = "END";
 
 	{
 		image = ItemSpriteSheet.AMULET;
@@ -48,11 +47,10 @@ public class Amulet extends Item {
 
 	@Override
 	public boolean doPickUp(Hero heroine, int pos) {
-		Badges.validateChampion(Challenges.activeChallenges());
+		Badges.talismanUsed(Statistics.talismanUsed);
 		Badges.lifeBind();
 		Badges.bombBind();
-		Badges.torchBind();
-		Badges.livingAntiqueStore();
+		Badges.cardBind();
 		return super.doPickUp(heroine, pos);
 	}
 

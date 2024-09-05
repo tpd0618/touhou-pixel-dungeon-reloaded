@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Ripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiMDTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BlazingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ConfusionTrap;
@@ -107,7 +108,7 @@ public class ScarletDevilMansionLevel extends RegularLevel {
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
 				ConfusionTrap.class, FrostTrap.class, BlazingTrap.class, TeleportationTrap.class, ExConfusionTrap.class,
-				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, OnigiriTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, OnigiriTrap.class, AntiMDTrap.class,
 				PoisonDartTrap.class, SummoningTrap.class, RockfallTrap.class, DisintegrationTrap.class};
 	}
 
@@ -115,7 +116,7 @@ public class ScarletDevilMansionLevel extends RegularLevel {
 	protected float[] trapChances() {
 		return new float[]{
 				2, 2, 2, 2, 2,
-				2, 2, 2, 1,
+				2, 2, 2, 1, 2,
 				1, 1, 1, 1};
 	}
 	

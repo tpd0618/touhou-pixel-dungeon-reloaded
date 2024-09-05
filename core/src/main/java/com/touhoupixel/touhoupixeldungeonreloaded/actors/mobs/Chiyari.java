@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfLightReverse;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfLunar;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChiyariSprite;
 import com.watabou.utils.Random;
 
@@ -46,7 +46,7 @@ public class Chiyari extends Mob {
         properties.add(Property.YOKAI);
         properties.add(Property.HELL);
 
-        loot = new PotionOfLightReverse();
+        loot = new PotionOfLunar();
         lootChance = 0.05f;
     }
 

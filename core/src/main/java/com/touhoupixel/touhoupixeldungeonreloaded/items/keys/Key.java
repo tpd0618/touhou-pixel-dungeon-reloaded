@@ -50,9 +50,6 @@ public abstract class Key extends Item {
 	@Override
 	public boolean doPickUp(Hero heroine, int pos) {
 		GameScene.pickUpJournal(this, pos);
-		if (heroine.buff(KeyHeal.class) != null){
-			heroine.HP = Math.min(heroine.HP + 100, heroine.HT);
-		}
 		WndJournal.last_index = 2;
 		Notes.add(this);
 		Sample.INSTANCE.play( Assets.Sounds.ITEM );

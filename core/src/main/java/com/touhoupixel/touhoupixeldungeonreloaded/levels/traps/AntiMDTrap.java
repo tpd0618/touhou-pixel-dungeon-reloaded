@@ -19,36 +19,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
+package com.touhoupixel.touhoupixeldungeonreloaded.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stealth;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Sample;
 
-public class PotionOfSuperUnlucky extends Potion {
+public class AntiMDTrap extends Trap {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_MAGIC;
+		color = GREEN;
+		shape = STARS;
+
+		avoidsHallways = false;
 	}
 
 	@Override
-	public void apply( Hero heroine) {
-		identify();
-
-		GLog.w( Messages.get(this, "super_unlucky") );
-		heroine.lvl = 1;
-		heroine.exp = 0;
-		heroine.updateHT( true );
-		Sample.INSTANCE.play( Assets.Sounds.TIMEOUT );
-	}
-
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+	public void activate() {
+		Char c = Actor.findChar(pos);
+		if (c != null && c == Dungeon.heroine) {
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				Buff.prolong(mob, Stealth.class, Stealth.DURATION*999f);
+			}
+		}
+		if (Dungeon.level.heroFOV[pos]) {
+			GameScene.flash(0x80FFFFFF);
+			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
+		}
 	}
 }

@@ -244,6 +244,8 @@ public class Assets {
 		public static final String CHAINS = "sounds/chains.mp3";
 		public static final String SCAN = "sounds/scan.mp3";
 		public static final String SHEEP = "sounds/sheep.mp3";
+		public static final String EXTEND = "sounds/extend.mp3";
+		public static final String TIMEOUT = "sounds/timeout.mp3";
 
 		public static final String MASTER_SPARK_RAY = "sounds/master_spark_ray.mp3";
 

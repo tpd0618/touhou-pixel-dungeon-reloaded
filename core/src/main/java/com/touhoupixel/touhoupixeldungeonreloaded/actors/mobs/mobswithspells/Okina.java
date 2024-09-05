@@ -21,20 +21,17 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfHexCancel;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfDoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.OkinaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class Okina extends MobWithSpellcard {
@@ -52,7 +49,7 @@ public class Okina extends MobWithSpellcard {
 
         mobRarity = RARE_RARITY;
 
-        loot = new PotionOfHexCancel();
+        loot = new PotionOfDoor();
         lootChance = 0.1f;
     }
 

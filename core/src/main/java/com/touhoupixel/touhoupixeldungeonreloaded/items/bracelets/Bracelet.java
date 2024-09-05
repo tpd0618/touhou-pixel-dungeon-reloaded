@@ -48,18 +48,18 @@ public class Bracelet extends KindofMisc {
 
 	private static final LinkedHashMap<String, Integer> gems = new LinkedHashMap<String, Integer>() {
 		{
-			put("garnet",ItemSpriteSheet.BRACELET);
-			put("ruby",ItemSpriteSheet.BRACELET);
-			put("topaz",ItemSpriteSheet.BRACELET);
-			put("emerald",ItemSpriteSheet.BRACELET);
-			put("onyx",ItemSpriteSheet.BRACELET);
-			put("opal",ItemSpriteSheet.BRACELET);
-			put("tourmaline",ItemSpriteSheet.BRACELET);
-			put("sapphire",ItemSpriteSheet.BRACELET);
-			put("amethyst",ItemSpriteSheet.BRACELET);
-			put("quartz",ItemSpriteSheet.BRACELET);
-			put("agate",ItemSpriteSheet.BRACELET);
-			put("diamond",ItemSpriteSheet.BRACELET);
+			put("garnet", ItemSpriteSheet.BRACELET);
+			put("ruby", ItemSpriteSheet.BRACELET);
+			put("topaz", ItemSpriteSheet.BRACELET);
+			put("emerald", ItemSpriteSheet.BRACELET);
+			put("onyx", ItemSpriteSheet.BRACELET);
+			put("opal", ItemSpriteSheet.BRACELET);
+			put("tourmaline", ItemSpriteSheet.BRACELET);
+			put("sapphire", ItemSpriteSheet.BRACELET);
+			put("amethyst", ItemSpriteSheet.BRACELET);
+			put("quartz", ItemSpriteSheet.BRACELET);
+			put("agate", ItemSpriteSheet.BRACELET);
+			put("diamond", ItemSpriteSheet.BRACELET);
 		}
 	};
 
@@ -71,20 +71,20 @@ public class Bracelet extends KindofMisc {
 
 	@SuppressWarnings("unchecked")
 	public static void initGems() {
-		handler = new ItemStatusHandler<>( (Class<? extends Bracelet>[])Generator.Category.BRACELET.classes, gems);
+		handler = new ItemStatusHandler<>((Class<? extends Bracelet>[]) Generator.Category.BRACELET.classes, gems);
 	}
 
-	public static void save( Bundle bundle ) {
-		handler.save( bundle );
+	public static void save(Bundle bundle) {
+		handler.save(bundle);
 	}
 
-	public static void saveSelectively( Bundle bundle, ArrayList<Item> items ) {
-		handler.saveSelectively( bundle, items );
+	public static void saveSelectively(Bundle bundle, ArrayList<Item> items) {
+		handler.saveSelectively(bundle, items);
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void restore( Bundle bundle ) {
-		handler = new ItemStatusHandler<>( (Class<? extends Bracelet>[])Generator.Category.BRACELET.classes, gems, bundle );
+	public static void restore(Bundle bundle) {
+		handler = new ItemStatusHandler<>((Class<? extends Bracelet>[]) Generator.Category.BRACELET.classes, gems, bundle);
 	}
 
 	public Bracelet() {
@@ -96,7 +96,8 @@ public class Bracelet extends KindofMisc {
 	//and their sprite is replaced by a placeholder if they are not known,
 	//useful for items that appear in UIs, or which are only spawned for their effects
 	protected boolean anonymous = false;
-	public void anonymize(){
+
+	public void anonymize() {
 		if (!isKnown()) image = ItemSpriteSheet.BRACELET_HOLDER;
 		anonymous = true;
 	}
@@ -104,14 +105,14 @@ public class Bracelet extends KindofMisc {
 	public void reset() {
 		super.reset();
 		levelsToID = 1;
-		if (handler != null && handler.contains(this)){
+		if (handler != null && handler.contains(this)) {
 			image = handler.image(this);
 			gem = handler.label(this);
 		}
 	}
 
 	public boolean isKnown() {
-		return anonymous || (handler != null && handler.isKnown( this ));
+		return anonymous || (handler != null && handler.isKnown(this));
 	}
 
 	public void setKnown() {
@@ -165,7 +166,7 @@ public class Bracelet extends KindofMisc {
 	}
 
 	@Override
-	public Item identify( boolean byHero ) {
+	public Item identify(boolean byHero) {
 		setKnown();
 		levelsToID = 0;
 		return super.identify(byHero);
@@ -176,15 +177,6 @@ public class Bracelet extends KindofMisc {
 		int n = 0;
 		level(n);
 
-		//30% chance to be cursed
-		if (Random.Float() < 0.3f) {
-			cursed = true;
-		}
-
-		if (Dungeon.isChallenged(Challenges.DEATH_MOON)) {
-			cursed = true;
-		}
-
 		return this;
 	}
 
@@ -194,10 +186,6 @@ public class Bracelet extends KindofMisc {
 
 	public static HashSet<Class<? extends Bracelet>> getUnknown() {
 		return handler.unknown();
-	}
-
-	public static boolean allKnown() {
-		return handler.known().size() == Generator.Category.BRACELET.classes.length;
 	}
 
 	@Override
@@ -217,95 +205,5 @@ public class Bracelet extends KindofMisc {
 			price = 1;
 		}
 		return price;
-	}
-
-	protected RingBuff buff() {
-		return null;
-	}
-
-	private static final String LEVELS_TO_ID    = "levels_to_ID";
-
-	@Override
-	public void storeInBundle( Bundle bundle ) {
-		super.storeInBundle( bundle );
-		bundle.put( LEVELS_TO_ID, levelsToID );
-	}
-
-	@Override
-	public void restoreFromBundle( Bundle bundle ) {
-		super.restoreFromBundle( bundle );
-		levelsToID = bundle.getFloat( LEVELS_TO_ID );
-	}
-
-	public void onHeroGainExp( float levelPercent, Hero heroine){
-		if (isIdentified() || !isEquipped(heroine)) return;
-		//becomes IDed after 1 level
-		levelsToID -= levelPercent;
-		if (levelsToID <= 0){
-			//do nothing!
-		}
-	}
-
-	@Override
-	public int buffedLvl() {
-		int lvl = super.buffedLvl();
-		//todo gimmick
-		return lvl;
-	}
-
-	public static int getBonus(Char target, Class<?extends RingBuff> type){
-		int bonus = 0;
-		for (RingBuff buff : target.buffs(type)) {
-			bonus += buff.level();
-		}
-		return bonus;
-	}
-
-	public static int getBuffedBonus(Char target, Class<?extends RingBuff> type){
-		int bonus = 0;
-		for (RingBuff buff : target.buffs(type)) {
-			bonus += buff.buffedLvl();
-		}
-		return bonus;
-	}
-
-	public int soloBonus() {
-		if (Dungeon.heroine.buff(Onigiri.class) != null) {
-			return 0;
-		} else if (cursed) {
-			return Math.min(0, Bracelet.this.level() - 2);
-		} else {
-			return Bracelet.this.level() + 1;
-		}
-	}
-
-	public int soloBuffedBonus(){
-		if (Dungeon.heroine.buff(Onigiri.class) != null) {
-			return 0;
-		} else if (cursed){
-			return Math.min( 0, Bracelet.this.buffedLvl()-2 );
-		} else {
-			return Bracelet.this.buffedLvl()+1;
-		}
-	}
-
-	public class RingBuff extends Buff {
-
-		@Override
-		public boolean act() {
-
-			spend( TICK );
-
-			return true;
-		}
-
-		public int level(){
-			return Bracelet.this.soloBonus();
-		}
-
-		public int buffedLvl(){
-			return Bracelet.this.soloBuffedBonus();
-		}
-
 	}
 }

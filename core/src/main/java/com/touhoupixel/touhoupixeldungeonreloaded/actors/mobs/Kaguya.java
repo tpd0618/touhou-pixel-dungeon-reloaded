@@ -70,4 +70,5 @@ public class Kaguya extends Mob {
         }
         return damage;
     }
+    //Kaguya cannot be detected by monster detector
 }

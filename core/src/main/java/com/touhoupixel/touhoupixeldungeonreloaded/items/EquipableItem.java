@@ -145,10 +145,6 @@ public abstract class EquipableItem extends Item {
 
 					Statistics.dismantle_count += 1;
 
-					if (Statistics.card33 && Random.Int(3) == 0) {
-						Buff.prolong(heroine, KeyHeal.class, KeyHeal.DURATION / 3f);
-					}
-
 					Sample.INSTANCE.play(Assets.Sounds.DRINK);
 					curUser.sprite.operate(curUser.pos);
 				}

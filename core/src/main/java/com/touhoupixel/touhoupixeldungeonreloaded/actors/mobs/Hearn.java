@@ -69,100 +69,32 @@ public class Hearn extends Mob {
         return Random.NormalIntRange(26, 38);
     }
 
+    void teleportMobs(int direction) {
+        int[] offsets = new int[]{direction, 2 * direction, direction + Dungeon.level.width(), direction - Dungeon.level.width()};
+
+        for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+            for (int offset : offsets) {
+                int newPos = this.pos + offset;
+                if (Actor.findChar(newPos) == null && Dungeon.level.map[newPos] != Terrain.CHASM) {
+                    ScrollOfTeleportation.teleportToLocationHearn(offset == direction ? Dungeon.heroine : mob, newPos);
+                }
+            }
+        }
+    }
+
+    void performAction() {
+        switch (Random.Int(4)) {
+            case 0: teleportMobs(1); break;
+            case 1: teleportMobs(-1); break;
+            case 2: teleportMobs(Dungeon.level.width()); break;
+            case 3: teleportMobs(-Dungeon.level.width()); break;
+        }
+    }
+
     @Override
     protected boolean act() {
         if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING && Random.Int(5) == 0) {
-            switch (Random.Int(4)) {
-                case 0:
-                default:
-                    for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-                        if (Actor.findChar(this.pos + 1) == null && Dungeon.level.map[this.pos + 1] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(Dungeon.heroine, this.pos + 1);
-                        }
-                        if (Actor.findChar(this.pos + 2) == null && Dungeon.level.map[this.pos + 2] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos + 2);
-                        }
-                        if (Actor.findChar(this.pos + 1 + Dungeon.level.width()) == null && Dungeon.level.map[this.pos + 1 + Dungeon.level.width()] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos + 1 + Dungeon.level.width());
-                        }
-                        if (Actor.findChar(this.pos + 1 - Dungeon.level.width()) == null && Dungeon.level.map[this.pos + 1 - Dungeon.level.width()] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos + 1 - Dungeon.level.width());
-                        }
-                        if (Statistics.difficulty > 2) {
-                            Buff.prolong(mob, Might.class, Might.DURATION);
-                        }
-                        if (Statistics.difficulty > 4) {
-                            Buff.prolong(mob, DoubleSpeed.class, DoubleSpeed.DURATION);
-                        }
-                    }
-                    break;
-                case 1:
-                    for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-                        if (Actor.findChar(this.pos - 1) == null && Dungeon.level.map[this.pos - 1] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(Dungeon.heroine, this.pos + 1);
-                        }
-                        if (Actor.findChar(this.pos - 2) == null && Dungeon.level.map[this.pos - 2] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos - 2);
-                        }
-                        if (Actor.findChar(this.pos - 1 + Dungeon.level.width()) == null && Dungeon.level.map[this.pos - 1 + Dungeon.level.width()] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos - 1 + Dungeon.level.width());
-                        }
-                        if (Actor.findChar(this.pos - 1 - Dungeon.level.width()) == null && Dungeon.level.map[this.pos - 1 - Dungeon.level.width()] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos - 1 - Dungeon.level.width());
-                        }
-                        if (Statistics.difficulty > 2) {
-                            Buff.prolong(mob, Might.class, Might.DURATION);
-                        }
-                        if (Statistics.difficulty > 4) {
-                            Buff.prolong(mob, DoubleSpeed.class, DoubleSpeed.DURATION);
-                        }
-                    }
-                    break;
-                case 2:
-                    for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-                        if (Actor.findChar(this.pos + Dungeon.level.width()) == null && Dungeon.level.map[this.pos + Dungeon.level.width()] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(Dungeon.heroine, this.pos + Dungeon.level.width());
-                        }
-                        if (Actor.findChar(this.pos + Dungeon.level.width() * 2) == null && Dungeon.level.map[this.pos + Dungeon.level.width() * 2] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos + Dungeon.level.width() * 2);
-                        }
-                        if (Actor.findChar(this.pos + Dungeon.level.width() + 1) == null && Dungeon.level.map[this.pos + Dungeon.level.width() + 1] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos + Dungeon.level.width() + 1);
-                        }
-                        if (Actor.findChar(this.pos + Dungeon.level.width() - 1) == null && Dungeon.level.map[this.pos + Dungeon.level.width() - 1] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos + Dungeon.level.width() - 1);
-                        }
-                        if (Statistics.difficulty > 2) {
-                            Buff.prolong(mob, Might.class, Might.DURATION);
-                        }
-                        if (Statistics.difficulty > 4) {
-                            Buff.prolong(mob, DoubleSpeed.class, DoubleSpeed.DURATION);
-                        }
-                    }
-                    break;
-                case 3:
-                    for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-                        if (Actor.findChar(this.pos - Dungeon.level.width()) == null && Dungeon.level.map[this.pos - Dungeon.level.width()] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(Dungeon.heroine, this.pos - Dungeon.level.width());
-                        }
-                        if (Actor.findChar(this.pos - Dungeon.level.width() * 2) == null && Dungeon.level.map[this.pos - Dungeon.level.width() * 2] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos - Dungeon.level.width() * 2);
-                        }
-                        if (Actor.findChar(this.pos - Dungeon.level.width() + 1) == null && Dungeon.level.map[this.pos - Dungeon.level.width() + 1] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos - Dungeon.level.width() + 1);
-                        }
-                        if (Actor.findChar(this.pos - Dungeon.level.width() - 1) == null && Dungeon.level.map[this.pos - Dungeon.level.width() - 1] != Terrain.CHASM) {
-                            ScrollOfTeleportation.teleportToLocationHearn(mob, this.pos - Dungeon.level.width() - 1);
-                        }
-                        if (Statistics.difficulty > 2) {
-                            Buff.prolong(mob, Might.class, Might.DURATION);
-                        }
-                        if (Statistics.difficulty > 4) {
-                            Buff.prolong(mob, DoubleSpeed.class, DoubleSpeed.DURATION);
-                        }
-                    }
-                    break;
-            }
+            performAction();
         }
         return super.act();
     }

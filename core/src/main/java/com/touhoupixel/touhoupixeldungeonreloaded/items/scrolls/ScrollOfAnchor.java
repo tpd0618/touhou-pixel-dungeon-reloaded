@@ -43,10 +43,6 @@ public class ScrollOfAnchor extends Scroll {
 	public void doRead() {
 		new AnchorTrap().set(curUser.pos).activate();
 
-		//Level.set( curUser.pos - 1, Terrain.WATER );
-		//GameScene.updateMap( curUser.pos - 1 );
-		//maybe used for digging?
-
 		if (Dungeon.level.map[curUser.pos - 1] == Terrain.EMBERS || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos - 1] == Terrain.GRASS || Dungeon.level.map[curUser.pos - 1] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos - 1] == Terrain.HIGH_GRASS){
 			Level.set( curUser.pos - 1, Terrain.WATER );
 			GameScene.updateMap( curUser.pos - 1 );

@@ -26,7 +26,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
@@ -312,10 +311,6 @@ abstract public class MissileWeapon extends Weapon {
 	}
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
-		if (Dungeon.heroine.buff(Cool.class) != null){
-			damage *= 0;
-		}
-
 		if (Statistics.card34) {
 			Statistics.power -= Random.Int(1, 3);
 		} else Statistics.power -= 10;

@@ -230,12 +230,6 @@ public class Dungeon {
 
 		if (floor > Statistics.highestFloor) {
 			Statistics.highestFloor = floor;
-
-			if (Statistics.qualifiedForNoKilling) {
-				Statistics.completedWithNoKilling = true;
-			} else {
-				Statistics.completedWithNoKilling = false;
-			}
 		}
 
 		Level level;
@@ -379,29 +373,22 @@ public class Dungeon {
 			case 95:
 			case 96:
 			case 97:
+			case 98:
+			case 99:
 				level = new HellLevel();
 				break;
 			case 40:
 				level = new HellBossLevel();
 				break;
 			case 41:
-				//level = Dungeon.isChallenged(Challenges.TOWER_OF_FORTUNE) ? new HakureiShrineLevel() : new LastLevel();
-				level = new LastLevel();
+				level = Dungeon.isChallenged(Challenges.URA_MODE) ? new HakureiShrineLevel() : new LastLevel();
 				break;
-			case 98:
-				level = new TrueLastBossLevel();
-				break;
-			//case 99:
-				//level = new LastLevel();
-				//break;
 			default:
 				level = new DeadEndLevel();
 				Statistics.highestFloor--;
 		}
 
 		level.create();
-
-		Statistics.qualifiedForNoKilling = !bossLevel();
 
 		return level;
 	}
@@ -441,16 +428,12 @@ public class Dungeon {
 		return floor == 1 || floor == 11 || floor == 21 || floor == 31;
 	}
 
-	//public static boolean pandemoniumLevel() {
-		//return floor == 50 || floor == 60 || floor == 70 || floor == 80 || floor == 90;
-	//}
-
 	public static boolean bossLevel() {
 		return bossLevel(floor);
 	}
 
 	public static boolean bossLevel( int floor ) {
-		return floor == 5 || floor == 10 || floor == 15 || floor == 20 || floor == 25 || floor == 30 || floor == 35 || floor == 40 || floor == 98;
+		return floor == 5 || floor == 10 || floor == 15 || floor == 20 || floor == 25 || floor == 30 || floor == 35 || floor == 40;
 	}
 
 	public static int scalingFloor(){
@@ -523,7 +506,6 @@ public class Dungeon {
 	}
 
 	public static boolean strengthNeeded() {
-		//2 POS each floor set
 		int posLeftThisSet = 4 - (LimitedDrops.STRENGTH_CARDS.count - (floor / 5) * 4);
 		if (posLeftThisSet <= 0) return false;
 
@@ -647,7 +629,6 @@ public class Dungeon {
 		if (heroine != null && (heroine.isAlive())) {
 
 			Actor.fixTime();
-			updateLevelExplored();
 			saveGame( GamesInProgress.curSlot );
 			saveLevel( GamesInProgress.curSlot );
 
@@ -819,20 +800,12 @@ public class Dungeon {
 	}
 
 	public static void fail( Class cause ) {
-		updateLevelExplored();
 		Rankings.INSTANCE.submit( false, cause );
 	}
 
 	public static void win( Class cause ) {
-		updateLevelExplored();
 		heroine.belongings.identify();
 		Rankings.INSTANCE.submit(true, cause);
-	}
-
-	public static void updateLevelExplored(){
-		if (branch == 0 && level instanceof RegularLevel && !Dungeon.bossLevel()){
-			Statistics.floorsExplored.put(floor, level.isLevelExplored(floor));
-		}
 	}
 
 	//default to recomputing based on max hero vision, in case vision just shrank/grew
@@ -844,7 +817,7 @@ public class Dungeon {
 			dist = Math.max( dist, MagicalSight.DISTANCE );
 		}
 
-		observe( dist+1 );
+		observe( dist+1 ); //todo?
 	}
 
 	public static void observe( int dist ) {

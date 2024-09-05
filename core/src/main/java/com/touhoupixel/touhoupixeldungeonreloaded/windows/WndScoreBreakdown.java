@@ -38,34 +38,6 @@ public class WndScoreBreakdown extends Window {
 
 	private int GAP	= 4;
 
-	public WndScoreBreakdown(){
-
-		IconTitle title = new IconTitle( Icons.get(Icons.INFO), Messages.get(this, "title"));
-		title.setRect(0, 0, WIDTH, 16);
-		add(title);
-
-		float pos = title.bottom()+2;
-
-		NumberFormat num = NumberFormat.getInstance(Locale.US);
-			pos = statSlot(this, Messages.get(this, "progress_title"),
-					num.format(Statistics.progressScore), pos, false);
-			pos = addInfo(this, Messages.get(this, "progress_desc"), pos);
-			pos = statSlot(this, Messages.get(this, "treasure_title"),
-					num.format(Statistics.treasureScore), pos, false);
-			pos = addInfo(this, Messages.get(this, "treasure_desc"), pos);
-			pos = statSlot(this, Messages.get(this, "explore_title"),
-					num.format(Statistics.exploreScore), pos, false);
-			pos = addInfo(this, Messages.get(this, "explore_desc"), pos);
-
-		if (Statistics.chalMultiplier > 1) {
-			pos = statSlot(this, Messages.get(this, "challenge_multiplier"), Statistics.chalMultiplier + "x", pos, false);
-		}
-		pos = statSlot(this, Messages.get(this, "total"), num.format(Statistics.totalScore), pos, false);
-
-		resize(WIDTH, (int)pos);
-
-	}
-
 	private float statSlot(Group parent, String label, String value, float pos, boolean highlight ) {
 
 		RenderedTextBlock txt = PixelScene.renderTextBlock( label, 7 );

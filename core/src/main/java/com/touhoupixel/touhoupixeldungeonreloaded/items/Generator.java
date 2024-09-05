@@ -109,7 +109,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmut
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlink;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfClairvoyance;
@@ -117,7 +116,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDeepSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDisarming;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.BindingTalisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.CirnoTalisman;
@@ -386,7 +384,6 @@ public class Generator {
 
 			STONE.classes = new Class<?>[]{
 					StoneOfEnchantment.class,
-					StoneOfIntuition.class,
 					StoneOfDisarming.class,
 					StoneOfFlock.class,
 					StoneOfShock.class,
@@ -395,10 +392,9 @@ public class Generator {
 					StoneOfClairvoyance.class,
 					StoneOfAggression.class,
 					StoneOfMadness.class,
-					StoneOfFear.class,
-					StoneOfAugmentation.class  //1 is sold in each shop
+					StoneOfFear.class
 			};
-			STONE.defaultProbs = new float[]{ 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0 };
+			STONE.defaultProbs = new float[]{ 0, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 			STONE.probs = STONE.defaultProbs.clone();
 
 			TALISMAN.classes = new Class<?>[]{

@@ -35,7 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BrainWash;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Charm;
@@ -77,7 +76,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Viscosity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.HealingBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.SwiftBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfCleansing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
@@ -912,9 +910,9 @@ public abstract class Char extends Actor {
 
     public enum Property{
         BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Paralysis.class)),
-                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class, Grim.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
+                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, Grim.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
         MINIBOSS ( new HashSet<Class>(),
-                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class, BrainWash.class) )),
+                new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
         MITAMA ( new HashSet<Class>(),
                 new HashSet<Class>( Arrays.asList(DamageWand.class, Mob.class, Grim.class, Trap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class) )),
         NONE,

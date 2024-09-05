@@ -26,31 +26,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int RE_BIRTH_DAY     = 1;
-	public static final int DEATH_MOON    = 2;
-	public static final int OLD_ROAD = 4;
-	public static final int HOPELESS = 8;
-	public static final int RE_HOURAI_ELIXIR = 16;
-	public static final int INF_TIME_EATER   = 32;
-	public static final int DOUBLE_SPOILER   = 64;
-	public static final int LUNATIC_PERFECT  = 128;
+	public static final int URA_MODE = 1;
 
-	public static final int MAX_VALUE        = 256;
+	public static final int MAX_VALUE = 1;
 
 	public static final String[] NAME_IDS = {
-			"re_birth_day",
-			"death_moon",
-			"old_road",
-			"hopeless",
-			"re_hourai_elixir",
-			"inf_time_eater",
-			"double_spoiler",
-			"lunatic_perfect"
+			"ura_mode"
 	};
 
 	public static final int[] MASKS = {
-			RE_BIRTH_DAY, DEATH_MOON, OLD_ROAD, HOPELESS,
-			RE_HOURAI_ELIXIR, INF_TIME_EATER, DOUBLE_SPOILER, LUNATIC_PERFECT
+			URA_MODE
 	};
 
 	public static int activeChallenges(){

@@ -54,7 +54,6 @@ public abstract class AllyBuff extends Buff{
 		if (enemy.buff(buffCls) != null){
 			if (droppingLoot) enemy.rollToDropLoot();
 			Statistics.enemiesSlain++;
-			Statistics.qualifiedForNoKilling = false;
 			if (enemy.EXP > 0 && heroine.lvl <= enemy.maxLvl) {
 				heroine.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", enemy.EXP));
 				heroine.earnExp(enemy.EXP, enemy.getClass());

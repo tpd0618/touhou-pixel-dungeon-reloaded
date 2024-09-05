@@ -42,10 +42,12 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Shadows;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Bestiary;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Kaguya;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Nitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.WindParticle;
@@ -60,7 +62,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfFore
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfSuperUnlucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.StarDanmaku;
@@ -192,17 +193,32 @@ public abstract class Level implements Bundlable {
 			addItemToSpawn(Generator.random(Generator.Category.FOOD));
 			addItemToSpawn(Generator.random(Generator.Category.TALISMAN));
 
-			if (Dungeon.strengthNeeded()) {
-				addItemToSpawn( new StrengthCard() );
-				Dungeon.LimitedDrops.STRENGTH_CARDS.count++;
-			}
-			if (Dungeon.upgradeNeeded()) {
-				addItemToSpawn( new UpgradeCard() );
-				Dungeon.LimitedDrops.UPGRADE_CARDS.count++;
-			}
-			if (Dungeon.patchouliNeeded()) {
-				addItemToSpawn( new PatchouliCard() );
-				Dungeon.LimitedDrops.PATCHOULI_CARD.count++;
+			if (Dungeon.isChallenged(Challenges.URA_MODE) && Dungeon.floor < 20) {
+				if (Dungeon.strengthNeeded()) {
+					addItemToSpawn(new StrengthCard());
+					Dungeon.LimitedDrops.STRENGTH_CARDS.count++;
+				}
+				if (Dungeon.upgradeNeeded()) {
+					addItemToSpawn(new UpgradeCard());
+					Dungeon.LimitedDrops.UPGRADE_CARDS.count++;
+				}
+				if (Dungeon.patchouliNeeded()) {
+					addItemToSpawn(new PatchouliCard());
+					Dungeon.LimitedDrops.PATCHOULI_CARD.count++;
+				}
+			} else {
+				if (Dungeon.strengthNeeded()) {
+					addItemToSpawn(new StrengthCard());
+					Dungeon.LimitedDrops.STRENGTH_CARDS.count++;
+				}
+				if (Dungeon.upgradeNeeded()) {
+					addItemToSpawn(new UpgradeCard());
+					Dungeon.LimitedDrops.UPGRADE_CARDS.count++;
+				}
+				if (Dungeon.patchouliNeeded()) {
+					addItemToSpawn(new PatchouliCard());
+					Dungeon.LimitedDrops.PATCHOULI_CARD.count++;
+				}
 			}
 
 			//one scroll of transmutation is guaranteed to spawn somewhere on chapter 2-4
@@ -210,10 +226,6 @@ public abstract class Level implements Bundlable {
 			if ( Dungeon.floor / 5 == enchChapter &&
 					Dungeon.seed % 4 + 1 == Dungeon.floor % 5){
 				addItemToSpawn( new StoneOfEnchantment() );
-			}
-
-			if ( Dungeon.floor == ((Dungeon.seed % 3) + 1)){
-				addItemToSpawn( new StoneOfIntuition() );
 			}
 
 			if (Dungeon.floor > 40) {
@@ -1224,8 +1236,10 @@ public abstract class Level implements Bundlable {
 			Dungeon.heroine.mindVisionEnemies.clear();
 			if (c.buff( MindVision.class ) != null) {
 				for (Mob mob : mobs) {
-					for (int i : PathFinder.NEIGHBOURS9) {
-						heroMindFov[mob.pos + i] = true;
+					if (mob instanceof Nitori || mob instanceof Kaguya || mob.buff( Stealth.class ) != null){
+						//do nothing, cannot detect //todo
+					} else {
+						heroMindFov[mob.pos] = true;
 					}
 				}
 			}

@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CelestialBody;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.SpellSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -38,7 +37,6 @@ public class ScrollOfDefenseUp extends ExoticScroll {
 	@Override
 	public void doRead() {
 		Buff.prolong(curUser, SuperHard.class, SuperHard.DURATION);
-		Buff.prolong(curUser, CelestialBody.class, CelestialBody.DURATION);
 
 		Sample.INSTANCE.play( Assets.Sounds.READ );
 		Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );

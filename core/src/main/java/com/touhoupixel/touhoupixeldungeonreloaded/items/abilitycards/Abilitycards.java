@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -60,6 +61,8 @@ abstract public class Abilitycards extends Item {
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
         parent = null;
+
+        Statistics.abcarduse = true;
 
         Shopkeeper shopkeeper = new Shopkeeper();
         shopkeeper.destroy();

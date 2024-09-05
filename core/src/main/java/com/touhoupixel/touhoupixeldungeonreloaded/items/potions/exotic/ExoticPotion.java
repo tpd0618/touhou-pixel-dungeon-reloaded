@@ -64,8 +64,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfFrost.class, PotionOfSnapFreeze.class);
 		exoToReg.put(PotionOfSnapFreeze.class, PotionOfFrost.class);
 
-		regToExo.put(PotionOfLiquidFlame.class, PotionOfLightReverse.class);
-		exoToReg.put(PotionOfLightReverse.class, PotionOfLiquidFlame.class);
+		regToExo.put(PotionOfLiquidFlame.class, PotionOfRunaway.class);
+		exoToReg.put(PotionOfRunaway.class, PotionOfLiquidFlame.class);
 
 		regToExo.put(PotionOfToxicGas.class, PotionOfCorrosiveGas.class);
 		exoToReg.put(PotionOfCorrosiveGas.class, PotionOfToxicGas.class);
@@ -88,20 +88,20 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfExperience.class, PotionOfAttraction.class);
 		exoToReg.put(PotionOfAttraction.class, PotionOfExperience.class);
 
-		regToExo.put(PotionOfMight.class, PotionOfHexCancel.class);
-		exoToReg.put(PotionOfHexCancel.class, PotionOfMight.class);
+		regToExo.put(PotionOfMight.class, PotionOfDoor.class);
+		exoToReg.put(PotionOfDoor.class, PotionOfMight.class);
 
 		regToExo.put(PotionOfDoubleSpeed.class, PotionOfPhilosopher.class);
 		exoToReg.put(PotionOfPhilosopher.class, PotionOfDoubleSpeed.class);
 
-		regToExo.put(PotionOfLightHealing.class, PotionOfEnlightenment.class);
-		exoToReg.put(PotionOfEnlightenment.class, PotionOfLightHealing.class);
+		regToExo.put(PotionOfLightHealing.class, PotionOfLunar.class);
+		exoToReg.put(PotionOfLunar.class, PotionOfLightHealing.class);
 
-		regToExo.put(PotionOfYingYang.class, PotionOfReverseYingYang.class);
-		exoToReg.put(PotionOfReverseYingYang.class, PotionOfYingYang.class);
+		regToExo.put(PotionOfYingYang.class, PotionOfExorcismRod.class);
+		exoToReg.put(PotionOfExorcismRod.class, PotionOfYingYang.class);
 
-		regToExo.put(PotionOfSuperUnlucky.class, PotionOfExorcismRod.class);
-		exoToReg.put(PotionOfExorcismRod.class, PotionOfSuperUnlucky.class);
+		regToExo.put(PotionOfSuperUnlucky.class, PotionOfSilver.class);
+		exoToReg.put(PotionOfSilver.class, PotionOfSuperUnlucky.class);
 	}
 	
 	@Override
