@@ -48,6 +48,7 @@ public class v1_4_Changes {
 						"_-_ New trap, anti-MD trap.\n" +
 						"_-_ New sounds for some situation.\n" +
 						"_-_ Many things that are bad were removed.\n" +
+						"_-_ Boss seija stats, and an ability is nerfed.\n" +
 						"_-_ And extra bug fixes.\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
