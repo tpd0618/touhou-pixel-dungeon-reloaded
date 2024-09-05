@@ -377,6 +377,9 @@ public class Dungeon {
 			case 99:
 				level = new HellLevel();
 				break;
+			case 100:
+				level = new LastLevel();
+				break;
 			case 40:
 				level = new HellBossLevel();
 				break;

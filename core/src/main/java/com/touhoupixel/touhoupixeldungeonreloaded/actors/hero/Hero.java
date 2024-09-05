@@ -1212,7 +1212,7 @@ public class Hero extends Char {
 
 			if (transition.type == LevelTransition.Type.SURFACE){
 				if (belongings.getItem( Amulet.class ) == null) {
-					if (Dungeon.floor == 41 || Dungeon.floor == 99){
+					if (Dungeon.floor == 41 || Dungeon.floor == 100){
 						GLog.n( Messages.get(Reimu.class, "amulet") );
 					} else {
 						Game.runOnRenderThread(new Callback() {
@@ -1508,19 +1508,15 @@ public class Hero extends Char {
 		if (Statistics.difficulty == 2) {
 			if (dmg > 0) dmg = Math.max((int)(dmg*0.4f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
-		if (Statistics.difficulty == 4) {
-			dmg *= 0.55f;
+		if (Statistics.difficulty == 3) {
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.55f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
 		if (Statistics.difficulty == 4) {
-			dmg *= 0.7f;
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.7f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
 		if (Statistics.difficulty == 5) {
-			dmg *= 0.85f;
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.85f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
 		if (Statistics.difficulty == 6) {
 			dmg *= 1f;
 		}
@@ -1766,7 +1762,7 @@ public class Hero extends Char {
 
 		} else if (Dungeon.level.getTransition(cell) != null
 				&& !Dungeon.level.locked
-				&& (Dungeon.floor < 100 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_EXIT) ) {
+				&& (Dungeon.floor < 105 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_EXIT) ) {
 
 			curAction = new HeroAction.LvlTransition( cell );
 
