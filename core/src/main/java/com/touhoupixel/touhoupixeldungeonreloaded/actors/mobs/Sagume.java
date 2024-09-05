@@ -54,7 +54,7 @@ public class Sagume extends Mob {
     public void die(Object cause) {
         super.die(cause);
         for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-            Buff.prolong(mob, Stealth.class, Stealth.DURATION*3f);
+            Buff.prolong(mob, Stealth.class, Stealth.DURATION*4f);
         }
     }
 

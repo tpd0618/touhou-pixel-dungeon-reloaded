@@ -37,7 +37,7 @@ public class BossSeija extends Mob {
     {
         spriteClass = SeijaSprite.class;
 
-        HP = HT = 1300;
+        HP = HT = 720;
         defenseSkill = 30;
         EXP = 26;
         maxLvl = 99;
@@ -73,7 +73,7 @@ public class BossSeija extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(59, 91);
+        return Random.NormalIntRange(59, 71);
     }
 
     @Override

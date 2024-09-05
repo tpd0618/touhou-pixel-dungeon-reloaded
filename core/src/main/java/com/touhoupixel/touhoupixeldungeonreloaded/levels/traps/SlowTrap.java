@@ -45,7 +45,7 @@ public class SlowTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null && c == Dungeon.heroine) {
-			Buff.prolong(c, Slow.class, Slow.DURATION * 5f);
+			Buff.prolong(c, Slow.class, Slow.DURATION);
 			GLog.w(Messages.get(this, "slow"));
 		}
 		if (Dungeon.level.heroFOV[pos]) {

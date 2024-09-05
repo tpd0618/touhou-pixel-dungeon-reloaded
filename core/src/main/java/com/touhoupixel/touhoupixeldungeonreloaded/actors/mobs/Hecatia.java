@@ -140,10 +140,10 @@ public class Hecatia extends Mob {
 								Char ch = (Char) Actor.findChar(trajectory.collisionPos);
 								if (ch != null && ch != Dungeon.heroine && trajectory.collisionPos.equals(ch.pos)) {
 									ch.damage(Dungeon.heroine.STR * 2 + armor.level() * 3, armor);
-									GLog.w(Messages.get(this, "armor_blow_away_and_destroy"));
+									GLog.w(Messages.get(Kasen.class, "armor_blow_away_and_destroy"));
 								} else {
 									armor.onThrow(trajectory.collisionPos);
-									GLog.w(Messages.get(this, "armor_blow_away"));
+									GLog.w(Messages.get(Kasen.class, "armor_blow_away"));
 								}
 							}
 						}

@@ -34,8 +34,8 @@ import com.watabou.noosa.audio.Sample;
 public class AntiMDTrap extends Trap {
 
 	{
-		color = GREEN;
-		shape = STARS;
+		color = ORANGE;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
 	}

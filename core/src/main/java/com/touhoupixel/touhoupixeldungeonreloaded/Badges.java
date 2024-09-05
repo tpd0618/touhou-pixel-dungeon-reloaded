@@ -44,7 +44,6 @@ public class Badges {
 		TALISMAN_3                  ( 2 ),
 		TALISMAN_4                  ( 3 ),
 		TALISMAN_5                  ( 4 ),
-		//blank
 		NO_MISS                     ( 5 ),
 		NO_BOMB                     ( 6 ),
 		NO_ABILITY_CARD             ( 7 );

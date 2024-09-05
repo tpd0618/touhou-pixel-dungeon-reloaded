@@ -855,7 +855,7 @@ public class Dungeon {
 				BArray.or( level.visited, level.heroFOV, m.pos - 1, 3, level.visited );
 				BArray.or( level.visited, level.heroFOV, m.pos - 1 + level.width(), 3, level.visited );
 				//updates adjacent cells too
-				GameScene.updateFog(m.pos, 2);
+				GameScene.updateFog(m.pos, 1); //todo?
 			}
 		}
 
