@@ -1,16 +1,11 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YuukaRage;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuukaSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Yuuka extends Mob {
@@ -18,9 +13,9 @@ public class Yuuka extends Mob {
     {
         spriteClass = YuukaSprite.class;
 
-        HP = HT = 450;
-        defenseSkill = 0;
-        EXP = 1;
+        HP = HT = 250;
+        defenseSkill = 20;
+        EXP = 10;
         maxLvl = 27;
 
         properties.add(Property.YOKAI);
@@ -33,7 +28,7 @@ public class Yuuka extends Mob {
 
     @Override
     public int damageRoll() {
-        return 1;
+        return Random.NormalIntRange(67, 81);
     }
 
     @Override
@@ -42,23 +37,16 @@ public class Yuuka extends Mob {
     }
 
     @Override
-    public float attackDelay() { return super.attackDelay()*3f; }
-
-    @Override
     public int drRoll() {
         return Random.NormalIntRange(0, 2);
     }
 
     @Override
-    public int defenseProc(Char enemy, int damage) {
-        if (Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon) {
-            enemy.damage(damage/2, target);
-            Buff.prolong(this, Bless.class, Bless.DURATION*10000f);
-            Buff.prolong(this, YuukaRage.class, YuukaRage.DURATION);
-            Buff.prolong(this, Haste.class, Haste.DURATION*10000f);
-            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION*10000f);
-            GLog.w(Messages.get(this, "reflect"));
+    public int attackProc(Char hero, int damage) {
+        damage = super.attackProc(enemy, damage);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Statistics.talismanUsed > 10) {
+            Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
         }
-        return super.defenseProc(enemy, damage);
+        return damage;
     }
 }

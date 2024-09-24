@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AliceCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
@@ -250,14 +249,6 @@ public abstract class Wand extends Item {
 			Dungeon.heroine.HP /= 2;
 			GameScene.flash(-65536);
 			GLog.w(Messages.get(this, "magic_drain"));
-		}
-
-		if (Dungeon.isChallenged(Challenges.INF_TIME_EATER)){
-			Statistics.timetrackbuff += 1;
-		}
-
-		if (Dungeon.heroine.buff(Happy.class) != null){
-			Buff.prolong(curUser, Slow.class, Slow.DURATION);
 		}
 
 		if (Statistics.card34) {

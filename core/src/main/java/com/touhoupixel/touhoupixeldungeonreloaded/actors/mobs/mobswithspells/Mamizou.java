@@ -55,6 +55,7 @@ public class Mamizou extends MobWithSpellcard {
         }
         return damage;
     }
+
     @Override
     public boolean readyToUseSpellcard(){
         if (enemy != null){

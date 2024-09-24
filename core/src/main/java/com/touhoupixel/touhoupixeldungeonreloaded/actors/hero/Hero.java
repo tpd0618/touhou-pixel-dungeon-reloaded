@@ -35,7 +35,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CelestialBody;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CritChanceUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoomedZone;
@@ -47,7 +46,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FumoLover;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HexCancel;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HumanHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
@@ -57,7 +55,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SanctuaryZone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
@@ -66,7 +63,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cool;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuPowerUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
@@ -74,7 +70,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Happy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
@@ -85,8 +80,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KomachiCurse;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Powerful;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Pure;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
@@ -644,13 +637,6 @@ public class Hero extends Char {
 			dmg *= 1.3f;
 		}
 
-		if (Dungeon.heroine.buff(Powerful.class) != null && enemy.buff(Powerful.class) != null ||
-			Dungeon.heroine.buff(Cool.class) != null && enemy.buff(Cool.class) != null ||
-			Dungeon.heroine.buff(Pure.class) != null && enemy.buff(Pure.class) != null ||
-			Dungeon.heroine.buff(Happy.class) != null && enemy.buff(Happy.class) != null){
-			dmg *= 0.5f;
-		}
-
 		if (Dungeon.heroine.buff(ExtremeHunger.class) != null) {
 			dmg *= 0.1f;
 		} //extreme hunger
@@ -678,11 +664,6 @@ public class Hero extends Char {
 
 		if (Dungeon.heroine.buff(DanmakuPowerUp.class) != null && Dungeon.heroine.belongings.weapon() instanceof MissileWeapon) {
 			dmg *= 1.4f;
-		}
-
-		if (Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.lifelose ||
-			Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.spellcarduse){
-			dmg *= 0.8f;
 		}
 
 		if (Statistics.power == 400){
@@ -786,7 +767,6 @@ public class Hero extends Char {
 		if (STR() < ((Weapon)belongings.weapon()).STRReq())                             return false;
 		if (Dungeon.heroine.buff(ZeroDexterity.class) != null)                           return false;
 		if (belongings.weapon() instanceof CirnoWing)                                   return false;
-		if (Dungeon.heroine.buff(Powerful.class) != null)                                  return false;
 		if (Dungeon.heroine.buff(Inaccurate.class) != null)                                  return false;
 		if (Statistics.card57)                                                          return false;
 
@@ -1232,7 +1212,7 @@ public class Hero extends Char {
 
 			if (transition.type == LevelTransition.Type.SURFACE){
 				if (belongings.getItem( Amulet.class ) == null) {
-					if (Dungeon.floor == 41 || Dungeon.floor == 99){
+					if (Dungeon.floor == 41 || Dungeon.floor == 100){
 						GLog.n( Messages.get(Reimu.class, "amulet") );
 					} else {
 						Game.runOnRenderThread(new Callback() {
@@ -1328,9 +1308,6 @@ public class Hero extends Char {
 		if (!fullRest) {
 			if (sprite != null) {
 				sprite.showStatus(CharSprite.DEFAULT, Messages.get(this, "wait"));
-				if (Statistics.card24 && Notes.keyCount(new IronKey(Dungeon.floor)) > 1) {
-					Buff.prolong(this, HexCancel.class, HexCancel.DURATION/5f);
-				}
 			}
 		}
 		resting = fullRest;
@@ -1358,15 +1335,6 @@ public class Hero extends Char {
 			this.damage(damageRoll(), this);
 		}
 
-		if (Dungeon.heroine.buff(SanctuaryZone.class) != null) {
-			Buff.prolong(Dungeon.heroine, Weakness.class, Weakness.DURATION);
-			Buff.prolong(Dungeon.heroine, Vulnerable.class, Vulnerable.DURATION);
-			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
-			GameScene.flash(-65536);
-			Sample.INSTANCE.play( Assets.Sounds.BLAST );
-			GLog.w(Messages.get(Zanmu.class, "sanctuary_zone"));
-		}
-
 		if (Dungeon.heroine.buff(DismantlePressure.class) != null){
 			Buff.prolong(Dungeon.heroine, Slow.class, Slow.DURATION);
 		}
@@ -1380,25 +1348,8 @@ public class Hero extends Char {
 			WandOfBlastWave.throwChar(enemy, trajectory, 2, true, true, getClass());
 		}
 
-		if (Dungeon.heroine.buff(Powerful.class) != null && enemy.HT/2 > enemy.HP){
-			Buff.prolong(enemy, Might.class, Might.DURATION/2f);
-		}
-		if (Dungeon.heroine.buff(Cool.class) != null && enemy.HT/2 > enemy.HP){
-			Buff.prolong(enemy, Hisou.class, Hisou.DURATION/2f);
-		}
-		if (Dungeon.heroine.buff(Pure.class) != null && enemy.HT/2 > enemy.HP){
-			Buff.prolong(enemy, DoubleSpeed.class, DoubleSpeed.DURATION/2f);
-		}
-		if (Dungeon.heroine.buff(Happy.class) != null && enemy.HT/2 > enemy.HP){
-			Buff.prolong(enemy, Doublerainbow.class, Doublerainbow.DURATION/4f);
-		}
-
 		if (buff(SupernaturalBorder.class) == null) {
 			Statistics.bordercount += 1;
-		}
-
-		if (Dungeon.isChallenged(Challenges.INF_TIME_EATER)){
-			Statistics.timetrackbuff += 1;
 		}
 
 		if (buff(CursedBlow.class) != null && Dungeon.heroine.belongings.weapon() instanceof MeleeWeapon){
@@ -1464,15 +1415,6 @@ public class Hero extends Char {
 
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
-		if (Dungeon.heroine.buff(HexCancel.class) != null){
-			if (Statistics.hexcancel > 4){
-				damage *= 0;
-				Statistics.hexcancel = 0;
-			} else {
-				Statistics.hexcancel += 1;
-			}
-		}
-
 		if (Dungeon.heroine.buff(Randomizer.class) != null){
 			damage *= 1.5f;
 		}
@@ -1546,10 +1488,6 @@ public class Hero extends Char {
 
 	@Override
 	public void damage( int dmg, Object src ) {
-		if (this.buff(CelestialBody.class) != null){
-			dmg = Math.max(dmg - 5, 0);
-		}
-
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
 			return;
 
@@ -1570,19 +1508,15 @@ public class Hero extends Char {
 		if (Statistics.difficulty == 2) {
 			if (dmg > 0) dmg = Math.max((int)(dmg*0.4f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
-		if (Statistics.difficulty == 4) {
-			dmg *= 0.55f;
+		if (Statistics.difficulty == 3) {
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.55f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
 		if (Statistics.difficulty == 4) {
-			dmg *= 0.7f;
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.7f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
 		if (Statistics.difficulty == 5) {
-			dmg *= 0.85f;
+			if (dmg > 0) dmg = Math.max((int)(dmg*0.85f), 1); // min damage is 1, if the initial damage is greater than 0
 		}
-
 		if (Statistics.difficulty == 6) {
 			dmg *= 1f;
 		}
@@ -1828,7 +1762,7 @@ public class Hero extends Char {
 
 		} else if (Dungeon.level.getTransition(cell) != null
 				&& !Dungeon.level.locked
-				&& (Dungeon.floor < 100 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_EXIT) ) {
+				&& (Dungeon.floor < 105 || Dungeon.level.getTransition(cell).type == LevelTransition.Type.REGULAR_EXIT) ) {
 
 			curAction = new HeroAction.LvlTransition( cell );
 
@@ -1972,10 +1906,6 @@ public class Hero extends Char {
 
 		curAction = null;
 
-		if (cause == Yuuka.class){
-			Badges.learnedYourLesson();
-		}
-
 		if (Statistics.card40 && Statistics.spellcard > 1){
 			interrupt();
 			resting = false;
@@ -2116,41 +2046,6 @@ public class Hero extends Char {
 			Buff.prolong(this, DoomedZone.class, DoomedZone.DURATION);
 		} //hakugyokurou
 
-		if (Dungeon.floor == 33 || Dungeon.floor == 34){
-			Buff.prolong(this, SanctuaryZone.class, SanctuaryZone.DURATION);
-		} //heaven
-
-		if (Dungeon.isChallenged(Challenges.HOPELESS)) {
-			if (Statistics.mood == 0) {
-				Buff.prolong(this, Powerful.class, Powerful.DURATION);
-				Buff.detach( this, Cool.class);
-				Buff.detach( this, Pure.class);
-				Buff.detach( this, Happy.class);
-			}
-			if (Statistics.mood == 1) {
-				Buff.prolong(this, Cool.class, Cool.DURATION);
-				Buff.detach( this, Powerful.class);
-				Buff.detach( this, Pure.class);
-				Buff.detach( this, Happy.class);
-			}
-			if (Statistics.mood == 2) {
-				Buff.prolong(this, Pure.class, Pure.DURATION);
-				Buff.detach( this, Cool.class);
-				Buff.detach( this, Powerful.class);
-				Buff.detach( this, Happy.class);
-			}
-			if (Statistics.mood == 3) {
-				Buff.prolong(this, Happy.class, Happy.DURATION);
-				Buff.detach( this, Cool.class);
-				Buff.detach( this, Powerful.class);
-				Buff.detach( this, Pure.class);
-			}
-		}
-
-		if (Statistics.mood > 3){
-			Statistics.mood = 0;
-		}
-
 		if (Statistics.bordercount == 50){
 			Statistics.bordercount = 0;
 			GLog.n(Messages.get(this, "border"));
@@ -2162,55 +2057,49 @@ public class Hero extends Char {
 			Statistics.life += 1;
 			Statistics.scorelife1 = true;
 			Statistics.nextvalue = 1400;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 1399 && !Statistics.scorelife2){
 			Statistics.life += 1;
 			Statistics.scorelife2 = true;
 			Statistics.nextvalue = 2500;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 2499 && !Statistics.scorelife3){
 			Statistics.life += 1;
 			Statistics.scorelife3 = true;
 			Statistics.nextvalue = 4000;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 3999 && !Statistics.scorelife4){
 			Statistics.life += 1;
 			Statistics.scorelife4 = true;
 			Statistics.nextvalue = 5400;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 5399 && !Statistics.scorelife5){
 			Statistics.life += 1;
 			Statistics.scorelife5 = true;
 			Statistics.nextvalue = 6800;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 6799 && !Statistics.scorelife6){
 			Statistics.life += 1;
 			Statistics.scorelife6 = true;
 			Statistics.nextvalue = 8200;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 8199 && !Statistics.scorelife7){
 			Statistics.life += 1;
 			Statistics.scorelife7 = true;
 			Statistics.nextvalue = 9999;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 		if (Statistics.value > 9998 && !Statistics.scorelife8){
 			Statistics.life += 1;
 			Statistics.scorelife8 = true;
 			Statistics.nextvalue = 0;
-			Sample.INSTANCE.play( Assets.Sounds.SECRET );
-		}
-
-		if (Statistics.timetrackbuff == 12) {
-			Statistics.timetrackbuff = 0;
-			Buff.prolong(this, Paralysis.class, Paralysis.DURATION/10f);
-			Statistics.timetrackstrup += 1;
+			Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		}
 
 		if (Statistics.power < 100){
@@ -2290,13 +2179,6 @@ public class Hero extends Char {
 		if (Dungeon.floor == 30 && !Statistics.boss6) {
 			Dungeon.level.seal();
 			Statistics.boss6 = true;
-		}
-		if (Dungeon.floor == 30 && Statistics.floor30 != 25) {
-			Statistics.floor30 += 1;
-		}
-		if (Dungeon.floor == 30 && Statistics.floor30 == 25) {
-			new CursingTrap().set(Dungeon.heroine.pos).activate();
-			Statistics.floor30 = 0;
 		}
 		if (Dungeon.floor == 35 && !Statistics.boss7) {
 			Dungeon.level.seal();

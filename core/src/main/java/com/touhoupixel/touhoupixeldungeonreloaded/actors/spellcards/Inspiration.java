@@ -6,7 +6,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FloatSlayer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Healing;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
@@ -32,7 +31,6 @@ public class Inspiration extends Spellcard{
         Buff.prolong(user, Doublerainbow.class, 3f);
         Buff.prolong(user, Might.class, 3f);
         Buff.prolong(user, Hisou.class, 3f);
-        Buff.prolong(user, FloatSlayer.class, 3f);
         Buff.prolong(user, Bless.class, 3f);
         Buff.affect(user, Barkskin.class).set(user.HT/4, 3);
         Buff.affect(user, Healing.class).setHeal((int)(user.HT*0.8), 0.5f, 0);

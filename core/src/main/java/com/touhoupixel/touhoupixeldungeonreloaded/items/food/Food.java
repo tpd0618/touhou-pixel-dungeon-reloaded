@@ -80,10 +80,6 @@ public class Food extends Item {
 			SpellSprite.show(heroine, SpellSprite.FOOD );
 			Sample.INSTANCE.play( Assets.Sounds.EAT );
 
-			if (Dungeon.isChallenged(Challenges.HOPELESS)) {
-				Statistics.mood += 1;
-			}
-
 			Buff.detach(curUser, ExtremeHunger.class);
 
 			heroine.spend( eatingTime() );

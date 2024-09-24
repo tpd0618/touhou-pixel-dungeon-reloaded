@@ -66,26 +66,6 @@ public abstract class DamageWand extends Wand{
 			dmg *= 1.25f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.lifelose || Dungeon.isChallenged(Challenges.LUNATIC_PERFECT) && Statistics.spellcarduse){
-			dmg *= 0.8f;
-		}
-
-		if (Statistics.wand_power_up == 1) {
-			dmg *= 1.06f;
-		}
-		if (Statistics.wand_power_up == 2) {
-			dmg *= 1.12f;
-		}
-		if (Statistics.wand_power_up == 3) {
-			dmg *= 1.18f;
-		}
-		if (Statistics.wand_power_up == 4) {
-			dmg *= 1.24f;
-		}
-		if (Statistics.wand_power_up >= 5) {
-			dmg *= 1.3f;
-		} //potion of enlightenment
-
 		if (Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.MINIBOSS) ||
 			Dungeon.heroine.buff(BossKiller.class) != null && enemy.properties().contains(Char.Property.BOSS)){
 			dmg *= 2f;

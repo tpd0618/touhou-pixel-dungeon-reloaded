@@ -60,8 +60,8 @@ public class Life extends Item {
 
 		GameScene.pickUp( this, pos );
 		heroine.spendAndNext( TIME_TO_PICK_UP );
-		
-		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
+
+		Sample.INSTANCE.play( Assets.Sounds.EXTEND );
 		updateQuickslot();
 		
 		return true;

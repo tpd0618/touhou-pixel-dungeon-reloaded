@@ -4,12 +4,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YuugiSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Yuugi extends Mob {
@@ -17,7 +27,7 @@ public class Yuugi extends Mob {
     {
         spriteClass = YuugiSprite.class;
 
-        HP = HT = 300;
+        HP = HT = 322;
         defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;
@@ -25,12 +35,12 @@ public class Yuugi extends Mob {
         properties.add(Property.WARP);
 
         loot = new PotionOfHealing();
-        lootChance = 0.1f;
+        lootChance = 0.09f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(120, 182);
+        return Random.NormalIntRange(125, 182);
     }
 
     @Override
@@ -39,23 +49,32 @@ public class Yuugi extends Mob {
     }
 
     @Override
-    public int drRoll() {
-        return Random.NormalIntRange(23, 33);
+    public float attackDelay() {
+        double healthPercentage = (double) this.HP / this.HT * 100;
+
+        if (healthPercentage <= 100 && healthPercentage > 80) {
+            return 1f;
+        } else if (healthPercentage <= 80 && healthPercentage > 60) {
+            return 0.5f;
+        } else if (healthPercentage <= 60 && healthPercentage > 40) {
+            return 0.25f;
+        } else if (healthPercentage <= 40 && healthPercentage > 20) {
+            return 0.125f;
+        } else if (healthPercentage <= 20 && healthPercentage > 0) {
+            return 0.0625f;
+        }
+        return 1f;
     }
 
     @Override
-    public int attackProc( Char hero, int damage ) {
-        damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(this, SuperHard.class, SuperHard.DURATION/3f);
-            Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(this, Might.class, Might.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Hisou.class, Hisou.DURATION);
-            }
-        }
+    public int attackProc(Char hero, int damage) {
+        damage = super.attackProc(enemy, damage);
+        CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
         return damage;
+    }
+
+    @Override
+    public int drRoll() {
+        return Random.NormalIntRange(23, 33);
     }
 }

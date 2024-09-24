@@ -5,6 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
@@ -37,7 +38,7 @@ public class BossSeija extends Mob {
     {
         spriteClass = SeijaSprite.class;
 
-        HP = HT = 1300;
+        HP = HT = 720;
         defenseSkill = 30;
         EXP = 26;
         maxLvl = 99;
@@ -73,7 +74,7 @@ public class BossSeija extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(59, 91);
+        return Random.NormalIntRange(59, 71);
     }
 
     @Override
@@ -106,7 +107,7 @@ public class BossSeija extends Mob {
                 Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
             }
             if (Dungeon.heroine.HP % 10 == 2){
-                Buff.prolong(enemy, Slow.class, Slow.DURATION);
+                Buff.prolong(enemy, Cripple.class, Cripple.DURATION/2f);
             }
             if (Dungeon.heroine.HP % 10 == 3){
                 Buff.prolong(enemy, Weakness.class, Weakness.DURATION);

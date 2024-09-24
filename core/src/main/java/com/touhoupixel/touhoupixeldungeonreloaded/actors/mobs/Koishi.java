@@ -6,7 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfReverseYingYang;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KoishiSprite;
 import com.watabou.utils.Random;
 
@@ -28,7 +28,7 @@ public class Koishi extends Mob {
         properties.add(Property.FUMO);
         //used for fumo lover buff
 
-        loot = new PotionOfReverseYingYang();
+        loot = new PotionOfHealing();
         lootChance = 0.05f;
     }
 

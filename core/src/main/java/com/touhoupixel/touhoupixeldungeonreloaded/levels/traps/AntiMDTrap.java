@@ -26,17 +26,16 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stealth;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
-public class SlowTrap extends Trap {
+public class AntiMDTrap extends Trap {
 
 	{
-		color = VIOLET;
-		shape = DIAMOND;
+		color = ORANGE;
+		shape = LARGE_DOT;
 
 		avoidsHallways = false;
 	}
@@ -45,12 +44,13 @@ public class SlowTrap extends Trap {
 	public void activate() {
 		Char c = Actor.findChar(pos);
 		if (c != null && c == Dungeon.heroine) {
-			Buff.prolong(c, Slow.class, Slow.DURATION);
-			GLog.w(Messages.get(this, "slow"));
+			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+				Buff.prolong(mob, Stealth.class, Stealth.DURATION*999f);
+			}
 		}
 		if (Dungeon.level.heroFOV[pos]) {
 			GameScene.flash(0x80FFFFFF);
-			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
+			Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
 		}
 	}
 }

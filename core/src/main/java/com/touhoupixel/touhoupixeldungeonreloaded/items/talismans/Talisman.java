@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.talismans;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -76,6 +77,7 @@ public class Talisman extends Item {
         Char enemy = Actor.findChar(cell);
         if (enemy == null || enemy == curUser) {
             parent = null;
+            Statistics.talismanUsed += 1;
             super.onThrow(cell);
         }
     }
@@ -89,9 +91,6 @@ public class Talisman extends Item {
             quantity++;
             if (Random.Int(2) == 0) {
                 quantity++;
-                if (Dungeon.isChallenged(Challenges.OLD_ROAD)) {
-                    quantity--;
-                }
             }
         }
         return this;
@@ -100,7 +99,7 @@ public class Talisman extends Item {
     protected void rangedMiss(int cell) {
         parent = null;
         super.onThrow(cell);
-    }
+    } //todo?
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {

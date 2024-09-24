@@ -390,7 +390,7 @@ public class InterlevelScene extends PixelScene {
 			//TODO this is brittle atm, assumes we're always going down in depth 1 at a time
 			if (curTransition.destFloor > Statistics.highestFloor) {
 				level = Dungeon.newLevel();
-				Statistics.hitorilefttime = 0;
+				//todo maneater
 			} else {
 				level = Dungeon.loadLevel( GamesInProgress.curSlot );
 			}

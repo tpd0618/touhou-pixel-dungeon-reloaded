@@ -39,16 +39,14 @@ import java.util.List;
 public class Badges {
 
 	public enum Badge {
-		CHAMPION_1                  ( 0 ),
-		CHAMPION_2                  ( 1 ),
-		CHAMPION_3                  ( 2 ),
-		CHAMPION_4                  ( 3 ),
-		//blank
+		TALISMAN_1                  ( 0 ),
+		TALISMAN_2                  ( 1 ),
+		TALISMAN_3                  ( 2 ),
+		TALISMAN_4                  ( 3 ),
+		TALISMAN_5                  ( 4 ),
 		NO_MISS                     ( 5 ),
 		NO_BOMB                     ( 6 ),
-		NO_TORCH                    ( 7 ),
-		LEARNED_YOUR_LESSON         ( 8 ),
-		LIVING_ANTIQUE_STORE        ( 9 );
+		NO_ABILITY_CARD             ( 7 );
 
 		public boolean meta;
 
@@ -176,7 +174,7 @@ public class Badges {
 
 	public static void lifeBind(){
 		Badge badge = null;
-		if (!Statistics.lifelose){
+		if (!Statistics.lifelose && Dungeon.isChallenged(Challenges.URA_MODE)){
 			badge = Badge.NO_MISS;
 			local.add(badge);
 		}
@@ -185,54 +183,43 @@ public class Badges {
 
 	public static void bombBind(){
 		Badge badge = null;
-		if (!Statistics.spellcarduse){
+		if (!Statistics.spellcarduse && Dungeon.isChallenged(Challenges.URA_MODE)){
 			badge = Badge.NO_BOMB;
 			local.add(badge);
 		}
 		displayBadge( badge );
 	}
 
-	public static void torchBind(){
+	public static void cardBind(){
 		Badge badge = null;
-		if (!Statistics.torch_use){
-			badge = Badge.NO_TORCH;
+		if (!Statistics.abcarduse && Dungeon.isChallenged(Challenges.URA_MODE)){
+			badge = Badge.NO_ABILITY_CARD;
 			local.add(badge);
 		}
 		displayBadge( badge );
 	}
 
-	public static void learnedYourLesson() {
-		Badge badge = Badge.LEARNED_YOUR_LESSON;
-		local.add( badge );
-		displayBadge( badge );
-	}
-
-	public static void livingAntiqueStore(){
+	public static void talismanUsed( int talismans ) {
+		if (Statistics.talismanUsed > 50) return;
 		Badge badge = null;
-		if (Statistics.dismantle_count < 6){
-			badge = Badge.LIVING_ANTIQUE_STORE;
-			local.add(badge);
+		if (Statistics.talismanUsed < 50 && Dungeon.isChallenged(Challenges.URA_MODE)){
+			badge = Badge.TALISMAN_1;
 		}
-		displayBadge( badge );
-	}
-
-	public static void validateChampion( int challenges ) {
-		if (challenges == 0) return;
-		Badge badge = null;
-		if (challenges >= 2) {
-			badge = Badge.CHAMPION_1;
-		}
-		if (challenges >= 4){
+		if (Statistics.talismanUsed < 40 && Dungeon.isChallenged(Challenges.URA_MODE)){
 			unlock(badge);
-			badge = Badge.CHAMPION_2;
+			badge = Badge.TALISMAN_2;
 		}
-		if (challenges >= 6){
+		if (Statistics.talismanUsed < 30 && Dungeon.isChallenged(Challenges.URA_MODE)){
 			unlock(badge);
-			badge = Badge.CHAMPION_3;
+			badge = Badge.TALISMAN_3;
 		}
-		if (challenges >= 8){
+		if (Statistics.talismanUsed < 20 && Dungeon.isChallenged(Challenges.URA_MODE)){
 			unlock(badge);
-			badge = Badge.CHAMPION_4;
+			badge = Badge.TALISMAN_4;
+		}
+		if (Statistics.talismanUsed < 10 && Dungeon.isChallenged(Challenges.URA_MODE)){
+			unlock(badge);
+			badge = Badge.TALISMAN_5;
 		}
 		local.add(badge);
 		displayBadge( badge );
@@ -301,13 +288,13 @@ public class Badges {
 
 	}
 
-	private static final Badge[][] tierBadgeReplacements = new Badge[][]{
-			{Badge.CHAMPION_1, Badge.CHAMPION_2, Badge.CHAMPION_3, Badge.CHAMPION_4}
+	private static final Badge[][] tierTalismanReplacements = new Badge[][]{
+			{Badge.TALISMAN_1, Badge.TALISMAN_2, Badge.TALISMAN_3, Badge.TALISMAN_4, Badge.TALISMAN_5}
 	};
 
 	public static List<Badge> filterReplacedBadges( List<Badge> badges ) {
 
-		for (Badge[] tierReplace : tierBadgeReplacements){
+		for (Badge[] tierReplace : tierTalismanReplacements){
 			leaveBest( badges, tierReplace );
 		}
 
@@ -327,7 +314,7 @@ public class Badges {
 
 	public static List<Badge> filterHigherIncrementalBadges(List<Badges.Badge> badges ) {
 
-		for (Badge[] tierReplace : tierBadgeReplacements){
+		for (Badge[] tierReplace : tierTalismanReplacements){
 			leaveWorst( badges, tierReplace );
 		}
 
@@ -349,7 +336,7 @@ public class Badges {
 
 	public static Collection<Badge> addReplacedBadges(Collection<Badges.Badge> badges ) {
 
-		for (Badge[] tierReplace : tierBadgeReplacements){
+		for (Badge[] tierReplace : tierTalismanReplacements){
 			addLower( badges, tierReplace );
 		}
 

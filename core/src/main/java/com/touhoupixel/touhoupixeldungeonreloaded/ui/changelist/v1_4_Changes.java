@@ -29,9 +29,28 @@ import java.util.ArrayList;
 public class v1_4_Changes {
 
 	public static void addAllChanges(ArrayList<ChangeInfo> changeInfos) {
+		add_v1_2_4_Changes(changeInfos);
 		add_v1_2_3_Changes(changeInfos);
 		add_v1_2_2_Changes(changeInfos);
 		add_v1_2_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_2_4_Changes(ArrayList<ChangeInfo> changeInfos) {
+		ChangeInfo changes = new ChangeInfo("v1.2.4", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.2.4 changes",
+				"_-_ The number of challenge have been streamlined to 1, but you can now challenge the 99f extended dungeon instead!\n" +
+						"_-_ New buff for enemies, stealth that ignores monster detector.\n" +
+						"_-_ Hecatia and some notable enemies have been changed.(removing TODR's mark)\n" +
+						"_-_ Four exotic potions are added.\n" +
+						"_-_ New trap, anti-MD trap.\n" +
+						"_-_ New sounds for some situation.\n" +
+						"_-_ Many things that are bad were removed.\n" +
+						"_-_ Boss seija stats, and an ability is nerfed.\n" +
+						"_-_ And extra bug fixes.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_2_3_Changes(ArrayList<ChangeInfo> changeInfos) {

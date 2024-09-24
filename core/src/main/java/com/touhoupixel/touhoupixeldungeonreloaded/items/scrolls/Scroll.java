@@ -37,7 +37,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfM
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAugmentation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfBlink;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfClairvoyance;
@@ -45,7 +44,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDeepSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfDisarming;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfFlock;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfIntuition;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -303,7 +301,6 @@ public abstract class Scroll extends Item {
 		
 		private static HashMap<Class<?extends Scroll>, Class<?extends Runestone>> stones = new HashMap<>();
 		static {
-			stones.put(ScrollOfIdentify.class,      StoneOfIntuition.class);
 			stones.put(ScrollOfLullaby.class,       StoneOfDeepSleep.class);
 			stones.put(ScrollOfMagicMapping.class,  StoneOfClairvoyance.class);
 			stones.put(ScrollOfMirrorImage.class,   StoneOfFlock.class);
@@ -313,7 +310,6 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfExorcism.class,  StoneOfDisarming.class);
 			stones.put(ScrollOfTeleportation.class, StoneOfBlink.class);
 			stones.put(ScrollOfTerror.class,        StoneOfFear.class);
-			stones.put(ScrollOfTransmutation.class, StoneOfAugmentation.class);
 		}
 		
 		@Override

@@ -283,10 +283,7 @@ public class Potion extends Item {
 					);
 					
 				} else {
-					drink(heroine);
-				if (Dungeon.isChallenged(Challenges.HOPELESS)) {
-					Statistics.mood += 1;
-				}
+				drink(heroine);
 			}
 		}
 	}
@@ -332,19 +329,9 @@ public class Potion extends Item {
 					GLog.p(Messages.get(Potion.class, "cheat_break"));
 				}
 			}
-		} //for boss seija
+		} //for boss_seija
 
 		Sample.INSTANCE.play(Assets.Sounds.DRINK);
-
-		if (Dungeon.isChallenged(Challenges.RE_HOURAI_ELIXIR)) {
-			if (Statistics.hourai_cycle > 3) {
-				Buff.prolong(curUser, ExtremeHunger.class, ExtremeHunger.DURATION);
-				Statistics.hourai_cycle = 0;
-			} else {
-				Buff.prolong(curUser, Degrade.class, Degrade.DURATION);
-				Statistics.hourai_cycle += 1;
-			}
-		}
 		
 		heroine.sprite.operate( heroine.pos );
 	}

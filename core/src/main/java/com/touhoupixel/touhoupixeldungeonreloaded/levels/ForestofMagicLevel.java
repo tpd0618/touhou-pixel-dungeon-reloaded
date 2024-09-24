@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.Painter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.painters.TouhouPainter;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AntiMDTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BalanceTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.ChillingTrap;
@@ -98,7 +99,7 @@ public class ForestofMagicLevel extends RegularLevel {
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
 				ConfusionTrap.class, ChillingTrap.class, TeleportationTrap.class, ExConfusionTrap.class, RockfallTrap.class,
-				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, OnigiriTrap.class, PoisonDartTrap.class,
+				SlowTrap.class, BalanceTrap.class, AlarmTrap.class, OnigiriTrap.class, PoisonDartTrap.class, AntiMDTrap.class,
 				PoisonDartTrap.class, SummoningTrap.class};
 	}
 
@@ -106,7 +107,7 @@ public class ForestofMagicLevel extends RegularLevel {
 	protected float[] trapChances() {
 		return new float[]{
 				2, 2, 2, 2, 2,
-				2, 2, 2, 1, 1,
+				2, 2, 2, 1, 1, 2,
 				1, 1};
 	}
 	

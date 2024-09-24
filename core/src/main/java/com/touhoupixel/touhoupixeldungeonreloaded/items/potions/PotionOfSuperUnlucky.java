@@ -21,12 +21,14 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
 public class PotionOfSuperUnlucky extends Potion {
 
@@ -42,6 +44,7 @@ public class PotionOfSuperUnlucky extends Potion {
 		heroine.lvl = 1;
 		heroine.exp = 0;
 		heroine.updateHT( true );
+		Sample.INSTANCE.play( Assets.Sounds.TIMEOUT );
 	}
 
 	@Override

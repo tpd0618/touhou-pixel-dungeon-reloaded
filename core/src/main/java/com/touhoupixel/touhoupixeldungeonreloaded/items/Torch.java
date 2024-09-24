@@ -72,8 +72,6 @@ public class Torch extends Item {
 			
 			detach( heroine.belongings.backpack );
 
-			Statistics.torch_use = true;
-
 			if (Statistics.difficulty == 6) {
 				Buff.affect(heroine, Light.class, Light.DURATION/2f);
 			} else {

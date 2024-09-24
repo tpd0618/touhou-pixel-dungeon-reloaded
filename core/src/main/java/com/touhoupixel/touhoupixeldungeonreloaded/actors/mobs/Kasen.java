@@ -41,7 +41,7 @@ public class Kasen extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(75, 115);
+        return Random.NormalIntRange(65, 93);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Kasen extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(20, 30);
+        return Random.NormalIntRange(20, 25);
     }
 
     @Override

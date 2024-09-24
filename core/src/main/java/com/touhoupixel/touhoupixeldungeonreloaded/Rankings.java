@@ -85,7 +85,6 @@ public enum Rankings {
 			rec.floor = Statistics.highestAscent;
 			rec.ascending = true;
 		}
-		rec.score       = calculateScore();
 		rec.customSeed  = Dungeon.customSeedText;
 		rec.daily       = Dungeon.daily;
 
@@ -130,25 +129,6 @@ public enum Rankings {
 
 	private int score( boolean win ) {
 		return (Statistics.goldCollected + Dungeon.heroine.lvl * (win ? 26 : Dungeon.floor) * 100) * (win ? 2 : 1);
-	}
-
-	//assumes a ranking is loaded, or game is ending
-	public int calculateScore(){
-
-			Statistics.progressScore = Dungeon.heroine.lvl;
-
-			Statistics.treasureScore = Statistics.goldCollected + Statistics.heldItemValue;
-
-			Statistics.exploreScore = Statistics.highestFloor;
-
-		Statistics.chalMultiplier = (float)Math.pow(1.15, Challenges.activeChallenges());
-		Statistics.chalMultiplier = Math.round(Statistics.chalMultiplier*20f)/20f;
-
-		Statistics.totalScore = Statistics.progressScore + Statistics.treasureScore + Statistics.exploreScore;
-
-		Statistics.totalScore *= Statistics.chalMultiplier;
-
-		return Statistics.totalScore;
 	}
 
 	public static final String HERO         = "hero";
@@ -246,8 +226,6 @@ public enum Rankings {
 		Dungeon.challenges = data.getInt(CHALLENGES);
 
 		Dungeon.initialVersion = data.getInt(GAME_VERSION);
-
-		rec.score = calculateScore();
 
 		if (rec.gameData.contains(SEED)){
 			Dungeon.seed = rec.gameData.getLong(SEED);

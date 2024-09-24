@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stealth;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -52,12 +53,8 @@ public class Sagume extends Mob {
     @Override
     public void die(Object cause) {
         super.die(cause);
-        for (int i : PathFinder.NEIGHBOURS8) {
-            if (enemy == Dungeon.heroine && enemy.pos == this.pos + i) {
-                enemy.HP = 1;
-                Sample.INSTANCE.play( Assets.Sounds.CURSED );
-                GLog.w(Messages.get(this, "reverse"));
-            }
+        for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+            Buff.prolong(mob, Stealth.class, Stealth.DURATION*4f);
         }
     }
 
