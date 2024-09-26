@@ -44,7 +44,7 @@ public class Kisume extends Mob implements Callback {
     {
         spriteClass = KisumeSprite.class;
 
-        HP = HT = 216;
+        HP = HT = 324;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;

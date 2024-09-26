@@ -23,44 +23,100 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AnchorTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.BArray;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.PointF;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class ScrollOfAnchor extends Scroll {
+	private static final float DELAY = 1f;
 
 	{
 		icon = ItemSpriteSheet.Icons.SCROLL_ANCHOR;
 	}
 
 	@Override
+	public String desc() {
+		if (Statistics.suwakorelic_active){
+			return Messages.get(this, "desc2");
+		}
+		else{
+			return Messages.get(this, "desc1");
+		}
+	}
+
+	@Override
 	public void doRead() {
-		new AnchorTrap().set(curUser.pos).activate();
+		if (Statistics.suwakorelic_active){
+			ArrayList<Integer> candidates = new ArrayList<>();
 
-		if (Dungeon.level.map[curUser.pos - 1] == Terrain.EMBERS || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos - 1] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos - 1] == Terrain.GRASS || Dungeon.level.map[curUser.pos - 1] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos - 1] == Terrain.HIGH_GRASS){
-			Level.set( curUser.pos - 1, Terrain.WATER );
-			GameScene.updateMap( curUser.pos - 1 );
+			PathFinder.buildDistanceMap( curUser.pos, BArray.or( Dungeon.level.solid, Dungeon.level.avoid, null ), 3 );
+			for (int i = 0; i < PathFinder.distance.length; i++) {
+				if (PathFinder.distance[i] < Integer.MAX_VALUE) { // create water
+					Level.set( i, Terrain.WATER );
+					GameScene.updateMap( i );
+					if (Random.Int(10) == 0){
+						Splash.at( DungeonTilemap.tileCenterToWorld( i ), -PointF.PI/2, PointF.PI/2, 0x5bc1e3, 100, 0.01f);
+					}
+					if (Actor.findChar(i) == null){
+						candidates.add( i );
+					}
+				}
+			}
+			// summons Murasa
+
+			int nMobs = 2;
+
+			ArrayList<Integer> respawnPoints = new ArrayList<>();
+
+			while (nMobs > 0 && candidates.size() > 0) {
+				int index = Random.index( candidates );
+
+				respawnPoints.add( candidates.remove( index ) );
+				nMobs--;
+			}
+
+			ArrayList<Mob> mobs = new ArrayList<>();
+
+			for (Integer point : respawnPoints) {
+				Mob mob = new Murasa();
+				Buff.affect(mob, Corruption.class);
+				mob.state = mob.WANDERING;
+				mob.pos = point;
+				GameScene.add(mob, DELAY);
+				mobs.add(mob);
+				ScrollOfTeleportation.appear(mob, mob.pos);
+				Dungeon.level.occupyCell(mob);
+			}
+
+			GLog.p(Messages.get(this, "anchor"));
 		}
-		if (Dungeon.level.map[curUser.pos + 1] == Terrain.EMBERS || Dungeon.level.map[curUser.pos + 1] == Terrain.EMPTY || Dungeon.level.map[curUser.pos + 1] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos + 1] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos + 1] == Terrain.GRASS || Dungeon.level.map[curUser.pos + 1] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos + 1] == Terrain.HIGH_GRASS){
-			Level.set( curUser.pos + 1, Terrain.WATER );
-			GameScene.updateMap( curUser.pos + 1 );
-		}
-		if (Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMBERS || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMPTY || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.GRASS || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos - Dungeon.level.width()] == Terrain.HIGH_GRASS){
-			Level.set( curUser.pos - Dungeon.level.width(), Terrain.WATER );
-			GameScene.updateMap( curUser.pos - Dungeon.level.width() );
-		}
-		if (Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMBERS || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMPTY || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMPTY_DECO || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.EMPTY_SP || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.GRASS || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.FURROWED_GRASS || Dungeon.level.map[curUser.pos + Dungeon.level.width()] == Terrain.HIGH_GRASS){
-			Level.set( curUser.pos + Dungeon.level.width(), Terrain.WATER );
-			GameScene.updateMap( curUser.pos + Dungeon.level.width() );
+		else {
+			new AnchorTrap().set(curUser.pos).activate();
+			GLog.w(Messages.get(this, "anchor"));
 		}
 
-		GLog.w(Messages.get(this, "anchor"));
 		identify();
 
 		curUser.sprite.centerEmitter().start(Speck.factory(Speck.DISCOVER), 0.3f, 3);

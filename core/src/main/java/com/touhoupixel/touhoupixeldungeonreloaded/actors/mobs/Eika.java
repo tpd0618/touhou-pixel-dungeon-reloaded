@@ -14,7 +14,7 @@ public class Eika extends Mob {
     {
         spriteClass = EikaSprite.class;
 
-        HP = HT = 75;
+        HP = HT = 83;
         defenseSkill = 10;
         EXP = 5;
         maxLvl = 17;

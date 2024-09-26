@@ -189,6 +189,9 @@ public abstract class RegularLevel extends Level {
 		if (Statistics.card5){
 			mobs = (int)Math.ceil(mobs * 0.85f);
 		}
+		if (isCard_FightInsteadOfMe){
+			mobs = (int)Math.ceil(mobs * 2f);
+		}
 		//if (Dungeon.pandemoniumLevel()){
 			//mobs = 100;
 		//}

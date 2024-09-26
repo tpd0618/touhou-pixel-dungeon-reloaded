@@ -38,7 +38,7 @@ public class SuperMiracleMallet extends MeleeWeapon {
 
     @Override
     public int max(int lvl) {
-        return Statistics.dismantle_count > 8 ? tier+1 + lvl*(tier+1) : (10-Statistics.dismantle_count)*(tier+1) +
+        return Statistics.dismantle_count > 8 ? (1+lvl)*(tier+1) : (10-Statistics.dismantle_count)*(tier+1) +
                 lvl*(tier+1);
     }
 

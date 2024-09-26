@@ -7,20 +7,22 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.RockfallTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.SummoningTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class SonicEarthquake extends Spellcard{
     {
-        left = 2;
+        left = 5;
     }
 
     @Override
@@ -37,31 +39,28 @@ public class SonicEarthquake extends Spellcard{
             Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
         }
         else if (active == 1){
-            ((SummoningTrap)new SummoningTrap().set(enemy.pos)).activate(4);
+            ((SummoningTrap)new SummoningTrap().set(enemy.pos)).activate(3);
             new FlockTrap().set(enemy.pos).activate();
         }
 
 
-        //forget potions or scrolls
-        if (active == 0){
-            MarisaHolder sh = Dungeon.heroine.belongings.getItem(MarisaHolder.class);
-            int limit = 5;
-            for (Item sc : sh.items){
-                if (!(sc instanceof Scroll) || !sc.isIdentified()) continue;
-                sc.forget();
-                limit--;
-                if (limit == 0) break;
+            //forget potions or scrolls
+            if (Random.Int(2) == 0){
+                MarisaHolder sh = Dungeon.heroine.belongings.getItem(MarisaHolder.class);
+                for (Item sc : sh.items){
+                    if (!(sc instanceof Scroll) || !sc.isIdentified()) continue;
+                    sc.forget();
+                }
+                GLog.n(Messages.get(this, "forget_spellcards"));
             }
-        }
-        else {
-            ReisenHolder pb = Dungeon.heroine.belongings.getItem(ReisenHolder.class);
-            int limit = 5;
-            for (Item pot : pb.items){
-                if (!(pot instanceof Potion) || !pot.isIdentified()) continue;
-                pot.forget();
-                limit--;
-                if (limit == 0) break;
+            else {
+                ReisenHolder pb = Dungeon.heroine.belongings.getItem(ReisenHolder.class);
+                for (Item pot : pb.items){
+                    if (!(pot instanceof Potion) || !pot.isIdentified()) continue;
+                    pot.forget();
+                }
+                GLog.n(Messages.get(this, "forget_potions"));
             }
-        }
+        super.deactivate();
     }
 }

@@ -25,7 +25,7 @@ public class Reisen extends Mob {
     {
         spriteClass = ReisenSprite.class;
 
-        HP = HT = 108;
+        HP = HT = 131;
         defenseSkill = 12;
         EXP = 5;
         maxLvl = 20;

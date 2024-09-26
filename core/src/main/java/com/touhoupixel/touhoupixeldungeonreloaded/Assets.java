@@ -249,6 +249,8 @@ public class Assets {
 
 		public static final String MASTER_SPARK_RAY = "sounds/master_spark_ray.mp3";
 
+		public static final String DRUM = "sounds/drum.mp3";
+
 		public static final String[] all = new String[]{
 				CLICK, BADGE, GOLD,
 
@@ -260,7 +262,8 @@ public class Assets {
 				DESCEND, EAT, READ, LULLABY, DRINK, SHATTER, ZAP, LIGHTNING, LEVELUP, DEATH,
 				CHALLENGE, CURSED, TRAP, EVOKE, TOMB, ALERT, MELD, BOSS, BLAST, PLANT, RAY, BEACON,
 				TELEPORT, CHARMS, MASTERY, PUFF, ROCKS, BURNING, FALLING, GHOST, SECRET, BONES,
-				BEE, DEGRADE, MIMIC, DEBUFF, CHARGEUP, GAS, CHAINS, SCAN, SHEEP, EXTEND, TIMEOUT, MASTER_SPARK_RAY
+				BEE, DEGRADE, MIMIC, DEBUFF, CHARGEUP, GAS, CHAINS, SCAN, SHEEP, MASTER_SPARK_RAY,
+				DRUM, EXTEND, TIMEOUT
 		};
 	}
 
@@ -365,6 +368,7 @@ public class Assets {
 		public static final String BOSSMARISA = "sprites/bossmarisa.png";
 		public static final String SUIKA = "sprites/suika.png";
 		public static final String SHEEP = "sprites/sheep.png";
+		public static final String DRUM = "sprites/drum.png";
 		public static final String KEEPER = "sprites/shopkeeper.png";
 		public static final String RAN = "sprites/ran.png";
 		public static final String KASEN = "sprites/kasen.png";

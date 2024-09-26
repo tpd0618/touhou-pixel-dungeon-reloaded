@@ -18,7 +18,7 @@ public class Kyouko extends Mob {
     {
         spriteClass = KyoukoSprite.class;
 
-        HP = HT = 120;
+        HP = HT = 140;
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;

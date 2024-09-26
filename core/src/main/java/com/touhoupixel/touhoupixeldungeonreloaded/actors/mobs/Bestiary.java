@@ -216,16 +216,16 @@ public class Bestiary {
 				case 29:
 				case 30:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Benben.class, Yatsuhashi.class, Shinmyomaru.class, Seija.class, Mai.class, Satono.class, Okina.class, Chiyari.class));
+							Hecatia.class, Benben.class, Yatsuhashi.class, Shinmyomaru.class, Seija.class, Mai.class, Satono.class, Okina.class, Chiyari.class, Suwako.class));
 				case 31:
 				case 32:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Yamame.class, Kaguya.class, Ran.class, Youmu.class, Yuyuko.class, Satori.class, Koishi.class, Biten.class));
+							Hecatia.class, Yamame.class, Kaguya.class, Ran.class, Youmu.class, Yuyuko.class, Satori.class, Koishi.class, Biten.class, Suwako.class, Okina.class));
 				case 33:
 				case 34:
 				case 35:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Yuugi.class, Suika.class, Clownpiece.class, Chimata.class, Rumia.class, Iku.class, Tenshi.class, Enoko.class));
+							Hecatia.class, Yuugi.class, Suika.class, Clownpiece.class, Chimata.class, Rumia.class, Iku.class, Tenshi.class, Enoko.class, Okina.class));
 				case 36:
 				case 37:
 					return new ArrayList<>(Arrays.asList(

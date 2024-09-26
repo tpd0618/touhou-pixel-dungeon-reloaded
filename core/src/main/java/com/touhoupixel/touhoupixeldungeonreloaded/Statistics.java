@@ -97,6 +97,7 @@ public class Statistics {
 	public static boolean lifelose = false;
 	public static boolean spellcarduse = false;
 	public static boolean abcarduse = false;
+	public static boolean suwakorelic_active = false;
 
 	//boss appear check
 	public static boolean boss1 = false;
@@ -253,6 +254,7 @@ public class Statistics {
 		lifelose = false;
 		spellcarduse = false;
 		abcarduse = false;
+		suwakorelic_active = false;
 
 		boss1 = false;
 		boss2 = false;
@@ -406,6 +408,8 @@ public class Statistics {
 	private static final String LIFELOSE		= "lifelose";
 	private static final String SPELLCARDUSE		= "spellcarduse";
 	private static final String ABCARDUSE		= "abcarduse";
+	private static final String SUWAKORELIC_ACTIVE = "suwakorelic_active";
+
 
 	private static final String BOSS1		= "boss1";
 	private static final String BOSS2		= "boss2";
@@ -558,6 +562,7 @@ public class Statistics {
 
 		bundle.put( LIFELOSE,	lifelose );
 		bundle.put( SPELLCARDUSE,	spellcarduse );
+		bundle.put( SUWAKORELIC_ACTIVE, suwakorelic_active);
 		bundle.put( ABCARDUSE,	abcarduse );
 
 		bundle.put( BOSS1,	boss1 );
@@ -713,6 +718,8 @@ public class Statistics {
 		lifelose	= bundle.getBoolean( LIFELOSE );
 		spellcarduse	= bundle.getBoolean( SPELLCARDUSE );
 		abcarduse	= bundle.getBoolean( ABCARDUSE );
+		suwakorelic_active = bundle.getBoolean( SUWAKORELIC_ACTIVE );
+
 
 		boss1	= bundle.getBoolean( BOSS1 );
 		boss2	= bundle.getBoolean( BOSS2 );

@@ -39,7 +39,7 @@ public class Yatsuhashi extends Mob {
     {
         spriteClass = YatsuhashiSprite.class;
 
-        HP = HT = 430;
+        HP = HT = 610;
         defenseSkill = 30;
         EXP = 13;
         maxLvl = 37;

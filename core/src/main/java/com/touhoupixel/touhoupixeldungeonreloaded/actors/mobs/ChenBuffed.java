@@ -5,7 +5,7 @@ import com.watabou.utils.Random;
 
 public class ChenBuffed extends Chen {
     {
-        HT = HP = 400;
+        HT = HP = 600;
 
         defenseSkill = 37;
         EXP = 15;

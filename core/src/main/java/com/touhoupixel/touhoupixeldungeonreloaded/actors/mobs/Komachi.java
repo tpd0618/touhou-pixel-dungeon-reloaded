@@ -51,7 +51,7 @@ public class Komachi extends Mob {
     {
         spriteClass = KomachiSprite.class;
 
-        HP = HT = 190;
+        HP = HT = 250;
         defenseSkill = 25;
         EXP = 14;
         maxLvl = 32;

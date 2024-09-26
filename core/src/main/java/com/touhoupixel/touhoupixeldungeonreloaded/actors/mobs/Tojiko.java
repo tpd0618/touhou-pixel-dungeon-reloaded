@@ -45,7 +45,7 @@ public class Tojiko extends Mob implements Callback {
 	{
 		spriteClass = TojikoSprite.class;
 
-		HP = HT = 250;
+		HP = HT = 340;
 		defenseSkill = 25;
 		EXP = 14;
 		maxLvl = 32;

@@ -519,8 +519,7 @@ public class Generator {
 					SagumeWing.class,
 					HoshigumaHorn.class,
 					ToramaruSpear.class,
-					VentoraStick.class
-
+					VentoraStick.class,
 			};
 			WEP_T5.probs = new float[]{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
@@ -561,12 +560,12 @@ public class Generator {
 					AyaArmor.class,
 					ToyohimeArmor.class,
 					YuyukoArmor.class,
-					OkinaArmor.class,
+					//OkinaArmor.class, this type of armor can now be obtained from Okina
 					KeikiArmor.class,
 					KogasaArmor.class,
 					MurasaArmor.class
 			};
-			ARMOR_T5.probs = new float[]{ 2, 3, 3, 4, 4, 4, 4, 4, 2, 2 };
+			ARMOR_T5.probs = new float[]{ 2, 3, 3, 4, 4, 4, 4, 2, 2 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};

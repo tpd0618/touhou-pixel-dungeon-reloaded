@@ -29,31 +29,7 @@ import java.util.ArrayList;
 
 public class RedCubeFragment extends Item {
 
-	private static final String AC_DRINK = "DRINK";
-
 	{
 		image = ItemSpriteSheet.RED_CUBE_FRAGMENT;
-
-		defaultAction = AC_DRINK;
-
-		stackable = true;
-		unique = true;
-	}
-
-	@Override
-	public ArrayList<String> actions(Hero heroine) {
-		ArrayList<String> actions = super.actions(heroine);
-		//actions.add(AC_DRINK);
-		return actions;
-	}
-
-	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-
-	@Override
-	public boolean isIdentified() {
-		return true;
 	}
 }

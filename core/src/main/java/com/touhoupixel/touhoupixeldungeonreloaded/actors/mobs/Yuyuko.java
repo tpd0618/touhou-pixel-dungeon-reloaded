@@ -41,7 +41,7 @@ public class Yuyuko extends Mob {
     {
         spriteClass = YuyukoSprite.class;
 
-        HP = HT = 430;
+        HP = HT = 615;
         defenseSkill = 32;
         EXP = 15;
         maxLvl = 45;

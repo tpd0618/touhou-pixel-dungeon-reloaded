@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Splash;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.TorchHalo;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlameParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.FlowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.SnowParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -84,7 +85,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	protected float shadowOffset    = 0.25f;
 
 	public enum State {
-		BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHILLED, DARKENED, MARKED, HEALING, SHIELDED, HEARTS, FIRE_SHIELDED, SPELLCARD_IS_ON_FIRE, SPELLCARD_IS_ON_DARK
+		BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHILLED, DARKENED, MARKED, HEALING, SHIELDED, HEARTS, FIRE_SHIELDED, SPELLCARD_IS_ON_FIRE, SPELLCARD_IS_ON_DARK, SPELLCARD_IS_ON_WATER
 	}
 	private int stunStates = 0;
 
@@ -110,6 +111,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	protected Emitter hearts;
 	protected Emitter spellcardIsOnDark;
 	protected Emitter spellcardIsOnFire;
+	protected Emitter spellcardIsOnWater;
 
 	protected IceBlock iceBlock;
 	protected DarkBlock darkBlock;
@@ -448,6 +450,10 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 				spellcardIsOnFire = emitter();
 				spellcardIsOnFire.pour(FlameParticle.FACTORY, 0.05f);
 				break;
+			case SPELLCARD_IS_ON_WATER:
+				spellcardIsOnWater = emitter();
+				spellcardIsOnWater.pour(FlowParticle.FACTORY, 0.03f);
+				break;
 		}
 	}
 
@@ -538,6 +544,11 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 					spellcardIsOnFire = null;
 				}
 				break;
+			case SPELLCARD_IS_ON_WATER:
+				if (spellcardIsOnWater != null){
+					spellcardIsOnWater.on = false;
+					spellcardIsOnWater = null;
+				}
 		}
 	}
 

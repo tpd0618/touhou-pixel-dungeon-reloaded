@@ -46,7 +46,7 @@ public class Shou extends Mob {
 	{
 		spriteClass = ShouSprite.class;
 
-		HP = HT = 99;
+		HP = HT = 149;
 		defenseSkill = 22;
 		EXP = 13;
 		maxLvl = 30;

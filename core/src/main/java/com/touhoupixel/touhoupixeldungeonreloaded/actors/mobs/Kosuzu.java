@@ -15,7 +15,7 @@ public class Kosuzu extends Mob {
     {
         spriteClass = KosuzuSprite.class;
 
-        HP = HT = 20;
+        HP = HT = 25;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;

@@ -1,14 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
-
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.NitoriSprite;
 import com.watabou.utils.Random;
 
@@ -18,6 +10,7 @@ public class Nitori extends Mob {
         spriteClass = NitoriSprite.class;
 
         HP = HT = 110;
+        HP = HT = 141;
         defenseSkill = 17;
         EXP = 9;
         maxLvl = 25;

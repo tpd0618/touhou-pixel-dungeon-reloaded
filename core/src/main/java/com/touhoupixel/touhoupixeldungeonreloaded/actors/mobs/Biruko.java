@@ -36,7 +36,7 @@ public class Biruko extends Mob {
     {
         spriteClass = BirukoSprite.class;
 
-        HP = HT = 370;
+        HP = HT = 540;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;

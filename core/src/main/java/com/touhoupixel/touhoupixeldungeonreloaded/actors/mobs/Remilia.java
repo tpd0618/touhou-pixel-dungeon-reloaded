@@ -16,7 +16,7 @@ public class Remilia extends Mob {
     {
         spriteClass = RemiliaSprite.class;
 
-        HP = HT = 88;
+        HP = HT = 132;
         defenseSkill = 15;
         EXP = 7;
         maxLvl = 22;

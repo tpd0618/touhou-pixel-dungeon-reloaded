@@ -15,7 +15,7 @@ public class Satori extends Mob {
     {
         spriteClass = SatoriSprite.class;
 
-        HP = HT = 320;
+        HP = HT = 470;
         defenseSkill = 100;
         EXP = 15;
         maxLvl = 75;

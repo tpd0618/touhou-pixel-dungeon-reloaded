@@ -43,7 +43,7 @@ public class Mayumi extends Mob implements Callback {
     {
         spriteClass = MayumiSprite.class;
 
-        HP = HT = 100;
+        HP = HT = 150;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;

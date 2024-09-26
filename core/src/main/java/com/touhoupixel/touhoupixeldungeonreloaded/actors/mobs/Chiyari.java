@@ -38,7 +38,7 @@ public class Chiyari extends Mob {
     {
         spriteClass = ChiyariSprite.class;
 
-        HP = HT = 330;
+        HP = HT = 460;
         defenseSkill = 30;
         EXP = 15;
         maxLvl = 37;

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -199,7 +200,7 @@ public class ItemStatusHandler<T extends Item> {
 	public void know( Class<?extends T> itemCls ){
 		known.add( itemCls );
 	}
-	public void dontknow( T item ) { if (known.contains((Class<? extends T>)item.getClass())) known.remove( (Class<? extends T>)item.getClass() );
+	public void dontknow( T item ) { if (known.contains((Class<? extends T>)item.getClass())) known.remove( (Class<? extends T>)item.getClass());
 	}
 
 	public void dontknow( Class<?extends T> itemCls ) {

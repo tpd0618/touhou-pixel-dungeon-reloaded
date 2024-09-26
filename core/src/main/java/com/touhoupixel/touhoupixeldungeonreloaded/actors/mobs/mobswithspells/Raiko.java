@@ -25,12 +25,25 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.Drummer;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.FightInsteadOfMe;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.SonicEarthquake;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Life;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfMadness;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.TeleportationTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.RaikoSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -43,13 +56,15 @@ public class Raiko extends MobWithSpellcard {
     {
         spriteClass = RaikoSprite.class;
 
-        HP = HT = 300;
+        HP = HT = 600;
         defenseSkill = 28;
         EXP = 20;
         maxLvl = 30;
 
         flying = true;
 
+        spellcardsDefaultList.add(Drummer.class);
+        spellcardsDefaultList.add(FightInsteadOfMe.class);
         spellcardsDefaultList.add(SonicEarthquake.class);
 
         mobRarity = RARE_RARITY;
@@ -79,7 +94,7 @@ public class Raiko extends MobWithSpellcard {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(36,52);
+        return Random.NormalIntRange(18,26);
     }
 
     @Override
@@ -96,9 +111,51 @@ public class Raiko extends MobWithSpellcard {
 
     @Override
     public void die(Object cause) {
+        Dungeon.level.drop(new PotionOfExperience().quantity(1), pos ).sprite.drop();
         Dungeon.level.drop(new PotionOfExperience().quantity(2), pos ).sprite.drop();
         Dungeon.level.drop(new Life(), pos ).sprite.drop();
 
         super.die(cause);
+    }
+
+    @Override
+    public boolean act(){
+        if (isSpellcardOn){
+            if (spellcard instanceof FightInsteadOfMe){
+                if (!enemySeen) baseSpeed = 0.5f;
+                else baseSpeed = 1f;
+            if (enemy != null && enemy.equals(Dungeon.heroine)){
+                    alarm(enemy.pos);
+                    teleport();
+                }
+        }
+        if (spellcard instanceof Drummer){
+            //baseSpeed = 4f;
+            Buff.prolong(this, AnkhInvulnerability.class, 2f);
+            Buff.prolong(this, Hisou.class, 2f);
+            //Buff.prolong(this, Adrenaline.class, 2f);
+            }
+
+        }
+        else {
+
+        }
+
+        return super.act();
+    }
+
+    private void alarm(int pos){
+        for (Mob mob : Dungeon.level.mobs) {
+            mob.beckon( pos );
+        }
+        CellEmitter.center( pos ).start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
+        Sample.INSTANCE.play( Assets.Sounds.ALERT );
+    }
+    private void teleport(){
+        if (ScrollOfTeleportation.teleportChar(this)) {
+            if (this.state == this.HUNTING) {
+                this.state = this.WANDERING;
+            }
+        }
     }
 }

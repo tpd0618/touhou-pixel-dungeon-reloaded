@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
@@ -36,7 +37,7 @@ public class Kanako extends Mob {
     {
         spriteClass = KanakoSprite.class;
 
-        HP = HT = 374;
+        HP = HT = 490;
         defenseSkill = 27;
         EXP = 16;
         maxLvl = 35;
@@ -55,6 +56,15 @@ public class Kanako extends Mob {
     @Override
     public int attackSkill(Char target) {
         return 32;
+    }
+
+    @Override
+    public int attackProc(Char enemy, int damage) {
+        if (enemy.equals(Dungeon.heroine) && Random.Int(4) == 0 && Statistics.difficulty > 2){
+            GLog.n(Messages.get(this, "strength_reduced"));
+            Dungeon.heroine.STR--;
+        }
+        return super.attackProc(enemy, damage);
     }
 
     @Override

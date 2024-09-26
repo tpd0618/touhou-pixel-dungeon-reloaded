@@ -25,7 +25,7 @@ public class Chimata extends Mob {
     {
         spriteClass = ChimataSprite.class;
 
-        HP = HT = 231;
+        HP = HT = 341;
         defenseSkill = 35;
         EXP = 17;
         maxLvl = 47;

@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AuraReimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -33,19 +34,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
+
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardsAndCubesBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.DetectBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfDoor;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfRunaway;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfLunar;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfSilver;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
@@ -91,10 +90,17 @@ public enum HeroClass {
 		NitoChecker nitoChecker = new NitoChecker();
 		nitoChecker.collect();
 
+		//new PotionOfToxicGas().collect();
+		//new ScrollOfAnchor().quantity(3).identify().collect();
+		//new ScrollOfSubmerge().quantity(3).identify().collect();
+		//new HinaRibbon().identify().collect();
+		//new IdolStick().identify().collect();
+
+		new MarisaHolder().collect();
 		new ReimuHolder().collect();
 		new ReisenHolder().collect();
-		new MarisaHolder().collect();
 		new SanaeHolder().collect();
+		new CardsAndCubesBag().collect();
 
 		switch (this){
 			case PLAYERREIMU:
@@ -159,18 +165,10 @@ public enum HeroClass {
 	}
 
 	public static void initReimu(Hero heroine){
-		ThrowingKnife throwingKnife = new ThrowingKnife();
-		throwingKnife.quantity(3).collect();
-		Dungeon.quickslot.setSlot(2, throwingKnife);
-
 		ReimuExorcismRod reimuExorcismRod = new ReimuExorcismRod();
-		reimuExorcismRod.identify().collect();
+		(heroine.belongings.weapon = reimuExorcismRod).identify();
 
-		MarisaStaff staff;
-		staff = new MarisaStaff(new WandOfMagicMissile());
-		(heroine.belongings.weapon = staff).identify();
-		heroine.belongings.weapon.activate(heroine);
-		Dungeon.quickslot.setSlot(0, staff);
+		Buff.affect(Dungeon.heroine, AuraReimu.class);
 	}
 	public static void initMarisa(Hero heroine){
 		MarisaStaff staff;
@@ -202,7 +200,7 @@ public enum HeroClass {
 	}
 	public static void initSakuya(Hero heroine){
 		ThrowingKnife throwingKnife = new ThrowingKnife();
-		throwingKnife.quantity(30).collect();
+		throwingKnife.quantity(5).collect();
 		Dungeon.quickslot.setSlot(0, throwingKnife);
 
 		KoishiDagger koishiDagger = new KoishiDagger();

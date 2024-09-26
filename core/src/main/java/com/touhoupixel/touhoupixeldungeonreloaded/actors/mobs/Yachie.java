@@ -14,7 +14,7 @@ public class Yachie extends Mob {
     {
         spriteClass = AyaSprite.class;
 
-        HP = HT = 200;
+        HP = HT = 300;
         defenseSkill = 30;
         EXP = 14;
         maxLvl = 30;

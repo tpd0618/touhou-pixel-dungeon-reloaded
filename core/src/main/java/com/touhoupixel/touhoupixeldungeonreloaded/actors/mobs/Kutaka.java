@@ -45,7 +45,7 @@ public class Kutaka extends Mob {
     {
         spriteClass = KutakaSprite.class;
 
-        HP = HT = 354;
+        HP = HT = 454;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;

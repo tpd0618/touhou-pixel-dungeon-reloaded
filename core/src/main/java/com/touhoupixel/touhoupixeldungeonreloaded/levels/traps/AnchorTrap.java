@@ -28,6 +28,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hecatia;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Murasa;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Level;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -50,37 +52,29 @@ public class AnchorTrap extends Trap{
 	@Override
 	public void activate() {
 
-		int nMobs = 8;
-
-		ArrayList<Integer> candidates = new ArrayList<>();
-
-		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
-			int p = pos + PathFinder.NEIGHBOURS8[i];
-			if (Actor.findChar( p ) == null && (Dungeon.level.passable[p] || Dungeon.level.avoid[p])) {
-				candidates.add( p );
+		for (int i : PathFinder.NEIGHBOURS4){
+			int cell = pos + i;
+			if (Dungeon.level.map[cell] == Terrain.EMBERS || Dungeon.level.map[cell] == Terrain.EMPTY || Dungeon.level.map[cell] == Terrain.EMPTY_DECO || Dungeon.level.map[cell] == Terrain.EMPTY_SP || Dungeon.level.map[cell] == Terrain.GRASS || Dungeon.level.map[cell] == Terrain.FURROWED_GRASS || Dungeon.level.map[cell] == Terrain.HIGH_GRASS){
+				Level.set( cell, Terrain.WATER );
+				GameScene.updateMap( cell );
 			}
 		}
 
+		int nMobs = 4;
+
 		ArrayList<Integer> respawnPoints = new ArrayList<>();
 
-		while (nMobs > 0 && candidates.size() > 0) {
-			int index = Random.index( candidates );
-
-			respawnPoints.add( candidates.remove( index ) );
-			nMobs--;
+		for (int i = 0; i < PathFinder.NEIGHBOURS4.length; i++) {
+			int p = pos + PathFinder.NEIGHBOURS4[i];
+			if (Actor.findChar( p ) == null && (Dungeon.level.passable[p] || Dungeon.level.avoid[p])) {
+				respawnPoints.add( p );
+			}
 		}
 
 		ArrayList<Mob> mobs = new ArrayList<>();
 
-		int summoned = 0;
 		for (Integer point : respawnPoints) {
-			summoned++;
-			Mob mob;
-			switch (summoned){
-				case 0: default:
-					mob = new Murasa();
-					break;
-			}
+			Mob mob = new Murasa();
 
 			mob.maxLvl = Hero.MAX_LEVEL;
 			mob.state = mob.WANDERING;

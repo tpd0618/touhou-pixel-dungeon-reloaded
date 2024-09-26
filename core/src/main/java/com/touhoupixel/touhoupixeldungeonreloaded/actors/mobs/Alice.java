@@ -17,7 +17,7 @@ public class Alice extends Mob {
     {
         spriteClass = AliceSprite.class;
 
-        HP = HT = 40;
+        HP = HT = 50;
         defenseSkill = 10;
         EXP = 4;
         maxLvl = 17;

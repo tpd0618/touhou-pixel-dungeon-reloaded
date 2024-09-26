@@ -22,7 +22,9 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FumoLover;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
@@ -36,6 +38,7 @@ public class IdolStick extends MeleeWeapon {
         hitSoundPitch = 1f;
 
         tier = 4;
+        charges = maxCharges = 2;
     }
 
     @Override
@@ -44,23 +47,10 @@ public class IdolStick extends MeleeWeapon {
     }
 
     @Override
-    public int proc(Char attacker, Char defender, int damage) {
-        if (isSymmetric(attacker.HP)) {
-            Buff.prolong(attacker, FumoLover.class, FumoLover.DURATION);
-        }
-        return super.proc(attacker, defender, damage);
-    }
-
-    public boolean isSymmetric(int number) {
-        String numStr = Integer.toString(number);
-        int length = numStr.length();
-
-        for (int i = 0; i < length / 2; i++) {
-            if (numStr.charAt(i) != numStr.charAt(length - 1 - i)) {
-                return false;
-            }
-        }
-
+    protected boolean activateAbility() {
+        if (!super.activateAbility()) return false;
+        Buff.prolong(Dungeon.heroine, FumoLover.class, FumoLover.DURATION);
+        Buff.prolong(Dungeon.heroine, AnkhInvulnerability.class, 2f);
         return true;
     }
 }

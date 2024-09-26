@@ -13,7 +13,7 @@ public class Aunn extends Mob {
     {
         spriteClass = AunnSprite.class;
 
-        HP = HT = 36;
+        HP = HT = 42;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;

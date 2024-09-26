@@ -24,8 +24,11 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 public class AkyuuBrush extends MeleeWeapon {
 
@@ -34,16 +37,27 @@ public class AkyuuBrush extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_STRONG;
         hitSoundPitch = 1f;
 
+        maxCharges = charges = 1;
+
         tier = 3;
     }
+
 
     @Override
     public int HumanFactor( Char owner ) {
         return 1;
     }
 
+
     @Override
     public int defenseFactor( Char owner ) {
-        return Dungeon.heroine.buff(MindVision.class) != null ? 3 : 1;
+        return Dungeon.heroine.buff(MindVision.class) != null ? 15 : 5;
+    }
+
+    @Override
+    protected boolean activateAbility() {
+        if (!super.activateAbility()) return false;
+        Buff.prolong(Dungeon.heroine, MindVision.class, MindVision.DURATION);
+        return true;
     }
 }

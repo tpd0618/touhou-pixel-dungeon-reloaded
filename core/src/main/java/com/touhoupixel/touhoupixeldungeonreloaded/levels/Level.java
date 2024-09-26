@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.SmokeScreen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.Web;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.WellWater;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Backdoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.LockedFloor;
@@ -114,7 +115,7 @@ public abstract class Level implements Bundlable {
 	protected int height;
 	protected int length;
 
-	protected static final float TIME_TO_RESPAWN	= 50;
+	protected static final float TIME_TO_RESPAWN	= 35;
 
 	public int version;
 
@@ -147,6 +148,10 @@ public abstract class Level implements Bundlable {
 
 	//when a boss level has become locked.
 	public boolean locked = false;
+	//when a spellcard active
+	public boolean isCard_FightInsteadOfMe = false;
+	public boolean isCard_Helplessness = false;
+	public boolean isThereRareMob = false;
 
 	public HashSet<Mob> mobs;
 	public SparseArray<Heap> heaps;
@@ -179,6 +184,9 @@ public abstract class Level implements Bundlable {
 	private static final String MOBS		= "mobs";
 	private static final String BLOBS		= "blobs";
 	private static final String FEELING		= "feeling";
+	private static final String IS_CARD_FIGHT_INSTEAD_OF_ME = "is_card_fight_instead_of_me";
+	private static final String IS_CARD_HELPLESSNESS = "is_card_helplessness";
+	private static final String IS_THERE_RARE_MOB = "is_there_rare_mob";
 
 	public void create() {
 
@@ -439,6 +447,10 @@ public abstract class Level implements Bundlable {
 		if (feeling == Feeling.DARK)
 			viewDistance = Math.round(viewDistance/2f);
 
+		isCard_FightInsteadOfMe = bundle.getBoolean(IS_CARD_FIGHT_INSTEAD_OF_ME);
+		isCard_Helplessness = bundle.getBoolean(IS_CARD_HELPLESSNESS);
+		isThereRareMob = bundle.getBoolean(IS_THERE_RARE_MOB);
+
 		if (bundle.contains( "mobs_to_spawn" )) {
 			for (Class<? extends Mob> mob : bundle.getClassArray("mobs_to_spawn")) {
 				if (mob != null) mobsToSpawn.add(mob);
@@ -472,6 +484,9 @@ public abstract class Level implements Bundlable {
 		bundle.put( MOBS, mobs );
 		bundle.put( BLOBS, blobs.values() );
 		bundle.put( FEELING, feeling );
+		bundle.put(IS_CARD_FIGHT_INSTEAD_OF_ME, isCard_FightInsteadOfMe);
+		bundle.put(IS_CARD_HELPLESSNESS, isCard_Helplessness);
+		bundle.put(IS_THERE_RARE_MOB, isThereRareMob);
 		bundle.put( "mobs_to_spawn", mobsToSpawn.toArray(new Class[0]));
 		bundle.put( "respawner", respawner );
 	}
@@ -520,7 +535,11 @@ public abstract class Level implements Bundlable {
 				m = null;
 				continue;
 			}
+			if (m.mobRarity <= Mob.RARE_RARITY && isThereRareMob){
+				m = null;
+			}
 		}
+		if (m.mobRarity <= Mob.RARE_RARITY) isThereRareMob = true;
 		return m;
 	}
 
@@ -685,17 +704,25 @@ public abstract class Level implements Bundlable {
 	}
 
 	public float respawnCooldown(){
+		float timeToRespawn = TIME_TO_RESPAWN;
+		timeToRespawn = isCard_FightInsteadOfMe ? timeToRespawn/30f : timeToRespawn;
+		if (isCard_Helplessness && Dungeon.heroine.buff(Backdoor.class) != null) timeToRespawn /= timeToRespawn/3f;
+		else isCard_Helplessness = false;
+
 		if (Dungeon.level.feeling == Feeling.DARK){
-			return 2*TIME_TO_RESPAWN/3f;
+			return 2*timeToRespawn/3f;
 		} else {
-			return TIME_TO_RESPAWN;
+			return timeToRespawn;
 		}
 	}
 
 	public boolean spawnMob(int disLimit){
+		Mob mob = createMob();
+		return spawnMob(disLimit, mob);
+	}
+	public boolean spawnMob(int disLimit, Mob mob){
 		PathFinder.buildDistanceMap(Dungeon.heroine.pos, BArray.or(passable, avoid, null));
 
-		Mob mob = createMob();
 		mob.state = mob.WANDERING;
 		int tries = 30;
 		do {

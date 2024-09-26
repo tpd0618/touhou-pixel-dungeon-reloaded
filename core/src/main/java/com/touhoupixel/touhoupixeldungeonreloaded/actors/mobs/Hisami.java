@@ -46,7 +46,7 @@ public class Hisami extends Mob {
     {
         spriteClass = HisamiSprite.class;
 
-        HP = HT = 270;
+        HP = HT = 420;
         defenseSkill = 27;
         EXP = 16;
         maxLvl = 35;

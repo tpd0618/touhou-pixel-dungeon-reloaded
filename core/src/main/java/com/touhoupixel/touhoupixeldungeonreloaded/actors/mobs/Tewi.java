@@ -18,7 +18,7 @@ public class Tewi extends Mob {
     {
         spriteClass = TewiSprite.class;
 
-        HP = HT = 47;
+        HP = HT = 72;
         defenseSkill = 12;
         EXP = 5;
         maxLvl = 20;

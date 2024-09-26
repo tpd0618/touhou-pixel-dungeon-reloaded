@@ -15,7 +15,7 @@ public class Luna extends Mob {
     {
         spriteClass = LunaSprite.class;
 
-        HP = HT = 46;
+        HP = HT = 59;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;

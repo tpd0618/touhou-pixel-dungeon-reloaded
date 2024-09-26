@@ -21,7 +21,7 @@ public class Kaguya extends Mob {
     {
         spriteClass = KaguyaSprite.class;
 
-        HP = HT = 330;
+        HP = HT = 450;
         defenseSkill = 32;
         EXP = 14;
         maxLvl = 45;

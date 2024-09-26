@@ -16,7 +16,7 @@ public class Kokoro extends Mob {
     {
         spriteClass = KokoroSprite.class;
 
-        HP = HT = 29;
+        HP = HT = 35;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;

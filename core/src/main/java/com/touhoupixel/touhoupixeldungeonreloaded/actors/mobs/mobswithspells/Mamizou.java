@@ -15,13 +15,13 @@ public class Mamizou extends MobWithSpellcard {
     {
         spriteClass = MamizouSprite.class;
 
-        HP = HT = 80;
+        HP = HT = 100;
         defenseSkill = 12;
         EXP = 6;
         maxLvl = 20;
 
         spellcardsDefaultList.add(Transmutation.class);
-        numberOfCards = Statistics.difficulty > 4 ? 2 : 1; // on overdrive or risky she has 2 spellcards
+        numberOfCards = Statistics.difficulty >= 4 ? 2 : 1; // on lunatic+ she has 2 spellcards
         mobRarity = COMMON_RARITY;
 
         properties.add(Property.YOKAI);
@@ -44,7 +44,7 @@ public class Mamizou extends MobWithSpellcard {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(9, 13);
+        return Random.NormalIntRange(4, 7);
     }
 
     @Override

@@ -48,6 +48,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MissileSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.QuickSlotButton;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundlable;
@@ -470,9 +471,9 @@ public class Item implements Bundlable {
 	}
 
 	protected Item forget(boolean byHero) {
-		if (byHero && Dungeon.heroine != null && Dungeon.heroine.isAlive()){
+		/*if (byHero && Dungeon.heroine != null && Dungeon.heroine.isAlive()){
 			Catalog.setNotSeen(getClass());
-		}
+		}*/
 
 		levelKnown = false;
 		cursedKnown = false;
@@ -632,7 +633,7 @@ public class Item implements Bundlable {
 		Sample.INSTANCE.play(Assets.Sounds.MISS, 0.6f, 0.6f, 1.5f);
 	}
 
-	public void cast( final Hero user, final int dst ) {
+	public void cast( final Hero  user, final int dst ) {
 
 		final int cell = throwPos( user, dst );
 		user.sprite.zap( cell );

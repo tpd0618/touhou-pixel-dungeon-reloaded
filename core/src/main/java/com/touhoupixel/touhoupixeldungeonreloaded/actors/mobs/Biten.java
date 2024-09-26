@@ -42,7 +42,7 @@ public class Biten extends Mob {
     {
         spriteClass = BitenSprite.class;
 
-        HP = HT = 270;
+        HP = HT = 420;
         defenseSkill = 32;
         EXP = 14;
         maxLvl = 75;

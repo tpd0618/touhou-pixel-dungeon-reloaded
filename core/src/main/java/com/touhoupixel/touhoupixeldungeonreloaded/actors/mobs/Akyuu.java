@@ -16,7 +16,7 @@ public class Akyuu extends Mob {
     {
         spriteClass = AkyuuSprite.class;
 
-        HP = HT = 27;
+        HP = HT = 33;
         defenseSkill = 5;
         EXP = 2;
         maxLvl = 12;

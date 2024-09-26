@@ -25,7 +25,7 @@ public class Kasen extends Mob {
     {
         spriteClass = KasenSprite.class;
 
-        HP = HT = 68;
+        HP = HT = 102;
         defenseSkill = 20;
         EXP = 11;
         maxLvl = 27;

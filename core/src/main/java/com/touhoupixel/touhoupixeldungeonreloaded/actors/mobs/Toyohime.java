@@ -45,7 +45,7 @@ public class Toyohime extends Mob implements Callback {
 	{
 		spriteClass = ToyohimeSprite.class;
 
-		HP = HT = 310;
+		HP = HT = 460;
 		defenseSkill = 40;
 		EXP = 24;
 		maxLvl = 99;

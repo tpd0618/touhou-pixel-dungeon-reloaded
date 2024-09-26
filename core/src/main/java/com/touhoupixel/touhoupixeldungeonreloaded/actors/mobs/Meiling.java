@@ -14,7 +14,7 @@ public class Meiling extends Mob {
     {
         spriteClass = MeilingSprite.class;
 
-        HP = HT = 120;
+        HP = HT = 180;
         defenseSkill = 15;
         EXP = 6;
         maxLvl = 22;

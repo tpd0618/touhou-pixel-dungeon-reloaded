@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -37,6 +38,7 @@ public class HoshigumaHorn extends MeleeWeapon {
         hitSoundPitch = 1f;
 
         tier = 5;
+        charges = maxCharges = 3;
     }
 
     @Override
@@ -44,12 +46,12 @@ public class HoshigumaHorn extends MeleeWeapon {
         return 1;
     }
 
+
     @Override
-    public int proc(Char attacker, Char defender, int damage) {
-        if (Random.Int(8) == 0) {
-            Buff.prolong(attacker, Bless.class, Bless.DURATION);
-            Buff.prolong(attacker, ReachIncrease.class, ReachIncrease.DURATION/2f);
-        }
-        return super.proc(attacker, defender, damage);
+    protected boolean activateAbility() {
+        if (!super.activateAbility()) return false;
+        Buff.prolong(Dungeon.heroine, Bless.class, 20f);
+        Buff.prolong(Dungeon.heroine, ReachIncrease.class, 20f);
+        return true;
     }
 }
