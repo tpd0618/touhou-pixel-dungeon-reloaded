@@ -22,12 +22,16 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfAnchor;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.InterlevelScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.Game;
+import com.watabou.utils.Random;
 
 public class ScrollOfSubmerge extends ExoticScroll {
 	

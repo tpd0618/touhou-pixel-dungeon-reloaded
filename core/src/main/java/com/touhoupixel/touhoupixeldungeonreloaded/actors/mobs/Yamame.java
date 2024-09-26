@@ -20,7 +20,7 @@ public class Yamame extends Mob {
     {
         spriteClass = YamameSprite.class;
 
-        HP = HT = 250;
+        HP = HT = 320;
         defenseSkill = 32;
         EXP = 14;
         maxLvl = 45;

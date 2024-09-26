@@ -22,7 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Kisume;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.Suwako;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 
 public class SuwakoSprite extends MobSprite {
 
@@ -46,5 +52,29 @@ public class SuwakoSprite extends MobSprite {
 		die.frames( frames, 8, 9, 10 );
 		
 		play( idle );
+	}
+	public void zap( int cell ) {
+
+		turnTo( ch.pos , cell );
+		play( zap );
+
+		MagicMissile.boltFromChar( parent,
+				MagicMissile.MAGIC_MISSILE,
+				this,
+				cell,
+				new Callback() {
+					@Override
+					public void call() {
+						((Suwako)ch).onZapComplete();
+					}
+				} );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
+	}
+	@Override
+	public void onComplete( MovieClip.Animation anim ) {
+		if (anim == zap) {
+			idle();
+		}
+		super.onComplete( anim );
 	}
 }

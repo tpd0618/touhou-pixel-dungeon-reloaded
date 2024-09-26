@@ -33,7 +33,7 @@ public class Saki extends MobWithSpellcard {
     {
         spriteClass = SakiSprite.class;
 
-        HP = HT = 250;
+        HP = HT = 400;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
@@ -61,7 +61,7 @@ public class Saki extends MobWithSpellcard {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(26, 38);
+        return Random.NormalIntRange(13, 19);
     }
 
 }

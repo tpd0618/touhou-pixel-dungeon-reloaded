@@ -16,7 +16,7 @@ public class Hatate extends Mob {
     {
         spriteClass = HatateSprite.class;
 
-        HP = HT = 120;
+        HP = HT = 180;
         defenseSkill = 17;
         EXP = 9;
         maxLvl = 25;

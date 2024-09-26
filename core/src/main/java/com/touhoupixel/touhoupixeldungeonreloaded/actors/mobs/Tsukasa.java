@@ -45,7 +45,7 @@ public class Tsukasa extends Mob {
     {
         spriteClass = TsukasaSprite.class;
 
-        HP = HT = 145;
+        HP = HT = 205;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;

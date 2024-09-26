@@ -49,7 +49,7 @@ public class YoumuHalfPhantom extends MeleeWeapon {
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 4+2*buffedLvl();     //4 extra defence, plus 2 per level;
+		return 4+buffedLvl();     //4 extra defence, plus 1 per level;
 	}
 	
 	public String statsInfo(){

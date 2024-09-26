@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class ReisenHolder extends Bag {
@@ -36,7 +35,7 @@ public class ReisenHolder extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Potion || item instanceof LiquidMetal || item instanceof Abilitycards){
+		if (item instanceof Potion || item instanceof LiquidMetal){
 			return super.canHold(item);
 		} else {
 			return false;

@@ -49,7 +49,7 @@ public class Zanmu extends Mob {
     {
         spriteClass = ZanmuSprite.class;
 
-        HP = HT = 230;
+        HP = HT = 345;
         defenseSkill = 37;
         EXP = 21;
         maxLvl = 50;

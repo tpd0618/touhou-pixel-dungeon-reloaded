@@ -40,7 +40,7 @@ public class Eiki extends Mob {
     {
         spriteClass = EikiSprite.class;
 
-        HP = HT = 246;
+        HP = HT = 369;
         defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;

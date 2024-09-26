@@ -14,7 +14,7 @@ public class Aya extends Mob {
     {
         spriteClass = AyaSprite.class;
 
-        HP = HT = 110;
+        HP = HT = 165;
         defenseSkill = 17;
         EXP = 9;
         maxLvl = 25;

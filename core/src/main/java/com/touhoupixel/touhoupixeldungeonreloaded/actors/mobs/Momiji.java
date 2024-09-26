@@ -23,7 +23,7 @@ public class Momiji extends Mob {
     {
         spriteClass = MomijiSprite.class;
 
-        HP = HT = 127;
+        HP = HT = 191;
         defenseSkill = 17;
         EXP = 8;
         maxLvl = 25;

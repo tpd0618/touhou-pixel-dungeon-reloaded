@@ -32,7 +32,7 @@ public class Enoko extends Mob {
     {
         spriteClass = EnokoSprite.class;
 
-        HP = HT = 500;
+        HP = HT = 750;
         defenseSkill = 35;
         EXP = 19;
         maxLvl = 47;

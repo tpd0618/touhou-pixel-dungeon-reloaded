@@ -44,6 +44,6 @@ public class ShinmyomaruNeedle extends MeleeWeapon {
 	@Override
 	public int max(int lvl) {
 		return  3*(tier+1) +    //12 base, down from 20
-				lvl*(tier);     //+3 per level, down from +4
+				lvl*(tier)*5/8;     //+2.5 per level, down from +4
 	}
 }

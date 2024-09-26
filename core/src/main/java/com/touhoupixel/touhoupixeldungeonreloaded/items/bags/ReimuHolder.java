@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;

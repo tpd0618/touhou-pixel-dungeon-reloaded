@@ -14,7 +14,7 @@ public class Patchouli extends Mob {
     {
         spriteClass = PatchouliSprite.class;
 
-        HP = HT = 95;
+        HP = HT = 120;
         defenseSkill = 15;
         EXP = 6;
         maxLvl = 22;

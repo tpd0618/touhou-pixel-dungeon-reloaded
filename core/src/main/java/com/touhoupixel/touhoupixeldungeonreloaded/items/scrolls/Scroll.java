@@ -204,12 +204,10 @@ public abstract class Scroll extends Item {
 		}
 	}
 	public void setUnknown(){
-		if (anonymous){
-			if (isKnown()){
-				handler.dontknow(this);
-				updateQuickslot();
-			}
-			if (Dungeon.heroine.isAlive()) Catalog.setNotSeen(getClass());
+		if (isKnown()){
+			handler.dontknow(this);
+			anonymous =  false;
+			updateQuickslot();
 		}
 	}
 	

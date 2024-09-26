@@ -32,7 +32,7 @@ public class ProtectedTreasure extends Spellcard{
     public void activate(){
         Char enemy = user.getEnemy();
         (new RockfallTrap()).set(enemy.pos).activate();
-        PathFinder.buildDistanceMap( enemy.pos, BArray.not( Dungeon.level.solid, null ), 2 );
+        PathFinder.buildDistanceMap( enemy.pos, BArray.or( Dungeon.level.solid, Dungeon.level.avoid, null ), 2 );
         for (int i = 0; i < PathFinder.distance.length; i++) {
             if (PathFinder.distance[i] < Integer.MAX_VALUE) {
                 int cellT = Dungeon.level.map[i];

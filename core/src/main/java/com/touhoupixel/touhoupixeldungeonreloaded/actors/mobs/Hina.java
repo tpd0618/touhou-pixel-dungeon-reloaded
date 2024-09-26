@@ -38,7 +38,7 @@ public class Hina extends Mob {
     {
         spriteClass = HinaSprite.class;
 
-        HP = HT = 295;
+        HP = HT = 412;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;

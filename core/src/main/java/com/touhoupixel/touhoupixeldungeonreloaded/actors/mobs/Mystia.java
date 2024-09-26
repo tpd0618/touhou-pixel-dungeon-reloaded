@@ -17,7 +17,7 @@ public class Mystia extends Mob {
     {
         spriteClass = MystiaSprite.class;
 
-        HP = HT = 39;
+        HP = HT = 48;
         defenseSkill = 10;
         EXP = 4;
         maxLvl = 17;

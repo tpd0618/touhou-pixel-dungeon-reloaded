@@ -15,7 +15,7 @@ public class Takane extends Mob {
     {
         spriteClass = TakaneSprite.class;
 
-        HP = HT = 140;
+        HP = HT = 210;
         defenseSkill = 17;
         EXP = 8;
         maxLvl = 25;

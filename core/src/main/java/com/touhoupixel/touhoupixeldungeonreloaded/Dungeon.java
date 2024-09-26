@@ -3,7 +3,10 @@ package com.touhoupixel.touhoupixeldungeonreloaded;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Amok;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AuraReimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Backdoor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSight;
@@ -13,6 +16,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YoumuAbility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.Okina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.Spellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Amulet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
@@ -71,6 +75,7 @@ import com.watabou.utils.FileUtils;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.SparseArray;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -722,6 +727,7 @@ public class Dungeon {
 		heroine = (Hero)bundle.get( HERO );
 
 		if (heroine.heroClass == HeroClass.PLAYERYOUMU) Buff.affect(Dungeon.heroine, YoumuAbility.class);
+		if (heroine.heroClass == HeroClass.PLAYERREIMU) Buff.affect(Dungeon.heroine, AuraReimu.class);
 
 		floor = bundle.getInt(FLOOR);
 		branch = bundle.getInt( BRANCH );
@@ -764,7 +770,6 @@ public class Dungeon {
 		Actor.clear();
 
 		Bundle bundle = FileUtils.bundleFromFile( GamesInProgress.floorFile( save, floor, branch ));
-
 		Level level = (Level)bundle.get( LEVEL );
 
 		if (level == null){

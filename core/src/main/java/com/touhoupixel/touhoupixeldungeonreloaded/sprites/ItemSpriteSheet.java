@@ -777,6 +777,7 @@ public class ItemSpriteSheet {
 	public static final int OMINOUS_GAP  = BAGS_AND_MISC +9;
 	public static final int KAGUYA_HD_CHEST = BAGS_AND_MISC +10;
 	public static final int KANAKO_CRYSTAL = BAGS_AND_MISC +11;
+	public static final int SUWAKO_RELIC = BAGS_AND_MISC +12;
 
 	static{
 		assignItemRect(POUCH,       14, 15);
@@ -791,6 +792,7 @@ public class ItemSpriteSheet {
 		assignItemRect(OMINOUS_GAP,       16, 9);
 		assignItemRect(KAGUYA_HD_CHEST,       15, 14);
 		assignItemRect(KANAKO_CRYSTAL,         10, 15);
+		assignItemRect(SUWAKO_RELIC,         16, 10);
 	}
 
 	private static final int WEP_CATEGORY5 =                                   xy(1, 28);

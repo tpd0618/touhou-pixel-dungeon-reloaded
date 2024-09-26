@@ -30,7 +30,7 @@ public class Ringo extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(9, 15);
+        return Random.NormalIntRange(5, 10);
     }
 
     @Override

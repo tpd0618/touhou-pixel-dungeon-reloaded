@@ -47,7 +47,7 @@ public class Ichirin extends Mob implements Callback {
     {
         spriteClass = IchirinSprite.class;
 
-        HP = HT = 108;
+        HP = HT = 162;
         defenseSkill = 22;
         EXP = 13;
         maxLvl = 30;

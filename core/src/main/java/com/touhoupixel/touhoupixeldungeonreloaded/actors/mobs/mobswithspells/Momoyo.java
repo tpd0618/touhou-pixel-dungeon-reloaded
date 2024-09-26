@@ -36,7 +36,7 @@ public class Momoyo extends MobWithSpellcard {
     {
         spriteClass = MomoyoSprite.class;
 
-        HP = HT = 140;
+        HP = HT = 280;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;
@@ -64,7 +64,7 @@ public class Momoyo extends MobWithSpellcard {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(36, 52);
+        return Random.NormalIntRange(18, 26);
     }
 
     @Override

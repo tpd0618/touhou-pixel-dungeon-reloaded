@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
@@ -39,13 +40,17 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.journal.Guidebook;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.JoonFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ShionFan;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.touhoupixel.touhoupixeldungeonreloaded.windows.WndOptions;
+import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
@@ -86,69 +91,77 @@ public abstract class EquipableItem extends Item {
 	@Override
 	public void execute(Hero heroine, String action ) {
 
-		super.execute(heroine, action );
+		super.execute(heroine, action);
 
-		if (action.equals( AC_EQUIP )) {
+		if (action.equals(AC_EQUIP)) {
 
-			if (curItem instanceof ShionFan && Statistics.highestFloor < 21){
+			if (curItem instanceof ShionFan && Statistics.highestFloor < 21) {
 				Statistics.difficulty = 1;
 				GLog.w(Messages.get(EquipableItem.class, "shion"));
 			}
 
-			if (curItem instanceof JoonFan && Statistics.highestFloor < 21){
+			if (curItem instanceof JoonFan && Statistics.highestFloor < 21) {
 				Statistics.difficulty = 5;
 				GLog.w(Messages.get(EquipableItem.class, "joon"));
 			}
 			//In addition to equipping itself, item reassigns itself to the quickslot
 			//This is a special case as the item is being removed from inventory, but is staying with the hero.
-			int slot = Dungeon.quickslot.getSlot( this );
+			int slot = Dungeon.quickslot.getSlot(this);
 			doEquip(heroine);
 			if (slot != -1) {
-				Dungeon.quickslot.setSlot( slot, this );
+				Dungeon.quickslot.setSlot(slot, this);
 				updateQuickslot();
 			}
-		} else if (action.equals( AC_UNEQUIP )) {
-			doUnequip(heroine, true );
+		} else if (action.equals(AC_UNEQUIP)) {
+			doUnequip(heroine, true);
 		}
-		if (action.equals(AC_DISMANTLE)){
-			if (heroine.buff(DismantleReady.class) == null) {
-				Buff.prolong(heroine, DismantleReady.class, DismantleReady.DURATION);
-				GLog.w(Messages.get(this, "dismantle_ready"));
-			} else {
-				if (heroine.buff(Degrade.class) != null) {
-					GLog.w(Messages.get(this, "degrade"));
-				} else if (curItem.isEquipped(heroine)) {
-					GLog.w(Messages.get(this, "unequip_first"));
-				} else if (curItem instanceof Artifact) {
-					GLog.w(Messages.get(this, "artifact"));
-				} else if (curItem instanceof MissileWeapon) {
-					GLog.w(Messages.get(this, "danmaku"));
-				} else {
-					curItem.detach(curUser.belongings.backpack);
+		if (action.equals(AC_DISMANTLE)) {
+				GameScene.show(
+						new WndOptions(
+								Messages.get(EquipableItem.class, "dismantle"),
+								Messages.get(EquipableItem.class, "dismantle_warn"),
+								Messages.get(EquipableItem.class, "yes"),
+								Messages.get(EquipableItem.class, "no")) {
+							@Override
+							protected void onSelect(int index) {
+								if (index == 0) {
+									if (heroine.buff(Degrade.class) != null) {
+										GLog.w(Messages.get(this, "degrade"));
+									} else if (curItem.isEquipped(heroine)) {
+										GLog.w(Messages.get(this, "unequip_first"));
+									} else if (curItem instanceof Artifact) {
+										GLog.w(Messages.get(this, "artifact"));
+									} else if (curItem instanceof MissileWeapon) {
+										GLog.w(Messages.get(this, "danmaku"));
+									} else {
+										curItem.detach(curUser.belongings.backpack);
 
-					if (curItem.level() > 0) {
-						Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
-					}
+										if (curItem.level() > 0) {
+											Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
+										}
 
-					Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(150, 200)), curUser.pos).sprite.drop();
-					//clear cube fragments
-					Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-					Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-					Dungeon.level.drop(new RedCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-					Dungeon.level.drop(new WhiteCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-					//color cube fragments
-					Buff.detach(curUser, DismantleReady.class);
-					Buff.detach(curUser, DismantlePressure.class);
-					updateQuickslot();
+										Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(150, 200)), curUser.pos).sprite.drop();
+										//clear cube fragments
+										Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+										Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+										Dungeon.level.drop(new RedCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+										Dungeon.level.drop(new WhiteCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
+										//color cube fragments
+										Buff.detach(curUser, DismantleReady.class);
+										Buff.detach(curUser, DismantlePressure.class);
+										updateQuickslot();
 
-					heroine.spend(1f);
+										heroine.spend(1f);
 
-					Statistics.dismantle_count += 1;
+										Statistics.dismantle_count += 1;
 
-					Sample.INSTANCE.play(Assets.Sounds.DRINK);
-					curUser.sprite.operate(curUser.pos);
-				}
-			}
+										Sample.INSTANCE.play(Assets.Sounds.DRINK);
+										curUser.sprite.operate(curUser.pos);
+									}
+								}
+							}
+						}
+			);
 		}
 	}
 

@@ -44,6 +44,6 @@ public class JeweledBranch extends MeleeWeapon {
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return Dungeon.heroine.buff(DoubleSpeed.class) != null ? 5 : 1;
+		return Dungeon.heroine.buff(DoubleSpeed.class) != null ? 15 : 3;
 	}
 }

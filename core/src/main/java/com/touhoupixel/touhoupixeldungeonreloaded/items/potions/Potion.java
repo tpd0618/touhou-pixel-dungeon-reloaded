@@ -390,14 +390,12 @@ public class Potion extends Item {
 		}
 	}
 	public void setUnknown(){
-		if (anonymous){
-			if (isKnown()){
+		if (isKnown()){
 				handler.dontknow(this);
+				anonymous =  false;
 				updateQuickslot();
 			}
-			if (Dungeon.heroine.isAlive()) Catalog.setNotSeen(getClass());
 		}
-	}
 
 	@Override
 	public Item identify( boolean byHero ) {

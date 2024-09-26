@@ -37,7 +37,7 @@ public class Megumu extends Mob {
     {
         spriteClass = MegumuSprite.class;
 
-        HP = HT = 400;
+        HP = HT = 600;
         defenseSkill = 32;
         EXP = 18;
         maxLvl = 40;

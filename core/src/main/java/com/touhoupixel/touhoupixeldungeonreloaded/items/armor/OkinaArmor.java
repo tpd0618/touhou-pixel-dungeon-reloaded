@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.armor;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class OkinaArmor extends Armor {
@@ -31,8 +32,13 @@ public class OkinaArmor extends Armor {
 	}
 
 	@Override
-	public int AnimalDefFactor( Char owner ) {
-		return 1;
+	public int proc(Char attacker, Char defender, int damage) {
+		int limitHT = defender.HT/5;
+		if (damage > limitHT){
+			damage = limitHT + (damage-limitHT)/3; // if the damage is more than 20% hp, it deals 20% of hp + extra damage / 3
+			ScrollOfTeleportation.teleportChar(defender);
+		}
+		return super.proc(attacker, defender, damage);
 	}
 
 	public OkinaArmor() {

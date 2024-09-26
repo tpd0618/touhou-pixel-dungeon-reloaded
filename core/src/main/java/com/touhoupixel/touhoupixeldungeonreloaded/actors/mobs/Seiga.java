@@ -53,7 +53,7 @@ public class Seiga extends Mob {
     {
         spriteClass = SeigaSprite.class;
 
-        HP = HT = 130;
+        HP = HT = 200;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;

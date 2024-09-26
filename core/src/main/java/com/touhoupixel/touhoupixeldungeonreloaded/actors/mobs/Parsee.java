@@ -40,7 +40,7 @@ public class Parsee extends Mob {
     {
         spriteClass = ParseeSprite.class;
 
-        HP = HT = 25;
+        HP = HT = 30;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;

@@ -335,7 +335,7 @@ public class CursedWand {
 				GameScene.add(mimic);
 				return true;
 
-			//crashes the game, yes, really.
+			//crashes the game, yes, really. // wth???
 			case 2:
 				
 				try {

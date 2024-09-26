@@ -21,7 +21,7 @@ public class Chen extends Mob {
     {
         spriteClass = ChenSprite.class;
 
-        HP = HT = 80;
+        HP = HT = 90;
         defenseSkill = 10;
         EXP = 4;
         maxLvl = 17;

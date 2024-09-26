@@ -17,7 +17,7 @@ public class Youmu extends Mob {
     {
         spriteClass = YoumuSprite.class;
 
-        HP = HT = 230;
+        HP = HT = 370;
         defenseSkill = 32;
         EXP = 15;
         maxLvl = 45;

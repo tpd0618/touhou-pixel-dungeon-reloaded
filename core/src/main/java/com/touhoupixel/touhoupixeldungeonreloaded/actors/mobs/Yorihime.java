@@ -41,7 +41,7 @@ public class Yorihime extends Mob {
 	{
 		spriteClass = YorihimeSprite.class;
 
-		HP = HT = 250;
+		HP = HT = 310;
 		defenseSkill = 40;
 		EXP = 24;
 		maxLvl = 99;

@@ -42,7 +42,7 @@ public class Ran extends MobWithSpellcard implements Callback {
     {
         spriteClass = RanSprite.class;
 
-        HP = HT = 330;
+        HP = HT = 630;
         defenseSkill = 32;
         EXP = 15;
         maxLvl = 45;
@@ -76,7 +76,7 @@ public class Ran extends MobWithSpellcard implements Callback {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(35, 51);
+        return Random.NormalIntRange(17, 26);
     }
     @Override
     protected boolean canAttack( Char enemy ) {

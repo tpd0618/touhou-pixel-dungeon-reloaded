@@ -37,7 +37,7 @@ public class Shinmyomaru extends Mob {
     {
         spriteClass = ShinmyomaruSprite.class;
 
-        HP = HT = 270;
+        HP = HT = 400;
         defenseSkill = 30;
         EXP = 16;
         maxLvl = 37;

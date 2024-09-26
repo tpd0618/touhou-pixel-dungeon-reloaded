@@ -39,7 +39,7 @@ public class Sannyo extends Mob {
     {
         spriteClass = SannyoSprite.class;
 
-        HP = HT = 298;
+        HP = HT = 449;
         defenseSkill = 32;
         EXP = 17;
         maxLvl = 40;

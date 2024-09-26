@@ -24,8 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.hero;
 import static java.lang.Math.max;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Badges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.GamesInProgress;
 import com.touhoupixel.touhoupixeldungeonreloaded.ShatteredPixelDungeon;
@@ -55,8 +53,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BossKiller;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiCountdown;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.YokaiBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Awareness;
@@ -66,18 +62,15 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DanmakuPowerUp;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Foresight;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HardSearch;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Calm;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.KomachiCurse;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Regeneration;
@@ -91,8 +84,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Reimu;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Yuuka;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Zanmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CheckedCell;
@@ -162,7 +153,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.Trap;
-import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.ShadowCaster;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -258,15 +248,15 @@ public class Hero extends Char {
 		int curHT = HT;
 
 		if (Statistics.difficulty == 6) {
-			HT = STARTING_HT + Statistics.maxHP_down + 10 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 8 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 5) {
-			HT = STARTING_HT + Statistics.maxHP_down + 12 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 9 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 4 || Statistics.difficulty == 3) {
-			HT = STARTING_HT + Statistics.maxHP_down + 13 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 10 * (lvl - 1) + HTBoost;
 		} else if (Statistics.difficulty == 2 || Statistics.difficulty == 1) {
-			HT = STARTING_HT + Statistics.maxHP_down + 15 * (lvl - 1) + HTBoost;
+			HT = STARTING_HT + Statistics.maxHP_down + 13 * (lvl - 1) + HTBoost;
 		} else {
-			HT = STARTING_HT + Statistics.maxHP_down + 15 * (lvl - 1) + HTBoost; //just in case
+			HT = STARTING_HT + Statistics.maxHP_down + 13 * (lvl - 1) + HTBoost; //just in case
 		}
 
 		if (buff(ElixirOfMight.HTBoost.class) != null){
@@ -370,7 +360,7 @@ public class Hero extends Char {
 
 	@Override
 	public boolean blockSound(float pitch) {
-		if (belongings.weapon() != null && belongings.weapon().defenseFactor(this) >= 4){
+		if (belongings.weapon() != null && belongings.weapon().defenseFactor(this) >= 12){
 			Sample.INSTANCE.play( Assets.Sounds.HIT_PARRY, 1, pitch);
 			return true;
 		}
@@ -1840,6 +1830,7 @@ public class Hero extends Char {
 				sprite.showStatus( CharSprite.POSITIVE, Messages.get(Hero.class, "level_up") );
 				Sample.INSTANCE.play( Assets.Sounds.LEVELUP );
 			}
+			if (belongings.weapon instanceof MeleeWeapon) ((MeleeWeapon) belongings.weapon).restoreCharges();
 
 			Item.updateQuickslot();
 		}

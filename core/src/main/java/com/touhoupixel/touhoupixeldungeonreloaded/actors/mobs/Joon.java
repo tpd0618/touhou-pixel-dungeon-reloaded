@@ -22,7 +22,7 @@ public class Joon extends Mob {
     {
         spriteClass = JoonSprite.class;
 
-        HP = HT = 136;
+        HP = HT = 196;
         defenseSkill = 20;
         EXP = 11;
         maxLvl = 27;

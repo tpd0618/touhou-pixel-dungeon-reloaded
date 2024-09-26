@@ -18,7 +18,7 @@ public class Nemuno extends Mob {
     {
         spriteClass = NemunoSprite.class;
 
-        HP = HT = 105;
+        HP = HT = 156;
         defenseSkill = 20;
         EXP = 10;
         maxLvl = 27;

@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;

@@ -21,10 +21,10 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee;
 
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
@@ -33,18 +33,25 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Nitori;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class MeleeWeapon extends Weapon {
 
 	public int tier;
+	protected int maxCharges = 0; // If it is greater than zero, it is considered that the weapon has a special ability that can be activated by a separate button
+	protected int charges = maxCharges;
+	private final String AC_ACTIVATE = "ACTIVATE";
 
 	@Override
 	public int min(int lvl) {
@@ -66,6 +73,43 @@ public class MeleeWeapon extends Weapon {
 		}
 	}
 
+	@Override
+	public ArrayList<String> actions(Hero heroine) {
+		ArrayList<String> actions = super.actions(heroine);
+		if (maxCharges > 0){
+			if (isEquipped(heroine)){
+				actions.add(AC_ACTIVATE);
+				defaultAction = AC_ACTIVATE;
+			}
+			else {
+				defaultAction = AC_EQUIP;
+			}
+		}
+		return actions;
+	}
+
+	@Override
+	public void execute(Hero heroine, String action) {
+		super.execute(heroine, action);
+		if (action.equals(AC_ACTIVATE)){
+			activateAbility();
+		}
+	}
+	protected boolean activateAbility(){
+		if (charges > 0){
+			charges--;
+		} else {
+			GLog.w(Messages.get(MeleeWeapon.class, "no_charges"));
+			return false;
+		}
+		Sample.INSTANCE.play(Assets.Sounds.ZAP);
+		Dungeon.heroine.spendAndNext(Actor.TICK);
+		return true;
+	}
+	public void restoreCharges(){
+		charges = maxCharges;
+	}
+
 	public int STRReq(int lvl) {
 		return STRReq(tier, lvl);
 	}
@@ -81,7 +125,7 @@ public class MeleeWeapon extends Weapon {
 			} else if (owner instanceof Hero) {
 				int exStr = ((Hero) owner).STR() - STRReq();
 				if (exStr > 0) {
-					damage += Random.IntRange(0, exStr);
+					damage += Random.IntRange(0, exStr*2);
 				}
 			}
 		}
@@ -101,8 +145,6 @@ public class MeleeWeapon extends Weapon {
 		}
 		return damage;
 	}
-
-	KindOfWeapon kindOfWeapon = Dungeon.heroine.belongings.weapon;
 
 	@Override
 	public void onThrow(int cell) {
@@ -135,8 +177,9 @@ public class MeleeWeapon extends Weapon {
 			if (STRReq() > Dungeon.heroine.STR()) {
 				info += " " + Messages.get(Weapon.class, "too_heavy");
 			} else if (Dungeon.heroine.STR() > STRReq()){
-				info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.heroine.STR() - STRReq());
+				info += " " + Messages.get(Weapon.class, "excess_str", (Dungeon.heroine.STR() - STRReq())*2);
 			}
+			if (maxCharges > 0) info += "\n" + Messages.get(MeleeWeapon.class, "charges", charges);
 			if (Dungeon.heroine.heroClass == HeroClass.PLAYERYOUMU){
 				info += "\n\n" + Messages.get(MeleeWeapon.class, "crit_chance", (int)(Dungeon.heroine.getCritChance()*100));
 			}
@@ -197,5 +240,17 @@ public class MeleeWeapon extends Weapon {
 		}
 		return price;
 	}
+	private final String CHARGES = "charges";
 
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		if (maxCharges > 0) bundle.put(CHARGES, charges);
+		super.storeInBundle(bundle);
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		if (maxCharges > 0) charges = bundle.getInt(CHARGES);
+		super.restoreFromBundle(bundle);
+	}
 }

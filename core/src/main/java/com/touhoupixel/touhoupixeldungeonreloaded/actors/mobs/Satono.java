@@ -42,7 +42,7 @@ public class Satono extends Mob {
     {
         spriteClass = SatonoSprite.class;
 
-        HP = HT = 414;
+        HP = HT = 621;
         defenseSkill = 30;
         EXP = 14;
         maxLvl = 37;
@@ -75,11 +75,11 @@ public class Satono extends Mob {
         if (Statistics.difficulty > 2) {
             Buff.prolong(enemy, WandZeroDamage.class, WandZeroDamage.DURATION/3f);
         }
-        if (Statistics.difficulty > 4) {
+        if (Statistics.difficulty >= 4) {
             Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION);
         }
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR) {
-            Statistics.life = 0;
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.level.map[hero.pos] == Terrain.OPEN_DOOR && Random.Int(4) == 0) {
+            Statistics.spellcard = Math.max(0, Statistics.spellcard-1);
             Sample.INSTANCE.play(Assets.Sounds.CURSED);
             GLog.w(Messages.get(this, "lifezero"));
         }

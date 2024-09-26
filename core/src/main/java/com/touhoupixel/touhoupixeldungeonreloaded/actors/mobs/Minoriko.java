@@ -47,7 +47,7 @@ public class Minoriko extends Mob {
     {
         spriteClass = MinorikoSprite.class;
 
-        HP = HT = 265;
+        HP = HT = 395;
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;

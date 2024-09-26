@@ -46,12 +46,12 @@ public class JunkoSword extends MeleeWeapon {
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 6+3*buffedLvl();    //6 extra defence, plus 3 per level;
+		return 6+2*buffedLvl();    //6 extra defence, plus 3 per level;
 	}
 	
 	public String statsInfo(){
 		if (isIdentified()){
-			return Messages.get(this, "stats_desc", 6+3*buffedLvl());
+			return Messages.get(this, "stats_desc", 6+2*buffedLvl());
 		} else {
 			return Messages.get(this, "typical_stats_desc", 6);
 		}

@@ -90,7 +90,7 @@ public class Earthroot extends Plant {
 		}
 		
 		private static int blocking(){
-			return (Dungeon.floor + 5)/2;
+			return Dungeon.floor + 5;
 		}
 		
 		public int absorb( int damage ) {

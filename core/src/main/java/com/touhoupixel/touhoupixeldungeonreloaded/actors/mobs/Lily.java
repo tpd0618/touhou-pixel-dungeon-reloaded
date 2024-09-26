@@ -16,7 +16,7 @@ public class Lily extends Mob {
     {
         spriteClass = LilySprite.class;
 
-        HP = HT = 44;
+        HP = HT = 55;
         defenseSkill = 7;
         EXP = 3;
         maxLvl = 15;

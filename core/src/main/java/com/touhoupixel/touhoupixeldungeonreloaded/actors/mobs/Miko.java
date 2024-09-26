@@ -16,7 +16,7 @@ public class Miko extends Mob {
     {
         spriteClass = MikoSprite.class;
 
-        HP = HT = 190;
+        HP = HT = 285;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;

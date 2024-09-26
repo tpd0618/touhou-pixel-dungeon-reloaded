@@ -24,7 +24,7 @@ public class Shizuha extends MobWithSpellcard {
     {
         spriteClass = ShizuhaSprite.class;
 
-        HP = HT = 350;
+        HP = HT = 500;
         defenseSkill = 27;
         EXP = 15;
         maxLvl = 35;

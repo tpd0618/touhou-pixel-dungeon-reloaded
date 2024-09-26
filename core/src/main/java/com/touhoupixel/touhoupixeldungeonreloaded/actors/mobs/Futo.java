@@ -17,7 +17,7 @@ public class Futo extends Mob {
     {
         spriteClass = FutoSprite.class;
 
-        HP = HT = 215;
+        HP = HT = 315;
         defenseSkill = 22;
         EXP = 14;
         maxLvl = 30;

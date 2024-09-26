@@ -49,7 +49,7 @@ public class Marisa extends Mob {
     {
         spriteClass = MarisaSprite.class;
 
-        HP = HT = 50;
+        HP = HT = 60;
         defenseSkill = 10;
         EXP = 5;
         maxLvl = 17;

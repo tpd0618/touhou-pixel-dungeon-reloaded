@@ -20,7 +20,7 @@ public class Sakuya extends Mob {
     {
         spriteClass = SakuyaSprite.class;
 
-        HP = HT = 107;
+        HP = HT = 157;
         defenseSkill = 15;
         EXP = 7;
         maxLvl = 22;
@@ -53,7 +53,7 @@ public class Sakuya extends Mob {
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.heroine.buff(FutureSight.class) == null && Random.Int(3) == 0) {
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Dungeon.heroine.buff(FutureSight.class) == null && Random.Int(2) == 0) {
             Buff.prolong(enemy, FutureSight.class, FutureSight.DURATION);
             if (Statistics.difficulty > 2) {
                 Buff.prolong(this, Haste.class, Haste.DURATION);

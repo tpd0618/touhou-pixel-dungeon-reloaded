@@ -43,7 +43,7 @@ public class Eirin extends Mob implements Callback {
     {
         spriteClass = EirinSprite.class;
 
-        HP = HT = 231;
+        HP = HT = 345;
         defenseSkill = 37;
         EXP = 20;
         maxLvl = 50;

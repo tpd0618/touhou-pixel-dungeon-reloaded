@@ -25,7 +25,7 @@ public class Reimu extends Mob {
     {
         spriteClass = ReimuSprite.class;
 
-        HP = HT = 410;
+        HP = HT = 615;
         defenseSkill = 40;
         EXP = 25;
         maxLvl = 99;

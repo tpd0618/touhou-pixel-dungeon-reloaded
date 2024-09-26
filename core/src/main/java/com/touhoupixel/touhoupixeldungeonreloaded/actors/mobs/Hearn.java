@@ -39,7 +39,7 @@ public class Hearn extends Mob {
     {
         spriteClass = HearnSprite.class;
 
-        HP = HT = 177;
+        HP = HT = 254;
         defenseSkill = 25;
         EXP = 13;
         maxLvl = 32;
