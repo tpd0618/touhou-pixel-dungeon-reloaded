@@ -61,7 +61,7 @@ public class PotionOfHealing extends Potion {
 		if (curUser.HP == curUser.HT){
 			curUser.HP += 10;
 			curUser.HT += 10;
-			Statistics.maxHP_down += 10;
+			Statistics.HT_bonus += 10;
 			GLog.p(Messages.get(PotionOfHealing.class, "max_up"));
 		}
 		if (Statistics.card62){

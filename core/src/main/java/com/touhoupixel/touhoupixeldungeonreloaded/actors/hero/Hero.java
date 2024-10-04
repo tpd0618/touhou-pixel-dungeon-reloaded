@@ -247,17 +247,28 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		if (Statistics.difficulty == 6) {
-			HT = STARTING_HT + Statistics.maxHP_down + 8 * (lvl - 1) + HTBoost;
-		} else if (Statistics.difficulty == 5) {
-			HT = STARTING_HT + Statistics.maxHP_down + 9 * (lvl - 1) + HTBoost;
-		} else if (Statistics.difficulty == 4 || Statistics.difficulty == 3) {
-			HT = STARTING_HT + Statistics.maxHP_down + 10 * (lvl - 1) + HTBoost;
-		} else if (Statistics.difficulty == 2 || Statistics.difficulty == 1) {
-			HT = STARTING_HT + Statistics.maxHP_down + 13 * (lvl - 1) + HTBoost;
-		} else {
-			HT = STARTING_HT + Statistics.maxHP_down + 13 * (lvl - 1) + HTBoost; //just in case
+		int HT_level_addition = 0;
+		switch (Statistics.difficulty){
+		default:
+		case 1:
+		case 2:
+			HT_level_addition = 13;
+			break;
+		case 3:
+		case 4:
+			HT_level_addition = 11;
+			break;
+		case 5:
+			HT_level_addition = 9;
+			break;
+		case 6:
+			HT_level_addition = 8;
+			break;
 		}
+
+		HT_level_addition += heroClass == HeroClass.PLAYERREIMU ? 2 : 0; // reimu has boost to max hp as tank
+
+		HT = STARTING_HT + Statistics.HT_bonus + HT_level_addition * (lvl - 1) + HTBoost;
 
 		if (buff(ElixirOfMight.HTBoost.class) != null){
 			HT += buff(ElixirOfMight.HTBoost.class).boost();
@@ -2099,28 +2110,12 @@ public class Hero extends Char {
 		if (Statistics.power > 400){
 			Statistics.power = 400;
 		}
-		if (Statistics.lifefragment == 8){
-			Statistics.lifefragment = 0;
+		if (Statistics.lifefragment >= 8){
+			Statistics.lifefragment -= 8;
 			Statistics.life += 1;
 		}
-		if (Statistics.lifefragment == 9){
-			Statistics.lifefragment = 1;
-			Statistics.life += 1;
-		}
-		if (Statistics.lifefragment == 10){
-			Statistics.lifefragment = 2;
-			Statistics.life += 1;
-		}
-		if (Statistics.spellcardfragment == 8){
-			Statistics.spellcardfragment = 0;
-			Statistics.spellcard += 1;
-		}
-		if (Statistics.spellcardfragment == 9){
-			Statistics.spellcardfragment = 1;
-			Statistics.spellcard += 1;
-		}
-		if (Statistics.spellcardfragment == 10){
-			Statistics.spellcardfragment = 2;
+		if (Statistics.spellcardfragment >= 8){
+			Statistics.spellcardfragment -= 8;
 			Statistics.spellcard += 1;
 		}
 		if (Statistics.life > 8){

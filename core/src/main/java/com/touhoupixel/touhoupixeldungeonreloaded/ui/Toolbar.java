@@ -25,7 +25,6 @@ import static com.touhoupixel.touhoupixeldungeonreloaded.Dungeon.heroine;
 import static com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor.TICK;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.QuickSlot;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDAction;
@@ -353,7 +352,7 @@ public class Toolbar extends Component {
 						}
 						heroine.HP -= 4;
 						heroine.HT -= 4;
-						Statistics.maxHP_down -= 4;
+						Statistics.HT_bonus -= 4;
 						Statistics.spellcarduse = true;
 						GameScene.flash(0x80FFFFFF);
 						Sample.INSTANCE.play(Assets.Sounds.BLAST);

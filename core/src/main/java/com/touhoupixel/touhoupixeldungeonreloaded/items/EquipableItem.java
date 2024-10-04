@@ -137,17 +137,15 @@ public abstract class EquipableItem extends Item {
 										curItem.detach(curUser.belongings.backpack);
 
 										if (curItem.level() > 0) {
-											Dungeon.level.drop(new UpgradeCard().quantity(curItem.level()), curUser.pos).sprite.drop();
+											new UpgradeCard().quantity(curItem.level()).collect();
 										}
-
-										Dungeon.level.drop(new ClearCubeFragment().quantity(Random.Int(150, 200)), curUser.pos).sprite.drop();
-										//clear cube fragments
-										Dungeon.level.drop(new BlackCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-										Dungeon.level.drop(new BlueCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-										Dungeon.level.drop(new RedCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
-										Dungeon.level.drop(new WhiteCubeFragment().quantity(Random.Int(5, 7)), curUser.pos).sprite.drop();
 										//color cube fragments
-										Buff.detach(curUser, DismantleReady.class);
+										new ClearCubeFragment().quantity(Random.Int(150, 200)).collect();
+										new BlackCubeFragment().quantity(Random.Int(5, 7)).collect();
+										new BlueCubeFragment().quantity(Random.Int(5, 7)).collect();
+										new RedCubeFragment().quantity(Random.Int(5, 7)).collect();
+										new WhiteCubeFragment().quantity(Random.Int(5, 7)).collect();
+
 										Buff.detach(curUser, DismantlePressure.class);
 										updateQuickslot();
 

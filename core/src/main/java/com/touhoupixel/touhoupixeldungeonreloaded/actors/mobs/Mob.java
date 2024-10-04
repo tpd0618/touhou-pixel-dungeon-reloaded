@@ -126,6 +126,7 @@ public abstract class Mob extends Char {
 	//used for AiState Ambushing
 	protected int leftToContinue = 0;
 	protected int ambushPos = -1;
+	public int gainingPower = 5;
 	public float mobRarity = COMMON_RARITY; //chance of spawn mob: from 0 (will never spawn) to 1 (will always spawn)
 	public static final float COMMON_RARITY = 1;
 	public static final float UNCOMMON_RARITY = 0.33f;
@@ -780,8 +781,9 @@ public abstract class Mob extends Char {
 	@Override
 	public void die( Object cause ) {
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
+			Statistics.power += gainingPower;
 			if (Statistics.card44) {
-				Dungeon.gold += 20;
+				new Gold().quantity(20).collect();
 			}
 		}
 

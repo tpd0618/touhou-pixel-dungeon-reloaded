@@ -47,6 +47,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.IdolStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;
@@ -93,8 +94,7 @@ public enum HeroClass {
 		//new PotionOfToxicGas().collect();
 		//new ScrollOfAnchor().quantity(3).identify().collect();
 		//new ScrollOfSubmerge().quantity(3).identify().collect();
-		//new HinaRibbon().identify().collect();
-		//new IdolStick().identify().collect();
+		//new IdolStick().collect();
 
 		new MarisaHolder().collect();
 		new ReimuHolder().collect();

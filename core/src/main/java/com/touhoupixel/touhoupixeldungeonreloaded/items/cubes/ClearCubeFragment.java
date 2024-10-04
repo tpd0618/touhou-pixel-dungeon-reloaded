@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class ClearCubeFragment extends Item {
+public class ClearCubeFragment extends CubeFragment {
 
 	{
 		image = ItemSpriteSheet.CLEAR_CUBE_FRAGMENT;
