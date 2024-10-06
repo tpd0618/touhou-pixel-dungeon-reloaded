@@ -22,7 +22,13 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Momiji;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Sanae;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
+import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 
 public class MomijiSprite extends MobSprite {
 
@@ -47,5 +53,30 @@ public class MomijiSprite extends MobSprite {
 		die.frames( frames, 11, 12, 13 );
 		
 		play(idle);
+	}
+	public void zap( int cell ) {
+
+		turnTo( ch.pos , cell );
+		play( zap );
+
+		MagicMissile.boltFromChar( parent,
+				MagicMissile.SHADOW,
+				this,
+				cell,
+				new Callback() {
+					@Override
+					public void call() {
+						((Momiji)ch).onZapComplete();
+					}
+				} );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
+	}
+
+	@Override
+	public void onComplete( MovieClip.Animation anim ) {
+		if (anim == zap) {
+			idle();
+		}
+		super.onComplete( anim );
 	}
 }

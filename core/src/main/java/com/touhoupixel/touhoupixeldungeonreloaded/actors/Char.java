@@ -56,6 +56,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
@@ -448,6 +449,8 @@ public abstract class Char extends Actor {
         if (attacker.buff(HeatRiser.class) != null) defRoll *= 1.5f; //heat riser
         if (attacker.buff(Randomizer.class) != null) defRoll *= 0.5f; //randomizer
         if (defender.buff(Hex.class) != null) defRoll *= 0.8f;
+
+        acuRoll = attacker.buff(Onigiri.class) == null ? acuRoll : 0;
 
         return (acuRoll * accMulti) >= defRoll;
     }

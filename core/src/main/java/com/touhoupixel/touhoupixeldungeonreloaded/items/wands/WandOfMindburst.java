@@ -69,7 +69,7 @@ public class WandOfMindburst extends DamageWand {
 		if (curUser.HT > 10 && curUser.HP > 10) {
 			curUser.HP -= 5;
 			curUser.HT -= 5;
-			Statistics.maxHP_down -= 5;
+			Statistics.HT_bonus -= 5;
 		}
 	}
 	public boolean areEnoughCubes(){

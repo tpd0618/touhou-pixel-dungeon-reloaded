@@ -50,7 +50,7 @@ public class Statistics {
 	public static int tenshiEarthquake;
 	public static int bordercount;
 
-	public static int maxHP_down;
+	public static int HT_bonus;
 	public static int life_count;
 	public static int bomb_count;
 	public static int dismantle_count;
@@ -207,7 +207,7 @@ public class Statistics {
 		tenshiEarthquake = 0;
 		bordercount = 0;
 
-		maxHP_down = 0;
+		HT_bonus = 0;
 		life_count = 0;
 		bomb_count = 0;
 		dismantle_count = 0;
@@ -516,7 +516,7 @@ public class Statistics {
 		bundle.put( TENSHIEARTHQUAKE,		tenshiEarthquake );
 		bundle.put( BORDERCOUNT,		bordercount );
 
-		bundle.put( MAXHP_DOWN, maxHP_down);
+		bundle.put( MAXHP_DOWN, HT_bonus);
 		bundle.put( LIFE_COUNT, life_count);
 		bundle.put( BOMB_COUNT, bomb_count);
 		bundle.put( DISMANTLE_COUNT, dismantle_count);
@@ -671,7 +671,7 @@ public class Statistics {
 		tenshiEarthquake   = bundle.getInt( TENSHIEARTHQUAKE );
 		bordercount   = bundle.getInt( BORDERCOUNT );
 
-		maxHP_down = bundle.getInt( MAXHP_DOWN );
+		HT_bonus = bundle.getInt( MAXHP_DOWN );
 		life_count = bundle.getInt(LIFE_COUNT);
 		bomb_count = bundle.getInt(BOMB_COUNT);
 		dismantle_count = bundle.getInt(DISMANTLE_COUNT);

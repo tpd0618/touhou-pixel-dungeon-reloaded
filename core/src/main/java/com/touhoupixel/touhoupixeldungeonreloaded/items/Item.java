@@ -189,6 +189,10 @@ public class Item implements Bundlable {
 
 	public void execute( Hero hero ) {
 		String action = defaultAction();
+		if (Dungeon.heroine.buff(Onigiri.class) != null) {
+			action = null;
+			//GLog.n();
+		}
 		if (action != null) {
 			execute(hero, defaultAction());
 		}

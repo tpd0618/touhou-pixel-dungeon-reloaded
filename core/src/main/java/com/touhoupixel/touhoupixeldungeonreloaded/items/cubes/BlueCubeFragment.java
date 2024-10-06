@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class BlueCubeFragment extends Item {
+public class BlueCubeFragment extends CubeFragment {
 
 {
 		image = ItemSpriteSheet.BLUE_CUBE_FRAGMENT;

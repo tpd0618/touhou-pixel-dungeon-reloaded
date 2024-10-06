@@ -345,7 +345,7 @@ public class Generator {
 					PotionOfLightHealing.class,
 					PotionOfYingYang.class,
 					PotionOfSuperUnlucky.class};
-			POTION.defaultProbs = new float[]{ 3, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 0};
+			POTION.defaultProbs = new float[]{ 8, 3, 3, 3, 3, 3, 4, 3, 3, 3, 2, 3, 3, 5, 2, 0};
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{
@@ -560,12 +560,12 @@ public class Generator {
 					AyaArmor.class,
 					ToyohimeArmor.class,
 					YuyukoArmor.class,
-					//OkinaArmor.class, this type of armor can now be obtained from Okina
+					OkinaArmor.class, // this type of armor can be obtained from Okina
 					KeikiArmor.class,
 					KogasaArmor.class,
 					MurasaArmor.class
 			};
-			ARMOR_T5.probs = new float[]{ 2, 3, 3, 4, 4, 4, 4, 2, 2 };
+			ARMOR_T5.probs = new float[]{ 2, 3, 3, 4, 4, 4, 0, 4, 2, 2 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};

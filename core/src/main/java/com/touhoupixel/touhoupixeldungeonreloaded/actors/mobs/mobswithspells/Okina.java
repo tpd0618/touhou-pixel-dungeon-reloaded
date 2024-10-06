@@ -78,6 +78,7 @@ public class Okina extends MobWithSpellcard {
         for (Char c : chars()){
             if (c.buff(Backdoor.class) != null) c.buff(Backdoor.class).detach();
         }
+        Dungeon.level.drop(new PotionOfDoor().quantity(5), pos).sprite.drop();
         Dungeon.level.drop(new Life(), pos ).sprite.drop();
         Dungeon.level.drop(new com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.Spellcard(), pos ).sprite.drop();
         Dungeon.level.drop(new OkinaArmor(), pos).sprite.drop();
