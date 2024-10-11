@@ -5,14 +5,19 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DeSlaying;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Randomizer;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
@@ -27,7 +32,7 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class Momiji extends Mob implements Callback {
-    private static final float TIME_TO_ZAP	= 1f;
+    private static final float TIME_TO_ZAP	= 0.8f;
     {
         spriteClass = MomijiSprite.class;
 
@@ -48,7 +53,8 @@ public class Momiji extends Mob implements Callback {
     }
     @Override
     protected boolean canAttack( Char enemy ) {
-        return new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT).collisionPos == enemy.pos;
+        return !Dungeon.level.adjacent( pos, enemy.pos )
+                && (super.canAttack(enemy) || new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT).collisionPos == enemy.pos);
     }
     @Override
     protected boolean doAttack( Char enemy ) {
@@ -76,19 +82,36 @@ public class Momiji extends Mob implements Callback {
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
             if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(2) == 0) {
-                switch (Random.Int(4)){
+                switch (Random.Int(11)){
+                    default:
                     case 0:
-                        Buff.prolong(enemy, Randomizer.class, 5f);
+                        Buff.prolong(enemy, Randomizer.class, 15f);
                         break;
                     case 1:
-                        Buff.prolong(enemy, Slow.class, 5f);
+                        Buff.prolong(enemy, Slow.class, 7f);
                         break;
                     case 2:
-                        Buff.prolong(enemy, Inversion.class, 5f);
+                        Buff.prolong(enemy, Inversion.class, 20f);
                         break;
                     case 3:
-                        Buff.prolong(enemy, Hex.class, 5f);
+                        Buff.prolong(enemy, Hex.class, 20f);
                         break;
+                    case 4:
+                        Buff.prolong(enemy, Vulnerable.class, 20f);
+                        break;
+                    case 5:
+                        Buff.prolong(enemy, Weakness.class, 20f);
+                        break;
+                    case 6:
+                        Buff.prolong(enemy, Paralysis.class, 1f);
+                        break;
+                    case 7:
+                        Buff.prolong(enemy, HeavenSpeed.class, 20f);
+                        break;
+                    case 9:
+                        Buff.prolong(enemy, Blindness.class, 10f);
+                    case 10:
+                        Buff.prolong(enemy, Cripple.class, 12f);
                 }
             }
 
@@ -135,6 +158,22 @@ public class Momiji extends Mob implements Callback {
     public void onZapComplete() {
         zap();
         next();
+    }
+    @Override
+    protected boolean getCloser( int target ) {
+        if (state == HUNTING) {
+            return enemySeen && getFurther( target );
+        } else {
+            return super.getCloser( target );
+        }
+    }
+
+    @Override
+    public void aggro(Char ch) {
+        //cannot be aggroed to something it can't see
+        if (ch == null || fieldOfView == null || fieldOfView[ch.pos]) {
+            super.aggro(ch);
+        }
     }
 
     @Override

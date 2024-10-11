@@ -11,7 +11,7 @@ import com.watabou.noosa.Image;
 
 public class YoumuAbility extends Buff implements ActionIndicator.Action {
     public static int powerReq() {
-        if (Statistics.card61 == true){
+        if (Statistics.cardClownpieceMoon == true){
             return 125;
         }
         else {
@@ -35,7 +35,7 @@ public class YoumuAbility extends Buff implements ActionIndicator.Action {
     }
     public void bomb() {
         ActionIndicator.setAction(null);
-        if (Statistics.card16){
+        if (Statistics.cardHalfGhostSpare){
             bombAction();
         }
         else {

@@ -33,7 +33,7 @@ public class NemunoKnife extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS23;
+        image = ItemSpriteSheet.CARDS_NEMUNO_KNIFE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class NemunoKnife extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card23) {
-            Statistics.card23 = true;
+        if (!Statistics.cardNemunoKnife) {
+            Statistics.cardNemunoKnife = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

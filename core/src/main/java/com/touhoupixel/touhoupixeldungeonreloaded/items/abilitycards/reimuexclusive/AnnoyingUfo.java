@@ -33,7 +33,7 @@ public class AnnoyingUfo extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS26;
+        image = ItemSpriteSheet.CARDS_ANNOYING_UFO;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class AnnoyingUfo extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card26) {
-            Statistics.card26 = true;
+        if (!Statistics.cardAnnoyingUfo) {
+            Statistics.cardAnnoyingUfo = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

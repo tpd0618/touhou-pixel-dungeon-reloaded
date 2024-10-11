@@ -137,14 +137,20 @@ public abstract class EquipableItem extends Item {
 										curItem.detach(curUser.belongings.backpack);
 
 										if (curItem.level() > 0) {
-											new UpgradeCard().quantity(curItem.level()).collect();
+											Item item = new UpgradeCard();
+											if (item.quantity(curItem.level()).collect()) GameScene.pickUp( item, heroine.pos );
 										}
 										//color cube fragments
-										new ClearCubeFragment().quantity(Random.Int(150, 200)).collect();
-										new BlackCubeFragment().quantity(Random.Int(5, 7)).collect();
-										new BlueCubeFragment().quantity(Random.Int(5, 7)).collect();
-										new RedCubeFragment().quantity(Random.Int(5, 7)).collect();
-										new WhiteCubeFragment().quantity(Random.Int(5, 7)).collect();
+										Item item = new ClearCubeFragment();
+										if (item.quantity(Random.Int(150, 200)).collect()) GameScene.pickUp( item, heroine.pos );
+										item = new BlackCubeFragment();
+										if (item.quantity(Random.Int(5, 7)).collect()) GameScene.pickUp( item, heroine.pos );
+										item = new BlueCubeFragment();
+										if (item.quantity(Random.Int(5, 7)).collect()) GameScene.pickUp( item, heroine.pos );
+										item = new RedCubeFragment();
+										if (item.quantity(Random.Int(5, 7)).collect()) GameScene.pickUp( item, heroine.pos );
+										item = new WhiteCubeFragment();
+										if (item.quantity(Random.Int(5, 7)).collect()) GameScene.pickUp( item, heroine.pos );
 
 										Buff.detach(curUser, DismantlePressure.class);
 										updateQuickslot();

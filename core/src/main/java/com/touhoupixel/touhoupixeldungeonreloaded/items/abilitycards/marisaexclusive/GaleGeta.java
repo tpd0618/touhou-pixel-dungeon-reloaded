@@ -33,7 +33,7 @@ public class GaleGeta extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS39;
+        image = ItemSpriteSheet.CARDS_GALE_GETA;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class GaleGeta extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card39) {
-            Statistics.card39 = true;
+        if (!Statistics.cardGaleGeta) {
+            Statistics.cardGaleGeta = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

@@ -22,8 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.food;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
@@ -86,11 +84,11 @@ public class Food extends Item {
 
 			Statistics.foodEaten++;
 
-			if (Statistics.card41){
+			if (Statistics.cardMinorikoCrop){
 				Buff.affect(heroine, WellFed.class).set((int)(Hunger.STARVING/4f));
 			}
 
-			if (Statistics.card67){
+			if (Statistics.cardMegumuBarleyRice){
 				Statistics.power += 100;
 			}
 		}

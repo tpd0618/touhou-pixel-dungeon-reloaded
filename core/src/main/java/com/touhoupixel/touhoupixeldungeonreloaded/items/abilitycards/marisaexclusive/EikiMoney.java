@@ -33,7 +33,7 @@ public class EikiMoney extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS43;
+        image = ItemSpriteSheet.CARDS_EIKI_MONEY;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class EikiMoney extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card43) {
-            Statistics.card43 = true;
+        if (!Statistics.cardEikiMoney) {
+            Statistics.cardEikiMoney = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

@@ -227,7 +227,7 @@ abstract public class MissileWeapon extends Weapon {
 			projectileContainer.add(i);
 			spriteProjContainer.add(misSpr);
 
-			if (Statistics.card63){
+			if (Statistics.cardVampireFang){
 				float angles[] = {-25, -40, 40, 25};
 				for (float angle : angles){
 					MissileWeapon mw2 = new SakuyaKnifeDanmaku(i.min(i.level()), i.max(i.level()));
@@ -311,7 +311,7 @@ abstract public class MissileWeapon extends Weapon {
 	}
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
-		if (Statistics.card34) {
+		if (Statistics.cardRingoBrandDango) {
 			Statistics.power -= Random.Int(1, 3);
 		} else Statistics.power -= 10;
 		return super.proc(attacker, defender, damage);

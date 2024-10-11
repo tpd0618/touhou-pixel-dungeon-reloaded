@@ -35,7 +35,7 @@ public class KaguyaStash extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS47;
+        image = ItemSpriteSheet.CARDS_KAGUYA_STASH;
 
         defaultAction = AC_DRINK;
 
@@ -45,8 +45,8 @@ public class KaguyaStash extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card47) {
-            Statistics.card47 = true;
+        if (!Statistics.cardKaguyaStash) {
+            Statistics.cardKaguyaStash = true;
             Dungeon.level.drop(new PotionOfPurity().identify().quantity(5), Dungeon.heroine.pos).sprite.drop();
             return super.doPickUp(heroine, pos);
         } else return false;

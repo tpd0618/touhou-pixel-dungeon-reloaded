@@ -33,7 +33,7 @@ public class YingYangOrbNeedle extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS8;
+        image = ItemSpriteSheet.CARDS_YING_YANG_ORB_NEEDLE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class YingYangOrbNeedle extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card8) {
-            Statistics.card8 = true;
+        if (!Statistics.cardYingYangOrbNeedle) {
+            Statistics.cardYingYangOrbNeedle = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

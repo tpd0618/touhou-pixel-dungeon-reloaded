@@ -42,7 +42,7 @@ public class Displacing extends Weapon.Enchantment {
 		if (Random.Float() < procChance && !defender.properties().contains(Char.Property.IMMOVABLE)){
 
 			int oldpos = defender.pos;
-			if (ScrollOfTeleportation.teleportChar(defender)){
+			if (ScrollOfTeleportation.randomTeleportChar(defender)){
 				if (Dungeon.level.heroFOV[oldpos]) {
 					CellEmitter.get( oldpos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
 				}

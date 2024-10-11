@@ -43,7 +43,7 @@ public class TeleportationTrap extends Trap {
 		for (int i : PathFinder.NEIGHBOURS9){
 			Char ch = Actor.findChar(pos + i);
 			if (ch != null){
-				if (ScrollOfTeleportation.teleportChar(ch)) {
+				if (ScrollOfTeleportation.randomTeleportChar(ch)) {
 					if (ch instanceof Mob && ((Mob) ch).state == ((Mob) ch).HUNTING) {
 						((Mob) ch).state = ((Mob) ch).WANDERING;
 					}

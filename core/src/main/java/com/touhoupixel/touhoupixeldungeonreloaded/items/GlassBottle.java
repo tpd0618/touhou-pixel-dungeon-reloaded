@@ -114,8 +114,8 @@ public class GlassBottle extends Item {
 					heroine.spend(TIME_TO_DRINK);
 					heroine.busy();
 
-					if (Statistics.card58) {
-						ScrollOfTeleportation.teleportChar(heroine);
+					if (Statistics.cardScreenBorder) {
+						ScrollOfTeleportation.randomTeleportChar(heroine);
 					}
 
 					Sample.INSTANCE.play(Assets.Sounds.DRINK);

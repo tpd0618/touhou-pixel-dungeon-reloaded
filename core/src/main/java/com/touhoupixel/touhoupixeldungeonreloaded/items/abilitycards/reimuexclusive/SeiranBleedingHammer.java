@@ -33,7 +33,7 @@ public class SeiranBleedingHammer extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS24;
+        image = ItemSpriteSheet.CARDS_SEIRAN_BLEEDING_HAMMER;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class SeiranBleedingHammer extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card24) {
-            Statistics.card24 = true;
+        if (!Statistics.cardSeiranBleedingHammer) {
+            Statistics.cardSeiranBleedingHammer = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

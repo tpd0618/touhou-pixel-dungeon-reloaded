@@ -33,7 +33,7 @@ public class MaidKnifeRicochet extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS12;
+        image = ItemSpriteSheet.CARDS_MAID_KNIFE_RICOCHET;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MaidKnifeRicochet extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card12) {
-            Statistics.card12 = true;
+        if (!Statistics.cardMaidKnifeRicochet) {
+            Statistics.cardMaidKnifeRicochet = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

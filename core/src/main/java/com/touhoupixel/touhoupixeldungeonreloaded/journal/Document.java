@@ -173,7 +173,7 @@ public enum Document {
 				case "Food":
 					return new ItemSprite( ItemSpriteSheet.PASTY );
 				case "Ability_Cards":
-					return new ItemSprite( ItemSpriteSheet.CARDS1 );
+					return new ItemSprite( ItemSpriteSheet.CARDS_NAZRIN_GOLD_MONEY);
 				case "Strength":
 					return new ItemSprite( ItemSpriteSheet.SEIRANHAMMER );
 				case "Upgrades":

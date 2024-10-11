@@ -164,7 +164,7 @@ public abstract class Wand extends Item {
 			}
 
 			return true;
-		} else if (Statistics.card43 && Dungeon.gold >= 400){
+		} else if (Statistics.cardEikiMoney && Dungeon.gold >= 400){
 			GLog.w(Messages.get(this, "eiki_money_trigger"));
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER);
 			curCharges += 1;
@@ -250,7 +250,7 @@ public abstract class Wand extends Item {
 			GLog.w(Messages.get(this, "magic_drain"));
 		}
 
-		if (Statistics.card34) {
+		if (Statistics.cardRingoBrandDango) {
 			Statistics.power -= Random.Int(1,3);
 		} else Statistics.power -= 10;
 	}
@@ -448,7 +448,7 @@ public abstract class Wand extends Item {
 				&& !Dungeon.heroine.belongings.contains(this)) {
 		}
 
-		if (Statistics.card28 && Random.Int(2) == 0) {
+		if (Statistics.cardShouPagoda && Random.Int(2) == 0) { // wtf, this card has never even worked, but no one has said anything about it in such a long time xdddd
 			Invisibility.dispel();
 		} else {
 			Invisibility.dispel();

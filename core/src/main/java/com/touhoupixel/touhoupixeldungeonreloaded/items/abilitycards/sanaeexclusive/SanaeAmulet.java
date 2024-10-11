@@ -33,7 +33,7 @@ public class SanaeAmulet extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS13;
+        image = ItemSpriteSheet.CARDS_SANAE_AMULET;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class SanaeAmulet extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card13) {
-            Statistics.card13 = true;
+        if (!Statistics.cardSanaeAmulet) {
+            Statistics.cardSanaeAmulet = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

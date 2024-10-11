@@ -33,7 +33,7 @@ public class LifeBurningTorch extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS55;
+        image = ItemSpriteSheet.CARDS_LIFE_BURNING_TORCH;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class LifeBurningTorch extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card55) {
-            Statistics.card55 = true;
+        if (!Statistics.cardLifeBurningTorch) {
+            Statistics.cardLifeBurningTorch = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

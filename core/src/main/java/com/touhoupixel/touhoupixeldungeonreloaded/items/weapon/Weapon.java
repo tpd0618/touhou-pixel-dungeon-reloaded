@@ -284,7 +284,7 @@ abstract public class Weapon extends KindOfWeapon {
 				if (Random.Int(7) == 0) enchant(null);
 			}
 			else{
-				if (Statistics.card36) {
+				if (Statistics.cardFlandreDestruction) {
 					if (level() >= 25) enchant(null);
 				}
 				else if (level() >= 10 && Random.Float(10) < Math.pow(1.3, level() - 10)) {

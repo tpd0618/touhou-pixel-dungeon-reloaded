@@ -33,7 +33,7 @@ public class DoremySheep extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS6;
+        image = ItemSpriteSheet.CARDS_DOREMY_SHEEP;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class DoremySheep extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card6) {
-            Statistics.card6 = true;
+        if (!Statistics.cardDoremySheep) {
+            Statistics.cardDoremySheep = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

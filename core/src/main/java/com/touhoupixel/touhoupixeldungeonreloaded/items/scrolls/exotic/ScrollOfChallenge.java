@@ -110,7 +110,7 @@ public class ScrollOfChallenge extends ExoticScroll {
 		public void setup(int pos){
 
 			int dist;
-			if (Dungeon.floor == 5 || Dungeon.floor == 10 || Dungeon.floor == 20){
+			if (Dungeon.floor == 5 || Dungeon.floor == 10 || Dungeon.floor == 20 || Dungeon.floor == 30){
 				dist = 1; //smaller boss arenas
 			} else {
 

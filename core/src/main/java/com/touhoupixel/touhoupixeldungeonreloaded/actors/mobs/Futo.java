@@ -6,6 +6,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfSuperUnlucky;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Water;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.FutoSprite;
@@ -55,7 +56,7 @@ public class Futo extends Mob {
     @Override
     protected boolean act() {
         Heap heap = Dungeon.level.heaps.get(pos);
-        Item newItem = new Water();
+        Item newItem = new PotionOfSuperUnlucky();
         if (heap != null && this.pos == heap.pos) {
 
             Heap[] equipHeaps = new Heap[1];
@@ -64,11 +65,11 @@ public class Futo extends Mob {
                 for (Item i : h.items.toArray(new Item[0])){
                     if (!i.unique){
                         h.remove(i);
-                        GLog.w(Messages.get(this, "knave"));
+                        if (Dungeon.level.heroFOV[pos]) GLog.w(Messages.get(this, "knave"));
                     }
                 }
             }
-            Dungeon.level.drop(newItem, heap.pos).sprite.drop();
+            if (Random.Int(100) == 0) Dungeon.level.drop(newItem, heap.pos).sprite.drop();
         }
         return super.act();
     }

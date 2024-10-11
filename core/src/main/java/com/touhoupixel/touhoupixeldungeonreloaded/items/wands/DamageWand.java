@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.wands;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
@@ -62,7 +61,7 @@ public abstract class DamageWand extends Wand{
 		if (heroine.buff(MagicBuff.class) != null) {
 			dmg *= 1.25f;
 		}
-		if (Statistics.card31) {
+		if (Statistics.cardTeacupMarisa) {
 			dmg *= 1.25f;
 		}
 

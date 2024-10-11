@@ -33,7 +33,7 @@ public class ScreenBorder extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS58;
+        image = ItemSpriteSheet.CARDS_SCREEN_BORDER;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class ScreenBorder extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card58) {
-            Statistics.card58 = true;
+        if (!Statistics.cardScreenBorder) {
+            Statistics.cardScreenBorder = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

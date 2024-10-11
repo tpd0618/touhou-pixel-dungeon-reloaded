@@ -21,6 +21,9 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
@@ -31,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ArcaneArmor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AuraReimu;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bless;
@@ -43,19 +47,26 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corrosion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeedResist;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireImbue;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FireShield;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FrostImbue;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.FumoLover;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Fury;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Poison;
@@ -64,15 +75,21 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Speed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Stamina;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SuperHard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.SupernaturalBorder;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Kanako;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.FloatingText;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Heap;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.glyphs.Viscosity;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
@@ -319,30 +336,16 @@ public abstract class Char extends Actor {
 
             dmg = Math.round(dmg*dmgMulti);
 
-            if (buff( Fury.class ) != null) {
-                dmg *= 1.5f;
-            }
-
             dmg += dmgBonus;
 
-            if (enemy.buff(ScrollOfChallenge.ChallengeArena.class) != null){
-                dmg *= 0.67f;
-            }
-
             int effectiveDamage = enemy.defenseProc( this, dmg );
-            effectiveDamage = Math.max( effectiveDamage - dr, 0 );
-
-            if ( enemy.buff( Vulnerable.class ) != null){
-                effectiveDamage *= 1.33f;
-            }
+            effectiveDamage = max( effectiveDamage - dr, 0 );
 
             effectiveDamage = attackProc( enemy, effectiveDamage );
 
             if (visibleFight) {
                 if (effectiveDamage > 0 || !enemy.blockSound(Random.Float(0.96f, 1.05f))) {
                     hitSound(Random.Float(0.87f, 1.15f));
-
-
                 }
             }
 
@@ -380,32 +383,18 @@ public abstract class Char extends Actor {
         } else {
 
             if (visibleFight) {
-                String defense = enemy.defenseVerb();
+                String defense = enemy.defenseVerb(this);
                 enemy.sprite.showStatus( CharSprite.NEUTRAL, defense );
-
                 //TODO enemy.defenseSound? currently miss plays for monks/crab even when they parry
-                if (enemy.buff(GhostHalf.class) != null){
-                    if (Dungeon.heroine.buff(GhostHalf.class).isSourceBomb()){
-                        Buff.prolong(this, Blindness.class, 10f);
-                        Buff.prolong(this, Cripple.class, 10f);
-                        Buff.prolong(this, Vulnerable.class, 10f);
-                        Buff.prolong(this, Weakness.class, 10f);
-                        Buff.prolong(this, Hex.class, 10f);
-                    }
-                    else{
-                        Buff.prolong(this, Blindness.class, Blindness.DURATION/3.33f);
-                        Buff.prolong(this, Cripple.class, Cripple.DURATION/3.33f);
-                    }
-                    if (Statistics.card53){
-                        Dungeon.heroine.HP = Math.min((int)(Dungeon.heroine.HP + Dungeon.heroine.HT*0.02f), Dungeon.heroine.HT);
-                    }
-                }
                 Sample.INSTANCE.play(Assets.Sounds.MISS);
             }
 
             return false;
 
         }
+    }
+    public void dodge(Char enemy){
+        // the event occurs in response to a miss. do nothing by default
     }
 
     public static int INFINITE_ACCURACY = 1_000_000;
@@ -450,7 +439,7 @@ public abstract class Char extends Actor {
         if (attacker.buff(Randomizer.class) != null) defRoll *= 0.5f; //randomizer
         if (defender.buff(Hex.class) != null) defRoll *= 0.8f;
 
-        acuRoll = attacker.buff(Onigiri.class) == null ? acuRoll : 0;
+        acuRoll = attacker.buff(Onigiri.class) == null ? acuRoll : -INFINITE_ACCURACY;
 
         return (acuRoll * accMulti) >= defRoll;
     }
@@ -464,6 +453,9 @@ public abstract class Char extends Actor {
     }
 
     public String defenseVerb() {
+        return defenseVerb(null);
+    }
+    public String defenseVerb(Char attaker){
         return Messages.get(this, "def_verb");
     }
 
@@ -481,16 +473,58 @@ public abstract class Char extends Actor {
     // atm attack is always post-armor and defence is already pre-armor
 
     public int attackProc( Char enemy, int damage ) {
+
+        if (buff(Weakness.class) != null ) {
+            damage *= 0.67f;
+        }
+        if (buff(Might.class) != null ) {
+            damage *= 1.25f;
+        }
+        if (buff(Hisou.class) != null && !enemy.flying ){
+            damage *= 1.35f;
+        }
+        if (buff( Fury.class ) != null) {
+            damage *= 1.5f;
+        }
+//        if (buff(FloatSlayer.class) != null && enemy.flying ){
+//            damage *= 1.4f;
+//        }
         return damage;
     }
 
     public int defenseProc( Char enemy, int damage ) {
-
+        AuraReimu ar = buff(AuraReimu.class);
+        if (ar != null){ // if 2 creatures have this effect, then we will see an interesting picture
+            damage = ar.takeDamage(enemy, damage);
+        }
         Earthroot.Armor armor = buff( Earthroot.Armor.class );
         if (armor != null) {
             damage = armor.absorb( damage );
         }
-
+        if (buff(SuperHard.class) != null ) {
+            damage = min(max(HT/25, 1), damage); // max damage - 4% of max hp
+        }
+        if (buff(Randomizer.class) != null){
+            damage *= 1.5f;
+        }
+        if (buff(HeatRiser.class) != null){
+            damage *= 0.5f;
+        }
+        if (buff(DoubleSpeedResist.class) != null && enemy.buff(DoubleSpeed.class) != null){
+            damage *= 0.5f;
+        }
+        if (buff(FumoLover.class) != null && enemy.properties().contains(Char.Property.FUMO)){
+            damage *= 0.5f;
+        }
+        if (buff(HighStress.class) != null){
+            HP = 0;
+        }
+        if (buff(ScrollOfChallenge.ChallengeArena.class) != null){
+            damage *= 0.67f;
+        }
+        if ( buff( Vulnerable.class ) != null){
+            damage *= 1.33f;
+        }
         return damage;
     }
 
@@ -580,6 +614,13 @@ public abstract class Char extends Actor {
         //FIXME: when I add proper damage properties, should add an IGNORES_SHIELDS property to use here.
         if (!(src instanceof Hunger)){
             for (ShieldBuff s : buffs(ShieldBuff.class)){
+                if (s instanceof FireShield && src instanceof Char) {
+                    if (Dungeon.level.adjacent( pos, ((Char) src).pos )) {
+                        ((Char) src).damage(dmg / 4, this);
+                        Buff.affect((Char) src, Burning.class).reignite((Char) src, 2f);
+                        CellEmitter.get(((Char) src).pos).burst(Speck.factory(Speck.STEAM), 20);
+                    }
+                }
                 dmg = s.absorbDamage(dmg);
                 if (dmg == 0) break;
             }
@@ -677,21 +718,22 @@ public abstract class Char extends Actor {
 
     @Override
     protected void spend( float time ) {
-
-        Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
-
         float timeScale = 1f;
         if (buff( Slow.class ) != null) {
-            if (bracelet instanceof SwiftBracelet){
+            if (Dungeon.heroine.belongings.misc() instanceof SwiftBracelet || Dungeon.heroine.belongings.bracelet() instanceof SwiftBracelet){
                 timeScale *= 1f;
             } else {
                 timeScale *= 0.5f;
             }
             //slowed and chilled do not stack
-        } else if (buff( Chill.class ) != null) {
+        }
+        if (buff( Chill.class ) != null) {
             timeScale *= buff( Chill.class ).speedFactor();
         }
         if (buff( Speed.class ) != null) {
+            timeScale *= 2.0f;
+        }
+        if (buff( DoubleSpeed.class) != null){
             timeScale *= 2.0f;
         }
 
@@ -795,6 +837,8 @@ public abstract class Char extends Actor {
         for (Buff buff:buffs) {
             buff.fx( true );
         }
+        if (this instanceof MobWithSpellcard)
+            ((MobWithSpellcard) this).fx(((MobWithSpellcard) this).isSpellcardOn);
     }
 
     public float stealth() {

@@ -33,7 +33,7 @@ public class TooHonestSignpost extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS69;
+        image = ItemSpriteSheet.CARDS_TOO_HONEST_SIGNPOST;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class TooHonestSignpost extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card69) {
-            Statistics.card69 = true;
+        if (!Statistics.cardTooHonestSignpost) {
+            Statistics.cardTooHonestSignpost = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

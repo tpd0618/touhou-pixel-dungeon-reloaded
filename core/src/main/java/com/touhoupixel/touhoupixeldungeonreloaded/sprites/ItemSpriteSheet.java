@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.watabou.noosa.TextureFilm;
 
 public class ItemSpriteSheet {
@@ -851,22 +850,22 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int CARDSA       =                               xy(1, 33);  //16 slots
-	public static final int CARDS1        = CARDSA+0;
-	public static final int CARDS2        = CARDSA+1;
-	public static final int CARDS3        = CARDSA+2;
-	public static final int CARDS4        = CARDSA+3;
-	public static final int CARDS5        = CARDSA+4;
-	public static final int CARDS6        = CARDSA+5;
-	public static final int CARDS7        = CARDSA+6;
-	public static final int CARDS8        = CARDSA+7;
-	public static final int CARDS9        = CARDSA+8;
-	public static final int CARDS10       = CARDSA+9;
-	public static final int CARDS11       = CARDSA+10;
-	public static final int CARDS12       = CARDSA+11;
-	public static final int CARDS13       = CARDSA+12;
-	public static final int CARDS14       = CARDSA+13;
-	public static final int CARDS15       = CARDSA+14;
-	public static final int CARDS16       = CARDSA+15;
+	public static final int CARDS_NAZRIN_GOLD_MONEY = CARDSA+0;
+	public static final int CARDS_NAZRIN_ALCHEMY_MONEY = CARDSA+1;
+	public static final int CARDS_LIFE_CARD = CARDSA+2;
+	public static final int CARDS_KEIKI_CREATION = CARDSA+3;
+	public static final int CARDS_SHION_UCHIWA = CARDSA+4;
+	public static final int CARDS_DOREMY_SHEEP = CARDSA+5;
+	public static final int CARDS_YING_YANG_ORB = CARDSA+6;
+	public static final int CARDS_YING_YANG_ORB_NEEDLE = CARDSA+7;
+	public static final int CARDS_MINI_HAKKERO = CARDSA+8;
+	public static final int CARDS_MINI_HAKKERO_MISSILE = CARDSA+9;
+	public static final int CARDS_MAID_KNIFE = CARDSA+10;
+	public static final int CARDS_MAID_KNIFE_RICOCHET = CARDSA+11;
+	public static final int CARDS_SANAE_AMULET = CARDSA+12;
+	public static final int CARDS_SANAE_AMULET_ALT = CARDSA+13;
+	public static final int CARDS_HALF_GHOST = CARDSA+14;
+	public static final int CARDS_HALF_GHOST_SPARE = CARDSA+15;
 
 	static {
 		for (int i = CARDSA; i < CARDSA+16; i++)
@@ -874,22 +873,22 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int CARDSB       =                               xy(1, 34);  //16 slots
-	public static final int CARDS17       = CARDSB+0;
-	public static final int CARDS18       = CARDSB+1;
-	public static final int CARDS19       = CARDSB+2;
-	public static final int CARDS20       = CARDSB+3;
-	public static final int CARDS21       = CARDSB+4;
-	public static final int CARDS22       = CARDSB+5;
-	public static final int CARDS23       = CARDSB+6;
-	public static final int CARDS24       = CARDSB+7;
-	public static final int CARDS25       = CARDSB+8;
-	public static final int CARDS26       = CARDSB+9;
-	public static final int CARDS27       = CARDSB+10;
-	public static final int CARDS28       = CARDSB+11;
-	public static final int CARDS29       = CARDSB+12;
-	public static final int CARDS30       = CARDSB+13;
-	public static final int CARDS31       = CARDSB+14;
-	public static final int CARDS32       = CARDSB+15;
+	public static final int CARDS_SHANGHAI_DOLL = CARDSB+0;
+	public static final int CARDS_ICE_FAIRY = CARDSB+1;
+	public static final int CARDS_STAR_CARD = CARDSB+2;
+	public static final int CARDS_LUNA_CARD = CARDSB+3;
+	public static final int CARDS_SUNNY_CARD = CARDSB+4;
+	public static final int CARDS_LARVA_SCALE = CARDSB+5;
+	public static final int CARDS_NEMUNO_KNIFE = CARDSB+6;
+	public static final int CARDS_SEIRAN_BLEEDING_HAMMER = CARDSB+7;
+	public static final int CARDS_OKINA_BACKDOOR = CARDSB+8;
+	public static final int CARDS_ANNOYING_UFO = CARDSB+9;
+	public static final int CARDS_ANCIENT_MAGATAMA = CARDSB+10;
+	public static final int CARDS_SHOU_PAGODA = CARDSB+11;
+	public static final int CARDS_SEKIBANKI_HEAD = CARDSB+12;
+	public static final int CARDS_TEACUP_REIMU = CARDSB+13;
+	public static final int CARDS_TEACUP_MARISA = CARDSB+14;
+	public static final int CARDS_BLANK_CARD = CARDSB+15;
 
 	static {
 		for (int i = CARDSB; i < CARDSB+16; i++)
@@ -897,44 +896,44 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int CARDSC       =                               xy(1, 35);  //16 slots
-	public static final int CARDS33       = CARDSC+0;
-	public static final int CARDS34       = CARDSC+1;
-	public static final int CARDS35       = CARDSC+2;
-	public static final int CARDS36       = CARDSC+3;
-	public static final int CARDS37       = CARDSC+4;
-	public static final int CARDS38       = CARDSC+5;
-	public static final int CARDS39       = CARDSC+6;
-	public static final int CARDS40       = CARDSC+7;
-	public static final int CARDS41       = CARDSC+8;
-	public static final int CARDS42       = CARDSC+9;
-	public static final int CARDS43       = CARDSC+10;
-	public static final int CARDS44       = CARDSC+11;
-	public static final int CARDS45       = CARDSC+12;
-	public static final int CARDS46       = CARDSC+13;
-	public static final int CARDS47       = CARDSC+14;
-	public static final int CARDS48       = CARDSC+15;
+	public static final int CARDS_NITORI_DILEMMA = CARDSC+0;
+	public static final int CARDS_RINGO_BRAND_DANGO = CARDSC+1;
+	public static final int CARDS_HIJIRI_SUTRA = CARDSC+2;
+	public static final int CARDS_FLANDRE_DESTRUCTION = CARDSC+3;
+	public static final int CARDS_DRAGON_PASSAGE = CARDSC+4;
+	public static final int CARDS_AUNN_HOUNDS = CARDSC+5;
+	public static final int CARDS_GALE_GETA = CARDSC+6;
+	public static final int CARDS_EIRIN_ELIXIR = CARDSC+7;
+	public static final int CARDS_MINORIKO_CROP = CARDSC+8;
+	public static final int CARDS_PHOENIX_TAIL = CARDSC+9;
+	public static final int CARDS_EIKI_MONEY = CARDSC+10;
+	public static final int CARDS_MISER_ADVICE = CARDSC+11;
+	public static final int CARDS_KANAKO_OFFERING = CARDSC+12;
+	public static final int CARDS_YACHIE_THREAT = CARDSC+13;
+	public static final int CARDS_KAGUYA_STASH = CARDSC+14;
+	public static final int CARDS_TEWI_FOOT = CARDSC+15;
 	static {
 		for (int i = CARDSC; i < CARDSC+16; i++)
 			assignItemRect(i, 12, 16);
 	}
 
 	private static final int CARDSD       =                               xy(1, 36);  //16 slots
-	public static final int CARDS49       = CARDSD+0;
-	public static final int CARDS50       = CARDSD+1;
-	public static final int CARDS51       = CARDSD+2;
-	public static final int CARDS52       = CARDSD+3;
-	public static final int CARDS53       = CARDSD+4;
-	public static final int CARDS54       = CARDSD+5;
-	public static final int CARDS55       = CARDSD+6;
-	public static final int CARDS56       = CARDSD+7;
-	public static final int CARDS57       = CARDSD+8;
-	public static final int CARDS58       = CARDSD+9;
-	public static final int CARDS59       = CARDSD+10;
-	public static final int CARDS60       = CARDSD+11;
-	public static final int CARDS61       = CARDSD+12;
-	public static final int CARDS62       = CARDSD+13;
-	public static final int CARDS63       = CARDSD+14;
-	public static final int CARDS64       = CARDSD+15;
+	public static final int CARDS_PEBBLE_HAT = CARDSD+0;
+	public static final int CARDS_DANMAKU_GHOST = CARDSD+1;
+	public static final int CARDS_SUWAKO_FROG = CARDSD+2;
+	public static final int CARDS_DRAGON_PIPE = CARDSD+3;
+	public static final int CARDS_MOMOYO_CENTIPEDE = CARDSD+4;
+	public static final int CARDS_SUIKA_GOURD = CARDSD+5;
+	public static final int CARDS_LIFE_BURNING_TORCH = CARDSD+6;
+	public static final int CARDS_IRRESISTIBLE_FAN = CARDSD+7;
+	public static final int CARDS_PRISTINE_CONFIDENCE = CARDSD+8;
+	public static final int CARDS_SCREEN_BORDER = CARDSD+9;
+	public static final int CARDS_MIRACLE_MALLET = CARDSD+10;
+	public static final int CARDS_TENSHI_KEYSTONE = CARDSD+11;
+	public static final int CARDS_CLOWNPIECE_MOON = CARDSD+12;
+	public static final int CARDS_MIKO_AUTHORITY = CARDSD+13;
+	public static final int CARDS_VAMPIRE_FANG = CARDSD+14;
+	public static final int CARDS_UNDERGROUND_SUN = CARDSD+15;
 
 	static {
 		for (int i = CARDSD; i < CARDSD+16; i++)
@@ -942,12 +941,12 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int CARDSE       =                               xy(1, 37);  //17 slots
-	public static final int CARDS65       = CARDSE+0;
-	public static final int CARDS66       = CARDSE+1;
-	public static final int CARDS67       = CARDSE+2;
-	public static final int CARDS68       = CARDSE+3;
-	public static final int CARDS69       = CARDSE+4;
-	public static final int CARDS70       = CARDSE+5;
+	public static final int CARDS_ITEM_SEASON = CARDSE+0;
+	public static final int CARDS_SPIRIT_BOTTLE = CARDSE+1;
+	public static final int CARDS_MEGUMU_BARLEY_RICE = CARDSE+2;
+	public static final int CARDS_SMELT_SCALE = CARDSE+3;
+	public static final int CARDS_TOO_HONEST_SIGNPOST = CARDSE+4;
+	public static final int CARDS_Komachi_Detour = CARDSE+5;
 	public static final int CARDS71       = CARDSE+6;
 	public static final int CARDS72       = CARDSE+7;
 	public static final int CARDS73       = CARDSE+8;

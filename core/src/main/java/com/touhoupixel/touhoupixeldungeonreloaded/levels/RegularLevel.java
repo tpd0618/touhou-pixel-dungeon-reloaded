@@ -183,10 +183,10 @@ public abstract class RegularLevel extends Level {
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.25f);
 		}
-		if (Statistics.card56){
+		if (Statistics.cardIrresistibleFan){
 			mobs = (int)Math.ceil(mobs * 1.25f);
 		}
-		if (Statistics.card5){
+		if (Statistics.cardShionUchiwa){
 			mobs = (int)Math.ceil(mobs * 0.85f);
 		}
 		if (isCard_FightInsteadOfMe){
@@ -320,13 +320,13 @@ public abstract class RegularLevel extends Level {
 
 	@Override
 	protected void createItems() {
-		int nItems = 10;
+		int nItems = 12; // there was 9
 
 		if (Statistics.difficulty == 6){
 			nItems -= 1;
 		}
 
-		if (Statistics.card65) {
+		if (Statistics.cardItemSeason) {
 			nItems += 1;
 		}
 

@@ -23,8 +23,13 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaAra;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaKusi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaNigi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.MitamaSaki;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
@@ -44,13 +49,14 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dar
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.TippedDart;
 import com.touhoupixel.touhoupixeldungeonreloaded.journal.Document;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -78,10 +84,36 @@ public class Heap implements Bundlable {
 
 	public LinkedList<Item> items = new LinkedList<>();
 
-	public void open( Hero hero ) {
+	public void open( Hero heroine ) {
 		switch (type) {
 			case TOMB:
-				Wraith.spawnAround( hero.pos );
+				int mod = 5;
+				if (Statistics.cardSuikaGourd){
+					mod = 2;
+					Item item = new SpyGlass().quantity(Random.Int(1,2));
+					if (!item.collect()) Dungeon.level.drop(item, heroine.pos).sprite.drop();
+					else GameScene.pickUp(item, heroine.pos);
+				}
+				if (Random.Int(mod) == 0) {
+					switch (Random.Int(4)) {
+						case 0:
+						default:
+							MitamaAra.spawnAround(heroine.pos);
+							break;
+						case 1:
+							MitamaKusi.spawnAround(heroine.pos);
+							break;
+						case 2:
+							MitamaNigi.spawnAround(heroine.pos);
+							break;
+						case 3:
+							MitamaSaki.spawnAround(heroine.pos);
+							break;
+					}
+				} else {
+					Wraith.spawnAround(heroine.pos);
+					break;
+				}
 				break;
 			case REMAINS:
 			case SKELETON:
@@ -92,9 +124,9 @@ public class Heap implements Bundlable {
 
 		if (haunted){
 			if (Wraith.spawnAt( pos ) == null) {
-				hero.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
-				hero.damage( hero.HP / 2, this );
-				if (!hero.isAlive()){
+				heroine.sprite.emitter().burst( ShadowParticle.CURSE, 6 );
+				heroine.damage( heroine.HP / 2, this );
+				if (!heroine.isAlive()){
 					Dungeon.fail(Wraith.class);
 					GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", Messages.get(Wraith.class, "name"))));
 				}

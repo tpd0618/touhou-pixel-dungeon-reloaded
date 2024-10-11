@@ -44,9 +44,6 @@ public class PotionOfLightHealing extends Potion {
 	@Override
 	public void apply(Hero heroine) {
 		identify();
-		if (Statistics.card26){
-			Buff.detach(curUser, Degrade.class);
-		}
 		if (heroine.buff(Inversion.class) != null) {
 			heroine.damage(heroine.HT / 2, heroine);
 			if (heroine == Dungeon.heroine && !heroine.isAlive()) {

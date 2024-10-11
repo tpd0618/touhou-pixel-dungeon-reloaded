@@ -33,7 +33,7 @@ public class MiniHakkero extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS9;
+        image = ItemSpriteSheet.CARDS_MINI_HAKKERO;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MiniHakkero extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card9) {
-            Statistics.card9 = true;
+        if (!Statistics.cardMiniHakkero) {
+            Statistics.cardMiniHakkero = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

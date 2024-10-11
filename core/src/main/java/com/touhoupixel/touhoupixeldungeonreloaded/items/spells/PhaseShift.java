@@ -47,7 +47,7 @@ public class PhaseShift extends TargetedSpell {
 		final Char ch = Actor.findChar(bolt.collisionPos);
 		
 		if (ch != null) {
-			if (ScrollOfTeleportation.teleportChar(ch)){
+			if (ScrollOfTeleportation.randomTeleportChar(ch)){
 
 				if (ch instanceof Mob) {
 					if (((Mob) ch).state == ((Mob) ch).HUNTING) ((Mob) ch).state = ((Mob) ch).WANDERING;

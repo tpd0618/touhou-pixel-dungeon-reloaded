@@ -33,7 +33,7 @@ public class NitoriDilemma extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS33;
+        image = ItemSpriteSheet.CARDS_NITORI_DILEMMA;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class NitoriDilemma extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card33) {
-            Statistics.card33 = true;
+        if (!Statistics.cardNitoriDilemma) {
+            Statistics.cardNitoriDilemma = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

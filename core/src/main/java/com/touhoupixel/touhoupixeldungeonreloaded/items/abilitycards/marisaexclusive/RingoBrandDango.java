@@ -33,7 +33,7 @@ public class RingoBrandDango extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS34;
+        image = ItemSpriteSheet.CARDS_RINGO_BRAND_DANGO;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class RingoBrandDango extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card34) {
-            Statistics.card34 = true;
+        if (!Statistics.cardRingoBrandDango) {
+            Statistics.cardRingoBrandDango = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

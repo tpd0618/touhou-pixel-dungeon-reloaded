@@ -33,7 +33,7 @@ public class TewiFoot extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS48;
+        image = ItemSpriteSheet.CARDS_TEWI_FOOT;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class TewiFoot extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card48) {
-            Statistics.card48 = true;
+        if (!Statistics.cardTewiFoot) {
+            Statistics.cardTewiFoot = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

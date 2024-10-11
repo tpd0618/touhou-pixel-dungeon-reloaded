@@ -158,7 +158,7 @@ public class UpgradeCard extends Item {
 				Statistics.upgradesUsed++;
 				curUser.spendAndNext(1f);
 
-				if (Statistics.card30 && Random.Int(2) == 0) {
+				if (Statistics.cardTeacupReimu && Random.Int(2) == 0) {
 					curUser.HP = Math.min(curUser.HP + Dungeon.floor, curUser.HT);
 					Dungeon.heroine.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.2f, 3 );
 				}

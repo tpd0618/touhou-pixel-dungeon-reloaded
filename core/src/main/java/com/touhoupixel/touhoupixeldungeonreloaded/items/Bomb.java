@@ -26,7 +26,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.SPDSettings;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Zen;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Utsuho;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
@@ -131,8 +134,12 @@ public class Bomb extends Item {
         }
         return super.doPickUp(hero, pos);
     }
-
     public void explode(int cell){
+        explode( cell, Random.NormalIntRange(20 + Dungeon.scalingFloor()*5, 40 + Dungeon.scalingFloor()*9));
+    }
+
+    public void explode(int cell, int explosionDamage){
+
         //We're blowing up, so no need for a fuse anymore.
         this.fuse = null;
 
@@ -179,7 +186,18 @@ public class Bomb extends Item {
                     continue;
                 }
 
-                int dmg = Random.NormalIntRange(15 + 2*Dungeon.scalingFloor(), 30 + 4*Dungeon.scalingFloor());
+                int dmg = explosionDamage;
+                if (ch instanceof Mob){
+                    dmg *= 0.8f;
+                }
+
+                if (ch.buff(Zen.class) != null){
+                    dmg *= 0;
+                }
+
+                if (ch.buff(Onigiri.class) != null){
+                    dmg *= 3;
+                }
 
                 //those not at the center of the blast take less damage
                 if (ch.pos != cell){

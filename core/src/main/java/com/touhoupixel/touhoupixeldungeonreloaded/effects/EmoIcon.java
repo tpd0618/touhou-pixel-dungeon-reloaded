@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.effects;
 
+import static java.lang.Math.min;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoomedZone;
@@ -57,7 +59,7 @@ public class EmoIcon extends Image {
 		
 		if (visible) {
 			if (growing) {
-				scale.set( Math.min(scale.x + Game.elapsed * timeScale, maxSize ));
+				scale.set( min(scale.x + Game.elapsed * timeScale, maxSize ));
 				if (scale.x >= maxSize) {
 					growing = false;
 				}
@@ -120,13 +122,6 @@ public class EmoIcon extends Image {
 			
 			maxSize = 1.25f;
 			timeScale = 1;
-
-			if (Dungeon.heroine.buff(DoomedZone.class) != null){
-				Dungeon.heroine.HP = 1;
-				GameScene.flash(-65536);
-				Sample.INSTANCE.play( Assets.Sounds.BLAST );
-				GLog.w(Messages.get(Zanmu.class, "doomed_zone"));
-			}
 			
 			origin.set( 2.5f, height - 2.5f );
 			scale.set( Random.Float( 1, maxSize ) );

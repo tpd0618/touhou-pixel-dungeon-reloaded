@@ -144,14 +144,14 @@ public class WndTradeItem extends WndInfoItem {
 		RustyRoukanken sword = heroine.belongings.getItem(RustyRoukanken.class);
 		if (sword != null) {
 			if (!(sword.isEquipped(heroine))){
-				if (!Statistics.card59) {
+				if (!Statistics.cardMiracleMallet) {
 					miracleMalletSpecialCondition = true;
 				}
 			}
 		}
 		TimekeepersHourglass tH = heroine.belongings.getItem(TimekeepersHourglass.class);
 		if (tH != null) {
-				if (!Statistics.card64) {
+				if (!Statistics.cardUndergroundSun) {
 					undegroundSunSpecialCondition = true;
 				}
 		}

@@ -33,7 +33,7 @@ public class PristineConfidence extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS57;
+        image = ItemSpriteSheet.CARDS_PRISTINE_CONFIDENCE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class PristineConfidence extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card57) {
-            Statistics.card57 = true;
+        if (!Statistics.cardPristineConfidence) {
+            Statistics.cardPristineConfidence = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

@@ -33,7 +33,7 @@ public class MinorikoCrop extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS41;
+        image = ItemSpriteSheet.CARDS_MINORIKO_CROP;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MinorikoCrop extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card41) {
-            Statistics.card41 = true;
+        if (!Statistics.cardMinorikoCrop) {
+            Statistics.cardMinorikoCrop = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

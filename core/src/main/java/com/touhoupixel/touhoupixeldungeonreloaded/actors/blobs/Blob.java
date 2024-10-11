@@ -196,7 +196,7 @@ public class Blob extends Actor {
 						off[cell] = 0;
 					}
 				}
-				if ((Dungeon.heroine == Actor.findChar(cell)) && Statistics.card48 && isGas) {
+				if ((Dungeon.heroine == Actor.findChar(cell)) && Statistics.cardTewiFoot && isGas) {
 					Buff.prolong(Dungeon.heroine, DoubleSpeed.class, 1f);
 				}
 			}

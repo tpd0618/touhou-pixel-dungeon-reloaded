@@ -33,7 +33,7 @@ public class IrresistibleFan extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS56;
+        image = ItemSpriteSheet.CARDS_IRRESISTIBLE_FAN;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class IrresistibleFan extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card56) {
-            Statistics.card56 = true;
+        if (!Statistics.cardIrresistibleFan) {
+            Statistics.cardIrresistibleFan = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

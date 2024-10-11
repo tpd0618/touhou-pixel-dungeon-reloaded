@@ -33,7 +33,7 @@ public class ShionUchiwa extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS5;
+        image = ItemSpriteSheet.CARDS_SHION_UCHIWA;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class ShionUchiwa extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card5) {
-            Statistics.card5 = true;
+        if (!Statistics.cardShionUchiwa) {
+            Statistics.cardShionUchiwa = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

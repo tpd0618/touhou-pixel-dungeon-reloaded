@@ -19,7 +19,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
-public class Shizuha extends MobWithSpellcard {
+public class Shizuha extends Mob {
 
     {
         spriteClass = ShizuhaSprite.class;

@@ -33,7 +33,7 @@ public class MomoyoCentipede extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS53;
+        image = ItemSpriteSheet.CARDS_MOMOYO_CENTIPEDE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MomoyoCentipede extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card53) {
-            Statistics.card53 = true;
+        if (!Statistics.cardMomoyoCentipede) {
+            Statistics.cardMomoyoCentipede = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

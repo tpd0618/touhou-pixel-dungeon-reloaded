@@ -36,7 +36,7 @@ public class MiracleMallet extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS59;
+        image = ItemSpriteSheet.CARDS_MIRACLE_MALLET;
 
         defaultAction = AC_DRINK;
 
@@ -49,7 +49,7 @@ public class MiracleMallet extends Abilitycards {
         RustyRoukanken sword = heroine.belongings.getItem(RustyRoukanken.class);
         if (sword != null) {
         if (!(sword.isEquipped(Dungeon.heroine))){
-                if (!Statistics.card59) {
+                if (!Statistics.cardMiracleMallet) {
                     sword.detach(heroine.belongings.backpack);
                     Roukanken newSword = new Roukanken();
                     newSword.identify();
@@ -59,7 +59,7 @@ public class MiracleMallet extends Abilitycards {
                     newSword.collect();
                     updateQuickslot();
                     sword = null;
-                    Statistics.card59 = true;
+                    Statistics.cardMiracleMallet = true;
                     return super.doPickUp(heroine, pos);
                 }
             }

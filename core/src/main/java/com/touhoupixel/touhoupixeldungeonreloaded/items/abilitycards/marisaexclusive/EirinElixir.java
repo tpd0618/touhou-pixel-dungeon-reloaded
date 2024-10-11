@@ -33,7 +33,7 @@ public class EirinElixir extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS40;
+        image = ItemSpriteSheet.CARDS_EIRIN_ELIXIR;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class EirinElixir extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card40) {
-            Statistics.card40 = true;
+        if (!Statistics.cardEirinElixir) {
+            Statistics.cardEirinElixir = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

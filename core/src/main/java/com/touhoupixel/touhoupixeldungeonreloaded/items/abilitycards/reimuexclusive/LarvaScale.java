@@ -33,7 +33,7 @@ public class LarvaScale extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS22;
+        image = ItemSpriteSheet.CARDS_LARVA_SCALE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,9 @@ public class LarvaScale extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card22) {
-            Statistics.card22 = true;
+        if (!Statistics.cardLarvaScale) {
+            Statistics.cardLarvaScale = true;
+            heroine.updateHT(false);
             return super.doPickUp(heroine, pos);
         } else return false;
     }

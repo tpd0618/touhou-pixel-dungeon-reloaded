@@ -33,7 +33,7 @@ public class LifeCard extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS3;
+        image = ItemSpriteSheet.CARDS_LIFE_CARD;
 
         defaultAction = AC_DRINK;
 
@@ -44,7 +44,7 @@ public class LifeCard extends Abilitycards {
     //allows multiple purchases
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        Statistics.card3 = true;
+        Statistics.cardLifeCard = true;
         Statistics.life += 1;
         return super.doPickUp(heroine, pos);
     }

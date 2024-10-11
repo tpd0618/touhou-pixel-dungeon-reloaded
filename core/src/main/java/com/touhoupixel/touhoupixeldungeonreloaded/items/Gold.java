@@ -63,12 +63,13 @@ public class Gold extends Item {
 
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
+		Statistics.goldPickedup++;
 
-		if (Statistics.card69) {
+		if (Statistics.cardTooHonestSignpost) {
 			Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
 		}
 
-		if (Statistics.card70) {
+		if (Statistics.cardKomachiDetour) {
 			Buff.prolong(heroine, ReachIncrease.class, ReachIncrease.DURATION);
 		}
 

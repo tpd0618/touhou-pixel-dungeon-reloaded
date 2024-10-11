@@ -33,7 +33,7 @@ public class PebbleHat extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS49;
+        image = ItemSpriteSheet.CARDS_PEBBLE_HAT;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class PebbleHat extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card49) {
-            Statistics.card49 = true;
+        if (!Statistics.cardPebbleHat) {
+            Statistics.cardPebbleHat = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

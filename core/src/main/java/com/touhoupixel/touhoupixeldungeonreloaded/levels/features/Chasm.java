@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Tenshi;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
@@ -71,7 +70,7 @@ public class Chasm implements Hero.Doom {
 									if (index == 0) {
 										if (Dungeon.heroine.pos == heroPos) {
 											if (Dungeon.floor == 1){
-												ScrollOfTeleportation.teleportChar(heroine);
+												ScrollOfTeleportation.randomTeleportChar(heroine);
 												GLog.n( Messages.get(Chasm.class, "floor_one_fall") );
 											} else {
 												jumpConfirmed = true;
@@ -84,7 +83,7 @@ public class Chasm implements Hero.Doom {
 					);
 				} else if (Dungeon.heroine.pos == heroPos) {
 					if (Dungeon.floor == 1){
-						ScrollOfTeleportation.teleportChar(heroine);
+						ScrollOfTeleportation.randomTeleportChar(heroine);
 						GLog.n( Messages.get(Chasm.class, "floor_one_fall") );
 					} else {
 						jumpConfirmed = true;
@@ -112,7 +111,7 @@ public class Chasm implements Hero.Doom {
 				InterlevelScene.fallIntoPit = false;
 			}
 			if (Dungeon.floor == 1) {
-				ScrollOfTeleportation.teleportChar(Dungeon.heroine);
+				ScrollOfTeleportation.randomTeleportChar(Dungeon.heroine);
 				GLog.n(Messages.get(Chasm.class, "floor_one_fall"));
 			} else {
 				Dungeon.heroine.interrupt();

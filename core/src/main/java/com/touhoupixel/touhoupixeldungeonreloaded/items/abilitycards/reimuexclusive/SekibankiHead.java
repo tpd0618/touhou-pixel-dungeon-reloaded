@@ -33,7 +33,7 @@ public class SekibankiHead extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS29;
+        image = ItemSpriteSheet.CARDS_SEKIBANKI_HEAD;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class SekibankiHead extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card29) {
-            Statistics.card29 = true;
+        if (!Statistics.cardSekibankiHead) {
+            Statistics.cardSekibankiHead = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

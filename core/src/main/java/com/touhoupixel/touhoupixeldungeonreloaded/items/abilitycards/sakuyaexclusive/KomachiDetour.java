@@ -33,7 +33,7 @@ public class KomachiDetour extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS70;
+        image = ItemSpriteSheet.CARDS_Komachi_Detour;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class KomachiDetour extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card70) {
-            Statistics.card70 = true;
+        if (!Statistics.cardKomachiDetour) {
+            Statistics.cardKomachiDetour = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

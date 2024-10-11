@@ -33,7 +33,7 @@ public class KanakoOffering extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS45;
+        image = ItemSpriteSheet.CARDS_KANAKO_OFFERING;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class KanakoOffering extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card45) {
-            Statistics.card45 = true;
+        if (!Statistics.cardKanakoOffering) {
+            Statistics.cardKanakoOffering = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

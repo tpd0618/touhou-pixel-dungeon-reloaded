@@ -33,7 +33,7 @@ public class AncientMagatama extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS27;
+        image = ItemSpriteSheet.CARDS_ANCIENT_MAGATAMA;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class AncientMagatama extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card27) {
-            Statistics.card27 = true;
+        if (!Statistics.cardAncientMagatama) {
+            Statistics.cardAncientMagatama = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

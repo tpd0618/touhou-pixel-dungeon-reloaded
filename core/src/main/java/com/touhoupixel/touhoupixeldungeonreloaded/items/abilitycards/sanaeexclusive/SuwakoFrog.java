@@ -33,7 +33,7 @@ public class SuwakoFrog extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS51;
+        image = ItemSpriteSheet.CARDS_SUWAKO_FROG;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class SuwakoFrog extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card51) {
-            Statistics.card51 = true;
+        if (!Statistics.cardSuwakoFrog) {
+            Statistics.cardSuwakoFrog = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }
