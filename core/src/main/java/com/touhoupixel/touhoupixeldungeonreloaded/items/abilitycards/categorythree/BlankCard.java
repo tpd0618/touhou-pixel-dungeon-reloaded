@@ -33,7 +33,7 @@ public class BlankCard extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS32;
+        image = ItemSpriteSheet.CARDS_BLANK_CARD;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class BlankCard extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card32) {
-            Statistics.card32 = true;
+        if (!Statistics.cardBlankCard) {
+            Statistics.cardBlankCard = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

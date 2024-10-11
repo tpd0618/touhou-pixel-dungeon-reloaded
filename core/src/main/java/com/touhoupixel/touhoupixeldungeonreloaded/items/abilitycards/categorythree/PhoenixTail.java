@@ -33,7 +33,7 @@ public class PhoenixTail extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS42;
+        image = ItemSpriteSheet.CARDS_PHOENIX_TAIL;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class PhoenixTail extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card42) {
-            Statistics.card42 = true;
+        if (!Statistics.cardPhoenixTail) {
+            Statistics.cardPhoenixTail = true;
             Statistics.life += 3;
             return super.doPickUp(heroine, pos);
         } else return false;

@@ -33,7 +33,7 @@ public class HalfGhostSpare extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS16;
+        image = ItemSpriteSheet.CARDS_HALF_GHOST_SPARE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class HalfGhostSpare extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card16) {
-            Statistics.card16 = true;
+        if (!Statistics.cardHalfGhostSpare) {
+            Statistics.cardHalfGhostSpare = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

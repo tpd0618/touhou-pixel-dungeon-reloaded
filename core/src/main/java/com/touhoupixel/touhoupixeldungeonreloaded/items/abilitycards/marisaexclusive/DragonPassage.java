@@ -33,7 +33,7 @@ public class DragonPassage extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS37;
+        image = ItemSpriteSheet.CARDS_DRAGON_PASSAGE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class DragonPassage extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card37) {
-            Statistics.card37 = true;
+        if (!Statistics.cardDragonPassage) {
+            Statistics.cardDragonPassage = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

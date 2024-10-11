@@ -35,7 +35,7 @@ public class KeikiCreation extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS4;
+        image = ItemSpriteSheet.CARDS_KEIKI_CREATION;
 
         defaultAction = AC_DRINK;
 
@@ -46,7 +46,7 @@ public class KeikiCreation extends Abilitycards {
     //allows multiple purchases
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        Statistics.card4 = true;
+        Statistics.cardKeikiCreation = true;
         Dungeon.level.drop(new SpyGlass().quantity(10), Dungeon.heroine.pos).sprite.drop();
         return super.doPickUp(heroine, pos);
     }

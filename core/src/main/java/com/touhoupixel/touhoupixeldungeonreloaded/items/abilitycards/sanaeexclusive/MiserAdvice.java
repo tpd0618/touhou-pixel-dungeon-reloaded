@@ -33,7 +33,7 @@ public class MiserAdvice extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS44;
+        image = ItemSpriteSheet.CARDS_MISER_ADVICE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MiserAdvice extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card44) {
-            Statistics.card44 = true;
+        if (!Statistics.cardMiserAdvice) {
+            Statistics.cardMiserAdvice = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

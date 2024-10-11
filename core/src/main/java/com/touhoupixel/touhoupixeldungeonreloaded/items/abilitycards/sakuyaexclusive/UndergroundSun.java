@@ -36,7 +36,7 @@ public class UndergroundSun extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS64;
+        image = ItemSpriteSheet.CARDS_UNDERGROUND_SUN;
 
         defaultAction = AC_DRINK;
 
@@ -46,8 +46,8 @@ public class UndergroundSun extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card64) {
-            Statistics.card64 = true;
+        if (!Statistics.cardUndergroundSun) {
+            Statistics.cardUndergroundSun = true;
                 TimekeepersHourglass tH = Dungeon.heroine.belongings.getItem(TimekeepersHourglass.class);
                 tH.buyCard64AndAffect();
                 Item.updateQuickslot();

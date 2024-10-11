@@ -33,7 +33,7 @@ public class MegumuBarleyRice extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS67;
+        image = ItemSpriteSheet.CARDS_MEGUMU_BARLEY_RICE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MegumuBarleyRice extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card67) {
-            Statistics.card67 = true;
+        if (!Statistics.cardMegumuBarleyRice) {
+            Statistics.cardMegumuBarleyRice = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

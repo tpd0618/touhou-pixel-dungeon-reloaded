@@ -33,7 +33,7 @@ public class ItemSeason extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS65;
+        image = ItemSpriteSheet.CARDS_ITEM_SEASON;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class ItemSeason extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card65) {
-            Statistics.card65 = true;
+        if (!Statistics.cardItemSeason) {
+            Statistics.cardItemSeason = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

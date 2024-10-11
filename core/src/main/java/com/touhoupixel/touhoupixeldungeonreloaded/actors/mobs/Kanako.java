@@ -73,11 +73,11 @@ public class Kanako extends Mob {
     }
 
     @Override
-    public String defenseVerb() {
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+    public String defenseVerb(Char attaker) {
+        if (attaker == Dungeon.heroine) {
             Buff.prolong(enemy, Onigiri.class, Onigiri.DURATION);
-            GLog.w(Messages.get(this, "kanako"));
+            GLog.w(Messages.get(Kanako.class, "kanako"));
         }
-        return Messages.get(this, "def_verb");
+        return super.defenseVerb(attaker);
     }
 }

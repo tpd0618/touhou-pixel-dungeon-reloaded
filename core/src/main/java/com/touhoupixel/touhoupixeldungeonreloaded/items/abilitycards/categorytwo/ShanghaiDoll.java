@@ -33,7 +33,7 @@ public class ShanghaiDoll extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS17;
+        image = ItemSpriteSheet.CARDS_SHANGHAI_DOLL;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class ShanghaiDoll extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card17) {
-            Statistics.card17 = true;
+        if (!Statistics.cardShanghaiDoll) {
+            Statistics.cardShanghaiDoll = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

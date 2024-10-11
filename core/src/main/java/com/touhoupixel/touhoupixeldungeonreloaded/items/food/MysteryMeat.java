@@ -54,28 +54,25 @@ public class MysteryMeat extends Food {
 	}
 
 	public static void effect(Hero heroine){
-		if (Statistics.card22){
-			Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
-		} else {
-			switch (Random.Int(5)) {
-				case 0:
-					GLog.w(Messages.get(MysteryMeat.class, "hot"));
-					Buff.affect(heroine, Burning.class).reignite(heroine);
-					break;
-				case 1:
-					GLog.w(Messages.get(MysteryMeat.class, "legs"));
-					Buff.prolong(heroine, Roots.class, Roots.DURATION * 2f);
-					break;
-				case 2:
-					GLog.w(Messages.get(MysteryMeat.class, "not_well"));
-					Buff.affect(heroine, Poison.class).set(heroine.HT / 10);
-					break;
-				case 3:
-					GLog.w(Messages.get(MysteryMeat.class, "stuffed"));
-					Buff.prolong(heroine, Slow.class, Slow.DURATION);
-					break;
-			}
+		switch (Random.Int(5)) {
+			case 0:
+				GLog.w(Messages.get(MysteryMeat.class, "hot"));
+				Buff.affect(heroine, Burning.class).reignite(heroine);
+				break;
+			case 1:
+				GLog.w(Messages.get(MysteryMeat.class, "legs"));
+				Buff.prolong(heroine, Roots.class, Roots.DURATION * 2f);
+				break;
+			case 2:
+				GLog.w(Messages.get(MysteryMeat.class, "not_well"));
+				Buff.affect(heroine, Poison.class).set(heroine.HT / 10);
+				break;
+			case 3:
+				GLog.w(Messages.get(MysteryMeat.class, "stuffed"));
+				Buff.prolong(heroine, Slow.class, Slow.DURATION);
+				break;
 		}
+
 	}
 	
 	public static class PlaceHolder extends MysteryMeat {

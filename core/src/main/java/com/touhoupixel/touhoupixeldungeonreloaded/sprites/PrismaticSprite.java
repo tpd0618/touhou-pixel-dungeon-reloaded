@@ -53,7 +53,8 @@ public class PrismaticSprite extends MobSprite {
 		idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
 		
 		run = new Animation( 20, true );
-		run.frames( film, 2, 3, 4, 5, 6, 7 );
+		run.frames( film, 2, 3, 4, 5, 6, 6 ); // 6 because onigiri
+		// TODO make for onigiri 8th frame
 		
 		die = new Animation( 20, false );
 		die.frames( film, 0 );

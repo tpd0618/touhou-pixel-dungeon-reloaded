@@ -121,7 +121,7 @@ public class Utsuho extends Mob implements Callback {
         spend( TIME_TO_ZAP );
 
         if (hit( this, enemy, true )) {
-            new Bomb().explode(enemy.pos);
+            new Bomb().explode(enemy.pos, Random.NormalIntRange(110, 150));
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );

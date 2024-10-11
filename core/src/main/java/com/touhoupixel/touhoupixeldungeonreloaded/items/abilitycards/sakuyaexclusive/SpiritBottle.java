@@ -33,7 +33,7 @@ public class SpiritBottle extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS66;
+        image = ItemSpriteSheet.CARDS_SPIRIT_BOTTLE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class SpiritBottle extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card66) {
-            Statistics.card66 = true;
+        if (!Statistics.cardSpiritBottle) {
+            Statistics.cardSpiritBottle = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

@@ -33,7 +33,7 @@ public class MikoAuthority extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS62;
+        image = ItemSpriteSheet.CARDS_MIKO_AUTHORITY;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class MikoAuthority extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card62) {
-            Statistics.card62 = true;
+        if (!Statistics.cardMikoAuthority) {
+            Statistics.cardMikoAuthority = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

@@ -105,29 +105,9 @@ public class ScrollOfTeleportation extends ExoticScroll {
 	}
 
 	public static boolean teleportHero(Hero heroine) {
-		return teleportChar(heroine);
+		return randomTeleportChar(heroine);
 	}
-
-	public static boolean teleportChar(Char ch) {
-
-		if (!(Dungeon.level instanceof RegularLevel)) {
-			return teleportInNonRegularLevel(ch, false);
-		}
-
-		if (Char.hasProp(ch, Char.Property.IMMOVABLE)) {
-			GLog.w(Messages.get(ScrollOfTeleportation.class, "no_tele"));
-			return false;
-		}
-
-		int count = 20;
-		int pos;
-		do {
-			pos = Dungeon.level.randomRespawnCell(ch);
-			if (count-- <= 0) {
-				break;
-			}
-		} while (pos == -1 || Dungeon.level.secret[pos]);
-
+	public static boolean teleportChar(Char ch, int pos){
 		if (pos == -1) {
 
 			GLog.w(Messages.get(ScrollOfTeleportation.class, "no_tele"));
@@ -148,6 +128,29 @@ public class ScrollOfTeleportation extends ExoticScroll {
 			return true;
 
 		}
+	}
+
+	public static boolean randomTeleportChar(Char ch) {
+
+		if (!(Dungeon.level instanceof RegularLevel)) {
+			return teleportInNonRegularLevel(ch, false);
+		}
+
+		if (Char.hasProp(ch, Char.Property.IMMOVABLE)) {
+			GLog.w(Messages.get(ScrollOfTeleportation.class, "no_tele"));
+			return false;
+		}
+
+		int count = 20;
+		int pos;
+		do {
+			pos = Dungeon.level.randomRespawnCell(ch);
+			if (count-- <= 0) {
+				break;
+			}
+		} while (pos == -1 || Dungeon.level.secret[pos]);
+
+		return teleportChar(ch, pos);
 	}
 
 	public static boolean teleportPreferringUnseen(Hero heroine) {
@@ -185,7 +188,7 @@ public class ScrollOfTeleportation extends ExoticScroll {
 		}
 
 		if (candidates.isEmpty()) {
-			return teleportChar(heroine);
+			return randomTeleportChar(heroine);
 		} else {
 			int pos = Random.element(candidates);
 			boolean secretDoor = false;

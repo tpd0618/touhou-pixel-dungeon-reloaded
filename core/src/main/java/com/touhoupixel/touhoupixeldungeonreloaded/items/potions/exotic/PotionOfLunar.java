@@ -6,9 +6,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inversion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.keys.IronKey;
-import com.touhoupixel.touhoupixeldungeonreloaded.journal.Notes;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
@@ -22,9 +19,6 @@ public class PotionOfLunar extends ExoticPotion {
     @Override
     public void apply( Hero heroine) {
         identify();
-        if (Statistics.card26){
-            Buff.detach(curUser, Degrade.class);
-        }
         if (heroine.buff(Inversion.class) != null) {
             heroine.damage(heroine.HT / 2, heroine);
             if (heroine == Dungeon.heroine && !heroine.isAlive()) {

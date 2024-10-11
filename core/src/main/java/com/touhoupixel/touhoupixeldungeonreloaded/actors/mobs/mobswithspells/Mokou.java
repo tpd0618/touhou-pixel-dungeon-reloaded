@@ -202,7 +202,7 @@ public class Mokou extends MobWithSpellcard implements Callback {
         spend( TIME_TO_ZAP );
 
         new BurningTrap().set(enemy.pos).activate();
-        new Bomb().explode(enemy.pos);
+        new Bomb().explode(enemy.pos, Random.Int(40, 50));
         if (enemy == Dungeon.heroine && !enemy.isAlive()) {
             Dungeon.fail( getClass() );
             GLog.n( Messages.get(this, "bolt_kill") );

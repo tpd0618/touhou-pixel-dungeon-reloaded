@@ -47,7 +47,7 @@ public class PotionOfLiquidFlame extends Potion {
 		if (Dungeon.level.heroFOV[cell]) {
 			identify();
 
-			if (Statistics.card55){
+			if (Statistics.cardLifeBurningTorch){
 				GameScene.flash(0x80FFFFFF);
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 					if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {

@@ -175,7 +175,12 @@ public class Bracelet extends KindofMisc {
 	@Override
 	public Item random() {
 		int n = 0;
-		level(n);
+		level(0);
+
+		//30% chance to be cursed
+		if (Random.Float() < 0.3f) {
+			cursed = true;
+		}
 
 		return this;
 	}
@@ -206,4 +211,29 @@ public class Bracelet extends KindofMisc {
 		}
 		return price;
 	}
+	private static final String LEVELS_TO_ID    = "levels_to_ID";
+
+	@Override
+	public void storeInBundle( Bundle bundle ) {
+		super.storeInBundle( bundle );
+		bundle.put( LEVELS_TO_ID, levelsToID );
+	}
+
+	@Override
+	public void restoreFromBundle( Bundle bundle ) {
+		super.restoreFromBundle( bundle );
+		levelsToID = bundle.getFloat( LEVELS_TO_ID );
+	}
+	public void onHeroGainExp( float levelPercent, Hero hero ){
+		if (isIdentified() || !isEquipped(hero)) return;
+		//becomes IDed after 1 level
+		levelsToID -= levelPercent;
+		if (levelsToID <= 0){
+			identify();
+			GLog.p(Messages.get(Bracelet.class, "identify"));
+		}
+	}
+	@Override
+	public boolean isUpgradable(){ return false; }
 }
+

@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
+import static java.lang.Math.min;
+
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
@@ -39,6 +41,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DismantlePressure;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoomedZone;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
@@ -65,6 +68,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
@@ -120,6 +124,7 @@ public abstract class Mob extends Char {
 	public int maxLvl = Hero.MAX_LEVEL;
 
 	protected Char enemy;
+	protected boolean lastEnemyIsHeroine = false; // for doomed zone
 	protected int enemyID = -1; //used for save/restore
 	protected boolean enemySeen;
 	protected boolean alerted = false;
@@ -137,6 +142,7 @@ public abstract class Mob extends Char {
 	private static final String STATE	= "state";
 	private static final String SEEN	= "seen";
 	private static final String TARGET	= "target";
+	private static final String LAST_ENEMY_IS_HEROINE = "last_enemy_is_heroine";
 	private static final String MAX_LVL	= "max_lvl";
 
 	private static final String ENEMY_ID	= "enemy_id";
@@ -165,6 +171,7 @@ public abstract class Mob extends Char {
 		bundle.put( TARGET, target );
 		bundle.put( MAX_LVL, maxLvl );
 		bundle.put( LEFT_TO_CONTINUE, leftToContinue);
+		bundle.put( LAST_ENEMY_IS_HEROINE, lastEnemyIsHeroine);
 
 		if (enemy != null) {
 			bundle.put(ENEMY_ID, enemy.id() );
@@ -194,6 +201,8 @@ public abstract class Mob extends Char {
 		enemySeen = bundle.getBoolean( SEEN );
 
 		target = bundle.getInt( TARGET );
+
+		lastEnemyIsHeroine = bundle.getBoolean(LAST_ENEMY_IS_HEROINE);
 
 		if (bundle.contains(MAX_LVL)) maxLvl = bundle.getInt(MAX_LVL);
 
@@ -718,6 +727,7 @@ public abstract class Mob extends Char {
 
 	public void aggro( Char ch ) {
 		enemy = ch;
+		if (enemy instanceof Hero) lastEnemyIsHeroine = true;
 		if (state != PASSIVE){
 			state = HUNTING;
 		}
@@ -782,8 +792,12 @@ public abstract class Mob extends Char {
 	public void die( Object cause ) {
 		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			Statistics.power += gainingPower;
-			if (Statistics.card44) {
+			if (Statistics.cardMiserAdvice) {
 				new Gold().quantity(20).collect();
+				GameScene.pickUp(new Gold(), Dungeon.heroine.pos);
+			}
+			if (Statistics.cardAnnoyingUfo && Random.Int(50) == 0){
+				Dungeon.level.drop(Generator.randomUsingDefaults(Generator.Category.TALISMAN), pos).sprite.drop();
 			}
 		}
 
@@ -1039,6 +1053,16 @@ public abstract class Mob extends Char {
 					target = enemy.pos;
 				} else if (enemy == null) {
 					sprite.showLost();
+
+					// for doomed zone
+					if (Dungeon.heroine.buff(DoomedZone.class) != null && lastEnemyIsHeroine){
+						Dungeon.heroine.HP = min(Dungeon.heroine.HP, Dungeon.heroine.HT);
+						GameScene.flash(-65536);
+						Sample.INSTANCE.play( Assets.Sounds.BLAST );
+						GLog.w(Messages.get(Zanmu.class, "doomed_zone"));
+					}
+					lastEnemyIsHeroine = false;
+
 					state = WANDERING;
 					target = Dungeon.level.randomDestination( Mob.this );
 					spend( TICK );

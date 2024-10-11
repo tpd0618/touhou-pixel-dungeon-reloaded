@@ -140,14 +140,14 @@ public class CursedWand {
 			case 2:
 				if(Random.Int(2) == 0) {
 					if (user != null && !user.properties().contains(Char.Property.IMMOVABLE)) {
-						ScrollOfTeleportation.teleportChar(user);
+						ScrollOfTeleportation.randomTeleportChar(user);
 					} else {
 						return cursedEffect(origin, user, targetPos);
 					}
 				} else {
 					Char ch = Actor.findChar( targetPos );
 					if (ch != null && !ch.properties().contains(Char.Property.IMMOVABLE)) {
-						ScrollOfTeleportation.teleportChar(ch);
+						ScrollOfTeleportation.randomTeleportChar(ch);
 						tryForWandProc(ch, origin);
 					} else {
 						return cursedEffect(origin, user, targetPos);

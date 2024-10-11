@@ -34,7 +34,7 @@ public class NazrinGoldMoney extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS1;
+        image = ItemSpriteSheet.CARDS_NAZRIN_GOLD_MONEY;
 
         defaultAction = AC_DRINK;
 
@@ -45,7 +45,7 @@ public class NazrinGoldMoney extends Abilitycards {
     //allows multiple purchases
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        Statistics.card1 = true;
+        Statistics.cardNazrinGoldMoney = true;
         Dungeon.gold += 500;
         return super.doPickUp(heroine, pos);
     }

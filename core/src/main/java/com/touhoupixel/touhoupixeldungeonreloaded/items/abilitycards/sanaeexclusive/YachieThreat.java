@@ -34,7 +34,7 @@ public class YachieThreat extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS46;
+        image = ItemSpriteSheet.CARDS_YACHIE_THREAT;
 
         defaultAction = AC_DRINK;
 
@@ -44,8 +44,8 @@ public class YachieThreat extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card46) {
-            Statistics.card46 = true;
+        if (!Statistics.cardYachieThreat) {
+            Statistics.cardYachieThreat = true;
             QuickSlotButton.refresh();
             return super.doPickUp(heroine, pos);
         } else return false;

@@ -33,7 +33,7 @@ public class ClownpieceMoon extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS61;
+        image = ItemSpriteSheet.CARDS_CLOWNPIECE_MOON;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class ClownpieceMoon extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card61) {
-            Statistics.card61 = true;
+        if (!Statistics.cardClownpieceMoon) {
+            Statistics.cardClownpieceMoon = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

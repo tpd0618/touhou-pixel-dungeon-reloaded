@@ -36,7 +36,7 @@ public class Displacement extends Armor.Glyph {
 	public int proc(Armor armor, Char attacker, Char defender, int damage ) {
 
 		if (defender == Dungeon.heroine && Random.Int(20) == 0){
-			ScrollOfTeleportation.teleportChar(Dungeon.heroine);
+			ScrollOfTeleportation.randomTeleportChar(Dungeon.heroine);
 			return 0;
 		}
 

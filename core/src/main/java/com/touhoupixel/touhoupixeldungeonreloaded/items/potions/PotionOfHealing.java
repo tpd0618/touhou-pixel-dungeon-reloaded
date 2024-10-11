@@ -64,7 +64,7 @@ public class PotionOfHealing extends Potion {
 			Statistics.HT_bonus += 10;
 			GLog.p(Messages.get(PotionOfHealing.class, "max_up"));
 		}
-		if (Statistics.card62){
+		if (Statistics.cardMikoAuthority){
 			GameScene.flash(0x80FFFFFF);
 			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {

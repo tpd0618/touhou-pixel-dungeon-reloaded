@@ -1202,7 +1202,8 @@ public abstract class Level implements Bundlable {
 						blocking[i] = true;
 					}
 				}
-			} else {
+			}
+			else {
 				blocking = Dungeon.level.losBlocking;
 			}
 
@@ -1324,7 +1325,6 @@ public abstract class Level implements Bundlable {
 				if (!heap.seen && fieldOfView[heap.pos])
 					heap.seen = true;
 		}
-
 	}
 
 	public boolean isLevelExplored( int depth ){

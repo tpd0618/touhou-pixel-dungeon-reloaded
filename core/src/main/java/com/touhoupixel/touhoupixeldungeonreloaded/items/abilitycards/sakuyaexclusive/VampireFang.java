@@ -33,7 +33,7 @@ public class VampireFang extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS63;
+        image = ItemSpriteSheet.CARDS_VAMPIRE_FANG;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class VampireFang extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card63) {
-            Statistics.card63 = true;
+        if (!Statistics.cardVampireFang) {
+            Statistics.cardVampireFang = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

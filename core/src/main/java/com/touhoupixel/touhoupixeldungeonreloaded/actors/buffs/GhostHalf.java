@@ -14,19 +14,19 @@ public class GhostHalf extends FlavourBuff {
     }
 
     public static int bonusEvasion(){
-        if (Statistics.card53){
+        if (Statistics.cardMomoyoCentipede){
             return 8;
         }
         return 5;
     }
     public static float duration(){
-        if (Statistics.card53){
+        if (Statistics.cardMomoyoCentipede){
             return 10f;
         }
         return 6f;
     }
     public void fx(boolean on) {
-        if (Statistics.card53){
+        if (Statistics.cardMomoyoCentipede){
             if (on) target.sprite.add( CharSprite.State.HEALING );
             else    target.sprite.remove( CharSprite.State.HEALING );
         }
@@ -68,7 +68,7 @@ public class GhostHalf extends FlavourBuff {
     @Override
     public String desc() {
         String desc = Messages.get(this, "desc", bonusEvasion(), dispTurns());
-        if (Statistics.card53) desc = Messages.get(this, "descwithheal", bonusEvasion(), dispTurns());
+        if (Statistics.cardMomoyoCentipede) desc = Messages.get(this, "descwithheal", bonusEvasion(), dispTurns());
         return desc;
     }
 

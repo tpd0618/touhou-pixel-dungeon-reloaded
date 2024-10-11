@@ -25,7 +25,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
 
@@ -40,7 +39,7 @@ public class HumanHalf extends Buff {
     protected float left;
     private int pos;
     public static int getBonusReach(){
-        if (Statistics.card60){
+        if (Statistics.cardTenshiKeystone){
             return 2;
         }
         return 1;
@@ -103,7 +102,7 @@ public class HumanHalf extends Buff {
         return Messages.get(this, "desc", (int) (bonusDamage*100), (int) (bonusCritChance*100), (int) (maxBonusDamage*100), (int) (maxBonusCritChance*100), getBonusReach()+1);
     }
     public void set() {
-        if (Statistics.card60){
+        if (Statistics.cardTenshiKeystone){
             if (bonusDamage == 0){
                 bonusDamage = 0.3f;
                 bonusCritChance = 0.2f;
@@ -128,7 +127,7 @@ public class HumanHalf extends Buff {
 
     }
     public void bomb() {
-        if (Statistics.card60){
+        if (Statistics.cardTenshiKeystone){
             bonusDamage = 1.5f;
             bonusCritChance = 0.9f;
         } else {

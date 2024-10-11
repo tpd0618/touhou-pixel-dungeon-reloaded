@@ -34,7 +34,7 @@ public class SmeltScale extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS68;
+        image = ItemSpriteSheet.CARDS_SMELT_SCALE;
 
         defaultAction = AC_DRINK;
 
@@ -44,14 +44,14 @@ public class SmeltScale extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card68) {
-            Statistics.card68 = true;
+        if (!Statistics.cardSmeltScale) {
+            Statistics.cardSmeltScale = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }
 
     public static int levelDamageBonus(){
-        if (Statistics.card68){
+        if (Statistics.cardSmeltScale){
             return 1 + Dungeon.floor/9;
         }
         else {
@@ -59,7 +59,7 @@ public class SmeltScale extends Abilitycards {
         }
     }
     public static float durabilityMultiplier(){
-        if (Statistics.card68){
+        if (Statistics.cardSmeltScale){
             return 1.75f;
         }
         else {

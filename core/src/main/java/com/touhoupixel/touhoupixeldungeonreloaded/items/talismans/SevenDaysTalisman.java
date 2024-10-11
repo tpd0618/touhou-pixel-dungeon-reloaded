@@ -4,7 +4,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Drowsy;
@@ -52,7 +51,7 @@ public class SevenDaysTalisman extends Talisman {
                         Buff.affect(curUser, Doom.class);
                         break;
                     case 5:
-                        ScrollOfTeleportation.teleportChar(curUser);
+                        ScrollOfTeleportation.randomTeleportChar(curUser);
                         break;
                     case 6:
                         GameScene.flash(0x80FFFFFF);
@@ -81,7 +80,7 @@ public class SevenDaysTalisman extends Talisman {
                         Buff.affect(ch, Doom.class);
                         break;
                     case 5:
-                        ScrollOfTeleportation.teleportChar(ch);
+                        ScrollOfTeleportation.randomTeleportChar(ch);
                         break;
                     case 6:
                         GameScene.flash(0x80FFFFFF);

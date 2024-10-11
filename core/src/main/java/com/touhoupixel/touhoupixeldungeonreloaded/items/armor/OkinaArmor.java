@@ -36,7 +36,7 @@ public class OkinaArmor extends Armor {
 		int limitHT = defender.HT/5;
 		if (damage > limitHT){
 			damage = limitHT + (damage-limitHT)/3; // if the damage is more than 20% hp, it deals 20% of hp + extra damage / 3
-			ScrollOfTeleportation.teleportChar(defender);
+			ScrollOfTeleportation.randomTeleportChar(defender);
 		}
 		return super.proc(attacker, defender, damage);
 	}

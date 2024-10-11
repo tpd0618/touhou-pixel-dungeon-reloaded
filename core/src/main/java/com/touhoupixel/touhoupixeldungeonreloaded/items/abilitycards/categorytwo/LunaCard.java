@@ -33,7 +33,7 @@ public class LunaCard extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS20;
+        image = ItemSpriteSheet.CARDS_LUNA_CARD;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class LunaCard extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card20) {
-            Statistics.card20 = true;
+        if (!Statistics.cardLunaCard) {
+            Statistics.cardLunaCard = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

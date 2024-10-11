@@ -1,6 +1,5 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
@@ -76,7 +75,7 @@ public class BossKomachi extends Mob {
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
         if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-            ScrollOfTeleportation.teleportChar(this);
+            ScrollOfTeleportation.randomTeleportChar(this);
             Buff.prolong(enemy, KomachiCurse.class, KomachiCurse.DURATION);
             if (this.HP < this.HT / 2) {
                 Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION * 1000f);

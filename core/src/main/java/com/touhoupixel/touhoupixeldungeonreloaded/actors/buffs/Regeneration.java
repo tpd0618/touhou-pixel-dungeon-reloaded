@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.ChaliceOfBlood;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.HealingBracelet;
@@ -49,7 +48,7 @@ public class Regeneration extends Buff {
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
-					if (Statistics.card32){
+					if (Statistics.cardBlankCard){
 						if (target.buff(RegenBlock.class) == null && target.HT > target.HP + 2) {
 							if (bracelet instanceof HealingBracelet){
 								target.HP += 9;

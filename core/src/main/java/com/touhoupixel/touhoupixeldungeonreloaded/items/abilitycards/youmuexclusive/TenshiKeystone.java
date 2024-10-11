@@ -33,7 +33,7 @@ public class TenshiKeystone extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS60;
+        image = ItemSpriteSheet.CARDS_TENSHI_KEYSTONE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class TenshiKeystone extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card60) {
-            Statistics.card60 = true;
+        if (!Statistics.cardTenshiKeystone) {
+            Statistics.cardTenshiKeystone = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

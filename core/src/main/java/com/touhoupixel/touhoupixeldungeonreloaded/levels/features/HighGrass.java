@@ -57,7 +57,7 @@ public class HighGrass {
 		Char ch = Actor.findChar(pos);
 		
 		if (level.map[pos] == Terrain.FURROWED_GRASS){
-			if (ch instanceof Hero && Statistics.card49){
+			if (ch instanceof Hero && Statistics.cardPebbleHat){
 				//Do nothing
 				freezeTrample = true;
 			} else {
@@ -65,7 +65,7 @@ public class HighGrass {
 			}
 			
 		} else {
-			if (ch instanceof Hero && Statistics.card49){
+			if (ch instanceof Hero && Statistics.cardPebbleHat){
 				Level.set(pos, Terrain.FURROWED_GRASS);
 				freezeTrample = true;
 			} else {

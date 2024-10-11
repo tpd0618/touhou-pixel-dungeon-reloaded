@@ -36,7 +36,7 @@ public abstract class Brew extends Potion {
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
-		if (!Statistics.card50) actions.remove( AC_DRINK );
+		if (!Statistics.cardDanmakuGhost) actions.remove( AC_DRINK );
 		return actions;
 	}
 	

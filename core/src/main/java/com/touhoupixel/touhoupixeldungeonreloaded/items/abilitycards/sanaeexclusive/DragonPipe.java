@@ -33,7 +33,7 @@ public class DragonPipe extends Abilitycards {
     private static final String AC_DRINK	= "DRINK";
 
     {
-        image = ItemSpriteSheet.CARDS52;
+        image = ItemSpriteSheet.CARDS_DRAGON_PIPE;
 
         defaultAction = AC_DRINK;
 
@@ -43,8 +43,8 @@ public class DragonPipe extends Abilitycards {
 
     @Override
     public boolean doPickUp(Hero heroine, int pos) {
-        if (!Statistics.card52) {
-            Statistics.card52 = true;
+        if (!Statistics.cardDragonPipe) {
+            Statistics.cardDragonPipe = true;
             return super.doPickUp(heroine, pos);
         } else return false;
     }

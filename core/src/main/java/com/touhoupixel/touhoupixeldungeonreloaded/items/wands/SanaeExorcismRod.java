@@ -390,7 +390,7 @@ public class SanaeExorcismRod extends Wand {
 	public int level() {
 		int level = Dungeon.heroine == null ? 0 : Dungeon.heroine.lvl/5;
 		maxCharges = Math.min(3 + level, 8);
-		if (Statistics.card46) maxCharges += 2;
+		if (Statistics.cardYachieThreat) maxCharges += 2;
 		level = Math.min(5, level);
 
 		return level;
