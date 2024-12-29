@@ -57,7 +57,7 @@ public class Toyohime extends Mob implements Callback {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(63, 97);
+		return Random.NormalIntRange(63+Dungeon.heroine.belongings.backpack.items.size()*10, 97+Dungeon.heroine.belongings.backpack.items.size()*10);
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class Toyohime extends Mob implements Callback {
 				}
 			}
 
-			int dmg = Random.NormalIntRange(67, 103);
+			int dmg = Random.NormalIntRange(67+Dungeon.heroine.belongings.backpack.items.size()*10, 103+Dungeon.heroine.belongings.backpack.items.size()*10);
 			enemy.damage(dmg, new DarkBolt());
 
 			if (enemy == Dungeon.heroine && !enemy.isAlive()) {

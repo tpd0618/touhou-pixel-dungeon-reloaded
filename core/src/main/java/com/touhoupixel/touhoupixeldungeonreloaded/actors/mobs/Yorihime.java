@@ -55,7 +55,7 @@ public class Yorihime extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(127, 197);
+		return Random.NormalIntRange(127+Dungeon.heroine.belongings.backpack.items.size()*10, 197+Dungeon.heroine.belongings.backpack.items.size()*10);
 	}
 
 	@Override

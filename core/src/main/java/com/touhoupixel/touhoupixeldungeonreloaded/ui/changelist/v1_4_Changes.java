@@ -29,10 +29,23 @@ import java.util.ArrayList;
 public class v1_4_Changes {
 
 	public static void addAllChanges(ArrayList<ChangeInfo> changeInfos) {
+		add_v1_2_5_Changes(changeInfos);
 		add_v1_2_4_Changes(changeInfos);
 		add_v1_2_3_Changes(changeInfos);
 		add_v1_2_2_Changes(changeInfos);
 		add_v1_2_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_2_5_Changes(ArrayList<ChangeInfo> changeInfos) {
+		ChangeInfo changes = new ChangeInfo("v1.2.5", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.2.5 changes",
+				"_-_ Critical bug fix, fixed an issue that futo transmutes floor items into superunlucky potion, sorry about that!\n" +
+						"_-_ (Hidden data, pots)\n" +
+						"_-_ Some potions and enemies are reworked.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_2_4_Changes(ArrayList<ChangeInfo> changeInfos) {

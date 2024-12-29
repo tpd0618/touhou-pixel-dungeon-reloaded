@@ -21,12 +21,19 @@
 
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.KindOfWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
-public class PotionOfDoubleSpeed extends Potion {
+public class PotionOfInvert extends Potion {
 	
 	{
 		icon = ItemSpriteSheet.Icons.POTION_DOUBLESPEED;
@@ -35,7 +42,20 @@ public class PotionOfDoubleSpeed extends Potion {
 	@Override
 	public void apply(Hero heroine) {
 		identify();
-		Buff.prolong(heroine, DoubleSpeed.class, DoubleSpeed.DURATION);
+
+		KindOfWeapon meleeweapon = Dungeon.heroine.belongings.weapon();
+		Armor armor = Dungeon.heroine.belongings.armor();
+
+		if (meleeweapon != null && !(meleeweapon instanceof MarisaStaff) && armor != null) {
+			int tempLevel = meleeweapon.level();
+			meleeweapon.level(armor.level());
+			armor.level(tempLevel);
+			GLog.w( Messages.get(this, "invert") );
+		} else {
+			GLog.w( Messages.get(this, "cannot_invert") );
+		}
+
+		Sample.INSTANCE.play( Assets.Sounds.DEWDROP );
 	}
 
 	@Override

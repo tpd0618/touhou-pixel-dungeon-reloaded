@@ -43,7 +43,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Empathetic;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeHunger;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GhostHalf;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.GoldCreation;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeatRiser;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
@@ -2459,8 +2458,8 @@ public class Hero extends Char {
 		for (Item i : belongings){
 			if (i instanceof EquipableItem && i.isEquipped(this)){
 				((EquipableItem) i).activate(this);
-			} else if (i instanceof Wand && i.keptThoughLostInvent){
-				if (holster != null && holster.contains(i)){
+			} else if (i instanceof Wand && i.keptThoughLostInvent) {
+				if (holster != null && holster.contains(i)) {
 					((Wand) i).charge(this, ReimuHolder.HOLSTER_SCALE_FACTOR);
 				} else {
 					((Wand) i).charge(this);

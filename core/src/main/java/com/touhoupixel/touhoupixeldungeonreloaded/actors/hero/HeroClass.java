@@ -34,7 +34,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardsAndCubesBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
@@ -44,10 +43,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHealing;
-
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.ThrowingKnife;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.IdolStick;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.KoishiDagger;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.ReimuExorcismRod;

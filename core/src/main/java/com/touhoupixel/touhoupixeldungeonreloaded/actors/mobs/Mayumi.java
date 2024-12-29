@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HeavenSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfSuperUnlucky;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInaccurate;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
@@ -50,7 +50,7 @@ public class Mayumi extends Mob implements Callback {
 
         properties.add(Property.WARP);
 
-        loot = new PotionOfSuperUnlucky();
+        loot = new PotionOfInaccurate();
         lootChance = 0.08f;
     }
 

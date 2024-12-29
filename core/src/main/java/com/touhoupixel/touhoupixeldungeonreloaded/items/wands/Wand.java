@@ -182,7 +182,7 @@ public abstract class Wand extends Item {
 		if (super.collect( container )) {
 			if (container.owner != null) {
 				if (container instanceof ReimuHolder)
-					charge( container.owner, ((ReimuHolder) container).HOLSTER_SCALE_FACTOR );
+					charge( container.owner, ReimuHolder.HOLSTER_SCALE_FACTOR);
 				else
 					charge( container.owner );
 			}

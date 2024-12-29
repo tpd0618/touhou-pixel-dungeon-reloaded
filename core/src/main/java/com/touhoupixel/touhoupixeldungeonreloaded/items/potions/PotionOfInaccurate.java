@@ -22,15 +22,28 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.potions;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
+import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.blobs.WaterOfHealth;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicBuff;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.BlastParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundle;
+import com.watabou.utils.PathFinder;
 
-public class PotionOfSuperUnlucky extends Potion {
+import java.util.Random;
+
+public class PotionOfInaccurate extends Potion {
 
 	{
 		icon = ItemSpriteSheet.Icons.POTION_MAGIC;
@@ -40,15 +53,12 @@ public class PotionOfSuperUnlucky extends Potion {
 	public void apply( Hero heroine) {
 		identify();
 
-		GLog.w( Messages.get(this, "super_unlucky") );
-		heroine.lvl = 1;
-		heroine.exp = 0;
-		heroine.updateHT( true );
-		Sample.INSTANCE.play( Assets.Sounds.TIMEOUT );
-	}
-
-	@Override
-	public int value() {
-		return isKnown() ? 30 * quantity : super.value();
+		for (int i : PathFinder.NEIGHBOURS8){
+			Char c = Actor.findChar(curUser.pos+i);
+			if (c != null) {
+				Buff.prolong(c, Inaccurate.class, Inaccurate.DURATION);
+				CellEmitter.center(c.pos).burst(BlastParticle.FACTORY, 4);
+			}
+		}
 	}
 }

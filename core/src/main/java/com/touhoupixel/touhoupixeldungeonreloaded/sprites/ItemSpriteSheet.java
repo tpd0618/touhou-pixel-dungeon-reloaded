@@ -90,17 +90,19 @@ public class ItemSpriteSheet {
 	public static final int ALCH_PAGE       = UNCOLLECTIBLE+6;
 	public static final int ALCH_COLLECTION = UNCOLLECTIBLE+7;
 	public static final int BRACELET        = UNCOLLECTIBLE+10;
+	public static final int POT             = UNCOLLECTIBLE+11;
 
 	static{
-		assignItemRect(GOLD,        12, 12);
-		assignItemRect(DEWDROP,     10, 10);
-		assignItemRect(HOURGLASS_UP,     16, 16);
+		assignItemRect(GOLD,         12, 12);
+		assignItemRect(DEWDROP,      10, 10);
+		assignItemRect(HOURGLASS_UP, 16, 16);
 		assignItemRect(MIRACLE_ARROW,16, 15);
-		assignItemRect(ENERGY,      16, 16);
-		assignItemRect(GUIDE_PAGE,  10, 10);
-		assignItemRect(ALCH_PAGE,   10, 10);
+		assignItemRect(ENERGY,       16, 16);
+		assignItemRect(GUIDE_PAGE,   10, 10);
+		assignItemRect(ALCH_PAGE,    10, 10);
 		assignItemRect(ALCH_COLLECTION,   12, 11);
-		assignItemRect(BRACELET,   16, 16);
+		assignItemRect(BRACELET,          16, 16);
+		assignItemRect(POT,               13, 13);
 	}
 
 	private static final int CONTAINERS     =                               xy(1, 3);   //16 slots

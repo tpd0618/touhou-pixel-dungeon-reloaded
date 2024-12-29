@@ -23,32 +23,31 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
 public class ReisenHolder extends Bag {
 
-	{
-		image = ItemSpriteSheet.BANDOLIER;
-	}
+    {
+        image = ItemSpriteSheet.BANDOLIER;
+    }
 
-	@Override
-	public boolean canHold( Item item ) {
-		if (item instanceof Potion || item instanceof LiquidMetal){
-			return super.canHold(item);
-		} else {
-			return false;
-		}
-	}
+    @Override
+    public boolean canHold( Item item ) {
+        if (item instanceof Potion || item instanceof LiquidMetal){
+            return super.canHold(item);
+        } else {
+            return false;
+        }
+    }
 
-	public int capacity(){
-		return 19;
-	}
+    public int capacity(){
+        return 19;
+    }
 
-	@Override
-	public int value() {
-		return 40;
-	}
+    @Override
+    public int value() {
+        return 40;
+    }
 
 }

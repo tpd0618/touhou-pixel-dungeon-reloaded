@@ -74,7 +74,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Pasty;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvert;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfFrost;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfHaste;
@@ -83,7 +83,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvisibi
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLiquidFlame;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfSuperUnlucky;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInaccurate;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfParalyticGas;
@@ -341,11 +341,11 @@ public class Generator {
 					PotionOfPurity.class,
 					PotionOfExperience.class,
 					PotionOfMight.class,
-					PotionOfDoubleSpeed.class,
+					PotionOfInaccurate.class,
 					PotionOfLightHealing.class,
 					PotionOfYingYang.class,
-					PotionOfSuperUnlucky.class};
-			POTION.defaultProbs = new float[]{ 8, 3, 3, 3, 3, 3, 4, 3, 3, 3, 2, 3, 3, 5, 2, 0};
+					PotionOfInvert.class};
+			POTION.defaultProbs = new float[]{ 6, 3, 3, 3, 3, 3, 4, 3, 3, 3, 2, 3, 3, 3, 3, 1};
 			POTION.probs = POTION.defaultProbs.clone();
 
 			SEED.classes = new Class<?>[]{

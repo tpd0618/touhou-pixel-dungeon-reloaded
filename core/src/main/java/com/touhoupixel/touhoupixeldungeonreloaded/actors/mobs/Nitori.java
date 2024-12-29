@@ -1,6 +1,6 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvert;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.NitoriSprite;
 import com.watabou.utils.Random;
 
@@ -23,7 +23,7 @@ public class Nitori extends Mob {
 
         flying = true;
 
-        loot = new PotionOfDoubleSpeed();
+        loot = new PotionOfInvert();
         lootChance = 0.1f;
     }
 

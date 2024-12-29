@@ -25,19 +25,22 @@ package com.touhoupixel.touhoupixeldungeonreloaded.items.spells;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Hina;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 
 import java.util.ArrayList;
 
 public abstract class Spell extends Item {
-	
+
 	public static final String AC_CAST = "CAST";
-	
+
 	{
 		stackable = true;
 		defaultAction = AC_CAST;
 	}
-	
+
 	@Override
 	public ArrayList<String> actions(Hero heroine) {
 		ArrayList<String> actions = super.actions(heroine);
@@ -46,29 +49,28 @@ public abstract class Spell extends Item {
 		}
 		return actions;
 	}
-	
+
 	@Override
 	public void execute(final Hero heroine, String action ) {
-		
+
 		super.execute(heroine, action );
-		
+
 		if (action.equals( AC_CAST )) {
 
 			onCast(heroine);
-			
 		}
 	}
-	
+
 	@Override
 	public boolean isIdentified() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isUpgradable() {
 		return false;
 	}
-	
+
 	protected abstract void onCast(Hero heroine);
-	
+
 }

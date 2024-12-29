@@ -5,7 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfDoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInvert;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.AyaSprite;
 import com.watabou.utils.Random;
 
@@ -28,7 +28,7 @@ public class Aya extends Mob {
 
         flying = true;
 
-        loot = new PotionOfDoubleSpeed();
+        loot = new PotionOfInvert();
         lootChance = 0.1f;
     }
 

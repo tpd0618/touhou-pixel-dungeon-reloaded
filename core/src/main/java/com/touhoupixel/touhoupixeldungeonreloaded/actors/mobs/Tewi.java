@@ -2,21 +2,34 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Inaccurate;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.TargetedCell;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ReclaimTrap;
+import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.KeineSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ReisenSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.TewiSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
+import com.watabou.utils.Bundlable;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Tewi extends Mob {
 
     {
-        spriteClass = TewiSprite.class;
+        spriteClass = Math.random() < 0.5 ? KeineSprite.class : ReisenSprite.class;
 
         HP = HT = 72;
         defenseSkill = 12;
@@ -29,7 +42,7 @@ public class Tewi extends Mob {
         //used for fumo lover buff
 
         loot = new ReclaimTrap();
-        lootChance = 0.15f;
+        lootChance = 0.13f;
     }
 
     @Override
@@ -48,73 +61,26 @@ public class Tewi extends Mob {
     }
 
     @Override
-    public void die(Object cause) {
-        if (this.pos - 1 == Dungeon.heroine.pos ||
-            this.pos + 1 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width() == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width() == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width() - 1 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width() + 1 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width() - 1 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width() + 1 == Dungeon.heroine.pos ||
-            this.pos - 2 == Dungeon.heroine.pos ||
-            this.pos + 2 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width()*2 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width()*2 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width()*2 - 2 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width()*2 + 2 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width()*2 - 2 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width()*2 + 2 == Dungeon.heroine.pos ||
-            this.pos - 3 == Dungeon.heroine.pos ||
-            this.pos + 3 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width()*3 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width()*3 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width()*3 - 3 == Dungeon.heroine.pos ||
-            this.pos - Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width()*3 - 3 == Dungeon.heroine.pos ||
-            this.pos + Dungeon.level.width()*3 + 3 == Dungeon.heroine.pos) {
-            Dungeon.heroine.damage(30, this);
-            GLog.w(Messages.get(this, "star_damage"));
-        }
+    protected boolean act() {
+        if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING) {
+            Char closestEnemy = null;
+            int closestDistance = Integer.MAX_VALUE;
 
-        sprite.parent.addToBack(new TargetedCell(this.pos - 1, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + 1, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width(), 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width(), 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width() - 1, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width() + 1, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width() - 1, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width() + 1, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - 2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + 2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2 - 2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*2 + 2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2 - 2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*2 + 2, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - 3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + 3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3 - 3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos - Dungeon.level.width()*3 + 3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3 - 3, 0xFF0000));
-        sprite.parent.addToBack(new TargetedCell(this.pos + Dungeon.level.width()*3 + 3, 0xFF0000));
-        super.die(cause);
-    }
-
-    @Override
-    public int attackProc( Char hero, int damage ) {
-        damage = super.attackProc( enemy, damage );
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
+            for (Char target : Actor.chars()) {
+                if (target != this && !(target instanceof Hero) && !(target instanceof Shopkeeper) && target.isAlive() && Dungeon.level.heroFOV[target.pos]) {
+                    int distance = Dungeon.level.distance(pos, target.pos);
+                    if (distance < closestDistance) {
+                        closestEnemy = target;
+                        closestDistance = distance;
+                    }
+                }
             }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+
+            if (closestEnemy instanceof Mob) {
+                sprite.parent.add(new Beam.HealthRay(sprite.destinationCenter(), closestEnemy.sprite.destinationCenter()));
+                Buff.prolong(closestEnemy, DoubleSpeed.class, DoubleSpeed.DURATION);
             }
         }
-        return damage;
+        return super.act();
     }
 }
