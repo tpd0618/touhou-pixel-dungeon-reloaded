@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-       - 'build.gradle' # 只有 特定 文件的更改才构建
+       - 'action.on' # 只有 特定 文件的更改才构建
 #  pull_request:
 #    branches: [ "master" ]
 
