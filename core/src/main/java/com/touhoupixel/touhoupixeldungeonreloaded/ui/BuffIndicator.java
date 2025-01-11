@@ -117,6 +117,7 @@ public class BuffIndicator extends Component {
 	public static final int ZERO_DEXTERITY    = 67;
 	public static final int KEY_HEAL          = 68;
 	public static final int STEALTH           = 69;
+	public static final int HALF_LEVEL        = 70;
 	public static final int YOKAI_BORDER      = 73;
 	public static final int MELEE_NULLIFY     = 74;
 	public static final int SUPER_HARD        = 75;

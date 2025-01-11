@@ -62,6 +62,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.UpgradeCard;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfInaccurate;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.BlankScroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfEnchantment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
@@ -193,6 +194,10 @@ public abstract class Level implements Bundlable {
 		Random.pushGenerator( Dungeon.seedCurFloor() );
 
 		if (!(Dungeon.bossLevel())) {
+
+			if (Random.Int(29) == 0) {
+				addItemToSpawn(new BlankScroll());
+			}
 
 			addItemToSpawn(Generator.random(Generator.Category.FOOD));
 			addItemToSpawn(Generator.random(Generator.Category.TALISMAN));

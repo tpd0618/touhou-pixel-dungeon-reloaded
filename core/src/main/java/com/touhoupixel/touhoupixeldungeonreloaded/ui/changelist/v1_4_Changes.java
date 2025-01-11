@@ -29,11 +29,23 @@ import java.util.ArrayList;
 public class v1_4_Changes {
 
 	public static void addAllChanges(ArrayList<ChangeInfo> changeInfos) {
+		add_v1_2_6_Changes(changeInfos);
 		add_v1_2_5_Changes(changeInfos);
 		add_v1_2_4_Changes(changeInfos);
 		add_v1_2_3_Changes(changeInfos);
 		add_v1_2_2_Changes(changeInfos);
 		add_v1_2_1_Changes(changeInfos);
+	}
+
+	public static void add_v1_2_6_Changes(ArrayList<ChangeInfo> changeInfos) {
+		ChangeInfo changes = new ChangeInfo("v1.2.6", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.2.6 changes",
+				"_-_ Blank scroll is added in the game.\n" +
+						"_-_ Iku is reworked, with a strong debuff.\n" +
+						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_2_5_Changes(ArrayList<ChangeInfo> changeInfos) {

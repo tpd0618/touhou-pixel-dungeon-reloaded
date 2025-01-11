@@ -99,7 +99,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExtinction;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExorcism;
@@ -370,7 +370,7 @@ public class Generator {
 					ScrollOfFate.class,
 					ScrollOfEarth.class,
 					ScrollOfFixer.class,
-					ScrollOfNamelessStory.class,
+					ScrollOfExtinction.class,
 					ScrollOfExorcism.class,
 					ScrollOfMirrorImage.class,
 					ScrollOfRecharging.class,

@@ -32,7 +32,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfFixer;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfMirrorImage;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfNamelessStory;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfExtinction;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfRetribution;
@@ -64,8 +64,8 @@ public abstract class ExoticScroll extends Scroll {
 		regToExo.put(ScrollOfFixer.class, ScrollOfHeatRiser.class);
 		exoToReg.put(ScrollOfHeatRiser.class, ScrollOfFixer.class);
 
-		regToExo.put(ScrollOfNamelessStory.class, ScrollOfDespair.class);
-		exoToReg.put(ScrollOfDespair.class, ScrollOfNamelessStory.class);
+		regToExo.put(ScrollOfExtinction.class, ScrollOfDespair.class);
+		exoToReg.put(ScrollOfDespair.class, ScrollOfExtinction.class);
 		
 		regToExo.put(ScrollOfExorcism.class, ScrollOfMagicMapping.class);
 		exoToReg.put(ScrollOfMagicMapping.class, ScrollOfExorcism.class);

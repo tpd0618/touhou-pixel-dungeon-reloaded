@@ -5,6 +5,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.CursedBlow;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HalfLevel;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.Terrain;
@@ -29,11 +30,6 @@ public class Iku extends Mob {
     }
 
     @Override
-    public float attackDelay() {
-        return Dungeon.level.map[this.pos] == Terrain.WATER ? super.attackDelay() : super.attackDelay()*0.25f;
-    }
-
-    @Override
     public int damageRoll() {
         return Random.NormalIntRange(120, 182);
     }
@@ -49,28 +45,10 @@ public class Iku extends Mob {
     }
 
     @Override
-    public void damage(int dmg, Object src) {
-        int waterCells = 0;
-        for (int i : PathFinder.NEIGHBOURS9) {
-            if (Dungeon.level.map[pos + i] == Terrain.CHASM) {
-                waterCells++;
-            }
-        }
-        if (waterCells > 0) dmg = Math.round(dmg * (6 - waterCells) / 6f);
-
-        super.damage(dmg, src);
-    }
-
-    @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0){
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Slow.class, Slow.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, CursedBlow.class, CursedBlow.DURATION);
-            }
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0){
+            Buff.prolong(enemy, HalfLevel.class, HalfLevel.DURATION);
         }
         return damage;
     }

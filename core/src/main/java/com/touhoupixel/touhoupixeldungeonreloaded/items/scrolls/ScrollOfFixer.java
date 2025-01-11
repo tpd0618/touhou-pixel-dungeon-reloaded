@@ -41,7 +41,7 @@ public class ScrollOfFixer extends Scroll {
 		Sample.INSTANCE.play( Assets.Sounds.READ );
 		Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
 
-		GLog.i( Messages.get(this, "fixer") );
+		GLog.p( Messages.get(this, "fixer") );
 		SpellSprite.show( curUser, SpellSprite.CHARGE );
 		identify();
 

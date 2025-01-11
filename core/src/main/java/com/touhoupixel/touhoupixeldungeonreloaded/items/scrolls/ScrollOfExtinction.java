@@ -16,7 +16,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 
-public class ScrollOfNamelessStory extends Scroll {
+public class ScrollOfExtinction extends Scroll {
 
 
 	{

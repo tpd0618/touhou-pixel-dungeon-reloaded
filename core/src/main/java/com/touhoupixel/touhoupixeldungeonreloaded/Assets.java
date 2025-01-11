@@ -425,14 +425,6 @@ public class Assets {
 		public static final String TSUKASA_SOUL = "sprites/tsukasasoul.png";
 		public static final String DESTORB = "sprites/destorb.png";
 
-		public static final String ZUN = "sprites/zun.png";
-		public static final String ZUN_LUST = "sprites/zunlust.png";
-		public static final String ZUN_VANITY = "sprites/zunvanity.png";
-		public static final String ZUN_GLUTTONY = "sprites/zungluttony.png";
-		public static final String ZUN_WRATH = "sprites/zunwrath.png";
-		public static final String ZUN_AVARICE = "sprites/zunavarice.png";
-		public static final String ZUN_ENVY = "sprites/zunenvy.png";
-		public static final String ZUN_PRIDE = "sprites/zunpride.png";
 		public static final String MITAMA_ARA = "sprites/mitamaara.png";
 		public static final String MITAMA_KUSI = "sprites/mitamakusi.png";
 		public static final String MITAMA_NIGI = "sprites/mitamanigi.png";
