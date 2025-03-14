@@ -31,7 +31,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.EarthParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.FloralBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Earthroot;
 import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
@@ -194,7 +195,7 @@ public class SandalsOfNature extends Artifact {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return SanaeHolder.class;
+			return FloralBag.class;
 		}
 
 		@Override

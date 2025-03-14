@@ -433,8 +433,6 @@ public abstract class Char extends Actor {
         if (attacker.buff(Randomizer.class) != null) defRoll *= 0.5f; //randomizer
         if (defender.buff(Hex.class) != null) defRoll *= 0.8f;
 
-        acuRoll = attacker.buff(Onigiri.class) == null ? acuRoll : -INFINITE_ACCURACY;
-
         return (acuRoll * accMulti) >= defRoll;
     }
 

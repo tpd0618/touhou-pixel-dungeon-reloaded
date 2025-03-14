@@ -7,8 +7,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeConfusion;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.FlockTrap;
@@ -46,17 +47,17 @@ public class SonicEarthquake extends Spellcard{
 
             //forget potions or scrolls
             if (Random.Int(2) == 0){
-                MarisaHolder sh = Dungeon.heroine.belongings.getItem(MarisaHolder.class);
+                IcyBag sh = Dungeon.heroine.belongings.getItem(IcyBag.class);
                 for (Item sc : sh.items){
-                    if (!(sc instanceof Scroll) || !sc.isIdentified()) continue;
+                    if (!(sc instanceof Potion) || !sc.isIdentified()) continue;
                     sc.forget();
                 }
                 GLog.n(Messages.get(this, "forget_spellcards"));
             }
             else {
-                ReisenHolder pb = Dungeon.heroine.belongings.getItem(ReisenHolder.class);
+                MysticBag pb = Dungeon.heroine.belongings.getItem(MysticBag.class);
                 for (Item pot : pb.items){
-                    if (!(pot instanceof Potion) || !pot.isIdentified()) continue;
+                    if (!(pot instanceof Scroll) || !pot.isIdentified()) continue;
                     pot.forget();
                 }
                 GLog.n(Messages.get(this, "forget_potions"));

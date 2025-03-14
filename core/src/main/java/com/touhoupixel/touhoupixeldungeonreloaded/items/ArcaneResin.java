@@ -28,7 +28,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Onigiri;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.FloralBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -101,7 +102,7 @@ public class ArcaneResin extends Item {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return ReimuHolder.class;
+			return MysticBag.class;
 		}
 
 		@Override

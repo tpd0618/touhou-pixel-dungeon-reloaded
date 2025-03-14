@@ -34,11 +34,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.NitoChecker;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.OminousGap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.ReimuArmor;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardsAndCubesBag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.FloralBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.food.Food;
@@ -63,9 +62,9 @@ public enum HeroClass {
 	public void initHero( Hero heroine) {
 		//mobs bestiary flavor text todo
 
-		//test, put too many stuffs will trigger a certain bug
+		//test, never put too many stuffs!
 
-		//test, put too many stuffs will trigger a certain bug
+		//test, never put too many stuffs!
 
 		OminousGap ominousGap = new OminousGap();
 		ominousGap.quantity(5).collect();
@@ -93,11 +92,10 @@ public enum HeroClass {
 		//new ScrollOfSubmerge().quantity(3).identify().collect();
 		//new IdolStick().collect();
 
-		new MarisaHolder().collect();
-		new ReimuHolder().collect();
-		new ReisenHolder().collect();
-		new SanaeHolder().collect();
-		new CardsAndCubesBag().collect();
+		new IcyBag().collect();
+		new FloralBag().collect();
+		new CardBag().collect();
+		new MysticBag().collect();
 
 		switch (this){
 			case PLAYERREIMU:

@@ -132,7 +132,7 @@ public class Item implements Bundlable {
 			KindofMisc misc = Dungeon.heroine.belongings.misc;
 			Bracelet bracelet = Dungeon.heroine.belongings.bracelet;
 			if (misc instanceof IdentifyBracelet || bracelet instanceof IdentifyBracelet) {
-				curItem.identify();
+				this.identify();
 			}
 
 			return true;

@@ -42,7 +42,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.EirinJunkoCounterElixir;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.ClearCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.traps.DisarmingTrap;
@@ -126,7 +126,7 @@ public abstract class Wand extends Item {
 
 	public abstract void onHit(MarisaStaff staff, Char attacker, Char defender, int damage);
 
-	public boolean tryToZap(Hero owner, int target ){
+	public boolean tryToZap(Hero owner, int target ) {
 
 		/* Consumption of cubes:
 		25 clear cubes for all
@@ -155,39 +155,25 @@ public abstract class Wand extends Item {
 		if ((curCharges >= (cursed ? 1 : chargesPerCast()) && clearCubeFragment != null && clearCubeFragment.quantity() > 24) &&
 				(!(curItem instanceof SanaeExorcismRod) || clearCubeFragment.quantity() > 49) &&
 				this.areEnoughCubes()
-		){
+		) {
 
-			if (marisaStaff != null && !(marisaStaff.getWand().equals(this) && Random.Int(5) == 0)){
+			if (marisaStaff != null && !(marisaStaff.getWand().equals(this) && Random.Int(5) == 0)) {
 				int clearCubeCons = curItem instanceof SanaeExorcismRod ? 50 : 25;
-				for (int i = 0; i < clearCubeCons; i++) clearCubeFragment.detach(Dungeon.heroine.belongings.backpack);
+				for (int i = 0; i < clearCubeCons; i++)
+					clearCubeFragment.detach(Dungeon.heroine.belongings.backpack);
 				spendColourCubes();
 			}
 
 			return true;
-		} else if (Statistics.cardEikiMoney && Dungeon.gold >= 400){
+		} else if (Statistics.cardEikiMoney && Dungeon.gold >= 400) {
 			GLog.w(Messages.get(this, "eiki_money_trigger"));
-			Sample.INSTANCE.play( Assets.Sounds.SHATTER);
+			Sample.INSTANCE.play(Assets.Sounds.SHATTER);
 			curCharges += 1;
 			Dungeon.gold -= 400;
 			Buff.prolong(Dungeon.heroine, Recharging.class, Recharging.DURATION);
 			return true;
 		} else {
 			GLog.w(Messages.get(this, "fizzles"));
-			return false;
-		}
-	}
-
-	@Override
-	public boolean collect( Bag container ) {
-		if (super.collect( container )) {
-			if (container.owner != null) {
-				if (container instanceof ReimuHolder)
-					charge( container.owner, ReimuHolder.HOLSTER_SCALE_FACTOR);
-				else
-					charge( container.owner );
-			}
-			return true;
-		} else {
 			return false;
 		}
 	}

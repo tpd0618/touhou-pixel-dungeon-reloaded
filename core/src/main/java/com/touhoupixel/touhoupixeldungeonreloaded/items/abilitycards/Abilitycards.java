@@ -26,7 +26,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Shopkeeper;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ abstract public class Abilitycards extends Item {
 
     @Override
     public boolean collect(Bag container) {
-        if (container instanceof MarisaHolder) holster = true;
+        if (container instanceof CardBag) holster = true;
         return super.collect(container);
     }
 

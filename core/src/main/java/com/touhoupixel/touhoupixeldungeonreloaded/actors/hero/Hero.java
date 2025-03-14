@@ -110,7 +110,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.HornOfPlenty;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.FloralBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.BlinkBracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.Bracelet;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bracelets.CheatBracelet;
@@ -2447,7 +2448,7 @@ public class Hero extends Char {
 		HP = HT;
 		live();
 
-		ReimuHolder holster = belongings.getItem(ReimuHolder.class);
+		IcyBag holster = belongings.getItem(IcyBag.class);
 
 		Buff.affect(this, Invisibility.class, 3f);
 		//lost inventory is dropped in interlevelscene
@@ -2459,11 +2460,7 @@ public class Hero extends Char {
 			if (i instanceof EquipableItem && i.isEquipped(this)){
 				((EquipableItem) i).activate(this);
 			} else if (i instanceof Wand && i.keptThoughLostInvent) {
-				if (holster != null && holster.contains(i)) {
-					((Wand) i).charge(this, ReimuHolder.HOLSTER_SCALE_FACTOR);
-				} else {
-					((Wand) i).charge(this);
-				}
+				((Wand) i).charge(this);
 			} else if (i instanceof MarisaStaff && i.keptThoughLostInvent){
 				((MarisaStaff) i).applyWandChargeBuff(this);
 			}

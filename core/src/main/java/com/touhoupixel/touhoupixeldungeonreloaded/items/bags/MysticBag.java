@@ -1,19 +1,20 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
-import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class SanaeHolder extends Bag {
+public class MysticBag extends Bag {
 
     {
-        image = ItemSpriteSheet.POUCH;
+        image = ItemSpriteSheet.BANDOLIER;
     }
 
     @Override
     public boolean canHold( Item item ) {
-        if (item instanceof Plant.Seed || item instanceof Runestone){
+        if (item instanceof Scroll || item instanceof MissileWeapon){
             return super.canHold(item);
         } else {
             return false;

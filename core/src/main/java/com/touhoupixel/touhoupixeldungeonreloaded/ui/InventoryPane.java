@@ -29,10 +29,10 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReisenHolder;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.FloralBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.CardBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.PixelScene;
@@ -470,13 +470,13 @@ public class InventoryPane extends Component {
 	}
 
 	private Image bagIcon(Bag bag) {
-		if (bag instanceof MarisaHolder) {
+		if (bag instanceof IcyBag) {
 			return Icons.get(Icons.MARISA_HOLDER);
-		} else if (bag instanceof ReimuHolder) {
+		} else if (bag instanceof FloralBag) {
 			return Icons.get(Icons.REIMU_HOLDER);
-		} else if (bag instanceof ReisenHolder) {
+		} else if (bag instanceof CardBag) {
 			return Icons.get(Icons.REISEN_HOLDER);
-		} else if (bag instanceof SanaeHolder) {
+		} else if (bag instanceof MysticBag) {
 			return Icons.get(Icons.SANAE_HOLDER);
 		} else {
 			return Icons.get(Icons.BACKPACK);

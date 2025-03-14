@@ -32,7 +32,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MarisaHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfMagicMapping;
@@ -311,7 +312,7 @@ public class UnstableSpellbook extends Artifact {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return MarisaHolder.class;
+			return MysticBag.class;
 		}
 
 		@Override

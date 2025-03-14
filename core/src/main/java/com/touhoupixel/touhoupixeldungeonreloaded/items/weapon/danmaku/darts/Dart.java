@@ -27,7 +27,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.SanaeHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.YukariUmbrella;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
@@ -182,7 +182,7 @@ public class Dart extends MissileWeapon {
 
 		@Override
 		public Class<?extends Bag> preferredBag(){
-			return SanaeHolder.class;
+			return MysticBag.class;
 		}
 
 		@Override

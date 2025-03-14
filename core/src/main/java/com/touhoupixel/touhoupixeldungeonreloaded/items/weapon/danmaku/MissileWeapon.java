@@ -33,7 +33,9 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.sakuyaexclusive.SmeltScale;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.ReimuHolder;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.FloralBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.IcyBag;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.bags.MysticBag;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.enchantments.Projecting;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -151,7 +153,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public boolean collect(Bag container) {
-		if (container instanceof ReimuHolder) holster = true;
+		if (container instanceof FloralBag) holster = true;
 		return super.collect(container);
 	}
 
@@ -370,10 +372,6 @@ abstract public class MissileWeapon extends Weapon {
 
 	public float durabilityPerUse(){
 		float usages = baseUses * (float)(Math.pow(3, level()));
-
-		if (holster) {
-			usages *= ReimuHolder.HOLSTER_DURABILITY_FACTOR;
-		}
 
 		usages *= SmeltScale.durabilityMultiplier();
 

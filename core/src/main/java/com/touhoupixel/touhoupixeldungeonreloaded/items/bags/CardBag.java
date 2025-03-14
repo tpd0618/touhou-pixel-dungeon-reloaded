@@ -22,11 +22,12 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.abilitycards.Abilitycards;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.CubeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class ReisenHolder extends Bag {
+public class CardBag extends Bag {
 
     {
         image = ItemSpriteSheet.BANDOLIER;
@@ -34,7 +35,7 @@ public class ReisenHolder extends Bag {
 
     @Override
     public boolean canHold( Item item ) {
-        if (item instanceof Potion || item instanceof LiquidMetal){
+        if (item instanceof Talisman || item instanceof Abilitycards || item instanceof CubeFragment){
             return super.canHold(item);
         } else {
             return false;

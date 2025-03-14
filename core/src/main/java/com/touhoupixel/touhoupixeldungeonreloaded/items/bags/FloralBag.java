@@ -22,23 +22,22 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.items.bags;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.LiquidMetal;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.Runestone;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
+import com.touhoupixel.touhoupixeldungeonreloaded.plants.Plant;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ItemSpriteSheet;
 
-public class ReimuHolder extends Bag {
+public class FloralBag extends Bag {
 
     {
-        image = ItemSpriteSheet.HOLSTER;
+        image = ItemSpriteSheet.BANDOLIER;
     }
-
-    public static final float HOLSTER_SCALE_FACTOR = 1f;
-    public static final float HOLSTER_DURABILITY_FACTOR = 1.2f;
 
     @Override
     public boolean canHold( Item item ) {
-        if (item instanceof Wand || item instanceof MissileWeapon || item instanceof Talisman){
+        if (item instanceof Plant.Seed || item instanceof Runestone || item instanceof LiquidMetal){
             return super.canHold(item);
         } else {
             return false;
@@ -47,24 +46,6 @@ public class ReimuHolder extends Bag {
 
     public int capacity(){
         return 19;
-    }
-
-    @Override
-    public boolean collect( Bag container ) {
-        if (super.collect( container )) {
-            if (owner != null) {
-                for (Item item : items) {
-                    if (item instanceof Wand) {
-                        ((Wand) item).charge(owner, HOLSTER_SCALE_FACTOR);
-                    } else if (item instanceof MissileWeapon){
-                        ((MissileWeapon) item).holster = true;
-                    }
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override
