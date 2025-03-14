@@ -45,6 +45,8 @@ public class v1_4_Changes {
 		changes.addButton(new ChangeButton(Icons.get(Icons.CHANGES), "v1.2.6 changes",
 				"_-_ Blank scroll is added in the game.\n" +
 						"_-_ Iku is reworked, with a strong debuff.\n" +
+						"_-_ Fixed an issue that is related with a bag.\n" +
+						"_-_ Fixed an issue when the game crashed upon identify bracelet picks up an item.(hopefully)\n" +
 						"_-_ Bug report: touhoupixeldungeon@gmail.com"));
 	}
 
