@@ -41,7 +41,7 @@ public class Kyouko extends Mob {
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(19, 29);
+        return Random.NormalIntRange(19, 24);
     }
 
     @Override

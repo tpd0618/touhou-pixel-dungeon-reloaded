@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HomingBlade;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.RedCubeFragment;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.cubes.WhiteCubeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.MarisaStaff;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
@@ -38,7 +37,7 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-public class WandOfSetsunatrip extends DamageWand {
+public class WandOfSwap extends DamageWand {
 
 	{
 		image = ItemSpriteSheet.WAND_SETSUNA_TRIP;

@@ -35,21 +35,21 @@ public class MurasaSprite extends MobSprite {
 		perspectiveRaise = 0.2f;
 		
 		texture( Assets.Sprites.MURASA );
-		
+
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
-		
-		idle = new Animation( 8, true );
-		idle.frames( frames, 0, 1, 2, 1 );
-		
-		run = new Animation( 20, true );
-		run.frames( frames, 0, 1, 2, 1 );
-		
-		attack = new Animation( 20, false );
-		attack.frames( frames, 3, 4, 5, 6, 7, 8, 9, 10, 11 );
-		
-		die = new Animation( 4, false );
-		die.frames( frames, 12, 13, 14 );
-		
+
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0 );
+
+		run = new Animation( 12, true );
+		run.frames( frames, 0 );
+
+		attack = new Animation( 12, false );
+		attack.frames( frames, 0 );
+
+		die = new Animation( 12, false );
+		die.frames( frames, 0 );
+
 		play( idle );
 	}
 

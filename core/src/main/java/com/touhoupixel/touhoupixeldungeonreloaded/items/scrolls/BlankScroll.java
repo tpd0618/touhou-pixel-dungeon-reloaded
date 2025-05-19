@@ -52,8 +52,8 @@ public class BlankScroll extends Item {
 					actions.put("땅", () -> createScroll(new ScrollOfEarth(), heroine));
 					actions.put("earth", () -> createScroll(new ScrollOfEarth(), heroine));
 
-					actions.put("해주", () -> createScroll(new ScrollOfEarth(), heroine));
-					actions.put("exorcism", () -> createScroll(new ScrollOfEarth(), heroine));
+					actions.put("해주", () -> createScroll(new ScrollOfExorcism(), heroine));
+					actions.put("exorcism", () -> createScroll(new ScrollOfExorcism(), heroine));
 
 					actions.put("근절", () -> createScroll(new ScrollOfExtinction(), heroine));
 					actions.put("extinction", () -> createScroll(new ScrollOfExtinction(), heroine));

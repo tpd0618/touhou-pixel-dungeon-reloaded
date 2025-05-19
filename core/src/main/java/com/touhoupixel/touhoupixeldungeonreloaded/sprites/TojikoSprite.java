@@ -41,19 +41,19 @@ public class TojikoSprite extends MobSprite {
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 
 		idle = new Animation( 1, true );
-		idle.frames( frames, 0, 1 );
+		idle.frames( frames, 0);
 
 		run = new Animation( 12, true );
-		run.frames( frames, 6, 7, 8, 9 );
+		run.frames( frames, 0);
 
 		attack = new Animation( 12, false );
-		attack.frames( frames, 2, 3, 4, 0 );
+		attack.frames( frames, 0);
 
 		zap = new Animation( 8, false );
-		zap.frames( frames, 5, 5, 1 );
+		zap.frames( frames, 0);
 
 		die = new Animation( 12, false );
-		die.frames( frames, 10, 11, 12, 13, 13, 13 );
+		die.frames( frames, 0);
 
 		play( idle );
 	}

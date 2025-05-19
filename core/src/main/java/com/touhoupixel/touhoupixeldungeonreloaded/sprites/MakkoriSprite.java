@@ -24,27 +24,27 @@ package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.watabou.noosa.TextureFilm;
 
-public class EikaSprite extends MobSprite {
+public class MakkoriSprite extends MobSprite {
 
-	public EikaSprite() {
+	public MakkoriSprite() {
 		super();
 		
-		texture( Assets.Sprites.EIKA );
-		
+		texture( Assets.Sprites.MAKKORI );
+
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
-		
+
 		idle = new Animation( 2, true );
-		idle.frames( frames, 0, 0, 0, 1, 0, 0, 1, 1 );
-		
+		idle.frames( frames, 0 );
+
 		run = new Animation( 12, true );
-		run.frames( frames, 4, 5, 6, 7 );
-		
+		run.frames( frames, 0 );
+
 		attack = new Animation( 12, false );
-		attack.frames( frames, 2, 3, 0 );
-		
+		attack.frames( frames, 0 );
+
 		die = new Animation( 12, false );
-		die.frames( frames, 8, 9, 10 );
-		
+		die.frames( frames, 0 );
+
 		play( idle );
 	}
 }

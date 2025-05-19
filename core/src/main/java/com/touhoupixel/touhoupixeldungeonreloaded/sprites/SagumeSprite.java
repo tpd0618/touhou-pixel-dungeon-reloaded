@@ -39,18 +39,18 @@ public class SagumeSprite extends MobSprite {
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		
 		idle = new Animation( 12, true );
-		idle.frames( frames, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 2 );
+		idle.frames( frames, 0 );
 		
 		run = new Animation( 8, true );
-		run.frames( frames, 5, 5, 6, 6 );
+		run.frames( frames, 0 );
 		
 		attack = new Animation( 15, false );
-		attack.frames( frames, 0, 3, 4 );
+		attack.frames( frames, 0 );
 		
 		zap = attack.clone();
 		
 		die = new Animation( 12, false );
-		die.frames( frames, 0, 7, 8, 9, 10 );
+		die.frames( frames, 0 );
 		
 		play( idle );
 	}

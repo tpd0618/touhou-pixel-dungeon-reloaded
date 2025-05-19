@@ -3,6 +3,17 @@ package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
 import com.touhoupixel.touhoupixeldungeonreloaded.Challenges;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.*;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.others.Biruko;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.others.Makkori;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.others.Mitori;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Biten;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Chiyari;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Enoko;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Hisami;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Zanmu;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th20.Chimi;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th20.Nareko;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th20.Ubame;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -54,7 +65,7 @@ public class Bestiary {
 				case 24:
 				case 25:
 					return new ArrayList<>(Arrays.asList(
-							Eika.class, Marisa.class, Reisen.class, Tewi.class, Keine.class, Kasen.class));
+							Ubame.class, Makkori.class, Marisa.class, Reisen.class, Tewi.class, Keine.class, Kasen.class));
 				case 26:
 				case 27:
 				case 28:
@@ -89,21 +100,21 @@ public class Bestiary {
 				case 49:
 				case 50:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Shion.class, Kasen.class, Mayumi.class, Futo.class, Kyouko.class, Renko.class));
+							Hecatia.class, Shion.class, Kasen.class, Mitori.class, Futo.class, Kyouko.class, Renko.class));
 				case 51:
 				case 52:
 				case 53:
 				case 54:
 				case 55:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Hearn.class));
+							Hecatia.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Hearn.class));
 				case 56:
 				case 57:
 				case 58:
 				case 59:
 				case 60:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Biruko.class, Kisume.class, Kutaka.class, Saki.class, Raiko.class, Hearn.class));
+							Hecatia.class, Biruko.class, Kutaka.class, Saki.class, Raiko.class, Hearn.class));
 				case 61:
 				case 62:
 				case 63:
@@ -124,7 +135,7 @@ public class Bestiary {
 				case 74:
 				case 75:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Kanako.class, Hisami.class, Benben.class, Yatsuhashi.class, Shinmyomaru.class, Seija.class, Yuuma.class));
+							Hecatia.class, Kanako.class, Hisami.class, Chimi.class, Nareko.class, Shinmyomaru.class, Seija.class, Yuuma.class));
 				case 76:
 				case 77:
 				case 78:
@@ -180,7 +191,7 @@ public class Bestiary {
 				case 9:
 				case 10:
 					return new ArrayList<>(Arrays.asList(
-							Alice.class, Mystia.class, Chen.class, Star.class, Eika.class, Marisa.class));
+							Alice.class, Mystia.class, Chen.class, Star.class, Ubame.class, Makkori.class, Marisa.class));
 				case 11:
 				case 12:
 					return new ArrayList<>(Arrays.asList(
@@ -198,16 +209,16 @@ public class Bestiary {
 				case 19:
 				case 20:
 					return new ArrayList<>(Arrays.asList(
-							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class, Mayumi.class, Mokou.class));
+							Seiga.class, Yuuka.class, Nemuno.class, Tsukasa.class, Joon.class, Shion.class, Kasen.class, Mitori.class, Mokou.class));
 				case 21:
 				case 22:
 					return new ArrayList<>(Arrays.asList(
-							Futo.class, Kyouko.class, Ichirin.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
+							Futo.class, Kyouko.class, Momoyo.class, Shou.class, Miko.class, Hijiri.class, Raiko.class));
 				case 23:
 				case 24:
 				case 25:
 					return new ArrayList<>(Arrays.asList(
-							Biruko.class, Kisume.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class, Raiko.class));
+							Biruko.class, Kutaka.class, Saki.class, Tojiko.class, Hina.class, Komachi.class, Hearn.class, Raiko.class));
 				case 26:
 				case 27:
 					return new ArrayList<>(Arrays.asList(
@@ -216,7 +227,7 @@ public class Bestiary {
 				case 29:
 				case 30:
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Benben.class, Yatsuhashi.class, Shinmyomaru.class, Seija.class, Mai.class, Satono.class, Okina.class, Chiyari.class, Suwako.class));
+							Hecatia.class, Chimi.class, Nareko.class, Shinmyomaru.class, Seija.class, Mai.class, Satono.class, Okina.class, Chiyari.class, Suwako.class));
 				case 31:
 				case 32:
 					return new ArrayList<>(Arrays.asList(

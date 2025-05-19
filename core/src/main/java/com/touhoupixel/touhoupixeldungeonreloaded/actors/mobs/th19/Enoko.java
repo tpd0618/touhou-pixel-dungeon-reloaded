@@ -19,10 +19,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.spells.ReclaimTrap;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.EnokoSprite;
 import com.watabou.utils.Random;

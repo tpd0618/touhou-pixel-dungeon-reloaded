@@ -22,51 +22,61 @@
 package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.ShieldHalo;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ElmoParticle;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th20.Chimi;
+import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 
-public class WandmakerSprite extends MobSprite {
-	
-	private ShieldHalo shield;
-	
-	public WandmakerSprite() {
+public class ChimiSprite extends MobSprite {
+
+	public ChimiSprite() {
 		super();
-		
-		texture( Assets.Sprites.MAKER );
-		
-		TextureFilm frames = new TextureFilm( texture, 12, 14 );
-		
-		idle = new Animation( 10, true );
-		idle.frames( frames, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1 );
-		
-		run = new Animation( 20, true );
+
+		texture( Assets.Sprites.CHIMI );
+
+		TextureFilm frames = new TextureFilm( texture, 12, 15 );
+
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0 );
+
+		run = new Animation( 15, true );
 		run.frames( frames, 0 );
-		
-		die = new Animation( 20, false );
+
+		attack = new Animation( 12, false );
+		attack.frames( frames, 0);
+
+		zap = attack.clone();
+
+		die = new Animation( 15, false );
 		die.frames( frames, 0 );
-		
+
 		play( idle );
 	}
-	
-	@Override
-	public void link( Char ch ) {
-		super.link( ch );
-		add(State.SHIELDED);
-	}
-	
-	@Override
-	public void die() {
-		super.die();
-		
-		remove(State.SHIELDED);
-		emitter().start( ElmoParticle.FACTORY, 0.03f, 60 );
 
-		if (visible) {
-			Sample.INSTANCE.play( Assets.Sounds.BURNING );
+	public void zap( int cell ) {
+
+		turnTo( ch.pos , cell );
+		play( zap );
+
+		MagicMissile.boltFromChar( parent,
+				MagicMissile.SHADOW,
+				this,
+				cell,
+				new Callback() {
+					@Override
+					public void call() {
+						((Chimi)ch).onZapComplete();
+					}
+				} );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
+	}
+
+	@Override
+	public void onComplete( Animation anim ) {
+		if (anim == zap) {
+			idle();
 		}
+		super.onComplete( anim );
 	}
-
 }

@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeonreloaded.sprites;
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Actor;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Zanmu;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Zanmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Beam;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeonreloaded.tiles.DungeonTilemap;
@@ -47,20 +47,20 @@ public class ZanmuSprite extends MobSprite {
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 
 		idle = new Animation( 8, true );
-		idle.frames( frames, 0, 1, 2 );
+		idle.frames( frames, 0);
 
 		charging = new Animation( 12, true);
-		charging.frames( frames, 3, 4 );
+		charging.frames( frames, 0);
 
 		run = new Animation( 12, true );
-		run.frames( frames, 5, 6 );
+		run.frames( frames, 0);
 
 		attack = new Animation( 8, false );
-		attack.frames( frames, 3, 4 );
+		attack.frames( frames, 0);
 		zap = attack.clone();
 
 		die = new Animation( 8, false );
-		die.frames( frames, 7, 8, 9 );
+		die.frames( frames, 0);
 
 		play( idle );
 	}

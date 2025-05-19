@@ -27,54 +27,25 @@ import com.watabou.noosa.TextureFilm;
 
 public class YoumuSprite extends MobSprite {
 
-	private Animation crumple;
-	
 	public YoumuSprite() {
 		super();
-		
-		texture( Assets.Sprites.YOUMU );
-		
-		TextureFilm frames = new TextureFilm( texture, 12, 15 );
+
+		texture(Assets.Sprites.YOUMU);
+
+		TextureFilm frames = new TextureFilm(texture, 12, 15);
 
 		idle = new Animation( 2, true );
-		idle.frames( frames, 0, 0, 0, 1 );
+		idle.frames( frames, 0 );
 
 		run = new Animation( 12, true );
-		run.frames( frames, 2, 3, 4, 5, 6, 7 );
+		run.frames( frames, 0 );
 
 		attack = new Animation( 12, false );
-		attack.frames( frames, 0, 8, 9 );
+		attack.frames( frames, 0 );
 
-		crumple = new Animation( 15, false);
-		crumple.frames( frames, 0, 10, 11, 12 );
+		die = new Animation( 12, false );
+		die.frames( frames, 0 );
 
-		die = new Animation( 15, false );
-		die.frames( frames, 0, 10, 11, 12, 13 );
-		
 		play( idle );
-	}
-
-	public void crumple(){
-		hideEmo();
-		play(crumple);
-	}
-
-	@Override
-	public void move(int from, int to) {
-		if (parent == null){
-			//fixme this happens rarely, likely due to ghoul life link?
-			Game.reportException(new RuntimeException("ghoul sprite tried to move with null parent! ghoul HP: " + ch.HP));
-			return;
-		}
-		super.move(from, to);
-	}
-
-	@Override
-	public void die() {
-		if (curAnim == crumple){
-			//causes the sprite to not rise then fall again when dieing.
-			die.frames[0] = die.frames[1] = die.frames[2] = die.frames[3];
-		}
-		super.die();
 	}
 }

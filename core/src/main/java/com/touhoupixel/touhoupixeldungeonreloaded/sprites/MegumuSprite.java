@@ -30,20 +30,21 @@ public class MegumuSprite extends MobSprite {
 		super();
 
 		texture( Assets.Sprites.MEGUMU );
-		TextureFilm film = new TextureFilm( texture, 12, 15 );
 
-		idle = new Animation( 1, true );
-		idle.frames( film, 0, 0, 0, 1, 0, 0, 0, 0, 1 );
+		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 
-		run = new Animation( 15, true );
-		run.frames( film, 0, 0, 2, 3, 3, 4 );
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0 );
 
-		die = new Animation( 10, false );
-		die.frames( film, 5, 6, 7, 8, 9 );
+		run = new Animation( 12, true );
+		run.frames( frames, 0 );
 
 		attack = new Animation( 12, false );
-		attack.frames( film, 10, 11, 12, 0 );
+		attack.frames( frames, 0 );
 
-		idle();
+		die = new Animation( 12, false );
+		die.frames( frames, 0 );
+
+		play( idle );
 	}
 }

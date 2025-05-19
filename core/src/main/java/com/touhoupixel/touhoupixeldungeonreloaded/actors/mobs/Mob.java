@@ -59,6 +59,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.Okina;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.DirectableAlly;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.npcs.Sheep;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19.Zanmu;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Speck;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.Surprise;
@@ -68,7 +69,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.Item;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.MasterThievesArmband;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.stones.StoneOfAggression;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.talismans.Talisman;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.danmaku.darts.Dart;
@@ -790,7 +790,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public void die( Object cause ) {
-		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
+		if (!(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			Statistics.power += gainingPower;
 			if (Statistics.cardMiserAdvice) {
 				new Gold().quantity(20).collect();
@@ -811,7 +811,7 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (!(this instanceof SakuyaDagger) && !(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
+		if (!(this instanceof WandOfWarding.Ward) && !(this instanceof Sheep)) {
 			Statistics.value += Random.NormalIntRange(10, 20);
 		}
 

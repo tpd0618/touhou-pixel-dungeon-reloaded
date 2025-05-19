@@ -19,69 +19,64 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ExtremeFear;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.ScrollOfTransmutation;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BitenSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.HinaCurse;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.exotic.PotionOfLunar;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChiyariSprite;
 import com.watabou.utils.Random;
 
-public class Biten extends Mob {
+public class Chiyari extends Mob {
 
     {
-        spriteClass = BitenSprite.class;
+        spriteClass = ChiyariSprite.class;
 
-        HP = HT = 420;
-        defenseSkill = 32;
-        EXP = 14;
-        maxLvl = 75;
+        HP = HT = 460;
+        defenseSkill = 30;
+        EXP = 15;
+        maxLvl = 37;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.HELL);
 
-        loot = new ScrollOfTransmutation();
+        loot = new PotionOfLunar();
         lootChance = 0.05f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(110, 168);
+        return Random.NormalIntRange(95, 145);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 50;
+        return 35;
     }
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(35, 51);
+        return Random.NormalIntRange(16, 23);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(enemy, ExtremeFear.class, ExtremeFear.DURATION);
-            Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
-            Dungeon.heroine.exp = 0;
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
-            GLog.w(Messages.get(this, "exp_reset"));
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
+            Buff.affect(enemy, Burning.class).reignite(enemy, 6f);
+            Buff.affect(enemy, Bleeding.class).set(25);
             if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, Silence.class, Silence.DURATION);
+                Buff.prolong(enemy, HinaCurse.class, HinaCurse.DURATION);
             }
             if (Statistics.difficulty > 4) {
-                Buff.prolong(this, Hisou.class, Hisou.DURATION);
+                Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
             }
         }
         return damage;

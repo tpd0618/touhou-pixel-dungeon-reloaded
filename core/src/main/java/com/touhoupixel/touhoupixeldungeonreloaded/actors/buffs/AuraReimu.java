@@ -6,7 +6,6 @@ import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.TsukasaSoul;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.mobswithspells.MobWithSpellcard;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.spellcards.PhoenixFeathers;
@@ -103,7 +102,7 @@ public class AuraReimu extends Buff {
                 reduceTime(CREATING_TIME * 3.0f);
             } else if (ch instanceof MobWithSpellcard) {
                 reduceTime(CREATING_TIME * 1.6f);
-            } else if (ch instanceof Wraith || ch instanceof PhoenixFeathers.Phoenix || ch instanceof WandOfWarding.Ward || ch instanceof TsukasaSoul) {
+            } else if (ch instanceof Wraith || ch instanceof PhoenixFeathers.Phoenix || ch instanceof WandOfWarding.Ward) {
                 reduceTime(CREATING_TIME * 0.1f);
             } else {
                 reduceTime(CREATING_TIME * 0.25f);

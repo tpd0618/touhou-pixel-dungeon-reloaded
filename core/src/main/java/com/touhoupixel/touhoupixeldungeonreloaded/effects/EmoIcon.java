@@ -23,18 +23,11 @@ package com.touhoupixel.touhoupixeldungeonreloaded.effects;
 
 import static java.lang.Math.min;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
-import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoomedZone;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Zanmu;
-import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.ui.Icons;
-import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class EmoIcon extends Image {

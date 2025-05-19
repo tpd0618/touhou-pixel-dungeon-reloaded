@@ -30,21 +30,21 @@ public class MedicineSprite extends MobSprite {
 		super();
 		
 		texture( Assets.Sprites.MEDICINE);
-		
+
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
-		
-		idle = new Animation( 12, true );
-		idle.frames( frames, 0, 1, 1, 0, 2, 2 );
-		
-		run = new Animation( 15, true );
-		run.frames( frames, 0, 1, 1, 0, 2, 2 );
-		
-		attack = new Animation( 20, false );
-		attack.frames( frames, 3, 4, 5, 6 );
-		
-		die = new Animation( 20, false );
-		die.frames( frames, 7, 8, 9, 10 );
-		
+
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0 );
+
+		run = new Animation( 12, true );
+		run.frames( frames, 0 );
+
+		attack = new Animation( 12, false );
+		attack.frames( frames, 0 );
+
+		die = new Animation( 12, false );
+		die.frames( frames, 0 );
+
 		play( idle );
 	}
 	

@@ -19,64 +19,59 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.others;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.AliceCurse;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Hisou;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.BalanceBreak;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.YatsuhashiSprite;
-import com.watabou.noosa.audio.Sample;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BirukoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MitoriSprite;
 import com.watabou.utils.Random;
 
-public class Yatsuhashi extends Mob {
+public class Mitori extends Mob {
 
     {
-        spriteClass = YatsuhashiSprite.class;
+        spriteClass = MitoriSprite.class;
 
-        HP = HT = 610;
-        defenseSkill = 30;
+        HP = HT = 155;
+        defenseSkill = 22;
         EXP = 13;
-        maxLvl = 37;
+        maxLvl = 30;
 
         properties.add(Property.YOKAI);
 
-        loot = Gold.class;
+        loot = Generator.Category.POTION;
         lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(95, 145);
+        return Random.NormalIntRange(45, 78);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 35;
+        return 27;
     }
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(35, 51);
+        return Random.NormalIntRange(0, 2);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(4) == 0) {
-            Buff.prolong(this, Hisou.class, Hisou.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, AliceCurse.class, AliceCurse.DURATION);
-            }
-            Sample.INSTANCE.play(Assets.Sounds.CURSED);
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+            Buff.prolong(enemy, Silence.class, Silence.DURATION);
+            Buff.prolong(enemy, BalanceBreak.class, BalanceBreak.DURATION);
         }
         return damage;
     }

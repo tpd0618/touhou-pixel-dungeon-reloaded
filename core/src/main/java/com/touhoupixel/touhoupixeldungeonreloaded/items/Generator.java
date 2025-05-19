@@ -149,7 +149,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMagicMissile
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfMindburst;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfPrismaticLight;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfRegrowth;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSetsunatrip;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfSwap;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.weapon.melee.AntiHarassmentDagger;
@@ -431,7 +431,7 @@ public class Generator {
 					WandOfWarding.class,
 					WandOfCorruption.class,
 					WandOfAntiDoor.class,
-					WandOfSetsunatrip.class,
+					WandOfSwap.class,
 					WandOfHealWounds.class,
 					WandOfRegrowth.class,
 					WandOfMindburst.class

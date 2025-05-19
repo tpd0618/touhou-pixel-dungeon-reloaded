@@ -28,8 +28,8 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Alice;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.BossMarisa;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Chen;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Eika;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mystia;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th20.Ubame;
 import com.touhoupixel.touhoupixeldungeonreloaded.levels.features.LevelTransition;
 import com.touhoupixel.touhoupixeldungeonreloaded.scenes.GameScene;
 import com.watabou.noosa.audio.Music;
@@ -173,11 +173,11 @@ public class ForestofMagicBossLevel extends Level {
 		GameScene.add( chen );
 		chen.beckon(Dungeon.heroine.pos);
 
-		Eika eika = new Eika();
-		eika.state = eika.WANDERING;
-		eika.pos = 409;
-		GameScene.add( eika );
-		eika.beckon(Dungeon.heroine.pos);
+		Ubame ubame = new Ubame();
+		ubame.state = ubame.WANDERING;
+		ubame.pos = 409;
+		GameScene.add( ubame );
+		ubame.beckon(Dungeon.heroine.pos);
 
 		if (heroFOV[boss.pos]) {
 			boss.notice();

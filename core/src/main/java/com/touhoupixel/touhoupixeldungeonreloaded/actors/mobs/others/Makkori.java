@@ -19,63 +19,60 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.others;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.Statistics;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.ZeroDexterity;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.DoubleSpeed;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.RemiliaFate;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.Gold;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BenbenSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.Generator;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.SpellcardFragment;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.scrolls.exotic.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.BirukoSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.MakkoriSprite;
 import com.watabou.utils.Random;
 
-public class Benben extends Mob {
+public class Makkori extends Mob {
 
     {
-        spriteClass = BenbenSprite.class;
+        spriteClass = MakkoriSprite.class;
 
-        HP = HT = 455;
-        defenseSkill = 30;
-        EXP = 13;
-        maxLvl = 37;
+        HP = HT = 71;
+        defenseSkill = 10;
+        EXP = 4;
+        maxLvl = 17;
 
         properties.add(Property.YOKAI);
 
-        loot = Gold.class;
-        lootChance = 0.1f;
+        loot = new SpellcardFragment();
+        lootChance = 0.13f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(95, 145);
+        return Random.NormalIntRange(25, 41);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 35;
+        return 15;
     }
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(17, 25);
+        return Random.NormalIntRange(0, 2);
     }
 
     @Override
     public int attackProc(Char hero, int damage) {
         damage = super.attackProc(enemy, damage);
-        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
-            Buff.prolong(this, DoubleSpeed.class, DoubleSpeed.DURATION);
-            Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
-            if (Statistics.difficulty > 2) {
-                Buff.prolong(enemy, ZeroDexterity.class, ZeroDexterity.DURATION);
-            }
-            if (Statistics.difficulty > 4) {
-                Buff.prolong(enemy, RemiliaFate.class, RemiliaFate.DURATION);
-            }
+        if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+            ScrollOfTeleportation.randomTeleportChar(this);
+            ScrollOfTeleportation.randomTeleportChar(enemy);
         }
         return damage;
     }

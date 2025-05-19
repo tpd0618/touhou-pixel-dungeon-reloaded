@@ -1423,19 +1423,19 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
-		if (Dungeon.heroine.belongings.armor().YokaiDefFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
+		if (Dungeon.heroine.belongings.armor != null && Dungeon.heroine.belongings.armor().YokaiDefFactor(this) == 1 && enemy.properties().contains(Char.Property.YOKAI)){
 			damage *= 0.75f;
 		}
-		if (Dungeon.heroine.belongings.armor().GodDefFactor(this) == 1 && enemy.properties().contains(Char.Property.GOD)){
+		if (Dungeon.heroine.belongings.armor != null && Dungeon.heroine.belongings.armor().GodDefFactor(this) == 1 && enemy.properties().contains(Char.Property.GOD)){
 			damage *= 0.5f;
 		}
-		if (Dungeon.heroine.belongings.armor().HumanDefFactor(this) == 1 && enemy.properties().contains(Char.Property.HUMAN)){
+		if (Dungeon.heroine.belongings.armor != null && Dungeon.heroine.belongings.armor().HumanDefFactor(this) == 1 && enemy.properties().contains(Char.Property.HUMAN)){
 			damage *= 0.5f;
 		}
-		if (Dungeon.heroine.belongings.armor().AnimalDefFactor(this) == 1 && enemy.properties().contains(Char.Property.ANIMAL)){
+		if (Dungeon.heroine.belongings.armor != null && Dungeon.heroine.belongings.armor().AnimalDefFactor(this) == 1 && enemy.properties().contains(Char.Property.ANIMAL)){
 			damage *= 0.5f;
 		}
-		if (Dungeon.heroine.belongings.armor().WarpDefFactor(this) == 1 && enemy.properties().contains(Char.Property.WARP)){
+		if (Dungeon.heroine.belongings.armor != null && Dungeon.heroine.belongings.armor().WarpDefFactor(this) == 1 && enemy.properties().contains(Char.Property.WARP)){
 			damage *= 0.75f;
 		}
 

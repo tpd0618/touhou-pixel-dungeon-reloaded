@@ -29,25 +29,22 @@ public class HinaSprite extends MobSprite {
 	public HinaSprite() {
 		super();
 
-		texture( Assets.Sprites.HINA);
+		texture(Assets.Sprites.HINA);
 
-		TextureFilm frames = new TextureFilm( texture, 12, 15 );
+		TextureFilm frames = new TextureFilm(texture, 12, 15);
 
-		idle = new Animation( 2, true );
-		idle.frames( frames, 0, 0, 0, 1, 0, 0, 1, 1 );
+		idle = new Animation(2, true);
+		idle.frames(frames, 0);
 
-		run = new Animation( 15, true );
-		run.frames( frames, 0, 2, 3, 4 );
+		run = new Animation(12, true);
+		run.frames(frames, 0);
 
-		attack = new Animation( 12, false );
-		attack.frames( frames, 0, 5, 6 );
+		attack = new Animation(12, false);
+		attack.frames(frames, 0);
 
-		zap = attack.clone();
+		die = new Animation(12, false);
+		die.frames(frames, 0);
 
-		die = new Animation( 15, false );
-		die.frames( frames, 0, 7, 8, 8, 9, 10 );
-
-		play( idle );
+		play(idle);
 	}
-
 }

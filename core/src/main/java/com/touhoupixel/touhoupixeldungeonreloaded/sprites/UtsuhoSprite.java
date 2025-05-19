@@ -39,18 +39,18 @@ public class UtsuhoSprite extends MobSprite {
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 
 		idle = new MovieClip.Animation( 2, true );
-		idle.frames( frames, 0, 0, 0, 1, 0, 0, 1, 1 );
+		idle.frames( frames, 0);
 
 		run = new MovieClip.Animation( 15, true );
-		run.frames( frames, 0, 2, 3, 4 );
+		run.frames( frames, 0);
 
 		attack = new MovieClip.Animation( 12, false );
-		attack.frames( frames, 0, 5, 6 );
+		attack.frames( frames, 0);
 
 		zap = attack.clone();
 
 		die = new MovieClip.Animation( 15, false );
-		die.frames( frames, 0, 7, 8, 8, 9, 10 );
+		die.frames( frames, 0);
 
 		play( idle );
 	}

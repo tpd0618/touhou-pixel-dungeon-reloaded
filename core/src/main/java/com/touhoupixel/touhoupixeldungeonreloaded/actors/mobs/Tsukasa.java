@@ -58,7 +58,7 @@ public class Tsukasa extends Mob {
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(69, 107);
+        return Random.NormalIntRange(70, 200);
     }
 
     @Override
@@ -69,14 +69,5 @@ public class Tsukasa extends Mob {
     @Override
     public int drRoll() {
         return Random.NormalIntRange(13, 20);
-    }
-
-    @Override
-    public void die(Object cause) {
-        TsukasaSoul tsukasaSoul = new TsukasaSoul();
-        tsukasaSoul.state = tsukasaSoul.WANDERING;
-        tsukasaSoul.pos = this.pos;
-        GameScene.add(tsukasaSoul);
-        super.die(cause);
     }
 }

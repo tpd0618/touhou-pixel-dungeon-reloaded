@@ -36,7 +36,7 @@ public class ShopkeeperSprite extends MobSprite {
 		TextureFilm film = new TextureFilm( texture, 12, 15 );
 		
 		idle = new Animation( 10, true );
-		idle.frames( film, 1, 1, 1, 1, 1, 0, 0, 0, 0 );
+		idle.frames( film, 0);
 
 		die = new Animation( 20, false );
 		die.frames( film, 0 );

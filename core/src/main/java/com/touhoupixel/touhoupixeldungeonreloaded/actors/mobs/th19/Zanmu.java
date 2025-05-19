@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th19;
 
 import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
@@ -29,6 +29,7 @@ import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.PurpleParticle;
 import com.touhoupixel.touhoupixeldungeonreloaded.items.armor.Armor;

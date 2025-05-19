@@ -19,58 +19,56 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs;
+package com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.th20;
 
-import com.touhoupixel.touhoupixeldungeonreloaded.Assets;
 import com.touhoupixel.touhoupixeldungeonreloaded.Dungeon;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.Char;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MagicDrain;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.MeleeNullify;
 import com.touhoupixel.touhoupixeldungeonreloaded.actors.buffs.Vertigo;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.CellEmitter;
-import com.touhoupixel.touhoupixeldungeonreloaded.effects.particles.ShadowParticle;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.potions.PotionOfLightHealing;
-import com.touhoupixel.touhoupixeldungeonreloaded.items.wands.WandOfBlastWave;
+import com.touhoupixel.touhoupixeldungeonreloaded.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeonreloaded.items.itemstats.LifeFragment;
 import com.touhoupixel.touhoupixeldungeonreloaded.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeonreloaded.messages.Messages;
 import com.touhoupixel.touhoupixeldungeonreloaded.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeonreloaded.sprites.IchirinSprite;
+import com.touhoupixel.touhoupixeldungeonreloaded.sprites.ChimiSprite;
 import com.touhoupixel.touhoupixeldungeonreloaded.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
-public class Ichirin extends Mob implements Callback {
+public class Chimi extends Mob implements Callback {
 
     private static final float TIME_TO_ZAP	= 1f;
 
     {
-        spriteClass = IchirinSprite.class;
+        spriteClass = ChimiSprite.class;
 
-        HP = HT = 162;
-        defenseSkill = 22;
-        EXP = 13;
-        maxLvl = 30;
+        HP = HT = 587;
+        defenseSkill = 30;
+        EXP = 14;
+        maxLvl = 37;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.HARASSMENT);
 
-        loot = new PotionOfLightHealing();
+        loot = new LifeFragment();
         lootChance = 0.1f;
     }
 
     @Override
     public int damageRoll() {
-        return Random.NormalIntRange(39, 61);
+        return Random.NormalIntRange(75, 95);
     }
 
     @Override
     public int attackSkill(Char target) {
-        return 27;
+        return 35;
     }
 
     @Override
     public int drRoll() {
-        return Random.NormalIntRange(21, 31);
+        return Random.NormalIntRange(22, 44);
     }
 
     @Override
@@ -104,12 +102,23 @@ public class Ichirin extends Mob implements Callback {
 
         if (hit( this, enemy, true )) {
             //TODO would be nice for this to work on ghost/statues too
-            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment && Random.Int(3) == 0) {
-                Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
+            if (enemy == Dungeon.heroine && enemy.alignment != this.alignment) {
+                switch (Random.Int(4)) {
+                    case 0:
+                    default:
+                        enemy.damage( 40, this );
+                        break;
+                    case 1:
+                        Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+                        break;
+                    case 2:
+                        Buff.prolong(enemy, MeleeNullify.class, MeleeNullify.DURATION);
+                        break;
+                    case 3:
+                        Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
+                        break;
+                }
             }
-
-            int dmg = Random.NormalIntRange( 54, 70 );
-            enemy.damage( dmg, new DarkBolt() );
 
             if (enemy == Dungeon.heroine && !enemy.isAlive()) {
                 Dungeon.fail( getClass() );
