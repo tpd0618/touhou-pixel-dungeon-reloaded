@@ -60,7 +60,7 @@ public class Ubame extends Mob {
 
     @Override
     protected boolean act() {
-        if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING) {
+        if (Dungeon.level.heroFOV[pos] && this.state != SLEEPING && this.state != FLEEING && Dungeon.heroine.buff(AnkhInvulnerability.class) != null) {
             Buff.detach( Dungeon.heroine, AnkhInvulnerability.class);
             GameScene.flash(-65536);
             Sample.INSTANCE.play( Assets.Sounds.BLAST );
